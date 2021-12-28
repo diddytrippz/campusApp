@@ -1,7 +1,3 @@
-import '../backend/backend.dart';
-import '../components/empty_list_closed_widget.dart';
-import '../components/empty_list_completd_widget.dart';
-import '../components/empty_list_submitted_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -132,281 +128,256 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Expanded(
-                                          child: StreamBuilder<
-                                              List<MaintenanceRecord>>(
-                                            stream: queryMaintenanceRecord(),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 40,
-                                                    height: 40,
-                                                    child: SpinKitThreeBounce(
-                                                      color: FlutterFlowTheme
-                                                          .primaryColor,
-                                                      size: 40,
-                                                    ),
-                                                  ),
-                                                );
-                                              }
-                                              List<MaintenanceRecord>
-                                                  columnMaintenanceRecordList =
-                                                  snapshot.data;
-                                              if (columnMaintenanceRecordList
-                                                  .isEmpty) {
-                                                return Center(
-                                                  child:
-                                                      EmptyListSubmittedWidget(),
-                                                );
-                                              }
-                                              return SingleChildScrollView(
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: List.generate(
-                                                      columnMaintenanceRecordList
-                                                          .length,
-                                                      (columnIndex) {
-                                                    final columnMaintenanceRecord =
-                                                        columnMaintenanceRecordList[
-                                                            columnIndex];
-                                                    return Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 8),
-                                                      child: Material(
-                                                        color:
-                                                            Colors.transparent,
-                                                        elevation: 2,
-                                                        child: Container(
-                                                          width: MediaQuery.of(
-                                                                  context)
+                                          child: SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 8),
+                                                  child: Material(
+                                                    color: Colors.transparent,
+                                                    elevation: 2,
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
                                                               .size
                                                               .width,
-                                                          height: MediaQuery.of(
-                                                                      context)
+                                                      height:
+                                                          MediaQuery.of(context)
                                                                   .size
                                                                   .height *
                                                               0.2,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Colors.white,
-                                                            shape: BoxShape
-                                                                .rectangle,
-                                                          ),
-                                                          child: InkWell(
-                                                            onTap: () async {
-                                                              await Navigator
-                                                                  .push(
-                                                                context,
-                                                                PageTransition(
-                                                                  type: PageTransitionType
-                                                                      .bottomToTop,
-                                                                  duration: Duration(
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        shape:
+                                                            BoxShape.rectangle,
+                                                      ),
+                                                      child: InkWell(
+                                                        onTap: () async {
+                                                          await Navigator.push(
+                                                            context,
+                                                            PageTransition(
+                                                              type: PageTransitionType
+                                                                  .bottomToTop,
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      300),
+                                                              reverseDuration:
+                                                                  Duration(
                                                                       milliseconds:
                                                                           300),
-                                                                  reverseDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              300),
-                                                                  child:
-                                                                      RepairStatusWidget(),
-                                                                ),
-                                                              );
-                                                            },
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Expanded(
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                              child:
+                                                                  RepairStatusWidget(),
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             12,
                                                                             8,
                                                                             0,
                                                                             0),
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
                                                                               0,
                                                                               0,
                                                                               0,
                                                                               4),
-                                                                          child:
-                                                                              Text(
-                                                                            columnMaintenanceRecord.issue,
-                                                                            style:
-                                                                                FlutterFlowTheme.title1.override(
-                                                                              fontFamily: 'Poppins',
-                                                                              fontSize: 18,
-                                                                            ),
-                                                                          ),
+                                                                      child:
+                                                                          Text(
+                                                                        'Report issue here',
+                                                                        style: FlutterFlowTheme
+                                                                            .title1
+                                                                            .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          fontSize:
+                                                                              18,
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
                                                                               0,
                                                                               4,
                                                                               0,
                                                                               4),
-                                                                          child:
-                                                                              Text(
-                                                                            'Building',
-                                                                            style:
-                                                                                FlutterFlowTheme.bodyText1.override(
-                                                                              fontFamily: 'Poppins',
-                                                                              color: Color(0xFF6E6E6E),
-                                                                            ),
-                                                                          ),
+                                                                      child:
+                                                                          Text(
+                                                                        'Building',
+                                                                        style: FlutterFlowTheme
+                                                                            .bodyText1
+                                                                            .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          color:
+                                                                              Color(0xFF6E6E6E),
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
                                                                               0,
                                                                               4,
                                                                               0,
                                                                               4),
-                                                                          child:
-                                                                              Text(
-                                                                            'Created on ${dateTimeFormat('MMMMEEEEd', columnMaintenanceRecord.dateCreated)}',
-                                                                            style:
-                                                                                FlutterFlowTheme.bodyText1.override(
-                                                                              fontFamily: 'Poppins',
-                                                                              fontSize: 12,
-                                                                            ),
-                                                                          ),
+                                                                      child:
+                                                                          Text(
+                                                                        'Created on Wed, Nov 17 2021 at 10:20:07',
+                                                                        style: FlutterFlowTheme
+                                                                            .bodyText1
+                                                                            .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          fontSize:
+                                                                              12,
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
                                                                               0,
                                                                               4,
                                                                               0,
                                                                               4),
-                                                                          child:
-                                                                              RatingBar.builder(
-                                                                            onRatingUpdate: (newValue) =>
+                                                                      child: RatingBar
+                                                                          .builder(
+                                                                        onRatingUpdate:
+                                                                            (newValue) =>
                                                                                 setState(() => ratingBarValue1 = newValue),
-                                                                            itemBuilder: (context, index) =>
+                                                                        itemBuilder:
+                                                                            (context, index) =>
                                                                                 Icon(
-                                                                              Icons.star_rate_sharp,
-                                                                              color: Color(0xFFD93A0E),
-                                                                            ),
-                                                                            direction:
-                                                                                Axis.horizontal,
-                                                                            initialRating: ratingBarValue1 ??=
+                                                                          Icons
+                                                                              .star_rate_sharp,
+                                                                          color:
+                                                                              Color(0xFFD93A0E),
+                                                                        ),
+                                                                        direction:
+                                                                            Axis.horizontal,
+                                                                        initialRating:
+                                                                            ratingBarValue1 ??=
                                                                                 0,
-                                                                            unratedColor:
-                                                                                Color(0xFF9E9E9E),
-                                                                            itemCount:
-                                                                                5,
-                                                                            itemSize:
-                                                                                22,
-                                                                            glowColor:
-                                                                                Color(0xFFD93A0E),
-                                                                          ),
-                                                                        ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        unratedColor:
+                                                                            Color(0xFF9E9E9E),
+                                                                        itemCount:
+                                                                            5,
+                                                                        itemSize:
+                                                                            22,
+                                                                        glowColor:
+                                                                            Color(0xFFD93A0E),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
                                                                               0,
                                                                               4,
                                                                               0,
                                                                               0),
-                                                                          child:
-                                                                              Row(
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          Row(
                                                                             mainAxisSize:
                                                                                 MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
                                                                             children: [
-                                                                              Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
-                                                                                    child: Icon(
-                                                                                      Icons.room,
-                                                                                      color: Color(0xFF6E6E6E),
-                                                                                      size: 22,
-                                                                                    ),
-                                                                                  ),
-                                                                                  Text(
-                                                                                    '1708',
-                                                                                    style: FlutterFlowTheme.bodyText1,
-                                                                                  ),
-                                                                                ],
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
+                                                                                child: Icon(
+                                                                                  Icons.room,
+                                                                                  color: Color(0xFF6E6E6E),
+                                                                                  size: 22,
+                                                                                ),
                                                                               ),
-                                                                              Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 0),
-                                                                                    child: Icon(
-                                                                                      Icons.person,
-                                                                                      color: Color(0xFF9E9E9E),
-                                                                                      size: 22,
-                                                                                    ),
-                                                                                  ),
-                                                                                  Text(
-                                                                                    'Lincoln Mudau',
-                                                                                    style: FlutterFlowTheme.bodyText1,
-                                                                                  ),
-                                                                                ],
+                                                                              Text(
+                                                                                '1708',
+                                                                                style: FlutterFlowTheme.bodyText1,
                                                                               ),
                                                                             ],
                                                                           ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              8,
-                                                                              0,
-                                                                              8,
-                                                                              0),
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .keyboard_arrow_right,
-                                                                        color: Color(
-                                                                            0xFFA4A4A4),
-                                                                        size:
-                                                                            24,
+                                                                          Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 0),
+                                                                                child: Icon(
+                                                                                  Icons.person,
+                                                                                  color: Color(0xFF9E9E9E),
+                                                                                  size: 22,
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                'Lincoln Mudau',
+                                                                                style: FlutterFlowTheme.bodyText1,
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ],
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
+                                                              ),
+                                                            ),
+                                                            Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8,
+                                                                          0,
+                                                                          8,
+                                                                          0),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_right,
+                                                                    color: Color(
+                                                                        0xFFA4A4A4),
+                                                                    size: 24,
+                                                                  ),
+                                                                ),
                                                               ],
                                                             ),
-                                                          ),
+                                                          ],
                                                         ),
                                                       ),
-                                                    );
-                                                  }),
+                                                    ),
+                                                  ),
                                                 ),
-                                              );
-                                            },
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -439,289 +410,263 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Expanded(
-                                          child: StreamBuilder<
-                                              List<MaintenanceRecord>>(
-                                            stream: queryMaintenanceRecord(),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 40,
-                                                    height: 40,
-                                                    child: SpinKitThreeBounce(
-                                                      color: FlutterFlowTheme
-                                                          .primaryColor,
-                                                      size: 40,
+                                          child: SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 8),
+                                                  child: Material(
+                                                    color: Colors.transparent,
+                                                    elevation: 3,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
                                                     ),
-                                                  ),
-                                                );
-                                              }
-                                              List<MaintenanceRecord>
-                                                  columnMaintenanceRecordList =
-                                                  snapshot.data;
-                                              if (columnMaintenanceRecordList
-                                                  .isEmpty) {
-                                                return Center(
-                                                  child:
-                                                      EmptyListCompletdWidget(),
-                                                );
-                                              }
-                                              return SingleChildScrollView(
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: List.generate(
-                                                      columnMaintenanceRecordList
-                                                          .length,
-                                                      (columnIndex) {
-                                                    final columnMaintenanceRecord =
-                                                        columnMaintenanceRecordList[
-                                                            columnIndex];
-                                                    return Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 8),
-                                                      child: Material(
-                                                        color:
-                                                            Colors.transparent,
-                                                        elevation: 3,
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                        ),
-                                                        child: Container(
-                                                          width: MediaQuery.of(
-                                                                  context)
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
                                                               .size
                                                               .width,
-                                                          height: MediaQuery.of(
-                                                                      context)
+                                                      height:
+                                                          MediaQuery.of(context)
                                                                   .size
                                                                   .height *
                                                               0.2,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8),
-                                                          ),
-                                                          child: InkWell(
-                                                            onTap: () async {
-                                                              await Navigator
-                                                                  .push(
-                                                                context,
-                                                                PageTransition(
-                                                                  type: PageTransitionType
-                                                                      .bottomToTop,
-                                                                  duration: Duration(
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
+                                                      ),
+                                                      child: InkWell(
+                                                        onTap: () async {
+                                                          await Navigator.push(
+                                                            context,
+                                                            PageTransition(
+                                                              type: PageTransitionType
+                                                                  .bottomToTop,
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      300),
+                                                              reverseDuration:
+                                                                  Duration(
                                                                       milliseconds:
                                                                           300),
-                                                                  reverseDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              300),
-                                                                  child:
-                                                                      RepairStatusWidget(),
-                                                                ),
-                                                              );
-                                                            },
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Expanded(
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                              child:
+                                                                  RepairStatusWidget(),
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             12,
                                                                             8,
                                                                             0,
                                                                             0),
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
                                                                               0,
                                                                               0,
                                                                               0,
                                                                               4),
-                                                                          child:
-                                                                              Text(
-                                                                            columnMaintenanceRecord.issue,
-                                                                            style:
-                                                                                FlutterFlowTheme.title1.override(
-                                                                              fontFamily: 'Poppins',
-                                                                              fontSize: 18,
-                                                                            ),
-                                                                          ),
+                                                                      child:
+                                                                          Text(
+                                                                        'Report issue here',
+                                                                        style: FlutterFlowTheme
+                                                                            .title1
+                                                                            .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          fontSize:
+                                                                              18,
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
                                                                               0,
                                                                               4,
                                                                               0,
                                                                               4),
-                                                                          child:
-                                                                              Text(
-                                                                            'Building',
-                                                                            style:
-                                                                                FlutterFlowTheme.bodyText1.override(
-                                                                              fontFamily: 'Poppins',
-                                                                              color: Color(0xFF6E6E6E),
-                                                                            ),
-                                                                          ),
+                                                                      child:
+                                                                          Text(
+                                                                        'Building',
+                                                                        style: FlutterFlowTheme
+                                                                            .bodyText1
+                                                                            .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          color:
+                                                                              Color(0xFF6E6E6E),
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
                                                                               0,
                                                                               4,
                                                                               0,
                                                                               4),
-                                                                          child:
-                                                                              Text(
-                                                                            'Created on ${dateTimeFormat('MMMMEEEEd', columnMaintenanceRecord.dateCreated)}',
-                                                                            style:
-                                                                                FlutterFlowTheme.bodyText1.override(
-                                                                              fontFamily: 'Poppins',
-                                                                              fontSize: 12,
-                                                                            ),
-                                                                          ),
+                                                                      child:
+                                                                          Text(
+                                                                        'Created on Wed, Nov 17 2021 at 10:20:07',
+                                                                        style: FlutterFlowTheme
+                                                                            .bodyText1
+                                                                            .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          fontSize:
+                                                                              12,
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
                                                                               0,
                                                                               4,
                                                                               0,
                                                                               4),
-                                                                          child:
-                                                                              RatingBar.builder(
-                                                                            onRatingUpdate: (newValue) =>
+                                                                      child: RatingBar
+                                                                          .builder(
+                                                                        onRatingUpdate:
+                                                                            (newValue) =>
                                                                                 setState(() => ratingBarValue2 = newValue),
-                                                                            itemBuilder: (context, index) =>
+                                                                        itemBuilder:
+                                                                            (context, index) =>
                                                                                 Icon(
-                                                                              Icons.tag_faces_outlined,
-                                                                              color: Color(0xFFD93A0E),
-                                                                            ),
-                                                                            direction:
-                                                                                Axis.horizontal,
-                                                                            initialRating: ratingBarValue2 ??=
-                                                                                3,
-                                                                            unratedColor:
-                                                                                Color(0xFF9E9E9E),
-                                                                            itemCount:
-                                                                                5,
-                                                                            itemSize:
-                                                                                22,
-                                                                            glowColor:
-                                                                                Color(0xFFD93A0E),
-                                                                          ),
+                                                                          Icons
+                                                                              .tag_faces_outlined,
+                                                                          color:
+                                                                              Color(0xFFD93A0E),
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        direction:
+                                                                            Axis.horizontal,
+                                                                        initialRating:
+                                                                            ratingBarValue2 ??=
+                                                                                3,
+                                                                        unratedColor:
+                                                                            Color(0xFF9E9E9E),
+                                                                        itemCount:
+                                                                            5,
+                                                                        itemSize:
+                                                                            22,
+                                                                        glowColor:
+                                                                            Color(0xFFD93A0E),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
                                                                               0,
                                                                               4,
                                                                               0,
                                                                               0),
-                                                                          child:
-                                                                              Row(
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          Row(
                                                                             mainAxisSize:
                                                                                 MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
                                                                             children: [
-                                                                              Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
-                                                                                    child: Icon(
-                                                                                      Icons.room,
-                                                                                      color: Color(0xFF6E6E6E),
-                                                                                      size: 22,
-                                                                                    ),
-                                                                                  ),
-                                                                                  Text(
-                                                                                    '1708',
-                                                                                    style: FlutterFlowTheme.bodyText1,
-                                                                                  ),
-                                                                                ],
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
+                                                                                child: Icon(
+                                                                                  Icons.room,
+                                                                                  color: Color(0xFF6E6E6E),
+                                                                                  size: 22,
+                                                                                ),
                                                                               ),
-                                                                              Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 0),
-                                                                                    child: Icon(
-                                                                                      Icons.person,
-                                                                                      color: Color(0xFF9E9E9E),
-                                                                                      size: 22,
-                                                                                    ),
-                                                                                  ),
-                                                                                  Text(
-                                                                                    'Lincoln Mudau',
-                                                                                    style: FlutterFlowTheme.bodyText1,
-                                                                                  ),
-                                                                                ],
+                                                                              Text(
+                                                                                '1708',
+                                                                                style: FlutterFlowTheme.bodyText1,
                                                                               ),
                                                                             ],
                                                                           ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              8,
-                                                                              0,
-                                                                              8,
-                                                                              0),
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .keyboard_arrow_right,
-                                                                        color: Color(
-                                                                            0xFFA4A4A4),
-                                                                        size:
-                                                                            24,
+                                                                          Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 0),
+                                                                                child: Icon(
+                                                                                  Icons.person,
+                                                                                  color: Color(0xFF9E9E9E),
+                                                                                  size: 22,
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                'Lincoln Mudau',
+                                                                                style: FlutterFlowTheme.bodyText1,
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ],
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
+                                                              ),
+                                                            ),
+                                                            Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8,
+                                                                          0,
+                                                                          8,
+                                                                          0),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_right,
+                                                                    color: Color(
+                                                                        0xFFA4A4A4),
+                                                                    size: 24,
+                                                                  ),
+                                                                ),
                                                               ],
                                                             ),
-                                                          ),
+                                                          ],
                                                         ),
                                                       ),
-                                                    );
-                                                  }),
+                                                    ),
+                                                  ),
                                                 ),
-                                              );
-                                            },
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -754,289 +699,263 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Expanded(
-                                          child: StreamBuilder<
-                                              List<MaintenanceRecord>>(
-                                            stream: queryMaintenanceRecord(),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 40,
-                                                    height: 40,
-                                                    child: SpinKitThreeBounce(
-                                                      color: FlutterFlowTheme
-                                                          .primaryColor,
-                                                      size: 40,
+                                          child: SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 8),
+                                                  child: Material(
+                                                    color: Colors.transparent,
+                                                    elevation: 3,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
                                                     ),
-                                                  ),
-                                                );
-                                              }
-                                              List<MaintenanceRecord>
-                                                  columnMaintenanceRecordList =
-                                                  snapshot.data;
-                                              if (columnMaintenanceRecordList
-                                                  .isEmpty) {
-                                                return Center(
-                                                  child:
-                                                      EmptyListClosedWidget(),
-                                                );
-                                              }
-                                              return SingleChildScrollView(
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: List.generate(
-                                                      columnMaintenanceRecordList
-                                                          .length,
-                                                      (columnIndex) {
-                                                    final columnMaintenanceRecord =
-                                                        columnMaintenanceRecordList[
-                                                            columnIndex];
-                                                    return Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 8),
-                                                      child: Material(
-                                                        color:
-                                                            Colors.transparent,
-                                                        elevation: 3,
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                        ),
-                                                        child: Container(
-                                                          width: MediaQuery.of(
-                                                                  context)
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
                                                               .size
                                                               .width,
-                                                          height: MediaQuery.of(
-                                                                      context)
+                                                      height:
+                                                          MediaQuery.of(context)
                                                                   .size
                                                                   .height *
                                                               0.2,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8),
-                                                          ),
-                                                          child: InkWell(
-                                                            onTap: () async {
-                                                              await Navigator
-                                                                  .push(
-                                                                context,
-                                                                PageTransition(
-                                                                  type: PageTransitionType
-                                                                      .bottomToTop,
-                                                                  duration: Duration(
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
+                                                      ),
+                                                      child: InkWell(
+                                                        onTap: () async {
+                                                          await Navigator.push(
+                                                            context,
+                                                            PageTransition(
+                                                              type: PageTransitionType
+                                                                  .bottomToTop,
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      300),
+                                                              reverseDuration:
+                                                                  Duration(
                                                                       milliseconds:
                                                                           300),
-                                                                  reverseDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              300),
-                                                                  child:
-                                                                      RepairStatusWidget(),
-                                                                ),
-                                                              );
-                                                            },
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Expanded(
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                              child:
+                                                                  RepairStatusWidget(),
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             12,
                                                                             8,
                                                                             0,
                                                                             0),
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              0,
-                                                                              0,
-                                                                              4),
-                                                                          child:
-                                                                              Text(
-                                                                            columnMaintenanceRecord.issue,
-                                                                            style:
-                                                                                FlutterFlowTheme.title1.override(
-                                                                              fontFamily: 'Poppins',
-                                                                              fontSize: 18,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              4,
-                                                                              0,
-                                                                              4),
-                                                                          child:
-                                                                              Text(
-                                                                            'Building',
-                                                                            style:
-                                                                                FlutterFlowTheme.bodyText1.override(
-                                                                              fontFamily: 'Poppins',
-                                                                              color: Color(0xFF6E6E6E),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              4,
-                                                                              0,
-                                                                              4),
-                                                                          child:
-                                                                              Text(
-                                                                            'Created on ${dateTimeFormat('MMMMEEEEd', columnMaintenanceRecord.dateCreated)}',
-                                                                            style:
-                                                                                FlutterFlowTheme.bodyText1.override(
-                                                                              fontFamily: 'Poppins',
-                                                                              fontSize: 12,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              4,
-                                                                              0,
-                                                                              4),
-                                                                          child:
-                                                                              RatingBar.builder(
-                                                                            onRatingUpdate: (newValue) =>
-                                                                                setState(() => ratingBarValue3 = newValue),
-                                                                            itemBuilder: (context, index) =>
-                                                                                Icon(
-                                                                              Icons.tag_faces_outlined,
-                                                                              color: Color(0xFFD93A0E),
-                                                                            ),
-                                                                            direction:
-                                                                                Axis.horizontal,
-                                                                            initialRating: ratingBarValue3 ??=
-                                                                                3,
-                                                                            unratedColor:
-                                                                                Color(0xFF9E9E9E),
-                                                                            itemCount:
-                                                                                5,
-                                                                            itemSize:
-                                                                                22,
-                                                                            glowColor:
-                                                                                Color(0xFFD93A0E),
-                                                                          ),
-                                                                        ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              4,
-                                                                              0,
-                                                                              0),
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
-                                                                            children: [
-                                                                              Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
-                                                                                    child: Icon(
-                                                                                      Icons.room,
-                                                                                      color: Color(0xFF6E6E6E),
-                                                                                      size: 22,
-                                                                                    ),
-                                                                                  ),
-                                                                                  Text(
-                                                                                    '1708',
-                                                                                    style: FlutterFlowTheme.bodyText1,
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                              Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 0),
-                                                                                    child: Icon(
-                                                                                      Icons.person,
-                                                                                      color: Color(0xFF9E9E9E),
-                                                                                      size: 22,
-                                                                                    ),
-                                                                                  ),
-                                                                                  Text(
-                                                                                    'Lincoln Mudau',
-                                                                                    style: FlutterFlowTheme.bodyText1,
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Column(
+                                                                child: Column(
                                                                   mainAxisSize:
                                                                       MainAxisSize
                                                                           .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
                                                                   children: [
                                                                     Padding(
                                                                       padding: EdgeInsetsDirectional
                                                                           .fromSTEB(
-                                                                              8,
                                                                               0,
-                                                                              8,
+                                                                              0,
+                                                                              0,
+                                                                              4),
+                                                                      child:
+                                                                          Text(
+                                                                        'Report issue here',
+                                                                        style: FlutterFlowTheme
+                                                                            .title1
+                                                                            .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          fontSize:
+                                                                              18,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0,
+                                                                              4,
+                                                                              0,
+                                                                              4),
+                                                                      child:
+                                                                          Text(
+                                                                        'Building',
+                                                                        style: FlutterFlowTheme
+                                                                            .bodyText1
+                                                                            .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          color:
+                                                                              Color(0xFF6E6E6E),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0,
+                                                                              4,
+                                                                              0,
+                                                                              4),
+                                                                      child:
+                                                                          Text(
+                                                                        'Created on Wed, Nov 17 2021 at 10:20:07',
+                                                                        style: FlutterFlowTheme
+                                                                            .bodyText1
+                                                                            .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          fontSize:
+                                                                              12,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0,
+                                                                              4,
+                                                                              0,
+                                                                              4),
+                                                                      child: RatingBar
+                                                                          .builder(
+                                                                        onRatingUpdate:
+                                                                            (newValue) =>
+                                                                                setState(() => ratingBarValue3 = newValue),
+                                                                        itemBuilder:
+                                                                            (context, index) =>
+                                                                                Icon(
+                                                                          Icons
+                                                                              .tag_faces_outlined,
+                                                                          color:
+                                                                              Color(0xFFD93A0E),
+                                                                        ),
+                                                                        direction:
+                                                                            Axis.horizontal,
+                                                                        initialRating:
+                                                                            ratingBarValue3 ??=
+                                                                                3,
+                                                                        unratedColor:
+                                                                            Color(0xFF9E9E9E),
+                                                                        itemCount:
+                                                                            5,
+                                                                        itemSize:
+                                                                            22,
+                                                                        glowColor:
+                                                                            Color(0xFFD93A0E),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0,
+                                                                              4,
+                                                                              0,
                                                                               0),
                                                                       child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .keyboard_arrow_right,
-                                                                        color: Color(
-                                                                            0xFFA4A4A4),
-                                                                        size:
-                                                                            24,
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
+                                                                                child: Icon(
+                                                                                  Icons.room,
+                                                                                  color: Color(0xFF6E6E6E),
+                                                                                  size: 22,
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                '1708',
+                                                                                style: FlutterFlowTheme.bodyText1,
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 6, 0),
+                                                                                child: Icon(
+                                                                                  Icons.person,
+                                                                                  color: Color(0xFF9E9E9E),
+                                                                                  size: 22,
+                                                                                ),
+                                                                              ),
+                                                                              Text(
+                                                                                'Lincoln Mudau',
+                                                                                style: FlutterFlowTheme.bodyText1,
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ],
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
+                                                              ),
+                                                            ),
+                                                            Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8,
+                                                                          0,
+                                                                          8,
+                                                                          0),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_right,
+                                                                    color: Color(
+                                                                        0xFFA4A4A4),
+                                                                    size: 24,
+                                                                  ),
+                                                                ),
                                                               ],
                                                             ),
-                                                          ),
+                                                          ],
                                                         ),
                                                       ),
-                                                    );
-                                                  }),
+                                                    ),
+                                                  ),
                                                 ),
-                                              );
-                                            },
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ],

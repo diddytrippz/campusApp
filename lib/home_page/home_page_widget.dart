@@ -1,4 +1,3 @@
-import '../backend/backend.dart';
 import '../components/appliances_widget.dart';
 import '../components/communal_areas_widget.dart';
 import '../components/electrical_widget.dart';
@@ -84,62 +83,32 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          StreamBuilder<List<UsersRecord>>(
-                            stream: queryUsersRecord(
-                              singleRecord: true,
-                            ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 40,
-                                    height: 40,
-                                    child: SpinKitThreeBounce(
-                                      color: FlutterFlowTheme.primaryColor,
-                                      size: 40,
-                                    ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Welcome,',
+                                style: FlutterFlowTheme.title3.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Color(0xFF1E2429),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                                child: Text(
+                                  'Lincoln Mudau',
+                                  style: FlutterFlowTheme.title3.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Color(0xFFD93A0E),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                );
-                              }
-                              List<UsersRecord> rowUsersRecordList =
-                                  snapshot.data;
-                              // Return an empty Container when the document does not exist.
-                              if (snapshot.data.isEmpty) {
-                                return Container();
-                              }
-                              final rowUsersRecord =
-                                  rowUsersRecordList.isNotEmpty
-                                      ? rowUsersRecordList.first
-                                      : null;
-                              return Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'Welcome,',
-                                    style: FlutterFlowTheme.title3.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF1E2429),
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        4, 0, 0, 0),
-                                    child: Text(
-                                      rowUsersRecord.displayName,
-                                      style: FlutterFlowTheme.title3.override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: Color(0xFFD93A0E),
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
+                                ),
+                              ),
+                            ],
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
@@ -240,6 +209,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: [
@@ -257,10 +229,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 45),
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 0, 10, 0),
                     child: SingleChildScrollView(
                       child: Column(
-                        mainAxisSize: MainAxisSize.max,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Padding(
                             padding:
@@ -282,10 +254,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 12, 16, 6),
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 6),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -511,7 +484,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 12, 16, 6),
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 6),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -740,7 +713,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 12, 16, 6),
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 26),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.start,
