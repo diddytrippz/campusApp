@@ -15,7 +15,7 @@ class _StateWidgetState extends State<StateWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 16, 16),
@@ -49,6 +49,7 @@ class _StateWidgetState extends State<StateWidget> {
           ),
           child: Container(
             width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.85,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
