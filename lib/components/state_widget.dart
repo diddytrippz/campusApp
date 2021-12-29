@@ -49,7 +49,6 @@ class _StateWidgetState extends State<StateWidget> {
           ),
           child: Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.9,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -59,109 +58,155 @@ class _StateWidgetState extends State<StateWidget> {
                 topRight: Radius.circular(35),
               ),
             ),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 16, 24, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  'Progress',
-                                  style: FlutterFlowTheme.title1.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Color(0xFFFFBA00),
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 16, 24, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Progress',
+                                style: FlutterFlowTheme.title1.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Color(0xFFFFBA00),
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 4, 24, 24),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  'Track the progress of  your repair in real time.',
-                                  style: FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Color(0xFF8B97A2),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 4, 24, 24),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Track the progress of  your repair in real time.',
+                                style: FlutterFlowTheme.bodyText2.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Color(0xFF8B97A2),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 12, 0),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 16,
+                                      height: 16,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFD93A0E),
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 2,
+                                      height: 110,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFD93A0E),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.85,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Container(
-                                        width: 16,
-                                        height: 16,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFD93A0E),
-                                          shape: BoxShape.circle,
-                                        ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            '14, Sept. 2021',
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Color(0xFF95A1AC),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Container(
-                                        width: 2,
-                                        height: 110,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFD93A0E),
-                                        ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Text(
+                                            'Status change',
+                                            style: FlutterFlowTheme.subtitle2
+                                                .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Color(0xFF151B1E),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    4, 0, 0, 0),
+                                            child: Text(
+                                              'Submitted',
+                                              style: FlutterFlowTheme.subtitle1
+                                                  .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Colors.yellow,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 12, 0, 0),
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.85,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 4, 0, 0),
+                                        child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.start,
                                           children: [
                                             Text(
-                                              '14, Sept. 2021',
+                                              'Mudau L.',
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Lexend Deca',
@@ -170,129 +215,120 @@ class _StateWidgetState extends State<StateWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                             ),
-                                            Icon(
-                                              Icons.chevron_right_rounded,
-                                              color: Color(0xFFFFBA00),
-                                              size: 24,
-                                            ),
                                           ],
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              'Status change',
-                                              style: FlutterFlowTheme.subtitle2
-                                                  .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF151B1E),
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(4, 0, 0, 0),
-                                              child: Text(
-                                                'Submitted',
-                                                style: FlutterFlowTheme
-                                                    .subtitle1
-                                                    .override(
-                                                  fontFamily: 'Lexend Deca',
-                                                  color: Colors.yellow,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 4, 0, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Mudau L.',
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Lexend Deca',
-                                                  color: Color(0xFF95A1AC),
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 12, 0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: 16,
-                                        height: 16,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFD93A0E),
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 2,
-                                        height: 110,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFD93A0E),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 12, 0, 0),
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.85,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 16,
+                                      height: 16,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFD93A0E),
+                                        shape: BoxShape.circle,
+                                      ),
                                     ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
+                                    Container(
+                                      width: 2,
+                                      height: 110,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFD93A0E),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.85,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            '15, Sept. 2021',
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Color(0xFF95A1AC),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Text(
+                                            'Status change',
+                                            style: FlutterFlowTheme.subtitle2
+                                                .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Color(0xFF151B1E),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    4, 0, 0, 0),
+                                            child: Text(
+                                              'Completed',
+                                              style: FlutterFlowTheme.subtitle1
+                                                  .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Colors.green,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 4, 0, 0),
+                                        child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.start,
                                           children: [
                                             Text(
-                                              '15, Sept. 2021',
+                                              'Thabo M.',
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Lexend Deca',
@@ -301,129 +337,120 @@ class _StateWidgetState extends State<StateWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                             ),
-                                            Icon(
-                                              Icons.chevron_right_rounded,
-                                              color: Color(0xFFFFBA00),
-                                              size: 24,
-                                            ),
                                           ],
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              'Status change',
-                                              style: FlutterFlowTheme.subtitle2
-                                                  .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF151B1E),
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(4, 0, 0, 0),
-                                              child: Text(
-                                                'Completed',
-                                                style: FlutterFlowTheme
-                                                    .subtitle1
-                                                    .override(
-                                                  fontFamily: 'Lexend Deca',
-                                                  color: Colors.green,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 4, 0, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Thabo M.',
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Lexend Deca',
-                                                  color: Color(0xFF95A1AC),
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 12, 0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: 16,
-                                        height: 16,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFD93A0E),
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 2,
-                                        height: 100,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFD93A0E),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 12, 0, 0),
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.85,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 16,
+                                      height: 16,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFD93A0E),
+                                        shape: BoxShape.circle,
+                                      ),
                                     ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
+                                    Container(
+                                      width: 2,
+                                      height: 100,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFD93A0E),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.85,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            '18, Sept. 2021',
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Color(0xFF95A1AC),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Text(
+                                            'Status change',
+                                            style: FlutterFlowTheme.subtitle2
+                                                .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Color(0xFF151B1E),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    4, 0, 0, 0),
+                                            child: Text(
+                                              'Closed',
+                                              style: FlutterFlowTheme.subtitle1
+                                                  .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Colors.red,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 4, 0, 0),
+                                        child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.start,
                                           children: [
                                             Text(
-                                              '18, Sept. 2021',
+                                              'Muler F.',
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Lexend Deca',
@@ -432,79 +459,21 @@ class _StateWidgetState extends State<StateWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                             ),
-                                            Icon(
-                                              Icons.chevron_right_rounded,
-                                              color: Color(0xFFFFBA00),
-                                              size: 24,
-                                            ),
                                           ],
                                         ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              'Status change',
-                                              style: FlutterFlowTheme.subtitle2
-                                                  .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF151B1E),
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(4, 0, 0, 0),
-                                              child: Text(
-                                                'Closed',
-                                                style: FlutterFlowTheme
-                                                    .subtitle1
-                                                    .override(
-                                                  fontFamily: 'Lexend Deca',
-                                                  color: Colors.red,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 4, 0, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Muler F.',
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Lexend Deca',
-                                                  color: Color(0xFF95A1AC),
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
