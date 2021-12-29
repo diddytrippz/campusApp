@@ -1,3 +1,4 @@
+import '../components/state_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -64,7 +65,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 1,
           decoration: BoxDecoration(
-            color: Color(0xFFFFFEFE),
+            color: Colors.white,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -167,21 +168,32 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                       ),
                                                       child: InkWell(
                                                         onTap: () async {
-                                                          await Navigator.push(
-                                                            context,
-                                                            PageTransition(
-                                                              type: PageTransitionType
-                                                                  .bottomToTop,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      300),
-                                                              reverseDuration:
-                                                                  Duration(
-                                                                      milliseconds:
-                                                                          300),
-                                                              child:
-                                                                  RepairStatusWidget(),
-                                                            ),
+                                                          await showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            backgroundColor:
+                                                                Color(
+                                                                    0x00FFFFFF),
+                                                            barrierColor: Color(
+                                                                0x83FFFFFF),
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return Padding(
+                                                                padding: MediaQuery.of(
+                                                                        context)
+                                                                    .viewInsets,
+                                                                child:
+                                                                    Container(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.7,
+                                                                  child:
+                                                                      StateWidget(),
+                                                                ),
+                                                              );
+                                                            },
                                                           );
                                                         },
                                                         child: Row(
