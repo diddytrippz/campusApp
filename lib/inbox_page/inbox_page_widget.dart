@@ -35,17 +35,19 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
-                  child: Row(
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: 140,
+                        height: MediaQuery.of(context).size.height * 0.21,
                         decoration: BoxDecoration(
                           color: Colors.white,
                         ),
@@ -214,8 +216,8 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                       ),
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Expanded(
               child: SingleChildScrollView(

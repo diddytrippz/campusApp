@@ -235,7 +235,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
                             options: FFButtonOptions(
                               width: 130,
                               height: 40,
-                              color: Color(0x00D93A0E),
+                              color: Color(0x00FFFFFF),
                               textStyle: FlutterFlowTheme.subtitle2.override(
                                 fontFamily: 'Poppins',
                                 color: Color(0xFFD93A0E),

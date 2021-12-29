@@ -141,6 +141,12 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                   child: Material(
                                                     color: Colors.transparent,
                                                     elevation: 2,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
                                                     child: Container(
                                                       width:
                                                           MediaQuery.of(context)
@@ -153,6 +159,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                               0.2,
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8),
                                                         shape:
                                                             BoxShape.rectangle,
                                                       ),
