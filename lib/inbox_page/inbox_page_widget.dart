@@ -38,181 +38,189 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
             Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 140,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 34, 0, 0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16, 16, 16, 16),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  InkWell(
-                                    onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.bottomToTop,
-                                          duration: Duration(milliseconds: 300),
-                                          reverseDuration:
-                                              Duration(milliseconds: 300),
-                                          child: NavBarPage(
-                                              initialPage: 'homePage'),
-                                        ),
-                                      );
-                                    },
-                                    child: FaIcon(
-                                      FontAwesomeIcons.longArrowAltLeft,
-                                      color: FlutterFlowTheme.campusGrey,
-                                      size: 30,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Inbox',
-                                    style: FlutterFlowTheme.title1.override(
-                                      fontFamily: 'Ubuntu',
-                                      color: FlutterFlowTheme.campusGrey,
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  Text(
-                                    ' ',
-                                    style: FlutterFlowTheme.title1.override(
-                                      fontFamily: 'Open Sans',
-                                      color: Color(0xFF090F13),
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-                              child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: Colors.white,
-                                elevation: 3,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 0, 8, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            4, 0, 4, 0),
-                                        child: Icon(
-                                          Icons.search_rounded,
-                                          color: Color(0xFF95A1AC),
-                                          size: 24,
-                                        ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 140,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 34, 0, 0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16, 16, 16, 16),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type:
+                                                PageTransitionType.bottomToTop,
+                                            duration:
+                                                Duration(milliseconds: 300),
+                                            reverseDuration:
+                                                Duration(milliseconds: 300),
+                                            child: NavBarPage(
+                                                initialPage: 'homePage'),
+                                          ),
+                                        );
+                                      },
+                                      child: FaIcon(
+                                        FontAwesomeIcons.longArrowAltLeft,
+                                        color: FlutterFlowTheme.campusGrey,
+                                        size: 30,
                                       ),
-                                      Expanded(
-                                        flex: 10,
-                                        child: Padding(
+                                    ),
+                                    Text(
+                                      'Inbox',
+                                      style: FlutterFlowTheme.title1.override(
+                                        fontFamily: 'Ubuntu',
+                                        color: FlutterFlowTheme.campusGrey,
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Text(
+                                      ' ',
+                                      style: FlutterFlowTheme.title1.override(
+                                        fontFamily: 'Open Sans',
+                                        color: Color(0xFF090F13),
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    12, 0, 12, 0),
+                                child: Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  color: Colors.white,
+                                  elevation: 3,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8, 0, 8, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  4, 0, 0, 0),
-                                          child: TextFormField(
-                                            controller: textController,
-                                            obscureText: false,
-                                            decoration: InputDecoration(
-                                              labelText: 'Search',
-                                              labelStyle: FlutterFlowTheme
-                                                  .bodyText1
+                                                  4, 0, 4, 0),
+                                          child: Icon(
+                                            Icons.search_rounded,
+                                            color: Color(0xFF95A1AC),
+                                            size: 24,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 10,
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    4, 0, 0, 0),
+                                            child: TextFormField(
+                                              controller: textController,
+                                              obscureText: false,
+                                              decoration: InputDecoration(
+                                                labelText: 'Search',
+                                                labelStyle: FlutterFlowTheme
+                                                    .bodyText1
+                                                    .override(
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: Color(0xFF82878C),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                                enabledBorder:
+                                                    UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x004B39EF),
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(4.0),
+                                                    topRight:
+                                                        Radius.circular(4.0),
+                                                  ),
+                                                ),
+                                                focusedBorder:
+                                                    UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x004B39EF),
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(4.0),
+                                                    topRight:
+                                                        Radius.circular(4.0),
+                                                  ),
+                                                ),
+                                              ),
+                                              style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF82878C),
+                                                color: Color(0xFF151B1E),
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.normal,
                                               ),
-                                              enabledBorder:
-                                                  UnderlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x004B39EF),
-                                                  width: 1,
-                                                ),
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                  topLeft: Radius.circular(4.0),
-                                                  topRight:
-                                                      Radius.circular(4.0),
-                                                ),
-                                              ),
-                                              focusedBorder:
-                                                  UnderlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x004B39EF),
-                                                  width: 1,
-                                                ),
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                  topLeft: Radius.circular(4.0),
-                                                  topRight:
-                                                      Radius.circular(4.0),
-                                                ),
-                                              ),
+                                              textAlign: TextAlign.start,
                                             ),
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF151B1E),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                            textAlign: TextAlign.start,
                                           ),
                                         ),
-                                      ),
-                                      FlutterFlowIconButton(
-                                        borderColor: Colors.transparent,
-                                        borderRadius: 30,
-                                        buttonSize: 48,
-                                        icon: Icon(
-                                          Icons.filter_alt_rounded,
-                                          color: Color(0xFF95A1AC),
-                                          size: 30,
+                                        FlutterFlowIconButton(
+                                          borderColor: Colors.transparent,
+                                          borderRadius: 30,
+                                          buttonSize: 48,
+                                          icon: Icon(
+                                            Icons.filter_alt_rounded,
+                                            color: Color(0xFF95A1AC),
+                                            size: 30,
+                                          ),
+                                          onPressed: () {
+                                            print('IconButton pressed ...');
+                                          },
                                         ),
-                                        onPressed: () {
-                                          print('IconButton pressed ...');
-                                        },
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

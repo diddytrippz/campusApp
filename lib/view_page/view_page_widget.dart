@@ -106,6 +106,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                           children: [
                             Column(
                               mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -126,6 +127,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                         16, 20, 16, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Expanded(
                                           child: SingleChildScrollView(
@@ -408,6 +411,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                         16, 20, 16, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Expanded(
                                           child: SingleChildScrollView(
@@ -697,6 +702,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                         16, 20, 16, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Expanded(
                                           child: SingleChildScrollView(

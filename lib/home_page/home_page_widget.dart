@@ -257,15 +257,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 12, 0, 6),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       4, 4, 4, 4),
                                   child: Container(
-                                    width: 110,
-                                    height: 100,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.27,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.13,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -337,8 +339,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       4, 4, 4, 4),
                                   child: Container(
-                                    width: 110,
-                                    height: 100,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.27,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.13,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -410,8 +414,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       4, 4, 4, 4),
                                   child: Container(
-                                    width: 110,
-                                    height: 100,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.27,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.13,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -493,8 +499,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       4, 4, 4, 4),
                                   child: Container(
-                                    width: 110,
-                                    height: 100,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.27,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.13,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -566,8 +574,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       4, 4, 4, 4),
                                   child: Container(
-                                    width: 110,
-                                    height: 100,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.27,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.13,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -639,8 +649,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       4, 4, 4, 4),
                                   child: Container(
-                                    width: 110,
-                                    height: 100,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.27,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.13,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -715,16 +727,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 12, 0, 26),
                             child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       4, 4, 4, 4),
                                   child: Container(
-                                    width: 110,
-                                    height: 100,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.27,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.13,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -797,8 +811,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       4, 4, 4, 4),
                                   child: Container(
-                                    width: 110,
-                                    height: 100,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.27,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.13,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
@@ -871,8 +887,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       4, 4, 4, 4),
                                   child: Container(
-                                    width: 110,
-                                    height: 100,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.27,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.13,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       boxShadow: [
