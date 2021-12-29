@@ -49,7 +49,6 @@ class _StateWidgetState extends State<StateWidget> {
           ),
           child: Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.85,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
