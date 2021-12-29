@@ -188,7 +188,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                               context)
                                                                           .size
                                                                           .height *
-                                                                      0.7,
+                                                                      0.9,
                                                                   child:
                                                                       StateWidget(),
                                                                 ),
