@@ -348,7 +348,7 @@ class _StateWidgetState extends State<StateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 20),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -373,6 +373,14 @@ class _StateWidgetState extends State<StateWidget> {
                                       height: 100,
                                       decoration: BoxDecoration(
                                         color: Color(0xFFD93A0E),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 16,
+                                      height: 16,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFD93A0E),
+                                        shape: BoxShape.circle,
                                       ),
                                     ),
                                   ],

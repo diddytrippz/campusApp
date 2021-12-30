@@ -495,7 +495,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Text(
-                                                'Building Manager',
+                                                'Status change',
                                                 style: FlutterFlowTheme
                                                     .subtitle1
                                                     .override(
@@ -532,7 +532,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(0, 4, 4, 0),
                                                   child: Text(
-                                                    'Dear tenants. The wifi will be down for an hour tomorrow for a scheduled maintenance upgrade.',
+                                                    'Please take note of the status change on one of your requests',
                                                     style: FlutterFlowTheme
                                                         .bodyText2
                                                         .override(
