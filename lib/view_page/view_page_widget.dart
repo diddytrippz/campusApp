@@ -183,15 +183,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                         context)
                                                                     .viewInsets,
                                                                 child:
-                                                                    Container(
-                                                                  height: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .height *
-                                                                      0.7,
-                                                                  child:
-                                                                      StateWidget(),
-                                                                ),
+                                                                    StateWidget(),
                                                               );
                                                             },
                                                           );
