@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -252,8 +253,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               FFButtonWidget(
-                                onPressed: () {
-                                  print('ButtonForgotPassword pressed ...');
+                                onPressed: () async {
+                                  if (emailAddressController.text.isEmpty) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Email required!',
+                                        ),
+                                      ),
+                                    );
+                                    return;
+                                  }
+                                  await resetPassword(
+                                    email: emailAddressController.text,
+                                    context: context,
+                                  );
                                 },
                                 text: 'Forgot Password?',
                                 options: FFButtonOptions(
@@ -277,6 +291,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
+                                  final user = await signInWithEmail(
+                                    context,
+                                    emailAddressController.text,
+                                    passwordController.text,
+                                  );
+                                  if (user == null) {
+                                    return;
+                                  }
+
                                   await Navigator.pushAndRemoveUntil(
                                     context,
                                     PageTransition(
@@ -325,7 +348,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             onPressed: () {
                               print('ButtonCreateAccount pressed ...');
                             },
-                            text: 'Campus Africa',
+                            text: 'Version 0.0.0',
                             options: FFButtonOptions(
                               width: 170,
                               height: 40,

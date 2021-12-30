@@ -1,19 +1,22 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:campus_africa/home_page/home_page_widget.dart';
+import 'auth/firebase_user_provider.dart';
+import 'auth/auth_util.dart';
+
+import '../flutter_flow/flutter_flow_theme.dart';
+import 'package:campus_africa/login_page/login_page_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'view_page/view_page_widget.dart';
 import 'inbox_page/inbox_page_widget.dart';
 import 'settings_page/settings_page_widget.dart';
-import 'flutter_flow/flutter_flow_theme.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'flutter_flow/flutter_flow_util.dart';
 
 void main() async {
-  // Initialize FFAppState.
-  FFAppState();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
   runApp(MyApp());
 }
@@ -21,17 +24,29 @@ void main() async {
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
-  State<MyApp> createState() => _MyAppState();
+  _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
+  Stream<CampusAfricaFirebaseUser> userStream;
+  CampusAfricaFirebaseUser initialUser;
   bool displaySplashImage = true;
+  final authUserSub = authenticatedUserStream.listen((_) {});
 
   @override
   void initState() {
     super.initState();
+    userStream = campusAfricaFirebaseUserStream()
+      ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
         Duration(seconds: 1), () => setState(() => displaySplashImage = false));
+  }
+
+  @override
+  void dispose() {
+    authUserSub.cancel();
+
+    super.dispose();
   }
 
   @override
@@ -45,7 +60,7 @@ class _MyAppState extends State<MyApp> {
       ],
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: displaySplashImage
+      home: initialUser == null || displaySplashImage
           ? Container(
               color: Color(0xFFD93A0E),
               child: Builder(
@@ -55,7 +70,9 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
             )
-          : NavBarPage(),
+          : currentUser.loggedIn
+              ? NavBarPage()
+              : LoginPageWidget(),
     );
   }
 }

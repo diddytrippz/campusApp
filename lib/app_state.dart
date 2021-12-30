@@ -14,16 +14,16 @@ class FFAppState {
 
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
-    _ProfilePic = prefs.getString('ff_ProfilePic') ?? _ProfilePic;
+    _profilePic = prefs.getString('ff_profilePic') ?? _profilePic;
   }
 
   SharedPreferences prefs;
 
-  String _ProfilePic;
-  String get ProfilePic => _ProfilePic;
-  set ProfilePic(String _value) {
-    _ProfilePic = _value;
-    prefs.setString('ff_ProfilePic', _value);
+  String _profilePic;
+  String get profilePic => _profilePic;
+  set profilePic(String _value) {
+    _profilePic = _value;
+    prefs.setString('ff_profilePic', _value);
   }
 }
 

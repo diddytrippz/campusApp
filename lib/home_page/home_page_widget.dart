@@ -1,3 +1,5 @@
+import '../auth/auth_util.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../components/appliances_widget.dart';
 import '../components/communal_areas_widget.dart';
 import '../components/electrical_widget.dart';
@@ -8,6 +10,7 @@ import '../components/pest_control_widget.dart';
 import '../components/plumbing_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/upload_media.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -22,6 +25,7 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
+  String uploadedFileUrl = '';
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -53,8 +57,34 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                             child: InkWell(
                               onTap: () async {
-                                setState(() => FFAppState().ProfilePic =
-                                    FFAppState().ProfilePic);
+                                final selectedMedia =
+                                    await selectMediaWithSourceBottomSheet(
+                                  context: context,
+                                  allowPhoto: true,
+                                );
+                                if (selectedMedia != null &&
+                                    validateFileFormat(
+                                        selectedMedia.storagePath, context)) {
+                                  showUploadMessage(
+                                      context, 'Uploading file...',
+                                      showLoading: true);
+                                  final downloadUrl = await uploadData(
+                                      selectedMedia.storagePath,
+                                      selectedMedia.bytes);
+                                  ScaffoldMessenger.of(context)
+                                      .hideCurrentSnackBar();
+                                  if (downloadUrl != null) {
+                                    setState(
+                                        () => uploadedFileUrl = downloadUrl);
+                                    showUploadMessage(context, 'Success!');
+                                  } else {
+                                    showUploadMessage(
+                                        context, 'Failed to upload media');
+                                    return;
+                                  }
+                                }
+                                setState(() =>
+                                    FFAppState().profilePic = uploadedFileUrl);
                               },
                               child: Container(
                                 width: 60,
@@ -65,7 +95,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                                 child: CachedNetworkImage(
                                   imageUrl: valueOrDefault<String>(
-                                    FFAppState().ProfilePic,
+                                    FFAppState().profilePic,
                                     'https://images.unsplash.com/photo-1618641986557-1ecd230959aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
                                   ),
                                   fit: BoxFit.cover,
@@ -157,7 +187,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              'Rent due',
+                              'Due',
                               style: FlutterFlowTheme.bodyText1.override(
                                 fontFamily: 'Lexend Deca',
                                 color: Colors.white,
@@ -190,7 +220,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Lincolnudau1@gmail.com',
+                              currentUserEmail,
                               style: FlutterFlowTheme.bodyText1.override(
                                 fontFamily: 'Roboto Mono',
                                 color: Colors.white,
