@@ -18,6 +18,8 @@ class AnimationInfo {
     this.fadeIn = false,
     this.slideOffset,
     this.scale = 0,
+    this.initialOpacity = 0,
+    this.finalOpacity = 1,
   });
 
   final Curve curve;
@@ -27,6 +29,8 @@ class AnimationInfo {
   final bool fadeIn;
   final Offset slideOffset;
   final double scale;
+  final double initialOpacity;
+  final double finalOpacity;
   CurvedAnimation curvedAnimation;
 }
 
@@ -84,12 +88,17 @@ extension AnimatedWidgetExtension on Widget {
           );
         }
         if (animationInfo.fadeIn) {
-          // In cases where the child tree has a Material widget with elevation,
-          // opacity animations may result in sudden box shadow "glitches"
-          // To prevent this, opacity is animated up to but NOT including 1.0.
-          // It is impossible to tell the difference between 0.998 and 1.0 opacity.
+          final opacityScale =
+              animationInfo.finalOpacity - animationInfo.initialOpacity;
+          final opacityDelta =
+              animationInfo.curvedAnimation.value * opacityScale;
+          final opacity = animationInfo.initialOpacity + opacityDelta;
           returnedWidget = Opacity(
-            opacity: min(0.998, animationInfo.curvedAnimation.value),
+            // In cases where the child tree has a Material widget with elevation,
+            // opacity animations may result in sudden box shadow "glitches"
+            // To prevent this, opacity is animated up to but NOT including 1.0.
+            // It is impossible to tell the difference between 0.998 and 1.0 opacity.
+            opacity: min(0.998, opacity),
             child: returnedWidget,
           );
         }

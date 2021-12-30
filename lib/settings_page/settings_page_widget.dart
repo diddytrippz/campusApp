@@ -1,3 +1,5 @@
+import '../components/my_account_widget.dart';
+import '../components/report_bug_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -86,33 +88,56 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             child: Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Icon(
-                                    Icons.person_outline,
-                                    color: Color(0xFF9E9E9E),
-                                    size: 24,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        24, 0, 0, 0),
-                                    child: Text(
-                                      'My account',
-                                      style: FlutterFlowTheme.bodyText1,
+                              child: InkWell(
+                                onTap: () async {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    barrierColor: Colors.transparent,
+                                    context: context,
+                                    builder: (context) {
+                                      return Padding(
+                                        padding:
+                                            MediaQuery.of(context).viewInsets,
+                                        child: Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.6,
+                                          child: MyAccountWidget(),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.person_outline,
+                                      color: Color(0xFF9E9E9E),
+                                      size: 24,
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Align(
-                                      alignment: AlignmentDirectional(0.9, 0),
-                                      child: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Color(0xFF95A1AC),
-                                        size: 18,
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24, 0, 0, 0),
+                                      child: Text(
+                                        'My account',
+                                        style: FlutterFlowTheme.bodyText1,
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    Expanded(
+                                      child: Align(
+                                        alignment: AlignmentDirectional(0.9, 0),
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Color(0xFF95A1AC),
+                                          size: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -240,33 +265,56 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             child: Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Icon(
-                                    Icons.edit_outlined,
-                                    color: Color(0xFF9E9E9E),
-                                    size: 24,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        24, 0, 0, 0),
-                                    child: Text(
-                                      'Report a bug',
-                                      style: FlutterFlowTheme.bodyText1,
+                              child: InkWell(
+                                onTap: () async {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Color(0x00EEEEEE),
+                                    barrierColor: Color(0x56FFFFFF),
+                                    context: context,
+                                    builder: (context) {
+                                      return Padding(
+                                        padding:
+                                            MediaQuery.of(context).viewInsets,
+                                        child: Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.6,
+                                          child: ReportBugWidget(),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.edit_outlined,
+                                      color: Color(0xFF9E9E9E),
+                                      size: 24,
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Align(
-                                      alignment: AlignmentDirectional(0.9, 0),
-                                      child: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Color(0xFF95A1AC),
-                                        size: 18,
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24, 0, 0, 0),
+                                      child: Text(
+                                        'Report a bug',
+                                        style: FlutterFlowTheme.bodyText1,
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    Expanded(
+                                      child: Align(
+                                        alignment: AlignmentDirectional(0.9, 0),
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Color(0xFF95A1AC),
+                                          size: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

@@ -13,6 +13,9 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get email;
 
   @nullable
+  String get password;
+
+  @nullable
   @BuiltValueField(wireName: 'display_name')
   String get displayName;
 
@@ -37,6 +40,7 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
   static void _initializeBuilder(UsersRecordBuilder builder) => builder
     ..email = ''
+    ..password = ''
     ..displayName = ''
     ..photoUrl = ''
     ..uid = ''
@@ -65,6 +69,7 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
 Map<String, dynamic> createUsersRecordData({
   String email,
+  String password,
   String displayName,
   String photoUrl,
   String uid,
@@ -75,6 +80,7 @@ Map<String, dynamic> createUsersRecordData({
         UsersRecord.serializer,
         UsersRecord((u) => u
           ..email = email
+          ..password = password
           ..displayName = displayName
           ..photoUrl = photoUrl
           ..uid = uid

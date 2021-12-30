@@ -128,13 +128,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                child: Text(
-                                  'Lincoln Mudau',
-                                  style: FlutterFlowTheme.title3.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Color(0xFFD93A0E),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                                child: AuthUserStreamWidget(
+                                  child: Text(
+                                    currentUserDisplayName,
+                                    style: FlutterFlowTheme.title3.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFFD93A0E),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),

@@ -168,6 +168,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
                                   ),
+                                  keyboardType: TextInputType.emailAddress,
                                 ),
                               ),
                             ],
