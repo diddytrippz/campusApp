@@ -58,12 +58,12 @@ class _StateWidgetState extends State<StateWidget> {
                 topRight: Radius.circular(35),
               ),
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                  child: SingleChildScrollView(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -379,8 +379,8 @@ class _StateWidgetState extends State<StateWidget> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0, 12, 0, 20),
                                 child: Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.85,
@@ -472,8 +472,8 @@ class _StateWidgetState extends State<StateWidget> {
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
