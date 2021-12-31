@@ -56,15 +56,25 @@ class _ReportBugWidgetState extends State<ReportBugWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                 child: Material(
                   color: Colors.transparent,
-                  elevation: 2,
+                  elevation: 18,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(34),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                      topLeft: Radius.circular(34),
+                      topRight: Radius.circular(34),
+                    ),
                   ),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(34),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(0),
+                        bottomRight: Radius.circular(0),
+                        topLeft: Radius.circular(34),
+                        topRight: Radius.circular(34),
+                      ),
                     ),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
@@ -73,7 +83,7 @@ class _ReportBugWidgetState extends State<ReportBugWidget> {
                         children: [
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 30, 0, 22),
+                                EdgeInsetsDirectional.fromSTEB(20, 30, 0, 22),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -81,7 +91,7 @@ class _ReportBugWidgetState extends State<ReportBugWidget> {
                                   'Fill in the form',
                                   style: FlutterFlowTheme.title1.override(
                                     fontFamily: 'Poppins',
-                                    fontSize: 30,
+                                    fontSize: 24,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -101,30 +111,30 @@ class _ReportBugWidgetState extends State<ReportBugWidget> {
                               labelStyle: FlutterFlowTheme.bodyText1.override(
                                 fontFamily: 'Poppins',
                                 color: Color(0xFF717171),
-                                fontSize: 14,
+                                fontSize: 16,
                               ),
                               hintText: 'Type here...',
                               hintStyle: FlutterFlowTheme.bodyText1.override(
                                 fontFamily: 'Poppins',
                                 color: Color(0xFF717171),
-                                fontSize: 14,
+                                fontSize: 16,
                               ),
-                              enabledBorder: UnderlineInputBorder(
+                              enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0xFFADADAD),
                                   width: 1,
                                 ),
-                                borderRadius: BorderRadius.circular(6),
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              focusedBorder: UnderlineInputBorder(
+                              focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0xFFADADAD),
                                   width: 1,
                                 ),
-                                borderRadius: BorderRadius.circular(6),
+                                borderRadius: BorderRadius.circular(8),
                               ),
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                  10, 40, 10, 10),
+                                  20, 40, 10, 10),
                               suffixIcon: textController.text.isNotEmpty
                                   ? InkWell(
                                       onTap: () => setState(
@@ -141,9 +151,10 @@ class _ReportBugWidgetState extends State<ReportBugWidget> {
                             style: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Poppins',
                               color: Color(0xFF717171),
-                              fontSize: 14,
+                              fontSize: 16,
                             ),
                             textAlign: TextAlign.start,
+                            maxLines: 4,
                             validator: (val) {
                               if (val.isEmpty) {
                                 return 'Please fill in the form';

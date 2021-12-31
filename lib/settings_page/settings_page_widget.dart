@@ -269,8 +269,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                 onTap: () async {
                                   await showModalBottomSheet(
                                     isScrollControlled: true,
-                                    backgroundColor: Color(0x00EEEEEE),
-                                    barrierColor: Color(0x56FFFFFF),
+                                    backgroundColor: Color(0x00FFFFFF),
+                                    barrierColor: Color(0x6AF6F6F6),
                                     context: context,
                                     builder: (context) {
                                       return Padding(
@@ -280,7 +280,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              0.6,
+                                              0.75,
                                           child: ReportBugWidget(),
                                         ),
                                       );

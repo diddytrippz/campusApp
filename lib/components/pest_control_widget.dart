@@ -239,6 +239,7 @@ class _PestControlWidgetState extends State<PestControlWidget>
                                 fontFamily: 'Poppins',
                                 color: Color(0xFFD93A0E),
                               ),
+                              elevation: 0,
                               borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1,
@@ -250,17 +251,8 @@ class _PestControlWidgetState extends State<PestControlWidget>
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                           child: FFButtonWidget(
-                            onPressed: () async {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Your request has been  sucessfully logged.',
-                                    style: TextStyle(),
-                                  ),
-                                  duration: Duration(milliseconds: 2950),
-                                  backgroundColor: Color(0x00000000),
-                                ),
-                              );
+                            onPressed: () {
+                              print('Button pressed ...');
                             },
                             text: 'Save',
                             options: FFButtonOptions(

@@ -16,14 +16,14 @@ class MyAccountWidget extends StatefulWidget {
 }
 
 class _MyAccountWidgetState extends State<MyAccountWidget> {
-  TextEditingController emailTextController;
-  TextEditingController textController;
+  TextEditingController textController1;
+  TextEditingController textController2;
 
   @override
   void initState() {
     super.initState();
-    emailTextController = TextEditingController(text: currentUserEmail);
-    textController = TextEditingController(text: currentUserDisplayName);
+    textController1 = TextEditingController(text: currentUserEmail);
+    textController2 = TextEditingController(text: currentUserDisplayName);
   }
 
   @override
@@ -34,13 +34,13 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
         Expanded(
           child: Material(
             color: Colors.transparent,
-            elevation: 8,
+            elevation: 18,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(0),
                 bottomRight: Radius.circular(0),
-                topLeft: Radius.circular(45),
-                topRight: Radius.circular(45),
+                topLeft: Radius.circular(35),
+                topRight: Radius.circular(35),
               ),
             ),
             child: Container(
@@ -50,21 +50,22 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(0),
                   bottomRight: Radius.circular(0),
-                  topLeft: Radius.circular(45),
-                  topRight: Radius.circular(45),
+                  topLeft: Radius.circular(35),
+                  topRight: Radius.circular(35),
                 ),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 22, 0, 16),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 22, 16, 16),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         FlutterFlowIconButton(
                           borderColor: Colors.transparent,
+                          borderRadius: 50,
                           borderWidth: 1,
                           buttonSize: 60,
                           fillColor: Color(0x00ADADAD),
@@ -101,11 +102,11 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                               EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
                           child: TextFormField(
                             onChanged: (_) => EasyDebounce.debounce(
-                              'emailTextController',
+                              'textController1',
                               Duration(milliseconds: 2000),
                               () => setState(() {}),
                             ),
-                            controller: emailTextController,
+                            controller: textController1,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: 'Your Email',
@@ -123,19 +124,19 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                   color: Color(0xFFB3B3B3),
                                   width: 1,
                                 ),
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(8),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0xFFB3B3B3),
                                   width: 1,
                                 ),
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(8),
                               ),
                               filled: true,
                               fillColor: Colors.white,
                               contentPadding:
-                                  EdgeInsetsDirectional.fromSTEB(24, 16, 0, 0),
+                                  EdgeInsetsDirectional.fromSTEB(24, 24, 0, 0),
                             ),
                             style: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Poppins',
@@ -158,11 +159,11 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                           child: AuthUserStreamWidget(
                             child: TextFormField(
                               onChanged: (_) => EasyDebounce.debounce(
-                                'textController',
+                                'textController2',
                                 Duration(milliseconds: 2000),
                                 () => setState(() {}),
                               ),
-                              controller: textController,
+                              controller: textController2,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Username',
@@ -180,19 +181,19 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                     color: Color(0xFFB3B3B3),
                                     width: 1,
                                   ),
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0xFFB3B3B3),
                                     width: 1,
                                   ),
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
                                 filled: true,
                                 fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    24, 16, 0, 0),
+                                    24, 24, 0, 0),
                               ),
                               style: FlutterFlowTheme.bodyText1.override(
                                 fontFamily: 'Poppins',
@@ -213,19 +214,44 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                       children: [
                         FFButtonWidget(
                           onPressed: () async {
-                            if (emailTextController.text.isEmpty) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Email required!',
-                                  ),
-                                ),
-                              );
-                              return;
-                            }
-                            await resetPassword(
-                              email: emailTextController.text,
+                            await showDialog(
                               context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Reset password'),
+                                  content: Text(
+                                      'Please enter your email on the field above before you continue'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () async {
+                                        Navigator.pop(alertDialogContext);
+                                        if (textController1.text.isEmpty) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Email required!',
+                                              ),
+                                            ),
+                                          );
+                                          return;
+                                        }
+                                        await resetPassword(
+                                          email: textController1.text,
+                                          context: context,
+                                        );
+                                        ;
+                                      },
+                                      child: Text('Reset'),
+                                    ),
+                                  ],
+                                );
+                              },
                             );
                           },
                           text: 'Reset Password',

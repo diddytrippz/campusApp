@@ -36,18 +36,18 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.21,
                         decoration: BoxDecoration(
                           color: Colors.white,
                         ),
@@ -109,7 +109,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
+                                    12, 0, 12, 18),
                                 child: Card(
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
                                   color: Colors.white,

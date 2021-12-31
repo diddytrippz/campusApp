@@ -1,9 +1,13 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -243,6 +247,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget>
                                 fontFamily: 'Poppins',
                                 color: Color(0xFFD93A0E),
                               ),
+                              elevation: 0,
                               borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1,
@@ -255,15 +260,27 @@ class _FurnitureWidgetState extends State<FurnitureWidget>
                           padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Your request has been  sucessfully logged.',
-                                    style: TextStyle(),
-                                  ),
-                                  duration: Duration(milliseconds: 2950),
-                                  backgroundColor: Color(0x00000000),
+                              final maintenanceCreateData =
+                                  createMaintenanceRecordData(
+                                issue: budgetValue,
+                                status: 'Submitted',
+                                createdTime: getCurrentTimestamp,
+                                email: currentUserEmail,
+                                displayName: currentUserDisplayName,
+                                room: currentUserDocument?.room,
+                              );
+                              await MaintenanceRecord.collection
+                                  .doc()
+                                  .set(maintenanceCreateData);
+                              await Navigator.pushAndRemoveUntil(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.bottomToTop,
+                                  duration: Duration(milliseconds: 300),
+                                  reverseDuration: Duration(milliseconds: 300),
+                                  child: NavBarPage(initialPage: 'viewPage'),
                                 ),
+                                (r) => false,
                               );
                             },
                             text: 'Save',

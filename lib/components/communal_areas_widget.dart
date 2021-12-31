@@ -240,6 +240,7 @@ class _CommunalAreasWidgetState extends State<CommunalAreasWidget>
                                 fontFamily: 'Poppins',
                                 color: Color(0xFFD93A0E),
                               ),
+                              elevation: 0,
                               borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1,

@@ -1,11 +1,17 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StateWidget extends StatefulWidget {
-  const StateWidget({Key key}) : super(key: key);
+  const StateWidget({
+    Key key,
+    this.jobStatus,
+  }) : super(key: key);
+
+  final String jobStatus;
 
   @override
   _StateWidgetState createState() => _StateWidgetState();
@@ -91,8 +97,8 @@ class _StateWidgetState extends State<StateWidget> {
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Text(
-                                'Track the progress of  your repair in real time.',
+                              AutoSizeText(
+                                'Track the progress of  your repair ',
                                 style: FlutterFlowTheme.bodyText2.override(
                                   fontFamily: 'Lexend Deca',
                                   color: Color(0xFF8B97A2),
@@ -156,7 +162,7 @@ class _StateWidgetState extends State<StateWidget> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            '14, Sept. 2021',
+                                            widget.jobStatus,
                                             style: FlutterFlowTheme.bodyText1
                                                 .override(
                                               fontFamily: 'Lexend Deca',
