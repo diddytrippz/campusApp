@@ -1,4 +1,4 @@
-# campus_africa
+# Campus Africa
 
 A new Flutter project.
 

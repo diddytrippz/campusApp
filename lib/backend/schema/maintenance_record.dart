@@ -18,10 +18,6 @@ abstract class MaintenanceRecord
   String get status;
 
   @nullable
-  @BuiltValueField(wireName: 'date_created')
-  DateTime get dateCreated;
-
-  @nullable
   String get email;
 
   @nullable
@@ -84,7 +80,6 @@ abstract class MaintenanceRecord
 Map<String, dynamic> createMaintenanceRecordData({
   String issue,
   String status,
-  DateTime dateCreated,
   String email,
   String photoUrl,
   String uid,
@@ -98,7 +93,6 @@ Map<String, dynamic> createMaintenanceRecordData({
         MaintenanceRecord((m) => m
           ..issue = issue
           ..status = status
-          ..dateCreated = dateCreated
           ..email = email
           ..photoUrl = photoUrl
           ..uid = uid

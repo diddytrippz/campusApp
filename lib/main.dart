@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
               child: Builder(
                 builder: (context) => Image.asset(
                   'assets/images/campus_logo_1.png',
-                  fit: BoxFit.scaleDown,
+                  fit: BoxFit.contain,
                 ),
               ),
             )
@@ -114,44 +114,44 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             activeIcon: Icon(
-              Icons.home_sharp,
-              size: 30,
+              Icons.home_rounded,
+              size: 28,
             ),
             label: 'Report',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.mark_email_read_outlined,
+              Icons.assignment_outlined,
               size: 24,
             ),
             activeIcon: Icon(
-              Icons.mark_email_read,
-              size: 30,
+              Icons.assignment_rounded,
+              size: 28,
             ),
             label: 'View',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.chat_sharp,
+              Icons.mark_as_unread,
               size: 24,
             ),
             activeIcon: Icon(
-              Icons.chat_sharp,
-              size: 30,
+              Icons.mark_as_unread,
+              size: 28,
             ),
             label: 'Inbox',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.settings_outlined,
+              Icons.person_outline,
               size: 24,
             ),
             activeIcon: Icon(
-              Icons.settings_sharp,
-              size: 30,
+              Icons.person,
+              size: 28,
             ),
             label: 'Settings',
             tooltip: '',

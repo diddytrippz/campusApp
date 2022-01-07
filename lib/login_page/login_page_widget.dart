@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
+import '../sign_up/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -258,7 +259,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   context: context,
                                 );
                               },
-                              text: 'Create Password',
+                              text: 'Forgot password?',
                               options: FFButtonOptions(
                                 width: 120,
                                 height: 40,
@@ -329,10 +330,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         color: Color(0xFFDBE2E7),
                       ),
                       FFButtonWidget(
-                        onPressed: () {
-                          print('ButtonCreateAccount pressed ...');
+                        onPressed: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              duration: Duration(milliseconds: 300),
+                              reverseDuration: Duration(milliseconds: 300),
+                              child: SignUpWidget(),
+                            ),
+                          );
                         },
-                        text: 'Version 0.0.0',
+                        text: 'Create Account',
                         options: FFButtonOptions(
                           width: 170,
                           height: 40,

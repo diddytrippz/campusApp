@@ -1,13 +1,9 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -55,25 +51,26 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Material(
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(12, 40, 12, 0),
+          child: Material(
             color: Colors.transparent,
             elevation: 3,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(35),
+              borderRadius: BorderRadius.circular(15),
             ),
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.8,
               decoration: BoxDecoration(
                 color: Color(0xFFFFFEFE),
-                borderRadius: BorderRadius.circular(35),
+                borderRadius: BorderRadius.circular(15),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(18, 44, 18, 20),
+                padding: EdgeInsetsDirectional.fromSTEB(18, 25, 18, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -86,7 +83,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
                           style: FlutterFlowTheme.title1.override(
                             fontFamily: 'Lexend Deca',
                             color: Color(0xFFFFBA00),
-                            fontSize: 24,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -118,18 +115,21 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
                         ),
                       ],
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      height: 100,
-                      constraints: BoxConstraints(
-                        maxWidth: MediaQuery.of(context).size.width * 0.8,
-                      ),
-                      decoration: BoxDecoration(),
-                      child: Text(
-                        'Appliances',
-                        style: FlutterFlowTheme.title1.override(
-                          fontFamily: 'Poppins',
-                          color: Color(0xFFD93A0E),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        height: 40,
+                        constraints: BoxConstraints(
+                          maxWidth: MediaQuery.of(context).size.width * 0.8,
+                        ),
+                        decoration: BoxDecoration(),
+                        child: Text(
+                          'Appliances',
+                          style: FlutterFlowTheme.title1.override(
+                            fontFamily: 'Poppins',
+                            color: Color(0xFFD93A0E),
+                          ),
                         ),
                       ),
                     ),
@@ -140,7 +140,8 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
                           'Stove not working',
                           'Oven not working',
                           'Microwave noy working',
-                          'Fridge not working'
+                          'Fridge not working',
+                          'Select Option'
                         ].toList(),
                         onChanged: (val) => setState(() => budgetValue = val),
                         width: MediaQuery.of(context).size.width * 0.9,
@@ -167,7 +168,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
                           [animationsMap['dropDownOnPageLoadAnimation']]),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 18),
                       child: TextFormField(
                         onChanged: (_) => EasyDebounce.debounce(
                           'reasonController',
@@ -224,90 +225,36 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
                       ).animated(
                           [animationsMap['textFieldOnPageLoadAnimation']]),
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 40, 4, 0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              Navigator.pop(context);
-                            },
-                            text: 'Cancel',
-                            options: FFButtonOptions(
-                              width: 130,
-                              height: 40,
-                              color: Colors.white,
-                              textStyle: FlutterFlowTheme.subtitle2.override(
-                                fontFamily: 'Poppins',
-                                color: Color(0xFFD93A0E),
-                              ),
-                              elevation: 0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: 5,
-                            ),
-                            showLoadingIndicator: false,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 40, 4, 0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              final maintenanceCreateData =
-                                  createMaintenanceRecordData(
-                                issue: budgetValue,
-                                status: 'Submitted',
-                                email: currentUserEmail,
-                                displayName: currentUserDisplayName,
-                                createdTime: getCurrentTimestamp,
-                                room: currentUserDocument?.room,
-                              );
-                              await MaintenanceRecord.collection
-                                  .doc()
-                                  .set(maintenanceCreateData);
-                              await Navigator.pushAndRemoveUntil(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.bottomToTop,
-                                  duration: Duration(milliseconds: 300),
-                                  reverseDuration: Duration(milliseconds: 300),
-                                  child: NavBarPage(initialPage: 'viewPage'),
-                                ),
-                                (r) => false,
-                              );
-                            },
-                            text: 'Save',
-                            options: FFButtonOptions(
-                              width: 130,
-                              height: 40,
-                              color: FlutterFlowTheme.primaryColor,
-                              textStyle: FlutterFlowTheme.subtitle2.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.white,
-                              ),
-                              elevation: 1,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: 5,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 60),
+          child: FFButtonWidget(
+            onPressed: () {
+              print('Button pressed ...');
+            },
+            text: 'Save',
+            options: FFButtonOptions(
+              width: double.infinity,
+              height: 55,
+              color: FlutterFlowTheme.primaryColor,
+              textStyle: FlutterFlowTheme.subtitle2.override(
+                fontFamily: 'Poppins',
+                color: Colors.white,
+              ),
+              borderSide: BorderSide(
+                color: Colors.transparent,
+                width: 1,
+              ),
+              borderRadius: 12,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

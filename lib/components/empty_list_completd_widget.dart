@@ -19,6 +19,7 @@ class _EmptyListCompletdWidgetState extends State<EmptyListCompletdWidget> {
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
             mainAxisSize: MainAxisSize.max,
