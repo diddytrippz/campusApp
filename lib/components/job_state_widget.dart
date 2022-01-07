@@ -178,10 +178,10 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                             Icon(
                               Icons.thumb_down,
                               color: FlutterFlowTheme.campusGrey,
-                              size: 35,
+                              size: 30,
                             ),
                             Icon(
-                              Icons.favorite_border_sharp,
+                              Icons.ios_share,
                               color: FlutterFlowTheme.campusGrey,
                               size: 30,
                             ),
@@ -222,7 +222,7 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                             Icons.location_on,
                           ),
                           title: Text(
-                            'Apartment A2-364',
+                            '49 Jorissen Street',
                             style: FlutterFlowTheme.subtitle1.override(
                               fontFamily: 'Poppins',
                               fontSize: 16,
