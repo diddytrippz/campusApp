@@ -43,6 +43,12 @@ abstract class MaintenanceRecord
   String get room;
 
   @nullable
+  String get building;
+
+  @nullable
+  String get notes;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -54,7 +60,9 @@ abstract class MaintenanceRecord
     ..uid = ''
     ..phoneNumber = ''
     ..displayName = ''
-    ..room = '';
+    ..room = ''
+    ..building = ''
+    ..notes = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('maintenance');
@@ -87,6 +95,8 @@ Map<String, dynamic> createMaintenanceRecordData({
   String phoneNumber,
   String displayName,
   String room,
+  String building,
+  String notes,
 }) =>
     serializers.toFirestore(
         MaintenanceRecord.serializer,
@@ -99,4 +109,6 @@ Map<String, dynamic> createMaintenanceRecordData({
           ..createdTime = createdTime
           ..phoneNumber = phoneNumber
           ..displayName = displayName
-          ..room = room));
+          ..room = room
+          ..building = building
+          ..notes = notes));

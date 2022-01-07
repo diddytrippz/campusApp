@@ -171,18 +171,18 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Icon(
-                              Icons.thumb_up,
-                              color: FlutterFlowTheme.campusGrey,
+                              Icons.thumb_up_outlined,
+                              color: Colors.black,
                               size: 30,
                             ),
                             Icon(
-                              Icons.thumb_down,
-                              color: FlutterFlowTheme.campusGrey,
+                              Icons.thumb_down_outlined,
+                              color: Colors.black,
                               size: 30,
                             ),
                             Icon(
                               Icons.ios_share,
-                              color: FlutterFlowTheme.campusGrey,
+                              color: Colors.black,
                               size: 30,
                             ),
                           ],
