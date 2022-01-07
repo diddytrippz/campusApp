@@ -75,12 +75,15 @@ class _ReportBugWidgetState extends State<ReportBugWidget> {
                         ],
                       ),
                     ),
-                    Text(
-                      'Report a bug',
-                      style: FlutterFlowTheme.title1.override(
-                        fontFamily: 'Poppins',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 20),
+                      child: Text(
+                        'Report a bug',
+                        style: FlutterFlowTheme.title1.override(
+                          fontFamily: 'Poppins',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     Align(
