@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:share_plus/share_plus.dart';
 
 class JobStateWidget extends StatefulWidget {
   const JobStateWidget({
@@ -181,16 +180,10 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                               color: FlutterFlowTheme.campusGrey,
                               size: 30,
                             ),
-                            InkWell(
-                              onTap: () async {
-                                await Share.share(
-                                    widget.jobProgressStatus.issue);
-                              },
-                              child: Icon(
-                                Icons.ios_share,
-                                color: FlutterFlowTheme.campusGrey,
-                                size: 30,
-                              ),
+                            Icon(
+                              Icons.ios_share,
+                              color: FlutterFlowTheme.campusGrey,
+                              size: 30,
                             ),
                           ],
                         ),
