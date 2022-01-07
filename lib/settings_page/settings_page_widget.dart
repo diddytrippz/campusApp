@@ -331,33 +331,39 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           child: Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.download_sharp,
-                                  color: Color(0xFF9E9E9E),
-                                  size: 24,
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      24, 0, 0, 0),
-                                  child: Text(
-                                    'Student handbook',
-                                    style: FlutterFlowTheme.bodyText1,
+                            child: InkWell(
+                              onTap: () async {
+                                await launchURL(
+                                    'https://www.richmondcentral.co.za/wp-content/uploads/2018/11/Richmond-Central-House-Rules.pdf');
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Icon(
+                                    Icons.download_sharp,
+                                    color: Color(0xFF9E9E9E),
+                                    size: 24,
                                   ),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.9, 0),
-                                    child: Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Color(0xFF95A1AC),
-                                      size: 18,
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24, 0, 0, 0),
+                                    child: Text(
+                                      'Student handbook',
+                                      style: FlutterFlowTheme.bodyText1,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Expanded(
+                                    child: Align(
+                                      alignment: AlignmentDirectional(0.9, 0),
+                                      child: Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Color(0xFF95A1AC),
+                                        size: 18,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
