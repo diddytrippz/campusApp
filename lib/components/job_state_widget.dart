@@ -222,7 +222,7 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                             Icons.location_on,
                           ),
                           title: Text(
-                            '49 Jorissen Street',
+                            widget.jobProgressStatus.building,
                             style: FlutterFlowTheme.subtitle1.override(
                               fontFamily: 'Poppins',
                               fontSize: 16,

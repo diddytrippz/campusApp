@@ -140,11 +140,11 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
                       padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                       child: FlutterFlowDropDown(
                         options: [
+                          'Select Option',
                           'Stove not working',
                           'Oven not working',
-                          'Microwave noy working',
-                          'Fridge not working',
-                          'Select Option'
+                          'Microwave not working',
+                          'Fridge not working'
                         ].toList(),
                         onChanged: (val) => setState(() => budgetValue = val),
                         width: MediaQuery.of(context).size.width * 0.9,
