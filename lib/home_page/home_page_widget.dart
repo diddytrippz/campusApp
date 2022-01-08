@@ -278,6 +278,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             style: FlutterFlowTheme.title1.override(
                               fontFamily: 'Poppins',
                               color: Colors.white,
+                              fontSize: 30,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -286,9 +287,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                             child: Text(
                               currentUserEmail,
-                              style: FlutterFlowTheme.bodyText1.override(
+                              style: FlutterFlowTheme.title3.override(
                                 fontFamily: 'Poppins',
                                 color: Colors.white,
+                                fontSize: 16,
                               ),
                             ),
                           ),
