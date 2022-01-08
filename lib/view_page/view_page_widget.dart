@@ -161,7 +161,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                   ),
                 ),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       child: Padding(

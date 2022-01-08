@@ -233,12 +233,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             begin: AlignmentDirectional(0.94, -1),
                             end: AlignmentDirectional(-0.94, 1),
                           ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(48),
-                          ),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
