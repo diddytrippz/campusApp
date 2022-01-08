@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/empty_list_closed_widget.dart';
 import '../components/empty_list_completd_widget.dart';
 import '../components/empty_list_submitted_widget.dart';
 import '../components/job_state_widget.dart';
@@ -169,7 +168,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                         child: DefaultTabController(
-                          length: 3,
+                          length: 2,
                           initialIndex: 0,
                           child: Column(
                             children: [
@@ -184,9 +183,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                   ),
                                   Tab(
                                     text: 'Completed',
-                                  ),
-                                  Tab(
-                                    text: 'Closed',
                                   ),
                                 ],
                               ),
@@ -544,159 +540,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                         trailing: Icon(
                                                           Icons
                                                               .keyboard_arrow_right_sharp,
-                                                          color:
-                                                              Color(0xFF303030),
-                                                          size: 20,
-                                                        ),
-                                                        tileColor:
-                                                            Color(0xFFF5F5F5),
-                                                        dense: false,
-                                                      ),
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16, 20, 16, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                'Search results',
-                                                style:
-                                                    FlutterFlowTheme.bodyText2,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 18, 0, 0),
-                                            child: StreamBuilder<
-                                                List<MaintenanceRecord>>(
-                                              stream: queryMaintenanceRecord(
-                                                queryBuilder: (maintenanceRecord) =>
-                                                    maintenanceRecord
-                                                        .where('status',
-                                                            isEqualTo: 'Closed')
-                                                        .where('email',
-                                                            isEqualTo:
-                                                                currentUserEmail)
-                                                        .orderBy('created_time',
-                                                            descending: true),
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 40,
-                                                      height: 40,
-                                                      child: SpinKitPulse(
-                                                        color: FlutterFlowTheme
-                                                            .primaryColor,
-                                                        size: 40,
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<MaintenanceRecord>
-                                                    listViewMaintenanceRecordList =
-                                                    snapshot.data;
-                                                if (listViewMaintenanceRecordList
-                                                    .isEmpty) {
-                                                  return Center(
-                                                    child:
-                                                        EmptyListClosedWidget(),
-                                                  );
-                                                }
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  primary: false,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      listViewMaintenanceRecordList
-                                                          .length,
-                                                  itemBuilder:
-                                                      (context, listViewIndex) {
-                                                    final listViewMaintenanceRecord =
-                                                        listViewMaintenanceRecordList[
-                                                            listViewIndex];
-                                                    return InkWell(
-                                                      onTap: () async {
-                                                        await showModalBottomSheet(
-                                                          isScrollControlled:
-                                                              true,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          barrierColor:
-                                                              Color(0x47ACACAC),
-                                                          context: context,
-                                                          builder: (context) {
-                                                            return Padding(
-                                                              padding: MediaQuery
-                                                                      .of(context)
-                                                                  .viewInsets,
-                                                              child:
-                                                                  JobStateWidget(
-                                                                jobProgressStatus:
-                                                                    listViewMaintenanceRecord,
-                                                              ),
-                                                            );
-                                                          },
-                                                        );
-                                                      },
-                                                      child: ListTile(
-                                                        leading: FaIcon(
-                                                          FontAwesomeIcons
-                                                              .tools,
-                                                          color:
-                                                              FlutterFlowTheme
-                                                                  .campusGrey,
-                                                          size: 22,
-                                                        ),
-                                                        title: Text(
-                                                          listViewMaintenanceRecord
-                                                              .issue,
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .title1
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                        subtitle: Text(
-                                                          '${dateTimeFormat('MMMMEEEEd', listViewMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewMaintenanceRecord.createdTime)}',
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .subtitle2
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 14,
-                                                          ),
-                                                        ),
-                                                        trailing: Icon(
-                                                          Icons
-                                                              .chevron_right_sharp,
                                                           color:
                                                               Color(0xFF303030),
                                                           size: 20,
