@@ -122,7 +122,7 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                             ],
                           ),
                         ),
-                      if ((widget.jobProgressStatus.status) == 'Submitted')
+                      if ((widget.jobProgressStatus.status) == 'Completed')
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 18, 18, 0),
                           child: Row(
