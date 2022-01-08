@@ -104,7 +104,9 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                       List<ChatMessagesRecord> columnChatMessagesRecordList =
                           snapshot.data;
                       if (columnChatMessagesRecordList.isEmpty) {
-                        return EmptyInboxWidget();
+                        return Center(
+                          child: EmptyInboxWidget(),
+                        );
                       }
                       return SingleChildScrollView(
                         child: Column(
@@ -128,7 +130,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                               ],
                               child: ListTile(
                                 leading: Icon(
-                                  Icons.location_history,
+                                  Icons.people_sharp,
                                   size: 35,
                                 ),
                                 title: Text(
