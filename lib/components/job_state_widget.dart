@@ -49,76 +49,152 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 18, 18, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                              child: Text(
-                                'Reported ${dateTimeFormat('relative', widget.jobProgressStatus.createdTime)}',
-                                style: FlutterFlowTheme.subtitle1.override(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 14,
+                      if ((widget.jobProgressStatus.status) == 'Submitted')
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 18, 18, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                                child: Text(
+                                  'Reported ${dateTimeFormat('relative', widget.jobProgressStatus.createdTime)}',
+                                  style: FlutterFlowTheme.subtitle1.override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
-                            ),
-                            InkWell(
-                              onTap: () async {
-                                if ((widget.jobProgressStatus.status) ==
-                                    'Submitted') {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: Text('Delete Record?'),
-                                        content: Text(
-                                            'Are you sure that you want to delete this record? This process cannot be undone.'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Cancel'),
-                                          ),
-                                          TextButton(
-                                            onPressed: () async {
-                                              Navigator.pop(alertDialogContext);
-                                              await widget
-                                                  .jobProgressStatus.reference
-                                                  .delete();
-                                              ;
-                                            },
-                                            child: Text('Confirm'),
-                                          ),
-                                        ],
-                                      );
-                                    },
+                              InkWell(
+                                onTap: () async {
+                                  if ((widget.jobProgressStatus.status) ==
+                                      'Submitted') {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text('Delete Record?'),
+                                          content: Text(
+                                              'Are you sure that you want to delete this record? This process cannot be undone.'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('Cancel'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () async {
+                                                Navigator.pop(
+                                                    alertDialogContext);
+                                                await widget
+                                                    .jobProgressStatus.reference
+                                                    .delete();
+                                                ;
+                                              },
+                                              child: Text('Confirm'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
+                                  await Navigator.pushAndRemoveUntil(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.bottomToTop,
+                                      duration: Duration(milliseconds: 300),
+                                      reverseDuration:
+                                          Duration(milliseconds: 300),
+                                      child:
+                                          NavBarPage(initialPage: 'viewPage'),
+                                    ),
+                                    (r) => false,
                                   );
-                                }
-                                await Navigator.pushAndRemoveUntil(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.bottomToTop,
-                                    duration: Duration(milliseconds: 300),
-                                    reverseDuration:
-                                        Duration(milliseconds: 300),
-                                    child: NavBarPage(initialPage: 'viewPage'),
-                                  ),
-                                  (r) => false,
-                                );
-                              },
-                              child: Icon(
-                                Icons.delete_outline,
-                                color: Color(0xFF939393),
-                                size: 24,
+                                },
+                                child: Icon(
+                                  Icons.delete_outline,
+                                  color: Color(0xFF939393),
+                                  size: 24,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
+                      if ((widget.jobProgressStatus.status) == 'Submitted')
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 18, 18, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                                child: Text(
+                                  'Completed${dateTimeFormat('relative', widget.jobProgressStatus.createdTime)}',
+                                  style: FlutterFlowTheme.subtitle1.override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  if ((widget.jobProgressStatus.status) ==
+                                      'Submitted') {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text('Delete Record?'),
+                                          content: Text(
+                                              'Are you sure that you want to delete this record? This process cannot be undone.'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('Cancel'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () async {
+                                                Navigator.pop(
+                                                    alertDialogContext);
+                                                await widget
+                                                    .jobProgressStatus.reference
+                                                    .delete();
+                                                ;
+                                              },
+                                              child: Text('Confirm'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
+                                  await Navigator.pushAndRemoveUntil(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.bottomToTop,
+                                      duration: Duration(milliseconds: 300),
+                                      reverseDuration:
+                                          Duration(milliseconds: 300),
+                                      child:
+                                          NavBarPage(initialPage: 'viewPage'),
+                                    ),
+                                    (r) => false,
+                                  );
+                                },
+                                child: Icon(
+                                  Icons.delete_outline,
+                                  color: Color(0xFF939393),
+                                  size: 24,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(20, 6, 0, 0),
                         child: Text(
