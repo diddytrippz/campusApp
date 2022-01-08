@@ -360,13 +360,13 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                           ),
                                                         ],
                                                         child: ListTile(
-                                                          leading: FaIcon(
-                                                            FontAwesomeIcons
-                                                                .tools,
+                                                          leading: Icon(
+                                                            Icons
+                                                                .miscellaneous_services,
                                                             color:
                                                                 FlutterFlowTheme
                                                                     .campusGrey,
-                                                            size: 22,
+                                                            size: 25,
                                                           ),
                                                           title: Text(
                                                             listViewMaintenanceRecord
@@ -551,7 +551,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                           size: 20,
                                                         ),
                                                         tileColor:
-                                                            Color(0xFFF5F5F5),
+                                                            Color(0x00F5F5F5),
                                                         dense: false,
                                                       ),
                                                     );
