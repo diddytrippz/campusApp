@@ -393,7 +393,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                             size: 20,
                                                           ),
                                                           tileColor:
-                                                              Color(0xFFF5F5F5),
+                                                              Color(0x00FFFFFF),
                                                           dense: false,
                                                         ),
                                                       ),
