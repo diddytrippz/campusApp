@@ -151,9 +151,11 @@ class _ReportBugWidgetState extends State<ReportBugWidget> {
                                   maxLines: 5,
                                   validator: (val) {
                                     if (val.isEmpty) {
-                                      return 'Please fill in the form to submit!';
+                                      return 'Please fill in the form and submit!';
                                     }
-
+                                    if (val.length < 4) {
+                                      return 'Please fill in the form and submit!';
+                                    }
                                     return null;
                                   },
                                 ),
