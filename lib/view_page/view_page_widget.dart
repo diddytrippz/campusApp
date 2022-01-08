@@ -11,7 +11,6 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ViewPageWidget extends StatefulWidget {
@@ -366,7 +365,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                             color:
                                                                 FlutterFlowTheme
                                                                     .campusGrey,
-                                                            size: 25,
+                                                            size: 30,
                                                           ),
                                                           title: Text(
                                                             listViewMaintenanceRecord
@@ -510,13 +509,13 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                         );
                                                       },
                                                       child: ListTile(
-                                                        leading: FaIcon(
-                                                          FontAwesomeIcons
-                                                              .tools,
+                                                        leading: Icon(
+                                                          Icons
+                                                              .miscellaneous_services,
                                                           color:
                                                               FlutterFlowTheme
                                                                   .campusGrey,
-                                                          size: 22,
+                                                          size: 30,
                                                         ),
                                                         title: Text(
                                                           listViewMaintenanceRecord
