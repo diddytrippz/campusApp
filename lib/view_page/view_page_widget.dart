@@ -252,10 +252,14 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                     snapshot.data;
                                                 if (listViewMaintenanceRecordList
                                                     .isEmpty) {
-                                                  return EmptyListSubmittedWidget();
+                                                  return Center(
+                                                    child:
+                                                        EmptyListSubmittedWidget(),
+                                                  );
                                                 }
                                                 return ListView.builder(
                                                   padding: EdgeInsets.zero,
+                                                  primary: false,
                                                   scrollDirection:
                                                       Axis.vertical,
                                                   itemCount:
@@ -461,7 +465,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                     snapshot.data;
                                                 if (listViewMaintenanceRecordList
                                                     .isEmpty) {
-                                                  return EmptyListCompletdWidget();
+                                                  return Center(
+                                                    child:
+                                                        EmptyListCompletdWidget(),
+                                                  );
                                                 }
                                                 return ListView.builder(
                                                   padding: EdgeInsets.zero,
@@ -610,7 +617,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                     snapshot.data;
                                                 if (listViewMaintenanceRecordList
                                                     .isEmpty) {
-                                                  return EmptyListClosedWidget();
+                                                  return Center(
+                                                    child:
+                                                        EmptyListClosedWidget(),
+                                                  );
                                                 }
                                                 return ListView.builder(
                                                   padding: EdgeInsets.zero,
