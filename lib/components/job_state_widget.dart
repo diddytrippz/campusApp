@@ -139,7 +139,7 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                             borderRadius: BorderRadius.circular(18),
                             shape: BoxShape.rectangle,
                           ),
-                          alignment: AlignmentDirectional(0, 0.5),
+                          alignment: AlignmentDirectional(0, 0),
                           child: Text(
                             widget.jobProgressStatus.status,
                             style: FlutterFlowTheme.bodyText1.override(
