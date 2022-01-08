@@ -97,12 +97,12 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                             labelText: 'Search',
                             labelStyle: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Poppins',
-                              fontSize: 11,
+                              fontSize: 14,
                             ),
                             hintText: 'Search',
                             hintStyle: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Poppins',
-                              fontSize: 11,
+                              fontSize: 14,
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -139,7 +139,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                           ),
                           style: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Poppins',
-                            fontSize: 11,
+                            fontSize: 14,
                           ),
                           maxLines: 1,
                         ),
