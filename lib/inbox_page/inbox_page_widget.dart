@@ -3,6 +3,7 @@ import '../backend/backend.dart';
 import '../components/empty_inbox_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -82,34 +83,55 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
-                      child: TextFormField(
-                        controller: textController,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          hintText: '[Some hint text...]',
-                          hintStyle: FlutterFlowTheme.bodyText1,
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(4.0),
-                              topRight: Radius.circular(4.0),
-                            ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(18, 18, 18, 0),
+                        child: TextFormField(
+                          onChanged: (_) => EasyDebounce.debounce(
+                            'textController',
+                            Duration(milliseconds: 2000),
+                            () => setState(() {}),
                           ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
+                          controller: textController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: 'Search',
+                            labelStyle: FlutterFlowTheme.bodyText1,
+                            hintText: 'Search',
+                            hintStyle: FlutterFlowTheme.bodyText1,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFB4B4B4),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(16),
                             ),
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(4.0),
-                              topRight: Radius.circular(4.0),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFB4B4B4),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(16),
                             ),
+                            filled: true,
+                            prefixIcon: Icon(
+                              Icons.search,
+                              size: 16,
+                            ),
+                            suffixIcon: textController.text.isNotEmpty
+                                ? InkWell(
+                                    onTap: () => setState(
+                                      () => textController.clear(),
+                                    ),
+                                    child: Icon(
+                                      Icons.clear,
+                                      color: Color(0xFF757575),
+                                      size: 22,
+                                    ),
+                                  )
+                                : null,
                           ),
+                          style: FlutterFlowTheme.bodyText1,
                         ),
-                        style: FlutterFlowTheme.bodyText1,
                       ),
                     ),
                   ],
