@@ -133,7 +133,7 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                                 child: Text(
-                                  'Completed${dateTimeFormat('relative', widget.jobProgressStatus.createdTime)}',
+                                  'Completed ${dateTimeFormat('relative', widget.jobProgressStatus.createdTime)}',
                                   style: FlutterFlowTheme.subtitle1.override(
                                     fontFamily: 'Poppins',
                                     fontSize: 14,
