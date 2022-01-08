@@ -205,27 +205,50 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 12, 0, 0),
-                        child: Container(
-                          width: 100,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.campusRed,
-                            borderRadius: BorderRadius.circular(18),
-                            shape: BoxShape.rectangle,
-                          ),
-                          alignment: AlignmentDirectional(0, 0),
-                          child: Text(
-                            widget.jobProgressStatus.status,
-                            style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Poppins',
-                              color: Color(0xFFFDFDFD),
-                              fontWeight: FontWeight.w600,
+                      if ((widget.jobProgressStatus.status) == 'Completed')
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(20, 12, 0, 0),
+                          child: Container(
+                            width: 100,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: Color(0xFF19AC00),
+                              borderRadius: BorderRadius.circular(18),
+                              shape: BoxShape.rectangle,
+                            ),
+                            alignment: AlignmentDirectional(0, 0),
+                            child: Text(
+                              widget.jobProgressStatus.status,
+                              style: FlutterFlowTheme.bodyText1.override(
+                                fontFamily: 'Poppins',
+                                color: Color(0xFFFDFDFD),
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      if ((widget.jobProgressStatus.status) == 'Submitted')
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(20, 12, 0, 0),
+                          child: Container(
+                            width: 100,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.campusRed,
+                              borderRadius: BorderRadius.circular(18),
+                              shape: BoxShape.rectangle,
+                            ),
+                            alignment: AlignmentDirectional(0, 0),
+                            child: Text(
+                              widget.jobProgressStatus.status,
+                              style: FlutterFlowTheme.bodyText1.override(
+                                fontFamily: 'Poppins',
+                                color: Color(0xFFFDFDFD),
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(20, 18, 0, 0),
                         child: RatingBarIndicator(
@@ -268,7 +291,7 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(20, 18, 20, 0),
                         child: ListTile(
                           leading: Icon(
-                            Icons.access_time_sharp,
+                            Icons.calendar_today,
                           ),
                           title: Text(
                             '${dateTimeFormat('MMMMEEEEd', widget.jobProgressStatus.createdTime)} at ${dateTimeFormat('jm', widget.jobProgressStatus.createdTime)}',
