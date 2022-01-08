@@ -84,7 +84,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(18, 18, 18, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(22, 22, 22, 22),
                         child: TextFormField(
                           onChanged: (_) => EasyDebounce.debounce(
                             'textController',
@@ -95,27 +95,34 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Search',
-                            labelStyle: FlutterFlowTheme.bodyText1,
+                            labelStyle: FlutterFlowTheme.bodyText1.override(
+                              fontFamily: 'Poppins',
+                              fontSize: 11,
+                            ),
                             hintText: 'Search',
-                            hintStyle: FlutterFlowTheme.bodyText1,
+                            hintStyle: FlutterFlowTheme.bodyText1.override(
+                              fontFamily: 'Poppins',
+                              fontSize: 11,
+                            ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0xFFB4B4B4),
+                                color: Color(0xFFD7D7D7),
                                 width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0xFFB4B4B4),
+                                color: Color(0xFFD7D7D7),
                                 width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                             filled: true,
+                            fillColor: Color(0xFFF9F9F9),
                             prefixIcon: Icon(
                               Icons.search,
-                              size: 16,
+                              size: 14,
                             ),
                             suffixIcon: textController.text.isNotEmpty
                                 ? InkWell(
@@ -125,12 +132,16 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                                     child: Icon(
                                       Icons.clear,
                                       color: Color(0xFF757575),
-                                      size: 22,
+                                      size: 16,
                                     ),
                                   )
                                 : null,
                           ),
-                          style: FlutterFlowTheme.bodyText1,
+                          style: FlutterFlowTheme.bodyText1.override(
+                            fontFamily: 'Poppins',
+                            fontSize: 11,
+                          ),
+                          maxLines: 1,
                         ),
                       ),
                     ),
