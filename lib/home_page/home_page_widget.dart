@@ -255,7 +255,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -278,7 +278,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             style: FlutterFlowTheme.title1.override(
                               fontFamily: 'Poppins',
                               color: Colors.white,
-                              fontSize: 30,
+                              fontSize: 35,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -291,6 +291,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 fontFamily: 'Poppins',
                                 color: Colors.white,
                                 fontSize: 16,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
