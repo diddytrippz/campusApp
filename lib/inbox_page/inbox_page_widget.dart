@@ -84,7 +84,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(22, 22, 22, 22),
+                        padding: EdgeInsetsDirectional.fromSTEB(22, 28, 22, 0),
                         child: TextFormField(
                           onChanged: (_) => EasyDebounce.debounce(
                             'textController',

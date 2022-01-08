@@ -200,105 +200,94 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                 ),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.25,
-                child: Stack(
-                  children: [
-                    ClipRect(
-                      child: ImageFiltered(
-                        imageFilter: ImageFilter.blur(
-                          sigmaX: 2,
-                          sigmaY: 2,
+              ClipRect(
+                child: ImageFiltered(
+                  imageFilter: ImageFilter.blur(
+                    sigmaX: 1,
+                    sigmaY: 2,
+                  ),
+                  child: Align(
+                    alignment: AlignmentDirectional(0, 1),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 20),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.fitWidth,
+                            image: Image.asset(
+                              'assets/images/10_YELLOW_CIRCLE.png',
+                            ).image,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 6,
+                              color: Color(0x4B1A1F24),
+                              offset: Offset(0, 2),
+                            )
+                          ],
+                          gradient: LinearGradient(
+                            colors: [Color(0xFFFFBA00), Color(0xFFF0E020)],
+                            stops: [0, 1],
+                            begin: AlignmentDirectional(0.94, -1),
+                            end: AlignmentDirectional(-0.94, 1),
+                          ),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(0),
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(48),
+                          ),
                         ),
-                        child: Align(
-                          alignment: AlignmentDirectional(0, 1),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 15, 0, 20),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              height: MediaQuery.of(context).size.height * 0.2,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.fitWidth,
-                                  image: Image.asset(
-                                    'assets/images/10_YELLOW_CIRCLE.png',
-                                  ).image,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 6,
-                                    color: Color(0x4B1A1F24),
-                                    offset: Offset(0, 2),
-                                  )
-                                ],
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color(0xFFFFBA00),
-                                    Color(0xFFF0E020)
-                                  ],
-                                  stops: [0, 1],
-                                  begin: AlignmentDirectional(0.94, -1),
-                                  end: AlignmentDirectional(-0.94, 1),
-                                ),
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(0),
-                                  topLeft: Radius.circular(8),
-                                  topRight: Radius.circular(48),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(18, 10, 0, 0),
+                              child: Text(
+                                'Due',
+                                style: FlutterFlowTheme.title1.override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                  fontSize: 16,
                                 ),
                               ),
                             ),
-                          ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
+                              child: Text(
+                                'R 0.00',
+                                style: FlutterFlowTheme.title1.override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                  fontSize: 35,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(18, 0, 0, 10),
+                              child: Text(
+                                currentUserEmail,
+                                style: FlutterFlowTheme.title3.override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                            child: Text(
-                              'Due',
-                              style: FlutterFlowTheme.title1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.white,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            'R 0.00',
-                            style: FlutterFlowTheme.title1.override(
-                              fontFamily: 'Poppins',
-                              color: Colors.white,
-                              fontSize: 35,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                            child: Text(
-                              currentUserEmail,
-                              style: FlutterFlowTheme.title3.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
               Align(
