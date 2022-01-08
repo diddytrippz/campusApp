@@ -326,18 +326,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             () async {
                                                                           Navigator.pop(
                                                                               alertDialogContext);
-                                                                          await Navigator
-                                                                              .pushAndRemoveUntil(
-                                                                            context,
-                                                                            PageTransition(
-                                                                              type: PageTransitionType.bottomToTop,
-                                                                              duration: Duration(milliseconds: 300),
-                                                                              reverseDuration: Duration(milliseconds: 300),
-                                                                              child: NavBarPage(initialPage: 'viewPage'),
-                                                                            ),
-                                                                            (r) =>
-                                                                                false,
-                                                                          );
+                                                                          await listViewMaintenanceRecord
+                                                                              .reference
+                                                                              .delete();
                                                                           ;
                                                                         },
                                                                         child: Text(
@@ -347,9 +338,24 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                   );
                                                                 },
                                                               );
-                                                              await listViewMaintenanceRecord
-                                                                  .reference
-                                                                  .delete();
+                                                              await Navigator
+                                                                  .push(
+                                                                context,
+                                                                PageTransition(
+                                                                  type: PageTransitionType
+                                                                      .bottomToTop,
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          300),
+                                                                  reverseDuration:
+                                                                      Duration(
+                                                                          milliseconds:
+                                                                              300),
+                                                                  child: NavBarPage(
+                                                                      initialPage:
+                                                                          'viewPage'),
+                                                                ),
+                                                              );
                                                             },
                                                           ),
                                                         ],
