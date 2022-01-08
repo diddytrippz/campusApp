@@ -198,192 +198,210 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16, 20, 16, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Search results',
+                                                style:
+                                                    FlutterFlowTheme.bodyText2,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                         Expanded(
-                                          child: StreamBuilder<
-                                              List<MaintenanceRecord>>(
-                                            stream: queryMaintenanceRecord(
-                                              queryBuilder: (maintenanceRecord) =>
-                                                  maintenanceRecord
-                                                      .where('status',
-                                                          isEqualTo:
-                                                              'Submitted')
-                                                      .where('email',
-                                                          isEqualTo:
-                                                              currentUserEmail)
-                                                      .orderBy('created_time',
-                                                          descending: true),
-                                            ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 40,
-                                                    height: 40,
-                                                    child: SpinKitPulse(
-                                                      color: FlutterFlowTheme
-                                                          .primaryColor,
-                                                      size: 40,
-                                                    ),
-                                                  ),
-                                                );
-                                              }
-                                              List<MaintenanceRecord>
-                                                  listViewMaintenanceRecordList =
-                                                  snapshot.data;
-                                              if (listViewMaintenanceRecordList
-                                                  .isEmpty) {
-                                                return EmptyListSubmittedWidget();
-                                              }
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount:
-                                                    listViewMaintenanceRecordList
-                                                        .length,
-                                                itemBuilder:
-                                                    (context, listViewIndex) {
-                                                  final listViewMaintenanceRecord =
-                                                      listViewMaintenanceRecordList[
-                                                          listViewIndex];
-                                                  return InkWell(
-                                                    onTap: () async {
-                                                      await showModalBottomSheet(
-                                                        isScrollControlled:
-                                                            true,
-                                                        backgroundColor:
-                                                            Colors.transparent,
-                                                        barrierColor:
-                                                            Color(0x47ACACAC),
-                                                        context: context,
-                                                        builder: (context) {
-                                                          return Padding(
-                                                            padding:
-                                                                MediaQuery.of(
-                                                                        context)
-                                                                    .viewInsets,
-                                                            child:
-                                                                JobStateWidget(
-                                                              jobProgressStatus:
-                                                                  listViewMaintenanceRecord,
-                                                            ),
-                                                          );
-                                                        },
-                                                      );
-                                                    },
-                                                    child: Slidable(
-                                                      actionPane:
-                                                          const SlidableScrollActionPane(),
-                                                      secondaryActions: [
-                                                        IconSlideAction(
-                                                          caption: 'Delete',
-                                                          color:
-                                                              FlutterFlowTheme
-                                                                  .campusRed,
-                                                          icon: Icons
-                                                              .delete_outline,
-                                                          onTap: () async {
-                                                            await showDialog(
-                                                              context: context,
-                                                              builder:
-                                                                  (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Are you sure you want to delete this record?'),
-                                                                  content: Text(
-                                                                      'This action cannot be undone'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Cancel'),
-                                                                    ),
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () async {
-                                                                        Navigator.pop(
-                                                                            alertDialogContext);
-                                                                        await Navigator
-                                                                            .pushAndRemoveUntil(
-                                                                          context,
-                                                                          PageTransition(
-                                                                            type:
-                                                                                PageTransitionType.bottomToTop,
-                                                                            duration:
-                                                                                Duration(milliseconds: 300),
-                                                                            reverseDuration:
-                                                                                Duration(milliseconds: 300),
-                                                                            child:
-                                                                                NavBarPage(initialPage: 'viewPage'),
-                                                                          ),
-                                                                          (r) =>
-                                                                              false,
-                                                                        );
-                                                                        ;
-                                                                      },
-                                                                      child: Text(
-                                                                          'Confirm'),
-                                                                    ),
-                                                                  ],
-                                                                );
-                                                              },
-                                                            );
-                                                            await listViewMaintenanceRecord
-                                                                .reference
-                                                                .delete();
-                                                          },
-                                                        ),
-                                                      ],
-                                                      child: ListTile(
-                                                        leading: FaIcon(
-                                                          FontAwesomeIcons
-                                                              .tools,
-                                                          color:
-                                                              FlutterFlowTheme
-                                                                  .campusGrey,
-                                                          size: 22,
-                                                        ),
-                                                        title: Text(
-                                                          listViewMaintenanceRecord
-                                                              .issue,
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .title2
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 16,
-                                                          ),
-                                                        ),
-                                                        subtitle: Text(
-                                                          '${dateTimeFormat('MMMMEEEEd', listViewMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewMaintenanceRecord.createdTime)}',
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .subtitle2
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 14,
-                                                          ),
-                                                        ),
-                                                        trailing: Icon(
-                                                          Icons
-                                                              .keyboard_arrow_right_sharp,
-                                                          color:
-                                                              Color(0xFF303030),
-                                                          size: 20,
-                                                        ),
-                                                        tileColor:
-                                                            Color(0xFFF5F5F5),
-                                                        dense: false,
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 18, 0, 0),
+                                            child: StreamBuilder<
+                                                List<MaintenanceRecord>>(
+                                              stream: queryMaintenanceRecord(
+                                                queryBuilder: (maintenanceRecord) =>
+                                                    maintenanceRecord
+                                                        .where('status',
+                                                            isEqualTo:
+                                                                'Submitted')
+                                                        .where('email',
+                                                            isEqualTo:
+                                                                currentUserEmail)
+                                                        .orderBy('created_time',
+                                                            descending: true),
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 40,
+                                                      height: 40,
+                                                      child: SpinKitPulse(
+                                                        color: FlutterFlowTheme
+                                                            .primaryColor,
+                                                        size: 40,
                                                       ),
                                                     ),
                                                   );
-                                                },
-                                              );
-                                            },
+                                                }
+                                                List<MaintenanceRecord>
+                                                    listViewMaintenanceRecordList =
+                                                    snapshot.data;
+                                                if (listViewMaintenanceRecordList
+                                                    .isEmpty) {
+                                                  return EmptyListSubmittedWidget();
+                                                }
+                                                return ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  itemCount:
+                                                      listViewMaintenanceRecordList
+                                                          .length,
+                                                  itemBuilder:
+                                                      (context, listViewIndex) {
+                                                    final listViewMaintenanceRecord =
+                                                        listViewMaintenanceRecordList[
+                                                            listViewIndex];
+                                                    return InkWell(
+                                                      onTap: () async {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          barrierColor:
+                                                              Color(0x47ACACAC),
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                      .of(context)
+                                                                  .viewInsets,
+                                                              child:
+                                                                  JobStateWidget(
+                                                                jobProgressStatus:
+                                                                    listViewMaintenanceRecord,
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                      child: Slidable(
+                                                        actionPane:
+                                                            const SlidableScrollActionPane(),
+                                                        secondaryActions: [
+                                                          IconSlideAction(
+                                                            caption: 'Delete',
+                                                            color:
+                                                                FlutterFlowTheme
+                                                                    .campusRed,
+                                                            icon: Icons
+                                                                .delete_outline,
+                                                            onTap: () async {
+                                                              await showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return AlertDialog(
+                                                                    title: Text(
+                                                                        'Are you sure you want to delete this record?'),
+                                                                    content: Text(
+                                                                        'This action cannot be undone'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Cancel'),
+                                                                      ),
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          Navigator.pop(
+                                                                              alertDialogContext);
+                                                                          await Navigator
+                                                                              .pushAndRemoveUntil(
+                                                                            context,
+                                                                            PageTransition(
+                                                                              type: PageTransitionType.bottomToTop,
+                                                                              duration: Duration(milliseconds: 300),
+                                                                              reverseDuration: Duration(milliseconds: 300),
+                                                                              child: NavBarPage(initialPage: 'viewPage'),
+                                                                            ),
+                                                                            (r) =>
+                                                                                false,
+                                                                          );
+                                                                          ;
+                                                                        },
+                                                                        child: Text(
+                                                                            'Confirm'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              );
+                                                              await listViewMaintenanceRecord
+                                                                  .reference
+                                                                  .delete();
+                                                            },
+                                                          ),
+                                                        ],
+                                                        child: ListTile(
+                                                          leading: FaIcon(
+                                                            FontAwesomeIcons
+                                                                .tools,
+                                                            color:
+                                                                FlutterFlowTheme
+                                                                    .campusGrey,
+                                                            size: 22,
+                                                          ),
+                                                          title: Text(
+                                                            listViewMaintenanceRecord
+                                                                .issue,
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .title2
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
+                                                          subtitle: Text(
+                                                            '${dateTimeFormat('MMMMEEEEd', listViewMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewMaintenanceRecord.createdTime)}',
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .subtitle2
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 14,
+                                                            ),
+                                                          ),
+                                                          trailing: Icon(
+                                                            Icons
+                                                                .keyboard_arrow_right_sharp,
+                                                            color: Color(
+                                                                0xFF303030),
+                                                            size: 20,
+                                                          ),
+                                                          tileColor:
+                                                              Color(0xFFF5F5F5),
+                                                          dense: false,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -483,8 +501,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                         );
                                                       },
                                                       child: ListTile(
-                                                        leading: Icon(
-                                                          Icons.clean_hands,
+                                                        leading: FaIcon(
+                                                          FontAwesomeIcons
+                                                              .tools,
                                                           color:
                                                               FlutterFlowTheme
                                                                   .campusGrey,
@@ -501,7 +520,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                 'Poppins',
                                                             fontSize: 16,
                                                             fontWeight:
-                                                                FontWeight.w600,
+                                                                FontWeight.w500,
                                                           ),
                                                         ),
                                                         subtitle: Text(
@@ -631,8 +650,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                         );
                                                       },
                                                       child: ListTile(
-                                                        leading: Icon(
-                                                          Icons.clean_hands,
+                                                        leading: FaIcon(
+                                                          FontAwesomeIcons
+                                                              .tools,
                                                           color:
                                                               FlutterFlowTheme
                                                                   .campusGrey,
@@ -649,7 +669,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                 'Poppins',
                                                             fontSize: 16,
                                                             fontWeight:
-                                                                FontWeight.w600,
+                                                                FontWeight.w500,
                                                           ),
                                                         ),
                                                         subtitle: Text(

@@ -308,6 +308,7 @@ class _JobStateWidgetState extends State<JobStateWidget> {
               textStyle: FlutterFlowTheme.subtitle2.override(
                 fontFamily: 'Poppins',
                 color: Color(0xFF235DD3),
+                fontWeight: FontWeight.w500,
               ),
               elevation: 3,
               borderSide: BorderSide(
