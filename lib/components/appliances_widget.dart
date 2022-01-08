@@ -259,7 +259,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
                     'Please take note of a status change. Your request status is now \"Submitted\"',
                 timeCreated: getCurrentTimestamp,
                 displayName: currentUserDisplayName,
-                subject: 'Status update',
+                subject: 'Status Update',
               );
               await ChatMessagesRecord.collection
                   .doc()
