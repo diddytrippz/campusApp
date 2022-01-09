@@ -65,7 +65,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                                 child: InkWell(
-                                  onDoubleTap: () async {
+                                  onTap: () async {
                                     await Navigator.push(
                                       context,
                                       PageTransition(
@@ -265,7 +265,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         await showModalBottomSheet(
                                           isScrollControlled: true,
                                           backgroundColor: Colors.transparent,
-                                          barrierColor: Color(0x9AFFFFFF),
+                                          barrierColor: Color(0xB0FFFFFF),
                                           context: context,
                                           builder: (context) {
                                             return Padding(
