@@ -239,7 +239,7 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                             width: MediaQuery.of(context).size.width,
                             height: 50,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.mellow,
+                              color: FlutterFlowTheme.campusRed,
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Row(
