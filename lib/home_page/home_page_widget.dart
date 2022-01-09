@@ -1,4 +1,3 @@
-import '../auth/auth_util.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../components/appliances_widget.dart';
 import '../components/communal_areas_widget.dart';
@@ -12,7 +11,6 @@ import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/upload_media.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -197,87 +195,34 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                 ),
               ),
-              ClipRect(
-                child: ImageFiltered(
-                  imageFilter: ImageFilter.blur(
-                    sigmaX: 1,
-                    sigmaY: 2,
-                  ),
-                  child: Align(
-                    alignment: AlignmentDirectional(0, 1),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 20),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.fitWidth,
-                            image: Image.asset(
-                              'assets/images/10_YELLOW_CIRCLE.png',
-                            ).image,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 6,
-                              color: Color(0x4B1A1F24),
-                              offset: Offset(0, 2),
-                            )
-                          ],
-                          gradient: LinearGradient(
-                            colors: [Color(0xFFFFBA00), Color(0xFFF0E020)],
-                            stops: [0, 1],
-                            begin: AlignmentDirectional(0.94, -1),
-                            end: AlignmentDirectional(-0.94, 1),
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(18, 10, 0, 0),
-                              child: Text(
-                                'Due',
-                                style: FlutterFlowTheme.title1.override(
-                                  fontFamily: 'Poppins',
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
-                              child: Text(
-                                'R 0.00',
-                                style: FlutterFlowTheme.title1.override(
-                                  fontFamily: 'Poppins',
-                                  color: Colors.white,
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(18, 0, 0, 10),
-                              child: Text(
-                                currentUserEmail,
-                                style: FlutterFlowTheme.title3.override(
-                                  fontFamily: 'Poppins',
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+              Align(
+                alignment: AlignmentDirectional(0, 1),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 20),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: Image.asset(
+                          'assets/images/06_COMBINED_ELEMENT.png',
+                        ).image,
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 6,
+                          color: Color(0x4B1A1F24),
+                          offset: Offset(0, 2),
+                        )
+                      ],
+                      gradient: LinearGradient(
+                        colors: [Color(0xFFFFBA00), Color(0xFFF0E020)],
+                        stops: [0, 1],
+                        begin: AlignmentDirectional(0.94, -1),
+                        end: AlignmentDirectional(-0.94, 1),
+                      ),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                   ),
                 ),
