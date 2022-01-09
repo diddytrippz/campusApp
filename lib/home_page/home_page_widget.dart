@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../components/appliances_widget.dart';
 import '../components/communal_areas_widget.dart';
@@ -163,7 +164,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     children: [
                                       Text(
                                         'Welcome back,',
-                                        style: FlutterFlowTheme.title1,
+                                        style: FlutterFlowTheme.title1.override(
+                                          fontFamily: 'Poppins',
+                                          color: FlutterFlowTheme.mellow,
+                                        ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -177,10 +181,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     ],
                                   ),
                                   Text(
-                                    'Report your issue below.',
+                                    currentUserEmail,
                                     style: FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF090F13),
+                                      color: FlutterFlowTheme.campusRed,
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
