@@ -1,5 +1,4 @@
 import '../auth/auth_util.dart';
-import '../backend/firebase_storage/storage.dart';
 import '../components/appliances_widget.dart';
 import '../components/communal_areas_widget.dart';
 import '../components/electrical_widget.dart';
@@ -11,7 +10,6 @@ import '../components/plumbing_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/upload_media.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -26,7 +24,6 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
-  String uploadedFileUrl = '';
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -68,40 +65,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                                 child: InkWell(
-                                  onTap: () async {
-                                    final selectedMedia =
-                                        await selectMediaWithSourceBottomSheet(
-                                      context: context,
-                                      allowPhoto: true,
-                                    );
-                                    if (selectedMedia != null &&
-                                        validateFileFormat(
-                                            selectedMedia.storagePath,
-                                            context)) {
-                                      showUploadMessage(
-                                          context, 'Uploading file...',
-                                          showLoading: true);
-                                      final downloadUrl = await uploadData(
-                                          selectedMedia.storagePath,
-                                          selectedMedia.bytes);
-                                      ScaffoldMessenger.of(context)
-                                          .hideCurrentSnackBar();
-                                      if (downloadUrl != null) {
-                                        setState(() =>
-                                            uploadedFileUrl = downloadUrl);
-                                        showUploadMessage(context, 'Success!');
-                                      } else {
-                                        showUploadMessage(
-                                            context, 'Failed to upload media');
-                                        return;
-                                      }
-                                    }
-                                    setState(() => FFAppState().profilePic =
-                                            valueOrDefault<String>(
-                                          uploadedFileUrl,
-                                          'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-                                        ));
-                                  },
                                   onDoubleTap: () async {
                                     await Navigator.push(
                                       context,
@@ -116,29 +79,24 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             fit: BoxFit.contain,
                                           ),
                                           allowRotation: false,
-                                          tag: 'circleImageTag',
-                                          useHeroAnimation: true,
+                                          useHeroAnimation: false,
                                         ),
                                       ),
                                     );
                                   },
-                                  child: Hero(
-                                    tag: 'circleImageTag',
-                                    transitionOnUserGestures: true,
-                                    child: Container(
-                                      width: 80,
-                                      height: 80,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
+                                  child: Container(
+                                    width: 80,
+                                    height: 80,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Image.network(
+                                      valueOrDefault<String>(
+                                        FFAppState().profilePic,
+                                        'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
                                       ),
-                                      child: Image.network(
-                                        valueOrDefault<String>(
-                                          FFAppState().profilePic,
-                                          'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-                                        ),
-                                        fit: BoxFit.cover,
-                                      ),
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
