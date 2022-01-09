@@ -178,7 +178,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                 indicatorColor: FlutterFlowTheme.secondaryColor,
                                 tabs: [
                                   Tab(
-                                    text: 'Submitted',
+                                    text: 'Pending',
                                   ),
                                   Tab(
                                     text: 'Completed',
@@ -444,7 +444,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                 'Completed')
                                                         .where('email',
                                                             isEqualTo:
-                                                                currentUserEmail),
+                                                                currentUserEmail)
+                                                        .orderBy('created_time',
+                                                            descending: true),
                                               ),
                                               builder: (context, snapshot) {
                                                 // Customize what your widget looks like when it's loading.

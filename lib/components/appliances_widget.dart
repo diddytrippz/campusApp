@@ -249,6 +249,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
                 room: currentUserDocument?.room,
                 building: currentUserDocument?.building,
                 notes: reasonController.text,
+                rating: 0,
               );
               await MaintenanceRecord.collection
                   .doc()

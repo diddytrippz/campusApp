@@ -471,7 +471,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             MainAxisAlignment.center,
                                         children: [
                                           FaIcon(
-                                            FontAwesomeIcons.bed,
+                                            FontAwesomeIcons.couch,
                                             color: Color(0xFF1E2429),
                                             size: 35,
                                           ),

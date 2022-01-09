@@ -1,4 +1,5 @@
 import '../backend/backend.dart';
+import '../components/review_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -140,58 +141,6 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onTap: () async {
-                                  if ((widget.jobProgressStatus.status) ==
-                                      'Submitted') {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          title: Text('Delete Record?'),
-                                          content: Text(
-                                              'Are you sure that you want to delete this record? This process cannot be undone.'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Cancel'),
-                                            ),
-                                            TextButton(
-                                              onPressed: () async {
-                                                Navigator.pop(
-                                                    alertDialogContext);
-                                                await widget
-                                                    .jobProgressStatus.reference
-                                                    .delete();
-                                                ;
-                                              },
-                                              child: Text('Confirm'),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  }
-                                  await Navigator.pushAndRemoveUntil(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.bottomToTop,
-                                      duration: Duration(milliseconds: 300),
-                                      reverseDuration:
-                                          Duration(milliseconds: 300),
-                                      child:
-                                          NavBarPage(initialPage: 'viewPage'),
-                                    ),
-                                    (r) => false,
-                                  );
-                                },
-                                child: Icon(
-                                  Icons.delete_outline,
-                                  color: Color(0xFF939393),
-                                  size: 24,
-                                ),
-                              ),
                             ],
                           ),
                         ),
@@ -255,37 +204,68 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                           child: RatingBarIndicator(
                             itemBuilder: (context, index) => Icon(
                               Icons.star_rounded,
-                              color: FlutterFlowTheme.secondaryColor,
+                              color: FlutterFlowTheme.mellow,
                             ),
                             direction: Axis.horizontal,
-                            rating: 0,
+                            rating: widget.jobProgressStatus.rating.toDouble(),
                             unratedColor: Color(0xFF9E9E9E),
                             itemCount: 5,
                             itemSize: 28,
                           ),
                         ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(
-                              Icons.thumb_up_outlined,
-                              color: Colors.black,
-                              size: 30,
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 18, 20, 0),
+                        child: InkWell(
+                          onTap: () async {
+                            if ((widget.jobProgressStatus.status) ==
+                                'Completed') {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                barrierColor: Color(0x59464749),
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: MediaQuery.of(context).viewInsets,
+                                    child: ReviewWidget(
+                                      forReviews: widget.jobProgressStatus,
+                                    ),
+                                  );
+                                },
+                              );
+                            }
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.campusRed,
+                              borderRadius: BorderRadius.circular(8),
                             ),
-                            Icon(
-                              Icons.thumb_down_outlined,
-                              color: Colors.black,
-                              size: 30,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.rate_review_outlined,
+                                  color: Color(0xFFF5F5F5),
+                                  size: 24,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 0, 0, 0),
+                                  child: Text(
+                                    'Write a review',
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.tertiaryColor,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            Icon(
-                              Icons.ios_share,
-                              color: Colors.black,
-                              size: 30,
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                       Padding(
