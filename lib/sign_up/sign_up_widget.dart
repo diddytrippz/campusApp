@@ -1,11 +1,8 @@
 import '../auth/auth_util.dart';
-import '../flutter_flow/flutter_flow_place_picker.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/place.dart';
 import '../login_page/login_page_widget.dart';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,7 +16,6 @@ class SignUpWidget extends StatefulWidget {
 
 class _SignUpWidgetState extends State<SignUpWidget> {
   TextEditingController emailFieldController;
-  var placePickerValue = FFPlace();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -186,39 +182,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         width: 1,
                       ),
                       borderRadius: 8,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 80, 0, 0),
-                  child: FlutterFlowPlacePicker(
-                    iOSGoogleMapsApiKey:
-                        'AIzaSyBCJCbwiuY2OaqHM6jL88pm_glWlD-La1I',
-                    androidGoogleMapsApiKey:
-                        'AIzaSyCYYUGKvKW3O4C7La535TNQZdj6Bl5WHzA',
-                    webGoogleMapsApiKey:
-                        'AIzaSyBx4kPnRuoIkof4JYLSdcrokDkp7AJUN_0',
-                    onSelect: (place) =>
-                        setState(() => placePickerValue = place),
-                    defaultText: 'Select Location',
-                    icon: Icon(
-                      Icons.place,
-                      color: Colors.white,
-                      size: 16,
-                    ),
-                    buttonOptions: FFButtonOptions(
-                      width: 200,
-                      height: 40,
-                      color: FlutterFlowTheme.primaryColor,
-                      textStyle: FlutterFlowTheme.subtitle2.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
-                      ),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1,
-                      ),
-                      borderRadius: 12,
                     ),
                   ),
                 ),
