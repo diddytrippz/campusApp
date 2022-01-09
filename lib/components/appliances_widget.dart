@@ -1,7 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/submitted_icon_widget.dart';
-import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -21,36 +20,13 @@ class AppliancesWidget extends StatefulWidget {
   _AppliancesWidgetState createState() => _AppliancesWidgetState();
 }
 
-class _AppliancesWidgetState extends State<AppliancesWidget>
-    with TickerProviderStateMixin {
+class _AppliancesWidgetState extends State<AppliancesWidget> {
   String budgetValue;
   TextEditingController reasonController;
-  final animationsMap = {
-    'dropDownOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      delay: 200,
-      fadeIn: true,
-      slideOffset: Offset(0, -100),
-    ),
-    'textFieldOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      delay: 230,
-      fadeIn: true,
-      slideOffset: Offset(0, -120),
-    ),
-  };
 
   @override
   void initState() {
     super.initState();
-    startPageLoadAnimations(
-      animationsMap.values
-          .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
-      this,
-    );
-
     reasonController = TextEditingController();
   }
 
@@ -169,8 +145,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
                         borderRadius: 8,
                         margin: EdgeInsetsDirectional.fromSTEB(20, 20, 12, 20),
                         hidesUnderline: true,
-                      ).animated(
-                          [animationsMap['dropDownOnPageLoadAnimation']]),
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 18),
@@ -227,8 +202,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
                         ),
                         textAlign: TextAlign.start,
                         maxLines: 4,
-                      ).animated(
-                          [animationsMap['textFieldOnPageLoadAnimation']]),
+                      ),
                     ),
                   ],
                 ),
