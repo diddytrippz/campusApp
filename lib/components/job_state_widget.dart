@@ -249,20 +249,21 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                             ),
                           ),
                         ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 18, 0, 0),
-                        child: RatingBarIndicator(
-                          itemBuilder: (context, index) => Icon(
-                            Icons.star_rounded,
-                            color: FlutterFlowTheme.secondaryColor,
+                      if ((widget.jobProgressStatus.status) != 'Submitted')
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(20, 18, 0, 0),
+                          child: RatingBarIndicator(
+                            itemBuilder: (context, index) => Icon(
+                              Icons.star_rounded,
+                              color: FlutterFlowTheme.secondaryColor,
+                            ),
+                            direction: Axis.horizontal,
+                            rating: 0,
+                            unratedColor: Color(0xFF9E9E9E),
+                            itemCount: 5,
+                            itemSize: 28,
                           ),
-                          direction: Axis.horizontal,
-                          rating: 0,
-                          unratedColor: Color(0xFF9E9E9E),
-                          itemCount: 5,
-                          itemSize: 28,
                         ),
-                      ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                         child: Row(

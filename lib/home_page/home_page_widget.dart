@@ -147,52 +147,70 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
+                        Expanded(
+                          child: Align(
+                            alignment: AlignmentDirectional(1, 0),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              child: Column(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    'Welcome back,',
-                                    style: FlutterFlowTheme.title3.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF1E2429),
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Welcome back,',
+                                        style: FlutterFlowTheme.title3.override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: Color(0xFF1E2429),
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 18, 0),
+                                        child: Icon(
+                                          Icons.download_sharp,
+                                          color: FlutterFlowTheme.campusGrey,
+                                          size: 24,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  AuthUserStreamWidget(
+                                    child: Text(
+                                      currentUserDisplayName,
+                                      style: FlutterFlowTheme.title3.override(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Color(0xFFD93A0E),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 4, 0, 0),
+                                    child: Text(
+                                      'Report your issue below.',
+                                      style:
+                                          FlutterFlowTheme.bodyText1.override(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Color(0xFF090F13),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.normal,
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
-                              AuthUserStreamWidget(
-                                child: Text(
-                                  currentUserDisplayName,
-                                  style: FlutterFlowTheme.title3.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Color(0xFFD93A0E),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                                child: Text(
-                                  'Report your issue below.',
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Color(0xFF090F13),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                         ),
                       ],

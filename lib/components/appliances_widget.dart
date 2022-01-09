@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/submitted_icon_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -182,7 +183,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'Additional notes',
+                          hintText: 'Additional notes\n(Optional)',
                           hintStyle: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Lexend Deca',
                             color: Color(0xFF090F13),
@@ -264,6 +265,18 @@ class _AppliancesWidgetState extends State<AppliancesWidget>
               await ChatMessagesRecord.collection
                   .doc()
                   .set(chatMessagesCreateData);
+              await showModalBottomSheet(
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                barrierColor: Color(0x64F5F5F5),
+                context: context,
+                builder: (context) {
+                  return Padding(
+                    padding: MediaQuery.of(context).viewInsets,
+                    child: SubmittedIconWidget(),
+                  );
+                },
+              );
               await Navigator.push(
                 context,
                 PageTransition(
