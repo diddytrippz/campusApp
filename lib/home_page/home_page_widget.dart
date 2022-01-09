@@ -174,7 +174,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             0, 0, 18, 0),
                                         child: Icon(
                                           Icons.download_sharp,
-                                          color: FlutterFlowTheme.campusGrey,
+                                          color: FlutterFlowTheme.campusRed,
                                           size: 24,
                                         ),
                                       ),
@@ -184,7 +184,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     currentUserEmail,
                                     style: FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Lexend Deca',
-                                      color: FlutterFlowTheme.campusRed,
+                                      color: FlutterFlowTheme.campusGrey,
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
