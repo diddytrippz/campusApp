@@ -178,7 +178,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                 indicatorColor: FlutterFlowTheme.secondaryColor,
                                 tabs: [
                                   Tab(
-                                    text: 'Pendin',
+                                    text: 'Pending',
                                   ),
                                   Tab(
                                     text: 'Completed',
