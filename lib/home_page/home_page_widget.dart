@@ -165,12 +165,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     children: [
                                       Text(
                                         'Welcome back,',
-                                        style: FlutterFlowTheme.title3.override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: Color(0xFF1E2429),
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                        style: FlutterFlowTheme.title1,
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -183,29 +178,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                     ],
                                   ),
-                                  AuthUserStreamWidget(
-                                    child: Text(
-                                      currentUserDisplayName,
-                                      style: FlutterFlowTheme.title3.override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: Color(0xFFD93A0E),
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 4, 0, 0),
-                                    child: Text(
-                                      'Report your issue below.',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF090F13),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                  Text(
+                                    'Report your issue below.',
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF090F13),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
                                     ),
                                   ),
                                 ],
