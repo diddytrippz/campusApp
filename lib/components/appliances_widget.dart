@@ -254,7 +254,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                   );
                 },
               );
-              await Navigator.push(
+              await Navigator.pushAndRemoveUntil(
                 context,
                 PageTransition(
                   type: PageTransitionType.bottomToTop,
@@ -262,9 +262,10 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                   reverseDuration: Duration(milliseconds: 300),
                   child: NavBarPage(initialPage: 'viewPage'),
                 ),
+                (r) => false,
               );
               triggerPushNotification(
-                notificationTitle: 'Status Update',
+                notificationTitle: 'Status update',
                 notificationText: 'Your request status is pending',
                 notificationImageUrl: currentUserPhoto,
                 userRefs: [currentUserReference],

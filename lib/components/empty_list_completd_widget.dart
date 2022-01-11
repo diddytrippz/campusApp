@@ -16,65 +16,58 @@ class EmptyListCompletdWidget extends StatefulWidget {
 class _EmptyListCompletdWidgetState extends State<EmptyListCompletdWidget> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 1,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Column(
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 1,
+            decoration: BoxDecoration(
+              color: Colors.white,
+            ),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 45),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 0),
+                    child: Row(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0, 16, 0, 25),
-                                child: FaIcon(
-                                  FontAwesomeIcons.sadTear,
-                                  color: Color(0xFF9E9E9E),
-                                  size: 90,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
-                          child: Text(
-                            'Ooops!\n Looks like you don\'t have any completed requests yet. \nPlease check again later',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Poppins',
-                              color: Color(0xFF949494),
-                              fontWeight: FontWeight.w500,
-                            ),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 25),
+                          child: FaIcon(
+                            FontAwesomeIcons.sadTear,
+                            color: Color(0xFF9E9E9E),
+                            size: 90,
                           ),
                         ),
                       ],
                     ),
                   ),
-                ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
+                    child: Text(
+                      'Ooops!\n Looks like you don\'t have any completed requests yet. \nPlease check again later',
+                      textAlign: TextAlign.center,
+                      style: FlutterFlowTheme.bodyText1.override(
+                        fontFamily: 'Poppins',
+                        color: Color(0xFF949494),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
