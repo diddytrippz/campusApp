@@ -111,29 +111,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                               child: Column(
-                                mainAxisSize: MainAxisSize.max,
+                                mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Welcome back,',
                                         style: FlutterFlowTheme.title1.override(
                                           fontFamily: 'Poppins',
                                           color: FlutterFlowTheme.mellow,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 18, 0),
-                                        child: Icon(
-                                          Icons.download_sharp,
-                                          color: FlutterFlowTheme.campusRed,
-                                          size: 24,
                                         ),
                                       ),
                                     ],

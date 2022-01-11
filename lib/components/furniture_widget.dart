@@ -30,14 +30,28 @@ class _FurnitureWidgetState extends State<FurnitureWidget>
       duration: 600,
       delay: 200,
       fadeIn: true,
-      slideOffset: Offset(0, -100),
+      initialState: AnimationState(
+        offset: Offset(0, 100),
+        opacity: 0,
+      ),
+      finalState: AnimationState(
+        offset: Offset(0, 0),
+        opacity: 1,
+      ),
     ),
     'textFieldOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       duration: 600,
       delay: 230,
       fadeIn: true,
-      slideOffset: Offset(0, -120),
+      initialState: AnimationState(
+        offset: Offset(0, 120),
+        opacity: 0,
+      ),
+      finalState: AnimationState(
+        offset: Offset(0, 0),
+        opacity: 1,
+      ),
     ),
   };
 

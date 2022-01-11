@@ -21,7 +21,15 @@ class ViewPageWidget extends StatefulWidget {
 }
 
 class _ViewPageWidgetState extends State<ViewPageWidget> {
+  Map<MaintenanceRecord, bool> checkboxListTileValueMap = {};
+  List<MaintenanceRecord> get checkboxListTileCheckedItems =>
+      checkboxListTileValueMap.entries
+          .where((e) => e.value)
+          .map((e) => e.key)
+          .toList();
+
   DateTimeRange calendarSelectedDay;
+  List<MaintenanceRecord> algoliaSearchResults = [];
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -99,6 +107,15 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                         Duration(milliseconds: 2000),
                         () => setState(() {}),
                       ),
+                      onFieldSubmitted: (_) async {
+                        setState(() => algoliaSearchResults = null);
+                        await MaintenanceRecord.search(
+                          term: textController.text,
+                        )
+                            .then((r) => algoliaSearchResults = r)
+                            .onError((_, __) => algoliaSearchResults = [])
+                            .whenComplete(() => setState(() {}));
+                      },
                       controller: textController,
                       obscureText: false,
                       decoration: InputDecoration(
@@ -163,201 +180,352 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                        child: DefaultTabController(
-                          length: 2,
-                          initialIndex: 0,
-                          child: Column(
-                            children: [
-                              TabBar(
-                                labelColor: FlutterFlowTheme.primaryColor,
-                                unselectedLabelColor: Color(0xFF6E6E6E),
-                                labelStyle: FlutterFlowTheme.bodyText1,
-                                indicatorColor: FlutterFlowTheme.secondaryColor,
-                                tabs: [
-                                  Tab(
-                                    text: 'Pending',
-                                  ),
-                                  Tab(
-                                    text: 'Completed',
-                                  ),
-                                ],
-                              ),
-                              Expanded(
-                                child: TabBarView(
-                                  children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16, 20, 16, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                'Search results',
-                                                style:
-                                                    FlutterFlowTheme.bodyText2,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
+                    if ((currentUserDocument?.role) == 'Tenant')
+                      Expanded(
+                        child: AuthUserStreamWidget(
+                          child: DefaultTabController(
+                            length: 2,
+                            initialIndex: 0,
+                            child: Column(
+                              children: [
+                                TabBar(
+                                  labelColor: FlutterFlowTheme.primaryColor,
+                                  unselectedLabelColor: Color(0xFF6E6E6E),
+                                  labelStyle: FlutterFlowTheme.bodyText1,
+                                  indicatorColor:
+                                      FlutterFlowTheme.secondaryColor,
+                                  tabs: [
+                                    Tab(
+                                      text: 'Pending',
+                                    ),
+                                    Tab(
+                                      text: 'Completed',
+                                    ),
+                                  ],
+                                ),
+                                Expanded(
+                                  child: TabBarView(
+                                    children: [
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 18, 0, 0),
-                                            child: StreamBuilder<
-                                                List<MaintenanceRecord>>(
-                                              stream: queryMaintenanceRecord(
-                                                queryBuilder: (maintenanceRecord) =>
-                                                    maintenanceRecord
-                                                        .where('status',
-                                                            isEqualTo:
-                                                                'Submitted')
-                                                        .where('email',
-                                                            isEqualTo:
-                                                                currentUserEmail)
-                                                        .orderBy('created_time',
-                                                            descending: true),
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 40,
-                                                      height: 40,
-                                                      child: SpinKitPulse(
-                                                        color: FlutterFlowTheme
-                                                            .primaryColor,
-                                                        size: 40,
+                                                    16, 12, 16, 0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  'Search results',
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 10, 0, 0),
+                                              child: StreamBuilder<
+                                                  List<MaintenanceRecord>>(
+                                                stream: queryMaintenanceRecord(
+                                                  queryBuilder: (maintenanceRecord) =>
+                                                      maintenanceRecord
+                                                          .where('status',
+                                                              isEqualTo:
+                                                                  'Submitted')
+                                                          .where('email',
+                                                              isEqualTo:
+                                                                  currentUserEmail)
+                                                          .orderBy(
+                                                              'created_time',
+                                                              descending: true),
+                                                ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 60,
+                                                        height: 60,
+                                                        child: SpinKitPulse(
+                                                          color:
+                                                              FlutterFlowTheme
+                                                                  .primaryColor,
+                                                          size: 60,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<MaintenanceRecord>
-                                                    listViewMaintenanceRecordList =
-                                                    snapshot.data;
-                                                if (listViewMaintenanceRecordList
-                                                    .isEmpty) {
-                                                  return Center(
-                                                    child:
-                                                        EmptyListSubmittedWidget(),
-                                                  );
-                                                }
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  primary: false,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      listViewMaintenanceRecordList
-                                                          .length,
-                                                  itemBuilder:
-                                                      (context, listViewIndex) {
-                                                    final listViewMaintenanceRecord =
-                                                        listViewMaintenanceRecordList[
-                                                            listViewIndex];
-                                                    return InkWell(
-                                                      onTap: () async {
-                                                        await showModalBottomSheet(
-                                                          isScrollControlled:
-                                                              true,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          barrierColor:
-                                                              Color(0x47ACACAC),
-                                                          context: context,
-                                                          builder: (context) {
-                                                            return Padding(
-                                                              padding: MediaQuery
-                                                                      .of(context)
-                                                                  .viewInsets,
-                                                              child:
-                                                                  JobStateWidget(
-                                                                jobProgressStatus:
-                                                                    listViewMaintenanceRecord,
-                                                              ),
-                                                            );
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Slidable(
-                                                        actionPane:
-                                                            const SlidableScrollActionPane(),
-                                                        secondaryActions: [
-                                                          IconSlideAction(
-                                                            caption: 'Delete',
-                                                            color:
-                                                                FlutterFlowTheme
-                                                                    .campusRed,
-                                                            icon: Icons
-                                                                .delete_outline,
-                                                            onTap: () async {
-                                                              await showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Are you sure you want to delete this record?'),
-                                                                    content: Text(
-                                                                        'This action cannot be undone'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Cancel'),
-                                                                      ),
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          Navigator.pop(
-                                                                              alertDialogContext);
-                                                                          await listViewMaintenanceRecord
-                                                                              .reference
-                                                                              .delete();
-                                                                          ;
-                                                                        },
-                                                                        child: Text(
-                                                                            'Confirm'),
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              );
-                                                              await Navigator
-                                                                  .push(
-                                                                context,
-                                                                PageTransition(
-                                                                  type: PageTransitionType
-                                                                      .bottomToTop,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          300),
-                                                                  reverseDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              300),
-                                                                  child: NavBarPage(
-                                                                      initialPage:
-                                                                          'viewPage'),
+                                                    );
+                                                  }
+                                                  List<MaintenanceRecord>
+                                                      listViewMaintenanceRecordList =
+                                                      snapshot.data;
+                                                  if (listViewMaintenanceRecordList
+                                                      .isEmpty) {
+                                                    return Center(
+                                                      child:
+                                                          EmptyListSubmittedWidget(),
+                                                    );
+                                                  }
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    primary: false,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount:
+                                                        listViewMaintenanceRecordList
+                                                            .length,
+                                                    itemBuilder: (context,
+                                                        listViewIndex) {
+                                                      final listViewMaintenanceRecord =
+                                                          listViewMaintenanceRecordList[
+                                                              listViewIndex];
+                                                      return InkWell(
+                                                        onTap: () async {
+                                                          await showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            barrierColor: Color(
+                                                                0x47ACACAC),
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return Padding(
+                                                                padding: MediaQuery.of(
+                                                                        context)
+                                                                    .viewInsets,
+                                                                child:
+                                                                    JobStateWidget(
+                                                                  jobProgressStatus:
+                                                                      listViewMaintenanceRecord,
                                                                 ),
                                                               );
                                                             },
+                                                          );
+                                                        },
+                                                        child: Slidable(
+                                                          actionPane:
+                                                              const SlidableScrollActionPane(),
+                                                          secondaryActions: [
+                                                            IconSlideAction(
+                                                              caption: 'Delete',
+                                                              color:
+                                                                  FlutterFlowTheme
+                                                                      .campusRed,
+                                                              icon: Icons
+                                                                  .delete_outline,
+                                                              onTap: () async {
+                                                                await showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'Are you sure you want to delete this record?'),
+                                                                      content: Text(
+                                                                          'This action cannot be undone'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Cancel'),
+                                                                        ),
+                                                                        TextButton(
+                                                                          onPressed:
+                                                                              () async {
+                                                                            Navigator.pop(alertDialogContext);
+                                                                            await listViewMaintenanceRecord.reference.delete();
+                                                                            ;
+                                                                          },
+                                                                          child:
+                                                                              Text('Confirm'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                );
+                                                                await Navigator
+                                                                    .push(
+                                                                  context,
+                                                                  PageTransition(
+                                                                    type: PageTransitionType
+                                                                        .bottomToTop,
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            300),
+                                                                    reverseDuration:
+                                                                        Duration(
+                                                                            milliseconds:
+                                                                                300),
+                                                                    child: NavBarPage(
+                                                                        initialPage:
+                                                                            'viewPage'),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            ),
+                                                          ],
+                                                          child: ListTile(
+                                                            leading: Icon(
+                                                              Icons
+                                                                  .miscellaneous_services,
+                                                              color:
+                                                                  FlutterFlowTheme
+                                                                      .campusGrey,
+                                                              size: 30,
+                                                            ),
+                                                            title: Text(
+                                                              listViewMaintenanceRecord
+                                                                  .issue,
+                                                              style:
+                                                                  FlutterFlowTheme
+                                                                      .title2
+                                                                      .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                fontSize: 16,
+                                                              ),
+                                                            ),
+                                                            subtitle: Text(
+                                                              '${dateTimeFormat('MMMMEEEEd', listViewMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewMaintenanceRecord.createdTime)}',
+                                                              style:
+                                                                  FlutterFlowTheme
+                                                                      .subtitle2
+                                                                      .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                fontSize: 14,
+                                                              ),
+                                                            ),
+                                                            trailing: Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_right_sharp,
+                                                              color: Color(
+                                                                  0xFF303030),
+                                                              size: 20,
+                                                            ),
+                                                            tileColor: Color(
+                                                                0x00FFFFFF),
+                                                            dense: false,
                                                           ),
-                                                        ],
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16, 12, 16, 0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  'Search results',
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 10, 0, 0),
+                                              child: StreamBuilder<
+                                                  List<MaintenanceRecord>>(
+                                                stream: queryMaintenanceRecord(
+                                                  queryBuilder: (maintenanceRecord) =>
+                                                      maintenanceRecord
+                                                          .where('status',
+                                                              isEqualTo:
+                                                                  'Completed')
+                                                          .where('email',
+                                                              isEqualTo:
+                                                                  currentUserEmail)
+                                                          .orderBy(
+                                                              'created_time',
+                                                              descending: true),
+                                                ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 60,
+                                                        height: 60,
+                                                        child: SpinKitPulse(
+                                                          color:
+                                                              FlutterFlowTheme
+                                                                  .primaryColor,
+                                                          size: 60,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
+                                                  List<MaintenanceRecord>
+                                                      listViewMaintenanceRecordList =
+                                                      snapshot.data;
+                                                  if (listViewMaintenanceRecordList
+                                                      .isEmpty) {
+                                                    return Center(
+                                                      child:
+                                                          EmptyListCompletdWidget(),
+                                                    );
+                                                  }
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount:
+                                                        listViewMaintenanceRecordList
+                                                            .length,
+                                                    itemBuilder: (context,
+                                                        listViewIndex) {
+                                                      final listViewMaintenanceRecord =
+                                                          listViewMaintenanceRecordList[
+                                                              listViewIndex];
+                                                      return InkWell(
+                                                        onTap: () async {
+                                                          await showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            barrierColor: Color(
+                                                                0x47ACACAC),
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return Padding(
+                                                                padding: MediaQuery.of(
+                                                                        context)
+                                                                    .viewInsets,
+                                                                child:
+                                                                    JobStateWidget(
+                                                                  jobProgressStatus:
+                                                                      listViewMaintenanceRecord,
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
                                                         child: ListTile(
                                                           leading: Icon(
                                                             Icons
@@ -372,11 +540,14 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                 .issue,
                                                             style:
                                                                 FlutterFlowTheme
-                                                                    .title2
+                                                                    .title1
                                                                     .override(
                                                               fontFamily:
                                                                   'Poppins',
                                                               fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
                                                             ),
                                                           ),
                                                           subtitle: Text(
@@ -398,143 +569,278 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                             size: 20,
                                                           ),
                                                           tileColor:
-                                                              Color(0x00FFFFFF),
+                                                              Color(0x00F5F5F5),
                                                           dense: false,
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    if ((currentUserDocument?.role) == 'Admin')
+                      Expanded(
+                        child: AuthUserStreamWidget(
+                          child: DefaultTabController(
+                            length: 2,
+                            initialIndex: 0,
+                            child: Column(
+                              children: [
+                                TabBar(
+                                  labelColor: FlutterFlowTheme.primaryColor,
+                                  unselectedLabelColor: Color(0xFF6E6E6E),
+                                  labelStyle: FlutterFlowTheme.bodyText1,
+                                  indicatorColor:
+                                      FlutterFlowTheme.secondaryColor,
+                                  tabs: [
+                                    Tab(
+                                      text: 'Pending',
+                                    ),
+                                    Tab(
+                                      text: 'Completed',
+                                    ),
+                                  ],
+                                ),
+                                Expanded(
+                                  child: TabBarView(
+                                    children: [
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16, 12, 16, 0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  'Search results',
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 10, 0, 0),
+                                              child: StreamBuilder<
+                                                  List<MaintenanceRecord>>(
+                                                stream: queryMaintenanceRecord(
+                                                  queryBuilder: (maintenanceRecord) =>
+                                                      maintenanceRecord
+                                                          .where('status',
+                                                              isEqualTo:
+                                                                  'Submitted')
+                                                          .where('building',
+                                                              isEqualTo:
+                                                                  currentUserDocument
+                                                                      ?.building)
+                                                          .orderBy(
+                                                              'created_time',
+                                                              descending: true),
+                                                ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 60,
+                                                        height: 60,
+                                                        child: SpinKitPulse(
+                                                          color:
+                                                              FlutterFlowTheme
+                                                                  .primaryColor,
+                                                          size: 60,
                                                         ),
                                                       ),
                                                     );
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16, 20, 16, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                'Search results',
-                                                style:
-                                                    FlutterFlowTheme.bodyText2,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 18, 0, 0),
-                                            child: StreamBuilder<
-                                                List<MaintenanceRecord>>(
-                                              stream: queryMaintenanceRecord(
-                                                queryBuilder: (maintenanceRecord) =>
-                                                    maintenanceRecord
-                                                        .where('status',
-                                                            isEqualTo:
-                                                                'Completed')
-                                                        .where('email',
-                                                            isEqualTo:
-                                                                currentUserEmail)
-                                                        .orderBy('created_time',
-                                                            descending: true),
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 40,
-                                                      height: 40,
-                                                      child: SpinKitPulse(
-                                                        color: FlutterFlowTheme
-                                                            .primaryColor,
-                                                        size: 40,
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<MaintenanceRecord>
-                                                    listViewMaintenanceRecordList =
-                                                    snapshot.data;
-                                                if (listViewMaintenanceRecordList
-                                                    .isEmpty) {
-                                                  return Center(
-                                                    child:
-                                                        EmptyListCompletdWidget(),
-                                                  );
-                                                }
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      listViewMaintenanceRecordList
-                                                          .length,
-                                                  itemBuilder:
-                                                      (context, listViewIndex) {
-                                                    final listViewMaintenanceRecord =
-                                                        listViewMaintenanceRecordList[
-                                                            listViewIndex];
-                                                    return InkWell(
-                                                      onTap: () async {
-                                                        await showModalBottomSheet(
-                                                          isScrollControlled:
-                                                              true,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          barrierColor:
-                                                              Color(0x47ACACAC),
-                                                          context: context,
-                                                          builder: (context) {
-                                                            return Padding(
-                                                              padding: MediaQuery
-                                                                      .of(context)
-                                                                  .viewInsets,
-                                                              child:
-                                                                  JobStateWidget(
-                                                                jobProgressStatus:
-                                                                    listViewMaintenanceRecord,
-                                                              ),
-                                                            );
-                                                          },
-                                                        );
-                                                      },
-                                                      child: ListTile(
-                                                        leading: Icon(
-                                                          Icons
-                                                              .miscellaneous_services,
-                                                          color:
-                                                              FlutterFlowTheme
-                                                                  .campusGrey,
-                                                          size: 30,
-                                                        ),
+                                                  }
+                                                  List<MaintenanceRecord>
+                                                      listViewMaintenanceRecordList =
+                                                      snapshot.data;
+                                                  if (listViewMaintenanceRecordList
+                                                      .isEmpty) {
+                                                    return Center(
+                                                      child:
+                                                          EmptyListSubmittedWidget(),
+                                                    );
+                                                  }
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    primary: false,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount:
+                                                        listViewMaintenanceRecordList
+                                                            .length,
+                                                    itemBuilder: (context,
+                                                        listViewIndex) {
+                                                      final listViewMaintenanceRecord =
+                                                          listViewMaintenanceRecordList[
+                                                              listViewIndex];
+                                                      return CheckboxListTile(
+                                                        value: checkboxListTileValueMap[
+                                                                listViewMaintenanceRecord] ??=
+                                                            false,
+                                                        onChanged: (newValue) =>
+                                                            setState(() =>
+                                                                checkboxListTileValueMap[
+                                                                        listViewMaintenanceRecord] =
+                                                                    newValue),
                                                         title: Text(
                                                           listViewMaintenanceRecord
                                                               .issue,
                                                           style:
                                                               FlutterFlowTheme
-                                                                  .title1
+                                                                  .title3
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                          ),
+                                                        ),
+                                                        subtitle: Text(
+                                                          listViewMaintenanceRecord
+                                                              .room,
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .subtitle2
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 14,
+                                                          ),
+                                                        ),
+                                                        tileColor:
+                                                            Color(0xFFF5F5F5),
+                                                        dense: false,
+                                                        controlAffinity:
+                                                            ListTileControlAffinity
+                                                                .trailing,
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16, 12, 16, 0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  'Search results',
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 10, 0, 0),
+                                              child: StreamBuilder<
+                                                  List<MaintenanceRecord>>(
+                                                stream: queryMaintenanceRecord(
+                                                  queryBuilder: (maintenanceRecord) =>
+                                                      maintenanceRecord
+                                                          .where('status',
+                                                              isEqualTo:
+                                                                  'Completed')
+                                                          .where('building',
+                                                              isEqualTo:
+                                                                  currentUserDocument
+                                                                      ?.building)
+                                                          .orderBy(
+                                                              'created_time',
+                                                              descending: true),
+                                                ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 60,
+                                                        height: 60,
+                                                        child: SpinKitPulse(
+                                                          color:
+                                                              FlutterFlowTheme
+                                                                  .primaryColor,
+                                                          size: 60,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
+                                                  List<MaintenanceRecord>
+                                                      listViewMaintenanceRecordList =
+                                                      snapshot.data;
+                                                  if (listViewMaintenanceRecordList
+                                                      .isEmpty) {
+                                                    return Center(
+                                                      child:
+                                                          EmptyListSubmittedWidget(),
+                                                    );
+                                                  }
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    primary: false,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount:
+                                                        listViewMaintenanceRecordList
+                                                            .length,
+                                                    itemBuilder: (context,
+                                                        listViewIndex) {
+                                                      final listViewMaintenanceRecord =
+                                                          listViewMaintenanceRecordList[
+                                                              listViewIndex];
+                                                      return ListTile(
+                                                        title: Text(
+                                                          listViewMaintenanceRecord
+                                                              .issue,
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .title3
                                                                   .override(
                                                             fontFamily:
                                                                 'Poppins',
                                                             fontSize: 16,
                                                             fontWeight:
-                                                                FontWeight.w500,
+                                                                FontWeight
+                                                                    .normal,
                                                           ),
                                                         ),
                                                         subtitle: Text(
-                                                          '${dateTimeFormat('MMMMEEEEd', listViewMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewMaintenanceRecord.createdTime)}',
+                                                          listViewMaintenanceRecord
+                                                              .room,
                                                           style:
                                                               FlutterFlowTheme
                                                                   .subtitle2
@@ -546,32 +852,31 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                         ),
                                                         trailing: Icon(
                                                           Icons
-                                                              .keyboard_arrow_right_sharp,
+                                                              .arrow_forward_ios,
                                                           color:
                                                               Color(0xFF303030),
-                                                          size: 20,
+                                                          size: 14,
                                                         ),
                                                         tileColor:
-                                                            Color(0x00F5F5F5),
+                                                            Color(0xFFF5F5F5),
                                                         dense: false,
-                                                      ),
-                                                    );
-                                                  },
-                                                );
-                                              },
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               ),

@@ -168,11 +168,11 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                       if (!snapshot.hasData) {
                         return Center(
                           child: SizedBox(
-                            width: 40,
-                            height: 40,
+                            width: 60,
+                            height: 60,
                             child: SpinKitPulse(
                               color: FlutterFlowTheme.primaryColor,
-                              size: 40,
+                              size: 60,
                             ),
                           ),
                         );
