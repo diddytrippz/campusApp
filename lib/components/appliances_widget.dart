@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../backend/push_notifications/push_notifications_util.dart';
 import '../components/submitted_icon_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -254,7 +253,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                   );
                 },
               );
-              await Navigator.pushAndRemoveUntil(
+              await Navigator.push(
                 context,
                 PageTransition(
                   type: PageTransitionType.bottomToTop,
@@ -262,15 +261,6 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                   reverseDuration: Duration(milliseconds: 300),
                   child: NavBarPage(initialPage: 'viewPage'),
                 ),
-                (r) => false,
-              );
-              triggerPushNotification(
-                notificationTitle: 'Status update',
-                notificationText: 'Your request status is pending',
-                notificationImageUrl: currentUserPhoto,
-                userRefs: [currentUserReference],
-                initialPageName: 'viewPage',
-                parameterData: {},
               );
             },
             text: 'Save',
