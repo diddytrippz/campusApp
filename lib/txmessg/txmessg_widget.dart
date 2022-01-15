@@ -87,7 +87,7 @@ class _TxmessgWidgetState extends State<TxmessgWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(18, 18, 68, 0),
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: Color(0xFFEEEEEE),
+                  color: FlutterFlowTheme.tertiaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
