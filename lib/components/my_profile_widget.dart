@@ -302,7 +302,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                               'DISMISS',
                               style: FlutterFlowTheme.title3.override(
                                 fontFamily: 'Poppins',
-                                color: FlutterFlowTheme.campusRed,
+                                color: FlutterFlowTheme.campusGrey,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),

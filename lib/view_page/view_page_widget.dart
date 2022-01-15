@@ -333,7 +333,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                     .account_box_rounded,
                                                                 color: FlutterFlowTheme
                                                                     .campusGrey,
-                                                                size: 30,
+                                                                size: 35,
                                                               ),
                                                               title: Text(
                                                                 listViewMaintenanceRecord
@@ -489,7 +489,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                     .account_box,
                                                                 color: FlutterFlowTheme
                                                                     .campusGrey,
-                                                                size: 30,
+                                                                size: 35,
                                                               ),
                                                               title: Text(
                                                                 listViewMaintenanceRecord
