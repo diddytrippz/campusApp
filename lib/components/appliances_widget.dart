@@ -8,7 +8,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -42,13 +41,23 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
             color: Colors.transparent,
             elevation: 3,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(0),
+                bottomRight: Radius.circular(0),
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
+              ),
             ),
             child: Container(
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Color(0xFFFFFEFE),
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(0),
+                  bottomRight: Radius.circular(0),
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
               ),
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(18, 25, 18, 0),
@@ -150,11 +159,6 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 18),
                       child: TextFormField(
-                        onChanged: (_) => EasyDebounce.debounce(
-                          'reasonController',
-                          Duration(milliseconds: 2000),
-                          () => setState(() {}),
-                        ),
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -181,18 +185,6 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                           ),
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(20, 40, 24, 0),
-                          suffixIcon: reasonController.text.isNotEmpty
-                              ? InkWell(
-                                  onTap: () => setState(
-                                    () => reasonController.clear(),
-                                  ),
-                                  child: Icon(
-                                    Icons.clear,
-                                    color: Color(0xFFD93A0E),
-                                    size: 22,
-                                  ),
-                                )
-                              : null,
                         ),
                         style: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Lexend Deca',
