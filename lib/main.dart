@@ -7,6 +7,7 @@ import 'auth/auth_util.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:campus_africa/login_page/login_page_widget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -118,8 +119,8 @@ class _NavBarPageState extends State<NavBarPage> {
         activeColor: FlutterFlowTheme.tertiaryColor,
         tabBackgroundColor: FlutterFlowTheme.campusRed,
         tabBorderRadius: 25,
-        tabMargin: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
-        padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+        tabMargin: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 16),
+        padding: EdgeInsetsDirectional.fromSTEB(14, 12, 4, 12),
         gap: 8,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         duration: Duration(milliseconds: 1000),
@@ -138,7 +139,9 @@ class _NavBarPageState extends State<NavBarPage> {
             iconSize: 24,
           ),
           GButton(
-            icon: currentIndex == 2 ? Icons.chat : Icons.chat,
+            icon: currentIndex == 2
+                ? FontAwesomeIcons.solidCommentAlt
+                : FontAwesomeIcons.commentAlt,
             text: 'INBOX',
             iconSize: 24,
           ),

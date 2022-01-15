@@ -4,9 +4,11 @@ import '../components/empty_inbox_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
+import '../txmessg/txmessg_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InboxPageWidget extends StatefulWidget {
@@ -399,82 +401,100 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
                                 (columnIndex) {
                               final columnChatMessagesRecord =
                                   columnChatMessagesRecordList[columnIndex];
-                              return Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: Colors.white,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16, 0, 0, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      if (!(FFAppState().isPressed) ?? true)
-                                        InkWell(
-                                          onTap: () async {
-                                            setState(() =>
-                                                FFAppState().isPressed = true);
-                                          },
-                                          child: Icon(
-                                            Icons.check_box_outline_blank,
-                                            color: Color(0xFF595959),
-                                            size: 24,
-                                          ),
-                                        ),
-                                      if (FFAppState().isPressed ?? true)
-                                        InkWell(
-                                          onTap: () async {
-                                            setState(() =>
-                                                FFAppState().isPressed = false);
-                                          },
-                                          child: Icon(
-                                            Icons.check_box,
-                                            color: Color(0xFF3779FF),
-                                            size: 24,
-                                          ),
-                                        ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  20, 0, 12, 0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 4, 0, 0),
-                                                child: Text(
-                                                  columnChatMessagesRecord
-                                                      .subject,
-                                                  style: FlutterFlowTheme.title3
-                                                      .override(
-                                                    fontFamily: 'Poppins',
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 0, 10),
-                                                child: Text(
-                                                  columnChatMessagesRecord
-                                                      .message,
-                                                  style: FlutterFlowTheme
-                                                      .subtitle2
-                                                      .override(
-                                                    fontFamily: 'Poppins',
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                              return InkWell(
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.bottomToTop,
+                                      duration: Duration(milliseconds: 300),
+                                      reverseDuration:
+                                          Duration(milliseconds: 300),
+                                      child: TxmessgWidget(
+                                        newMessage: columnChatMessagesRecord,
                                       ),
-                                    ],
+                                    ),
+                                  );
+                                },
+                                child: Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  color: Colors.white,
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 0, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        if (!(FFAppState().isPressed) ?? true)
+                                          InkWell(
+                                            onTap: () async {
+                                              setState(() => FFAppState()
+                                                  .isPressed = true);
+                                            },
+                                            child: Icon(
+                                              Icons.check_box_outline_blank,
+                                              color: Color(0xFF595959),
+                                              size: 24,
+                                            ),
+                                          ),
+                                        if (FFAppState().isPressed ?? true)
+                                          InkWell(
+                                            onTap: () async {
+                                              setState(() => FFAppState()
+                                                  .isPressed = false);
+                                            },
+                                            child: Icon(
+                                              Icons.check_box,
+                                              color: Color(0xFF3779FF),
+                                              size: 24,
+                                            ),
+                                          ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20, 0, 12, 0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 4, 0, 0),
+                                                  child: Text(
+                                                    columnChatMessagesRecord
+                                                        .subject,
+                                                    style: FlutterFlowTheme
+                                                        .title3
+                                                        .override(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 10),
+                                                  child: Text(
+                                                    columnChatMessagesRecord
+                                                        .message,
+                                                    style: FlutterFlowTheme
+                                                        .subtitle2
+                                                        .override(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );
