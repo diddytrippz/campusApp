@@ -45,48 +45,52 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFD93A0E),
-      body: Align(
-        alignment: AlignmentDirectional(0, 1),
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+      body: SafeArea(
+        child: Align(
+          alignment: AlignmentDirectional(0, 1),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  FlutterFlowCalendar(
-                    color: FlutterFlowTheme.mellow,
-                    iconColor: FlutterFlowTheme.campusGrey,
-                    weekFormat: true,
-                    weekStartsMonday: false,
-                    onChange: (DateTimeRange newSelectedDate) {
-                      setState(() => calendarSelectedDay = newSelectedDate);
-                    },
-                    titleStyle: TextStyle(
-                      color: Color(0xFFF6F6F6),
-                    ),
-                    dayOfWeekStyle: TextStyle(
-                      color: Colors.white,
-                    ),
-                    dateStyle: TextStyle(),
-                    selectedDateStyle: TextStyle(),
-                    inactiveDateStyle: TextStyle(
-                      color: Color(0xFFF6F6F6),
-                    ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      FlutterFlowCalendar(
+                        color: FlutterFlowTheme.mellow,
+                        iconColor: FlutterFlowTheme.campusGrey,
+                        weekFormat: true,
+                        weekStartsMonday: false,
+                        onChange: (DateTimeRange newSelectedDate) {
+                          setState(() => calendarSelectedDay = newSelectedDate);
+                        },
+                        titleStyle: TextStyle(
+                          color: Color(0xFFF6F6F6),
+                        ),
+                        dayOfWeekStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        dateStyle: TextStyle(),
+                        selectedDateStyle: TextStyle(),
+                        inactiveDateStyle: TextStyle(
+                          color: Color(0xFFF6F6F6),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(18, 2, 18, 0),
+                        child: SearchWidget(),
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(18, 2, 18, 8),
-                    child: SearchWidget(),
-                  ),
-                ],
+                ),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+              Expanded(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.6,
+                  height: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
