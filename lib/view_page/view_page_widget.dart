@@ -330,7 +330,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                             child: ListTile(
                                                               leading: Icon(
                                                                 Icons
-                                                                    .miscellaneous_services,
+                                                                    .account_box_rounded,
                                                                 color: FlutterFlowTheme
                                                                     .campusGrey,
                                                                 size: 30,
@@ -486,7 +486,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                             child: ListTile(
                                                               leading: Icon(
                                                                 Icons
-                                                                    .miscellaneous_services,
+                                                                    .account_box,
                                                                 color: FlutterFlowTheme
                                                                     .campusGrey,
                                                                 size: 30,
