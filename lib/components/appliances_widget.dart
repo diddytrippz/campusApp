@@ -37,7 +37,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(12, 40, 12, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
           child: Material(
             color: Colors.transparent,
             elevation: 3,
@@ -118,7 +118,6 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                       child: FlutterFlowDropDown(
                         options: [
-                          'Select Option',
                           'Stove not working',
                           'Oven not working',
                           'Microwave not working',
@@ -129,10 +128,11 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         height: 60,
                         textStyle: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Lexend Deca',
-                          color: Color(0xFF1E2429),
+                          color: FlutterFlowTheme.campusRed,
                           fontSize: 14,
                           fontWeight: FontWeight.normal,
                         ),
+                        hintText: 'Select option',
                         icon: Icon(
                           Icons.keyboard_arrow_down_rounded,
                           color: Color(0xFFD93A0E),
@@ -204,79 +204,82 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         maxLines: 4,
                       ),
                     ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 30),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          final maintenanceCreateData =
+                              createMaintenanceRecordData(
+                            issue: budgetValue,
+                            status: 'Submitted',
+                            email: currentUserEmail,
+                            createdTime: getCurrentTimestamp,
+                            displayName: currentUserDisplayName,
+                            room: currentUserDocument?.room,
+                            building: currentUserDocument?.building,
+                            notes: reasonController.text,
+                            rating: 0,
+                            uid: currentUserUid,
+                            category: 'Appliances',
+                          );
+                          await MaintenanceRecord.collection
+                              .doc()
+                              .set(maintenanceCreateData);
+
+                          final chatMessagesCreateData =
+                              createChatMessagesRecordData(
+                            email: currentUserEmail,
+                            message:
+                                'Please take note of a status change. Your request status is now \"Submitted\"',
+                            timeCreated: getCurrentTimestamp,
+                            displayName: currentUserDisplayName,
+                            subject: 'Status Update',
+                          );
+                          await ChatMessagesRecord.collection
+                              .doc()
+                              .set(chatMessagesCreateData);
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            barrierColor: Color(0x64F5F5F5),
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: SubmittedIconWidget(),
+                              );
+                            },
+                          );
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              duration: Duration(milliseconds: 300),
+                              reverseDuration: Duration(milliseconds: 300),
+                              child: NavBarPage(initialPage: 'viewPage'),
+                            ),
+                          );
+                        },
+                        text: 'Save',
+                        options: FFButtonOptions(
+                          width: double.infinity,
+                          height: 55,
+                          color: FlutterFlowTheme.primaryColor,
+                          textStyle: FlutterFlowTheme.subtitle2.override(
+                            fontFamily: 'Poppins',
+                            color: Colors.white,
+                          ),
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: 12,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 60),
-          child: FFButtonWidget(
-            onPressed: () async {
-              final maintenanceCreateData = createMaintenanceRecordData(
-                issue: budgetValue,
-                status: 'Submitted',
-                email: currentUserEmail,
-                createdTime: getCurrentTimestamp,
-                displayName: currentUserDisplayName,
-                room: currentUserDocument?.room,
-                building: currentUserDocument?.building,
-                notes: reasonController.text,
-                rating: 0,
-                uid: currentUserUid,
-              );
-              await MaintenanceRecord.collection
-                  .doc()
-                  .set(maintenanceCreateData);
-
-              final chatMessagesCreateData = createChatMessagesRecordData(
-                email: currentUserEmail,
-                message:
-                    'Please take note of a status change. Your request status is now \"Submitted\"',
-                timeCreated: getCurrentTimestamp,
-                displayName: currentUserDisplayName,
-                subject: 'Status Update',
-              );
-              await ChatMessagesRecord.collection
-                  .doc()
-                  .set(chatMessagesCreateData);
-              await showModalBottomSheet(
-                isScrollControlled: true,
-                backgroundColor: Colors.transparent,
-                barrierColor: Color(0x64F5F5F5),
-                context: context,
-                builder: (context) {
-                  return Padding(
-                    padding: MediaQuery.of(context).viewInsets,
-                    child: SubmittedIconWidget(),
-                  );
-                },
-              );
-              await Navigator.push(
-                context,
-                PageTransition(
-                  type: PageTransitionType.bottomToTop,
-                  duration: Duration(milliseconds: 300),
-                  reverseDuration: Duration(milliseconds: 300),
-                  child: NavBarPage(initialPage: 'viewPage'),
-                ),
-              );
-            },
-            text: 'Save',
-            options: FFButtonOptions(
-              width: double.infinity,
-              height: 55,
-              color: FlutterFlowTheme.primaryColor,
-              textStyle: FlutterFlowTheme.subtitle2.override(
-                fontFamily: 'Poppins',
-                color: Colors.white,
-              ),
-              borderSide: BorderSide(
-                color: Colors.transparent,
-                width: 1,
-              ),
-              borderRadius: 12,
             ),
           ),
         ),

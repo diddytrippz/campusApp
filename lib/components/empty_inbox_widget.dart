@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 class EmptyInboxWidget extends StatefulWidget {
   const EmptyInboxWidget({Key key}) : super(key: key);
@@ -23,10 +24,13 @@ class _EmptyInboxWidgetState extends State<EmptyInboxWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.message,
-                color: Color(0xFF9E9E9E),
-                size: 100,
+              Lottie.network(
+                'https://assets9.lottiefiles.com/packages/lf20_vjnds77f.json',
+                width: 150,
+                height: 130,
+                fit: BoxFit.cover,
+                repeat: false,
+                animate: true,
               ),
             ],
           ),

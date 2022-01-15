@@ -24,7 +24,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 120),
+            padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
             child: Container(
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
@@ -41,7 +41,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 10),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 10),
                           child: Lottie.asset(
                             'assets/lottie_animations/38700-check-icon.json',
                             width: 150,
@@ -88,7 +88,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 29, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 29, 0, 40),
                       child: FFButtonWidget(
                         onPressed: () async {
                           Navigator.pop(context);

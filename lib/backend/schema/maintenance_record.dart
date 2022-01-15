@@ -52,6 +52,12 @@ abstract class MaintenanceRecord
   int get rating;
 
   @nullable
+  bool get isDone;
+
+  @nullable
+  String get category;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -66,7 +72,9 @@ abstract class MaintenanceRecord
     ..room = ''
     ..building = ''
     ..notes = ''
-    ..rating = 0;
+    ..rating = 0
+    ..isDone = false
+    ..category = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('maintenance');
@@ -95,6 +103,8 @@ abstract class MaintenanceRecord
           ..building = snapshot.data['building']
           ..notes = snapshot.data['notes']
           ..rating = snapshot.data['rating']
+          ..isDone = snapshot.data['isDone']
+          ..category = snapshot.data['category']
           ..reference = MaintenanceRecord.collection.doc(snapshot.objectID),
       );
 
@@ -136,6 +146,8 @@ Map<String, dynamic> createMaintenanceRecordData({
   String building,
   String notes,
   int rating,
+  bool isDone,
+  String category,
 }) =>
     serializers.toFirestore(
         MaintenanceRecord.serializer,
@@ -151,4 +163,6 @@ Map<String, dynamic> createMaintenanceRecordData({
           ..room = room
           ..building = building
           ..notes = notes
-          ..rating = rating));
+          ..rating = rating
+          ..isDone = isDone
+          ..category = category));

@@ -55,7 +55,9 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
   Widget build(BuildContext context) {
     final dropdownWidget = DropdownButton<String>(
       value: effectiveOptions.contains(dropDownValue) ? dropDownValue : null,
-      hint: Text(widget.hintText, style: widget.textStyle),
+      hint: widget.hintText != null
+          ? Text(widget.hintText, style: widget.textStyle)
+          : null,
       items: effectiveOptions
           .map((e) => DropdownMenuItem(
                 value: e,

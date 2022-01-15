@@ -25,6 +25,10 @@ class FFAppState {
     _profilePic = _value;
     prefs.setString('ff_profilePic', _value);
   }
+
+  bool isPressed = false;
+
+  List<bool> listPressed = [];
 }
 
 LatLng _latLngFromString(String val) {

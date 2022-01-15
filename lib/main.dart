@@ -8,6 +8,7 @@ import 'backend/push_notifications/push_notifications_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:campus_africa/login_page/login_page_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'view_page/view_page_widget.dart';
@@ -105,67 +106,48 @@ class _NavBarPageState extends State<NavBarPage> {
       'inboxPage': InboxPageWidget(),
       'settingsPage': SettingsPageWidget(),
     };
+    final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
       body: tabs[_currentPage],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
-              size: 24,
-            ),
-            activeIcon: Icon(
-              Icons.home_rounded,
-              size: 28,
-            ),
-            label: 'Report',
-            tooltip: '',
+      bottomNavigationBar: GNav(
+        selectedIndex: currentIndex,
+        onTabChange: (i) =>
+            setState(() => _currentPage = tabs.keys.toList()[i]),
+        backgroundColor: FlutterFlowTheme.tertiaryColor,
+        color: FlutterFlowTheme.campusGrey,
+        activeColor: FlutterFlowTheme.tertiaryColor,
+        tabBackgroundColor: FlutterFlowTheme.campusRed,
+        tabBorderRadius: 25,
+        tabMargin: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+        padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+        gap: 8,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        duration: Duration(milliseconds: 1000),
+        haptic: true,
+        tabs: [
+          GButton(
+            icon: Icons.home_sharp,
+            text: 'HOME',
+            iconSize: 24,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.assignment_outlined,
-              size: 24,
-            ),
-            activeIcon: Icon(
-              Icons.assignment_rounded,
-              size: 28,
-            ),
-            label: 'View',
-            tooltip: '',
+          GButton(
+            icon: currentIndex == 1
+                ? Icons.announcement
+                : Icons.announcement_outlined,
+            text: 'VIEW',
+            iconSize: 24,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.mark_as_unread,
-              size: 24,
-            ),
-            activeIcon: Icon(
-              Icons.mark_as_unread,
-              size: 28,
-            ),
-            label: 'Inbox',
-            tooltip: '',
+          GButton(
+            icon: currentIndex == 2 ? Icons.chat : Icons.chat,
+            text: 'INBOX',
+            iconSize: 24,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_outline,
-              size: 24,
-            ),
-            activeIcon: Icon(
-              Icons.person,
-              size: 28,
-            ),
-            label: 'Settings',
-            tooltip: '',
+          GButton(
+            icon: currentIndex == 3 ? Icons.person : Icons.person_outline,
+            text: 'SETTINGS',
+            iconSize: 24,
           )
         ],
-        backgroundColor: Colors.white,
-        currentIndex: tabs.keys.toList().indexOf(_currentPage),
-        selectedItemColor: Color(0xFFD93A0E),
-        unselectedItemColor: Color(0x8A000000),
-        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
       ),
     );
   }

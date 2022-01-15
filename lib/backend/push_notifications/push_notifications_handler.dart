@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import '../../main.dart';
 import '../../login_page/login_page_widget.dart';
 import '../../forgot_pass_page/forgot_pass_page_widget.dart';
+import '../../test/test_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -80,9 +81,10 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'loginPage': (data) async => LoginPageWidget(),
   'viewPage': (data) async => NavBarPage(initialPage: 'ViewPageWidget'),
-  'settingsPage': (data) async => NavBarPage(initialPage: 'SettingsPageWidget'),
   'inboxPage': (data) async => NavBarPage(initialPage: 'InboxPageWidget'),
+  'settingsPage': (data) async => NavBarPage(initialPage: 'SettingsPageWidget'),
   'forgotPassPage': (data) async => ForgotPassPageWidget(),
+  'test': (data) async => TestWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

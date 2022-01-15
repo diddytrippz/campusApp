@@ -36,9 +36,9 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
             child: Lottie.network(
-              'https://assets1.lottiefiles.com/packages/lf20_lz8wv7e7.json',
-              width: 150,
-              height: 130,
+              'https://assets6.lottiefiles.com/packages/lf20_2rhnd8qq.json',
+              width: 250,
+              height: 230,
               fit: BoxFit.cover,
               animate: true,
             ),

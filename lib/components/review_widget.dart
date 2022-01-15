@@ -52,38 +52,31 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(0),
                   bottomRight: Radius.circular(0),
-                  topLeft: Radius.circular(22),
-                  topRight: Radius.circular(22),
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
                 ),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 18, 0, 15),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(150, 0, 150, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Divider(
-                            thickness: 4,
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(80),
-                        child: Image.network(
-                          FFAppState().profilePic,
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                      child: AuthUserStreamWidget(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(80),
+                          child: Image.network(
+                            valueOrDefault<String>(
+                              currentUserPhoto,
+                              'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                            ),
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
@@ -98,7 +91,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(18, 0, 18, 20),
+                      padding: EdgeInsetsDirectional.fromSTEB(18, 10, 18, 0),
                       child: Text(
                         'Your rating is really important for us as it helps us to improve our services for the future.',
                         textAlign: TextAlign.center,
@@ -106,7 +99,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 10),
                       child: RatingBar.builder(
                         onRatingUpdate: (newValue) =>
                             setState(() => ratingBarValue = newValue),
@@ -115,10 +108,11 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                           color: FlutterFlowTheme.mellow,
                         ),
                         direction: Axis.horizontal,
-                        initialRating: ratingBarValue ??= 0,
+                        initialRating: ratingBarValue ??=
+                            widget.forReviews.rating.toDouble(),
                         unratedColor: Color(0xFF9E9E9E),
                         itemCount: 5,
-                        itemSize: 40,
+                        itemSize: 35,
                         glowColor: FlutterFlowTheme.mellow,
                       ),
                     ),
@@ -194,7 +188,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.bodyText1,
-                        maxLines: 4,
+                        maxLines: 3,
                         validator: (val) {
                           if (val.isEmpty) {
                             return 'Please add a comment to help us understand the reason for your review';
@@ -205,7 +199,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 10),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 10),
                       child: FFButtonWidget(
                         onPressed: () async {
                           final maintenanceUpdateData =
@@ -242,14 +236,17 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
                       child: InkWell(
                         onTap: () async {
                           Navigator.pop(context);
                         },
                         child: Text(
-                          'Skip',
-                          style: FlutterFlowTheme.bodyText1,
+                          'DISMISS',
+                          style: FlutterFlowTheme.bodyText1.override(
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),

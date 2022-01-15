@@ -1,13 +1,13 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/empty_list_completd_widget.dart';
-import '../components/empty_list_submitted_widget.dart';
 import '../components/job_state_widget.dart';
+import '../components/no_search_results_widget.dart';
+import '../components/search_widget.dart';
 import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
-import 'package:easy_debounce/easy_debounce.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -29,8 +29,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
           .toList();
 
   DateTimeRange calendarSelectedDay;
-  List<MaintenanceRecord> algoliaSearchResults = [];
-  TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -40,7 +38,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
       start: DateTime.now().startOfDay,
       end: DateTime.now().endOfDay,
     );
-    textController = TextEditingController();
   }
 
   @override
@@ -48,120 +45,40 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFD93A0E),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await Navigator.push(
-            context,
-            PageTransition(
-              type: PageTransitionType.bottomToTop,
-              duration: Duration(milliseconds: 300),
-              reverseDuration: Duration(milliseconds: 300),
-              child: NavBarPage(initialPage: 'homePage'),
-            ),
-          );
-        },
-        backgroundColor: Color(0xFFD93A0E),
-        elevation: 8,
-        child: Icon(
-          Icons.add,
-          color: Color(0xFFE9E9E9),
-          size: 24,
-        ),
-      ),
       body: Align(
         alignment: AlignmentDirectional(0, 1),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  FlutterFlowCalendar(
-                    color: FlutterFlowTheme.mellow,
-                    iconColor: FlutterFlowTheme.campusGrey,
-                    weekFormat: true,
-                    weekStartsMonday: false,
-                    onChange: (DateTimeRange newSelectedDate) {
-                      setState(() => calendarSelectedDay = newSelectedDate);
-                    },
-                    titleStyle: TextStyle(
-                      color: Color(0xFFF6F6F6),
-                    ),
-                    dayOfWeekStyle: TextStyle(
-                      color: Colors.white,
-                    ),
-                    dateStyle: TextStyle(),
-                    selectedDateStyle: TextStyle(),
-                    inactiveDateStyle: TextStyle(
-                      color: Color(0xFFF6F6F6),
-                    ),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                FlutterFlowCalendar(
+                  color: FlutterFlowTheme.mellow,
+                  iconColor: FlutterFlowTheme.campusGrey,
+                  weekFormat: true,
+                  weekStartsMonday: false,
+                  onChange: (DateTimeRange newSelectedDate) {
+                    setState(() => calendarSelectedDay = newSelectedDate);
+                  },
+                  titleStyle: TextStyle(
+                    color: Color(0xFFF6F6F6),
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(18, 12, 18, 12),
-                    child: TextFormField(
-                      onChanged: (_) => EasyDebounce.debounce(
-                        'textController',
-                        Duration(milliseconds: 2000),
-                        () => setState(() {}),
-                      ),
-                      onFieldSubmitted: (_) async {
-                        setState(() => algoliaSearchResults = null);
-                        await MaintenanceRecord.search(
-                          term: textController.text,
-                        )
-                            .then((r) => algoliaSearchResults = r)
-                            .onError((_, __) => algoliaSearchResults = [])
-                            .whenComplete(() => setState(() {}));
-                      },
-                      controller: textController,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        hintText: 'Search',
-                        hintStyle: FlutterFlowTheme.bodyText1,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
-                        contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
-                        prefixIcon: Icon(
-                          Icons.search_sharp,
-                          color: Color(0xFF5A5A5A),
-                          size: 18,
-                        ),
-                        suffixIcon: textController.text.isNotEmpty
-                            ? InkWell(
-                                onTap: () => setState(
-                                  () => textController.clear(),
-                                ),
-                                child: Icon(
-                                  Icons.clear,
-                                  color: Color(0xFF757575),
-                                  size: 22,
-                                ),
-                              )
-                            : null,
-                      ),
-                      style: FlutterFlowTheme.bodyText1,
-                    ),
+                  dayOfWeekStyle: TextStyle(
+                    color: Colors.white,
                   ),
-                ],
-              ),
+                  dateStyle: TextStyle(),
+                  selectedDateStyle: TextStyle(),
+                  inactiveDateStyle: TextStyle(
+                    color: Color(0xFFF6F6F6),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(18, 22, 18, 22),
+                  child: SearchWidget(),
+                ),
+              ],
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
@@ -178,7 +95,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                   ),
                 ),
                 child: Column(
-                  mainAxisSize: MainAxisSize.max,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     if ((currentUserDocument?.role) == 'Tenant')
                       Expanded(
@@ -268,7 +185,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                       .isEmpty) {
                                                     return Center(
                                                       child:
-                                                          EmptyListSubmittedWidget(),
+                                                          NoSearchResultsWidget(),
                                                     );
                                                   }
                                                   return ListView.builder(
@@ -352,6 +269,40 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                     );
                                                                   },
                                                                 );
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      '1 item moved to bin',
+                                                                      style:
+                                                                          TextStyle(),
+                                                                    ),
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            4000),
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme
+                                                                            .campusGrey,
+                                                                    action:
+                                                                        SnackBarAction(
+                                                                      label:
+                                                                          'DISMISS',
+                                                                      textColor:
+                                                                          Color(
+                                                                              0xFF3779FF),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                                await Duration(
+                                                                    milliseconds:
+                                                                        3000);
                                                                 await Navigator
                                                                     .push(
                                                                   context,
@@ -486,7 +437,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                       .isEmpty) {
                                                     return Center(
                                                       child:
-                                                          EmptyListCompletdWidget(),
+                                                          NoSearchResultsWidget(),
                                                     );
                                                   }
                                                   return ListView.builder(
@@ -616,7 +567,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                   child: TabBarView(
                                     children: [
                                       Column(
-                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
@@ -638,7 +589,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                           Expanded(
                                             child: Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 10, 0, 0),
+                                                  .fromSTEB(0, 8, 0, 0),
                                               child: StreamBuilder<
                                                   List<MaintenanceRecord>>(
                                                 stream: queryMaintenanceRecord(
@@ -678,7 +629,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                       .isEmpty) {
                                                     return Center(
                                                       child:
-                                                          EmptyListSubmittedWidget(),
+                                                          NoSearchResultsWidget(),
                                                     );
                                                   }
                                                   return ListView.builder(
@@ -694,48 +645,94 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                       final listViewMaintenanceRecord =
                                                           listViewMaintenanceRecordList[
                                                               listViewIndex];
-                                                      return CheckboxListTile(
-                                                        value: checkboxListTileValueMap[
-                                                                listViewMaintenanceRecord] ??=
-                                                            false,
-                                                        onChanged: (newValue) =>
-                                                            setState(() =>
-                                                                checkboxListTileValueMap[
-                                                                        listViewMaintenanceRecord] =
-                                                                    newValue),
-                                                        title: Text(
-                                                          listViewMaintenanceRecord
-                                                              .issue,
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .title3
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 18,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
+                                                      return InkWell(
+                                                        onTap: () async {
+                                                          await showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            barrierColor: Color(
+                                                                0x61AAAAAA),
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return Padding(
+                                                                padding: MediaQuery.of(
+                                                                        context)
+                                                                    .viewInsets,
+                                                                child:
+                                                                    JobStateWidget(
+                                                                  jobProgressStatus:
+                                                                      listViewMaintenanceRecord,
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Slidable(
+                                                          actionPane:
+                                                              const SlidableScrollActionPane(),
+                                                          secondaryActions: [
+                                                            IconSlideAction(
+                                                              caption:
+                                                                  'Completed',
+                                                              color:
+                                                                  FlutterFlowTheme
+                                                                      .campusRed,
+                                                              icon: Icons
+                                                                  .check_circle_rounded,
+                                                              onTap: () async {
+                                                                final maintenanceUpdateData =
+                                                                    createMaintenanceRecordData(
+                                                                  status:
+                                                                      'Completed',
+                                                                  isDone: true,
+                                                                );
+                                                                await listViewMaintenanceRecord
+                                                                    .reference
+                                                                    .update(
+                                                                        maintenanceUpdateData);
+                                                              },
+                                                            ),
+                                                          ],
+                                                          child: ListTile(
+                                                            title: Text(
+                                                              listViewMaintenanceRecord
+                                                                  .issue,
+                                                              style:
+                                                                  FlutterFlowTheme
+                                                                      .title3
+                                                                      .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                fontSize: 16,
+                                                              ),
+                                                            ),
+                                                            subtitle: Text(
+                                                              listViewMaintenanceRecord
+                                                                  .room,
+                                                              style:
+                                                                  FlutterFlowTheme
+                                                                      .subtitle2
+                                                                      .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                fontSize: 14,
+                                                              ),
+                                                            ),
+                                                            trailing: Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_right,
+                                                              color: Color(
+                                                                  0xFF303030),
+                                                              size: 20,
+                                                            ),
+                                                            tileColor: Color(
+                                                                0xFFF5F5F5),
+                                                            dense: false,
                                                           ),
                                                         ),
-                                                        subtitle: Text(
-                                                          listViewMaintenanceRecord
-                                                              .room,
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .subtitle2
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 14,
-                                                          ),
-                                                        ),
-                                                        tileColor:
-                                                            Color(0xFFF5F5F5),
-                                                        dense: false,
-                                                        controlAffinity:
-                                                            ListTileControlAffinity
-                                                                .trailing,
                                                       );
                                                     },
                                                   );
@@ -806,7 +803,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                       .isEmpty) {
                                                     return Center(
                                                       child:
-                                                          EmptyListSubmittedWidget(),
+                                                          NoSearchResultsWidget(),
                                                     );
                                                   }
                                                   return ListView.builder(
@@ -822,44 +819,66 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                       final listViewMaintenanceRecord =
                                                           listViewMaintenanceRecordList[
                                                               listViewIndex];
-                                                      return ListTile(
-                                                        title: Text(
-                                                          listViewMaintenanceRecord
-                                                              .issue,
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .title3
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
+                                                      return Theme(
+                                                        data: ThemeData(
+                                                          checkboxTheme:
+                                                              CheckboxThemeData(
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          25),
+                                                            ),
                                                           ),
                                                         ),
-                                                        subtitle: Text(
-                                                          listViewMaintenanceRecord
-                                                              .room,
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .subtitle2
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 14,
+                                                        child: CheckboxListTile(
+                                                          value: checkboxListTileValueMap[
+                                                                  listViewMaintenanceRecord] ??=
+                                                              listViewMaintenanceRecord
+                                                                  .isDone,
+                                                          onChanged: (newValue) =>
+                                                              setState(() =>
+                                                                  checkboxListTileValueMap[
+                                                                          listViewMaintenanceRecord] =
+                                                                      newValue),
+                                                          title: Text(
+                                                            listViewMaintenanceRecord
+                                                                .issue,
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .title3
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                            ),
                                                           ),
+                                                          subtitle: Text(
+                                                            listViewMaintenanceRecord
+                                                                .room,
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .subtitle2
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 14,
+                                                            ),
+                                                          ),
+                                                          tileColor:
+                                                              Color(0xFFF5F5F5),
+                                                          activeColor:
+                                                              FlutterFlowTheme
+                                                                  .campusRed,
+                                                          dense: false,
+                                                          controlAffinity:
+                                                              ListTileControlAffinity
+                                                                  .leading,
                                                         ),
-                                                        trailing: Icon(
-                                                          Icons
-                                                              .arrow_forward_ios,
-                                                          color:
-                                                              Color(0xFF303030),
-                                                          size: 14,
-                                                        ),
-                                                        tileColor:
-                                                            Color(0xFFF5F5F5),
-                                                        dense: false,
                                                       );
                                                     },
                                                   );

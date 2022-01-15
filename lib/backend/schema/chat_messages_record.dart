@@ -29,6 +29,9 @@ abstract class ChatMessagesRecord
   String get subject;
 
   @nullable
+  bool get isSelected;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -36,7 +39,8 @@ abstract class ChatMessagesRecord
     ..email = ''
     ..message = ''
     ..displayName = ''
-    ..subject = '';
+    ..subject = ''
+    ..isSelected = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('chatMessages');
@@ -66,6 +70,7 @@ Map<String, dynamic> createChatMessagesRecordData({
   DateTime timeCreated,
   String displayName,
   String subject,
+  bool isSelected,
 }) =>
     serializers.toFirestore(
         ChatMessagesRecord.serializer,
@@ -74,4 +79,5 @@ Map<String, dynamic> createChatMessagesRecordData({
           ..message = message
           ..timeCreated = timeCreated
           ..displayName = displayName
-          ..subject = subject));
+          ..subject = subject
+          ..isSelected = isSelected));
