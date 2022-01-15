@@ -756,7 +756,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            4, 4, 4, 4),
+                                            4, 4, 4, 12),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
