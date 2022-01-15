@@ -25,8 +25,8 @@ class _NoSearchResultsWidgetState extends State<NoSearchResultsWidget> {
           Lottie.network(
             'https://assets2.lottiefiles.com/packages/lf20_GlZGOi.json',
             width: MediaQuery.of(context).size.width,
-            height: 100,
-            fit: BoxFit.cover,
+            height: MediaQuery.of(context).size.height * 1,
+            fit: BoxFit.contain,
             repeat: false,
             animate: true,
           ),
