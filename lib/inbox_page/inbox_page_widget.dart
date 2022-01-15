@@ -153,6 +153,18 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
         elevation: 1,
       ),
       backgroundColor: Color(0xFFFFFEFE),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print('FloatingActionButton pressed ...');
+        },
+        backgroundColor: FlutterFlowTheme.primaryColor,
+        elevation: 8,
+        child: Icon(
+          Icons.add,
+          color: FlutterFlowTheme.tertiaryColor,
+          size: 24,
+        ),
+      ),
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
