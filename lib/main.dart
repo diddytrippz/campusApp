@@ -140,8 +140,8 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           GButton(
             icon: currentIndex == 2
-                ? FontAwesomeIcons.solidCommentAlt
-                : FontAwesomeIcons.commentAlt,
+                ? FontAwesomeIcons.solidBell
+                : FontAwesomeIcons.bell,
             text: 'INBOX',
             iconSize: 24,
           ),

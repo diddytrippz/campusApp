@@ -153,16 +153,21 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
         elevation: 1,
       ),
       backgroundColor: Color(0xFFFFFEFE),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print('FloatingActionButton pressed ...');
-        },
-        backgroundColor: FlutterFlowTheme.primaryColor,
-        elevation: 8,
-        child: FaIcon(
-          FontAwesomeIcons.pen,
-          color: FlutterFlowTheme.tertiaryColor,
-          size: 24,
+      floatingActionButton: Visibility(
+        visible: (currentUserDocument?.role) == 'Admin',
+        child: AuthUserStreamWidget(
+          child: FloatingActionButton(
+            onPressed: () {
+              print('FloatingActionButton pressed ...');
+            },
+            backgroundColor: FlutterFlowTheme.primaryColor,
+            elevation: 8,
+            child: FaIcon(
+              FontAwesomeIcons.pen,
+              color: FlutterFlowTheme.tertiaryColor,
+              size: 24,
+            ),
+          ),
         ),
       ),
       body: SafeArea(
