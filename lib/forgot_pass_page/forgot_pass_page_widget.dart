@@ -29,33 +29,22 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.primaryColor,
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Expanded(
-            flex: 2,
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 60, 0, 30),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Lottie.network(
-                    'https://assets6.lottiefiles.com/packages/lf20_2rhnd8qq.json',
-                    width: 250,
-                    height: 220,
-                    fit: BoxFit.cover,
-                    animate: true,
-                  ),
-                ],
+      body: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 0),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Expanded(
+              child: Lottie.network(
+                'https://assets6.lottiefiles.com/packages/lf20_2rhnd8qq.json',
+                width: 150,
+                height: 130,
+                fit: BoxFit.contain,
+                animate: true,
               ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Align(
-              alignment: AlignmentDirectional(0, 1),
+            Expanded(
               child: Material(
                 color: Colors.transparent,
                 elevation: 30,
@@ -69,6 +58,7 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                 ),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
+                  height: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -79,7 +69,7 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                     ),
                   ),
                   child: Column(
-                    mainAxisSize: MainAxisSize.max,
+                    mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -115,16 +105,6 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(18, 0, 18, 0),
-                        child: Text(
-                          'Enter your student account which was provided to us when you first booked a room. We\'ll send an email with instructions to create a new password',
-                          style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                      Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(20, 22, 20, 15),
                         child: TextFormField(
                           controller: emailTextController,
@@ -155,7 +135,7 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                               borderRadius: BorderRadius.circular(8),
                             ),
                             contentPadding:
-                                EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(20, 8, 0, 8),
                           ),
                           style: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Poppins',
@@ -204,8 +184,8 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
