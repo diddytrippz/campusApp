@@ -53,36 +53,34 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    FlutterFlowCalendar(
-                      color: FlutterFlowTheme.mellow,
-                      iconColor: FlutterFlowTheme.campusGrey,
-                      weekFormat: true,
-                      weekStartsMonday: false,
-                      onChange: (DateTimeRange newSelectedDate) {
-                        setState(() => calendarSelectedDay = newSelectedDate);
-                      },
-                      titleStyle: TextStyle(
-                        color: Color(0xFFF6F6F6),
-                      ),
-                      dayOfWeekStyle: TextStyle(
-                        color: Colors.white,
-                      ),
-                      dateStyle: TextStyle(),
-                      selectedDateStyle: TextStyle(),
-                      inactiveDateStyle: TextStyle(
-                        color: Color(0xFFF6F6F6),
-                      ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  FlutterFlowCalendar(
+                    color: FlutterFlowTheme.mellow,
+                    iconColor: FlutterFlowTheme.campusGrey,
+                    weekFormat: true,
+                    weekStartsMonday: false,
+                    onChange: (DateTimeRange newSelectedDate) {
+                      setState(() => calendarSelectedDay = newSelectedDate);
+                    },
+                    titleStyle: TextStyle(
+                      color: Color(0xFFF6F6F6),
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(18, 2, 18, 8),
-                      child: SearchWidget(),
+                    dayOfWeekStyle: TextStyle(
+                      color: Colors.white,
                     ),
-                  ],
-                ),
+                    dateStyle: TextStyle(),
+                    selectedDateStyle: TextStyle(),
+                    inactiveDateStyle: TextStyle(
+                      color: Color(0xFFF6F6F6),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(18, 2, 18, 8),
+                    child: SearchWidget(),
+                  ),
+                ],
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
