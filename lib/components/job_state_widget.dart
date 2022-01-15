@@ -343,7 +343,7 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                       ),
                     ),
                     tileColor: Color(0xFFF5F5F5),
-                    dense: false,
+                    dense: true,
                   ),
                 ),
                 Padding(
@@ -367,7 +367,7 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                       ),
                     ),
                     tileColor: Color(0xFFF5F5F5),
-                    dense: false,
+                    dense: true,
                   ),
                 ),
                 Padding(

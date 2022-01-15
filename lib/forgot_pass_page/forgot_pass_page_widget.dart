@@ -34,11 +34,11 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
             child: Lottie.network(
               'https://assets6.lottiefiles.com/packages/lf20_2rhnd8qq.json',
-              width: 250,
-              height: 230,
+              width: 220,
+              height: 200,
               fit: BoxFit.cover,
               animate: true,
             ),

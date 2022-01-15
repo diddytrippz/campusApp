@@ -41,13 +41,12 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 10),
-                          child: Lottie.asset(
-                            'assets/lottie_animations/38700-check-icon.json',
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 22, 0, 0),
+                          child: Lottie.network(
+                            'https://assets1.lottiefiles.com/packages/lf20_ltruyn8v.json',
                             width: 150,
                             height: 130,
                             fit: BoxFit.cover,
-                            repeat: false,
                             animate: true,
                           ),
                         ),
