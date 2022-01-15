@@ -298,7 +298,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Icon(
-                                                Icons.laptop_windows,
+                                                Icons.devices_other_sharp,
                                                 color: FlutterFlowTheme
                                                     .tertiaryColor,
                                                 size: 40,
@@ -402,8 +402,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Icon(
-                                              Icons.forum,
+                                            FaIcon(
+                                              FontAwesomeIcons.couch,
                                               color: FlutterFlowTheme
                                                   .tertiaryColor,
                                               size: 40,
@@ -412,7 +412,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 8, 0, 0),
                                               child: Text(
-                                                'Others',
+                                                'Furniture',
                                                 style: FlutterFlowTheme
                                                     .bodyText1
                                                     .override(
@@ -484,7 +484,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Icon(
-                                                Icons.laptop_windows,
+                                                Icons.elevator,
                                                 color: FlutterFlowTheme
                                                     .tertiaryColor,
                                                 size: 40,
@@ -493,7 +493,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 8, 0, 0),
                                                 child: Text(
-                                                  'Appliances',
+                                                  'Electrical',
                                                   style: FlutterFlowTheme
                                                       .bodyText1
                                                       .override(
@@ -537,7 +537,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             FaIcon(
-                                              FontAwesomeIcons.server,
+                                              FontAwesomeIcons.key,
                                               color: FlutterFlowTheme
                                                   .tertiaryColor,
                                               size: 40,
@@ -546,7 +546,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 8, 0, 0),
                                               child: Text(
-                                                'Plumbing',
+                                                'Locksmith',
                                                 textAlign: TextAlign.center,
                                                 style: FlutterFlowTheme
                                                     .bodyText1
@@ -589,7 +589,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Icon(
-                                              Icons.forum,
+                                              Icons.format_paint_sharp,
                                               color: FlutterFlowTheme
                                                   .tertiaryColor,
                                               size: 40,
@@ -598,7 +598,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 8, 0, 0),
                                               child: Text(
-                                                'Others',
+                                                'Painting',
                                                 style: FlutterFlowTheme
                                                     .bodyText1
                                                     .override(
@@ -670,7 +670,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Icon(
-                                                Icons.laptop_windows,
+                                                Icons.pest_control_rodent_sharp,
                                                 color: FlutterFlowTheme
                                                     .tertiaryColor,
                                                 size: 40,
@@ -679,7 +679,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 8, 0, 0),
                                                 child: Text(
-                                                  'Appliances',
+                                                  'Pest control',
+                                                  textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme
                                                       .bodyText1
                                                       .override(
@@ -722,8 +723,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            FaIcon(
-                                              FontAwesomeIcons.server,
+                                            Icon(
+                                              Icons.business,
                                               color: FlutterFlowTheme
                                                   .tertiaryColor,
                                               size: 40,
@@ -732,7 +733,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 8, 0, 0),
                                               child: Text(
-                                                'Plumbing',
+                                                'Communl Areas',
                                                 textAlign: TextAlign.center,
                                                 style: FlutterFlowTheme
                                                     .bodyText1
@@ -774,8 +775,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Icon(
-                                              Icons.forum,
+                                            FaIcon(
+                                              FontAwesomeIcons.pen,
                                               color: FlutterFlowTheme
                                                   .tertiaryColor,
                                               size: 40,
