@@ -77,7 +77,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(18, 22, 18, 22),
+                    padding: EdgeInsetsDirectional.fromSTEB(18, 2, 18, 8),
                     child: SearchWidget(),
                   ),
                 ],
