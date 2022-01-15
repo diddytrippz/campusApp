@@ -132,8 +132,8 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           GButton(
             icon: currentIndex == 1
-                ? Icons.announcement
-                : Icons.announcement_outlined,
+                ? Icons.markunread_mailbox
+                : Icons.markunread_mailbox_outlined,
             text: 'VIEW',
             iconSize: 24,
           ),
