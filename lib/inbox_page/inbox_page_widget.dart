@@ -159,8 +159,8 @@ class _InboxPageWidgetState extends State<InboxPageWidget> {
         },
         backgroundColor: FlutterFlowTheme.primaryColor,
         elevation: 8,
-        child: Icon(
-          Icons.add,
+        child: FaIcon(
+          FontAwesomeIcons.pen,
           color: FlutterFlowTheme.tertiaryColor,
           size: 24,
         ),
