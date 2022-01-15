@@ -230,7 +230,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 40),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 20),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -290,6 +290,23 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                 ),
                               ),
                             ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 40),
+                          child: InkWell(
+                            onTap: () async {
+                              Navigator.pop(context);
+                            },
+                            child: Text(
+                              'DISMISS',
+                              style: FlutterFlowTheme.title3.override(
+                                fontFamily: 'Poppins',
+                                color: FlutterFlowTheme.campusRed,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                           ),
                         ),
                       ],
