@@ -70,19 +70,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Welcome back',
-                                        style: FlutterFlowTheme.title1.override(
-                                          fontFamily: 'Roboto',
-                                          color: FlutterFlowTheme.campusGrey,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 4, 0, 0),
