@@ -13,7 +13,6 @@ import '../../main.dart';
 import '../../login_page/login_page_widget.dart';
 import '../../forgot_pass_page/forgot_pass_page_widget.dart';
 import '../../test/test_widget.dart';
-import '../../state/state_widget.dart';
 import '../../txmessg/txmessg_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
@@ -87,10 +86,6 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'settingsPage': (data) async => NavBarPage(initialPage: 'SettingsPageWidget'),
   'forgotPassPage': (data) async => ForgotPassPageWidget(),
   'test': (data) async => TestWidget(),
-  'state': (data) async => StateWidget(
-        txtMessage: await getDocumentParameter(
-            data, 'txtMessage', ChatMessagesRecord.serializer),
-      ),
   'txmessg': (data) async => TxmessgWidget(
         newMessage: await getDocumentParameter(
             data, 'newMessage', ChatMessagesRecord.serializer),
