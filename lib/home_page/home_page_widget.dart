@@ -74,12 +74,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 4, 0, 0),
                                     child: FlutterFlowDropDown(
-                                      options: [
-                                        'Last 7 days',
-                                        'Last 14 days',
-                                        'Last month',
-                                        'Last year'
-                                      ].toList(),
+                                      options: ['Tenant', 'Admin'].toList(),
                                       onChanged: (val) =>
                                           setState(() => dropDownValue = val),
                                       width: 130,
@@ -89,7 +84,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         fontFamily: 'Poppins',
                                         color: FlutterFlowTheme.campusRed,
                                       ),
-                                      hintText: 'Last 7 days',
+                                      hintText: 'Select Role',
                                       fillColor: Color(0xFFEEEEEE),
                                       elevation: 2,
                                       borderColor: Colors.transparent,
