@@ -200,6 +200,7 @@ class _TxmessgWidgetState extends State<TxmessgWidget> {
                           fontFamily: 'Poppins',
                           color: Color(0xFF4D4D4D),
                         ),
+                        keyboardType: TextInputType.multiline,
                       ),
                     ),
                   ),
