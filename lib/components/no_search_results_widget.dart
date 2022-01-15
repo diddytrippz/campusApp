@@ -19,7 +19,7 @@ class _NoSearchResultsWidgetState extends State<NoSearchResultsWidget> {
       alignment: AlignmentDirectional(1, 1),
       child: Column(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Lottie.network(
