@@ -36,15 +36,17 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Expanded(
+              flex: 1,
               child: Lottie.network(
                 'https://assets6.lottiefiles.com/packages/lf20_2rhnd8qq.json',
-                width: 150,
-                height: 130,
+                width: MediaQuery.of(context).size.width,
+                height: 100,
                 fit: BoxFit.contain,
                 animate: true,
               ),
             ),
             Expanded(
+              flex: 1,
               child: Material(
                 color: Colors.transparent,
                 elevation: 30,
@@ -58,7 +60,6 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                 ),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -79,7 +80,7 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                         children: [
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 18, 16, 24),
+                                EdgeInsetsDirectional.fromSTEB(16, 2, 16, 24),
                             child: InkWell(
                               onTap: () async {
                                 Navigator.pop(context);
@@ -99,7 +100,7 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                           'Create new password',
                           style: FlutterFlowTheme.title1.override(
                             fontFamily: 'Poppins',
-                            fontSize: 22,
+                            fontSize: 28,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
