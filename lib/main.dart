@@ -143,7 +143,7 @@ class _NavBarPageState extends State<NavBarPage> {
             icon: currentIndex == 2
                 ? FontAwesomeIcons.solidBell
                 : FontAwesomeIcons.bell,
-            text: 'Inbox',
+            text: 'Messages',
             iconSize: 24,
           ),
           GButton(
