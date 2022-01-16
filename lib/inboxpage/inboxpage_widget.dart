@@ -340,7 +340,7 @@ class _InboxpageWidgetState extends State<InboxpageWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -499,7 +499,7 @@ class _InboxpageWidgetState extends State<InboxpageWidget> {
                                     Expanded(
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            22, 28, 22, 0),
+                                            22, 15, 22, 0),
                                         child: TextFormField(
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
