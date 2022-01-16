@@ -303,17 +303,32 @@ class _JobStateWidgetState extends State<JobStateWidget> {
                             color: Color(0xFFF5F5F5),
                             size: 24,
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                            child: Text(
-                              'Write a review',
-                              style: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
-                                color: FlutterFlowTheme.tertiaryColor,
-                                fontWeight: FontWeight.w500,
+                          if ((widget.jobProgressStatus.status) == 'Completed')
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                              child: Text(
+                                'Write a review',
+                                style: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Poppins',
+                                  color: FlutterFlowTheme.tertiaryColor,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
-                          ),
+                          if ((widget.jobProgressStatus.status) == 'Submitted')
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                              child: Text(
+                                'Not ready to be rated',
+                                style: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Poppins',
+                                  color: Color(0xCBEFF6FF),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
                         ],
                       ),
                     ),

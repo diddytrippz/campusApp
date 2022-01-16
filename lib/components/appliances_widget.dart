@@ -1,12 +1,12 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/push_notifications/push_notifications_util.dart';
 import '../components/submitted_icon_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -226,6 +226,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             timeCreated: getCurrentTimestamp,
                             displayName: currentUserDisplayName,
                             subject: 'Status Update',
+                            isSelected: false,
                           );
                           await ChatMessagesRecord.collection
                               .doc()
@@ -242,14 +243,14 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                               );
                             },
                           );
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              duration: Duration(milliseconds: 300),
-                              reverseDuration: Duration(milliseconds: 300),
-                              child: NavBarPage(initialPage: 'viewPage'),
-                            ),
+                          triggerPushNotification(
+                            notificationTitle: 'Maintenance Issue',
+                            notificationText:
+                                'New maintenance has been submitted',
+                            notificationImageUrl: currentUserPhoto,
+                            userRefs: [currentUserReference],
+                            initialPageName: 'viewPage',
+                            parameterData: {},
                           );
                         },
                         text: 'Save',

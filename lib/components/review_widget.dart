@@ -26,35 +26,26 @@ class ReviewWidget extends StatefulWidget {
 class _ReviewWidgetState extends State<ReviewWidget> {
   String choiceChipsValue;
   double ratingBarValue;
-  TextEditingController textController;
-  final formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
-    textController = TextEditingController(text: ' ');
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
+          child: Material(
+            color: Colors.transparent,
+            elevation: 30,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
             child: Container(
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(0),
-                  bottomRight: Radius.circular(0),
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ),
+                borderRadius: BorderRadius.circular(15),
               ),
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
@@ -121,8 +112,8 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       child: Wrap(
                         spacing: 10,
                         runSpacing: 10,
-                        alignment: WrapAlignment.spaceEvenly,
-                        crossAxisAlignment: WrapCrossAlignment.start,
+                        alignment: WrapAlignment.center,
+                        crossAxisAlignment: WrapCrossAlignment.center,
                         direction: Axis.horizontal,
                         runAlignment: WrapAlignment.center,
                         verticalDirection: VerticalDirection.down,
@@ -163,42 +154,6 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(18, 0, 18, 0),
-                      child: TextFormField(
-                        controller: textController,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelText: 'Add Comment',
-                          labelStyle: FlutterFlowTheme.bodyText1,
-                          hintText: 'dd Comment',
-                          hintStyle: FlutterFlowTheme.bodyText1,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFF888888),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0xFF888888),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        style: FlutterFlowTheme.bodyText1,
-                        maxLines: 3,
-                        validator: (val) {
-                          if (val.isEmpty) {
-                            return 'Please add a comment to help us understand the reason for your review';
-                          }
-
-                          return null;
-                        },
-                      ),
-                    ),
-                    Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 10),
                       child: FFButtonWidget(
                         onPressed: () async {
@@ -215,6 +170,16 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                               duration: Duration(milliseconds: 300),
                               reverseDuration: Duration(milliseconds: 300),
                               child: NavBarPage(initialPage: 'viewPage'),
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Your review has been successfully submitted.',
+                                style: TextStyle(),
+                              ),
+                              duration: Duration(milliseconds: 4000),
+                              backgroundColor: Color(0x00000000),
                             ),
                           );
                         },
@@ -255,8 +220,8 @@ class _ReviewWidgetState extends State<ReviewWidget> {
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

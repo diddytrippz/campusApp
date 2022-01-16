@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TxmessgWidget extends StatefulWidget {
-  const TxmessgWidget({
+class MessagingWidget extends StatefulWidget {
+  const MessagingWidget({
     Key key,
     this.newMessage,
   }) : super(key: key);
@@ -16,10 +16,10 @@ class TxmessgWidget extends StatefulWidget {
   final ChatMessagesRecord newMessage;
 
   @override
-  _TxmessgWidgetState createState() => _TxmessgWidgetState();
+  _MessagingWidgetState createState() => _MessagingWidgetState();
 }
 
-class _TxmessgWidgetState extends State<TxmessgWidget> {
+class _MessagingWidgetState extends State<MessagingWidget> {
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -200,7 +200,7 @@ class _TxmessgWidgetState extends State<TxmessgWidget> {
                           fontFamily: 'Poppins',
                           color: Color(0xFF4D4D4D),
                         ),
-                        keyboardType: TextInputType.multiline,
+                        maxLines: 1,
                       ),
                     ),
                   ),

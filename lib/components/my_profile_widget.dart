@@ -119,10 +119,10 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 12, 0, 0),
                                         child: Container(
-                                          width: 50,
+                                          width: 100,
                                           height: 4,
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.campusRed,
+                                            color: Color(0x61AAAAAA),
                                             borderRadius:
                                                 BorderRadius.circular(8),
                                           ),

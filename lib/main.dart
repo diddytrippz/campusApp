@@ -9,11 +9,12 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:campus_africa/login_page/login_page_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'view_page/view_page_widget.dart';
-import 'inbox_page/inbox_page_widget.dart';
+import 'inboxpage/inboxpage_widget.dart';
 import 'settings_page/settings_page_widget.dart';
 
 void main() async {
@@ -104,7 +105,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'homePage': HomePageWidget(),
       'viewPage': ViewPageWidget(),
-      'inboxPage': InboxPageWidget(),
+      'inboxpage': InboxpageWidget(),
       'settingsPage': SettingsPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
@@ -142,7 +143,7 @@ class _NavBarPageState extends State<NavBarPage> {
             icon: currentIndex == 2
                 ? FontAwesomeIcons.solidBell
                 : FontAwesomeIcons.bell,
-            text: 'INBOX',
+            text: 'Inbox',
             iconSize: 24,
           ),
           GButton(

@@ -1,12 +1,12 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/job_state_widget.dart';
 import '../components/no_search_results_widget.dart';
 import '../components/search_widget.dart';
 import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
+import '../rate/rate_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -219,30 +219,25 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                     listViewIndex];
                                                             return InkWell(
                                                               onTap: () async {
-                                                                await showModalBottomSheet(
-                                                                  isScrollControlled:
-                                                                      true,
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  barrierColor:
-                                                                      Color(
-                                                                          0x47ACACAC),
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (context) {
-                                                                    return Padding(
-                                                                      padding: MediaQuery.of(
-                                                                              context)
-                                                                          .viewInsets,
-                                                                      child:
-                                                                          JobStateWidget(
-                                                                        jobProgressStatus:
-                                                                            listViewMaintenanceRecord,
-                                                                      ),
-                                                                    );
-                                                                  },
+                                                                await Navigator
+                                                                    .push(
+                                                                  context,
+                                                                  PageTransition(
+                                                                    type: PageTransitionType
+                                                                        .bottomToTop,
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            300),
+                                                                    reverseDuration:
+                                                                        Duration(
+                                                                            milliseconds:
+                                                                                300),
+                                                                    child:
+                                                                        RateWidget(
+                                                                      jobStatus:
+                                                                          listViewMaintenanceRecord,
+                                                                    ),
+                                                                  ),
                                                                 );
                                                               },
                                                               child: Slidable(
@@ -478,29 +473,24 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                               return InkWell(
                                                                 onTap:
                                                                     () async {
-                                                                  await showModalBottomSheet(
-                                                                    isScrollControlled:
-                                                                        true,
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    barrierColor:
-                                                                        Color(
-                                                                            0x47ACACAC),
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (context) {
-                                                                      return Padding(
-                                                                        padding:
-                                                                            MediaQuery.of(context).viewInsets,
-                                                                        child:
-                                                                            JobStateWidget(
-                                                                          jobProgressStatus:
-                                                                              listViewMaintenanceRecord,
-                                                                        ),
-                                                                      );
-                                                                    },
+                                                                  await Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    PageTransition(
+                                                                      type: PageTransitionType
+                                                                          .bottomToTop,
+                                                                      duration: Duration(
+                                                                          milliseconds:
+                                                                              300),
+                                                                      reverseDuration:
+                                                                          Duration(
+                                                                              milliseconds: 300),
+                                                                      child:
+                                                                          RateWidget(
+                                                                        jobStatus:
+                                                                            listViewMaintenanceRecord,
+                                                                      ),
+                                                                    ),
                                                                   );
                                                                 },
                                                                 child: ListTile(
@@ -689,29 +679,24 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                               return InkWell(
                                                                 onTap:
                                                                     () async {
-                                                                  await showModalBottomSheet(
-                                                                    isScrollControlled:
-                                                                        true,
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    barrierColor:
-                                                                        Color(
-                                                                            0x61AAAAAA),
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (context) {
-                                                                      return Padding(
-                                                                        padding:
-                                                                            MediaQuery.of(context).viewInsets,
-                                                                        child:
-                                                                            JobStateWidget(
-                                                                          jobProgressStatus:
-                                                                              listViewMaintenanceRecord,
-                                                                        ),
-                                                                      );
-                                                                    },
+                                                                  await Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    PageTransition(
+                                                                      type: PageTransitionType
+                                                                          .bottomToTop,
+                                                                      duration: Duration(
+                                                                          milliseconds:
+                                                                              300),
+                                                                      reverseDuration:
+                                                                          Duration(
+                                                                              milliseconds: 300),
+                                                                      child:
+                                                                          RateWidget(
+                                                                        jobStatus:
+                                                                            listViewMaintenanceRecord,
+                                                                      ),
+                                                                    ),
                                                                   );
                                                                 },
                                                                 child: Slidable(

@@ -12,8 +12,8 @@ import 'package:flutter/material.dart';
 import '../../main.dart';
 import '../../login_page/login_page_widget.dart';
 import '../../forgot_pass_page/forgot_pass_page_widget.dart';
-import '../../test/test_widget.dart';
-import '../../txmessg/txmessg_widget.dart';
+import '../../messaging/messaging_widget.dart';
+import '../../rate/rate_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -82,13 +82,16 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'loginPage': (data) async => LoginPageWidget(),
   'viewPage': (data) async => NavBarPage(initialPage: 'ViewPageWidget'),
-  'inboxPage': (data) async => NavBarPage(initialPage: 'InboxPageWidget'),
+  'inboxpage': (data) async => NavBarPage(initialPage: 'InboxpageWidget'),
   'settingsPage': (data) async => NavBarPage(initialPage: 'SettingsPageWidget'),
   'forgotPassPage': (data) async => ForgotPassPageWidget(),
-  'test': (data) async => TestWidget(),
-  'txmessg': (data) async => TxmessgWidget(
+  'messaging': (data) async => MessagingWidget(
         newMessage: await getDocumentParameter(
             data, 'newMessage', ChatMessagesRecord.serializer),
+      ),
+  'rate': (data) async => RateWidget(
+        jobStatus: await getDocumentParameter(
+            data, 'jobStatus', MaintenanceRecord.serializer),
       ),
 };
 
