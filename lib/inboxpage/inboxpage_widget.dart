@@ -44,7 +44,7 @@ class _InboxpageWidgetState extends State<InboxpageWidget> {
         onPressed: () {
           print('FloatingActionButton pressed ...');
         },
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: FlutterFlowTheme.mellow,
         icon: FaIcon(
           FontAwesomeIcons.solidComment,
         ),
