@@ -369,11 +369,14 @@ class _RateWidgetState extends State<RateWidget> {
                         ),
                       ),
                     ),
-                    Text(
-                      widget.jobStatus.displayName,
-                      style: FlutterFlowTheme.subtitle1.override(
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                      child: Text(
+                        widget.jobStatus.displayName,
+                        style: FlutterFlowTheme.subtitle1.override(
+                          fontFamily: 'Poppins',
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ],
@@ -392,7 +395,14 @@ class _RateWidgetState extends State<RateWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
                           child: Text(
-                            widget.jobStatus.rating.toString(),
+                            valueOrDefault<String>(
+                              formatNumber(
+                                widget.jobStatus.rating,
+                                formatType: FormatType.decimal,
+                                decimalType: DecimalType.automatic,
+                              ),
+                              '0',
+                            ),
                             style: FlutterFlowTheme.title3,
                           ),
                         ),
