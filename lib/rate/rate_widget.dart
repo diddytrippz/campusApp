@@ -278,7 +278,7 @@ class _RateWidgetState extends State<RateWidget> {
             ],
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(35, 18, 35, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(35, 22, 35, 0),
             child: InkWell(
               onTap: () async {
                 if ((widget.jobStatus.status) == 'Completed') {
@@ -344,7 +344,7 @@ class _RateWidgetState extends State<RateWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(28, 18, 20, 6),
+            padding: EdgeInsetsDirectional.fromSTEB(28, 22, 20, 6),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -469,7 +469,7 @@ class _RateWidgetState extends State<RateWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+            padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
             child: ListTile(
               leading: Icon(
                 Icons.location_history_rounded,
@@ -511,7 +511,7 @@ class _RateWidgetState extends State<RateWidget> {
               ),
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 34),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 14),
               child: FFButtonWidget(
                 onPressed: () async {
                   Navigator.pop(context);
