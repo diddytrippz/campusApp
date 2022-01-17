@@ -279,44 +279,44 @@ class _RateWidgetState extends State<RateWidget> {
                 ),
             ],
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(35, 22, 35, 0),
-            child: InkWell(
-              onTap: () async {
-                if ((widget.jobStatus.status) == 'Completed') {
-                  await showModalBottomSheet(
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    barrierColor: Color(0x59464749),
-                    context: context,
-                    builder: (context) {
-                      return Padding(
-                        padding: MediaQuery.of(context).viewInsets,
-                        child: ReviewWidget(
-                          forReviews: widget.jobStatus,
-                        ),
-                      );
-                    },
-                  );
-                }
-              },
-              child: Container(
-                width: 116,
-                height: 42,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.campusRed,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.rate_review_outlined,
-                      color: Color(0xFFF5F5F5),
-                      size: 24,
-                    ),
-                    if ((widget.jobStatus.status) == 'Completed')
+          if ((widget.jobStatus.status) == 'Completed')
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(35, 22, 35, 0),
+              child: InkWell(
+                onTap: () async {
+                  if ((widget.jobStatus.status) == 'Completed') {
+                    await showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      barrierColor: Color(0x59464749),
+                      context: context,
+                      builder: (context) {
+                        return Padding(
+                          padding: MediaQuery.of(context).viewInsets,
+                          child: ReviewWidget(
+                            forReviews: widget.jobStatus,
+                          ),
+                        );
+                      },
+                    );
+                  }
+                },
+                child: Container(
+                  width: 116,
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.mellow,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.rate_review_outlined,
+                        color: Color(0xFFF5F5F5),
+                        size: 24,
+                      ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                         child: Text(
@@ -328,11 +328,11 @@ class _RateWidgetState extends State<RateWidget> {
                           ),
                         ),
                       ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(28, 22, 20, 6),
             child: Row(
