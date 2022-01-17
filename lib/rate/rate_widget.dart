@@ -344,7 +344,72 @@ class _RateWidgetState extends State<RateWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20, 18, 20, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(28, 18, 20, 6),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFEEEEEE),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          Icons.person,
+                          color: FlutterFlowTheme.primaryColor,
+                          size: 16,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      widget.jobStatus.displayName,
+                      style: FlutterFlowTheme.subtitle1.override(
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Overall',
+                      style: FlutterFlowTheme.bodyText2,
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
+                          child: Text(
+                            widget.jobStatus.rating.toString(),
+                            style: FlutterFlowTheme.title3,
+                          ),
+                        ),
+                        Icon(
+                          Icons.star_rounded,
+                          color: FlutterFlowTheme.primaryColor,
+                          size: 20,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
             child: ListTile(
               leading: Icon(
                 Icons.calendar_today,
@@ -384,30 +449,6 @@ class _RateWidgetState extends State<RateWidget> {
               ),
               subtitle: Text(
                 'Room: ${widget.jobStatus.room}',
-                style: FlutterFlowTheme.subtitle2.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 14,
-                ),
-              ),
-              tileColor: FlutterFlowTheme.tertiaryColor,
-              dense: true,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-            child: ListTile(
-              leading: Icon(
-                Icons.person,
-              ),
-              title: Text(
-                widget.jobStatus.displayName,
-                style: FlutterFlowTheme.subtitle1.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 16,
-                ),
-              ),
-              subtitle: Text(
-                widget.jobStatus.email,
                 style: FlutterFlowTheme.subtitle2.override(
                   fontFamily: 'Poppins',
                   fontSize: 14,
