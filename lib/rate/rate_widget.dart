@@ -277,72 +277,73 @@ class _RateWidgetState extends State<RateWidget> {
                 ),
             ],
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(35, 22, 35, 0),
-            child: InkWell(
-              onTap: () async {
-                if ((widget.jobStatus.status) == 'Completed') {
-                  await showModalBottomSheet(
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    barrierColor: Color(0x59464749),
-                    context: context,
-                    builder: (context) {
-                      return Padding(
-                        padding: MediaQuery.of(context).viewInsets,
-                        child: ReviewWidget(
-                          forReviews: widget.jobStatus,
-                        ),
-                      );
-                    },
-                  );
-                }
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.campusRed,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.rate_review_outlined,
-                      color: Color(0xFFF5F5F5),
-                      size: 24,
-                    ),
-                    if ((widget.jobStatus.status) == 'Completed')
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                        child: Text(
-                          'Write a review',
-                          style: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Poppins',
-                            color: FlutterFlowTheme.tertiaryColor,
-                            fontWeight: FontWeight.w500,
+          if ((widget.jobStatus.status) == 'Completed')
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(35, 22, 35, 0),
+              child: InkWell(
+                onTap: () async {
+                  if ((widget.jobStatus.status) == 'Completed') {
+                    await showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      barrierColor: Color(0x59464749),
+                      context: context,
+                      builder: (context) {
+                        return Padding(
+                          padding: MediaQuery.of(context).viewInsets,
+                          child: ReviewWidget(
+                            forReviews: widget.jobStatus,
+                          ),
+                        );
+                      },
+                    );
+                  }
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.campusRed,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.rate_review_outlined,
+                        color: Color(0xFFF5F5F5),
+                        size: 24,
+                      ),
+                      if ((widget.jobStatus.status) == 'Completed')
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                          child: Text(
+                            'Write a review',
+                            style: FlutterFlowTheme.bodyText1.override(
+                              fontFamily: 'Poppins',
+                              color: FlutterFlowTheme.tertiaryColor,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
-                      ),
-                    if ((widget.jobStatus.status) == 'Submitted')
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                        child: Text(
-                          'Not ready to be rated',
-                          style: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Poppins',
-                            color: Color(0xCBEFF6FF),
-                            fontWeight: FontWeight.w500,
+                      if ((widget.jobStatus.status) == 'Submitted')
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                          child: Text(
+                            'Not ready to be rated',
+                            style: FlutterFlowTheme.bodyText1.override(
+                              fontFamily: 'Poppins',
+                              color: Color(0xCBEFF6FF),
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(28, 22, 20, 6),
             child: Row(
