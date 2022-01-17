@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -59,6 +58,103 @@ class _RateWidgetState extends State<RateWidget> {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 3,
+                  color: Color(0x2E000000),
+                  offset: Offset(0, 2),
+                )
+              ],
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: Color(0xFFDBE2E7),
+                width: 2,
+              ),
+            ),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                              child: Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEEEEE),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.person,
+                                  color: FlutterFlowTheme.primaryColor,
+                                  size: 24,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              widget.jobStatus.displayName,
+                              style: FlutterFlowTheme.subtitle1.override(
+                                fontFamily: 'Poppins',
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Overall',
+                              style: FlutterFlowTheme.bodyText2,
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 4, 0),
+                                  child: Text(
+                                    formatNumber(
+                                      widget.jobStatus.rating,
+                                      formatType: FormatType.decimal,
+                                      decimalType: DecimalType.automatic,
+                                    ),
+                                    style: FlutterFlowTheme.title3,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.star_rounded,
+                                  color: FlutterFlowTheme.primaryColor,
+                                  size: 20,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           if ((widget.jobStatus.status) == 'Submitted')
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 22, 18, 0),
@@ -253,21 +349,6 @@ class _RateWidgetState extends State<RateWidget> {
                 ),
             ],
           ),
-          if ((widget.jobStatus.status) != 'Submitted')
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 18, 0, 0),
-              child: RatingBarIndicator(
-                itemBuilder: (context, index) => Icon(
-                  Icons.star_rounded,
-                  color: FlutterFlowTheme.mellow,
-                ),
-                direction: Axis.horizontal,
-                rating: widget.jobStatus.rating.toDouble(),
-                unratedColor: Color(0xFF9E9E9E),
-                itemCount: 5,
-                itemSize: 28,
-              ),
-            ),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(35, 18, 35, 0),
             child: InkWell(
@@ -357,7 +438,7 @@ class _RateWidgetState extends State<RateWidget> {
                 ),
               ),
               tileColor: FlutterFlowTheme.tertiaryColor,
-              dense: false,
+              dense: true,
             ),
           ),
           Padding(
@@ -464,6 +545,7 @@ class _RateWidgetState extends State<RateWidget> {
                   textStyle: FlutterFlowTheme.title3.override(
                     fontFamily: 'Poppins',
                     color: Colors.white,
+                    fontSize: 16,
                   ),
                   elevation: 0,
                   borderSide: BorderSide(
