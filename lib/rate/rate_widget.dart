@@ -72,33 +72,13 @@ class _RateWidgetState extends State<RateWidget> {
                 ],
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                        'https://picsum.photos/seed/277/600',
-                        width: double.infinity,
-                        height: 100,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            'Main Header',
-                            style: FlutterFlowTheme.subtitle1,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  'https://picsum.photos/seed/277/600',
+                  width: double.infinity,
+                  height: 120,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
