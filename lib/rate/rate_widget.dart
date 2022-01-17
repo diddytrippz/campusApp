@@ -56,7 +56,7 @@ class _RateWidgetState extends State<RateWidget> {
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Container(
@@ -376,6 +376,30 @@ class _RateWidgetState extends State<RateWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
             child: ListTile(
               leading: Icon(
+                Icons.location_on,
+              ),
+              title: Text(
+                widget.jobStatus.building,
+                style: FlutterFlowTheme.subtitle1.override(
+                  fontFamily: 'Poppins',
+                  fontSize: 16,
+                ),
+              ),
+              subtitle: Text(
+                'Room: ${widget.jobStatus.room}',
+                style: FlutterFlowTheme.subtitle2.override(
+                  fontFamily: 'Poppins',
+                  fontSize: 14,
+                ),
+              ),
+              tileColor: FlutterFlowTheme.tertiaryColor,
+              dense: true,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+            child: ListTile(
+              leading: Icon(
                 Icons.calendar_today,
               ),
               title: Text(
@@ -392,30 +416,6 @@ class _RateWidgetState extends State<RateWidget> {
                   fontFamily: 'Poppins',
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
-                ),
-              ),
-              tileColor: FlutterFlowTheme.tertiaryColor,
-              dense: true,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-            child: ListTile(
-              leading: Icon(
-                Icons.location_on,
-              ),
-              title: Text(
-                widget.jobStatus.building,
-                style: FlutterFlowTheme.subtitle1.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 16,
-                ),
-              ),
-              subtitle: Text(
-                'Room: ${widget.jobStatus.room}',
-                style: FlutterFlowTheme.subtitle2.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 14,
                 ),
               ),
               tileColor: FlutterFlowTheme.tertiaryColor,
@@ -465,7 +465,7 @@ class _RateWidgetState extends State<RateWidget> {
               ),
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 14),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
               child: FFButtonWidget(
                 onPressed: () async {
                   Navigator.pop(context);
