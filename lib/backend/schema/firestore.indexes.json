@@ -31,6 +31,28 @@
           "order": "ASCENDING"
         },
         {
+          "fieldPath": "isDone",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "created_time",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "maintenance",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "building",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isDone",
+          "order": "ASCENDING"
+        },
+        {
           "fieldPath": "created_time",
           "order": "DESCENDING"
         }

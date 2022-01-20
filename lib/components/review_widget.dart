@@ -108,47 +108,43 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 25),
-                      child: Wrap(
-                        spacing: 10,
-                        runSpacing: 10,
-                        alignment: WrapAlignment.center,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        direction: Axis.horizontal,
-                        runAlignment: WrapAlignment.center,
-                        verticalDirection: VerticalDirection.down,
-                        clipBehavior: Clip.none,
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          FlutterFlowChoiceChips(
-                            initialOption: choiceChipsValue ??= 'Quality',
-                            options: [
-                              ChipData('Quality'),
-                              ChipData('Time'),
-                              ChipData('Convinience')
-                            ],
-                            onChanged: (val) =>
-                                setState(() => choiceChipsValue = val),
-                            selectedChipStyle: ChipStyle(
-                              backgroundColor: Color(0xFF262D34),
-                              textStyle: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.white,
+                          Expanded(
+                            child: FlutterFlowChoiceChips(
+                              initialOption: choiceChipsValue ??= 'Quality',
+                              options: [
+                                ChipData('Quality'),
+                                ChipData('Time'),
+                                ChipData('Convinience')
+                              ],
+                              onChanged: (val) =>
+                                  setState(() => choiceChipsValue = val),
+                              selectedChipStyle: ChipStyle(
+                                backgroundColor: Color(0xFF262D34),
+                                textStyle: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                ),
+                                iconColor: Colors.white,
+                                iconSize: 18,
+                                elevation: 4,
                               ),
-                              iconColor: Colors.white,
-                              iconSize: 18,
-                              elevation: 4,
-                            ),
-                            unselectedChipStyle: ChipStyle(
-                              backgroundColor: Colors.white,
-                              textStyle: FlutterFlowTheme.bodyText2.override(
-                                fontFamily: 'Poppins',
-                                color: Color(0xFF262D34),
+                              unselectedChipStyle: ChipStyle(
+                                backgroundColor: Colors.white,
+                                textStyle: FlutterFlowTheme.bodyText2.override(
+                                  fontFamily: 'Poppins',
+                                  color: Color(0xFF262D34),
+                                ),
+                                iconColor: Color(0xFF262D34),
+                                iconSize: 18,
+                                elevation: 4,
                               ),
-                              iconColor: Color(0xFF262D34),
-                              iconSize: 18,
-                              elevation: 4,
+                              chipSpacing: 20,
                             ),
-                            chipSpacing: 20,
                           ),
                         ],
                       ),

@@ -48,6 +48,50 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73650904699:android:b80a6f37fbd02501ff4cde",
+        "android_client_info": {
+          "package_name": "com.campusafricaapp.campusafrica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73650904699-3eqa4q4lj3p6c6u94e49devl3bki316u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.campusafricaapp.campusafrica",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "73650904699-l3e3edcl42vht8oc486jnshmp166fvgh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYYUGKvKW3O4C7La535TNQZdj6Bl5WHzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73650904699-l3e3edcl42vht8oc486jnshmp166fvgh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "73650904699-0dpj7a3eku4mdachir4beu0sb5kah0ik.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.newcampusafrica.app"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

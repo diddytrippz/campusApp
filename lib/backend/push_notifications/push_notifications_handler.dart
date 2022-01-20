@@ -82,7 +82,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'loginPage': (data) async => LoginPageWidget(),
   'viewPage': (data) async => NavBarPage(initialPage: 'ViewPageWidget'),
-  'inboxpage': (data) async => NavBarPage(initialPage: 'InboxpageWidget'),
+  'inboxPage': (data) async => NavBarPage(initialPage: 'InboxPageWidget'),
   'settingsPage': (data) async => NavBarPage(initialPage: 'SettingsPageWidget'),
   'forgotPassPage': (data) async => ForgotPassPageWidget(),
   'messaging': (data) async => MessagingWidget(

@@ -12,14 +12,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AppliancesWidget extends StatefulWidget {
-  const AppliancesWidget({Key key}) : super(key: key);
+class PaintingWidget extends StatefulWidget {
+  const PaintingWidget({Key key}) : super(key: key);
 
   @override
-  _AppliancesWidgetState createState() => _AppliancesWidgetState();
+  _PaintingWidgetState createState() => _PaintingWidgetState();
 }
 
-class _AppliancesWidgetState extends State<AppliancesWidget> {
+class _PaintingWidgetState extends State<PaintingWidget> {
   String budgetValue;
   TextEditingController reasonController;
 
@@ -115,7 +115,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         ),
                         decoration: BoxDecoration(),
                         child: Text(
-                          'Appliances',
+                          'Painting',
                           style: FlutterFlowTheme.title1.override(
                             fontFamily: 'Poppins',
                             color: Color(0xFFD93A0E),
@@ -127,10 +127,11 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                       child: FlutterFlowDropDown(
                         options: [
-                          'Stove not working',
-                          'Oven not working',
-                          'Microwave not working',
-                          'Fridge not working'
+                          'Ceiling needs to be painted',
+                          'Door frame needs to be painted',
+                          'Skirting needs to be painted',
+                          'walls needs to be painted',
+                          'Window frames needs to be painted'
                         ].toList(),
                         onChanged: (val) => setState(() => budgetValue = val),
                         width: MediaQuery.of(context).size.width * 0.9,

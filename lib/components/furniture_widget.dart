@@ -12,14 +12,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AppliancesWidget extends StatefulWidget {
-  const AppliancesWidget({Key key}) : super(key: key);
+class FurnitureWidget extends StatefulWidget {
+  const FurnitureWidget({Key key}) : super(key: key);
 
   @override
-  _AppliancesWidgetState createState() => _AppliancesWidgetState();
+  _FurnitureWidgetState createState() => _FurnitureWidgetState();
 }
 
-class _AppliancesWidgetState extends State<AppliancesWidget> {
+class _FurnitureWidgetState extends State<FurnitureWidget> {
   String budgetValue;
   TextEditingController reasonController;
 
@@ -115,7 +115,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         ),
                         decoration: BoxDecoration(),
                         child: Text(
-                          'Appliances',
+                          'Furniture',
                           style: FlutterFlowTheme.title1.override(
                             fontFamily: 'Poppins',
                             color: Color(0xFFD93A0E),
@@ -127,10 +127,13 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                       child: FlutterFlowDropDown(
                         options: [
-                          'Stove not working',
-                          'Oven not working',
-                          'Microwave not working',
-                          'Fridge not working'
+                          'Damaged  base',
+                          'Damaged mattress',
+                          'Curtain rail needs to be replaced',
+                          'My study table is damaged',
+                          'My window cannot open ',
+                          'My window cannot open',
+                          'my window has a crack'
                         ].toList(),
                         onChanged: (val) => setState(() => budgetValue = val),
                         width: MediaQuery.of(context).size.width * 0.9,

@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../components/empty_inbox_widget.dart';
+import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_toggle_icon.dart';
@@ -17,21 +18,46 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
-class InboxpageWidget extends StatefulWidget {
-  const InboxpageWidget({Key key}) : super(key: key);
+class InboxPageWidget extends StatefulWidget {
+  const InboxPageWidget({Key key}) : super(key: key);
 
   @override
-  _InboxpageWidgetState createState() => _InboxpageWidgetState();
+  _InboxPageWidgetState createState() => _InboxPageWidgetState();
 }
 
-class _InboxpageWidgetState extends State<InboxpageWidget> {
+class _InboxPageWidgetState extends State<InboxPageWidget>
+    with TickerProviderStateMixin {
   String uploadedFileUrl = '';
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final animationsMap = {
+    'floatingActionButtonOnPageLoadAnimation': AnimationInfo(
+      curve: Curves.bounceOut,
+      trigger: AnimationTrigger.onPageLoad,
+      duration: 800,
+      fadeIn: true,
+      initialState: AnimationState(
+        offset: Offset(0, 0),
+        scale: 1,
+        opacity: 0,
+      ),
+      finalState: AnimationState(
+        offset: Offset(0, 0),
+        scale: 1,
+        opacity: 1,
+      ),
+    ),
+  };
 
   @override
   void initState() {
     super.initState();
+    startPageLoadAnimations(
+      animationsMap.values
+          .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
+      this,
+    );
+
     textController = TextEditingController();
   }
 
@@ -45,18 +71,18 @@ class _InboxpageWidgetState extends State<InboxpageWidget> {
           print('FloatingActionButton pressed ...');
         },
         backgroundColor: FlutterFlowTheme.mellow,
-        icon: FaIcon(
-          FontAwesomeIcons.solidComment,
+        icon: Icon(
+          Icons.edit_sharp,
         ),
         elevation: 8,
         label: Text(
-          'Message',
+          'Compose',
           style: FlutterFlowTheme.bodyText1.override(
             fontFamily: 'Poppins',
             color: Color(0xFFEFF6FF),
           ),
         ),
-      ),
+      ).animated([animationsMap['floatingActionButtonOnPageLoadAnimation']]),
       drawer: Drawer(
         elevation: 16,
         child: Column(
@@ -331,6 +357,10 @@ class _InboxpageWidgetState extends State<InboxpageWidget> {
               }
               List<ChatMessagesRecord> columnChatMessagesRecordList =
                   snapshot.data;
+              // Return an empty Container when the document does not exist.
+              if (snapshot.data.isEmpty) {
+                return Container();
+              }
               final columnChatMessagesRecord =
                   columnChatMessagesRecordList.isNotEmpty
                       ? columnChatMessagesRecordList.first
@@ -462,7 +492,8 @@ class _InboxpageWidgetState extends State<InboxpageWidget> {
                                                       duration: Duration(
                                                           milliseconds: 4000),
                                                       backgroundColor:
-                                                          Color(0x00000000),
+                                                          FlutterFlowTheme
+                                                              .campusGrey,
                                                     ),
                                                   );
                                                 },
@@ -578,149 +609,161 @@ class _InboxpageWidgetState extends State<InboxpageWidget> {
                       ],
                     ),
                   ),
-                  SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        StreamBuilder<List<ChatMessagesRecord>>(
-                          stream: queryChatMessagesRecord(),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 60,
-                                  height: 60,
-                                  child: SpinKitPulse(
-                                    color: FlutterFlowTheme.primaryColor,
-                                    size: 60,
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          StreamBuilder<List<ChatMessagesRecord>>(
+                            stream: queryChatMessagesRecord(),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 60,
+                                    height: 60,
+                                    child: SpinKitPulse(
+                                      color: FlutterFlowTheme.primaryColor,
+                                      size: 60,
+                                    ),
                                   ),
-                                ),
-                              );
-                            }
-                            List<ChatMessagesRecord>
-                                columnChatMessagesRecordList = snapshot.data;
-                            if (columnChatMessagesRecordList.isEmpty) {
-                              return EmptyInboxWidget();
-                            }
-                            return SingleChildScrollView(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: List.generate(
-                                    columnChatMessagesRecordList.length,
-                                    (columnIndex) {
-                                  final columnChatMessagesRecord =
-                                      columnChatMessagesRecordList[columnIndex];
-                                  return InkWell(
-                                    onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.bottomToTop,
-                                          duration: Duration(milliseconds: 300),
-                                          reverseDuration:
-                                              Duration(milliseconds: 300),
-                                          child: MessagingWidget(
-                                            newMessage:
-                                                columnChatMessagesRecord,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    child: Card(
-                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      color: Colors.white,
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16, 0, 10, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            ToggleIcon(
-                                              onPressed: () async {
-                                                final chatMessagesUpdateData =
-                                                    createChatMessagesRecordData(
-                                                  isSelected:
-                                                      !columnChatMessagesRecord
-                                                          .isSelected,
-                                                );
-                                                await columnChatMessagesRecord
-                                                    .reference
-                                                    .update(
-                                                        chatMessagesUpdateData);
-                                              },
-                                              value: columnChatMessagesRecord
-                                                  .isSelected,
-                                              onIcon: Icon(
-                                                Icons.check_box,
-                                                color: Color(0xFF3779FF),
-                                                size: 25,
-                                              ),
-                                              offIcon: Icon(
-                                                Icons.check_box_outline_blank,
-                                                color: Colors.black,
-                                                size: 25,
-                                              ),
+                                );
+                              }
+                              List<ChatMessagesRecord>
+                                  columnChatMessagesRecordList = snapshot.data;
+                              if (columnChatMessagesRecordList.isEmpty) {
+                                return EmptyInboxWidget();
+                              }
+                              return SingleChildScrollView(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: List.generate(
+                                      columnChatMessagesRecordList.length,
+                                      (columnIndex) {
+                                    final columnChatMessagesRecord =
+                                        columnChatMessagesRecordList[
+                                            columnIndex];
+                                    return InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type:
+                                                PageTransitionType.bottomToTop,
+                                            duration:
+                                                Duration(milliseconds: 300),
+                                            reverseDuration:
+                                                Duration(milliseconds: 300),
+                                            child: MessagingWidget(
+                                              newMessage:
+                                                  columnChatMessagesRecord,
                                             ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(16, 0, 0, 0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 4, 0, 0),
-                                                      child: Text(
-                                                        columnChatMessagesRecord
-                                                            .subject,
-                                                        style: FlutterFlowTheme
-                                                            .title3
-                                                            .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 10),
-                                                      child: Text(
-                                                        columnChatMessagesRecord
-                                                            .message,
-                                                        style: FlutterFlowTheme
-                                                            .subtitle1
-                                                            .override(
-                                                          fontFamily: 'Poppins',
-                                                          fontSize: 14,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                          ),
+                                        );
+                                      },
+                                      child: Card(
+                                        clipBehavior:
+                                            Clip.antiAliasWithSaveLayer,
+                                        color: Colors.white,
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16, 0, 10, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              ToggleIcon(
+                                                onPressed: () async {
+                                                  final chatMessagesUpdateData =
+                                                      createChatMessagesRecordData(
+                                                    isSelected:
+                                                        !columnChatMessagesRecord
+                                                            .isSelected,
+                                                  );
+                                                  await columnChatMessagesRecord
+                                                      .reference
+                                                      .update(
+                                                          chatMessagesUpdateData);
+                                                },
+                                                value: columnChatMessagesRecord
+                                                    .isSelected,
+                                                onIcon: Icon(
+                                                  Icons.check_box,
+                                                  color: Color(0xFF3779FF),
+                                                  size: 25,
+                                                ),
+                                                offIcon: Icon(
+                                                  Icons.check_box_outline_blank,
+                                                  color: Colors.black,
+                                                  size: 25,
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(16, 0, 0, 0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 4, 0, 0),
+                                                        child: Text(
+                                                          columnChatMessagesRecord
+                                                              .subject,
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .title3
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(0, 0,
+                                                                    0, 10),
+                                                        child: Text(
+                                                          columnChatMessagesRecord
+                                                              .message,
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .subtitle1
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 14,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                }),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
+                                    );
+                                  }),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

@@ -12,14 +12,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AppliancesWidget extends StatefulWidget {
-  const AppliancesWidget({Key key}) : super(key: key);
+class PestControlWidget extends StatefulWidget {
+  const PestControlWidget({Key key}) : super(key: key);
 
   @override
-  _AppliancesWidgetState createState() => _AppliancesWidgetState();
+  _PestControlWidgetState createState() => _PestControlWidgetState();
 }
 
-class _AppliancesWidgetState extends State<AppliancesWidget> {
+class _PestControlWidgetState extends State<PestControlWidget> {
   String budgetValue;
   TextEditingController reasonController;
 
@@ -115,7 +115,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         ),
                         decoration: BoxDecoration(),
                         child: Text(
-                          'Appliances',
+                          'Pest Control',
                           style: FlutterFlowTheme.title1.override(
                             fontFamily: 'Poppins',
                             color: Color(0xFFD93A0E),
@@ -127,10 +127,9 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                       child: FlutterFlowDropDown(
                         options: [
-                          'Stove not working',
-                          'Oven not working',
-                          'Microwave not working',
-                          'Fridge not working'
+                          'Bed bugs',
+                          'Cocckroaches in my room/Unit',
+                          'Fumigation required'
                         ].toList(),
                         onChanged: (val) => setState(() => budgetValue = val),
                         width: MediaQuery.of(context).size.width * 0.9,

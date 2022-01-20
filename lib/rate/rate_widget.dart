@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -102,7 +103,7 @@ class _RateWidgetState extends State<RateWidget> {
                   ),
                   InkWell(
                     onTap: () async {
-                      if ((widget.jobStatus.status) == 'Submitted') {
+                      if ((widget.jobStatus.isDone) == false) {
                         await showDialog(
                           context: context,
                           builder: (alertDialogContext) {
@@ -128,6 +129,8 @@ class _RateWidgetState extends State<RateWidget> {
                             );
                           },
                         );
+                      } else {
+                        return;
                       }
                       await Navigator.pushAndRemoveUntil(
                         context,
@@ -179,6 +182,19 @@ class _RateWidgetState extends State<RateWidget> {
               ),
             ),
           ),
+          if ((widget.jobStatus.notes) != '')
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 2),
+              child: AutoSizeText(
+                widget.jobStatus.notes,
+                style: FlutterFlowTheme.bodyText1.override(
+                  fontFamily: 'Roboto',
+                  color: Color(0xFF595959),
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
           Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -280,7 +296,7 @@ class _RateWidgetState extends State<RateWidget> {
             ],
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(28, 22, 20, 6),
+            padding: EdgeInsetsDirectional.fromSTEB(28, 22, 20, 2),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -319,27 +335,29 @@ class _RateWidgetState extends State<RateWidget> {
                 ),
                 InkWell(
                   onTap: () async {
-                    await showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      barrierColor: Color(0x5DFFFFFF),
-                      context: context,
-                      builder: (context) {
-                        return Padding(
-                          padding: MediaQuery.of(context).viewInsets,
-                          child: ReviewWidget(
-                            forReviews: widget.jobStatus,
-                          ),
-                        );
-                      },
-                    );
+                    if ((widget.jobStatus.isDone) == true) {
+                      await showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        barrierColor: Color(0x5DFFFFFF),
+                        context: context,
+                        builder: (context) {
+                          return Padding(
+                            padding: MediaQuery.of(context).viewInsets,
+                            child: ReviewWidget(
+                              forReviews: widget.jobStatus,
+                            ),
+                          );
+                        },
+                      );
+                    }
                   },
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        'Overall',
+                        'Rating',
                         style: FlutterFlowTheme.bodyText2,
                       ),
                       Row(
@@ -406,7 +424,7 @@ class _RateWidgetState extends State<RateWidget> {
                 '${dateTimeFormat('MMMMEEEEd', widget.jobStatus.createdTime)} at ${dateTimeFormat('jm', widget.jobStatus.createdTime)}',
                 style: FlutterFlowTheme.title3.override(
                   fontFamily: 'Poppins',
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
               ),

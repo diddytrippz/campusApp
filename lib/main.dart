@@ -14,7 +14,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'view_page/view_page_widget.dart';
-import 'inboxpage/inboxpage_widget.dart';
+import 'inbox_page/inbox_page_widget.dart';
 import 'settings_page/settings_page_widget.dart';
 
 void main() async {
@@ -105,7 +105,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'homePage': HomePageWidget(),
       'viewPage': ViewPageWidget(),
-      'inboxpage': InboxpageWidget(),
+      'inboxPage': InboxPageWidget(),
       'settingsPage': SettingsPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);

@@ -12,14 +12,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AppliancesWidget extends StatefulWidget {
-  const AppliancesWidget({Key key}) : super(key: key);
+class PlumbingWidget extends StatefulWidget {
+  const PlumbingWidget({Key key}) : super(key: key);
 
   @override
-  _AppliancesWidgetState createState() => _AppliancesWidgetState();
+  _PlumbingWidgetState createState() => _PlumbingWidgetState();
 }
 
-class _AppliancesWidgetState extends State<AppliancesWidget> {
+class _PlumbingWidgetState extends State<PlumbingWidget> {
   String budgetValue;
   TextEditingController reasonController;
 
@@ -115,7 +115,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         ),
                         decoration: BoxDecoration(),
                         child: Text(
-                          'Appliances',
+                          'Plumbing',
                           style: FlutterFlowTheme.title1.override(
                             fontFamily: 'Poppins',
                             color: Color(0xFFD93A0E),
@@ -127,10 +127,17 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                       child: FlutterFlowDropDown(
                         options: [
-                          'Stove not working',
-                          'Oven not working',
-                          'Microwave not working',
-                          'Fridge not working'
+                          'Damaged toilet sit',
+                          'Damaged basin/sink',
+                          'Blocked urinal',
+                          'Blocked toilet',
+                          'Blocked shower drain',
+                          'Low water pressure',
+                          'No cold water',
+                          'No hot water',
+                          'Shower head needs to be replaced',
+                          'Leaking gyser',
+                          'Leaking pipes'
                         ].toList(),
                         onChanged: (val) => setState(() => budgetValue = val),
                         width: MediaQuery.of(context).size.width * 0.9,
