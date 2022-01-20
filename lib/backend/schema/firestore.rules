@@ -10,11 +10,6 @@ service cloud.firestore {
       allow create, update: if request.auth.uid == userId;
     }
 
-    match /ff_user_push_notifications/{id} {
-      allow read, update, delete: if false;
-      allow create: if userDoc() == request.resource.data.sender;
-    }
-
     // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
     // security rules for this collection before publishing your app.
     match /maintenance/{id} {

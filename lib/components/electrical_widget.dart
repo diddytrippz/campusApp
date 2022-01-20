@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../backend/push_notifications/push_notifications_util.dart';
 import '../components/submitted_icon_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -245,15 +244,6 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                                 child: SubmittedIconWidget(),
                               );
                             },
-                          );
-                          triggerPushNotification(
-                            notificationTitle: 'Maintenance Issue',
-                            notificationText:
-                                'New maintenance has been submitted',
-                            notificationImageUrl: currentUserPhoto,
-                            userRefs: [currentUserReference],
-                            initialPageName: 'viewPage',
-                            parameterData: {},
                           );
                         },
                         text: 'Save',
