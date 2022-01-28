@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class MyProfileWidget extends StatefulWidget {
   const MyProfileWidget({
@@ -167,14 +168,20 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: false,
-                                              tag: 'circleImageTag',
+                                              tag: valueOrDefault<String>(
+                                                currentUserPhoto,
+                                                'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                                              ),
                                               useHeroAnimation: true,
                                             ),
                                           ),
                                         );
                                       },
                                       child: Hero(
-                                        tag: 'circleImageTag',
+                                        tag: valueOrDefault<String>(
+                                          currentUserPhoto,
+                                          'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                                        ),
                                         transitionOnUserGestures: true,
                                         child: Container(
                                           width: 90,
@@ -229,6 +236,40 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                             ),
                           ),
                         ),
+                        Text(
+                          'Profile Completion',
+                          style: FlutterFlowTheme.title1.override(
+                            fontFamily: 'Poppins',
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 15),
+                              child: LinearPercentIndicator(
+                                  percent: 0.75,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.8,
+                                  lineHeight: 24,
+                                  animation: true,
+                                  progressColor: FlutterFlowTheme.campusRed,
+                                  backgroundColor: Color(0xFFEEEEEE),
+                                  center: Text(
+                                    '75%',
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.tertiaryColor,
+                                    ),
+                                  ),
+                                  barRadius: Radius.circular(10)),
+                            ),
+                          ],
+                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 20),
                           child: Row(
@@ -264,9 +305,10 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                     }
                                   }
 
-                                  final usersUpdateData =
-                                      createUsersRecordData();
-                                  await currentUserReference
+                                  final usersUpdateData = createUsersRecordData(
+                                    photoUrl: uploadedFileUrl,
+                                  );
+                                  await columnUsersRecord.reference
                                       .update(usersUpdateData);
                                 },
                                 text: 'Change Photo',

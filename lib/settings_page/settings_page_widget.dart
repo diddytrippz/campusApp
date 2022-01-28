@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login_page/login_page_widget.dart';
+import '../rules_book/rules_book_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -230,7 +231,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
                     child: Text(
-                      'SUPPORT',
+                      'STUDENTS',
                       style: FlutterFlowTheme.bodyText1.override(
                         fontFamily: 'Poppins',
                         color: Color(0xFF9E9E9E),
@@ -304,8 +305,15 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                         child: InkWell(
                           onTap: () async {
-                            await launchURL(
-                                'https://www.richmondcentral.co.za/wp-content/uploads/2018/11/Richmond-Central-House-Rules.pdf');
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.bottomToTop,
+                                duration: Duration(milliseconds: 300),
+                                reverseDuration: Duration(milliseconds: 300),
+                                child: RulesBookWidget(),
+                              ),
+                            );
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,

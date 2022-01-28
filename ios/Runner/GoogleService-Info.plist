@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>73650904699-9aeesji3a363075lnqbmnnq474rn4g3a.apps.googleusercontent.com</string>
+	<string>73650904699-em8js1f48sii02q6b7aaj7lvsvmafbdt.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.73650904699-9aeesji3a363075lnqbmnnq474rn4g3a</string>
+	<string>com.googleusercontent.apps.73650904699-em8js1f48sii02q6b7aaj7lvsvmafbdt</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>73650904699-3eqa4q4lj3p6c6u94e49devl3bki316u.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.campusafricaapp.campusafrica</string>
+	<string>com.campusafrica.app</string>
 	<key>PROJECT_ID</key>
 	<string>campus-africa-bda4b</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:73650904699:ios:2d4e43172bc36921ff4cde</string>
+	<string>1:73650904699:ios:cf45e4e24dd38f4aff4cde</string>
 </dict>
 </plist>

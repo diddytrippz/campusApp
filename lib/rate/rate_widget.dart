@@ -56,34 +56,9 @@ class _RateWidgetState extends State<RateWidget> {
       backgroundColor: FlutterFlowTheme.tertiaryColor,
       body: Column(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 7,
-                    color: Color(0x2F1D2429),
-                    offset: Offset(0, 3),
-                  )
-                ],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  'https://picsum.photos/seed/277/600',
-                  width: double.infinity,
-                  height: 120,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
           if ((widget.jobStatus.status) == 'Submitted')
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 22, 18, 0),
@@ -173,8 +148,8 @@ class _RateWidgetState extends State<RateWidget> {
               ),
             ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20, 6, 0, 0),
-            child: Text(
+            padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+            child: AutoSizeText(
               widget.jobStatus.issue,
               style: FlutterFlowTheme.title1.override(
                 fontFamily: 'Poppins',
@@ -184,7 +159,7 @@ class _RateWidgetState extends State<RateWidget> {
           ),
           if ((widget.jobStatus.notes) != '')
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 2),
+              padding: EdgeInsetsDirectional.fromSTEB(20, 2, 16, 2),
               child: AutoSizeText(
                 widget.jobStatus.notes,
                 style: FlutterFlowTheme.bodyText1.override(
@@ -296,7 +271,7 @@ class _RateWidgetState extends State<RateWidget> {
             ],
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(28, 22, 20, 2),
+            padding: EdgeInsetsDirectional.fromSTEB(28, 22, 20, 0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -462,6 +437,24 @@ class _RateWidgetState extends State<RateWidget> {
               ),
               tileColor: FlutterFlowTheme.tertiaryColor,
               dense: true,
+            ),
+          ),
+          Container(
+            width: 50,
+            height: MediaQuery.of(context).size.height * 0.1,
+            decoration: BoxDecoration(
+              color: Color(0x00FFFFFF),
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0x00FFFFFF),
+                )
+              ],
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(0),
+                bottomRight: Radius.circular(0),
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
             ),
           ),
           Container(

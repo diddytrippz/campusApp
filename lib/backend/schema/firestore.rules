@@ -1,31 +1,32 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function userDoc() {
-      return /databases/$(database)/documents/users/$(request.auth.uid);
-    }
-
-    match /users/{userId} {
+    match /users/{document} {
+      allow create: if request.auth.uid == document;
       allow read: if true;
-      allow create, update: if request.auth.uid == userId;
+      allow write: if request.auth.uid == document;
+      allow delete: if false;
     }
 
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /maintenance/{id} {
-      allow read, write: if true;
+    match /maintenance/{document} {
+      allow create: if request.auth != null;
+      allow read: if true;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
     }
 
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /bugs/{id} {
-      allow read, write: if true;
+    match /bugs/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
-    // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
-    // security rules for this collection before publishing your app.
-    match /chatMessages/{id} {
-      allow read, write: if true;
+    match /chatMessages/{document} {
+      allow create: if request.auth != null;
+      allow read: if true;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
     }
   }
 }
