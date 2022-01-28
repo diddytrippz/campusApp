@@ -174,27 +174,31 @@ class _MessagingWidgetState extends State<MessagingWidget> {
                           controller: textController,
                           obscureText: false,
                           decoration: InputDecoration(
-                            hintText: 'Type Your Message',
+                            hintText: 'Type your message here',
                             hintStyle: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Poppins',
                               color: Color(0xFF4D4D4D),
+                              fontSize: 14,
+                              lineHeight: 1,
                             ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(15),
                             ),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(15),
                             ),
                             filled: true,
                             fillColor: FlutterFlowTheme.tertiaryColor,
+                            contentPadding:
+                                EdgeInsetsDirectional.fromSTEB(16, 40, 0, 5),
                             prefixIcon: Icon(
                               Icons.attachment,
                             ),
@@ -202,8 +206,11 @@ class _MessagingWidgetState extends State<MessagingWidget> {
                           style: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Poppins',
                             color: Color(0xFF4D4D4D),
+                            fontSize: 14,
+                            lineHeight: 1,
                           ),
-                          maxLines: 1,
+                          textAlign: TextAlign.start,
+                          maxLines: 4,
                         ),
                       ),
                     ),
@@ -213,12 +220,12 @@ class _MessagingWidgetState extends State<MessagingWidget> {
                         borderColor: Colors.transparent,
                         borderRadius: 30,
                         borderWidth: 1,
-                        buttonSize: 45,
+                        buttonSize: 40,
                         fillColor: FlutterFlowTheme.campusRed,
                         icon: Icon(
                           Icons.send,
                           color: FlutterFlowTheme.tertiaryColor,
-                          size: 30,
+                          size: 20,
                         ),
                         onPressed: () {
                           print('IconButton pressed ...');
