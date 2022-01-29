@@ -92,8 +92,8 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                               buttonSize: 48,
                               fillColor: Color(0xFFD93A0E),
                               icon: Icon(
-                                Icons.close_rounded,
-                                color: Color(0xFFFEF058),
+                                Icons.photo_camera_outlined,
+                                color: FlutterFlowTheme.tertiaryColor,
                                 size: 30,
                               ),
                               onPressed: () async {

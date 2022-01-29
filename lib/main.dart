@@ -16,6 +16,7 @@ import 'home_page/home_page_widget.dart';
 import 'view_page/view_page_widget.dart';
 import 'inbox_page/inbox_page_widget.dart';
 import 'settings_page/settings_page_widget.dart';
+import 'all_chat/all_chat_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -106,6 +107,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'viewPage': ViewPageWidget(),
       'inboxPage': InboxPageWidget(),
       'settingsPage': SettingsPageWidget(),
+      'allChat': AllChatWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -148,6 +150,13 @@ class _NavBarPageState extends State<NavBarPage> {
           GButton(
             icon: currentIndex == 3 ? Icons.person : Icons.person_outline,
             text: 'SETTINGS',
+            iconSize: 24,
+          ),
+          GButton(
+            icon: currentIndex == 4
+                ? Icons.chat_bubble_rounded
+                : Icons.chat_bubble_outline,
+            text: 'Chats',
             iconSize: 24,
           )
         ],

@@ -9,9 +9,7 @@ import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
-import '../messaging/messaging_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -28,8 +26,8 @@ class InboxPageWidget extends StatefulWidget {
 class _InboxPageWidgetState extends State<InboxPageWidget>
     with TickerProviderStateMixin {
   String uploadedFileUrl = '';
-  TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController textController;
   final animationsMap = {
     'floatingActionButtonOnPageLoadAnimation': AnimationInfo(
       curve: Curves.bounceOut,
@@ -65,7 +63,96 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      appBar: AppBar(
+        backgroundColor: Color(0xF9FFFFFF),
+        automaticallyImplyLeading: false,
+        leading: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            ToggleIcon(
+              onPressed: () async {
+                setState(
+                    () => FFAppState().isPressed = !FFAppState().isPressed);
+              },
+              value: FFAppState().isPressed,
+              onIcon: Icon(
+                Icons.arrow_back_sharp,
+                color: Colors.black,
+                size: 25,
+              ),
+              offIcon: Icon(
+                Icons.menu,
+                color: Colors.black,
+                size: 25,
+              ),
+            ),
+          ],
+        ),
+        title: Stack(
+          children: [
+            if (FFAppState().isPressed ?? true)
+              TextFormField(
+                controller: textController,
+                obscureText: false,
+                decoration: InputDecoration(
+                  hintText: 'Search ',
+                  hintStyle: FlutterFlowTheme.bodyText1,
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0x00000000),
+                      width: 1,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4.0),
+                      topRight: Radius.circular(4.0),
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0x00000000),
+                      width: 1,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4.0),
+                      topRight: Radius.circular(4.0),
+                    ),
+                  ),
+                ),
+                style: FlutterFlowTheme.bodyText1,
+              ),
+            if (!(FFAppState().isPressed) ?? true)
+              Text(
+                'Inbox',
+                style: FlutterFlowTheme.title3.override(
+                  fontFamily: 'Poppins',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+          ],
+        ),
+        actions: [
+          ToggleIcon(
+            onPressed: () async {
+              setState(() => FFAppState().isPressed = !FFAppState().isPressed);
+            },
+            value: FFAppState().isPressed,
+            onIcon: Icon(
+              Icons.clear_sharp,
+              color: FlutterFlowTheme.campusGrey,
+              size: 25,
+            ),
+            offIcon: Icon(
+              Icons.search_sharp,
+              color: FlutterFlowTheme.campusGrey,
+              size: 25,
+            ),
+          ),
+        ],
+        centerTitle: false,
+        elevation: 1,
+      ),
+      backgroundColor: Color(0xF9FFFFFF),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           print('FloatingActionButton pressed ...');
@@ -340,109 +427,76 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
           ],
         ),
       ),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Align(
-            alignment: AlignmentDirectional(0, 1),
-            child: StreamBuilder<List<ChatMessagesRecord>>(
-              stream: queryChatMessagesRecord(
-                singleRecord: true,
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Align(
+          alignment: AlignmentDirectional(0, 1),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 30,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.tertiaryColor,
+                ),
               ),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: SpinKitPulse(
-                        color: FlutterFlowTheme.primaryColor,
-                        size: 60,
-                      ),
-                    ),
-                  );
-                }
-                List<ChatMessagesRecord> columnChatMessagesRecordList =
-                    snapshot.data;
-                // Return an empty Container when the document does not exist.
-                if (snapshot.data.isEmpty) {
-                  return Container();
-                }
-                final columnChatMessagesRecord =
-                    columnChatMessagesRecordList.isNotEmpty
-                        ? columnChatMessagesRecordList.first
-                        : null;
-                return Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional(0, 1),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      FutureBuilder<List<ChatMessagesRecord>>(
+                        future: queryChatMessagesRecordOnce(),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 60,
+                                height: 60,
+                                child: SpinKitPulse(
+                                  color: FlutterFlowTheme.primaryColor,
+                                  size: 60,
+                                ),
+                              ),
+                            );
+                          }
+                          List<ChatMessagesRecord>
+                              columnChatMessagesRecordList = snapshot.data;
+                          if (columnChatMessagesRecordList.isEmpty) {
+                            return EmptyInboxWidget();
+                          }
+                          return SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Card(
+                              children: List.generate(
+                                  columnChatMessagesRecordList.length,
+                                  (columnIndex) {
+                                final columnChatMessagesRecord =
+                                    columnChatMessagesRecordList[columnIndex];
+                                return Card(
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  color: Colors.white,
+                                  color: Color(0xF9FFFFFF),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 40, 0, 25),
+                                        16, 0, 10, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
                                       children: [
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            if (columnChatMessagesRecord
-                                                    .isSelected ??
-                                                true)
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(18, 0, 0, 0),
-                                                child: Icon(
-                                                  Icons.clear,
-                                                  color: Colors.black,
-                                                  size: 24,
-                                                ),
-                                              ),
-                                            if (!(columnChatMessagesRecord
-                                                    .isSelected) ??
-                                                true)
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(18, 0, 0, 0),
-                                                child: InkWell(
-                                                  onTap: () async {
-                                                    scaffoldKey.currentState
-                                                        .openDrawer();
-                                                  },
-                                                  child: Icon(
-                                                    Icons.menu,
-                                                    color: Colors.black,
-                                                    size: 24,
-                                                  ),
-                                                ),
-                                              ),
-                                            if (!(columnChatMessagesRecord
-                                                    .isSelected) ??
-                                                true)
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(20, 0, 0, 0),
+                                                    .fromSTEB(0, 4, 0, 0),
                                                 child: Text(
-                                                  'Inbox',
+                                                  columnChatMessagesRecord
+                                                      .subject,
                                                   style: FlutterFlowTheme.title3
                                                       .override(
                                                     fontFamily: 'Poppins',
@@ -451,345 +505,42 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                                                   ),
                                                 ),
                                               ),
-                                            if (columnChatMessagesRecord
-                                                    .isSelected ??
-                                                true)
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(20, 0, 0, 0),
+                                                    .fromSTEB(0, 0, 0, 10),
                                                 child: Text(
-                                                  '1 selected',
+                                                  columnChatMessagesRecord
+                                                      .message,
                                                   style: FlutterFlowTheme
-                                                      .bodyText1,
-                                                ),
-                                              ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            if (!(columnChatMessagesRecord
-                                                    .isSelected) ??
-                                                true)
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 12, 0),
-                                                child: Icon(
-                                                  Icons.search_rounded,
-                                                  color: Colors.black,
-                                                  size: 24,
-                                                ),
-                                              ),
-                                            if (columnChatMessagesRecord
-                                                    .isSelected ??
-                                                true)
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 12, 0),
-                                                child: InkWell(
-                                                  onTap: () async {
-                                                    await columnChatMessagesRecord
-                                                        .reference
-                                                        .delete();
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(
-                                                      SnackBar(
-                                                        content: Text(
-                                                          '1 item moven to bin',
-                                                          style: TextStyle(),
-                                                        ),
-                                                        duration: Duration(
-                                                            milliseconds: 4000),
-                                                        backgroundColor:
-                                                            FlutterFlowTheme
-                                                                .campusGrey,
-                                                      ),
-                                                    );
-                                                  },
-                                                  child: Icon(
-                                                    Icons
-                                                        .delete_outline_outlined,
-                                                    color: Colors.black,
-                                                    size: 24,
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Poppins',
+                                                    fontSize: 14,
                                                   ),
                                                 ),
                                               ),
-                                            if (!(columnChatMessagesRecord
-                                                    .isSelected) ??
-                                                true)
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 12, 0),
-                                                child: Icon(
-                                                  Icons.more_vert,
-                                                  color: Colors.black,
-                                                  size: 24,
-                                                ),
-                                              ),
-                                          ],
+                                            ],
+                                          ),
+                                        ),
+                                        FaIcon(
+                                          FontAwesomeIcons.solidCircle,
+                                          color: Color(0xFF3779FF),
+                                          size: 7,
                                         ),
                                       ],
                                     ),
                                   ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    if (!(columnChatMessagesRecord
-                                            .isSelected) ??
-                                        true)
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  22, 15, 22, 0),
-                                          child: TextFormField(
-                                            onChanged: (_) =>
-                                                EasyDebounce.debounce(
-                                              'textController',
-                                              Duration(milliseconds: 2000),
-                                              () => setState(() {}),
-                                            ),
-                                            controller: textController,
-                                            obscureText: false,
-                                            decoration: InputDecoration(
-                                              labelText: 'Search',
-                                              labelStyle: FlutterFlowTheme
-                                                  .bodyText1
-                                                  .override(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 14,
-                                              ),
-                                              hintText: 'Search',
-                                              hintStyle: FlutterFlowTheme
-                                                  .bodyText1
-                                                  .override(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 14,
-                                              ),
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0xFFD7D7D7),
-                                                  width: 1,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0xFFD7D7D7),
-                                                  width: 1,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              ),
-                                              filled: true,
-                                              fillColor: Color(0xFFF9F9F9),
-                                              prefixIcon: Icon(
-                                                Icons.search,
-                                                size: 19,
-                                              ),
-                                              suffixIcon: textController
-                                                      .text.isNotEmpty
-                                                  ? InkWell(
-                                                      onTap: () => setState(
-                                                        () => textController
-                                                            .clear(),
-                                                      ),
-                                                      child: Icon(
-                                                        Icons.clear,
-                                                        color:
-                                                            Color(0xFF757575),
-                                                        size: 16,
-                                                      ),
-                                                    )
-                                                  : null,
-                                            ),
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Poppins',
-                                              fontSize: 14,
-                                            ),
-                                            maxLines: 1,
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            StreamBuilder<List<ChatMessagesRecord>>(
-                              stream: queryChatMessagesRecord(),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 60,
-                                      height: 60,
-                                      child: SpinKitPulse(
-                                        color: FlutterFlowTheme.primaryColor,
-                                        size: 60,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                List<ChatMessagesRecord>
-                                    columnChatMessagesRecordList =
-                                    snapshot.data;
-                                if (columnChatMessagesRecordList.isEmpty) {
-                                  return EmptyInboxWidget();
-                                }
-                                return SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: List.generate(
-                                        columnChatMessagesRecordList.length,
-                                        (columnIndex) {
-                                      final columnChatMessagesRecord =
-                                          columnChatMessagesRecordList[
-                                              columnIndex];
-                                      return InkWell(
-                                        onTap: () async {
-                                          await Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType
-                                                  .bottomToTop,
-                                              duration:
-                                                  Duration(milliseconds: 300),
-                                              reverseDuration:
-                                                  Duration(milliseconds: 300),
-                                              child: MessagingWidget(
-                                                newMessage:
-                                                    columnChatMessagesRecord,
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                        child: Card(
-                                          clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                          color: Colors.white,
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    16, 0, 10, 0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                ToggleIcon(
-                                                  onPressed: () async {
-                                                    final chatMessagesUpdateData =
-                                                        createChatMessagesRecordData(
-                                                      isSelected:
-                                                          !columnChatMessagesRecord
-                                                              .isSelected,
-                                                    );
-                                                    await columnChatMessagesRecord
-                                                        .reference
-                                                        .update(
-                                                            chatMessagesUpdateData);
-                                                  },
-                                                  value:
-                                                      columnChatMessagesRecord
-                                                          .isSelected,
-                                                  onIcon: Icon(
-                                                    Icons.check_box,
-                                                    color: Color(0xFF3779FF),
-                                                    size: 25,
-                                                  ),
-                                                  offIcon: Icon(
-                                                    Icons
-                                                        .check_box_outline_blank,
-                                                    color: Colors.black,
-                                                    size: 25,
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                16, 0, 0, 0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      4, 0, 0),
-                                                          child: Text(
-                                                            columnChatMessagesRecord
-                                                                .subject,
-                                                            style:
-                                                                FlutterFlowTheme
-                                                                    .title3
-                                                                    .override(
-                                                              fontFamily:
-                                                                  'Poppins',
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 0, 10),
-                                                          child: Text(
-                                                            columnChatMessagesRecord
-                                                                .message,
-                                                            style:
-                                                                FlutterFlowTheme
-                                                                    .subtitle1
-                                                                    .override(
-                                                              fontFamily:
-                                                                  'Poppins',
-                                                              fontSize: 14,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }),
-                                  ),
                                 );
-                              },
+                              }),
                             ),
-                          ],
-                        ),
+                          );
+                        },
                       ),
-                    ),
-                  ],
-                );
-              },
-            ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

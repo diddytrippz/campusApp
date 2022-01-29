@@ -20,14 +20,15 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Color(0xFFF5F5F5),
+      backgroundColor: FlutterFlowTheme.tertiaryColor,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Stack(
             children: [
               FlutterFlowPdfViewer(
-                assetPath: 'assets/pdfs/49J_Student_Rule_Book.pdf',
+                assetPath:
+                    'assets/pdfs/CampusAfrica_StudentHandbook_2021_V2.pdf',
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 1,
                 horizontalScroll: false,

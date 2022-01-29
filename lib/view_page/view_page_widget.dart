@@ -6,9 +6,10 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
-import '../rate/rate_widget.dart';
+import '../more_info/more_info_widget.dart';
+import '../trash/trash_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -196,7 +197,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                 Expanded(
                                   child: AuthUserStreamWidget(
                                     child: DefaultTabController(
-                                      length: 2,
+                                      length: 3,
                                       initialIndex: 0,
                                       child: Column(
                                         children: [
@@ -211,10 +212,13 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                 FlutterFlowTheme.secondaryColor,
                                             tabs: [
                                               Tab(
-                                                text: 'Pending',
+                                                text: 'Submitted',
                                               ),
                                               Tab(
                                                 text: 'Completed',
+                                              ),
+                                              Tab(
+                                                text: 'Pending',
                                               ),
                                             ],
                                           ),
@@ -325,7 +329,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                           Duration(
                                                                               milliseconds: 300),
                                                                       child:
-                                                                          RateWidget(
+                                                                          MoreInfoWidget(
                                                                         jobStatus:
                                                                             listViewMaintenanceRecord,
                                                                       ),
@@ -361,7 +365,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                 TextButton(
                                                                                   onPressed: () async {
                                                                                     Navigator.pop(alertDialogContext);
-                                                                                    await listViewMaintenanceRecord.reference.delete();
+
+                                                                                    final maintenanceUpdateData = createMaintenanceRecordData(
+                                                                                      status: 'Deleted',
+                                                                                    );
+                                                                                    await listViewMaintenanceRecord.reference.update(maintenanceUpdateData);
                                                                                     ;
                                                                                   },
                                                                                   child: Text('Confirm'),
@@ -384,10 +392,18 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                 FlutterFlowTheme.campusGrey,
                                                                             action:
                                                                                 SnackBarAction(
-                                                                              label: 'DISMISS',
+                                                                              label: 'TRASH',
                                                                               textColor: Color(0xFF3779FF),
                                                                               onPressed: () async {
-                                                                                Navigator.pop(context);
+                                                                                await Navigator.push(
+                                                                                  context,
+                                                                                  PageTransition(
+                                                                                    type: PageTransitionType.bottomToTop,
+                                                                                    duration: Duration(milliseconds: 300),
+                                                                                    reverseDuration: Duration(milliseconds: 300),
+                                                                                    child: TrashWidget(),
+                                                                                  ),
+                                                                                );
                                                                               },
                                                                             ),
                                                                           ),
@@ -395,20 +411,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                         await Duration(
                                                                             milliseconds:
                                                                                 3000);
-                                                                        await Navigator
-                                                                            .push(
-                                                                          context,
-                                                                          PageTransition(
-                                                                            type:
-                                                                                PageTransitionType.bottomToTop,
-                                                                            duration:
-                                                                                Duration(milliseconds: 300),
-                                                                            reverseDuration:
-                                                                                Duration(milliseconds: 300),
-                                                                            child:
-                                                                                NavBarPage(initialPage: 'viewPage'),
-                                                                          ),
-                                                                        );
                                                                       },
                                                                     ),
                                                                   ],
@@ -417,7 +419,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                     leading:
                                                                         Icon(
                                                                       Icons
-                                                                          .account_box_rounded,
+                                                                          .account_circle,
                                                                       color: FlutterFlowTheme
                                                                           .campusGrey,
                                                                       size: 35,
@@ -572,7 +574,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                         reverseDuration:
                                                                             Duration(milliseconds: 300),
                                                                         child:
-                                                                            RateWidget(
+                                                                            MoreInfoWidget(
                                                                           jobStatus:
                                                                               listViewMaintenanceRecord,
                                                                         ),
@@ -584,7 +586,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                     leading:
                                                                         Icon(
                                                                       Icons
-                                                                          .account_box,
+                                                                          .account_circle,
                                                                       color: FlutterFlowTheme
                                                                           .campusGrey,
                                                                       size: 35,
@@ -638,6 +640,169 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                     ),
                                                   ],
                                                 ),
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(16, 12,
+                                                                  16, 0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'Search results',
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .bodyText2,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: StreamBuilder<
+                                                          List<
+                                                              MaintenanceRecord>>(
+                                                        stream:
+                                                            queryMaintenanceRecord(
+                                                          queryBuilder: (maintenanceRecord) =>
+                                                              maintenanceRecord
+                                                                  .where(
+                                                                      'status',
+                                                                      isEqualTo:
+                                                                          'Submitted')
+                                                                  .where(
+                                                                      'email',
+                                                                      isEqualTo:
+                                                                          currentUserEmail)
+                                                                  .orderBy(
+                                                                      'created_time',
+                                                                      descending:
+                                                                          true),
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 60,
+                                                                height: 60,
+                                                                child:
+                                                                    SpinKitPulse(
+                                                                  color: FlutterFlowTheme
+                                                                      .primaryColor,
+                                                                  size: 60,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<MaintenanceRecord>
+                                                              listViewMaintenanceRecordList =
+                                                              snapshot.data;
+                                                          if (listViewMaintenanceRecordList
+                                                              .isEmpty) {
+                                                            return Center(
+                                                              child:
+                                                                  NoSearchResultsWidget(),
+                                                            );
+                                                          }
+                                                          return ListView
+                                                              .builder(
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            primary: false,
+                                                            scrollDirection:
+                                                                Axis.vertical,
+                                                            itemCount:
+                                                                listViewMaintenanceRecordList
+                                                                    .length,
+                                                            itemBuilder: (context,
+                                                                listViewIndex) {
+                                                              final listViewMaintenanceRecord =
+                                                                  listViewMaintenanceRecordList[
+                                                                      listViewIndex];
+                                                              return InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  await Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    PageTransition(
+                                                                      type: PageTransitionType
+                                                                          .bottomToTop,
+                                                                      duration: Duration(
+                                                                          milliseconds:
+                                                                              300),
+                                                                      reverseDuration:
+                                                                          Duration(
+                                                                              milliseconds: 300),
+                                                                      child:
+                                                                          MoreInfoWidget(
+                                                                        jobStatus:
+                                                                            listViewMaintenanceRecord,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                                child: ListTile(
+                                                                  leading: Icon(
+                                                                    Icons
+                                                                        .account_circle,
+                                                                    color: FlutterFlowTheme
+                                                                        .campusGrey,
+                                                                    size: 35,
+                                                                  ),
+                                                                  title: Text(
+                                                                    listViewMaintenanceRecord
+                                                                        .issue,
+                                                                    style: FlutterFlowTheme
+                                                                        .title2
+                                                                        .override(
+                                                                      fontFamily:
+                                                                          'Poppins',
+                                                                      fontSize:
+                                                                          16,
+                                                                    ),
+                                                                  ),
+                                                                  subtitle:
+                                                                      Text(
+                                                                    '${dateTimeFormat('MMMMEEEEd', listViewMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewMaintenanceRecord.createdTime)}',
+                                                                    style: FlutterFlowTheme
+                                                                        .subtitle2
+                                                                        .override(
+                                                                      fontFamily:
+                                                                          'Poppins',
+                                                                      fontSize:
+                                                                          14,
+                                                                    ),
+                                                                  ),
+                                                                  trailing:
+                                                                      Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_right_sharp,
+                                                                    color: Color(
+                                                                        0xFF303030),
+                                                                    size: 20,
+                                                                  ),
+                                                                  tileColor: Color(
+                                                                      0x00FFFFFF),
+                                                                  dense: false,
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -665,7 +830,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                 FlutterFlowTheme.secondaryColor,
                                             tabs: [
                                               Tab(
-                                                text: 'Pending',
+                                                text: 'Submitted',
                                               ),
                                               Tab(
                                                 text: 'Completed',
@@ -793,7 +958,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                           reverseDuration:
                                                                               Duration(milliseconds: 300),
                                                                           child:
-                                                                              RateWidget(
+                                                                              MoreInfoWidget(
                                                                             jobStatus:
                                                                                 listViewMaintenanceRecord,
                                                                           ),
@@ -1044,7 +1209,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                           reverseDuration:
                                                                               Duration(milliseconds: 300),
                                                                           child:
-                                                                              RateWidget(
+                                                                              MoreInfoWidget(
                                                                             jobStatus:
                                                                                 listViewMaintenanceRecord,
                                                                           ),
