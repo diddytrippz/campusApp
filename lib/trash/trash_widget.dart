@@ -2,7 +2,6 @@ import '../backend/backend.dart';
 import '../components/no_search_results_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -42,11 +41,6 @@ class _TrashWidgetState extends State<TrashWidget> {
           ),
         ),
         title: TextFormField(
-          onChanged: (_) => EasyDebounce.debounce(
-            'textController',
-            Duration(milliseconds: 2000),
-            () => setState(() {}),
-          ),
           controller: textController,
           obscureText: false,
           decoration: InputDecoration(
@@ -72,22 +66,19 @@ class _TrashWidgetState extends State<TrashWidget> {
                 topRight: Radius.circular(4.0),
               ),
             ),
-            suffixIcon: textController.text.isNotEmpty
-                ? InkWell(
-                    onTap: () => setState(
-                      () => textController.clear(),
-                    ),
-                    child: Icon(
-                      Icons.clear,
-                      color: Color(0xFF757575),
-                      size: 22,
-                    ),
-                  )
-                : null,
           ),
           style: FlutterFlowTheme.bodyText1,
         ),
-        actions: [],
+        actions: [
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+            child: Icon(
+              Icons.account_circle,
+              color: FlutterFlowTheme.campusGrey,
+              size: 45,
+            ),
+          ),
+        ],
         centerTitle: true,
         elevation: 1,
       ),
