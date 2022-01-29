@@ -179,13 +179,13 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        height: MediaQuery.of(context).size.height * 0.2,
+                        width: 130,
+                        height: 40,
                         constraints: BoxConstraints(
                           maxHeight: 32,
                         ),
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.campusRed,
+                          color: FlutterFlowTheme.campusGrey,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 4,
@@ -226,13 +226,13 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.height * 0.2,
+                          width: 130,
+                          height: 40,
                           constraints: BoxConstraints(
                             maxHeight: 32,
                           ),
                           decoration: BoxDecoration(
-                            color: Color(0xFF19AC00),
+                            color: FlutterFlowTheme.campusRed,
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 4,
@@ -282,13 +282,13 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        width: 120,
-                        height: 35,
+                        width: 130,
+                        height: 40,
                         constraints: BoxConstraints(
                           maxHeight: 32,
                         ),
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.campusRed,
+                          color: FlutterFlowTheme.campusGrey,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 4,
@@ -418,10 +418,10 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                               child: Container(
-                                width: 40,
-                                height: 40,
+                                width: 45,
+                                height: 45,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFFEEEEEE),
+                                  color: FlutterFlowTheme.tertiaryColor,
                                   shape: BoxShape.circle,
                                 ),
                                 child: Icon(
