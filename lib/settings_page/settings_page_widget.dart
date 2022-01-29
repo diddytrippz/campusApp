@@ -249,7 +249,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                         percent: 0.75,
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.8,
+                                                0.6,
                                         lineHeight: 24,
                                         animation: true,
                                         progressColor:
