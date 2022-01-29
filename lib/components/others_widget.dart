@@ -199,7 +199,6 @@ class _OthersWidgetState extends State<OthersWidget> {
                               displayName: currentUserDisplayName,
                               room: currentUserDocument?.room,
                               building: currentUserDocument?.building,
-                              notes: reasonController.text,
                               rating: 0,
                               uid: currentUserUid,
                               category: 'Appliances',
