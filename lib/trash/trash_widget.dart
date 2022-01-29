@@ -74,7 +74,7 @@ class _TrashWidgetState extends State<TrashWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
             child: Icon(
               Icons.account_circle,
-              color: FlutterFlowTheme.campusGrey,
+              color: FlutterFlowTheme.campusRed,
               size: 45,
             ),
           ),
@@ -127,8 +127,8 @@ class _TrashWidgetState extends State<TrashWidget> {
                                     'Empty bin now',
                                     style: FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Poppins',
-                                      color: Color(0xFF0074D8),
-                                      fontWeight: FontWeight.w500,
+                                      color: FlutterFlowTheme.mellow,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
@@ -177,13 +177,13 @@ class _TrashWidgetState extends State<TrashWidget> {
                           elevation: 0,
                           child: Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                                EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Icon(
                                   Icons.account_circle_sharp,
-                                  color: FlutterFlowTheme.campusGrey,
+                                  color: FlutterFlowTheme.campusRed,
                                   size: 45,
                                 ),
                                 Expanded(
