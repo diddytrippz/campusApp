@@ -100,6 +100,55 @@ class _TrashWidgetState extends State<TrashWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                  child: Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    color: FlutterFlowTheme.tertiaryColor,
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Icon(
+                            Icons.delete_outline_sharp,
+                            color: FlutterFlowTheme.campusGrey,
+                            size: 24,
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Do you want to remove all of  these \nmessages?',
+                                  style: FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    color: FlutterFlowTheme.campusGrey,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: Text(
+                                    'Empty bin now',
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      color: Color(0xFF0074D8),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
                 StreamBuilder<List<MaintenanceRecord>>(
                   stream: queryMaintenanceRecord(
                     queryBuilder: (maintenanceRecord) => maintenanceRecord
