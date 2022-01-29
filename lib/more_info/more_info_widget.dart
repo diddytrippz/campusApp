@@ -50,7 +50,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
         ),
         actions: [],
         centerTitle: true,
-        elevation: 0,
+        elevation: 1,
       ),
       backgroundColor: FlutterFlowTheme.tertiaryColor,
       body: Container(
@@ -180,7 +180,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                     children: [
                       Container(
                         width: 130,
-                        height: 40,
+                        height: 50,
                         constraints: BoxConstraints(
                           maxHeight: 32,
                         ),
@@ -227,7 +227,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                         child: Container(
                           width: 130,
-                          height: 40,
+                          height: 50,
                           constraints: BoxConstraints(
                             maxHeight: 32,
                           ),
@@ -283,7 +283,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                     children: [
                       Container(
                         width: 130,
-                        height: 40,
+                        height: 50,
                         constraints: BoxConstraints(
                           maxHeight: 32,
                         ),
@@ -329,8 +329,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                         child: Container(
-                          width: 120,
-                          height: 35,
+                          width: 130,
+                          height: 50,
                           constraints: BoxConstraints(
                             maxHeight: 32,
                           ),
