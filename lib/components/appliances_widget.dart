@@ -24,6 +24,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
   String budgetValue;
   String uploadedFileUrl = '';
   TextEditingController reasonController;
+  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -33,15 +34,16 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-          child: Material(
+    return Form(
+      key: formKey,
+      autovalidateMode: AutovalidateMode.always,
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Material(
             color: Colors.transparent,
-            elevation: 3,
+            elevation: 30,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(0),
@@ -59,6 +61,10 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                   bottomRight: Radius.circular(0),
                   topLeft: Radius.circular(15),
                   topRight: Radius.circular(15),
+                ),
+                border: Border.all(
+                  color: FlutterFlowTheme.tertiaryColor,
+                  width: 1,
                 ),
               ),
               child: Column(
@@ -217,23 +223,21 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             controller: reasonController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: 'Additional notes\n(Optional)',
-                              hintStyle: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Lexend Deca',
-                                color: Color(0xFF090F13),
+                              hintText: 'Additional notes\n',
+                              hintStyle: FlutterFlowTheme.subtitle1.override(
+                                fontFamily: 'Poppins',
                                 fontSize: 14,
-                                fontWeight: FontWeight.normal,
                               ),
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Color(0xFFDBE2E7),
+                                  color: FlutterFlowTheme.campusGrey,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Color(0xFFDBE2E7),
+                                  color: FlutterFlowTheme.campusGrey,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
@@ -249,6 +253,13 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             ),
                             textAlign: TextAlign.start,
                             maxLines: 4,
+                            validator: (val) {
+                              if (val.isEmpty) {
+                                return 'This field cannot be empty';
+                              }
+
+                              return null;
+                            },
                           ),
                         ),
                         Padding(
@@ -256,6 +267,9 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                               EdgeInsetsDirectional.fromSTEB(20, 20, 20, 30),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              if (!formKey.currentState.validate()) {
+                                return;
+                              }
                               final maintenanceCreateData =
                                   createMaintenanceRecordData(
                                 issue: budgetValue,
@@ -270,6 +284,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                 uid: currentUserUid,
                                 category: 'Appliances',
                                 isDone: false,
+                                photoUrl: uploadedFileUrl,
                               );
                               await MaintenanceRecord.collection
                                   .doc()
@@ -325,8 +340,8 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

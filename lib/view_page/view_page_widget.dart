@@ -215,10 +215,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                 text: 'Submitted',
                                               ),
                                               Tab(
-                                                text: 'Completed',
+                                                text: 'Pending',
                                               ),
                                               Tab(
-                                                text: 'Pending',
+                                                text: 'Completed',
                                               ),
                                             ],
                                           ),

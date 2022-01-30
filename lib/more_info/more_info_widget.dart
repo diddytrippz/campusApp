@@ -2,6 +2,7 @@ import '../backend/backend.dart';
 import '../components/review_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -59,18 +60,18 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
         decoration: BoxDecoration(
           color: FlutterFlowTheme.tertiaryColor,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.35,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.tertiaryColor,
-                ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.33,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.tertiaryColor,
+              ),
+              child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,18 +161,18 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                         ),
                       ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 6, 20, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                       child: AutoSizeText(
                         widget.jobStatus.issue,
                         style: FlutterFlowTheme.title1.override(
                           fontFamily: 'Poppins',
-                          fontSize: 20,
+                          fontSize: 18,
                         ),
                       ),
                     ),
                     if ((widget.jobStatus.notes) != '')
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 4, 16, 2),
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 12, 16, 2),
                         child: AutoSizeText(
                           valueOrDefault<String>(
                             widget.jobStatus.notes,
@@ -188,332 +189,332 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                   ],
                 ),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.65,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.tertiaryColor,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    if (widget.jobStatus.isDone ?? true)
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(18, 18, 18, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 130,
-                              height: 50,
-                              constraints: BoxConstraints(
-                                maxHeight: 32,
-                              ),
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.campusGrey,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 4,
-                                    color: Color(0x32171717),
-                                    offset: Offset(0, 2),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.warning,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 0, 8, 0),
-                                      child: AutoSizeText(
-                                        widget.jobStatus.category,
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                              child: Container(
-                                width: 130,
-                                height: 50,
-                                constraints: BoxConstraints(
-                                  maxHeight: 32,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.campusRed,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 4,
-                                      color: Color(0x32171717),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 0, 8, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.approval,
-                                        color: Colors.white,
-                                        size: 20,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 0, 8, 0),
-                                        child: AutoSizeText(
-                                          widget.jobStatus.status,
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Lexend Deca',
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    if (!(widget.jobStatus.isDone) ?? true)
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(18, 18, 18, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 130,
-                              height: 50,
-                              constraints: BoxConstraints(
-                                maxHeight: 32,
-                              ),
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.campusGrey,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 4,
-                                    color: Color(0x32171717),
-                                    offset: Offset(0, 2),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.warning,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 0, 8, 0),
-                                      child: AutoSizeText(
-                                        widget.jobStatus.category,
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                              child: Container(
-                                width: 130,
-                                height: 50,
-                                constraints: BoxConstraints(
-                                  maxHeight: 32,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF19AC00),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 4,
-                                      color: Color(0x32171717),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 0, 8, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.approval,
-                                        color: Colors.white,
-                                        size: 20,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 0, 8, 0),
-                                        child: AutoSizeText(
-                                          widget.jobStatus.status,
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Lexend Deca',
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 22, 20, 0),
-                      child: StreamBuilder<List<UsersRecord>>(
-                        stream: queryUsersRecord(
-                          singleRecord: true,
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 60,
-                                height: 60,
-                                child: SpinKitPulse(
-                                  color: FlutterFlowTheme.primaryColor,
-                                  size: 60,
-                                ),
-                              ),
-                            );
-                          }
-                          List<UsersRecord> nameRatingUsersRecordList =
-                              snapshot.data;
-                          // Return an empty Container when the document does not exist.
-                          if (snapshot.data.isEmpty) {
-                            return Container();
-                          }
-                          final nameRatingUsersRecord =
-                              nameRatingUsersRecordList.isNotEmpty
-                                  ? nameRatingUsersRecordList.first
-                                  : null;
-                          return Row(
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.6,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.tertiaryColor,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      if (widget.jobStatus.isDone ?? true)
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(18, 18, 18, 0),
+                          child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 8, 0),
-                                    child: Container(
-                                      width: 45,
-                                      height: 45,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.tertiaryColor,
-                                        shape: BoxShape.circle,
+                              Container(
+                                width: 130,
+                                height: 50,
+                                constraints: BoxConstraints(
+                                  maxHeight: 32,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.campusGrey,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 4,
+                                      color: Color(0x32171717),
+                                      offset: Offset(0, 2),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 0, 8, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.warning,
+                                        color: Colors.white,
+                                        size: 20,
                                       ),
-                                      child: Icon(
-                                        Icons.mail_outline_outlined,
-                                        color: FlutterFlowTheme.primaryColor,
-                                        size: 24,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10, 0, 0, 0),
-                                    child: Text(
-                                      widget.jobStatus.displayName,
-                                      style:
-                                          FlutterFlowTheme.subtitle1.override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              InkWell(
-                                onTap: () async {
-                                  if ((widget.jobStatus.isDone) == true) {
-                                    await showModalBottomSheet(
-                                      isScrollControlled: true,
-                                      backgroundColor: Colors.transparent,
-                                      barrierColor: Color(0x5DFFFFFF),
-                                      context: context,
-                                      builder: (context) {
-                                        return Padding(
-                                          padding:
-                                              MediaQuery.of(context).viewInsets,
-                                          child: ReviewWidget(
-                                            forReviews: widget.jobStatus,
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 0, 8, 0),
+                                        child: AutoSizeText(
+                                          widget.jobStatus.category,
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Lexend Deca',
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.normal,
                                           ),
-                                        );
-                                      },
-                                    );
-                                  }
-                                },
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      'Rating',
-                                      style: FlutterFlowTheme.bodyText2,
-                                    ),
-                                    Row(
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                                child: Container(
+                                  width: 130,
+                                  height: 50,
+                                  constraints: BoxConstraints(
+                                    maxHeight: 32,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.campusRed,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 4,
+                                        color: Color(0x32171717),
+                                        offset: Offset(0, 2),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8, 0, 8, 0),
+                                    child: Row(
                                       mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
-                                        if ((widget.jobStatus.rating) > 0)
+                                        Icon(
+                                          Icons.approval,
+                                          color: Colors.white,
+                                          size: 20,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8, 0, 8, 0),
+                                          child: AutoSizeText(
+                                            widget.jobStatus.status,
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      if (!(widget.jobStatus.isDone) ?? true)
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(18, 18, 18, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 120,
+                                height: 70,
+                                constraints: BoxConstraints(
+                                  maxHeight: 32,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.campusGrey,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 4,
+                                      color: Color(0x32171717),
+                                      offset: Offset(0, 2),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 0, 8, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 0, 8, 0),
+                                        child: AutoSizeText(
+                                          widget.jobStatus.category,
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Lexend Deca',
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                                child: Container(
+                                  width: 120,
+                                  height: 70,
+                                  constraints: BoxConstraints(
+                                    maxHeight: 32,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF19AC00),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 4,
+                                        color: Color(0x32171717),
+                                        offset: Offset(0, 2),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8, 0, 8, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8, 0, 8, 0),
+                                          child: AutoSizeText(
+                                            widget.jobStatus.status,
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 30, 16, 0),
+                        child: StreamBuilder<List<UsersRecord>>(
+                          stream: queryUsersRecord(
+                            singleRecord: true,
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 60,
+                                  height: 60,
+                                  child: SpinKitPulse(
+                                    color: FlutterFlowTheme.primaryColor,
+                                    size: 60,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<UsersRecord> nameRatingUsersRecordList =
+                                snapshot.data;
+                            // Return an empty Container when the document does not exist.
+                            if (snapshot.data.isEmpty) {
+                              return Container();
+                            }
+                            final nameRatingUsersRecord =
+                                nameRatingUsersRecordList.isNotEmpty
+                                    ? nameRatingUsersRecordList.first
+                                    : null;
+                            return Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 8, 0),
+                                      child: Container(
+                                        width: 45,
+                                        height: 45,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.tertiaryColor,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Icon(
+                                          Icons.account_circle,
+                                          color: FlutterFlowTheme.primaryColor,
+                                          size: 35,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10, 0, 0, 0),
+                                      child: Text(
+                                        widget.jobStatus.displayName,
+                                        style:
+                                            FlutterFlowTheme.subtitle1.override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    if ((widget.jobStatus.isDone) == true) {
+                                      await showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        barrierColor: Color(0x5DFFFFFF),
+                                        context: context,
+                                        builder: (context) {
+                                          return Padding(
+                                            padding: MediaQuery.of(context)
+                                                .viewInsets,
+                                            child: ReviewWidget(
+                                              forReviews: widget.jobStatus,
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }
+                                  },
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        'Rating',
+                                        style: FlutterFlowTheme.bodyText2,
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
@@ -527,101 +528,157 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                               style: FlutterFlowTheme.title3,
                                             ),
                                           ),
-                                        Icon(
-                                          Icons.star_rounded,
-                                          color: FlutterFlowTheme.primaryColor,
-                                          size: 20,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                          Icon(
+                                            Icons.star_rounded,
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
+                                            size: 20,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.location_on,
+                            size: 30,
+                          ),
+                          title: Text(
+                            widget.jobStatus.building,
+                            style: FlutterFlowTheme.subtitle1.override(
+                              fontFamily: 'Poppins',
+                              fontSize: 20,
+                            ),
+                          ),
+                          subtitle: Text(
+                            'Room: ${widget.jobStatus.room}',
+                            style: FlutterFlowTheme.subtitle2.override(
+                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                            ),
+                          ),
+                          tileColor: FlutterFlowTheme.tertiaryColor,
+                          dense: true,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.calendar_today,
+                            size: 30,
+                          ),
+                          title: Text(
+                            '${dateTimeFormat('MMMMEEEEd', widget.jobStatus.createdTime)} at ${dateTimeFormat('jm', widget.jobStatus.createdTime)}',
+                            style: FlutterFlowTheme.title3.override(
+                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          subtitle: Text(
+                            dateTimeFormat(
+                                'relative', widget.jobStatus.createdTime),
+                            style: FlutterFlowTheme.subtitle2.override(
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          tileColor: FlutterFlowTheme.tertiaryColor,
+                          dense: true,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 30),
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.location_history_rounded,
+                            size: 30,
+                          ),
+                          title: Text(
+                            'Assigned to',
+                            style: FlutterFlowTheme.subtitle1.override(
+                              fontFamily: 'Poppins',
+                              fontSize: 20,
+                            ),
+                          ),
+                          subtitle: Text(
+                            'Maintenance Team',
+                            style: FlutterFlowTheme.subtitle2.override(
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                            ),
+                          ),
+                          tileColor: FlutterFlowTheme.tertiaryColor,
+                          dense: true,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.campusRed,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 5,
+                              color: Color(0x411D2429),
+                              offset: Offset(0, 2),
+                            )
+                          ],
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(0),
+                            topLeft: Radius.circular(16),
+                            topRight: Radius.circular(16),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 34),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              Navigator.pop(context);
+                            },
+                            text: 'DISMISS',
+                            options: FFButtonOptions(
+                              width: 150,
+                              height: 50,
+                              color: Color(0x00D93A0E),
+                              textStyle: FlutterFlowTheme.title3.override(
+                                fontFamily: 'Roboto',
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
                               ),
-                            ],
-                          );
-                        },
+                              elevation: 0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: 50,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.location_on,
-                        ),
-                        title: Text(
-                          widget.jobStatus.building,
-                          style: FlutterFlowTheme.subtitle1.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 16,
-                          ),
-                        ),
-                        subtitle: Text(
-                          'Room: ${widget.jobStatus.room}',
-                          style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 14,
-                          ),
-                        ),
-                        tileColor: FlutterFlowTheme.tertiaryColor,
-                        dense: true,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.calendar_today,
-                        ),
-                        title: Text(
-                          '${dateTimeFormat('MMMMEEEEd', widget.jobStatus.createdTime)} at ${dateTimeFormat('jm', widget.jobStatus.createdTime)}',
-                          style: FlutterFlowTheme.title3.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        subtitle: Text(
-                          dateTimeFormat(
-                              'relative', widget.jobStatus.createdTime),
-                          style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                        tileColor: FlutterFlowTheme.tertiaryColor,
-                        dense: true,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 15),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.location_history_rounded,
-                        ),
-                        title: Text(
-                          'Assigned to',
-                          style: FlutterFlowTheme.subtitle1.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 16,
-                          ),
-                        ),
-                        subtitle: Text(
-                          'Maintenance Team',
-                          style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 14,
-                          ),
-                        ),
-                        tileColor: FlutterFlowTheme.tertiaryColor,
-                        dense: true,
-                      ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

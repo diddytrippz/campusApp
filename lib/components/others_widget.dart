@@ -1,10 +1,12 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../components/submitted_icon_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/upload_media.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -18,6 +20,7 @@ class OthersWidget extends StatefulWidget {
 }
 
 class _OthersWidgetState extends State<OthersWidget> {
+  String uploadedFileUrl = '';
   TextEditingController reasonController;
   final formKey = GlobalKey<FormState>();
 
@@ -94,12 +97,38 @@ class _OthersWidgetState extends State<OthersWidget> {
                                 buttonSize: 48,
                                 fillColor: Color(0xFFD93A0E),
                                 icon: Icon(
-                                  Icons.close_rounded,
-                                  color: Color(0xFFFEF058),
+                                  Icons.photo_camera_outlined,
+                                  color: FlutterFlowTheme.tertiaryColor,
                                   size: 30,
                                 ),
                                 onPressed: () async {
-                                  Navigator.pop(context);
+                                  final selectedMedia =
+                                      await selectMediaWithSourceBottomSheet(
+                                    context: context,
+                                    allowPhoto: true,
+                                    allowVideo: true,
+                                  );
+                                  if (selectedMedia != null &&
+                                      validateFileFormat(
+                                          selectedMedia.storagePath, context)) {
+                                    showUploadMessage(
+                                        context, 'Uploading file...',
+                                        showLoading: true);
+                                    final downloadUrl = await uploadData(
+                                        selectedMedia.storagePath,
+                                        selectedMedia.bytes);
+                                    ScaffoldMessenger.of(context)
+                                        .hideCurrentSnackBar();
+                                    if (downloadUrl != null) {
+                                      setState(
+                                          () => uploadedFileUrl = downloadUrl);
+                                      showUploadMessage(context, 'Success!');
+                                    } else {
+                                      showUploadMessage(
+                                          context, 'Failed to upload media');
+                                      return;
+                                    }
+                                  }
                                 },
                               ),
                             ),
@@ -203,6 +232,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                               uid: currentUserUid,
                               category: 'Appliances',
                               isDone: false,
+                              photoUrl: uploadedFileUrl,
                             );
                             await MaintenanceRecord.collection
                                 .doc()

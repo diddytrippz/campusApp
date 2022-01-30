@@ -10,6 +10,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -92,6 +93,11 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
           children: [
             if (FFAppState().isPressed ?? true)
               TextFormField(
+                onChanged: (_) => EasyDebounce.debounce(
+                  'textController',
+                  Duration(milliseconds: 2000),
+                  () => setState(() {}),
+                ),
                 controller: textController,
                 obscureText: false,
                 decoration: InputDecoration(
@@ -117,6 +123,18 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                       topRight: Radius.circular(4.0),
                     ),
                   ),
+                  suffixIcon: textController.text.isNotEmpty
+                      ? InkWell(
+                          onTap: () => setState(
+                            () => textController.clear(),
+                          ),
+                          child: Icon(
+                            Icons.clear,
+                            color: Color(0xFF757575),
+                            size: 22,
+                          ),
+                        )
+                      : null,
                 ),
                 style: FlutterFlowTheme.bodyText1,
               ),
@@ -139,7 +157,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
             value: FFAppState().isPressed,
             onIcon: Icon(
               Icons.clear_sharp,
-              color: FlutterFlowTheme.campusGrey,
+              color: FlutterFlowTheme.tertiaryColor,
               size: 25,
             ),
             offIcon: Icon(

@@ -6,7 +6,7 @@ import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 
 import '../flutter_flow/flutter_flow_theme.dart';
-import 'package:campus_africa/login_page/login_page_widget.dart';
+import 'package:campus_africa/onboarding/onboarding_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,7 +16,6 @@ import 'home_page/home_page_widget.dart';
 import 'view_page/view_page_widget.dart';
 import 'inbox_page/inbox_page_widget.dart';
 import 'settings_page/settings_page_widget.dart';
-import 'all_chat/all_chat_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,17 +65,17 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(primarySwatch: Colors.blue),
       home: initialUser == null || displaySplashImage
           ? Container(
-              color: Color(0xFFD93A0E),
+              color: FlutterFlowTheme.primaryColor,
               child: Builder(
                 builder: (context) => Image.asset(
                   'assets/images/campus_logo_1.png',
-                  fit: BoxFit.contain,
+                  fit: BoxFit.scaleDown,
                 ),
               ),
             )
           : currentUser.loggedIn
               ? NavBarPage()
-              : LoginPageWidget(),
+              : OnboardingWidget(),
     );
   }
 }
@@ -107,7 +106,6 @@ class _NavBarPageState extends State<NavBarPage> {
       'viewPage': ViewPageWidget(),
       'inboxPage': InboxPageWidget(),
       'settingsPage': SettingsPageWidget(),
-      'allChat': AllChatWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -150,13 +148,6 @@ class _NavBarPageState extends State<NavBarPage> {
           GButton(
             icon: currentIndex == 3 ? Icons.person : Icons.person_outline,
             text: 'SETTINGS',
-            iconSize: 24,
-          ),
-          GButton(
-            icon: currentIndex == 4
-                ? Icons.chat_bubble_rounded
-                : Icons.chat_bubble_outline,
-            text: 'Chats',
             iconSize: 24,
           )
         ],
