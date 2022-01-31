@@ -66,7 +66,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.33,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.tertiaryColor,
                 ),
@@ -189,7 +188,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.6,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.tertiaryColor,
                 ),
