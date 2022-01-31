@@ -175,9 +175,11 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 24),
+                                      0, 30, 0, 24),
                                   child: Container(
                                     width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.4,
                                     decoration: BoxDecoration(
                                       color: Color(0x00EEEEEE),
                                       image: DecorationImage(
