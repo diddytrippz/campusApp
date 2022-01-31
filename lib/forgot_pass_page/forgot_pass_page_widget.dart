@@ -46,7 +46,7 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                     image: DecorationImage(
                       fit: BoxFit.contain,
                       image: Image.asset(
-                        'assets/images/Untitled_design.png',
+                        'assets/images/Untitled_design_(1).png',
                       ).image,
                     ),
                   ),

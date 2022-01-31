@@ -71,7 +71,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(18, 25, 18, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(18, 5, 18, 0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [

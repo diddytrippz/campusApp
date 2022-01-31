@@ -2,7 +2,6 @@ import '../backend/backend.dart';
 import '../components/review_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -198,7 +197,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.max,
@@ -465,7 +464,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                         ),
                                         child: Icon(
                                           Icons.account_circle,
-                                          color: FlutterFlowTheme.primaryColor,
+                                          color: FlutterFlowTheme.campusGrey,
                                           size: 35,
                                         ),
                                       ),
@@ -548,8 +547,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
                         child: ListTile(
                           leading: Icon(
-                            Icons.location_on,
-                            size: 30,
+                            Icons.add_location_alt,
+                            size: 35,
                           ),
                           title: Text(
                             widget.jobStatus.building,
@@ -620,57 +619,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                           ),
                           tileColor: FlutterFlowTheme.tertiaryColor,
                           dense: true,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.campusRed,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 5,
-                              color: Color(0x411D2429),
-                              offset: Offset(0, 2),
-                            )
-                          ],
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
-                            topLeft: Radius.circular(16),
-                            topRight: Radius.circular(16),
-                          ),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 34),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              Navigator.pop(context);
-                            },
-                            text: 'DISMISS',
-                            options: FFButtonOptions(
-                              width: 150,
-                              height: 50,
-                              color: Color(0x00D93A0E),
-                              textStyle: FlutterFlowTheme.title3.override(
-                                fontFamily: 'Roboto',
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              elevation: 0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: 50,
-                            ),
-                          ),
                         ),
                       ),
                     ],
