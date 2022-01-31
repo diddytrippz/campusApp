@@ -1,9 +1,12 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/review_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
+import '../trash/trash_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -89,37 +92,68 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                             ),
                             InkWell(
                               onTap: () async {
-                                if ((widget.jobStatus.isDone) == false) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: Text('Delete Record?'),
-                                        content: Text(
-                                            'Are you sure that you want to delete this record? This process cannot be undone.'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Cancel'),
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: Text(
+                                          'Are you sure you want to delete this record?'),
+                                      content:
+                                          Text('This action cannot be undone'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () async {
+                                            Navigator.pop(alertDialogContext);
+
+                                            final maintenanceUpdateData =
+                                                createMaintenanceRecordData(
+                                              status: 'Deleted',
+                                            );
+                                            await widget.jobStatus.reference
+                                                .update(maintenanceUpdateData);
+                                            ;
+                                          },
+                                          child: Text('Confirm'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      '1 item moved to bin',
+                                      style: TextStyle(),
+                                    ),
+                                    duration: Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.campusGrey,
+                                    action: SnackBarAction(
+                                      label: 'TRASH',
+                                      textColor: Color(0xFF3779FF),
+                                      onPressed: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type:
+                                                PageTransitionType.bottomToTop,
+                                            duration:
+                                                Duration(milliseconds: 300),
+                                            reverseDuration:
+                                                Duration(milliseconds: 300),
+                                            child: TrashWidget(),
                                           ),
-                                          TextButton(
-                                            onPressed: () async {
-                                              Navigator.pop(alertDialogContext);
-                                              await widget.jobStatus.reference
-                                                  .delete();
-                                              ;
-                                            },
-                                            child: Text('Confirm'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                } else {
-                                  return;
-                                }
-                                await Navigator.pushAndRemoveUntil(
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                );
+                                await Navigator.push(
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.bottomToTop,
@@ -128,7 +162,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                         Duration(milliseconds: 300),
                                     child: NavBarPage(initialPage: 'viewPage'),
                                   ),
-                                  (r) => false,
                                 );
                               },
                               child: Icon(
