@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
+import '../components/empty_inbox_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -13,7 +14,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
@@ -512,13 +512,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                               columnChatMessagesRecordList = snapshot.data;
                           if (columnChatMessagesRecordList.isEmpty) {
                             return Center(
-                              child: SvgPicture.asset(
-                                'assets/images/undraw_no_data_re_kwbl.svg',
-                                width: MediaQuery.of(context).size.width * 0.8,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.6,
-                                fit: BoxFit.scaleDown,
-                              ),
+                              child: EmptyInboxWidget(),
                             );
                           }
                           return SingleChildScrollView(
