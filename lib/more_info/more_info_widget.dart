@@ -492,61 +492,58 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                   ),
                                 ],
                               ),
-                              Expanded(
-                                child: InkWell(
-                                  onTap: () async {
-                                    if ((widget.jobStatus.isDone) == true) {
-                                      await showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: Colors.transparent,
-                                        barrierColor: Color(0x5DFFFFFF),
-                                        context: context,
-                                        builder: (context) {
-                                          return Padding(
-                                            padding: MediaQuery.of(context)
-                                                .viewInsets,
-                                            child: ReviewWidget(
-                                              forReviews: widget.jobStatus,
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    }
-                                  },
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      AutoSizeText(
-                                        'Rating',
-                                        style: FlutterFlowTheme.bodyText2,
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 4, 0),
-                                            child: AutoSizeText(
-                                              valueOrDefault<String>(
-                                                widget.jobStatus.rating
-                                                    .toString(),
-                                                '0',
-                                              ),
-                                              style: FlutterFlowTheme.title3,
-                                            ),
+                              InkWell(
+                                onTap: () async {
+                                  if ((widget.jobStatus.isDone) == true) {
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      barrierColor: Color(0x5DFFFFFF),
+                                      context: context,
+                                      builder: (context) {
+                                        return Padding(
+                                          padding:
+                                              MediaQuery.of(context).viewInsets,
+                                          child: ReviewWidget(
+                                            forReviews: widget.jobStatus,
                                           ),
-                                          Icon(
-                                            Icons.star_rounded,
-                                            color:
-                                                FlutterFlowTheme.primaryColor,
-                                            size: 20,
+                                        );
+                                      },
+                                    );
+                                  }
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    AutoSizeText(
+                                      'Rating',
+                                      style: FlutterFlowTheme.bodyText2,
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 4, 0),
+                                          child: AutoSizeText(
+                                            valueOrDefault<String>(
+                                              widget.jobStatus.rating
+                                                  .toString(),
+                                              '0',
+                                            ),
+                                            style: FlutterFlowTheme.title3,
                                           ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                        ),
+                                        Icon(
+                                          Icons.star_rounded,
+                                          color: FlutterFlowTheme.primaryColor,
+                                          size: 20,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
