@@ -3,12 +3,12 @@ import '../backend/backend.dart';
 import '../components/review_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../main.dart';
 import '../trash/trash_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MoreInfoWidget extends StatefulWidget {
@@ -153,16 +153,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                     ),
                                   ),
                                 );
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.bottomToTop,
-                                    duration: Duration(milliseconds: 300),
-                                    reverseDuration:
-                                        Duration(milliseconds: 300),
-                                    child: NavBarPage(initialPage: 'viewPage'),
-                                  ),
-                                );
                               },
                               child: Icon(
                                 Icons.delete_outline,
@@ -235,8 +225,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              width: 130,
-                              height: 50,
+                              width: 120,
+                              height: 70,
                               constraints: BoxConstraints(
                                 maxHeight: 32,
                               ),
@@ -258,11 +248,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(
-                                      Icons.warning,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 8, 0),
@@ -272,7 +257,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Lexend Deca',
                                           color: Colors.white,
-                                          fontSize: 14,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.normal,
                                         ),
                                       ),
@@ -285,8 +270,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                               child: Container(
-                                width: 130,
-                                height: 50,
+                                width: 120,
+                                height: 70,
                                 constraints: BoxConstraints(
                                   maxHeight: 32,
                                 ),
@@ -308,21 +293,21 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Icon(
-                                        Icons.approval,
-                                        color: Colors.white,
-                                        size: 20,
+                                      FaIcon(
+                                        FontAwesomeIcons.filePdf,
+                                        color: FlutterFlowTheme.tertiaryColor,
+                                        size: 18,
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             8, 0, 8, 0),
                                         child: AutoSizeText(
-                                          widget.jobStatus.status,
+                                          'Attachment',
                                           style: FlutterFlowTheme.bodyText1
                                               .override(
                                             fontFamily: 'Lexend Deca',
                                             color: Colors.white,
-                                            fontSize: 14,
+                                            fontSize: 12,
                                             fontWeight: FontWeight.normal,
                                           ),
                                         ),
@@ -394,7 +379,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                   maxHeight: 32,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Color(0xFF19AC00),
+                                  color: FlutterFlowTheme.campusRed,
                                   boxShadow: [
                                     BoxShadow(
                                       blurRadius: 4,
@@ -411,16 +396,21 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
+                                      FaIcon(
+                                        FontAwesomeIcons.filePdf,
+                                        color: FlutterFlowTheme.tertiaryColor,
+                                        size: 18,
+                                      ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             8, 0, 8, 0),
                                         child: AutoSizeText(
-                                          widget.jobStatus.status,
+                                          'Attachment',
                                           style: FlutterFlowTheme.bodyText1
                                               .override(
                                             fontFamily: 'Lexend Deca',
                                             color: Colors.white,
-                                            fontSize: 16,
+                                            fontSize: 12,
                                             fontWeight: FontWeight.normal,
                                           ),
                                         ),
@@ -502,58 +492,61 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                   ),
                                 ],
                               ),
-                              InkWell(
-                                onTap: () async {
-                                  if ((widget.jobStatus.isDone) == true) {
-                                    await showModalBottomSheet(
-                                      isScrollControlled: true,
-                                      backgroundColor: Colors.transparent,
-                                      barrierColor: Color(0x5DFFFFFF),
-                                      context: context,
-                                      builder: (context) {
-                                        return Padding(
-                                          padding:
-                                              MediaQuery.of(context).viewInsets,
-                                          child: ReviewWidget(
-                                            forReviews: widget.jobStatus,
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  }
-                                },
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      'Rating',
-                                      style: FlutterFlowTheme.bodyText2,
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 4, 0),
-                                          child: Text(
-                                            valueOrDefault<String>(
-                                              widget.jobStatus.rating
-                                                  .toString(),
-                                              '0',
+                              Expanded(
+                                child: InkWell(
+                                  onTap: () async {
+                                    if ((widget.jobStatus.isDone) == true) {
+                                      await showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        barrierColor: Color(0x5DFFFFFF),
+                                        context: context,
+                                        builder: (context) {
+                                          return Padding(
+                                            padding: MediaQuery.of(context)
+                                                .viewInsets,
+                                            child: ReviewWidget(
+                                              forReviews: widget.jobStatus,
                                             ),
-                                            style: FlutterFlowTheme.title3,
+                                          );
+                                        },
+                                      );
+                                    }
+                                  },
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      AutoSizeText(
+                                        'Rating',
+                                        style: FlutterFlowTheme.bodyText2,
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 4, 0),
+                                            child: AutoSizeText(
+                                              valueOrDefault<String>(
+                                                widget.jobStatus.rating
+                                                    .toString(),
+                                                '0',
+                                              ),
+                                              style: FlutterFlowTheme.title3,
+                                            ),
                                           ),
-                                        ),
-                                        Icon(
-                                          Icons.star_rounded,
-                                          color: FlutterFlowTheme.primaryColor,
-                                          size: 20,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                          Icon(
+                                            Icons.star_rounded,
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
+                                            size: 20,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -572,7 +565,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                           widget.jobStatus.building,
                           style: FlutterFlowTheme.subtitle1.override(
                             fontFamily: 'Poppins',
-                            fontSize: 20,
+                            fontSize: 18,
                           ),
                         ),
                         subtitle: Text(
@@ -625,7 +618,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                           'Assigned to',
                           style: FlutterFlowTheme.subtitle1.override(
                             fontFamily: 'Poppins',
-                            fontSize: 20,
+                            fontSize: 18,
                           ),
                         ),
                         subtitle: Text(

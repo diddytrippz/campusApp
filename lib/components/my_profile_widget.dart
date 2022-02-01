@@ -163,14 +163,14 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                               image: Image.network(
                                                 valueOrDefault<String>(
                                                   currentUserPhoto,
-                                                  'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                                                  'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                                 ),
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: false,
                                               tag: valueOrDefault<String>(
                                                 currentUserPhoto,
-                                                'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                                                'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                               ),
                                               useHeroAnimation: true,
                                             ),
@@ -180,7 +180,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                       child: Hero(
                                         tag: valueOrDefault<String>(
                                           currentUserPhoto,
-                                          'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                                          'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                         ),
                                         transitionOnUserGestures: true,
                                         child: Container(
@@ -193,7 +193,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                           child: Image.network(
                                             valueOrDefault<String>(
                                               currentUserPhoto,
-                                              'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                                              'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                             ),
                                             fit: BoxFit.cover,
                                           ),

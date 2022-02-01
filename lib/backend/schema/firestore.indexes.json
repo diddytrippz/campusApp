@@ -59,6 +59,20 @@
       ]
     },
     {
+      "collectionGroup": "chatMessages",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "email",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "time_created",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "maintenance",
       "queryScope": "COLLECTION",
       "fields": [
@@ -69,6 +83,18 @@
         {
           "fieldPath": "created_time",
           "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "fcm_tokens",
+      "fieldPath": "fcm_token",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
         }
       ]
     }

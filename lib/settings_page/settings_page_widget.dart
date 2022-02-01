@@ -167,7 +167,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                             valueOrDefault<
                                                                 String>(
                                                               currentUserPhoto,
-                                                              'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                                                              'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                                             ),
                                                             fit: BoxFit.contain,
                                                           ),
@@ -175,7 +175,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                           tag: valueOrDefault<
                                                               String>(
                                                             currentUserPhoto,
-                                                            'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                                                            'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                                           ),
                                                           useHeroAnimation:
                                                               true,
@@ -186,7 +186,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                   child: Hero(
                                                     tag: valueOrDefault<String>(
                                                       currentUserPhoto,
-                                                      'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                                                      'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                                     ),
                                                     transitionOnUserGestures:
                                                         true,
@@ -201,7 +201,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                       child: Image.network(
                                                         valueOrDefault<String>(
                                                           currentUserPhoto,
-                                                          'https://images.unsplash.com/photo-1570158268183-d296b2892211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+                                                          'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                                         ),
                                                         fit: BoxFit.cover,
                                                       ),

@@ -1,7 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
-import '../components/empty_inbox_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -9,10 +8,12 @@ import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
@@ -172,8 +173,16 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
       ),
       backgroundColor: Color(0xF9FFFFFF),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          print('FloatingActionButton pressed ...');
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            PageTransition(
+              type: PageTransitionType.bottomToTop,
+              duration: Duration(milliseconds: 300),
+              reverseDuration: Duration(milliseconds: 300),
+              child: NavBarPage(initialPage: 'homePage'),
+            ),
+          );
         },
         backgroundColor: FlutterFlowTheme.mellow,
         icon: Icon(
@@ -453,11 +462,24 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 30,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.tertiaryColor,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.tertiaryColor,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 18, 0, 0),
+                    child: Text(
+                      'ALL MESSAGES',
+                      style: FlutterFlowTheme.bodyText1.override(
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
                 ),
               ),
               Expanded(
@@ -466,7 +488,12 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       FutureBuilder<List<ChatMessagesRecord>>(
-                        future: queryChatMessagesRecordOnce(),
+                        future: queryChatMessagesRecordOnce(
+                          queryBuilder: (chatMessagesRecord) =>
+                              chatMessagesRecord
+                                  .where('email', isEqualTo: currentUserEmail)
+                                  .orderBy('time_created', descending: true),
+                        ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
@@ -484,7 +511,15 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                           List<ChatMessagesRecord>
                               columnChatMessagesRecordList = snapshot.data;
                           if (columnChatMessagesRecordList.isEmpty) {
-                            return EmptyInboxWidget();
+                            return Center(
+                              child: SvgPicture.asset(
+                                'assets/images/undraw_no_data_re_kwbl.svg',
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
+                                fit: BoxFit.scaleDown,
+                              ),
+                            );
                           }
                           return SingleChildScrollView(
                             child: Column(

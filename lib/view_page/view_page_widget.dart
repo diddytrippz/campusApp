@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/no_search_results_widget.dart';
 import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_toggle_icon.dart';
@@ -13,6 +12,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ViewPageWidget extends StatefulWidget {
@@ -294,8 +294,20 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                           if (listViewMaintenanceRecordList
                                                               .isEmpty) {
                                                             return Center(
-                                                              child:
-                                                                  NoSearchResultsWidget(),
+                                                              child: SvgPicture
+                                                                  .asset(
+                                                                'assets/images/undraw_no_data_re_kwbl.svg',
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.6,
+                                                                height: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .height *
+                                                                    0.6,
+                                                              ),
                                                             );
                                                           }
                                                           return ListView
@@ -541,7 +553,22 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                 .isEmpty) {
                                                               return Center(
                                                                 child:
-                                                                    NoSearchResultsWidget(),
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                  'assets/images/undraw_no_data_re_kwbl.svg',
+                                                                  width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.6,
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.6,
+                                                                  fit: BoxFit
+                                                                      .scaleDown,
+                                                                ),
                                                               );
                                                             }
                                                             return ListView
@@ -709,8 +736,22 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                           if (listViewMaintenanceRecordList
                                                               .isEmpty) {
                                                             return Center(
-                                                              child:
-                                                                  NoSearchResultsWidget(),
+                                                              child: SvgPicture
+                                                                  .asset(
+                                                                'assets/images/undraw_no_data_re_kwbl.svg',
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.6,
+                                                                height: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .height *
+                                                                    0.6,
+                                                                fit: BoxFit
+                                                                    .scaleDown,
+                                                              ),
                                                             );
                                                           }
                                                           return ListView
@@ -920,7 +961,22 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                 .isEmpty) {
                                                               return Center(
                                                                 child:
-                                                                    NoSearchResultsWidget(),
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                  'assets/images/undraw_no_data_re_kwbl.svg',
+                                                                  width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.6,
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.6,
+                                                                  fit: BoxFit
+                                                                      .scaleDown,
+                                                                ),
                                                               );
                                                             }
                                                             return ListView
@@ -1152,7 +1208,22 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                 .isEmpty) {
                                                               return Center(
                                                                 child:
-                                                                    NoSearchResultsWidget(),
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                  'assets/images/undraw_no_data_re_kwbl.svg',
+                                                                  width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.6,
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.6,
+                                                                  fit: BoxFit
+                                                                      .scaleDown,
+                                                                ),
                                                               );
                                                             }
                                                             return ListView
@@ -1403,7 +1474,20 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                 .isEmpty) {
                                                               return Center(
                                                                 child:
-                                                                    NoSearchResultsWidget(),
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                  'assets/images/undraw_no_data_re_kwbl.svg',
+                                                                  width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.6,
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.6,
+                                                                ),
                                                               );
                                                             }
                                                             return ListView

@@ -1,10 +1,10 @@
 import '../backend/backend.dart';
-import '../components/no_search_results_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TrashWidget extends StatefulWidget {
@@ -36,7 +36,7 @@ class _TrashWidgetState extends State<TrashWidget> {
             await Navigator.push(
               context,
               PageTransition(
-                type: PageTransitionType.rightToLeft,
+                type: PageTransitionType.leftToRight,
                 duration: Duration(milliseconds: 300),
                 reverseDuration: Duration(milliseconds: 300),
                 child: NavBarPage(initialPage: 'settingsPage'),
@@ -123,7 +123,7 @@ class _TrashWidgetState extends State<TrashWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Do you want to remove all of  these \nmessages?',
+                                  'Messages are store here for future\nreferences and may only be deleted \nby the admin.',
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
                                     color: FlutterFlowTheme.campusGrey,
@@ -133,7 +133,7 @@ class _TrashWidgetState extends State<TrashWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 8),
                                   child: Text(
-                                    'Empty bin now',
+                                    'Recycle all',
                                     style: FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Poppins',
                                       color: FlutterFlowTheme.mellow,
@@ -172,7 +172,14 @@ class _TrashWidgetState extends State<TrashWidget> {
                     List<MaintenanceRecord> columnMaintenanceRecordList =
                         snapshot.data;
                     if (columnMaintenanceRecordList.isEmpty) {
-                      return NoSearchResultsWidget();
+                      return Center(
+                        child: SvgPicture.asset(
+                          'assets/images/undraw_no_data_re_kwbl.svg',
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          height: MediaQuery.of(context).size.height * 0.6,
+                          fit: BoxFit.scaleDown,
+                        ),
+                      );
                     }
                     return Column(
                       mainAxisSize: MainAxisSize.max,
