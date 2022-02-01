@@ -71,10 +71,14 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   Widget build(BuildContext context) => _loading
       ? Container(
           color: FlutterFlowTheme.primaryColor,
-          child: Builder(
-            builder: (context) => Image.asset(
-              'assets/images/campus_logo_1.png',
-              fit: BoxFit.scaleDown,
+          child: Center(
+            child: Builder(
+              builder: (context) => Image.asset(
+                'assets/images/campus_logo_1.png',
+                width: MediaQuery.of(context).size.width * 0.75,
+                height: MediaQuery.of(context).size.height * 0.75,
+                fit: BoxFit.scaleDown,
+              ),
             ),
           ),
         )
@@ -85,11 +89,11 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'onboarding': (data) async => OnboardingWidget(),
   'loginPage': (data) async => LoginPageWidget(),
   'viewPage': (data) async => NavBarPage(initialPage: 'ViewPageWidget'),
+  'inboxPage': (data) async => NavBarPage(initialPage: 'InboxPageWidget'),
   'moreInfo': (data) async => MoreInfoWidget(
         jobStatus: await getDocumentParameter(
             data, 'jobStatus', MaintenanceRecord.serializer),
       ),
-  'inboxPage': (data) async => NavBarPage(initialPage: 'InboxPageWidget'),
   'settingsPage': (data) async => NavBarPage(initialPage: 'SettingsPageWidget'),
   'rulesBook': (data) async => RulesBookWidget(),
   'trash': (data) async => TrashWidget(),

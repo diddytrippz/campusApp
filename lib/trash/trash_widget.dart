@@ -1,10 +1,10 @@
 import '../backend/backend.dart';
+import '../components/empty_list_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TrashWidget extends StatefulWidget {
@@ -173,12 +173,7 @@ class _TrashWidgetState extends State<TrashWidget> {
                         snapshot.data;
                     if (columnMaintenanceRecordList.isEmpty) {
                       return Center(
-                        child: SvgPicture.asset(
-                          'assets/images/undraw_no_data_re_kwbl.svg',
-                          width: MediaQuery.of(context).size.width * 0.6,
-                          height: MediaQuery.of(context).size.height * 0.6,
-                          fit: BoxFit.scaleDown,
-                        ),
+                        child: EmptyListWidget(),
                       );
                     }
                     return SingleChildScrollView(
@@ -243,6 +238,16 @@ class _TrashWidgetState extends State<TrashWidget> {
                                                 .override(
                                               fontFamily: 'Poppins',
                                               fontSize: 14,
+                                            ),
+                                          ),
+                                          Text(
+                                            'image',
+                                            style: FlutterFlowTheme.subtitle1
+                                                .override(
+                                              fontFamily: 'Roboto',
+                                              color: FlutterFlowTheme.campusRed,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                         ],

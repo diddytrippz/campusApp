@@ -1,10 +1,12 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../main.dart';
 import '../more_info/more_info_widget.dart';
 import '../trash/trash_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -22,15 +24,40 @@ class ViewPageWidget extends StatefulWidget {
   _ViewPageWidgetState createState() => _ViewPageWidgetState();
 }
 
-class _ViewPageWidgetState extends State<ViewPageWidget> {
+class _ViewPageWidgetState extends State<ViewPageWidget>
+    with TickerProviderStateMixin {
   DateTimeRange calendarSelectedDay;
   List<MaintenanceRecord> algoliaSearchResults = [];
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final animationsMap = {
+    'floatingActionButtonOnPageLoadAnimation': AnimationInfo(
+      curve: Curves.bounceOut,
+      trigger: AnimationTrigger.onPageLoad,
+      duration: 800,
+      fadeIn: true,
+      initialState: AnimationState(
+        offset: Offset(0, 0),
+        scale: 1,
+        opacity: 0,
+      ),
+      finalState: AnimationState(
+        offset: Offset(0, 0),
+        scale: 1,
+        opacity: 1,
+      ),
+    ),
+  };
 
   @override
   void initState() {
     super.initState();
+    startPageLoadAnimations(
+      animationsMap.values
+          .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
+      this,
+    );
+
     calendarSelectedDay = DateTimeRange(
       start: DateTime.now().startOfDay,
       end: DateTime.now().endOfDay,
@@ -43,6 +70,26 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFD93A0E),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            PageTransition(
+              type: PageTransitionType.bottomToTop,
+              duration: Duration(milliseconds: 300),
+              reverseDuration: Duration(milliseconds: 300),
+              child: NavBarPage(initialPage: 'homePage'),
+            ),
+          );
+        },
+        backgroundColor: FlutterFlowTheme.mellow,
+        elevation: 8,
+        child: Icon(
+          Icons.edit_sharp,
+          color: FlutterFlowTheme.tertiaryColor,
+          size: 24,
+        ),
+      ).animated([animationsMap['floatingActionButtonOnPageLoadAnimation']]),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -294,19 +341,16 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                           if (listViewMaintenanceRecordList
                                                               .isEmpty) {
                                                             return Center(
-                                                              child: SvgPicture
-                                                                  .asset(
-                                                                'assets/images/undraw_no_data_re_kwbl.svg',
+                                                              child:
+                                                                  Image.asset(
+                                                                'assets/images/undraw_no_data_re_kwbl.png',
                                                                 width: MediaQuery.of(
                                                                             context)
                                                                         .size
                                                                         .width *
                                                                     0.5,
-                                                                height: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
-                                                                    0.5,
+                                                                fit: BoxFit
+                                                                    .contain,
                                                               ),
                                                             );
                                                           }
@@ -367,8 +411,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                           builder:
                                                                               (alertDialogContext) {
                                                                             return AlertDialog(
-                                                                              title: Text('Are you sure you want to delete this record?'),
-                                                                              content: Text('This action cannot be undone'),
+                                                                              content: Text('You are about to delete all items. Do you wish to continue?'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext),
@@ -384,7 +427,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                     await listViewMaintenanceRecord.reference.update(maintenanceUpdateData);
                                                                                     ;
                                                                                   },
-                                                                                  child: Text('Confirm'),
+                                                                                  child: Text('OK'),
                                                                                 ),
                                                                               ],
                                                                             );
@@ -561,13 +604,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                           .size
                                                                           .width *
                                                                       0.5,
-                                                                  height: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .height *
-                                                                      0.5,
                                                                   fit: BoxFit
-                                                                      .scaleDown,
+                                                                      .contain,
                                                                 ),
                                                               );
                                                             }
@@ -643,14 +681,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                         fontSize:
                                                                             14,
                                                                       ),
-                                                                    ),
-                                                                    trailing:
-                                                                        Icon(
-                                                                      Icons
-                                                                          .keyboard_arrow_right_sharp,
-                                                                      color: Color(
-                                                                          0xFF303030),
-                                                                      size: 20,
                                                                     ),
                                                                     tileColor:
                                                                         Color(
@@ -736,18 +766,13 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                           if (listViewMaintenanceRecordList
                                                               .isEmpty) {
                                                             return Center(
-                                                              child: SvgPicture
-                                                                  .asset(
-                                                                'assets/images/undraw_no_data_re_kwbl.svg',
+                                                              child:
+                                                                  Image.asset(
+                                                                'assets/images/undraw_no_data_re_kwbl.png',
                                                                 width: MediaQuery.of(
                                                                             context)
                                                                         .size
                                                                         .width *
-                                                                    0.5,
-                                                                height: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .height *
                                                                     0.5,
                                                                 fit: BoxFit
                                                                     .scaleDown,

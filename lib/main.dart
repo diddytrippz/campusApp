@@ -7,7 +7,6 @@ import 'auth/auth_util.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:campus_africa/onboarding/onboarding_widget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -67,10 +66,14 @@ class _MyAppState extends State<MyApp> {
       home: initialUser == null || displaySplashImage
           ? Container(
               color: FlutterFlowTheme.primaryColor,
-              child: Builder(
-                builder: (context) => Image.asset(
-                  'assets/images/campus_logo_1.png',
-                  fit: BoxFit.scaleDown,
+              child: Center(
+                child: Builder(
+                  builder: (context) => Image.asset(
+                    'assets/images/campus_logo_1.png',
+                    width: MediaQuery.of(context).size.width * 0.75,
+                    height: MediaQuery.of(context).size.height * 0.75,
+                    fit: BoxFit.scaleDown,
+                  ),
                 ),
               ),
             )
@@ -141,8 +144,8 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           GButton(
             icon: currentIndex == 2
-                ? FontAwesomeIcons.solidBell
-                : FontAwesomeIcons.bell,
+                ? Icons.notifications
+                : Icons.notifications_none,
             text: 'Messages',
             iconSize: 24,
           ),

@@ -287,7 +287,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   ),
                   InkWell(
                     onTap: () async {
-                      await Navigator.pushAndRemoveUntil(
+                      await Navigator.push(
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
@@ -295,7 +295,6 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           reverseDuration: Duration(milliseconds: 300),
                           child: NavBarPage(initialPage: 'inboxPage'),
                         ),
-                        (r) => false,
                       );
                     },
                     child: ListTile(

@@ -59,20 +59,6 @@
       ]
     },
     {
-      "collectionGroup": "chatMessages",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "email",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "time_created",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "maintenance",
       "queryScope": "COLLECTION",
       "fields": [
@@ -82,6 +68,20 @@
         },
         {
           "fieldPath": "created_time",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "chatMessages",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "email",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "time_created",
           "order": "DESCENDING"
         }
       ]
