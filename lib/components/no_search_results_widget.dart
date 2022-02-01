@@ -2,8 +2,8 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 
 class NoSearchResultsWidget extends StatefulWidget {
   const NoSearchResultsWidget({Key key}) : super(key: key);
@@ -22,13 +22,17 @@ class _NoSearchResultsWidgetState extends State<NoSearchResultsWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Lottie.network(
-            'https://assets2.lottiefiles.com/packages/lf20_GlZGOi.json',
-            width: MediaQuery.of(context).size.width,
-            height: 320,
-            fit: BoxFit.contain,
-            repeat: false,
-            animate: true,
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                'assets/images/undraw_no_data_re_kwbl.svg',
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: MediaQuery.of(context).size.height * 0.6,
+                fit: BoxFit.cover,
+              ),
+            ],
           ),
         ],
       ),

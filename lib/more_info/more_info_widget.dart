@@ -296,7 +296,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                       FaIcon(
                                         FontAwesomeIcons.filePdf,
                                         color: FlutterFlowTheme.tertiaryColor,
-                                        size: 18,
+                                        size: 16,
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -399,7 +399,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                       FaIcon(
                                         FontAwesomeIcons.filePdf,
                                         color: FlutterFlowTheme.tertiaryColor,
-                                        size: 18,
+                                        size: 16,
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
