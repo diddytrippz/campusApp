@@ -1168,7 +1168,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                               queryMaintenanceRecord(
                                                             queryBuilder: (maintenanceRecord) => maintenanceRecord
                                                                 .where('status',
-                                                                    isEqualTo:
+                                                                    isNotEqualTo:
                                                                         'Submitted')
                                                                 .where(
                                                                     'building',
