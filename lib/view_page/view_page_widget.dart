@@ -518,8 +518,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                               queryMaintenanceRecord(
                                                             queryBuilder: (maintenanceRecord) => maintenanceRecord
                                                                 .where('status',
-                                                                    isEqualTo:
-                                                                        'Pending')
+                                                                    isNotEqualTo:
+                                                                        'Submitted')
                                                                 .where('email',
                                                                     isEqualTo:
                                                                         currentUserEmail)
