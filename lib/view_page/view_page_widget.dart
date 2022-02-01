@@ -301,12 +301,12 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             context)
                                                                         .size
                                                                         .width *
-                                                                    0.6,
+                                                                    0.5,
                                                                 height: MediaQuery.of(
                                                                             context)
                                                                         .size
                                                                         .height *
-                                                                    0.6,
+                                                                    0.5,
                                                               ),
                                                             );
                                                           }
@@ -560,12 +560,12 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                               context)
                                                                           .size
                                                                           .width *
-                                                                      0.6,
+                                                                      0.5,
                                                                   height: MediaQuery.of(
                                                                               context)
                                                                           .size
                                                                           .height *
-                                                                      0.6,
+                                                                      0.5,
                                                                   fit: BoxFit
                                                                       .scaleDown,
                                                                 ),
@@ -743,12 +743,12 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             context)
                                                                         .size
                                                                         .width *
-                                                                    0.6,
+                                                                    0.5,
                                                                 height: MediaQuery.of(
                                                                             context)
                                                                         .size
                                                                         .height *
-                                                                    0.6,
+                                                                    0.5,
                                                                 fit: BoxFit
                                                                     .scaleDown,
                                                               ),
@@ -968,12 +968,12 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                               context)
                                                                           .size
                                                                           .width *
-                                                                      0.6,
+                                                                      0.5,
                                                                   height: MediaQuery.of(
                                                                               context)
                                                                           .size
                                                                           .height *
-                                                                      0.6,
+                                                                      0.5,
                                                                   fit: BoxFit
                                                                       .scaleDown,
                                                                 ),
@@ -1215,12 +1215,12 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                               context)
                                                                           .size
                                                                           .width *
-                                                                      0.6,
+                                                                      0.5,
                                                                   height: MediaQuery.of(
                                                                               context)
                                                                           .size
                                                                           .height *
-                                                                      0.6,
+                                                                      0.5,
                                                                   fit: BoxFit
                                                                       .scaleDown,
                                                                 ),
@@ -1481,12 +1481,12 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                               context)
                                                                           .size
                                                                           .width *
-                                                                      0.6,
+                                                                      0.5,
                                                                   height: MediaQuery.of(
                                                                               context)
                                                                           .size
                                                                           .height *
-                                                                      0.6,
+                                                                      0.5,
                                                                 ),
                                                               );
                                                             }

@@ -175,82 +175,86 @@ class _TrashWidgetState extends State<TrashWidget> {
                       return Center(
                         child: SvgPicture.asset(
                           'assets/images/undraw_no_data_re_kwbl.svg',
-                          width: MediaQuery.of(context).size.width * 0.8,
+                          width: MediaQuery.of(context).size.width * 0.6,
                           height: MediaQuery.of(context).size.height * 0.6,
                           fit: BoxFit.scaleDown,
                         ),
                       );
                     }
-                    return Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: List.generate(
-                          columnMaintenanceRecordList.length, (columnIndex) {
-                        final columnMaintenanceRecord =
-                            columnMaintenanceRecordList[columnIndex];
-                        return Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: FlutterFlowTheme.tertiaryColor,
-                          elevation: 0,
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.account_circle_sharp,
-                                  color: FlutterFlowTheme.campusRed,
-                                  size: 45,
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12, 0, 0, 0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              columnMaintenanceRecord.category,
-                                              style: FlutterFlowTheme.title1
-                                                  .override(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
+                    return SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: List.generate(
+                            columnMaintenanceRecordList.length, (columnIndex) {
+                          final columnMaintenanceRecord =
+                              columnMaintenanceRecordList[columnIndex];
+                          return Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: FlutterFlowTheme.tertiaryColor,
+                            elevation: 0,
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Icon(
+                                    Icons.account_circle_sharp,
+                                    color: FlutterFlowTheme.campusRed,
+                                    size: 45,
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12, 0, 0, 0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                columnMaintenanceRecord
+                                                    .category,
+                                                style: FlutterFlowTheme.title1
+                                                    .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                               ),
-                                            ),
-                                            Text(
-                                              dateTimeFormat(
-                                                  'relative',
-                                                  columnMaintenanceRecord
-                                                      .createdTime),
-                                              style: FlutterFlowTheme.bodyText1,
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          columnMaintenanceRecord.issue,
-                                          style: FlutterFlowTheme.subtitle1
-                                              .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 14,
+                                              Text(
+                                                dateTimeFormat(
+                                                    'relative',
+                                                    columnMaintenanceRecord
+                                                        .createdTime),
+                                                style:
+                                                    FlutterFlowTheme.bodyText1,
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                      ],
+                                          Text(
+                                            columnMaintenanceRecord.issue,
+                                            style: FlutterFlowTheme.subtitle1
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      }),
+                          );
+                        }),
+                      ),
                     );
                   },
                 ),
