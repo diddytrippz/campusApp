@@ -31,10 +31,10 @@ class _ReviewWidgetState extends State<ReviewWidget> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 35),
           child: Material(
             color: Colors.transparent,
             elevation: 30,

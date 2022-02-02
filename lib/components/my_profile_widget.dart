@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -160,8 +161,9 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                           PageTransition(
                                             type: PageTransitionType.fade,
                                             child: FlutterFlowExpandedImageView(
-                                              image: Image.network(
-                                                valueOrDefault<String>(
+                                              image: CachedNetworkImage(
+                                                imageUrl:
+                                                    valueOrDefault<String>(
                                                   currentUserPhoto,
                                                   'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                                 ),
@@ -190,8 +192,8 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                           decoration: BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
-                                          child: Image.network(
-                                            valueOrDefault<String>(
+                                          child: CachedNetworkImage(
+                                            imageUrl: valueOrDefault<String>(
                                               currentUserPhoto,
                                               'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                             ),

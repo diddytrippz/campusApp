@@ -9,6 +9,7 @@ import '../main.dart';
 import '../onboarding/onboarding_widget.dart';
 import '../rules_book/rules_book_widget.dart';
 import '../trash/trash_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -163,9 +164,11 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                             .fade,
                                                         child:
                                                             FlutterFlowExpandedImageView(
-                                                          image: Image.network(
-                                                            valueOrDefault<
-                                                                String>(
+                                                          image:
+                                                              CachedNetworkImage(
+                                                            imageUrl:
+                                                                valueOrDefault<
+                                                                    String>(
                                                               currentUserPhoto,
                                                               'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                                             ),
@@ -198,8 +201,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                       decoration: BoxDecoration(
                                                         shape: BoxShape.circle,
                                                       ),
-                                                      child: Image.network(
-                                                        valueOrDefault<String>(
+                                                      child: CachedNetworkImage(
+                                                        imageUrl:
+                                                            valueOrDefault<
+                                                                String>(
                                                           currentUserPhoto,
                                                           'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                                         ),

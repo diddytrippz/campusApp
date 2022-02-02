@@ -230,8 +230,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0),
                             bottomRight: Radius.circular(0),
-                            topLeft: Radius.circular(25),
-                            topRight: Radius.circular(25),
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8),
                           ),
                         ),
                         child: Align(

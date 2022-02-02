@@ -3,7 +3,6 @@ import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../components/submitted_icon_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -101,12 +100,11 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Report your issue',
+                              'Appliances',
                               style: FlutterFlowTheme.title1.override(
-                                fontFamily: 'Lexend Deca',
-                                color: Color(0xFFFFBA00),
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Poppins',
+                                color: Color(0xFFD93A0E),
+                                fontSize: 22,
                               ),
                             ),
                             InkWell(
@@ -119,16 +117,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30),
                                 ),
-                                child: FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 30,
-                                  buttonSize: 48,
-                                  fillColor: Color(0xFFD93A0E),
-                                  icon: Icon(
-                                    Icons.photo_camera_outlined,
-                                    color: FlutterFlowTheme.tertiaryColor,
-                                    size: 30,
-                                  ),
+                                child: FFButtonWidget(
                                   onPressed: () async {
                                     final selectedMedia =
                                         await selectMediaWithSourceBottomSheet(
@@ -159,28 +148,31 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                       }
                                     }
                                   },
+                                  text: 'Add',
+                                  icon: Icon(
+                                    Icons.linked_camera_outlined,
+                                    size: 22,
+                                  ),
+                                  options: FFButtonOptions(
+                                    width: 100,
+                                    height: 45,
+                                    color: FlutterFlowTheme.primaryColor,
+                                    textStyle:
+                                        FlutterFlowTheme.subtitle1.override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: 0,
+                                  ),
                                 ),
                               ),
                             ),
                           ],
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            constraints: BoxConstraints(
-                              maxWidth: MediaQuery.of(context).size.width * 0.8,
-                            ),
-                            decoration: BoxDecoration(),
-                            child: Text(
-                              'Appliances',
-                              style: FlutterFlowTheme.title1.override(
-                                fontFamily: 'Poppins',
-                                color: Color(0xFFD93A0E),
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
@@ -215,6 +207,39 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             margin:
                                 EdgeInsetsDirectional.fromSTEB(20, 20, 12, 20),
                             hidesUnderline: true,
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Wrap(
+                                spacing: 0,
+                                runSpacing: 0,
+                                alignment: WrapAlignment.start,
+                                crossAxisAlignment: WrapCrossAlignment.start,
+                                direction: Axis.horizontal,
+                                runAlignment: WrapAlignment.start,
+                                verticalDirection: VerticalDirection.down,
+                                clipBehavior: Clip.none,
+                                children: [
+                                  Text(
+                                    uploadedFileUrl.maybeHandleOverflow(
+                                      maxChars: 30,
+                                      replacement: '…',
+                                    ),
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.campusRed,
+                                      fontSize: 12,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                         Padding(

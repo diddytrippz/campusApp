@@ -12,10 +12,10 @@ import 'package:flutter/material.dart';
 import '../../main.dart';
 import '../../onboarding/onboarding_widget.dart';
 import '../../login_page/login_page_widget.dart';
-import '../../more_info/more_info_widget.dart';
 import '../../rules_book/rules_book_widget.dart';
 import '../../trash/trash_widget.dart';
 import '../../forgot_pass_page/forgot_pass_page_widget.dart';
+import '../../more_info/more_info_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -90,14 +90,14 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'loginPage': (data) async => LoginPageWidget(),
   'viewPage': (data) async => NavBarPage(initialPage: 'ViewPageWidget'),
   'inboxPage': (data) async => NavBarPage(initialPage: 'InboxPageWidget'),
-  'moreInfo': (data) async => MoreInfoWidget(
-        jobStatus: await getDocumentParameter(
-            data, 'jobStatus', MaintenanceRecord.serializer),
-      ),
   'settingsPage': (data) async => NavBarPage(initialPage: 'SettingsPageWidget'),
   'rulesBook': (data) async => RulesBookWidget(),
   'trash': (data) async => TrashWidget(),
   'forgotPassPage': (data) async => ForgotPassPageWidget(),
+  'moreInfo': (data) async => MoreInfoWidget(
+        jobStatus: await getDocumentParameter(
+            data, 'jobStatus', MaintenanceRecord.serializer),
+      ),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
