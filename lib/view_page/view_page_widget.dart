@@ -144,11 +144,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                   controller: textController,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    hintText: 'Search here...',
-                                    hintStyle:
+                                    labelStyle:
                                         FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Poppins',
-                                      color: Color(0xFF262D34),
+                                      color: Color(0xFF57636C),
                                     ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -258,15 +257,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                             indicatorColor:
                                                 FlutterFlowTheme.secondaryColor,
                                             tabs: [
-                                              Tab(
-                                                text: 'Submitted',
-                                              ),
-                                              Tab(
-                                                text: 'Pending',
-                                              ),
-                                              Tab(
-                                                text: 'Completed',
-                                              ),
+                                              Tab(),
+                                              Tab(),
+                                              Tab(),
                                             ],
                                           ),
                                           Expanded(
@@ -398,7 +391,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   secondaryActions: [
                                                                     IconSlideAction(
                                                                       caption:
-                                                                          'Delete',
+                                                                          '',
                                                                       color: FlutterFlowTheme
                                                                           .campusRed,
                                                                       icon: Icons
@@ -463,9 +456,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             ),
                                                                           ),
                                                                         );
-                                                                        await Duration(
+                                                                        await Future.delayed(const Duration(
                                                                             milliseconds:
-                                                                                3000);
+                                                                                3000));
                                                                       },
                                                                     ),
                                                                   ],
@@ -895,15 +888,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                             indicatorColor:
                                                 FlutterFlowTheme.secondaryColor,
                                             tabs: [
-                                              Tab(
-                                                text: 'Submitted',
-                                              ),
-                                              Tab(
-                                                text: 'Pending',
-                                              ),
-                                              Tab(
-                                                text: 'Completed',
-                                              ),
+                                              Tab(),
+                                              Tab(),
+                                              Tab(),
                                             ],
                                           ),
                                           Expanded(

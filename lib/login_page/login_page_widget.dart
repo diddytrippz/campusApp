@@ -124,7 +124,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   controller: emailAddressController,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Email Address',
                                     labelStyle:
                                         FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Lexend Deca',
@@ -132,7 +131,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
-                                    hintText: 'Enter your email here...',
                                     hintStyle:
                                         FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Lexend Deca',
@@ -184,7 +182,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   controller: passwordController,
                                   obscureText: !passwordVisibility,
                                   decoration: InputDecoration(
-                                    labelText: 'Password',
                                     labelStyle:
                                         FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Lexend Deca',
@@ -192,7 +189,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
-                                    hintText: 'Enter your password here...',
                                     hintStyle:
                                         FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Lexend Deca',

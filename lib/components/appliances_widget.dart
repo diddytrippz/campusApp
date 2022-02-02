@@ -130,8 +130,10 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                             selectedMedia.storagePath,
                                             context)) {
                                       showUploadMessage(
-                                          context, 'Uploading file...',
-                                          showLoading: true);
+                                        context,
+                                        'Uploading file...',
+                                        showLoading: true,
+                                      );
                                       final downloadUrl = await uploadData(
                                           selectedMedia.storagePath,
                                           selectedMedia.bytes);
@@ -140,10 +142,15 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                       if (downloadUrl != null) {
                                         setState(() =>
                                             uploadedFileUrl = downloadUrl);
-                                        showUploadMessage(context, 'Success!');
+                                        showUploadMessage(
+                                          context,
+                                          'Success!',
+                                        );
                                       } else {
                                         showUploadMessage(
-                                            context, 'Failed to upload media');
+                                          context,
+                                          'Failed to upload media',
+                                        );
                                         return;
                                       }
                                     }
@@ -177,12 +184,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: FlutterFlowDropDown(
-                            options: [
-                              'Stove not working',
-                              'Oven not working',
-                              'Microwave not working',
-                              'Fridge not working'
-                            ].toList(),
+                            options: [].toList(),
                             onChanged: (val) =>
                                 setState(() => budgetValue = val),
                             width: MediaQuery.of(context).size.width * 0.9,
@@ -193,7 +195,6 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
-                            hintText: 'Select option',
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: Color(0xFFD93A0E),
@@ -248,7 +249,12 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             controller: reasonController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: 'Additional notes\n',
+                              labelStyle: FlutterFlowTheme.bodyText1.override(
+                                fontFamily: 'Lexend Deca',
+                                color: Color(0xFF090F13),
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
                               hintStyle: FlutterFlowTheme.subtitle1.override(
                                 fontFamily: 'Poppins',
                                 fontSize: 14,
@@ -280,7 +286,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             maxLines: 4,
                             validator: (val) {
                               if (val.isEmpty) {
-                                return 'This field cannot be empty';
+                                return 'Field is required';
                               }
 
                               return null;

@@ -130,8 +130,10 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                             selectedMedia.storagePath,
                                             context)) {
                                       showUploadMessage(
-                                          context, 'Uploading file...',
-                                          showLoading: true);
+                                        context,
+                                        'Uploading file...',
+                                        showLoading: true,
+                                      );
                                       final downloadUrl = await uploadData(
                                           selectedMedia.storagePath,
                                           selectedMedia.bytes);
@@ -140,10 +142,15 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                       if (downloadUrl != null) {
                                         setState(() =>
                                             uploadedFileUrl = downloadUrl);
-                                        showUploadMessage(context, 'Success!');
+                                        showUploadMessage(
+                                          context,
+                                          'Success!',
+                                        );
                                       } else {
                                         showUploadMessage(
-                                            context, 'Failed to upload media');
+                                          context,
+                                          'Failed to upload media',
+                                        );
                                         return;
                                       }
                                     }
@@ -177,19 +184,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: FlutterFlowDropDown(
-                            options: [
-                              'Damaged toilet sit',
-                              'Damaged basic/sink',
-                              'Blocked urinal',
-                              'Blocked toilet',
-                              'Blocked shower drain',
-                              'Low water pressure',
-                              'No cold water',
-                              'No hot water',
-                              'Shower head needs to be replaced',
-                              'Leaking gyser',
-                              'Leaking pipes'
-                            ].toList(),
+                            options: [].toList(),
                             onChanged: (val) =>
                                 setState(() => budgetValue = val),
                             width: MediaQuery.of(context).size.width * 0.9,
@@ -200,7 +195,6 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
-                            hintText: 'Select option',
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: Color(0xFFD93A0E),
@@ -255,7 +249,12 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                             controller: reasonController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: 'Additional notes\n',
+                              labelStyle: FlutterFlowTheme.bodyText1.override(
+                                fontFamily: 'Lexend Deca',
+                                color: Color(0xFF090F13),
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
                               hintStyle: FlutterFlowTheme.subtitle1.override(
                                 fontFamily: 'Poppins',
                                 fontSize: 14,
@@ -287,7 +286,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                             maxLines: 4,
                             validator: (val) {
                               if (val.isEmpty) {
-                                return 'This field cannot be empty';
+                                return 'Field is required';
                               }
 
                               return null;

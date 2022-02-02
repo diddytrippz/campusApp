@@ -130,8 +130,10 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                                             selectedMedia.storagePath,
                                             context)) {
                                       showUploadMessage(
-                                          context, 'Uploading file...',
-                                          showLoading: true);
+                                        context,
+                                        'Uploading file...',
+                                        showLoading: true,
+                                      );
                                       final downloadUrl = await uploadData(
                                           selectedMedia.storagePath,
                                           selectedMedia.bytes);
@@ -140,10 +142,15 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                                       if (downloadUrl != null) {
                                         setState(() =>
                                             uploadedFileUrl = downloadUrl);
-                                        showUploadMessage(context, 'Success!');
+                                        showUploadMessage(
+                                          context,
+                                          'Success!',
+                                        );
                                       } else {
                                         showUploadMessage(
-                                            context, 'Failed to upload media');
+                                          context,
+                                          'Failed to upload media',
+                                        );
                                         return;
                                       }
                                     }
@@ -177,15 +184,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: FlutterFlowDropDown(
-                            options: [
-                              'Damaged bed base',
-                              'Damaged matress',
-                              'Curtain rail needs to be replaced',
-                              'My study table is damaged',
-                              'My window cannot open',
-                              'My window cannot close',
-                              'My window has a crack'
-                            ].toList(),
+                            options: [].toList(),
                             onChanged: (val) =>
                                 setState(() => budgetValue = val),
                             width: MediaQuery.of(context).size.width * 0.9,
@@ -196,7 +195,6 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
-                            hintText: 'Select option',
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: Color(0xFFD93A0E),
@@ -251,7 +249,12 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                             controller: reasonController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: 'Additional notes\n',
+                              labelStyle: FlutterFlowTheme.bodyText1.override(
+                                fontFamily: 'Lexend Deca',
+                                color: Color(0xFF090F13),
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
                               hintStyle: FlutterFlowTheme.subtitle1.override(
                                 fontFamily: 'Poppins',
                                 fontSize: 14,
@@ -283,7 +286,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                             maxLines: 4,
                             validator: (val) {
                               if (val.isEmpty) {
-                                return 'This field cannot be empty';
+                                return 'Field is required';
                               }
 
                               return null;

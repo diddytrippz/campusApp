@@ -289,8 +289,10 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                       validateFileFormat(
                                           selectedMedia.storagePath, context)) {
                                     showUploadMessage(
-                                        context, 'Uploading file...',
-                                        showLoading: true);
+                                      context,
+                                      'Uploading file...',
+                                      showLoading: true,
+                                    );
                                     final downloadUrl = await uploadData(
                                         selectedMedia.storagePath,
                                         selectedMedia.bytes);
@@ -299,10 +301,15 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                     if (downloadUrl != null) {
                                       setState(
                                           () => uploadedFileUrl = downloadUrl);
-                                      showUploadMessage(context, 'Success!');
+                                      showUploadMessage(
+                                        context,
+                                        'Success!',
+                                      );
                                     } else {
                                       showUploadMessage(
-                                          context, 'Failed to upload media');
+                                        context,
+                                        'Failed to upload media',
+                                      );
                                       return;
                                     }
                                   }

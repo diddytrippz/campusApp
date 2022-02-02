@@ -34,7 +34,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 35),
+          padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
           child: Material(
             color: Colors.transparent,
             elevation: 30,
@@ -115,11 +115,11 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                         children: [
                           Expanded(
                             child: FlutterFlowChoiceChips(
-                              initialOption: choiceChipsValue ??= 'Quality',
+                              initialOption: choiceChipsValue ??= '',
                               options: [
-                                ChipData('Quality'),
-                                ChipData('Time'),
-                                ChipData('Convinience')
+                                ChipData(''),
+                                ChipData(''),
+                                ChipData('')
                               ],
                               onChanged: (val) =>
                                   setState(() => choiceChipsValue = val),
@@ -166,16 +166,6 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                               duration: Duration(milliseconds: 300),
                               reverseDuration: Duration(milliseconds: 300),
                               child: NavBarPage(initialPage: 'viewPage'),
-                            ),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Your review has been successfully submitted.',
-                                style: TextStyle(),
-                              ),
-                              duration: Duration(milliseconds: 4000),
-                              backgroundColor: Color(0x00000000),
                             ),
                           );
                         },

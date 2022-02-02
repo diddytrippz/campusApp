@@ -112,8 +112,10 @@ class _OthersWidgetState extends State<OthersWidget> {
                                       validateFileFormat(
                                           selectedMedia.storagePath, context)) {
                                     showUploadMessage(
-                                        context, 'Uploading file...',
-                                        showLoading: true);
+                                      context,
+                                      'Uploading file...',
+                                      showLoading: true,
+                                    );
                                     final downloadUrl = await uploadData(
                                         selectedMedia.storagePath,
                                         selectedMedia.bytes);
@@ -122,10 +124,15 @@ class _OthersWidgetState extends State<OthersWidget> {
                                     if (downloadUrl != null) {
                                       setState(
                                           () => uploadedFileUrl = downloadUrl);
-                                      showUploadMessage(context, 'Success!');
+                                      showUploadMessage(
+                                        context,
+                                        'Success!',
+                                      );
                                     } else {
                                       showUploadMessage(
-                                          context, 'Failed to upload media');
+                                        context,
+                                        'Failed to upload media',
+                                      );
                                       return;
                                     }
                                   }
@@ -159,14 +166,12 @@ class _OthersWidgetState extends State<OthersWidget> {
                           controller: reasonController,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: 'Describe Issue',
                             labelStyle: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Lexend Deca',
                               color: Color(0xFF090F13),
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
-                            hintText: 'Describe your issue here',
                             hintStyle: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Lexend Deca',
                               color: Color(0xFF090F13),
@@ -203,10 +208,10 @@ class _OthersWidgetState extends State<OthersWidget> {
                           maxLines: 4,
                           validator: (val) {
                             if (val.isEmpty) {
-                              return 'Please describe your issue here!';
+                              return 'Field is required';
                             }
                             if (val.length < 4) {
-                              return 'Please describe your issue here!';
+                              return 'Requires at least 4 characters.';
                             }
                             return null;
                           },

@@ -104,8 +104,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 4, 0, 0),
                                               child: FlutterFlowDropDown(
-                                                options: ['Tenant', 'Admin']
-                                                    .toList(),
+                                                options: [].toList(),
                                                 onChanged: (val) => setState(
                                                     () => dropDownValue = val),
                                                 width: 130,
@@ -117,7 +116,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   color: FlutterFlowTheme
                                                       .campusRed,
                                                 ),
-                                                hintText: 'Select Role',
                                                 fillColor: Color(0xFFEEEEEE),
                                                 elevation: 2,
                                                 borderColor: Colors.transparent,

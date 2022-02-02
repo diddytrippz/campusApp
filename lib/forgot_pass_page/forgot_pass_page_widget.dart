@@ -108,16 +108,6 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                             controller: emailTextController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'Student email',
-                              labelStyle: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
-                                color: Color(0xFF767676),
-                              ),
-                              hintText: 'i.e 123456@students.wits.ac.za',
-                              hintStyle: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
-                                color: Color(0xFF767676),
-                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0xFFAAAAAA),
