@@ -6,7 +6,6 @@ import '../components/others_widget.dart';
 import '../components/painting_widget.dart';
 import '../components/pest_control_widget.dart';
 import '../components/plumbing_widget.dart';
-import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,6 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
-  String dropDownValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -102,29 +100,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 4, 0, 0),
-                                              child: FlutterFlowDropDown(
-                                                options: [].toList(),
-                                                onChanged: (val) => setState(
-                                                    () => dropDownValue = val),
-                                                width: 130,
-                                                height: 35,
-                                                textStyle: FlutterFlowTheme
-                                                    .bodyText1
+                                                  .fromSTEB(0, 0, 0, 4),
+                                              child: Text(
+                                                dateTimeFormat(
+                                                    'jm', getCurrentTimestamp),
+                                                style: FlutterFlowTheme
+                                                    .subtitle1
                                                     .override(
                                                   fontFamily: 'Poppins',
-                                                  color: FlutterFlowTheme
-                                                      .campusRed,
+                                                  fontSize: 14,
                                                 ),
-                                                hintText: 'Select Role',
-                                                fillColor: Color(0xFFEEEEEE),
-                                                elevation: 2,
-                                                borderColor: Colors.transparent,
-                                                borderWidth: 0,
-                                                borderRadius: 50,
-                                                margin: EdgeInsetsDirectional
-                                                    .fromSTEB(12, 4, 12, 4),
-                                                hidesUnderline: true,
                                               ),
                                             ),
                                           ],
