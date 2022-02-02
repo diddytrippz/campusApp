@@ -986,21 +986,15 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                 .isEmpty) {
                                                               return Center(
                                                                 child:
-                                                                    SvgPicture
-                                                                        .asset(
-                                                                  'assets/images/undraw_no_data_re_kwbl.svg',
+                                                                    Image.asset(
+                                                                  'assets/images/undraw_no_data_re_kwbl.png',
                                                                   width: MediaQuery.of(
                                                                               context)
                                                                           .size
                                                                           .width *
                                                                       0.5,
-                                                                  height: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .height *
-                                                                      0.5,
                                                                   fit: BoxFit
-                                                                      .scaleDown,
+                                                                      .contain,
                                                                 ),
                                                               );
                                                             }
@@ -1233,21 +1227,15 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                 .isEmpty) {
                                                               return Center(
                                                                 child:
-                                                                    SvgPicture
-                                                                        .asset(
-                                                                  'assets/images/undraw_no_data_re_kwbl.svg',
+                                                                    Image.asset(
+                                                                  'assets/images/undraw_no_data_re_kwbl.png',
                                                                   width: MediaQuery.of(
                                                                               context)
                                                                           .size
                                                                           .width *
                                                                       0.5,
-                                                                  height: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .height *
-                                                                      0.5,
                                                                   fit: BoxFit
-                                                                      .scaleDown,
+                                                                      .contain,
                                                                 ),
                                                               );
                                                             }
@@ -1499,19 +1487,15 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                 .isEmpty) {
                                                               return Center(
                                                                 child:
-                                                                    SvgPicture
-                                                                        .asset(
-                                                                  'assets/images/undraw_no_data_re_kwbl.svg',
+                                                                    Image.asset(
+                                                                  'assets/images/undraw_no_data_re_kwbl.png',
                                                                   width: MediaQuery.of(
                                                                               context)
                                                                           .size
                                                                           .width *
                                                                       0.5,
-                                                                  height: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .height *
-                                                                      0.5,
+                                                                  fit: BoxFit
+                                                                      .contain,
                                                                 ),
                                                               );
                                                             }

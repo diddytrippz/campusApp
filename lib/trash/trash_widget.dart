@@ -97,87 +97,88 @@ class _TrashWidgetState extends State<TrashWidget> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                  child: Card(
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    color: FlutterFlowTheme.tertiaryColor,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Icon(
-                            Icons.delete_outline_sharp,
-                            color: FlutterFlowTheme.campusGrey,
-                            size: 24,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Messages are store here for future\nreferences and may only be deleted \nby the admin.',
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.campusGrey,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 8),
-                                  child: Text(
-                                    'Recycle all',
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                    child: Card(
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      color: FlutterFlowTheme.tertiaryColor,
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Icon(
+                              Icons.info_outlined,
+                              color: FlutterFlowTheme.campusGrey,
+                              size: 24,
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Messages are store here for future\nreferences and may only be deleted \nby the admin.',
                                     style: FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.mellow,
-                                      fontWeight: FontWeight.bold,
+                                      color: FlutterFlowTheme.campusGrey,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 8),
+                                    child: Text(
+                                      'More info',
+                                      style:
+                                          FlutterFlowTheme.bodyText1.override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.mellow,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                StreamBuilder<List<MaintenanceRecord>>(
-                  stream: queryMaintenanceRecord(
-                    queryBuilder: (maintenanceRecord) => maintenanceRecord
-                        .where('status', isEqualTo: 'Deleted')
-                        .orderBy('created_time', descending: true),
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 60,
-                          height: 60,
-                          child: SpinKitPulse(
-                            color: FlutterFlowTheme.primaryColor,
-                            size: 60,
+                  StreamBuilder<List<MaintenanceRecord>>(
+                    stream: queryMaintenanceRecord(
+                      queryBuilder: (maintenanceRecord) => maintenanceRecord
+                          .where('status', isEqualTo: 'Deleted')
+                          .orderBy('created_time', descending: true),
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 60,
+                            height: 60,
+                            child: SpinKitPulse(
+                              color: FlutterFlowTheme.primaryColor,
+                              size: 60,
+                            ),
                           ),
-                        ),
-                      );
-                    }
-                    List<MaintenanceRecord> columnMaintenanceRecordList =
-                        snapshot.data;
-                    if (columnMaintenanceRecordList.isEmpty) {
-                      return Center(
-                        child: EmptyListWidget(),
-                      );
-                    }
-                    return SingleChildScrollView(
-                      child: Column(
+                        );
+                      }
+                      List<MaintenanceRecord> columnMaintenanceRecordList =
+                          snapshot.data;
+                      if (columnMaintenanceRecordList.isEmpty) {
+                        return Center(
+                          child: EmptyListWidget(),
+                        );
+                      }
+                      return Column(
                         mainAxisSize: MainAxisSize.max,
                         children: List.generate(
                             columnMaintenanceRecordList.length, (columnIndex) {
@@ -241,7 +242,7 @@ class _TrashWidgetState extends State<TrashWidget> {
                                             ),
                                           ),
                                           Text(
-                                            'image',
+                                            'View attachment',
                                             style: FlutterFlowTheme.subtitle1
                                                 .override(
                                               fontFamily: 'Roboto',
@@ -259,11 +260,11 @@ class _TrashWidgetState extends State<TrashWidget> {
                             ),
                           );
                         }),
-                      ),
-                    );
-                  },
-                ),
-              ],
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

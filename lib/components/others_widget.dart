@@ -139,7 +139,6 @@ class _OthersWidgetState extends State<OthersWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.8,
-                          height: 40,
                           constraints: BoxConstraints(
                             maxWidth: MediaQuery.of(context).size.width * 0.8,
                           ),
@@ -149,6 +148,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                             style: FlutterFlowTheme.title1.override(
                               fontFamily: 'Poppins',
                               color: Color(0xFFD93A0E),
+                              fontSize: 20,
                             ),
                           ),
                         ),

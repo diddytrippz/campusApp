@@ -192,97 +192,97 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                child: Card(
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: FlutterFlowTheme.tertiaryColor,
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 12, 0, 0),
-                                    child: Text(
-                                      'Receive maintenance feedback and stay \nup to date with all the events happening \nin your building.',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.campusGrey,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                  child: Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    color: FlutterFlowTheme.tertiaryColor,
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 12, 0, 0),
+                                      child: Text(
+                                        'Receive maintenance feedback and stay \nup to date with all the events happening \nin your building.',
+                                        style:
+                                            FlutterFlowTheme.bodyText1.override(
+                                          fontFamily: 'Poppins',
+                                          color: FlutterFlowTheme.campusGrey,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Icon(
-                                    Icons.clear,
-                                    color: FlutterFlowTheme.campusGrey,
-                                    size: 24,
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                                child: Text(
-                                  'Mark as read',
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.mellow,
-                                    fontWeight: FontWeight.bold,
+                                    Icon(
+                                      Icons.info_outlined,
+                                      color: FlutterFlowTheme.campusGrey,
+                                      size: 24,
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: Text(
+                                    'Mark as read',
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.mellow,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              StreamBuilder<List<ChatMessagesRecord>>(
-                stream: queryChatMessagesRecord(
-                  queryBuilder: (chatMessagesRecord) => chatMessagesRecord
-                      .where('email', isEqualTo: currentUserEmail)
-                      .orderBy('time_created', descending: true),
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 60,
-                        height: 60,
-                        child: SpinKitPulse(
-                          color: FlutterFlowTheme.primaryColor,
-                          size: 60,
+                StreamBuilder<List<ChatMessagesRecord>>(
+                  stream: queryChatMessagesRecord(
+                    queryBuilder: (chatMessagesRecord) => chatMessagesRecord
+                        .where('email', isEqualTo: currentUserEmail)
+                        .orderBy('time_created', descending: true),
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 60,
+                          height: 60,
+                          child: SpinKitPulse(
+                            color: FlutterFlowTheme.primaryColor,
+                            size: 60,
+                          ),
                         ),
-                      ),
-                    );
-                  }
-                  List<ChatMessagesRecord> columnChatMessagesRecordList =
-                      snapshot.data;
-                  if (columnChatMessagesRecordList.isEmpty) {
-                    return Center(
-                      child: EmptyInboxWidget(),
-                    );
-                  }
-                  return SingleChildScrollView(
-                    child: Column(
+                      );
+                    }
+                    List<ChatMessagesRecord> columnChatMessagesRecordList =
+                        snapshot.data;
+                    if (columnChatMessagesRecordList.isEmpty) {
+                      return Center(
+                        child: EmptyInboxWidget(),
+                      );
+                    }
+                    return Column(
                       mainAxisSize: MainAxisSize.max,
                       children: List.generate(
                           columnChatMessagesRecordList.length, (columnIndex) {
@@ -362,11 +362,11 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                           ),
                         );
                       }),
-                    ),
-                  );
-                },
-              ),
-            ],
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
