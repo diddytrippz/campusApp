@@ -116,6 +116,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   color: FlutterFlowTheme
                                                       .campusRed,
                                                 ),
+                                                hintText: 'Select Role',
                                                 fillColor: Color(0xFFEEEEEE),
                                                 elevation: 2,
                                                 borderColor: Colors.transparent,

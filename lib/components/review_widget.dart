@@ -115,11 +115,11 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                         children: [
                           Expanded(
                             child: FlutterFlowChoiceChips(
-                              initialOption: choiceChipsValue ??= '',
+                              initialOption: choiceChipsValue ??= 'Quality',
                               options: [
-                                ChipData(''),
-                                ChipData(''),
-                                ChipData('')
+                                ChipData('Quality'),
+                                ChipData('Time'),
+                                ChipData('Convinience')
                               ],
                               onChanged: (val) =>
                                   setState(() => choiceChipsValue = val),

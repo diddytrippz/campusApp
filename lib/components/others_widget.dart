@@ -166,12 +166,14 @@ class _OthersWidgetState extends State<OthersWidget> {
                           controller: reasonController,
                           obscureText: false,
                           decoration: InputDecoration(
+                            labelText: 'Describe Issue',
                             labelStyle: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Lexend Deca',
                               color: Color(0xFF090F13),
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
+                            hintText: 'Describe your issue here',
                             hintStyle: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Lexend Deca',
                               color: Color(0xFF090F13),
@@ -208,10 +210,10 @@ class _OthersWidgetState extends State<OthersWidget> {
                           maxLines: 4,
                           validator: (val) {
                             if (val.isEmpty) {
-                              return 'Field is required';
+                              return 'Please describe your issue here!';
                             }
                             if (val.length < 4) {
-                              return 'Requires at least 4 characters.';
+                              return 'Please describe your issue here!';
                             }
                             return null;
                           },

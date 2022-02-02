@@ -149,6 +149,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                       fontFamily: 'Poppins',
                                       color: Color(0xFF57636C),
                                     ),
+                                    hintText: 'Search here...',
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
@@ -257,9 +258,15 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                             indicatorColor:
                                                 FlutterFlowTheme.secondaryColor,
                                             tabs: [
-                                              Tab(),
-                                              Tab(),
-                                              Tab(),
+                                              Tab(
+                                                text: 'Submitted',
+                                              ),
+                                              Tab(
+                                                text: 'Pending',
+                                              ),
+                                              Tab(
+                                                text: 'Completed',
+                                              ),
                                             ],
                                           ),
                                           Expanded(
@@ -391,7 +398,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   secondaryActions: [
                                                                     IconSlideAction(
                                                                       caption:
-                                                                          '',
+                                                                          'Delete',
                                                                       color: FlutterFlowTheme
                                                                           .campusRed,
                                                                       icon: Icons
@@ -888,9 +895,15 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                             indicatorColor:
                                                 FlutterFlowTheme.secondaryColor,
                                             tabs: [
-                                              Tab(),
-                                              Tab(),
-                                              Tab(),
+                                              Tab(
+                                                text: 'Submitted',
+                                              ),
+                                              Tab(
+                                                text: 'Pending',
+                                              ),
+                                              Tab(
+                                                text: 'Completed',
+                                              ),
                                             ],
                                           ),
                                           Expanded(

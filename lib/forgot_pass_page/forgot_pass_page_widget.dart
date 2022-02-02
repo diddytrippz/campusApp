@@ -108,6 +108,8 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                             controller: emailTextController,
                             obscureText: false,
                             decoration: InputDecoration(
+                              labelText: 'Student email',
+                              hintText: 'i.e 123456@students.wits.ac.za',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0xFFAAAAAA),

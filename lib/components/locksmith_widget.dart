@@ -184,7 +184,15 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: FlutterFlowDropDown(
-                            options: [].toList(),
+                            options: [
+                              'Broken door handle (Unit)',
+                              'Broken door handle (Room)',
+                              'Room key not opening',
+                              'Unit key not opening',
+                              'Lost key',
+                              'Lost access card',
+                              'Access card not working'
+                            ].toList(),
                             onChanged: (val) =>
                                 setState(() => budgetValue = val),
                             width: MediaQuery.of(context).size.width * 0.9,
@@ -195,6 +203,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
+                            hintText: 'Select option',
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: Color(0xFFD93A0E),
@@ -255,6 +264,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,
                               ),
+                              hintText: 'Additional notes\n',
                               hintStyle: FlutterFlowTheme.subtitle1.override(
                                 fontFamily: 'Poppins',
                                 fontSize: 14,
@@ -286,7 +296,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                             maxLines: 4,
                             validator: (val) {
                               if (val.isEmpty) {
-                                return 'Field is required';
+                                return 'This field cannot be empty';
                               }
 
                               return null;

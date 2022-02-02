@@ -94,6 +94,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                 controller: textController,
                 obscureText: false,
                 decoration: InputDecoration(
+                  hintText: 'Search ',
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0x00000000),

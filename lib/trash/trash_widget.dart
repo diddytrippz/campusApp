@@ -53,6 +53,7 @@ class _TrashWidgetState extends State<TrashWidget> {
           controller: textController,
           obscureText: false,
           decoration: InputDecoration(
+            hintText: 'Search trash',
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
                 color: Color(0x00000000),
