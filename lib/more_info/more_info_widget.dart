@@ -1099,27 +1099,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 17, 0, 0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        dateTimeFormat(
-                                                            'MMMEd',
-                                                            widget.jobStatus
-                                                                .createdTime),
-                                                        style: FlutterFlowTheme
-                                                            .bodyText1,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
                                                 Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
