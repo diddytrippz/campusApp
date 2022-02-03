@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/empty_list_widget.dart';
+import '../edit_profile/edit_profile_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -83,10 +84,23 @@ class _TrashWidgetState extends State<TrashWidget> {
         actions: [
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
-            child: Icon(
-              Icons.account_circle,
-              color: FlutterFlowTheme.campusRed,
-              size: 45,
+            child: InkWell(
+              onTap: () async {
+                await Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.bottomToTop,
+                    duration: Duration(milliseconds: 300),
+                    reverseDuration: Duration(milliseconds: 300),
+                    child: EditProfileWidget(),
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.account_circle,
+                color: FlutterFlowTheme.campusRed,
+                size: 45,
+              ),
             ),
           ),
         ],
