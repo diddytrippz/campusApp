@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -201,7 +202,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     color: FlutterFlowTheme.tertiaryColor,
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -217,20 +218,25 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 12, 0, 0),
-                                      child: Text(
+                                          4, 12, 8, 0),
+                                      child: AutoSizeText(
                                         'Receive maintenance feedback and stay \nup to date with all the events happening \nin your building.',
                                         style:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
                                           color: FlutterFlowTheme.campusGrey,
+                                          fontStyle: FontStyle.italic,
                                         ),
                                       ),
                                     ),
-                                    Icon(
-                                      Icons.info_outlined,
-                                      color: FlutterFlowTheme.campusGrey,
-                                      size: 24,
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          4, 0, 0, 0),
+                                      child: Icon(
+                                        Icons.info_outlined,
+                                        color: FlutterFlowTheme.campusGrey,
+                                        size: 24,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -316,7 +322,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(
+                                            AutoSizeText(
                                               columnChatMessagesRecord.subject,
                                               style: FlutterFlowTheme.title1
                                                   .override(
@@ -325,12 +331,17 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ),
-                                            Text(
-                                              dateTimeFormat(
-                                                  'relative',
-                                                  columnChatMessagesRecord
-                                                      .timeCreated),
-                                              style: FlutterFlowTheme.bodyText1,
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(4, 0, 4, 0),
+                                              child: AutoSizeText(
+                                                dateTimeFormat(
+                                                    'relative',
+                                                    columnChatMessagesRecord
+                                                        .timeCreated),
+                                                style:
+                                                    FlutterFlowTheme.bodyText1,
+                                              ),
                                             ),
                                           ],
                                         ),

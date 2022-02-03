@@ -3,6 +3,7 @@ import '../components/empty_list_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -106,7 +107,7 @@ class _TrashWidgetState extends State<TrashWidget> {
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       color: FlutterFlowTheme.tertiaryColor,
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -115,34 +116,42 @@ class _TrashWidgetState extends State<TrashWidget> {
                               color: FlutterFlowTheme.campusGrey,
                               size: 24,
                             ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Messages are store here for future\nreferences and may only be deleted \nby the admin.',
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.campusGrey,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 8),
-                                    child: Text(
-                                      'More info',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.mellow,
-                                        fontWeight: FontWeight.bold,
+                            Expanded(
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 8, 0),
+                                      child: AutoSizeText(
+                                        'Messages are store here for future\nreferences and may only be deleted \nby the admin.',
+                                        style:
+                                            FlutterFlowTheme.bodyText1.override(
+                                          fontFamily: 'Poppins',
+                                          color: FlutterFlowTheme.campusGrey,
+                                          fontStyle: FontStyle.italic,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 8),
+                                      child: Text(
+                                        'More info',
+                                        style:
+                                            FlutterFlowTheme.bodyText1.override(
+                                          fontFamily: 'Poppins',
+                                          color: FlutterFlowTheme.mellow,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -212,7 +221,7 @@ class _TrashWidgetState extends State<TrashWidget> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(
+                                              AutoSizeText(
                                                 columnMaintenanceRecord
                                                     .category,
                                                 style: FlutterFlowTheme.title1
@@ -222,13 +231,17 @@ class _TrashWidgetState extends State<TrashWidget> {
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
-                                              Text(
-                                                dateTimeFormat(
-                                                    'relative',
-                                                    columnMaintenanceRecord
-                                                        .createdTime),
-                                                style:
-                                                    FlutterFlowTheme.bodyText1,
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(4, 0, 4, 0),
+                                                child: AutoSizeText(
+                                                  dateTimeFormat(
+                                                      'relative',
+                                                      columnMaintenanceRecord
+                                                          .createdTime),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText1,
+                                                ),
                                               ),
                                             ],
                                           ),

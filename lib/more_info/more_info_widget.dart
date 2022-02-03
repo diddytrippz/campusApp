@@ -108,7 +108,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                         Navigator.pop(context);
                                       },
                                       child: FaIcon(
-                                        FontAwesomeIcons.chevronCircleLeft,
+                                        FontAwesomeIcons.arrowCircleLeft,
                                         color: Color(0xE4FFFFFF),
                                         size: 40,
                                       ),
@@ -147,725 +147,1060 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                             topRight: Radius.circular(10),
                           ),
                         ),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                  color: Color(0x00FFFFFF),
-                                ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: DefaultTabController(
+                                length: 2,
+                                initialIndex: 0,
                                 child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    if ((widget.jobStatus.status) ==
-                                        'Submitted')
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            18, 30, 18, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Reported ${dateTimeFormat('relative', widget.jobStatus.createdTime)}',
-                                              style: FlutterFlowTheme.subtitle1
-                                                  .override(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                            InkWell(
-                                              onTap: () async {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          'Are you sure you want to delete this record?'),
-                                                      content: Text(
-                                                          'This action cannot be undone'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('Cancel'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () async {
-                                                            Navigator.pop(
-                                                                alertDialogContext);
-
-                                                            final maintenanceUpdateData =
-                                                                createMaintenanceRecordData(
-                                                              status: 'Deleted',
-                                                            );
-                                                            await widget
-                                                                .jobStatus
-                                                                .reference
-                                                                .update(
-                                                                    maintenanceUpdateData);
-                                                            ;
-                                                          },
-                                                          child:
-                                                              Text('Confirm'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      '1 item moved to bin',
-                                                      style: TextStyle(),
-                                                    ),
-                                                    duration: Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme
-                                                            .campusGrey,
-                                                    action: SnackBarAction(
-                                                      label: 'TRASH',
-                                                      textColor:
-                                                          Color(0xFF3779FF),
-                                                      onPressed: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .bottomToTop,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    300),
-                                                            reverseDuration:
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        300),
-                                                            child:
-                                                                TrashWidget(),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                              child: Icon(
-                                                Icons.delete_outline,
-                                                color: Color(0xFF939393),
-                                                size: 30,
-                                              ),
-                                            ),
-                                          ],
+                                    TabBar(
+                                      labelColor: FlutterFlowTheme.primaryColor,
+                                      labelStyle: FlutterFlowTheme.bodyText1,
+                                      indicatorColor:
+                                          FlutterFlowTheme.secondaryColor,
+                                      tabs: [
+                                        Tab(
+                                          text: 'Details',
                                         ),
-                                      ),
-                                    if ((widget.jobStatus.status) ==
-                                        'Completed')
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            18, 22, 18, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Completed ${dateTimeFormat('relative', widget.jobStatus.createdTime)}',
-                                              style: FlutterFlowTheme.subtitle1
-                                                  .override(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ],
+                                        Tab(
+                                          text: 'Comments',
                                         ),
-                                      ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          20, 20, 20, 0),
-                                      child: AutoSizeText(
-                                        widget.jobStatus.issue,
-                                        style: FlutterFlowTheme.title1.override(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 18,
-                                        ),
-                                      ),
+                                      ],
                                     ),
-                                    if ((widget.jobStatus.notes) != '')
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 12, 16, 2),
-                                        child: AutoSizeText(
-                                          valueOrDefault<String>(
-                                            widget.jobStatus.notes,
-                                            'This section is currently empty. No additional notes/attachments were added in this request',
-                                          ),
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Roboto',
-                                            color: Color(0xFF595959),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    if (widget.jobStatus.isDone ?? true)
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            18, 18, 18, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              width: 120,
-                                              height: 70,
-                                              constraints: BoxConstraints(
-                                                maxHeight: 32,
-                                              ),
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.campusGrey,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 4,
-                                                    color: Color(0x32171717),
-                                                    offset: Offset(0, 2),
-                                                  )
-                                                ],
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(8, 0, 8, 0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8, 0, 8, 0),
-                                                      child: AutoSizeText(
-                                                        widget
-                                                            .jobStatus.category,
-                                                        style: FlutterFlowTheme
-                                                            .bodyText1
-                                                            .override(
-                                                          fontFamily:
-                                                              'Lexend Deca',
-                                                          color: Colors.white,
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 0, 0, 0),
-                                              child: InkWell(
-                                                onTap: () async {
-                                                  if ((widget
-                                                          .jobStatus.isDone) ==
-                                                      true) {
-                                                    await showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      barrierColor:
-                                                          Color(0x5DFFFFFF),
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return Padding(
-                                                          padding:
-                                                              MediaQuery.of(
-                                                                      context)
-                                                                  .viewInsets,
-                                                          child: ReviewWidget(
-                                                            forReviews: widget
-                                                                .jobStatus,
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  }
-                                                },
-                                                child: Container(
-                                                  width: 100,
-                                                  height: 70,
-                                                  constraints: BoxConstraints(
-                                                    maxHeight: 32,
-                                                  ),
+                                    Expanded(
+                                      child: TabBarView(
+                                        children: [
+                                          SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
                                                   decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme
-                                                        .campusRed,
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        blurRadius: 4,
-                                                        color:
-                                                            Color(0x32171717),
-                                                        offset: Offset(0, 2),
-                                                      )
-                                                    ],
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30),
+                                                    color: Color(0x00FFFFFF),
                                                   ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                8, 0, 8, 0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(8,
-                                                                      0, 8, 0),
-                                                          child: AutoSizeText(
-                                                            'Rate Job',
-                                                            style:
-                                                                FlutterFlowTheme
-                                                                    .bodyText1
-                                                                    .override(
-                                                              fontFamily:
-                                                                  'Lexend Deca',
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    if (!(widget.jobStatus.isDone) ?? true)
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            18, 18, 18, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              width: 120,
-                                              height: 70,
-                                              constraints: BoxConstraints(
-                                                maxHeight: 32,
-                                              ),
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.campusGrey,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 4,
-                                                    color: Color(0x32171717),
-                                                    offset: Offset(0, 2),
-                                                  )
-                                                ],
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(8, 0, 8, 0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8, 0, 8, 0),
-                                                      child: AutoSizeText(
-                                                        widget
-                                                            .jobStatus.category,
-                                                        style: FlutterFlowTheme
-                                                            .bodyText1
-                                                            .override(
-                                                          fontFamily:
-                                                              'Lexend Deca',
-                                                          color: Colors.white,
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 0, 0, 0),
-                                              child: InkWell(
-                                                onTap: () async {
-                                                  if ((widget
-                                                          .jobStatus.isDone) ==
-                                                      true) {
-                                                    await showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      barrierColor:
-                                                          Color(0x5DFFFFFF),
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return Padding(
-                                                          padding:
-                                                              MediaQuery.of(
-                                                                      context)
-                                                                  .viewInsets,
-                                                          child: ReviewWidget(
-                                                            forReviews: widget
-                                                                .jobStatus,
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  }
-                                                },
-                                                child: Container(
-                                                  width: 100,
-                                                  height: 70,
-                                                  constraints: BoxConstraints(
-                                                    maxHeight: 32,
-                                                  ),
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme
-                                                        .campusRed,
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        blurRadius: 4,
-                                                        color:
-                                                            Color(0x32171717),
-                                                        offset: Offset(0, 2),
-                                                      )
-                                                    ],
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                8, 0, 8, 0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(8,
-                                                                      0, 8, 0),
-                                                          child: AutoSizeText(
-                                                            'Rate Job',
-                                                            style:
-                                                                FlutterFlowTheme
-                                                                    .bodyText1
-                                                                    .override(
-                                                              fontFamily:
-                                                                  'Lexend Deca',
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          20, 30, 16, 0),
-                                      child: StreamBuilder<List<UsersRecord>>(
-                                        stream: queryUsersRecord(
-                                          singleRecord: true,
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 60,
-                                                height: 60,
-                                                child: SpinKitPulse(
-                                                  color: FlutterFlowTheme
-                                                      .primaryColor,
-                                                  size: 60,
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<UsersRecord>
-                                              nameRatingUsersRecordList =
-                                              snapshot.data;
-                                          // Return an empty Container when the document does not exist.
-                                          if (snapshot.data.isEmpty) {
-                                            return Container();
-                                          }
-                                          final nameRatingUsersRecord =
-                                              nameRatingUsersRecordList
-                                                      .isNotEmpty
-                                                  ? nameRatingUsersRecordList
-                                                      .first
-                                                  : null;
-                                          return Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                12, 0, 8, 0),
-                                                    child: Container(
-                                                      width: 45,
-                                                      height: 45,
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                            .tertiaryColor,
-                                                        shape: BoxShape.circle,
-                                                      ),
-                                                      child: Icon(
-                                                        Icons.account_circle,
-                                                        color: FlutterFlowTheme
-                                                            .campusGrey,
-                                                        size: 35,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                10, 0, 0, 0),
-                                                    child: Text(
-                                                      widget.jobStatus
-                                                          .displayName,
-                                                      style: FlutterFlowTheme
-                                                          .subtitle1
-                                                          .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 18,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                children: [
-                                                  AutoSizeText(
-                                                    'Rating',
-                                                    style: FlutterFlowTheme
-                                                        .bodyText2,
-                                                  ),
-                                                  Row(
+                                                  child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
+                                                      if ((widget.jobStatus
+                                                              .status) ==
+                                                          'Submitted')
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(18,
+                                                                      8, 18, 0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Text(
+                                                                'Reported ${dateTimeFormat('relative', widget.jobStatus.createdTime)}',
+                                                                style: FlutterFlowTheme
+                                                                    .subtitle1
+                                                                    .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  fontSize: 16,
+                                                                ),
+                                                              ),
+                                                              InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  await showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (alertDialogContext) {
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            'Are you sure you want to delete this record?'),
+                                                                        content:
+                                                                            Text('This action cannot be undone'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Cancel'),
+                                                                          ),
+                                                                          TextButton(
+                                                                            onPressed:
+                                                                                () async {
+                                                                              Navigator.pop(alertDialogContext);
+
+                                                                              final maintenanceUpdateData = createMaintenanceRecordData(
+                                                                                status: 'Deleted',
+                                                                              );
+                                                                              await widget.jobStatus.reference.update(maintenanceUpdateData);
+                                                                              ;
+                                                                            },
+                                                                            child:
+                                                                                Text('Confirm'),
+                                                                          ),
+                                                                        ],
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                  ScaffoldMessenger.of(
+                                                                          context)
+                                                                      .showSnackBar(
+                                                                    SnackBar(
+                                                                      content:
+                                                                          Text(
+                                                                        '1 item moved to bin',
+                                                                        style:
+                                                                            TextStyle(),
+                                                                      ),
+                                                                      duration: Duration(
+                                                                          milliseconds:
+                                                                              4000),
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme
+                                                                              .campusGrey,
+                                                                      action:
+                                                                          SnackBarAction(
+                                                                        label:
+                                                                            'TRASH',
+                                                                        textColor:
+                                                                            Color(0xFF3779FF),
+                                                                        onPressed:
+                                                                            () async {
+                                                                          await Navigator
+                                                                              .push(
+                                                                            context,
+                                                                            PageTransition(
+                                                                              type: PageTransitionType.bottomToTop,
+                                                                              duration: Duration(milliseconds: 300),
+                                                                              reverseDuration: Duration(milliseconds: 300),
+                                                                              child: TrashWidget(),
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .delete_outline,
+                                                                  color: Color(
+                                                                      0xFF939393),
+                                                                  size: 30,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      if ((widget.jobStatus
+                                                              .status) ==
+                                                          'Completed')
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(18,
+                                                                      8, 18, 0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Text(
+                                                                'Completed ${dateTimeFormat('relative', widget.jobStatus.createdTime)}',
+                                                                style: FlutterFlowTheme
+                                                                    .subtitle1
+                                                                    .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  fontSize: 16,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0, 0, 4, 0),
+                                                                .fromSTEB(20, 0,
+                                                                    20, 0),
                                                         child: AutoSizeText(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            widget.jobStatus
-                                                                .rating
-                                                                .toString(),
-                                                            '0',
-                                                          ),
+                                                          widget
+                                                              .jobStatus.issue,
                                                           style:
                                                               FlutterFlowTheme
-                                                                  .title3,
+                                                                  .title1
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            fontSize: 18,
+                                                          ),
                                                         ),
                                                       ),
-                                                      Icon(
-                                                        Icons.star_rounded,
-                                                        color: FlutterFlowTheme
-                                                            .primaryColor,
-                                                        size: 20,
+                                                      if ((widget.jobStatus
+                                                              .notes) !=
+                                                          '')
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(20,
+                                                                      2, 16, 2),
+                                                          child: AutoSizeText(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              widget.jobStatus
+                                                                  .notes,
+                                                              'This section is currently empty. No additional notes/attachments were added in this request',
+                                                            ),
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .bodyText1
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Roboto',
+                                                              color: Color(
+                                                                  0xFF595959),
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme
+                                                        .tertiaryColor,
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      if (widget.jobStatus
+                                                              .isDone ??
+                                                          true)
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      18,
+                                                                      10,
+                                                                      18,
+                                                                      0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Container(
+                                                                height: 70,
+                                                                constraints:
+                                                                    BoxConstraints(
+                                                                  maxHeight: 32,
+                                                                ),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme
+                                                                      .campusGrey,
+                                                                  boxShadow: [
+                                                                    BoxShadow(
+                                                                      blurRadius:
+                                                                          4,
+                                                                      color: Color(
+                                                                          0x32171717),
+                                                                      offset:
+                                                                          Offset(
+                                                                              0,
+                                                                              2),
+                                                                    )
+                                                                  ],
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              30),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8,
+                                                                          0,
+                                                                          8,
+                                                                          0),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    children: [
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            8,
+                                                                            0,
+                                                                            8,
+                                                                            0),
+                                                                        child:
+                                                                            AutoSizeText(
+                                                                          widget
+                                                                              .jobStatus
+                                                                              .category,
+                                                                          style: FlutterFlowTheme
+                                                                              .bodyText1
+                                                                              .override(
+                                                                            fontFamily:
+                                                                                'Lexend Deca',
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontSize:
+                                                                                16,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            20,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                child: InkWell(
+                                                                  onTap:
+                                                                      () async {
+                                                                    if ((widget
+                                                                            .jobStatus
+                                                                            .isDone) ==
+                                                                        true) {
+                                                                      await showModalBottomSheet(
+                                                                        isScrollControlled:
+                                                                            true,
+                                                                        backgroundColor:
+                                                                            Colors.transparent,
+                                                                        barrierColor:
+                                                                            Color(0x5DFFFFFF),
+                                                                        context:
+                                                                            context,
+                                                                        builder:
+                                                                            (context) {
+                                                                          return Padding(
+                                                                            padding:
+                                                                                MediaQuery.of(context).viewInsets,
+                                                                            child:
+                                                                                ReviewWidget(
+                                                                              forReviews: widget.jobStatus,
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                      );
+                                                                    }
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    width: 100,
+                                                                    height: 70,
+                                                                    constraints:
+                                                                        BoxConstraints(
+                                                                      maxHeight:
+                                                                          32,
+                                                                    ),
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme
+                                                                          .campusRed,
+                                                                      boxShadow: [
+                                                                        BoxShadow(
+                                                                          blurRadius:
+                                                                              4,
+                                                                          color:
+                                                                              Color(0x32171717),
+                                                                          offset: Offset(
+                                                                              0,
+                                                                              2),
+                                                                        )
+                                                                      ],
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              30),
+                                                                    ),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              8,
+                                                                              0,
+                                                                              8,
+                                                                              0),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: [
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                8,
+                                                                                0,
+                                                                                8,
+                                                                                0),
+                                                                            child:
+                                                                                AutoSizeText(
+                                                                              'Rate Job',
+                                                                              style: FlutterFlowTheme.bodyText1.override(
+                                                                                fontFamily: 'Lexend Deca',
+                                                                                color: Colors.white,
+                                                                                fontSize: 12,
+                                                                                fontWeight: FontWeight.normal,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      if (!(widget.jobStatus
+                                                              .isDone) ??
+                                                          true)
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      18,
+                                                                      10,
+                                                                      18,
+                                                                      0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Container(
+                                                                height: 70,
+                                                                constraints:
+                                                                    BoxConstraints(
+                                                                  maxHeight: 32,
+                                                                ),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme
+                                                                      .campusGrey,
+                                                                  boxShadow: [
+                                                                    BoxShadow(
+                                                                      blurRadius:
+                                                                          4,
+                                                                      color: Color(
+                                                                          0x32171717),
+                                                                      offset:
+                                                                          Offset(
+                                                                              0,
+                                                                              2),
+                                                                    )
+                                                                  ],
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              30),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8,
+                                                                          0,
+                                                                          8,
+                                                                          0),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    children: [
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            8,
+                                                                            0,
+                                                                            8,
+                                                                            0),
+                                                                        child:
+                                                                            AutoSizeText(
+                                                                          widget
+                                                                              .jobStatus
+                                                                              .category,
+                                                                          style: FlutterFlowTheme
+                                                                              .bodyText1
+                                                                              .override(
+                                                                            fontFamily:
+                                                                                'Lexend Deca',
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontSize:
+                                                                                16,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            20,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                child: InkWell(
+                                                                  onTap:
+                                                                      () async {
+                                                                    if ((widget
+                                                                            .jobStatus
+                                                                            .isDone) ==
+                                                                        true) {
+                                                                      await showModalBottomSheet(
+                                                                        isScrollControlled:
+                                                                            true,
+                                                                        backgroundColor:
+                                                                            Colors.transparent,
+                                                                        barrierColor:
+                                                                            Color(0x5DFFFFFF),
+                                                                        context:
+                                                                            context,
+                                                                        builder:
+                                                                            (context) {
+                                                                          return Padding(
+                                                                            padding:
+                                                                                MediaQuery.of(context).viewInsets,
+                                                                            child:
+                                                                                ReviewWidget(
+                                                                              forReviews: widget.jobStatus,
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                      );
+                                                                    }
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    width: 100,
+                                                                    height: 70,
+                                                                    constraints:
+                                                                        BoxConstraints(
+                                                                      maxHeight:
+                                                                          32,
+                                                                    ),
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme
+                                                                          .campusRed,
+                                                                      boxShadow: [
+                                                                        BoxShadow(
+                                                                          blurRadius:
+                                                                              4,
+                                                                          color:
+                                                                              Color(0x32171717),
+                                                                          offset: Offset(
+                                                                              0,
+                                                                              2),
+                                                                        )
+                                                                      ],
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              30),
+                                                                    ),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              8,
+                                                                              0,
+                                                                              8,
+                                                                              0),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: [
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                8,
+                                                                                0,
+                                                                                8,
+                                                                                0),
+                                                                            child:
+                                                                                AutoSizeText(
+                                                                              'Rate Job',
+                                                                              style: FlutterFlowTheme.bodyText1.override(
+                                                                                fontFamily: 'Lexend Deca',
+                                                                                color: Colors.white,
+                                                                                fontSize: 12,
+                                                                                fontWeight: FontWeight.normal,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(15,
+                                                                    10, 16, 0),
+                                                        child: StreamBuilder<
+                                                            List<UsersRecord>>(
+                                                          stream:
+                                                              queryUsersRecord(
+                                                            singleRecord: true,
+                                                          ),
+                                                          builder: (context,
+                                                              snapshot) {
+                                                            // Customize what your widget looks like when it's loading.
+                                                            if (!snapshot
+                                                                .hasData) {
+                                                              return Center(
+                                                                child: SizedBox(
+                                                                  width: 60,
+                                                                  height: 60,
+                                                                  child:
+                                                                      SpinKitPulse(
+                                                                    color: FlutterFlowTheme
+                                                                        .primaryColor,
+                                                                    size: 60,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }
+                                                            List<UsersRecord>
+                                                                nameRatingUsersRecordList =
+                                                                snapshot.data;
+                                                            // Return an empty Container when the document does not exist.
+                                                            if (snapshot
+                                                                .data.isEmpty) {
+                                                              return Container();
+                                                            }
+                                                            final nameRatingUsersRecord =
+                                                                nameRatingUsersRecordList
+                                                                        .isNotEmpty
+                                                                    ? nameRatingUsersRecordList
+                                                                        .first
+                                                                    : null;
+                                                            return Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              12,
+                                                                              0,
+                                                                              8,
+                                                                              0),
+                                                                      child:
+                                                                          Container(
+                                                                        width:
+                                                                            45,
+                                                                        height:
+                                                                            45,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.tertiaryColor,
+                                                                          shape:
+                                                                              BoxShape.circle,
+                                                                        ),
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .account_circle,
+                                                                          color:
+                                                                              FlutterFlowTheme.campusGrey,
+                                                                          size:
+                                                                              30,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              10,
+                                                                              0,
+                                                                              0,
+                                                                              0),
+                                                                      child:
+                                                                          Text(
+                                                                        widget
+                                                                            .jobStatus
+                                                                            .displayName,
+                                                                        style: FlutterFlowTheme
+                                                                            .subtitle1
+                                                                            .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          fontSize:
+                                                                              18,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    AutoSizeText(
+                                                                      'Rating',
+                                                                      style: FlutterFlowTheme
+                                                                          .bodyText2,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              0,
+                                                                              4,
+                                                                              0),
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            valueOrDefault<String>(
+                                                                              widget.jobStatus.rating.toString(),
+                                                                              '0',
+                                                                            ),
+                                                                            style:
+                                                                                FlutterFlowTheme.title3,
+                                                                          ),
+                                                                        ),
+                                                                        Icon(
+                                                                          Icons
+                                                                              .star_rounded,
+                                                                          color:
+                                                                              FlutterFlowTheme.primaryColor,
+                                                                          size:
+                                                                              20,
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(16, 0,
+                                                                    16, 0),
+                                                        child: ListTile(
+                                                          leading: Icon(
+                                                            Icons
+                                                                .add_location_alt,
+                                                            size: 30,
+                                                          ),
+                                                          title: Text(
+                                                            widget.jobStatus
+                                                                .building,
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .subtitle1
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 18,
+                                                            ),
+                                                          ),
+                                                          subtitle: Text(
+                                                            'Room: ${widget.jobStatus.room}',
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .subtitle2
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 18,
+                                                            ),
+                                                          ),
+                                                          tileColor:
+                                                              FlutterFlowTheme
+                                                                  .tertiaryColor,
+                                                          dense: true,
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(16, 2,
+                                                                    16, 0),
+                                                        child: ListTile(
+                                                          leading: Icon(
+                                                            Icons
+                                                                .calendar_today,
+                                                            size: 25,
+                                                          ),
+                                                          title: Text(
+                                                            '${dateTimeFormat('MMMMEEEEd', widget.jobStatus.createdTime)} at ${dateTimeFormat('jm', widget.jobStatus.createdTime)}',
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .title3
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
+                                                          ),
+                                                          subtitle: Text(
+                                                            dateTimeFormat(
+                                                                'relative',
+                                                                widget.jobStatus
+                                                                    .createdTime),
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .subtitle2
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                            ),
+                                                          ),
+                                                          tileColor:
+                                                              FlutterFlowTheme
+                                                                  .tertiaryColor,
+                                                          dense: true,
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(16, 2,
+                                                                    16, 0),
+                                                        child: ListTile(
+                                                          leading: Icon(
+                                                            Icons
+                                                                .location_history_rounded,
+                                                            size: 25,
+                                                          ),
+                                                          title: Text(
+                                                            'Assigned to',
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .subtitle1
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 18,
+                                                            ),
+                                                          ),
+                                                          subtitle: Text(
+                                                            'Maintenance Team',
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .subtitle2
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
+                                                          tileColor:
+                                                              FlutterFlowTheme
+                                                                  .tertiaryColor,
+                                                          dense: true,
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
-                                                ],
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 4, 16, 0),
-                                      child: ListTile(
-                                        leading: Icon(
-                                          Icons.add_location_alt,
-                                          size: 35,
-                                        ),
-                                        title: Text(
-                                          widget.jobStatus.building,
-                                          style: FlutterFlowTheme.subtitle1
-                                              .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18,
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        subtitle: Text(
-                                          'Room: ${widget.jobStatus.room}',
-                                          style: FlutterFlowTheme.subtitle2
-                                              .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18,
+                                          SingleChildScrollView(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 17, 0, 0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        dateTimeFormat(
+                                                            'MMMEd',
+                                                            widget.jobStatus
+                                                                .createdTime),
+                                                        style: FlutterFlowTheme
+                                                            .bodyText1,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 80, 0, 0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Container(
+                                                            width: 150,
+                                                            height: 150,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: Color(
+                                                                  0x00EEEEEE),
+                                                              image:
+                                                                  DecorationImage(
+                                                                fit: BoxFit
+                                                                    .scaleDown,
+                                                                image:
+                                                                    Image.asset(
+                                                                  'assets/images/undraw_no_data_re_kwbl.png',
+                                                                ).image,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  12, 60, 0, 0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            'No results were found from your seaech.\nPlease try again.',
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .bodyText1
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              color: Color(
+                                                                  0xFF9E9E9E),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        tileColor:
-                                            FlutterFlowTheme.tertiaryColor,
-                                        dense: true,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 4, 16, 0),
-                                      child: ListTile(
-                                        leading: Icon(
-                                          Icons.calendar_today,
-                                          size: 30,
-                                        ),
-                                        title: Text(
-                                          '${dateTimeFormat('MMMMEEEEd', widget.jobStatus.createdTime)} at ${dateTimeFormat('jm', widget.jobStatus.createdTime)}',
-                                          style:
-                                              FlutterFlowTheme.title3.override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        subtitle: Text(
-                                          dateTimeFormat('relative',
-                                              widget.jobStatus.createdTime),
-                                          style: FlutterFlowTheme.subtitle2
-                                              .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        ),
-                                        tileColor:
-                                            FlutterFlowTheme.tertiaryColor,
-                                        dense: true,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 4, 16, 0),
-                                      child: ListTile(
-                                        leading: Icon(
-                                          Icons.location_history_rounded,
-                                          size: 30,
-                                        ),
-                                        title: Text(
-                                          'Assigned to',
-                                          style: FlutterFlowTheme.subtitle1
-                                              .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                        subtitle: Text(
-                                          'Maintenance Team',
-                                          style: FlutterFlowTheme.subtitle2
-                                              .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                        tileColor:
-                                            FlutterFlowTheme.tertiaryColor,
-                                        dense: true,
+                                        ],
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

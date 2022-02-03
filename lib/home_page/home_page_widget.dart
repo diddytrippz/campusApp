@@ -115,63 +115,69 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ],
                                         ),
                                       ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          CircularPercentIndicator(
-                                              percent: 0.75,
-                                              radius: 32.5,
-                                              lineWidth: 10,
-                                              animation: true,
-                                              progressColor:
-                                                  FlutterFlowTheme.campusRed,
-                                              backgroundColor:
-                                                  Color(0xFFF1F4F8),
-                                              center: Text(
-                                                '75%',
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: FlutterFlowTheme
-                                                      .primaryColor,
-                                                ),
-                                              ),
-                                              startAngle: 360),
-                                          Wrap(
-                                            spacing: 0,
-                                            runSpacing: 0,
-                                            alignment: WrapAlignment.start,
-                                            crossAxisAlignment:
-                                                WrapCrossAlignment.start,
-                                            direction: Axis.horizontal,
-                                            runAlignment: WrapAlignment.start,
-                                            verticalDirection:
-                                                VerticalDirection.down,
-                                            clipBehavior: Clip.none,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 8, 0, 0),
-                                                child: Text(
-                                                  'Profile Completion',
-                                                  style: FlutterFlowTheme.title1
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 12, 0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            CircularPercentIndicator(
+                                                percent: 0.75,
+                                                radius: 32.5,
+                                                lineWidth: 10,
+                                                animation: true,
+                                                progressColor:
+                                                    FlutterFlowTheme.campusRed,
+                                                backgroundColor:
+                                                    Color(0xFFF1F4F8),
+                                                center: Text(
+                                                  '75%',
+                                                  style: FlutterFlowTheme
+                                                      .bodyText1
                                                       .override(
                                                     fontFamily: 'Poppins',
                                                     color: FlutterFlowTheme
-                                                        .campusGrey,
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.bold,
+                                                        .primaryColor,
                                                   ),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                                startAngle: 360),
+                                            Wrap(
+                                              spacing: 0,
+                                              runSpacing: 0,
+                                              alignment: WrapAlignment.start,
+                                              crossAxisAlignment:
+                                                  WrapCrossAlignment.start,
+                                              direction: Axis.horizontal,
+                                              runAlignment: WrapAlignment.start,
+                                              verticalDirection:
+                                                  VerticalDirection.down,
+                                              clipBehavior: Clip.none,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 8, 0, 0),
+                                                  child: Text(
+                                                    'Profile ',
+                                                    style: FlutterFlowTheme
+                                                        .title1
+                                                        .override(
+                                                      fontFamily: 'Poppins',
+                                                      color: FlutterFlowTheme
+                                                          .campusGrey,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
