@@ -103,7 +103,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 29, 0, 20),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            await Navigator.push(
+                            await Navigator.pushAndRemoveUntil(
                               context,
                               PageTransition(
                                 type: PageTransitionType.bottomToTop,
@@ -111,6 +111,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                                 reverseDuration: Duration(milliseconds: 300),
                                 child: NavBarPage(initialPage: 'viewPage'),
                               ),
+                              (r) => false,
                             );
                           },
                           text: 'Continue',

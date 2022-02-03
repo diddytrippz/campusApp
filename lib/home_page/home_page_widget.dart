@@ -2,6 +2,7 @@ import '../components/appliances_widget.dart';
 import '../components/electrical_widget.dart';
 import '../components/furniture_widget.dart';
 import '../components/locksmith_widget.dart';
+import '../components/my_profile_widget.dart';
 import '../components/others_widget.dart';
 import '../components/painting_widget.dart';
 import '../components/pest_control_widget.dart';
@@ -125,26 +126,47 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            CircularPercentIndicator(
-                                                percent: 0.75,
-                                                radius: 32.5,
-                                                lineWidth: 10,
-                                                animation: true,
-                                                progressColor:
-                                                    FlutterFlowTheme.campusRed,
-                                                backgroundColor:
-                                                    Color(0xFFF1F4F8),
-                                                center: Text(
-                                                  '75%',
-                                                  style: FlutterFlowTheme
-                                                      .bodyText1
-                                                      .override(
-                                                    fontFamily: 'Poppins',
-                                                    color: FlutterFlowTheme
-                                                        .primaryColor,
+                                            InkWell(
+                                              onTap: () async {
+                                                await showModalBottomSheet(
+                                                  isScrollControlled: true,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  barrierColor:
+                                                      Colors.transparent,
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return Padding(
+                                                      padding:
+                                                          MediaQuery.of(context)
+                                                              .viewInsets,
+                                                      child: MyProfileWidget(),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              child: CircularPercentIndicator(
+                                                  percent: 0.75,
+                                                  radius: 32.5,
+                                                  lineWidth: 10,
+                                                  animation: true,
+                                                  progressColor:
+                                                      FlutterFlowTheme
+                                                          .campusRed,
+                                                  backgroundColor:
+                                                      Color(0xFFF1F4F8),
+                                                  center: Text(
+                                                    '75%',
+                                                    style: FlutterFlowTheme
+                                                        .bodyText1
+                                                        .override(
+                                                      fontFamily: 'Poppins',
+                                                      color: FlutterFlowTheme
+                                                          .primaryColor,
+                                                    ),
                                                   ),
-                                                ),
-                                                startAngle: 360),
+                                                  startAngle: 360),
+                                            ),
                                             Wrap(
                                               spacing: 0,
                                               runSpacing: 0,

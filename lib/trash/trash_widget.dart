@@ -1,9 +1,11 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/empty_list_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -133,7 +135,6 @@ class _TrashWidgetState extends State<TrashWidget> {
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
                                           color: FlutterFlowTheme.campusGrey,
-                                          fontStyle: FontStyle.italic,
                                         ),
                                       ),
                                     ),
@@ -253,14 +254,75 @@ class _TrashWidgetState extends State<TrashWidget> {
                                               fontSize: 14,
                                             ),
                                           ),
-                                          Text(
-                                            'View attachment',
-                                            style: FlutterFlowTheme.subtitle1
-                                                .override(
-                                              fontFamily: 'Roboto',
-                                              color: FlutterFlowTheme.campusRed,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
+                                          InkWell(
+                                            onTap: () async {
+                                              final maintenanceUpdateData =
+                                                  createMaintenanceRecordData(
+                                                status: 'Submitted',
+                                              );
+                                              await columnMaintenanceRecord
+                                                  .reference
+                                                  .update(
+                                                      maintenanceUpdateData);
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'You have successfully recovered your files',
+                                                    style: FlutterFlowTheme
+                                                        .subtitle1
+                                                        .override(
+                                                      fontFamily: 'Roboto',
+                                                      color: FlutterFlowTheme
+                                                          .tertiaryColor,
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                  duration: Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme
+                                                          .campusGrey,
+                                                  action: SnackBarAction(
+                                                    label: 'VIEW',
+                                                    textColor:
+                                                        Color(0xFF0074D8),
+                                                    onPressed: () async {
+                                                      await Navigator
+                                                          .pushAndRemoveUntil(
+                                                        context,
+                                                        PageTransition(
+                                                          type:
+                                                              PageTransitionType
+                                                                  .bottomToTop,
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  300),
+                                                          reverseDuration:
+                                                              Duration(
+                                                                  milliseconds:
+                                                                      300),
+                                                          child: NavBarPage(
+                                                              initialPage:
+                                                                  'viewPage'),
+                                                        ),
+                                                        (r) => false,
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              'Recycle Items',
+                                              style: FlutterFlowTheme.subtitle1
+                                                  .override(
+                                                fontFamily: 'Roboto',
+                                                color:
+                                                    FlutterFlowTheme.campusRed,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
                                         ],

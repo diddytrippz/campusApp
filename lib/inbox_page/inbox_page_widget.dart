@@ -225,7 +225,6 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',
                                           color: FlutterFlowTheme.campusGrey,
-                                          fontStyle: FontStyle.italic,
                                         ),
                                       ),
                                     ),
