@@ -97,12 +97,16 @@ class _OthersWidgetState extends State<OthersWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Others',
-                              style: FlutterFlowTheme.title1.override(
-                                fontFamily: 'Poppins',
-                                color: Color(0xFFD93A0E),
-                                fontSize: 22,
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              child: Text(
+                                'Others',
+                                style: FlutterFlowTheme.title1.override(
+                                  fontFamily: 'Poppins',
+                                  color: Color(0xFFD93A0E),
+                                  fontSize: 26,
+                                ),
                               ),
                             ),
                             InkWell(

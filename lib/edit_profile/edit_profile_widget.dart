@@ -285,7 +285,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           ),
                         ),
                         subtitle: Text(
-                          currentUserDocument?.room,
+                          'Room: ${currentUserDocument?.room}',
                           style: FlutterFlowTheme.subtitle2,
                         ),
                         tileColor: FlutterFlowTheme.tertiaryColor,
