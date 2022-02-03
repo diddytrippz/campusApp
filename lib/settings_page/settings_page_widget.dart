@@ -1,6 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/my_profile_widget.dart';
+import '../edit_profile/edit_profile_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -272,7 +272,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           type: PageTransitionType.rightToLeft,
                           duration: Duration(milliseconds: 300),
                           reverseDuration: Duration(milliseconds: 300),
-                          child: NavBarPage(initialPage: 'settingsPage'),
+                          child: EditProfileWidget(),
                         ),
                       );
                     },
@@ -468,17 +468,14 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                         child: InkWell(
                           onTap: () async {
-                            await showModalBottomSheet(
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              barrierColor: Color(0xBE939393),
-                              context: context,
-                              builder: (context) {
-                                return Padding(
-                                  padding: MediaQuery.of(context).viewInsets,
-                                  child: MyProfileWidget(),
-                                );
-                              },
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.bottomToTop,
+                                duration: Duration(milliseconds: 300),
+                                reverseDuration: Duration(milliseconds: 300),
+                                child: EditProfileWidget(),
+                              ),
                             );
                           },
                           child: Row(

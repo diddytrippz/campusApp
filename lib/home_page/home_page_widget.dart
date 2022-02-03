@@ -2,11 +2,11 @@ import '../components/appliances_widget.dart';
 import '../components/electrical_widget.dart';
 import '../components/furniture_widget.dart';
 import '../components/locksmith_widget.dart';
-import '../components/my_profile_widget.dart';
 import '../components/others_widget.dart';
 import '../components/painting_widget.dart';
 import '../components/pest_control_widget.dart';
 import '../components/plumbing_widget.dart';
+import '../edit_profile/edit_profile_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -128,21 +128,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           children: [
                                             InkWell(
                                               onTap: () async {
-                                                await showModalBottomSheet(
-                                                  isScrollControlled: true,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  barrierColor:
-                                                      Colors.transparent,
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return Padding(
-                                                      padding:
-                                                          MediaQuery.of(context)
-                                                              .viewInsets,
-                                                      child: MyProfileWidget(),
-                                                    );
-                                                  },
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType
+                                                        .bottomToTop,
+                                                    duration: Duration(
+                                                        milliseconds: 300),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 300),
+                                                    child: EditProfileWidget(),
+                                                  ),
                                                 );
                                               },
                                               child: CircularPercentIndicator(
