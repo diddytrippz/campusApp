@@ -26,7 +26,7 @@ class FFAppState {
     prefs.setString('ff_profilePic', _value);
   }
 
-  bool isPressed = false;
+  bool isPressed = true;
 
   List<bool> listPressed = [];
 }

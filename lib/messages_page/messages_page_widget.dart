@@ -4,6 +4,7 @@ import '../chat_page/chat_page_widget.dart';
 import '../components/empty_list_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -17,7 +18,14 @@ class MessagesPageWidget extends StatefulWidget {
 }
 
 class _MessagesPageWidgetState extends State<MessagesPageWidget> {
+  TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    textController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +34,82 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        title: Text(
-          'All Chats',
-          style: FlutterFlowTheme.bodyText1.override(
-            fontFamily: 'Roboto',
+        leading: ToggleIcon(
+          onPressed: () async {
+            setState(() => FFAppState().isPressed = !FFAppState().isPressed);
+          },
+          value: FFAppState().isPressed,
+          onIcon: Icon(
+            Icons.menu,
             color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+            size: 25,
+          ),
+          offIcon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+            size: 25,
           ),
         ),
-        actions: [],
-        centerTitle: true,
+        title: Stack(
+          children: [
+            if (FFAppState().isPressed ?? true)
+              TextFormField(
+                controller: textController,
+                obscureText: false,
+                decoration: InputDecoration(
+                  hintText: 'Search',
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0x00000000),
+                      width: 1,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4.0),
+                      topRight: Radius.circular(4.0),
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0x00000000),
+                      width: 1,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4.0),
+                      topRight: Radius.circular(4.0),
+                    ),
+                  ),
+                ),
+                style: FlutterFlowTheme.bodyText1,
+              ),
+            if (FFAppState().isPressed ?? true)
+              Text(
+                'Inbox',
+                style: FlutterFlowTheme.title3.override(
+                  fontFamily: 'Roboto',
+                  fontSize: 18,
+                ),
+              ),
+          ],
+        ),
+        actions: [
+          ToggleIcon(
+            onPressed: () async {
+              setState(() => FFAppState().isPressed = !FFAppState().isPressed);
+            },
+            value: FFAppState().isPressed,
+            onIcon: Icon(
+              Icons.search_rounded,
+              color: Colors.black,
+              size: 25,
+            ),
+            offIcon: Icon(
+              Icons.check_box_outline_blank,
+              color: FlutterFlowTheme.tertiaryColor,
+              size: 25,
+            ),
+          ),
+        ],
+        centerTitle: false,
         elevation: 4,
       ),
       body: SafeArea(
