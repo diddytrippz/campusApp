@@ -41,7 +41,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
         ),
         title: Stack(
           children: [
-            if (FFAppState().isPressed ?? true)
+            if (!(FFAppState().isPressed) ?? true)
               TextFormField(
                 controller: textController,
                 obscureText: false,
