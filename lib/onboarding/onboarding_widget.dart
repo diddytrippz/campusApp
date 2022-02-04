@@ -117,7 +117,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                           context,
                                           PageTransition(
                                             type:
-                                                PageTransitionType.bottomToTop,
+                                                PageTransitionType.topToBottom,
                                             duration:
                                                 Duration(milliseconds: 300),
                                             reverseDuration:

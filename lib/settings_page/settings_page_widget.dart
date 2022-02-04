@@ -9,7 +9,6 @@ import '../main.dart';
 import '../onboarding/onboarding_widget.dart';
 import '../rules_book/rules_book_widget.dart';
 import '../trash/trash_widget.dart';
-import '../custom_code/actions/index.dart' as actions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -465,7 +464,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
                         child: Text(
-                          'USERS',
+                          'ACCOUNT',
                           style: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Roboto',
                             color: Color(0xFF9E9E9E),
@@ -554,13 +553,21 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                         child: InkWell(
                           onTap: () async {
-                            await actions.settings();
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.bottomToTop,
+                                duration: Duration(milliseconds: 300),
+                                reverseDuration: Duration(milliseconds: 300),
+                                child: NavBarPage(initialPage: 'MessagesPage'),
+                              ),
+                            );
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Icon(
-                                Icons.accessibility_new_sharp,
+                                Icons.textsms_outlined,
                                 color: Color(0xFF9E9E9E),
                                 size: 24,
                               ),
@@ -568,7 +575,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                                 child: Text(
-                                  'Accessibility',
+                                  'Messages',
                                   style: FlutterFlowTheme.bodyText1,
                                 ),
                               ),
