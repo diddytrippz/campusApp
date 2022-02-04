@@ -14,7 +14,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ViewPageWidget extends StatefulWidget {
@@ -514,8 +513,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     tileColor:
                                                                         Color(
                                                                             0x00FFFFFF),
-                                                                    dense:
-                                                                        false,
+                                                                    dense: true,
                                                                   ),
                                                                 ),
                                                               );
@@ -592,23 +590,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                             List<MaintenanceRecord>
                                                                 listViewMaintenanceRecordList =
                                                                 snapshot.data;
-                                                            if (listViewMaintenanceRecordList
-                                                                .isEmpty) {
-                                                              return Center(
-                                                                child:
-                                                                    SvgPicture
-                                                                        .asset(
-                                                                  'assets/images/undraw_no_data_re_kwbl.svg',
-                                                                  width: MediaQuery.of(
-                                                                              context)
-                                                                          .size
-                                                                          .width *
-                                                                      0.5,
-                                                                  fit: BoxFit
-                                                                      .contain,
-                                                                ),
-                                                              );
-                                                            }
                                                             return ListView
                                                                 .builder(
                                                               padding:
@@ -685,8 +666,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     tileColor:
                                                                         Color(
                                                                             0x00F5F5F5),
-                                                                    dense:
-                                                                        false,
+                                                                    dense: true,
                                                                   ),
                                                                 );
                                                               },
@@ -859,7 +839,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   ),
                                                                   tileColor: Color(
                                                                       0x00FFFFFF),
-                                                                  dense: false,
+                                                                  dense: true,
                                                                 ),
                                                               );
                                                             },
