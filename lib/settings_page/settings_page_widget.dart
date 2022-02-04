@@ -138,7 +138,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, 20),
+                                          40, 0, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -219,32 +219,36 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                         ],
                                       ),
                                     ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 4),
-                                          child: AuthUserStreamWidget(
-                                            child: Text(
-                                              currentUserDisplayName,
-                                              style: FlutterFlowTheme.title1
-                                                  .override(
-                                                fontFamily: 'Roboto',
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8, 30, 0, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 4),
+                                            child: AuthUserStreamWidget(
+                                              child: Text(
+                                                currentUserDisplayName,
+                                                style: FlutterFlowTheme.title1
+                                                    .override(
+                                                  fontFamily: 'Roboto',
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 12, 0, 14),
+                                          8, 12, 0, 14),
                                       child: Text(
                                         currentUserEmail,
                                         style:
