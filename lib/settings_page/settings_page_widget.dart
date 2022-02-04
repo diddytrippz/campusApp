@@ -1,4 +1,3 @@
-import '../add_user/add_user_widget.dart';
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../edit_profile/edit_profile_widget.dart';
@@ -70,176 +69,102 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              StreamBuilder<List<ChatsRecord>>(
-                stream: queryChatsRecord(
-                  singleRecord: true,
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 60,
-                        height: 60,
-                        child: SpinKitPulse(
-                          color: FlutterFlowTheme.primaryColor,
-                          size: 60,
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                    child: Material(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(1),
+                          bottomRight: Radius.circular(1),
+                          topLeft: Radius.circular(0),
+                          topRight: Radius.circular(1),
                         ),
                       ),
-                    );
-                  }
-                  List<ChatsRecord> columnChatsRecordList = snapshot.data;
-                  // Return an empty Container when the document does not exist.
-                  if (snapshot.data.isEmpty) {
-                    return Container();
-                  }
-                  final columnChatsRecord = columnChatsRecordList.isNotEmpty
-                      ? columnChatsRecordList.first
-                      : null;
-                  return Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                        child: Material(
-                          color: Colors.transparent,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(1),
-                              bottomRight: Radius.circular(1),
-                              topLeft: Radius.circular(0),
-                              topRight: Radius.circular(1),
-                            ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color(0x00FFFFFF),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(1),
+                            bottomRight: Radius.circular(1),
+                            topLeft: Radius.circular(0),
+                            topRight: Radius.circular(1),
                           ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Color(0x00FFFFFF),
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(1),
-                                bottomRight: Radius.circular(1),
-                                topLeft: Radius.circular(0),
-                                topRight: Radius.circular(1),
+                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional(0, 1),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(12, 40, 0, 0),
+                            child: FutureBuilder<List<UsersRecord>>(
+                              future: queryUsersRecordOnce(
+                                queryBuilder: (usersRecord) =>
+                                    usersRecord.where('email',
+                                        isEqualTo: currentUserEmail),
+                                singleRecord: true,
                               ),
-                            ),
-                            child: Align(
-                              alignment: AlignmentDirectional(0, 1),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 40, 0, 0),
-                                child: FutureBuilder<List<UsersRecord>>(
-                                  future: queryUsersRecordOnce(
-                                    queryBuilder: (usersRecord) =>
-                                        usersRecord.where('email',
-                                            isEqualTo: currentUserEmail),
-                                    singleRecord: true,
-                                  ),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 60,
-                                          height: 60,
-                                          child: SpinKitPulse(
-                                            color:
-                                                FlutterFlowTheme.primaryColor,
-                                            size: 60,
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    List<UsersRecord> columnUsersRecordList =
-                                        snapshot.data;
-                                    // Return an empty Container when the document does not exist.
-                                    if (snapshot.data.isEmpty) {
-                                      return Container();
-                                    }
-                                    final columnUsersRecord =
-                                        columnUsersRecordList.isNotEmpty
-                                            ? columnUsersRecordList.first
-                                            : null;
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 20),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                width: 100,
-                                                height: 100,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0xFFDBE2E7),
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(2, 2, 2, 2),
-                                                  child: AuthUserStreamWidget(
-                                                    child: InkWell(
-                                                      onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            child:
-                                                                FlutterFlowExpandedImageView(
-                                                              image:
-                                                                  CachedNetworkImage(
-                                                                imageUrl:
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                  currentUserPhoto,
-                                                                  'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
-                                                                ),
-                                                                fit: BoxFit
-                                                                    .contain,
-                                                              ),
-                                                              allowRotation:
-                                                                  false,
-                                                              tag:
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                currentUserPhoto,
-                                                                'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
-                                                              ),
-                                                              useHeroAnimation:
-                                                                  true,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                      child: Hero(
-                                                        tag: valueOrDefault<
-                                                            String>(
-                                                          currentUserPhoto,
-                                                          'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
-                                                        ),
-                                                        transitionOnUserGestures:
-                                                            true,
-                                                        child: Container(
-                                                          width: 90,
-                                                          height: 90,
-                                                          clipBehavior:
-                                                              Clip.antiAlias,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child:
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 60,
+                                      height: 60,
+                                      child: SpinKitPulse(
+                                        color: FlutterFlowTheme.primaryColor,
+                                        size: 60,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<UsersRecord> columnUsersRecordList =
+                                    snapshot.data;
+                                // Return an empty Container when the document does not exist.
+                                if (snapshot.data.isEmpty) {
+                                  return Container();
+                                }
+                                final columnUsersRecord =
+                                    columnUsersRecordList.isNotEmpty
+                                        ? columnUsersRecordList.first
+                                        : null;
+                                return Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 20),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            width: 100,
+                                            height: 100,
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFFDBE2E7),
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(2, 2, 2, 2),
+                                              child: AuthUserStreamWidget(
+                                                child: InkWell(
+                                                  onTap: () async {
+                                                    await Navigator.push(
+                                                      context,
+                                                      PageTransition(
+                                                        type: PageTransitionType
+                                                            .fade,
+                                                        child:
+                                                            FlutterFlowExpandedImageView(
+                                                          image:
                                                               CachedNetworkImage(
                                                             imageUrl:
                                                                 valueOrDefault<
@@ -247,231 +172,236 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                               currentUserPhoto,
                                                               'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
                                                             ),
-                                                            fit: BoxFit.cover,
+                                                            fit: BoxFit.contain,
                                                           ),
+                                                          allowRotation: false,
+                                                          tag: valueOrDefault<
+                                                              String>(
+                                                            currentUserPhoto,
+                                                            'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
+                                                          ),
+                                                          useHeroAnimation:
+                                                              true,
                                                         ),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: Hero(
+                                                    tag: valueOrDefault<String>(
+                                                      currentUserPhoto,
+                                                      'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
+                                                    ),
+                                                    transitionOnUserGestures:
+                                                        true,
+                                                    child: Container(
+                                                      width: 90,
+                                                      height: 90,
+                                                      clipBehavior:
+                                                          Clip.antiAlias,
+                                                      decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                      ),
+                                                      child: CachedNetworkImage(
+                                                        imageUrl:
+                                                            valueOrDefault<
+                                                                String>(
+                                                          currentUserPhoto,
+                                                          'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
+                                                        ),
+                                                        fit: BoxFit.cover,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 0, 4),
-                                              child: AuthUserStreamWidget(
-                                                child: Text(
-                                                  currentUserDisplayName,
-                                                  style: FlutterFlowTheme.title1
-                                                      .override(
-                                                    fontFamily: 'Roboto',
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 12, 0, 14),
-                                          child: Text(
-                                            currentUserEmail,
-                                            style: FlutterFlowTheme.subtitle1
-                                                .override(
-                                              fontFamily: 'Roboto',
-                                              fontWeight: FontWeight.bold,
+                                                  0, 0, 0, 4),
+                                          child: AuthUserStreamWidget(
+                                            child: Text(
+                                              currentUserDisplayName,
+                                              style: FlutterFlowTheme.title1
+                                                  .override(
+                                                fontFamily: 'Roboto',
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ],
-                                    );
-                                  },
-                                ),
-                              ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 12, 0, 14),
+                                      child: Text(
+                                        currentUserEmail,
+                                        style:
+                                            FlutterFlowTheme.subtitle1.override(
+                                          fontFamily: 'Roboto',
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
                             ),
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              duration: Duration(milliseconds: 300),
-                              reverseDuration: Duration(milliseconds: 300),
-                              child: EditProfileWidget(),
-                            ),
-                          );
-                        },
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.person_outline_sharp,
-                          ),
-                          title: Text(
-                            'Profile',
-                            style: FlutterFlowTheme.title3.override(
-                              fontFamily: 'Roboto',
-                              fontSize: 16,
-                            ),
-                          ),
-                          tileColor: Color(0x00F5F5F5),
-                          dense: false,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          duration: Duration(milliseconds: 300),
+                          reverseDuration: Duration(milliseconds: 300),
+                          child: EditProfileWidget(),
+                        ),
+                      );
+                    },
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.person_outline_sharp,
+                      ),
+                      title: Text(
+                        'Profile',
+                        style: FlutterFlowTheme.title3.override(
+                          fontFamily: 'Roboto',
+                          fontSize: 16,
                         ),
                       ),
-                      InkWell(
-                        onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              duration: Duration(milliseconds: 300),
-                              reverseDuration: Duration(milliseconds: 300),
-                              child: NavBarPage(initialPage: 'MessagesPage'),
-                            ),
-                          );
-                        },
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.message_outlined,
-                          ),
-                          title: Text(
-                            'Messages',
-                            style: FlutterFlowTheme.title3.override(
-                              fontFamily: 'Roboto',
-                              fontSize: 16,
-                            ),
-                          ),
-                          tileColor: Color(0x00F5F5F5),
-                          dense: false,
+                      tileColor: Color(0x00F5F5F5),
+                      dense: false,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.bottomToTop,
+                          duration: Duration(milliseconds: 300),
+                          reverseDuration: Duration(milliseconds: 300),
+                          child: NavBarPage(initialPage: 'MessagesPage'),
+                        ),
+                      );
+                    },
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.message_outlined,
+                      ),
+                      title: Text(
+                        'Messages',
+                        style: FlutterFlowTheme.title3.override(
+                          fontFamily: 'Roboto',
+                          fontSize: 16,
                         ),
                       ),
-                      InkWell(
-                        onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              duration: Duration(milliseconds: 300),
-                              reverseDuration: Duration(milliseconds: 300),
-                              child: NavBarPage(initialPage: 'viewPage'),
-                            ),
-                          );
-                        },
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.forum,
-                          ),
-                          title: Text(
-                            'Mantenance',
-                            style: FlutterFlowTheme.title3.override(
-                              fontFamily: 'Roboto',
-                              fontSize: 16,
-                            ),
-                          ),
-                          tileColor: Color(0x00F5F5F5),
-                          dense: false,
+                      tileColor: Color(0x00F5F5F5),
+                      dense: false,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          duration: Duration(milliseconds: 300),
+                          reverseDuration: Duration(milliseconds: 300),
+                          child: NavBarPage(initialPage: 'viewPage'),
+                        ),
+                      );
+                    },
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.forum,
+                      ),
+                      title: Text(
+                        'Mantenance',
+                        style: FlutterFlowTheme.title3.override(
+                          fontFamily: 'Roboto',
+                          fontSize: 16,
                         ),
                       ),
-                      InkWell(
-                        onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              duration: Duration(milliseconds: 300),
-                              reverseDuration: Duration(milliseconds: 300),
-                              child: AddUserWidget(
-                                chat: columnChatsRecord,
-                              ),
-                            ),
-                          );
-                        },
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.group_add,
-                          ),
-                          title: Text(
-                            'Social',
-                            style: FlutterFlowTheme.title3.override(
-                              fontFamily: 'Roboto',
-                              fontSize: 16,
-                            ),
-                          ),
-                          tileColor: Color(0x00F5F5F5),
-                          dense: false,
+                      tileColor: Color(0x00F5F5F5),
+                      dense: false,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      await Navigator.pushAndRemoveUntil(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          duration: Duration(milliseconds: 300),
+                          reverseDuration: Duration(milliseconds: 300),
+                          child: TrashWidget(),
+                        ),
+                        (r) => false,
+                      );
+                    },
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.delete_outline_rounded,
+                      ),
+                      title: Text(
+                        'Trash',
+                        style: FlutterFlowTheme.title3.override(
+                          fontFamily: 'Roboto',
+                          fontSize: 16,
                         ),
                       ),
-                      InkWell(
-                        onTap: () async {
-                          await Navigator.pushAndRemoveUntil(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              duration: Duration(milliseconds: 300),
-                              reverseDuration: Duration(milliseconds: 300),
-                              child: TrashWidget(),
-                            ),
-                            (r) => false,
-                          );
-                        },
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.delete_outline_rounded,
-                          ),
-                          title: Text(
-                            'Trash',
-                            style: FlutterFlowTheme.title3.override(
-                              fontFamily: 'Roboto',
-                              fontSize: 16,
-                            ),
-                          ),
-                          tileColor: Color(0x00F5F5F5),
-                          dense: false,
+                      tileColor: Color(0x00F5F5F5),
+                      dense: false,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      await signOut();
+                      await Navigator.pushAndRemoveUntil(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.bottomToTop,
+                          duration: Duration(milliseconds: 300),
+                          reverseDuration: Duration(milliseconds: 300),
+                          child: OnboardingWidget(),
+                        ),
+                        (r) => false,
+                      );
+                    },
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.logout,
+                      ),
+                      title: Text(
+                        'Sign Out',
+                        style: FlutterFlowTheme.title3.override(
+                          fontFamily: 'Roboto',
+                          fontSize: 16,
                         ),
                       ),
-                      InkWell(
-                        onTap: () async {
-                          await signOut();
-                          await Navigator.pushAndRemoveUntil(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              duration: Duration(milliseconds: 300),
-                              reverseDuration: Duration(milliseconds: 300),
-                              child: OnboardingWidget(),
-                            ),
-                            (r) => false,
-                          );
-                        },
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.logout,
-                          ),
-                          title: Text(
-                            'Sign Out',
-                            style: FlutterFlowTheme.title3.override(
-                              fontFamily: 'Roboto',
-                              fontSize: 16,
-                            ),
-                          ),
-                          tileColor: Color(0x00F5F5F5),
-                          dense: false,
-                        ),
-                      ),
-                    ],
-                  );
-                },
+                      tileColor: Color(0x00F5F5F5),
+                      dense: false,
+                    ),
+                  ),
+                ],
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
