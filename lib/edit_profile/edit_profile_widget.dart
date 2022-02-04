@@ -286,10 +286,21 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           SnackBar(
                             content: Text(
                               'Image successfully uploaded',
-                              style: TextStyle(),
+                              style: TextStyle(
+                                color: FlutterFlowTheme.tertiaryColor,
+                              ),
                             ),
                             duration: Duration(milliseconds: 4000),
-                            backgroundColor: Color(0x00000000),
+                            backgroundColor: FlutterFlowTheme.campusGrey,
+                          ),
+                        );
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.bottomToTop,
+                            duration: Duration(milliseconds: 300),
+                            reverseDuration: Duration(milliseconds: 300),
+                            child: NavBarPage(initialPage: 'settingsPage'),
                           ),
                         );
                       },
