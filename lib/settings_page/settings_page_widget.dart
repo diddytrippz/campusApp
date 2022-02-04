@@ -99,7 +99,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           alignment: AlignmentDirectional(0, 1),
                           child: Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 40, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(12, 80, 0, 0),
                             child: FutureBuilder<List<UsersRecord>>(
                               future: queryUsersRecordOnce(
                                 queryBuilder: (usersRecord) =>
