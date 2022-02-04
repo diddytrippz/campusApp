@@ -154,9 +154,9 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           GButton(
             icon: currentIndex == 2
-                ? Icons.chat_bubble_rounded
-                : Icons.chat_bubble_outline,
-            text: 'Chats',
+                ? Icons.notifications
+                : Icons.notifications_none,
+            text: 'MESSAGES',
             iconSize: 24,
           ),
           GButton(
