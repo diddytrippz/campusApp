@@ -144,7 +144,7 @@ class _TrashWidgetState extends State<TrashWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 8, 0),
                                       child: AutoSizeText(
-                                        'Messages are store here for future\nreferences and may only be deleted \nby the admin.',
+                                        'Messages are store here for future references and may only be deleted  by the admin.',
                                         style:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Poppins',

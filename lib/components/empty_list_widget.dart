@@ -17,43 +17,53 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 200, 0, 0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  color: Color(0x00EEEEEE),
-                  image: DecorationImage(
-                    fit: BoxFit.scaleDown,
-                    image: Image.asset(
-                      'assets/images/undraw_no_data_re_kwbl.png',
-                    ).image,
+        Expanded(
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 200, 0, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: Color(0x00EEEEEE),
+                          image: DecorationImage(
+                            fit: BoxFit.scaleDown,
+                            image: Image.asset(
+                              'assets/images/undraw_no_data_re_kwbl.png',
+                            ).image,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(12, 60, 0, 0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'No results were found from your seaech.\nPlease try again.',
-                textAlign: TextAlign.center,
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  color: Color(0xFF9E9E9E),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(12, 60, 0, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'No results were found from your seaech.\nPlease try again.',
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.bodyText1.override(
+                          fontFamily: 'Poppins',
+                          color: Color(0xFF9E9E9E),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],

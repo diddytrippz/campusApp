@@ -439,7 +439,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
                         child: Text(
-                          'ACCOUNT',
+                          'USERS',
                           style: FlutterFlowTheme.bodyText1.override(
                             fontFamily: 'Poppins',
                             color: Color(0xFF9E9E9E),
@@ -580,7 +580,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Icon(
-                            Icons.notifications_active,
+                            Icons.nights_stay,
                             color: Color(0xFF9E9E9E),
                             size: 24,
                           ),
@@ -588,12 +588,12 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                             child: Text(
-                              'Notifications',
+                              'Dark Mode',
                               style: FlutterFlowTheme.bodyText1,
                             ),
                           ),
                           Expanded(
-                            child: SwitchListTile.adaptive(
+                            child: SwitchListTile(
                               value: switchListTileValue ??= false,
                               onChanged: (newValue) => setState(
                                   () => switchListTileValue = newValue),
@@ -711,7 +711,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                                 child: Text(
-                                  'Student handbook',
+                                  'Student Handbook',
                                   style: FlutterFlowTheme.bodyText1,
                                 ),
                               ),

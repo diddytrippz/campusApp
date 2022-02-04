@@ -25,7 +25,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   String uploadedFileUrl = '';
   TextEditingController textController1;
   TextEditingController textController2;
-  bool switchListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -268,30 +267,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                    child: AuthUserStreamWidget(
-                      child: SwitchListTile(
-                        value: switchListTileValue ??= true,
-                        onChanged: (newValue) =>
-                            setState(() => switchListTileValue = newValue),
-                        title: Text(
-                          currentUserDocument?.building,
-                          style: FlutterFlowTheme.title3.override(
-                            fontFamily: 'Roboto',
-                            fontSize: 18,
-                          ),
-                        ),
-                        subtitle: Text(
-                          'Room: ${currentUserDocument?.room}',
-                          style: FlutterFlowTheme.subtitle2,
-                        ),
-                        tileColor: FlutterFlowTheme.tertiaryColor,
-                        dense: false,
-                        controlAffinity: ListTileControlAffinity.trailing,
-                      ),
                     ),
                   ),
                 ],
