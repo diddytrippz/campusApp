@@ -94,7 +94,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 style: FlutterFlowTheme
                                                     .subtitle1
                                                     .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Roboto',
                                                   fontSize: 14,
                                                 ),
                                               ),
@@ -108,7 +108,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 style: FlutterFlowTheme
                                                     .subtitle1
                                                     .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Roboto',
                                                   fontSize: 14,
                                                 ),
                                               ),
@@ -156,7 +156,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     style: FlutterFlowTheme
                                                         .bodyText1
                                                         .override(
-                                                      fontFamily: 'Poppins',
+                                                      fontFamily: 'Roboto',
                                                       color: FlutterFlowTheme
                                                           .primaryColor,
                                                     ),
@@ -183,7 +183,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     style: FlutterFlowTheme
                                                         .title1
                                                         .override(
-                                                      fontFamily: 'Poppins',
+                                                      fontFamily: 'Roboto',
                                                       color: FlutterFlowTheme
                                                           .campusGrey,
                                                       fontSize: 14,
@@ -272,8 +272,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       onTap: () async {
                                         await showModalBottomSheet(
                                           isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          barrierColor: Color(0x5DFFFFFF),
+                                          backgroundColor: Color(0x5DFFFFFF),
                                           context: context,
                                           builder: (context) {
                                             return Padding(
@@ -344,8 +343,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       onTap: () async {
                                         await showModalBottomSheet(
                                           isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          barrierColor: Color(0x5DFFFFFF),
+                                          backgroundColor: Color(0x5DFFFFFF),
                                           context: context,
                                           builder: (context) {
                                             return Padding(
@@ -417,8 +415,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       onTap: () async {
                                         await showModalBottomSheet(
                                           isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          barrierColor: Color(0x5DFFFFFF),
+                                          backgroundColor: Color(0x5DFFFFFF),
                                           context: context,
                                           builder: (context) {
                                             return Padding(
@@ -500,8 +497,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       onTap: () async {
                                         await showModalBottomSheet(
                                           isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          barrierColor: Color(0x5DFFFFFF),
+                                          backgroundColor: Color(0x5DFFFFFF),
                                           context: context,
                                           builder: (context) {
                                             return Padding(
@@ -645,8 +641,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       onTap: () async {
                                         await showModalBottomSheet(
                                           isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          barrierColor: Color(0x5DFFFFFF),
+                                          backgroundColor: Color(0x5DFFFFFF),
                                           context: context,
                                           builder: (context) {
                                             return Padding(
@@ -728,8 +723,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       onTap: () async {
                                         await showModalBottomSheet(
                                           isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          barrierColor: Color(0x5DFFFFFF),
+                                          backgroundColor: Color(0x5DFFFFFF),
                                           context: context,
                                           builder: (context) {
                                             return Padding(
@@ -853,8 +847,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       onTap: () async {
                                         await showModalBottomSheet(
                                           isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          barrierColor: Color(0x5DFFFFFF),
+                                          backgroundColor: Color(0x5DFFFFFF),
                                           context: context,
                                           builder: (context) {
                                             return Padding(

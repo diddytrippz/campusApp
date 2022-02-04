@@ -76,7 +76,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       child: Text(
                         'Your Review',
                         style: FlutterFlowTheme.title1.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Roboto',
                           fontSize: 18,
                         ),
                       ),
@@ -126,7 +126,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                               selectedChipStyle: ChipStyle(
                                 backgroundColor: Color(0xFF262D34),
                                 textStyle: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Roboto',
                                   color: Colors.white,
                                 ),
                                 iconColor: Colors.white,
@@ -136,7 +136,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                               unselectedChipStyle: ChipStyle(
                                 backgroundColor: Colors.white,
                                 textStyle: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Roboto',
                                   color: Color(0xFF262D34),
                                 ),
                                 iconColor: Color(0xFF262D34),
@@ -175,7 +175,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                           height: 40,
                           color: FlutterFlowTheme.primaryColor,
                           textStyle: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Poppins',
+                            fontFamily: 'Roboto',
                             color: Colors.white,
                           ),
                           borderSide: BorderSide(

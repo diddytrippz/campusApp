@@ -90,7 +90,7 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                           child: Text(
                             'Enter your email',
                             style: FlutterFlowTheme.title1.override(
-                              fontFamily: 'Poppins',
+                              fontFamily: 'Roboto',
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
@@ -140,7 +140,7 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                                   : null,
                             ),
                             style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Poppins',
+                              fontFamily: 'Roboto',
                               color: Color(0xFF767676),
                             ),
                             maxLines: 2,
@@ -172,7 +172,7 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                               height: 50,
                               color: FlutterFlowTheme.primaryColor,
                               textStyle: FlutterFlowTheme.subtitle2.override(
-                                fontFamily: 'Poppins',
+                                fontFamily: 'Roboto',
                                 color: Colors.white,
                               ),
                               borderSide: BorderSide(
@@ -195,7 +195,7 @@ class _ForgotPassPageWidgetState extends State<ForgotPassPageWidget> {
                                 'DISMISS',
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.title3.override(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Roboto',
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),

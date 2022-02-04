@@ -32,7 +32,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.campusRed,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -299,7 +299,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Text(
                                                                                   'Reported ${dateTimeFormat('relative', widget.jobStatus.createdTime)}',
                                                                                   style: FlutterFlowTheme.subtitle1.override(
-                                                                                    fontFamily: 'Poppins',
+                                                                                    fontFamily: 'Roboto',
                                                                                     fontSize: 16,
                                                                                   ),
                                                                                 ),
@@ -383,7 +383,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Text(
                                                                                   'Completed ${dateTimeFormat('relative', widget.jobStatus.createdTime)}',
                                                                                   style: FlutterFlowTheme.subtitle1.override(
-                                                                                    fontFamily: 'Poppins',
+                                                                                    fontFamily: 'Roboto',
                                                                                     fontSize: 16,
                                                                                   ),
                                                                                 ),
@@ -401,7 +401,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             widget.jobStatus.issue,
                                                                             style:
                                                                                 FlutterFlowTheme.title1.override(
-                                                                              fontFamily: 'Poppins',
+                                                                              fontFamily: 'Roboto',
                                                                               fontSize: 18,
                                                                             ),
                                                                           ),
@@ -741,7 +741,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                         child: Text(
                                                                                           widget.jobStatus.displayName,
                                                                                           style: FlutterFlowTheme.subtitle1.override(
-                                                                                            fontFamily: 'Poppins',
+                                                                                            fontFamily: 'Roboto',
                                                                                             fontSize: 18,
                                                                                           ),
                                                                                         ),
@@ -800,7 +800,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Text(
                                                                               widget.jobStatus.building,
                                                                               style: FlutterFlowTheme.subtitle1.override(
-                                                                                fontFamily: 'Poppins',
+                                                                                fontFamily: 'Roboto',
                                                                                 fontSize: 18,
                                                                               ),
                                                                             ),
@@ -808,7 +808,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Text(
                                                                               'Room: ${widget.jobStatus.room}',
                                                                               style: FlutterFlowTheme.subtitle2.override(
-                                                                                fontFamily: 'Poppins',
+                                                                                fontFamily: 'Roboto',
                                                                                 fontSize: 18,
                                                                               ),
                                                                             ),
@@ -835,7 +835,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Text(
                                                                               '${dateTimeFormat('MMMMEEEEd', widget.jobStatus.createdTime)} at ${dateTimeFormat('jm', widget.jobStatus.createdTime)}',
                                                                               style: FlutterFlowTheme.title3.override(
-                                                                                fontFamily: 'Poppins',
+                                                                                fontFamily: 'Roboto',
                                                                                 fontSize: 18,
                                                                                 fontWeight: FontWeight.w600,
                                                                               ),
@@ -844,7 +844,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Text(
                                                                               dateTimeFormat('relative', widget.jobStatus.createdTime),
                                                                               style: FlutterFlowTheme.subtitle2.override(
-                                                                                fontFamily: 'Poppins',
+                                                                                fontFamily: 'Roboto',
                                                                                 fontSize: 16,
                                                                                 fontWeight: FontWeight.normal,
                                                                               ),
@@ -872,7 +872,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Text(
                                                                               'Assigned to',
                                                                               style: FlutterFlowTheme.subtitle1.override(
-                                                                                fontFamily: 'Poppins',
+                                                                                fontFamily: 'Roboto',
                                                                                 fontSize: 18,
                                                                               ),
                                                                             ),
@@ -880,7 +880,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Text(
                                                                               'Maintenance Team',
                                                                               style: FlutterFlowTheme.subtitle2.override(
-                                                                                fontFamily: 'Poppins',
+                                                                                fontFamily: 'Roboto',
                                                                                 fontSize: 16,
                                                                               ),
                                                                             ),
@@ -959,7 +959,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                               'No results were found from your seaech.\nPlease try again.',
                                                                               textAlign: TextAlign.center,
                                                                               style: FlutterFlowTheme.bodyText1.override(
-                                                                                fontFamily: 'Poppins',
+                                                                                fontFamily: 'Roboto',
                                                                                 color: Color(0xFF9E9E9E),
                                                                               ),
                                                                             ),

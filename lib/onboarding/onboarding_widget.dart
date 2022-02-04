@@ -198,7 +198,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
+                                              MainAxisAlignment.spaceAround,
                                           children: [
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -237,7 +237,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                                             .fromSTEB(
                                                                 0, 0, 0, 20),
                                                     child: Text(
-                                                      'Version 1.0.0',
+                                                      'Campus Africa',
                                                       style: FlutterFlowTheme
                                                           .bodyText1,
                                                     ),
@@ -274,7 +274,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                                           FlutterFlowTheme
                                                               .subtitle2
                                                               .override(
-                                                        fontFamily: 'Poppins',
+                                                        fontFamily: 'Roboto',
                                                         color: Colors.white,
                                                       ),
                                                       borderSide: BorderSide(

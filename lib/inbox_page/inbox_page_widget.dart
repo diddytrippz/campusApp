@@ -135,7 +135,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
               Text(
                 'Inbox',
                 style: FlutterFlowTheme.title3.override(
-                  fontFamily: 'Poppins',
+                  fontFamily: 'Roboto',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -184,7 +184,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
         label: Text(
           'Compose',
           style: FlutterFlowTheme.bodyText1.override(
-            fontFamily: 'Poppins',
+            fontFamily: 'Roboto',
             color: Color(0xFFEFF6FF),
           ),
         ),
@@ -221,7 +221,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                                       'Receive maintenance feedback and stay up to date with all the events happening in your building.',
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Roboto',
                                         color: FlutterFlowTheme.campusGrey,
                                       ),
                                     ),
@@ -233,7 +233,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                                       'Mark all as read',
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'Roboto',
                                         color: FlutterFlowTheme.mellow,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -314,7 +314,7 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                                               columnChatMessagesRecord.subject,
                                               style: FlutterFlowTheme.title1
                                                   .override(
-                                                fontFamily: 'Poppins',
+                                                fontFamily: 'Roboto',
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w500,
                                               ),
@@ -337,18 +337,8 @@ class _InboxPageWidgetState extends State<InboxPageWidget>
                                           columnChatMessagesRecord.message,
                                           style: FlutterFlowTheme.subtitle1
                                               .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                        Text(
-                                          'View attachment',
-                                          style: FlutterFlowTheme.subtitle1
-                                              .override(
                                             fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.campusRed,
                                             fontSize: 14,
-                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ],

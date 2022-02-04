@@ -55,7 +55,7 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
                         'No results were found from your seaech.\nPlease try again.',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.bodyText1.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Roboto',
                           color: Color(0xFF9E9E9E),
                         ),
                       ),

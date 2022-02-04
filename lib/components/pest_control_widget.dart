@@ -119,7 +119,7 @@ class _PestControlWidgetState extends State<PestControlWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          12, 50, 0, 0),
+                                          12, 20, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -140,7 +140,7 @@ class _PestControlWidgetState extends State<PestControlWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 40, 0, 0),
+                                          0, 20, 0, 0),
                                       child: FlutterFlowDropDown(
                                         options: [
                                           'Bed bugs',
@@ -178,7 +178,7 @@ class _PestControlWidgetState extends State<PestControlWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 40, 0, 0),
+                                          0, 20, 0, 0),
                                       child: TextFormField(
                                         controller: reasonController,
                                         obscureText: false,
@@ -194,7 +194,7 @@ class _PestControlWidgetState extends State<PestControlWidget> {
                                           hintText: 'Additional notes\n',
                                           hintStyle: FlutterFlowTheme.subtitle1
                                               .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Roboto',
                                             fontSize: 14,
                                           ),
                                           enabledBorder: OutlineInputBorder(
@@ -266,7 +266,7 @@ class _PestControlWidgetState extends State<PestControlWidget> {
                                                 style: FlutterFlowTheme
                                                     .bodyText1
                                                     .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Roboto',
                                                   color: FlutterFlowTheme
                                                       .campusRed,
                                                   fontSize: 12,
@@ -281,7 +281,7 @@ class _PestControlWidgetState extends State<PestControlWidget> {
                                     Expanded(
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 40, 0, 0),
+                                            0, 20, 0, 0),
                                         child: Container(
                                           width: double.infinity,
                                           height: 240,
@@ -340,7 +340,7 @@ class _PestControlWidgetState extends State<PestControlWidget> {
                                                                 downloadUrl);
                                                         showUploadMessage(
                                                           context,
-                                                          'Success!',
+                                                          'File Uploaded!',
                                                         );
                                                       } else {
                                                         showUploadMessage(
@@ -499,6 +499,7 @@ class _PestControlWidgetState extends State<PestControlWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                                      elevation: 0,
                                                       borderSide: BorderSide(
                                                         color:
                                                             Colors.transparent,

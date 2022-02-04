@@ -119,7 +119,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          12, 50, 0, 0),
+                                          12, 20, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -140,7 +140,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 40, 0, 0),
+                                          0, 25, 0, 0),
                                       child: FlutterFlowDropDown(
                                         options: [
                                           'Damaged toilet sit',
@@ -186,7 +186,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 40, 0, 0),
+                                          0, 25, 0, 0),
                                       child: TextFormField(
                                         controller: reasonController,
                                         obscureText: false,
@@ -202,7 +202,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                           hintText: 'Additional notes\n',
                                           hintStyle: FlutterFlowTheme.subtitle1
                                               .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Roboto',
                                             fontSize: 14,
                                           ),
                                           enabledBorder: OutlineInputBorder(
@@ -274,7 +274,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                                 style: FlutterFlowTheme
                                                     .bodyText1
                                                     .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Roboto',
                                                   color: FlutterFlowTheme
                                                       .campusRed,
                                                   fontSize: 12,
@@ -289,7 +289,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                     Expanded(
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 40, 0, 0),
+                                            0, 20, 0, 0),
                                         child: Container(
                                           width: double.infinity,
                                           height: 240,
@@ -348,7 +348,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                                                 downloadUrl);
                                                         showUploadMessage(
                                                           context,
-                                                          'Success!',
+                                                          'File Uploaded!',
                                                         );
                                                       } else {
                                                         showUploadMessage(
@@ -507,6 +507,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                                      elevation: 0,
                                                       borderSide: BorderSide(
                                                         color:
                                                             Colors.transparent,

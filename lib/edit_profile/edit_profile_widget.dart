@@ -177,7 +177,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                           () => uploadedFileUrl = downloadUrl);
                                       showUploadMessage(
                                         context,
-                                        'Success!',
+                                        'File Uploaded!',
                                       );
                                     } else {
                                       showUploadMessage(
@@ -299,7 +299,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         height: 55,
                         color: FlutterFlowTheme.primaryColor,
                         textStyle: FlutterFlowTheme.subtitle2.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Roboto',
                           color: Colors.white,
                         ),
                         borderSide: BorderSide(

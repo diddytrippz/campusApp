@@ -119,7 +119,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          12, 50, 0, 0),
+                                          12, 20, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -140,7 +140,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 40, 0, 0),
+                                          0, 25, 0, 0),
                                       child: FlutterFlowDropDown(
                                         options: [
                                           'Damaged bed base',
@@ -182,7 +182,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 40, 0, 0),
+                                          0, 25, 0, 0),
                                       child: TextFormField(
                                         controller: reasonController,
                                         obscureText: false,
@@ -198,7 +198,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                                           hintText: 'Additional notes\n',
                                           hintStyle: FlutterFlowTheme.subtitle1
                                               .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Roboto',
                                             fontSize: 14,
                                           ),
                                           enabledBorder: OutlineInputBorder(
@@ -270,7 +270,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                                                 style: FlutterFlowTheme
                                                     .bodyText1
                                                     .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Roboto',
                                                   color: FlutterFlowTheme
                                                       .campusRed,
                                                   fontSize: 12,
@@ -285,7 +285,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                                     Expanded(
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 40, 0, 0),
+                                            0, 20, 0, 0),
                                         child: Container(
                                           width: double.infinity,
                                           height: 240,
@@ -344,7 +344,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                                                                 downloadUrl);
                                                         showUploadMessage(
                                                           context,
-                                                          'Success!',
+                                                          'File Uploaded!',
                                                         );
                                                       } else {
                                                         showUploadMessage(
@@ -503,6 +503,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                                      elevation: 0,
                                                       borderSide: BorderSide(
                                                         color:
                                                             Colors.transparent,

@@ -45,7 +45,7 @@ class _EmptyInboxWidgetState extends State<EmptyInboxWidget> {
                 'You do not have any messages.\nPlease check again later.',
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
+                  fontFamily: 'Roboto',
                   color: Color(0xFF9E9E9E),
                 ),
               ),

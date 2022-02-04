@@ -70,14 +70,24 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                       color: Colors.transparent,
                       elevation: 40,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(0),
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
                       ),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 1,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.tertiaryColor,
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(0),
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          ),
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -119,7 +129,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          12, 50, 0, 0),
+                                          12, 20, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -140,7 +150,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 40, 0, 0),
+                                          0, 25, 0, 0),
                                       child: FlutterFlowDropDown(
                                         options: [
                                           'Stove not working',
@@ -179,7 +189,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 40, 0, 0),
+                                          0, 25, 0, 0),
                                       child: TextFormField(
                                         controller: reasonController,
                                         obscureText: false,
@@ -195,7 +205,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                           hintText: 'Additional notes\n',
                                           hintStyle: FlutterFlowTheme.subtitle1
                                               .override(
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Roboto',
                                             fontSize: 14,
                                           ),
                                           enabledBorder: OutlineInputBorder(
@@ -267,7 +277,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                                 style: FlutterFlowTheme
                                                     .bodyText1
                                                     .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Roboto',
                                                   color: FlutterFlowTheme
                                                       .campusRed,
                                                   fontSize: 12,
@@ -282,7 +292,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                     Expanded(
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 40, 0, 0),
+                                            0, 25, 0, 0),
                                         child: Container(
                                           width: double.infinity,
                                           height: 240,
@@ -341,7 +351,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                                                 downloadUrl);
                                                         showUploadMessage(
                                                           context,
-                                                          'Success!',
+                                                          'File Uploaded!',
                                                         );
                                                       } else {
                                                         showUploadMessage(
@@ -500,6 +510,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
+                                                      elevation: 0,
                                                       borderSide: BorderSide(
                                                         color:
                                                             Colors.transparent,

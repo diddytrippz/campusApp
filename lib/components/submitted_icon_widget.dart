@@ -73,7 +73,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                             child: Text(
                               'Success!',
                               style: FlutterFlowTheme.title1.override(
-                                fontFamily: 'Poppins',
+                                fontFamily: 'Roboto',
                                 color: Color(0xFF181818),
                               ),
                             ),
@@ -91,7 +91,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                               'Your request has been received\nby the Campus Africa maintenance\nteam.',
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Poppins',
+                                fontFamily: 'Roboto',
                                 color: Color(0xFF181818),
                                 fontWeight: FontWeight.w500,
                               ),
@@ -120,7 +120,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                             height: 40,
                             color: FlutterFlowTheme.primaryColor,
                             textStyle: FlutterFlowTheme.subtitle2.override(
-                              fontFamily: 'Poppins',
+                              fontFamily: 'Roboto',
                               color: Colors.white,
                             ),
                             borderSide: BorderSide(

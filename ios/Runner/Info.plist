@@ -40,11 +40,11 @@
 	<true/>
 
 	<key>NSCameraUsageDescription</key>
-	<string>In order to take a picture or video, this app requires permission to access the camera.</string>
+	<string>Enable access so you can take photos of your maintenance reports and update your profile picture.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>In order to record audio for video, this app requires permission to access the microphone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>In order to upload media, this app requires permission to access the photo library.</string>
+	<string>Let Campus Africa access your library so you can upload photos to your maintenance reports and update your profile picture</string>
 
 
 	<key>UILaunchStoryboardName</key>

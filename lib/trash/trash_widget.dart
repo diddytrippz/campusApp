@@ -147,7 +147,7 @@ class _TrashWidgetState extends State<TrashWidget> {
                                         'Messages are store here for future references and may only be deleted  by the admin.',
                                         style:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Roboto',
                                           color: FlutterFlowTheme.campusGrey,
                                         ),
                                       ),
@@ -159,7 +159,7 @@ class _TrashWidgetState extends State<TrashWidget> {
                                         'More info',
                                         style:
                                             FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'Roboto',
                                           color: FlutterFlowTheme.mellow,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -241,7 +241,7 @@ class _TrashWidgetState extends State<TrashWidget> {
                                                     .category,
                                                 style: FlutterFlowTheme.title1
                                                     .override(
-                                                  fontFamily: 'Poppins',
+                                                  fontFamily: 'Roboto',
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -264,7 +264,7 @@ class _TrashWidgetState extends State<TrashWidget> {
                                             columnMaintenanceRecord.issue,
                                             style: FlutterFlowTheme.subtitle1
                                                 .override(
-                                              fontFamily: 'Poppins',
+                                              fontFamily: 'Roboto',
                                               fontSize: 14,
                                             ),
                                           ),

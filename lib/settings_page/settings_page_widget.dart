@@ -48,7 +48,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
         title: Text(
           'Settings',
           style: FlutterFlowTheme.title3.override(
-            fontFamily: 'Poppins',
+            fontFamily: 'Roboto',
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -234,7 +234,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                               currentUserDisplayName,
                                               style: FlutterFlowTheme.title1
                                                   .override(
-                                                fontFamily: 'Poppins',
+                                                fontFamily: 'Roboto',
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
                                               ),
@@ -283,7 +283,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       title: Text(
                         'Profile',
                         style: FlutterFlowTheme.title3.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Roboto',
                           fontSize: 16,
                         ),
                       ),
@@ -365,7 +365,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       title: Text(
                         'Trash',
                         style: FlutterFlowTheme.title3.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Roboto',
                           fontSize: 16,
                         ),
                       ),
@@ -441,7 +441,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         child: Text(
                           'USERS',
                           style: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Poppins',
+                            fontFamily: 'Roboto',
                             color: Color(0xFF9E9E9E),
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -616,7 +616,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                     child: Text(
                       'STUDENTS',
                       style: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Poppins',
+                        fontFamily: 'Roboto',
                         color: Color(0xFF9E9E9E),
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
@@ -801,7 +801,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                     child: Text(
                       'MORE',
                       style: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Poppins',
+                        fontFamily: 'Roboto',
                         color: Color(0xFF9E9E9E),
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
@@ -937,7 +937,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           height: 40,
                           color: Colors.white,
                           textStyle: FlutterFlowTheme.bodyText2.override(
-                            fontFamily: 'Poppins',
+                            fontFamily: 'Roboto',
                             color: FlutterFlowTheme.primaryColor,
                           ),
                           elevation: 3,
