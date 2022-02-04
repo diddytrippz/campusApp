@@ -410,7 +410,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      'VERSION 1.0.0',
+                      'VERSION 1.0.1',
                       style: FlutterFlowTheme.bodyText1.override(
                         fontFamily: 'Roboto',
                         fontSize: 12,
