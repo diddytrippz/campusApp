@@ -34,21 +34,10 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        leading: ToggleIcon(
-          onPressed: () async {
-            setState(() => FFAppState().isPressed = !FFAppState().isPressed);
-          },
-          value: FFAppState().isPressed,
-          onIcon: Icon(
-            Icons.menu,
-            color: Colors.black,
-            size: 25,
-          ),
-          offIcon: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-            size: 25,
-          ),
+        leading: Icon(
+          Icons.menu,
+          color: Colors.black,
+          size: 24,
         ),
         title: Stack(
           children: [
