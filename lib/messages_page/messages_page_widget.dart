@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../chat_page/chat_page_widget.dart';
+import '../components/empty_list_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -62,6 +63,9 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                 );
               }
               List<ChatsRecord> listViewChatsRecordList = snapshot.data;
+              if (listViewChatsRecordList.isEmpty) {
+                return EmptyListWidget();
+              }
               return ListView.builder(
                 padding: EdgeInsets.zero,
                 scrollDirection: Axis.vertical,

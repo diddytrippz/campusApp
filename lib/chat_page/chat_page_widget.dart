@@ -1,4 +1,5 @@
 import '../backend/backend.dart';
+import '../components/empty_inbox_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -96,34 +97,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
               ),
           ],
         ),
-        actions: [
-          Visibility(
-            visible: isGroupChat() ?? true,
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-              child: InkWell(
-                onTap: () async {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        'Navigate to add users page!',
-                        style: TextStyle(),
-                      ),
-                      duration: Duration(milliseconds: 4000),
-                      backgroundColor: Color(0x00000000),
-                    ),
-                  );
-                },
-                child: Icon(
-                  Icons.person_add,
-                  color: Colors.black,
-                  size: 24,
-                ),
-              ),
-            ),
-          ),
-        ],
-        centerTitle: false,
+        actions: [],
+        centerTitle: true,
         elevation: 2,
       ),
       body: SafeArea(
@@ -177,9 +152,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
                   ),
-                  emptyChatWidget: Image.asset(
-                    'assets/images/messagesEmpty@2x.png',
-                    width: MediaQuery.of(context).size.width * 0.76,
+                  emptyChatWidget: Center(
+                    child: EmptyInboxWidget(),
                   ),
                 )
               : const Center(

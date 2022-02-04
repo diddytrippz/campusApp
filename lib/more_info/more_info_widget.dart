@@ -1,13 +1,12 @@
-import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../chat_page/chat_page_widget.dart';
 import '../components/review_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../trash/trash_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -292,79 +291,70 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 18,
                                                                                 0),
                                                                             child:
-                                                                                Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                              children: [
-                                                                                Text(
-                                                                                  'Reported ${dateTimeFormat('relative', widget.jobStatus.createdTime)}',
-                                                                                  style: FlutterFlowTheme.subtitle1.override(
-                                                                                    fontFamily: 'Roboto',
-                                                                                    fontSize: 16,
-                                                                                  ),
-                                                                                ),
-                                                                                InkWell(
-                                                                                  onTap: () async {
-                                                                                    await showDialog(
-                                                                                      context: context,
-                                                                                      builder: (alertDialogContext) {
-                                                                                        return AlertDialog(
-                                                                                          title: Text('Are you sure you want to delete this record?'),
-                                                                                          content: Text('This action cannot be undone'),
-                                                                                          actions: [
-                                                                                            TextButton(
-                                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                              child: Text('Cancel'),
+                                                                                StreamBuilder<List<UsersRecord>>(
+                                                                              stream: queryUsersRecord(
+                                                                                queryBuilder: (usersRecord) => usersRecord.where('email', isEqualTo: widget.jobStatus.email),
+                                                                                singleRecord: true,
+                                                                              ),
+                                                                              builder: (context, snapshot) {
+                                                                                // Customize what your widget looks like when it's loading.
+                                                                                if (!snapshot.hasData) {
+                                                                                  return Center(
+                                                                                    child: SizedBox(
+                                                                                      width: 60,
+                                                                                      height: 60,
+                                                                                      child: SpinKitPulse(
+                                                                                        color: FlutterFlowTheme.primaryColor,
+                                                                                        size: 60,
+                                                                                      ),
+                                                                                    ),
+                                                                                  );
+                                                                                }
+                                                                                List<UsersRecord> rowUsersRecordList = snapshot.data;
+                                                                                // Return an empty Container when the document does not exist.
+                                                                                if (snapshot.data.isEmpty) {
+                                                                                  return Container();
+                                                                                }
+                                                                                final rowUsersRecord = rowUsersRecordList.isNotEmpty ? rowUsersRecordList.first : null;
+                                                                                return Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      'Reported ${dateTimeFormat('relative', widget.jobStatus.createdTime)}',
+                                                                                      style: FlutterFlowTheme.subtitle1.override(
+                                                                                        fontFamily: 'Roboto',
+                                                                                        fontSize: 16,
+                                                                                      ),
+                                                                                    ),
+                                                                                    FlutterFlowIconButton(
+                                                                                      borderColor: Colors.transparent,
+                                                                                      borderRadius: 30,
+                                                                                      borderWidth: 1,
+                                                                                      buttonSize: 45,
+                                                                                      fillColor: FlutterFlowTheme.campusRed,
+                                                                                      icon: Icon(
+                                                                                        Icons.mail_outline,
+                                                                                        color: FlutterFlowTheme.tertiaryColor,
+                                                                                        size: 25,
+                                                                                      ),
+                                                                                      onPressed: () async {
+                                                                                        await Navigator.push(
+                                                                                          context,
+                                                                                          PageTransition(
+                                                                                            type: PageTransitionType.bottomToTop,
+                                                                                            duration: Duration(milliseconds: 300),
+                                                                                            reverseDuration: Duration(milliseconds: 300),
+                                                                                            child: ChatPageWidget(
+                                                                                              chatUser: rowUsersRecord,
                                                                                             ),
-                                                                                            TextButton(
-                                                                                              onPressed: () async {
-                                                                                                Navigator.pop(alertDialogContext);
-
-                                                                                                final maintenanceUpdateData = createMaintenanceRecordData(
-                                                                                                  status: 'Deleted',
-                                                                                                );
-                                                                                                await widget.jobStatus.reference.update(maintenanceUpdateData);
-                                                                                                ;
-                                                                                              },
-                                                                                              child: Text('Confirm'),
-                                                                                            ),
-                                                                                          ],
+                                                                                          ),
                                                                                         );
                                                                                       },
-                                                                                    );
-                                                                                    ScaffoldMessenger.of(context).showSnackBar(
-                                                                                      SnackBar(
-                                                                                        content: Text(
-                                                                                          '1 item moved to bin',
-                                                                                          style: TextStyle(),
-                                                                                        ),
-                                                                                        duration: Duration(milliseconds: 4000),
-                                                                                        backgroundColor: FlutterFlowTheme.campusGrey,
-                                                                                        action: SnackBarAction(
-                                                                                          label: 'TRASH',
-                                                                                          textColor: Color(0xFF3779FF),
-                                                                                          onPressed: () async {
-                                                                                            await Navigator.push(
-                                                                                              context,
-                                                                                              PageTransition(
-                                                                                                type: PageTransitionType.bottomToTop,
-                                                                                                duration: Duration(milliseconds: 300),
-                                                                                                reverseDuration: Duration(milliseconds: 300),
-                                                                                                child: TrashWidget(),
-                                                                                              ),
-                                                                                            );
-                                                                                          },
-                                                                                        ),
-                                                                                      ),
-                                                                                    );
-                                                                                  },
-                                                                                  child: Icon(
-                                                                                    Icons.delete_outline,
-                                                                                    color: Color(0xFF939393),
-                                                                                    size: 30,
-                                                                                  ),
-                                                                                ),
-                                                                              ],
+                                                                                    ),
+                                                                                  ],
+                                                                                );
+                                                                              },
                                                                             ),
                                                                           ),
                                                                         if ((widget.jobStatus.status) ==
@@ -376,18 +366,70 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 18,
                                                                                 0),
                                                                             child:
-                                                                                Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                              children: [
-                                                                                Text(
-                                                                                  'Completed ${dateTimeFormat('relative', widget.jobStatus.createdTime)}',
-                                                                                  style: FlutterFlowTheme.subtitle1.override(
-                                                                                    fontFamily: 'Roboto',
-                                                                                    fontSize: 16,
-                                                                                  ),
-                                                                                ),
-                                                                              ],
+                                                                                StreamBuilder<List<UsersRecord>>(
+                                                                              stream: queryUsersRecord(
+                                                                                queryBuilder: (usersRecord) => usersRecord.where('email', isEqualTo: widget.jobStatus.email),
+                                                                                singleRecord: true,
+                                                                              ),
+                                                                              builder: (context, snapshot) {
+                                                                                // Customize what your widget looks like when it's loading.
+                                                                                if (!snapshot.hasData) {
+                                                                                  return Center(
+                                                                                    child: SizedBox(
+                                                                                      width: 60,
+                                                                                      height: 60,
+                                                                                      child: SpinKitPulse(
+                                                                                        color: FlutterFlowTheme.primaryColor,
+                                                                                        size: 60,
+                                                                                      ),
+                                                                                    ),
+                                                                                  );
+                                                                                }
+                                                                                List<UsersRecord> rowUsersRecordList = snapshot.data;
+                                                                                // Return an empty Container when the document does not exist.
+                                                                                if (snapshot.data.isEmpty) {
+                                                                                  return Container();
+                                                                                }
+                                                                                final rowUsersRecord = rowUsersRecordList.isNotEmpty ? rowUsersRecordList.first : null;
+                                                                                return Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      'Completed ${dateTimeFormat('relative', widget.jobStatus.createdTime)}',
+                                                                                      style: FlutterFlowTheme.subtitle1.override(
+                                                                                        fontFamily: 'Roboto',
+                                                                                        fontSize: 16,
+                                                                                      ),
+                                                                                    ),
+                                                                                    FlutterFlowIconButton(
+                                                                                      borderColor: Colors.transparent,
+                                                                                      borderRadius: 30,
+                                                                                      borderWidth: 1,
+                                                                                      buttonSize: 45,
+                                                                                      fillColor: FlutterFlowTheme.campusRed,
+                                                                                      icon: Icon(
+                                                                                        Icons.mail_outlined,
+                                                                                        color: FlutterFlowTheme.tertiaryColor,
+                                                                                        size: 25,
+                                                                                      ),
+                                                                                      onPressed: () async {
+                                                                                        await Navigator.push(
+                                                                                          context,
+                                                                                          PageTransition(
+                                                                                            type: PageTransitionType.bottomToTop,
+                                                                                            duration: Duration(milliseconds: 300),
+                                                                                            reverseDuration: Duration(milliseconds: 300),
+                                                                                            child: ChatPageWidget(
+                                                                                              chatUser: rowUsersRecord,
+                                                                                            ),
+                                                                                          ),
+                                                                                        );
+                                                                                      },
+                                                                                    ),
+                                                                                  ],
+                                                                                );
+                                                                              },
                                                                             ),
                                                                           ),
                                                                         Padding(
