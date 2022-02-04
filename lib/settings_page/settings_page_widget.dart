@@ -99,7 +99,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           alignment: AlignmentDirectional(0, 1),
                           child: Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 80, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(12, 60, 0, 20),
                             child: FutureBuilder<List<UsersRecord>>(
                               future: queryUsersRecordOnce(
                                 queryBuilder: (usersRecord) =>
@@ -138,11 +138,11 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          40, 0, 0, 20),
+                                          0, 0, 0, 20),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                            MainAxisAlignment.center,
                                         children: [
                                           Container(
                                             width: 100,
@@ -221,11 +221,11 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 30, 0, 0),
+                                          0, 30, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                            MainAxisAlignment.center,
                                         children: [
                                           Padding(
                                             padding:
@@ -246,17 +246,25 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                         ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 12, 0, 14),
-                                      child: Text(
-                                        currentUserEmail,
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Roboto',
-                                          fontWeight: FontWeight.bold,
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 12, 0, 14),
+                                          child: Text(
+                                            currentUserEmail,
+                                            style: FlutterFlowTheme.subtitle1
+                                                .override(
+                                              fontFamily: 'Roboto',
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                      ],
                                     ),
                                   ],
                                 );
@@ -267,142 +275,157 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       ),
                     ),
                   ),
-                  InkWell(
-                    onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          duration: Duration(milliseconds: 300),
-                          reverseDuration: Duration(milliseconds: 300),
-                          child: EditProfileWidget(),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
+                    child: InkWell(
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            duration: Duration(milliseconds: 300),
+                            reverseDuration: Duration(milliseconds: 300),
+                            child: EditProfileWidget(),
+                          ),
+                        );
+                      },
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.person_outline_sharp,
                         ),
-                      );
-                    },
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.person_outline_sharp,
-                      ),
-                      title: Text(
-                        'Profile',
-                        style: FlutterFlowTheme.title3.override(
-                          fontFamily: 'Roboto',
-                          fontSize: 16,
+                        title: Text(
+                          'Profile',
+                          style: FlutterFlowTheme.title3.override(
+                            fontFamily: 'Roboto',
+                            fontSize: 16,
+                          ),
                         ),
+                        tileColor: Color(0x00F5F5F5),
+                        dense: false,
                       ),
-                      tileColor: Color(0x00F5F5F5),
-                      dense: false,
                     ),
                   ),
-                  InkWell(
-                    onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.bottomToTop,
-                          duration: Duration(milliseconds: 300),
-                          reverseDuration: Duration(milliseconds: 300),
-                          child: NavBarPage(initialPage: 'MessagesPage'),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
+                    child: InkWell(
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.bottomToTop,
+                            duration: Duration(milliseconds: 300),
+                            reverseDuration: Duration(milliseconds: 300),
+                            child: NavBarPage(initialPage: 'MessagesPage'),
+                          ),
+                        );
+                      },
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.message_outlined,
                         ),
-                      );
-                    },
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.message_outlined,
-                      ),
-                      title: Text(
-                        'Messages',
-                        style: FlutterFlowTheme.title3.override(
-                          fontFamily: 'Roboto',
-                          fontSize: 16,
+                        title: Text(
+                          'Messages',
+                          style: FlutterFlowTheme.title3.override(
+                            fontFamily: 'Roboto',
+                            fontSize: 16,
+                          ),
                         ),
+                        tileColor: Color(0x00F5F5F5),
+                        dense: false,
                       ),
-                      tileColor: Color(0x00F5F5F5),
-                      dense: false,
                     ),
                   ),
-                  InkWell(
-                    onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          duration: Duration(milliseconds: 300),
-                          reverseDuration: Duration(milliseconds: 300),
-                          child: NavBarPage(initialPage: 'viewPage'),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
+                    child: InkWell(
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            duration: Duration(milliseconds: 300),
+                            reverseDuration: Duration(milliseconds: 300),
+                            child: NavBarPage(initialPage: 'viewPage'),
+                          ),
+                        );
+                      },
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.forum,
                         ),
-                      );
-                    },
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.forum,
-                      ),
-                      title: Text(
-                        'Mantenance',
-                        style: FlutterFlowTheme.title3.override(
-                          fontFamily: 'Roboto',
-                          fontSize: 16,
+                        title: Text(
+                          'Mantenance',
+                          style: FlutterFlowTheme.title3.override(
+                            fontFamily: 'Roboto',
+                            fontSize: 16,
+                          ),
                         ),
+                        tileColor: Color(0x00F5F5F5),
+                        dense: false,
                       ),
-                      tileColor: Color(0x00F5F5F5),
-                      dense: false,
                     ),
                   ),
-                  InkWell(
-                    onTap: () async {
-                      await Navigator.pushAndRemoveUntil(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          duration: Duration(milliseconds: 300),
-                          reverseDuration: Duration(milliseconds: 300),
-                          child: TrashWidget(),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
+                    child: InkWell(
+                      onTap: () async {
+                        await Navigator.pushAndRemoveUntil(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            duration: Duration(milliseconds: 300),
+                            reverseDuration: Duration(milliseconds: 300),
+                            child: TrashWidget(),
+                          ),
+                          (r) => false,
+                        );
+                      },
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.delete_outline_rounded,
                         ),
-                        (r) => false,
-                      );
-                    },
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.delete_outline_rounded,
-                      ),
-                      title: Text(
-                        'Trash',
-                        style: FlutterFlowTheme.title3.override(
-                          fontFamily: 'Roboto',
-                          fontSize: 16,
+                        title: Text(
+                          'Trash',
+                          style: FlutterFlowTheme.title3.override(
+                            fontFamily: 'Roboto',
+                            fontSize: 16,
+                          ),
                         ),
+                        tileColor: Color(0x00F5F5F5),
+                        dense: false,
                       ),
-                      tileColor: Color(0x00F5F5F5),
-                      dense: false,
                     ),
                   ),
-                  InkWell(
-                    onTap: () async {
-                      await signOut();
-                      await Navigator.pushAndRemoveUntil(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.bottomToTop,
-                          duration: Duration(milliseconds: 300),
-                          reverseDuration: Duration(milliseconds: 300),
-                          child: OnboardingWidget(),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
+                    child: InkWell(
+                      onTap: () async {
+                        await signOut();
+                        await Navigator.pushAndRemoveUntil(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.bottomToTop,
+                            duration: Duration(milliseconds: 300),
+                            reverseDuration: Duration(milliseconds: 300),
+                            child: OnboardingWidget(),
+                          ),
+                          (r) => false,
+                        );
+                      },
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.logout,
                         ),
-                        (r) => false,
-                      );
-                    },
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.logout,
-                      ),
-                      title: Text(
-                        'Sign Out',
-                        style: FlutterFlowTheme.title3.override(
-                          fontFamily: 'Roboto',
-                          fontSize: 16,
+                        title: Text(
+                          'Sign Out',
+                          style: FlutterFlowTheme.title3.override(
+                            fontFamily: 'Roboto',
+                            fontSize: 16,
+                          ),
                         ),
+                        tileColor: Color(0x00F5F5F5),
+                        dense: false,
                       ),
-                      tileColor: Color(0x00F5F5F5),
-                      dense: false,
                     ),
                   ),
                 ],
