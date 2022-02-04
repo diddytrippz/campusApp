@@ -235,171 +235,80 @@ class _OthersWidgetState extends State<OthersWidget> {
                                         ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 40, 0, 0),
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: 240,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.tertiaryColor,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Color(0x3B1D2429),
-                                            )
-                                          ],
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(0),
-                                            bottomRight: Radius.circular(0),
-                                            topLeft: Radius.circular(16),
-                                            topRight: Radius.circular(16),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 40, 0, 0),
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 240,
+                                          decoration: BoxDecoration(
+                                            color:
+                                                FlutterFlowTheme.tertiaryColor,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Color(0x3B1D2429),
+                                              )
+                                            ],
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(0),
+                                              bottomRight: Radius.circular(0),
+                                              topLeft: Radius.circular(16),
+                                              topRight: Radius.circular(16),
+                                            ),
                                           ),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  20, 20, 20, 20),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  final selectedMedia =
-                                                      await selectMediaWithSourceBottomSheet(
-                                                    context: context,
-                                                    allowPhoto: true,
-                                                    allowVideo: true,
-                                                  );
-                                                  if (selectedMedia != null &&
-                                                      validateFileFormat(
-                                                          selectedMedia
-                                                              .storagePath,
-                                                          context)) {
-                                                    showUploadMessage(
-                                                      context,
-                                                      'Uploading file...',
-                                                      showLoading: true,
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20, 20, 20, 20),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                FFButtonWidget(
+                                                  onPressed: () async {
+                                                    final selectedMedia =
+                                                        await selectMediaWithSourceBottomSheet(
+                                                      context: context,
+                                                      allowPhoto: true,
+                                                      allowVideo: true,
                                                     );
-                                                    final downloadUrl =
-                                                        await uploadData(
+                                                    if (selectedMedia != null &&
+                                                        validateFileFormat(
                                                             selectedMedia
                                                                 .storagePath,
-                                                            selectedMedia
-                                                                .bytes);
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .hideCurrentSnackBar();
-                                                    if (downloadUrl != null) {
-                                                      setState(() =>
-                                                          uploadedFileUrl =
-                                                              downloadUrl);
+                                                            context)) {
                                                       showUploadMessage(
                                                         context,
-                                                        'Success!',
+                                                        'Uploading file...',
+                                                        showLoading: true,
                                                       );
-                                                    } else {
-                                                      showUploadMessage(
-                                                        context,
-                                                        'Failed to upload media',
-                                                      );
-                                                      return;
-                                                    }
-                                                  }
-                                                },
-                                                text: 'Upload',
-                                                options: FFButtonOptions(
-                                                  width: double.infinity,
-                                                  height: 60,
-                                                  color: Color(0xFFDBE2E7),
-                                                  textStyle: FlutterFlowTheme
-                                                      .subtitle2
-                                                      .override(
-                                                    fontFamily: 'Lexend Deca',
-                                                    color: Color(0xFF262D34),
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1,
-                                                  ),
-                                                  borderRadius: 40,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 16, 0, 0),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    if (!formKey.currentState
-                                                        .validate()) {
-                                                      return;
-                                                    }
-                                                    final maintenanceCreateData =
-                                                        createMaintenanceRecordData(
-                                                      issue:
-                                                          reasonController.text,
-                                                      status: 'Submitted',
-                                                      email: currentUserEmail,
-                                                      createdTime:
-                                                          getCurrentTimestamp,
-                                                      displayName:
-                                                          currentUserDisplayName,
-                                                      room: currentUserDocument
-                                                          ?.room,
-                                                      building:
-                                                          currentUserDocument
-                                                              ?.building,
-                                                      rating: 0,
-                                                      uid: currentUserUid,
-                                                      category: 'Appliances',
-                                                      isDone: false,
-                                                      photoUrl: uploadedFileUrl,
-                                                    );
-                                                    await MaintenanceRecord
-                                                        .collection
-                                                        .doc()
-                                                        .set(
-                                                            maintenanceCreateData);
-
-                                                    final chatMessagesCreateData =
-                                                        createChatMessagesRecordData(
-                                                      email: currentUserEmail,
-                                                      message:
-                                                          'Please take note of a status change. Your request status is now \"Submitted\"',
-                                                      timeCreated:
-                                                          getCurrentTimestamp,
-                                                      displayName:
-                                                          currentUserDisplayName,
-                                                      subject: 'Status Update',
-                                                      isSelected: false,
-                                                    );
-                                                    await ChatMessagesRecord
-                                                        .collection
-                                                        .doc()
-                                                        .set(
-                                                            chatMessagesCreateData);
-                                                    await showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      barrierColor:
-                                                          Color(0x64F5F5F5),
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return Padding(
-                                                          padding:
-                                                              MediaQuery.of(
-                                                                      context)
-                                                                  .viewInsets,
-                                                          child:
-                                                              SubmittedIconWidget(),
+                                                      final downloadUrl =
+                                                          await uploadData(
+                                                              selectedMedia
+                                                                  .storagePath,
+                                                              selectedMedia
+                                                                  .bytes);
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .hideCurrentSnackBar();
+                                                      if (downloadUrl != null) {
+                                                        setState(() =>
+                                                            uploadedFileUrl =
+                                                                downloadUrl);
+                                                        showUploadMessage(
+                                                          context,
+                                                          'Success!',
                                                         );
-                                                      },
-                                                    );
+                                                      } else {
+                                                        showUploadMessage(
+                                                          context,
+                                                          'Failed to upload media',
+                                                        );
+                                                        return;
+                                                      }
+                                                    }
                                                   },
-                                                  text: 'Save',
+                                                  text: 'Upload',
                                                   options: FFButtonOptions(
                                                     width: double.infinity,
                                                     height: 60,
@@ -420,37 +329,143 @@ class _OthersWidgetState extends State<OthersWidget> {
                                                     borderRadius: 40,
                                                   ),
                                                 ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 16, 0, 0),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  text: 'Cancel',
-                                                  options: FFButtonOptions(
-                                                    width: double.infinity,
-                                                    height: 60,
-                                                    color: Colors.white,
-                                                    textStyle: FlutterFlowTheme
-                                                        .subtitle2
-                                                        .override(
-                                                      fontFamily: 'Lexend Deca',
-                                                      color: Color(0xFF57636C),
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.normal,
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 16, 0, 0),
+                                                  child: FFButtonWidget(
+                                                    onPressed: () async {
+                                                      if (!formKey.currentState
+                                                          .validate()) {
+                                                        return;
+                                                      }
+                                                      final maintenanceCreateData =
+                                                          createMaintenanceRecordData(
+                                                        issue: reasonController
+                                                            .text,
+                                                        status: 'Submitted',
+                                                        email: currentUserEmail,
+                                                        createdTime:
+                                                            getCurrentTimestamp,
+                                                        displayName:
+                                                            currentUserDisplayName,
+                                                        room:
+                                                            currentUserDocument
+                                                                ?.room,
+                                                        building:
+                                                            currentUserDocument
+                                                                ?.building,
+                                                        rating: 0,
+                                                        uid: currentUserUid,
+                                                        category: 'Appliances',
+                                                        isDone: false,
+                                                        photoUrl:
+                                                            uploadedFileUrl,
+                                                      );
+                                                      await MaintenanceRecord
+                                                          .collection
+                                                          .doc()
+                                                          .set(
+                                                              maintenanceCreateData);
+
+                                                      final chatMessagesCreateData =
+                                                          createChatMessagesRecordData(
+                                                        email: currentUserEmail,
+                                                        message:
+                                                            'Please take note of a status change. Your request status is now \"Submitted\"',
+                                                        timeCreated:
+                                                            getCurrentTimestamp,
+                                                        displayName:
+                                                            currentUserDisplayName,
+                                                        subject:
+                                                            'Status Update',
+                                                        isSelected: false,
+                                                      );
+                                                      await ChatMessagesRecord
+                                                          .collection
+                                                          .doc()
+                                                          .set(
+                                                              chatMessagesCreateData);
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        barrierColor:
+                                                            Color(0x64F5F5F5),
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return Padding(
+                                                            padding:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .viewInsets,
+                                                            child:
+                                                                SubmittedIconWidget(),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                    text: 'Save',
+                                                    options: FFButtonOptions(
+                                                      width: double.infinity,
+                                                      height: 60,
+                                                      color: Color(0xFFDBE2E7),
+                                                      textStyle:
+                                                          FlutterFlowTheme
+                                                              .subtitle2
+                                                              .override(
+                                                        fontFamily:
+                                                            'Lexend Deca',
+                                                        color:
+                                                            Color(0xFF262D34),
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius: 40,
                                                     ),
-                                                    borderSide: BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 1,
-                                                    ),
-                                                    borderRadius: 40,
                                                   ),
                                                 ),
-                                              ),
-                                            ],
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 16, 0, 0),
+                                                  child: FFButtonWidget(
+                                                    onPressed: () async {
+                                                      Navigator.pop(context);
+                                                    },
+                                                    text: 'Cancel',
+                                                    options: FFButtonOptions(
+                                                      width: double.infinity,
+                                                      height: 60,
+                                                      color: Colors.white,
+                                                      textStyle:
+                                                          FlutterFlowTheme
+                                                              .subtitle2
+                                                              .override(
+                                                        fontFamily:
+                                                            'Lexend Deca',
+                                                        color:
+                                                            Color(0xFF57636C),
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius: 40,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
