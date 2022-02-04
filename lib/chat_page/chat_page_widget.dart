@@ -112,16 +112,16 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                   chatInfo: snapshot.data,
                   allowImages: true,
                   backgroundColor: Color(0xFFF2F4F8),
-                  timeDisplaySetting: TimeDisplaySetting.visibleOnTap,
+                  timeDisplaySetting: TimeDisplaySetting.alwaysVisible,
                   currentUserBoxDecoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color(0xFFDCF8C6),
                     border: Border.all(
                       color: Colors.transparent,
                     ),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   otherUsersBoxDecoration: BoxDecoration(
-                    color: Color(0xFF4B39EF),
+                    color: FlutterFlowTheme.tertiaryColor,
                     border: Border.all(
                       color: Colors.transparent,
                     ),
@@ -136,7 +136,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                   ),
                   otherUsersTextStyle: GoogleFonts.getFont(
                     'DM Sans',
-                    color: Colors.white,
+                    color: Color(0x8C000000),
                     fontWeight: FontWeight.w500,
                     fontSize: 14,
                   ),

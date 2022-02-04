@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../chat_page/chat_page_widget.dart';
 import '../components/review_widget.dart';
@@ -327,31 +328,34 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                         fontSize: 16,
                                                                                       ),
                                                                                     ),
-                                                                                    FlutterFlowIconButton(
-                                                                                      borderColor: Colors.transparent,
-                                                                                      borderRadius: 30,
-                                                                                      borderWidth: 1,
-                                                                                      buttonSize: 45,
-                                                                                      fillColor: FlutterFlowTheme.campusRed,
-                                                                                      icon: Icon(
-                                                                                        Icons.mail_outline,
-                                                                                        color: FlutterFlowTheme.tertiaryColor,
-                                                                                        size: 25,
-                                                                                      ),
-                                                                                      onPressed: () async {
-                                                                                        await Navigator.push(
-                                                                                          context,
-                                                                                          PageTransition(
-                                                                                            type: PageTransitionType.bottomToTop,
-                                                                                            duration: Duration(milliseconds: 300),
-                                                                                            reverseDuration: Duration(milliseconds: 300),
-                                                                                            child: ChatPageWidget(
-                                                                                              chatUser: rowUsersRecord,
-                                                                                            ),
+                                                                                    if ((currentUserDocument?.role) == 'Admin')
+                                                                                      AuthUserStreamWidget(
+                                                                                        child: FlutterFlowIconButton(
+                                                                                          borderColor: Colors.transparent,
+                                                                                          borderRadius: 30,
+                                                                                          borderWidth: 1,
+                                                                                          buttonSize: 45,
+                                                                                          fillColor: FlutterFlowTheme.campusRed,
+                                                                                          icon: Icon(
+                                                                                            Icons.mail_outline,
+                                                                                            color: FlutterFlowTheme.tertiaryColor,
+                                                                                            size: 25,
                                                                                           ),
-                                                                                        );
-                                                                                      },
-                                                                                    ),
+                                                                                          onPressed: () async {
+                                                                                            await Navigator.push(
+                                                                                              context,
+                                                                                              PageTransition(
+                                                                                                type: PageTransitionType.bottomToTop,
+                                                                                                duration: Duration(milliseconds: 300),
+                                                                                                reverseDuration: Duration(milliseconds: 300),
+                                                                                                child: ChatPageWidget(
+                                                                                                  chatUser: rowUsersRecord,
+                                                                                                ),
+                                                                                              ),
+                                                                                            );
+                                                                                          },
+                                                                                        ),
+                                                                                      ),
                                                                                   ],
                                                                                 );
                                                                               },
@@ -402,31 +406,34 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                         fontSize: 16,
                                                                                       ),
                                                                                     ),
-                                                                                    FlutterFlowIconButton(
-                                                                                      borderColor: Colors.transparent,
-                                                                                      borderRadius: 30,
-                                                                                      borderWidth: 1,
-                                                                                      buttonSize: 45,
-                                                                                      fillColor: FlutterFlowTheme.campusRed,
-                                                                                      icon: Icon(
-                                                                                        Icons.mail_outlined,
-                                                                                        color: FlutterFlowTheme.tertiaryColor,
-                                                                                        size: 25,
-                                                                                      ),
-                                                                                      onPressed: () async {
-                                                                                        await Navigator.push(
-                                                                                          context,
-                                                                                          PageTransition(
-                                                                                            type: PageTransitionType.bottomToTop,
-                                                                                            duration: Duration(milliseconds: 300),
-                                                                                            reverseDuration: Duration(milliseconds: 300),
-                                                                                            child: ChatPageWidget(
-                                                                                              chatUser: rowUsersRecord,
-                                                                                            ),
+                                                                                    if ((currentUserDocument?.role) == 'Admin')
+                                                                                      AuthUserStreamWidget(
+                                                                                        child: FlutterFlowIconButton(
+                                                                                          borderColor: Colors.transparent,
+                                                                                          borderRadius: 30,
+                                                                                          borderWidth: 1,
+                                                                                          buttonSize: 45,
+                                                                                          fillColor: FlutterFlowTheme.campusRed,
+                                                                                          icon: Icon(
+                                                                                            Icons.mail_outlined,
+                                                                                            color: FlutterFlowTheme.tertiaryColor,
+                                                                                            size: 25,
                                                                                           ),
-                                                                                        );
-                                                                                      },
-                                                                                    ),
+                                                                                          onPressed: () async {
+                                                                                            await Navigator.push(
+                                                                                              context,
+                                                                                              PageTransition(
+                                                                                                type: PageTransitionType.bottomToTop,
+                                                                                                duration: Duration(milliseconds: 300),
+                                                                                                reverseDuration: Duration(milliseconds: 300),
+                                                                                                child: ChatPageWidget(
+                                                                                                  chatUser: rowUsersRecord,
+                                                                                                ),
+                                                                                              ),
+                                                                                            );
+                                                                                          },
+                                                                                        ),
+                                                                                      ),
                                                                                   ],
                                                                                 );
                                                                               },
