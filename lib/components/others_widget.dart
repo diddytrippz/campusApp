@@ -368,25 +368,6 @@ class _OthersWidgetState extends State<OthersWidget> {
                                                           .doc()
                                                           .set(
                                                               maintenanceCreateData);
-
-                                                      final chatMessagesCreateData =
-                                                          createChatMessagesRecordData(
-                                                        email: currentUserEmail,
-                                                        message:
-                                                            'Please take note of a status change. Your request status is now \"Submitted\"',
-                                                        timeCreated:
-                                                            getCurrentTimestamp,
-                                                        displayName:
-                                                            currentUserDisplayName,
-                                                        subject:
-                                                            'Status Update',
-                                                        isSelected: false,
-                                                      );
-                                                      await ChatMessagesRecord
-                                                          .collection
-                                                          .doc()
-                                                          .set(
-                                                              chatMessagesCreateData);
                                                       await showModalBottomSheet(
                                                         isScrollControlled:
                                                             true,

@@ -14,7 +14,6 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'view_page/view_page_widget.dart';
-import 'inbox_page/inbox_page_widget.dart';
 import 'settings_page/settings_page_widget.dart';
 import 'messages_page/messages_page_widget.dart';
 import 'users_page/users_page_widget.dart';
@@ -120,7 +119,6 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'homePage': HomePageWidget(),
       'viewPage': ViewPageWidget(),
-      'inboxPage': InboxPageWidget(),
       'settingsPage': SettingsPageWidget(),
       'MessagesPage': MessagesPageWidget(),
       'UsersPage': UsersPageWidget(),
@@ -157,19 +155,12 @@ class _NavBarPageState extends State<NavBarPage> {
             iconSize: 24,
           ),
           GButton(
-            icon: currentIndex == 2
-                ? Icons.notifications
-                : Icons.notifications_none,
-            text: 'Messages',
-            iconSize: 24,
-          ),
-          GButton(
-            icon: currentIndex == 3 ? Icons.person : Icons.person_outline,
+            icon: currentIndex == 2 ? Icons.person : Icons.person_outline,
             text: 'SETTINGS',
             iconSize: 24,
           ),
           GButton(
-            icon: currentIndex == 4
+            icon: currentIndex == 3
                 ? Icons.chat_bubble_rounded
                 : Icons.chat_bubble_outline,
             text: 'Chats',

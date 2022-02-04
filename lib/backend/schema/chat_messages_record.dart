@@ -12,38 +12,30 @@ abstract class ChatMessagesRecord
       _$chatMessagesRecordSerializer;
 
   @nullable
-  String get email;
+  DocumentReference get user;
 
   @nullable
-  String get message;
+  DocumentReference get chat;
 
   @nullable
-  @BuiltValueField(wireName: 'time_created')
-  DateTime get timeCreated;
+  String get text;
 
   @nullable
-  @BuiltValueField(wireName: 'display_name')
-  String get displayName;
+  String get image;
 
   @nullable
-  String get subject;
-
-  @nullable
-  bool get isSelected;
+  DateTime get timestamp;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(ChatMessagesRecordBuilder builder) => builder
-    ..email = ''
-    ..message = ''
-    ..displayName = ''
-    ..subject = ''
-    ..isSelected = false;
+    ..text = ''
+    ..image = '';
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('chatMessages');
+      FirebaseFirestore.instance.collection('chat_messages');
 
   static Stream<ChatMessagesRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
@@ -65,19 +57,17 @@ abstract class ChatMessagesRecord
 }
 
 Map<String, dynamic> createChatMessagesRecordData({
-  String email,
-  String message,
-  DateTime timeCreated,
-  String displayName,
-  String subject,
-  bool isSelected,
+  DocumentReference user,
+  DocumentReference chat,
+  String text,
+  String image,
+  DateTime timestamp,
 }) =>
     serializers.toFirestore(
         ChatMessagesRecord.serializer,
         ChatMessagesRecord((c) => c
-          ..email = email
-          ..message = message
-          ..timeCreated = timeCreated
-          ..displayName = displayName
-          ..subject = subject
-          ..isSelected = isSelected));
+          ..user = user
+          ..chat = chat
+          ..text = text
+          ..image = image
+          ..timestamp = timestamp));

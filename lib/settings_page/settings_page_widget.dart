@@ -291,32 +291,19 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       dense: false,
                     ),
                   ),
-                  InkWell(
-                    onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          duration: Duration(milliseconds: 300),
-                          reverseDuration: Duration(milliseconds: 300),
-                          child: NavBarPage(initialPage: 'inboxPage'),
-                        ),
-                      );
-                    },
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.message_outlined,
-                      ),
-                      title: Text(
-                        'Messages',
-                        style: FlutterFlowTheme.title3.override(
-                          fontFamily: 'Roboto',
-                          fontSize: 16,
-                        ),
-                      ),
-                      tileColor: Color(0x00F5F5F5),
-                      dense: false,
+                  ListTile(
+                    leading: Icon(
+                      Icons.message_outlined,
                     ),
+                    title: Text(
+                      'Messages',
+                      style: FlutterFlowTheme.title3.override(
+                        fontFamily: 'Roboto',
+                        fontSize: 16,
+                      ),
+                    ),
+                    tileColor: Color(0x00F5F5F5),
+                    dense: false,
                   ),
                   InkWell(
                     onTap: () async {
