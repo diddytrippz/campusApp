@@ -113,9 +113,18 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                         0, 16, 0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        await pageViewController.nextPage(
-                                          duration: Duration(milliseconds: 300),
-                                          curve: Curves.ease,
+                                        await Navigator.pushAndRemoveUntil(
+                                          context,
+                                          PageTransition(
+                                            type:
+                                                PageTransitionType.bottomToTop,
+                                            duration:
+                                                Duration(milliseconds: 300),
+                                            reverseDuration:
+                                                Duration(milliseconds: 300),
+                                            child: LoginPageWidget(),
+                                          ),
+                                          (r) => false,
                                         );
                                       },
                                       text: 'NEXT',
@@ -144,160 +153,6 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                             ),
                           ],
                         ),
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 1,
-                              child: Stack(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15, 40, 15, 0),
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      elevation: 40,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: 100,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.tertiaryColor,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 60, 0, 0),
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      elevation: 40,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                1,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.tertiaryColor,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 0, 20, 0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Image.asset(
-                                                    'assets/images/undraw_develop_app_re_bi4i.png',
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.8,
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.4,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(18, 0, 18, 0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 0, 20),
-                                                    child: Text(
-                                                      'Campus Africa',
-                                                      style: FlutterFlowTheme
-                                                          .bodyText1,
-                                                    ),
-                                                  ),
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
-                                                      await Navigator
-                                                          .pushAndRemoveUntil(
-                                                        context,
-                                                        PageTransition(
-                                                          type:
-                                                              PageTransitionType
-                                                                  .topToBottom,
-                                                          duration: Duration(
-                                                              milliseconds:
-                                                                  450),
-                                                          reverseDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      450),
-                                                          child:
-                                                              LoginPageWidget(),
-                                                        ),
-                                                        (r) => false,
-                                                      );
-                                                    },
-                                                    text: 'Continue',
-                                                    options: FFButtonOptions(
-                                                      width: double.infinity,
-                                                      height: 55,
-                                                      color: FlutterFlowTheme
-                                                          .primaryColor,
-                                                      textStyle:
-                                                          FlutterFlowTheme
-                                                              .subtitle2
-                                                              .override(
-                                                        fontFamily: 'Roboto',
-                                                        color: Colors.white,
-                                                      ),
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius: 12,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
                       ),
                     ],
                   ),
