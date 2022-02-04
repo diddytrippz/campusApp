@@ -229,6 +229,8 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                         ),
                                         textAlign: TextAlign.start,
                                         maxLines: 6,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
                                         validator: (val) {
                                           if (val.isEmpty) {
                                             return 'This field cannot be empty';

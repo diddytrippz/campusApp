@@ -116,7 +116,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          12, 40, 0, 0),
+                                          12, 50, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -137,7 +137,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 0),
+                                          0, 40, 0, 0),
                                       child: TextFormField(
                                         controller: reasonController,
                                         obscureText: false,
@@ -187,6 +187,8 @@ class _OthersWidgetState extends State<OthersWidget> {
                                         ),
                                         textAlign: TextAlign.start,
                                         maxLines: 6,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
                                         validator: (val) {
                                           if (val.isEmpty) {
                                             return 'This field cannot be empty';
