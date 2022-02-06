@@ -149,11 +149,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             ),
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(100, 80, 0, 0),
+                                  EdgeInsetsDirectional.fromSTEB(120, 80, 0, 0),
                               child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
+                                borderColor: FlutterFlowTheme.tertiaryColor,
                                 borderRadius: 30,
-                                borderWidth: 1,
+                                borderWidth: 2,
                                 buttonSize: 50,
                                 fillColor: FlutterFlowTheme.campusRed,
                                 icon: Icon(
