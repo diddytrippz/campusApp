@@ -408,6 +408,8 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                                                         isDone: false,
                                                         photoUrl:
                                                             uploadedFileUrl,
+                                                        assigned:
+                                                            'Maintenance Team',
                                                       );
                                                       await MaintenanceRecord
                                                           .collection

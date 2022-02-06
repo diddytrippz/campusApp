@@ -415,6 +415,8 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                                         isDone: false,
                                                         photoUrl:
                                                             uploadedFileUrl,
+                                                        assigned:
+                                                            'Maintenace Team',
                                                       );
                                                       await MaintenanceRecord
                                                           .collection

@@ -404,6 +404,8 @@ class _PestControlWidgetState extends State<PestControlWidget> {
                                                         isDone: false,
                                                         photoUrl:
                                                             uploadedFileUrl,
+                                                        assigned:
+                                                            'Maintenance Team',
                                                       );
                                                       await MaintenanceRecord
                                                           .collection

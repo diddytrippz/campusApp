@@ -412,6 +412,8 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                                         isDone: false,
                                                         photoUrl:
                                                             uploadedFileUrl,
+                                                        assigned:
+                                                            'Maintenace Team',
                                                       );
                                                       await MaintenanceRecord
                                                           .collection

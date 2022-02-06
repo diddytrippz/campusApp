@@ -8,7 +8,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import '../onboarding/onboarding_widget.dart';
 import '../rules_book/rules_book_widget.dart';
-import '../trash/trash_widget.dart';
+import '../students/students_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -169,7 +169,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                               currentUserPhoto,
-                                                              'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
+                                                              'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
                                                             ),
                                                             fit: BoxFit.contain,
                                                           ),
@@ -177,7 +177,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                           tag: valueOrDefault<
                                                               String>(
                                                             currentUserPhoto,
-                                                            'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
+                                                            'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
                                                           ),
                                                           useHeroAnimation:
                                                               true,
@@ -188,7 +188,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                   child: Hero(
                                                     tag: valueOrDefault<String>(
                                                       currentUserPhoto,
-                                                      'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
+                                                      'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
                                                     ),
                                                     transitionOnUserGestures:
                                                         true,
@@ -205,7 +205,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                             valueOrDefault<
                                                                 String>(
                                                           currentUserPhoto,
-                                                          'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
+                                                          'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
                                                         ),
                                                         fit: BoxFit.cover,
                                                       ),
@@ -374,17 +374,17 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             type: PageTransitionType.rightToLeft,
                             duration: Duration(milliseconds: 300),
                             reverseDuration: Duration(milliseconds: 300),
-                            child: TrashWidget(),
+                            child: StudentsWidget(),
                           ),
                           (r) => false,
                         );
                       },
                       child: ListTile(
                         leading: Icon(
-                          Icons.delete_outline_rounded,
+                          Icons.group_add,
                         ),
                         title: Text(
-                          'Trash',
+                          'Students',
                           style: FlutterFlowTheme.title3.override(
                             fontFamily: 'Roboto',
                             fontSize: 16,
@@ -766,21 +766,14 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                        child: InkWell(
+              if ((currentUserDocument?.role) == 'Admin')
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
+                  child: AuthUserStreamWidget(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        InkWell(
                           onTap: () async {
                             await Navigator.push(
                               context,
@@ -788,51 +781,62 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                 type: PageTransitionType.bottomToTop,
                                 duration: Duration(milliseconds: 300),
                                 reverseDuration: Duration(milliseconds: 300),
-                                child: TrashWidget(),
+                                child: StudentsWidget(),
                               ),
                             );
                           },
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Icon(
-                                Icons.delete_outline_outlined,
-                                color: Color(0xFF9E9E9E),
-                                size: 24,
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                                child: Text(
-                                  'Trash',
-                                  style: FlutterFlowTheme.bodyText1,
-                                ),
-                              ),
-                              Expanded(
-                                child: Align(
-                                  alignment: AlignmentDirectional(0.9, 0),
-                                  child: Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: Color(0xFF95A1AC),
-                                    size: 18,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.rectangle,
+                            ),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Icon(
+                                    Icons.group_add,
+                                    color: Color(0xFF9E9E9E),
+                                    size: 24,
                                   ),
-                                ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24, 0, 0, 0),
+                                    child: Text(
+                                      'Students',
+                                      style: FlutterFlowTheme.bodyText1,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: AlignmentDirectional(0.9, 0),
+                                      child: Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: Color(0xFF95A1AC),
+                                        size: 18,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(24, 14, 0, 14),
                     child: Text(
-                      'MORE',
+                      'LEGAL',
                       style: FlutterFlowTheme.bodyText1.override(
                         fontFamily: 'Roboto',
                         color: Color(0xFF9E9E9E),
@@ -842,53 +846,6 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                     ),
                   ),
                 ],
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Icon(
-                              Icons.language_sharp,
-                              color: Color(0xFF9E9E9E),
-                              size: 24,
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                              child: Text(
-                                'Copyright policy',
-                                style: FlutterFlowTheme.bodyText1,
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: AlignmentDirectional(0.9, 0),
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Color(0xFF95A1AC),
-                                  size: 18,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),

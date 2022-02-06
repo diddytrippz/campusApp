@@ -2,8 +2,8 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../forgot_pass_page/forgot_pass_page_widget.dart';
 import '../main.dart';
+import '../verification/verification_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -351,7 +351,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   type: PageTransitionType.bottomToTop,
                                   duration: Duration(milliseconds: 300),
                                   reverseDuration: Duration(milliseconds: 300),
-                                  child: ForgotPassPageWidget(),
+                                  child: VerificationWidget(),
                                 ),
                               );
                             },

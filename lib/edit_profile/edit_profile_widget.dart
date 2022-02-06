@@ -90,50 +90,58 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       children: [
                         Stack(
                           children: [
-                            AuthUserStreamWidget(
-                              child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: FlutterFlowExpandedImageView(
-                                        image: Image.network(
-                                          valueOrDefault<String>(
-                                            currentUserPhoto,
-                                            'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
+                            Container(
+                              width: 150,
+                              height: 150,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.campusRed,
+                                shape: BoxShape.circle,
+                              ),
+                              child: AuthUserStreamWidget(
+                                child: InkWell(
+                                  onTap: () async {
+                                    await Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: FlutterFlowExpandedImageView(
+                                          image: Image.network(
+                                            valueOrDefault<String>(
+                                              currentUserPhoto,
+                                              'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                            ),
+                                            fit: BoxFit.contain,
                                           ),
-                                          fit: BoxFit.contain,
+                                          allowRotation: false,
+                                          tag: valueOrDefault<String>(
+                                            currentUserPhoto,
+                                            'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                          ),
+                                          useHeroAnimation: true,
                                         ),
-                                        allowRotation: false,
-                                        tag: valueOrDefault<String>(
+                                      ),
+                                    );
+                                  },
+                                  child: Hero(
+                                    tag: valueOrDefault<String>(
+                                      currentUserPhoto,
+                                      'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                    ),
+                                    transitionOnUserGestures: true,
+                                    child: Container(
+                                      width: 150,
+                                      height: 150,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
+                                        valueOrDefault<String>(
                                           currentUserPhoto,
-                                          'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
+                                          'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
                                         ),
-                                        useHeroAnimation: true,
+                                        fit: BoxFit.cover,
                                       ),
-                                    ),
-                                  );
-                                },
-                                child: Hero(
-                                  tag: valueOrDefault<String>(
-                                    currentUserPhoto,
-                                    'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
-                                  ),
-                                  transitionOnUserGestures: true,
-                                  child: Container(
-                                    width: 150,
-                                    height: 150,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.network(
-                                      valueOrDefault<String>(
-                                        currentUserPhoto,
-                                        'https://www.clipartmax.com/png/middle/15-153139_big-image-login-icon-with-transparent-background.png',
-                                      ),
-                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
@@ -146,7 +154,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 borderColor: Colors.transparent,
                                 borderRadius: 30,
                                 borderWidth: 1,
-                                buttonSize: 55,
+                                buttonSize: 50,
                                 fillColor: FlutterFlowTheme.campusRed,
                                 icon: Icon(
                                   Icons.edit_outlined,

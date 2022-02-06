@@ -99,7 +99,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
             },
             value: FFAppState().isPressed,
             onIcon: Icon(
-              Icons.search_rounded,
+              Icons.search_sharp,
               color: Colors.black,
               size: 25,
             ),
@@ -113,9 +113,10 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
         centerTitle: false,
         elevation: 4,
       ),
+      backgroundColor: FlutterFlowTheme.tertiaryColor,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
           child: StreamBuilder<List<ChatsRecord>>(
             stream: queryChatsRecord(
               queryBuilder: (chatsRecord) => chatsRecord
@@ -147,61 +148,65 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                 itemBuilder: (context, listViewIndex) {
                   final listViewChatsRecord =
                       listViewChatsRecordList[listViewIndex];
-                  return StreamBuilder<FFChatInfo>(
-                    stream: FFChatManager.instance
-                        .getChatInfo(chatRecord: listViewChatsRecord),
-                    builder: (context, snapshot) {
-                      final chatInfo =
-                          snapshot.data ?? FFChatInfo(listViewChatsRecord);
-                      return FFChatPreview(
-                        onTap: chatInfo != null
-                            ? () => Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.bottomToTop,
-                                    duration: Duration(milliseconds: 300),
-                                    reverseDuration:
-                                        Duration(milliseconds: 300),
-                                    child: ChatPageWidget(
-                                      chatUser: chatInfo.otherUsers.length == 1
-                                          ? chatInfo.otherUsersList.first
-                                          : null,
-                                      chatRef: chatInfo.chatRecord.reference,
+                  return Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+                    child: StreamBuilder<FFChatInfo>(
+                      stream: FFChatManager.instance
+                          .getChatInfo(chatRecord: listViewChatsRecord),
+                      builder: (context, snapshot) {
+                        final chatInfo =
+                            snapshot.data ?? FFChatInfo(listViewChatsRecord);
+                        return FFChatPreview(
+                          onTap: chatInfo != null
+                              ? () => Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.bottomToTop,
+                                      duration: Duration(milliseconds: 300),
+                                      reverseDuration:
+                                          Duration(milliseconds: 300),
+                                      child: ChatPageWidget(
+                                        chatUser:
+                                            chatInfo.otherUsers.length == 1
+                                                ? chatInfo.otherUsersList.first
+                                                : null,
+                                        chatRef: chatInfo.chatRecord.reference,
+                                      ),
                                     ),
-                                  ),
-                                )
-                            : null,
-                        lastChatText: chatInfo.chatPreviewMessage(),
-                        lastChatTime: listViewChatsRecord.lastMessageTime,
-                        seen: listViewChatsRecord.lastMessageSeenBy
-                            .contains(currentUserReference),
-                        title: chatInfo.chatPreviewTitle(),
-                        userProfilePic: chatInfo.chatPreviewPic(),
-                        color: Color(0xFFEEF0F5),
-                        unreadColor: Colors.blue,
-                        titleTextStyle: GoogleFonts.getFont(
-                          'DM Sans',
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                        ),
-                        dateTextStyle: GoogleFonts.getFont(
-                          'DM Sans',
-                          color: Color(0x73000000),
-                          fontWeight: FontWeight.normal,
-                          fontSize: 14,
-                        ),
-                        previewTextStyle: GoogleFonts.getFont(
-                          'DM Sans',
-                          color: Color(0x73000000),
-                          fontWeight: FontWeight.normal,
-                          fontSize: 14,
-                        ),
-                        contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
-                        borderRadius: BorderRadius.circular(0),
-                      );
-                    },
+                                  )
+                              : null,
+                          lastChatText: chatInfo.chatPreviewMessage(),
+                          lastChatTime: listViewChatsRecord.lastMessageTime,
+                          seen: listViewChatsRecord.lastMessageSeenBy
+                              .contains(currentUserReference),
+                          title: chatInfo.chatPreviewTitle(),
+                          userProfilePic: chatInfo.chatPreviewPic(),
+                          color: FlutterFlowTheme.tertiaryColor,
+                          unreadColor: Colors.blue,
+                          titleTextStyle: GoogleFonts.getFont(
+                            'DM Sans',
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                          dateTextStyle: GoogleFonts.getFont(
+                            'Roboto',
+                            color: Color(0x73000000),
+                            fontWeight: FontWeight.normal,
+                            fontSize: 12,
+                          ),
+                          previewTextStyle: GoogleFonts.getFont(
+                            'DM Sans',
+                            color: Color(0x73000000),
+                            fontWeight: FontWeight.normal,
+                            fontSize: 13,
+                          ),
+                          contentPadding:
+                              EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
+                          borderRadius: BorderRadius.circular(0),
+                        );
+                      },
+                    ),
                   );
                 },
               );

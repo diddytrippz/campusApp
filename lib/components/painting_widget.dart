@@ -406,6 +406,8 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                                                         isDone: false,
                                                         photoUrl:
                                                             uploadedFileUrl,
+                                                        assigned:
+                                                            'Maintenance Team',
                                                       );
                                                       await MaintenanceRecord
                                                           .collection

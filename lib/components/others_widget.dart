@@ -362,6 +362,8 @@ class _OthersWidgetState extends State<OthersWidget> {
                                                         isDone: false,
                                                         photoUrl:
                                                             uploadedFileUrl,
+                                                        assigned:
+                                                            'Maintenance Team',
                                                       );
                                                       await MaintenanceRecord
                                                           .collection

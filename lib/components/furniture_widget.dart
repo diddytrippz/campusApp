@@ -408,6 +408,8 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                                                         isDone: false,
                                                         photoUrl:
                                                             uploadedFileUrl,
+                                                        assigned:
+                                                            'Maintenance Team',
                                                       );
                                                       await MaintenanceRecord
                                                           .collection

@@ -927,7 +927,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             ),
                                                                             subtitle:
                                                                                 Text(
-                                                                              'Maintenance Team',
+                                                                              widget.jobStatus.assigned,
                                                                               style: FlutterFlowTheme.subtitle2.override(
                                                                                 fontFamily: 'Roboto',
                                                                                 fontSize: 16,

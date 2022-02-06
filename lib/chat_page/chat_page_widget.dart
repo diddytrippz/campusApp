@@ -101,6 +101,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
         centerTitle: true,
         elevation: 2,
       ),
+      backgroundColor: FlutterFlowTheme.tertiaryColor,
       body: SafeArea(
         child: StreamBuilder<FFChatInfo>(
           stream: FFChatManager.instance.getChatInfo(
@@ -111,7 +112,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
               ? FFChatPage(
                   chatInfo: snapshot.data,
                   allowImages: true,
-                  backgroundColor: Color(0xFFF2F4F8),
+                  backgroundColor: FlutterFlowTheme.tertiaryColor,
                   timeDisplaySetting: TimeDisplaySetting.alwaysVisible,
                   currentUserBoxDecoration: BoxDecoration(
                     color: Color(0xFFDCF8C6),

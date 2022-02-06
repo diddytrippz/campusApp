@@ -201,38 +201,40 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.92,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.22,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.asset(
-                                        'assets/images/06_COMBINED_ELEMENT.png',
-                                      ).image,
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 6,
-                                        color: Color(0x4B1A1F24),
-                                        offset: Offset(0, 2),
-                                      )
-                                    ],
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        FlutterFlowTheme.mellow,
-                                        FlutterFlowTheme.campusRed
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 10, 0, 0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.25,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.contain,
+                                        image: Image.asset(
+                                          'assets/images/06_COMBINED_ELEMENT.png',
+                                        ).image,
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 6,
+                                          color: Color(0x4B1A1F24),
+                                          offset: Offset(0, 2),
+                                        )
                                       ],
-                                      stops: [0, 1],
-                                      begin: AlignmentDirectional(0.94, -1),
-                                      end: AlignmentDirectional(-0.94, 1),
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          FlutterFlowTheme.mellow,
+                                          FlutterFlowTheme.campusRed
+                                        ],
+                                        stops: [0, 1],
+                                        begin: AlignmentDirectional(0.94, -1),
+                                        end: AlignmentDirectional(-0.94, 1),
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
                                   ),
                                 ),
                               ),
