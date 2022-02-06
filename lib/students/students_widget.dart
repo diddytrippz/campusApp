@@ -62,8 +62,8 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                   context,
                   PageTransition(
                     type: PageTransitionType.bottomToTop,
-                    duration: Duration(milliseconds: 800),
-                    reverseDuration: Duration(milliseconds: 800),
+                    duration: Duration(milliseconds: 400),
+                    reverseDuration: Duration(milliseconds: 400),
                     child: SearchUserWidget(),
                   ),
                 );
