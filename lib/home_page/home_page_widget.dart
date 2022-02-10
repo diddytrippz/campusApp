@@ -122,6 +122,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         fontFamily: 'Roboto',
                                                         color: FlutterFlowTheme
                                                             .primaryColor,
+                                                        fontSize: 10,
                                                       ),
                                                     ),
                                                     startAngle: 360),
@@ -138,25 +139,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               verticalDirection:
                                                   VerticalDirection.down,
                                               clipBehavior: Clip.none,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 6, 0, 0),
-                                                  child: Text(
-                                                    'Completion',
-                                                    style: FlutterFlowTheme
-                                                        .title1
-                                                        .override(
-                                                      fontFamily: 'Roboto',
-                                                      color: FlutterFlowTheme
-                                                          .campusGrey,
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
+                                              children: [],
                                             ),
                                           ],
                                         ),

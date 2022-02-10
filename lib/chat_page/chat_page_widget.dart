@@ -99,7 +99,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
         ),
         actions: [],
         centerTitle: true,
-        elevation: 2,
+        elevation: 0,
       ),
       backgroundColor: FlutterFlowTheme.tertiaryColor,
       body: SafeArea(
