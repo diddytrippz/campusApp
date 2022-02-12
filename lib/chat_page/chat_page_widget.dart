@@ -111,7 +111,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
             ? FFChatPage(
                 chatInfo: snapshot.data,
                 allowImages: true,
-                backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
                 timeDisplaySetting: TimeDisplaySetting.visibleOnTap,
                 currentUserBoxDecoration: BoxDecoration(
                   color: Color(0xFFDCF8C6),
@@ -152,7 +152,9 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                   fontWeight: FontWeight.normal,
                   fontSize: 14,
                 ),
-                emptyChatWidget: EmptyInboxWidget(),
+                emptyChatWidget: Center(
+                  child: EmptyInboxWidget(),
+                ),
               )
             : Center(
                 child: SizedBox(

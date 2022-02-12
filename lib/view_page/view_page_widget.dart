@@ -146,12 +146,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                   controller: textController,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Roboto',
-                                          color: Color(0xFF57636C),
-                                        ),
                                     hintText: 'Search here...',
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -177,7 +171,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xFF262D34),
+                                        color: FlutterFlowTheme.of(context)
+                                            .campusGrey,
                                       ),
                                 ),
                               ),
