@@ -153,9 +153,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
                   ),
-                  emptyChatWidget: Center(
-                    child: EmptyInboxWidget(),
-                  ),
+                  emptyChatWidget: EmptyInboxWidget(),
                 )
               : Center(
                   child: SizedBox(
