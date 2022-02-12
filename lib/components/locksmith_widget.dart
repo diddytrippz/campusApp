@@ -504,7 +504,9 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                                                     options: FFButtonOptions(
                                                       width: double.infinity,
                                                       height: 60,
-                                                      color: Colors.white,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       textStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -512,8 +514,9 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Lexend Deca',
-                                                                color: Color(
-                                                                    0xFF57636C),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
                                                                 fontSize: 16,
                                                                 fontWeight:
                                                                     FontWeight

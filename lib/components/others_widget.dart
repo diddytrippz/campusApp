@@ -431,7 +431,9 @@ class _OthersWidgetState extends State<OthersWidget> {
                                                     options: FFButtonOptions(
                                                       width: double.infinity,
                                                       height: 60,
-                                                      color: Colors.white,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
                                                       textStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -439,8 +441,9 @@ class _OthersWidgetState extends State<OthersWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Lexend Deca',
-                                                                color: Color(
-                                                                    0xFF57636C),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
                                                                 fontSize: 16,
                                                                 fontWeight:
                                                                     FontWeight
