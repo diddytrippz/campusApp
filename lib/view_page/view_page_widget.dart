@@ -146,7 +146,21 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                   controller: textController,
                                   obscureText: false,
                                   decoration: InputDecoration(
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Roboto',
+                                          color: FlutterFlowTheme.of(context)
+                                              .campusGrey,
+                                        ),
                                     hintText: 'Search here...',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Roboto',
+                                          color: FlutterFlowTheme.of(context)
+                                              .campusGrey,
+                                        ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
@@ -442,12 +456,14 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             content:
                                                                                 Text(
                                                                               '1 item moved to bin',
-                                                                              style: TextStyle(),
+                                                                              style: TextStyle(
+                                                                                color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                              ),
                                                                             ),
                                                                             duration:
                                                                                 Duration(milliseconds: 4000),
                                                                             backgroundColor:
-                                                                                FlutterFlowTheme.of(context).campusGrey,
+                                                                                FlutterFlowTheme.of(context).primaryText,
                                                                           ),
                                                                         );
                                                                       },
