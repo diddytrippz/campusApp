@@ -4,7 +4,6 @@ import '../chat_page/chat_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
-import '../search_user/search_user_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
@@ -42,44 +41,33 @@ class _StudentsWidgetState extends State<StudentsWidget> {
           },
           child: Icon(
             Icons.arrow_back_rounded,
-            color: Colors.black,
+            color: FlutterFlowTheme.of(context).primaryText,
             size: 24,
           ),
         ),
         title: Text(
           'Students',
-          style: FlutterFlowTheme.title1.override(
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.bold,
-          ),
+          style: FlutterFlowTheme.of(context).title1.override(
+                fontFamily: 'Roboto',
+                color: FlutterFlowTheme.of(context).primaryText,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         actions: [
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 18, 0),
-            child: InkWell(
-              onTap: () async {
-                await Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.bottomToTop,
-                    duration: Duration(milliseconds: 400),
-                    reverseDuration: Duration(milliseconds: 400),
-                    child: SearchUserWidget(),
-                  ),
-                );
-              },
-              child: Icon(
-                Icons.search_rounded,
-                color: Colors.black,
-                size: 24,
-              ),
+            child: Icon(
+              Icons.search_rounded,
+              color: FlutterFlowTheme.of(context).primaryText,
+              size: 24,
             ),
           ),
         ],
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Padding(
@@ -99,7 +87,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                       width: 60,
                       height: 60,
                       child: SpinKitPulse(
-                        color: FlutterFlowTheme.primaryColor,
+                        color: FlutterFlowTheme.of(context).primaryColor,
                         size: 60,
                       ),
                     ),
@@ -116,7 +104,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                       child: Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: FlutterFlowTheme.tertiaryColor,
+                        color: FlutterFlowTheme.of(context).tertiaryColor,
                         elevation: 3,
                         child: InkWell(
                           onTap: () async {
@@ -172,12 +160,16 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                                   AutoSizeText(
                                                     columnUsersRecord
                                                         .displayName,
-                                                    style: FlutterFlowTheme
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .title2
                                                         .override(
-                                                      fontFamily: 'Roboto',
-                                                      fontSize: 16,
-                                                    ),
+                                                          fontFamily: 'Roboto',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 16,
+                                                        ),
                                                   ),
                                                 ],
                                               ),
@@ -186,8 +178,16 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                                     .fromSTEB(0, 4, 0, 0),
                                                 child: Text(
                                                   columnUsersRecord.role,
-                                                  style: FlutterFlowTheme
-                                                      .bodyText1,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .campusGrey,
+                                                      ),
                                                 ),
                                               ),
                                             ],

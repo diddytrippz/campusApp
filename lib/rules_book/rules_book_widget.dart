@@ -20,7 +20,7 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -43,7 +43,7 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
                   fillColor: Color(0x61AAAAAA),
                   icon: Icon(
                     Icons.clear,
-                    color: FlutterFlowTheme.tertiaryColor,
+                    color: FlutterFlowTheme.of(context).tertiaryColor,
                     size: 30,
                   ),
                   onPressed: () async {

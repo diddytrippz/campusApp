@@ -15,6 +15,7 @@ class FFAppState {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _profilePic = prefs.getString('ff_profilePic') ?? _profilePic;
+    _darkMode = prefs.getBool('ff_darkMode') ?? _darkMode;
   }
 
   SharedPreferences prefs;
@@ -29,6 +30,13 @@ class FFAppState {
   bool isPressed = true;
 
   List<bool> listPressed = [];
+
+  bool _darkMode = false;
+  bool get darkMode => _darkMode;
+  set darkMode(bool _value) {
+    _darkMode = _value;
+    prefs.setBool('ff_darkMode', _value);
+  }
 }
 
 LatLng _latLngFromString(String val) {

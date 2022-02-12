@@ -26,29 +26,30 @@ class _VerificationWidgetState extends State<VerificationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Scaffold(
-        key: scaffoldKey,
-        appBar: AppBar(
-          backgroundColor: Color(0xFF4B39EF),
-          automaticallyImplyLeading: false,
-          leading: InkWell(
-            onTap: () async {
-              Navigator.pop(context);
-            },
-            child: Icon(
-              Icons.arrow_back_sharp,
-              color: Colors.white,
-              size: 32,
-            ),
-          ),
-          actions: [],
-          centerTitle: false,
-          elevation: 0,
-        ),
+    return Scaffold(
+      key: scaffoldKey,
+      appBar: AppBar(
         backgroundColor: Color(0xFF4B39EF),
-        body: Container(
+        automaticallyImplyLeading: false,
+        leading: InkWell(
+          onTap: () async {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back_sharp,
+            color: Colors.white,
+            size: 32,
+          ),
+        ),
+        actions: [],
+        centerTitle: false,
+        elevation: 0,
+      ),
+      backgroundColor: Color(0xFF4B39EF),
+      body: Form(
+        key: formKey,
+        autovalidateMode: AutovalidateMode.disabled,
+        child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 1,
           decoration: BoxDecoration(
@@ -70,19 +71,19 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                   obscureText: false,
                   decoration: InputDecoration(
                     labelText: 'Enter the 6 digit code',
-                    labelStyle: FlutterFlowTheme.bodyText1.override(
-                      fontFamily: 'Lexend Deca',
-                      color: Color(0x98FFFFFF),
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
+                    labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Lexend Deca',
+                          color: Color(0x98FFFFFF),
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
                     hintText: '000000',
-                    hintStyle: FlutterFlowTheme.bodyText1.override(
-                      fontFamily: 'Lexend Deca',
-                      color: Color(0x98FFFFFF),
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
+                    hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Lexend Deca',
+                          color: Color(0x98FFFFFF),
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0x00000000),
@@ -106,12 +107,12 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                       color: Color(0x98FFFFFF),
                     ),
                   ),
-                  style: FlutterFlowTheme.bodyText1.override(
-                    fontFamily: 'Lexend Deca',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                  ),
+                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                        fontFamily: 'Lexend Deca',
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                      ),
                   validator: (val) {
                     if (val.isEmpty) {
                       return 'Field required';
@@ -125,9 +126,6 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (!formKey.currentState.validate()) {
-                      return;
-                    }
                     if (phoneNumberController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -148,12 +146,12 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                     width: 230,
                     height: 60,
                     color: Colors.white,
-                    textStyle: FlutterFlowTheme.subtitle2.override(
-                      fontFamily: 'Lexend Deca',
-                      color: FlutterFlowTheme.campusRed,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Lexend Deca',
+                          color: FlutterFlowTheme.of(context).campusRed,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
                     elevation: 3,
                     borderSide: BorderSide(
                       color: Colors.transparent,

@@ -67,7 +67,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Color(0xFFD93A0E),
+      backgroundColor: FlutterFlowTheme.of(context).primaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(
@@ -80,11 +80,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
             ),
           );
         },
-        backgroundColor: FlutterFlowTheme.mellow,
+        backgroundColor: FlutterFlowTheme.of(context).mellow,
         elevation: 8,
         child: Icon(
           Icons.edit_sharp,
-          color: FlutterFlowTheme.tertiaryColor,
+          color: Colors.white,
           size: 24,
         ),
       ).animated([animationsMap['floatingActionButtonOnPageLoadAnimation']]),
@@ -104,23 +104,27 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       FlutterFlowCalendar(
-                        color: FlutterFlowTheme.mellow,
-                        iconColor: FlutterFlowTheme.campusGrey,
+                        color: Color(0xFFFFBA00),
+                        iconColor: FlutterFlowTheme.of(context).campusGrey,
                         weekFormat: true,
                         weekStartsMonday: false,
                         onChange: (DateTimeRange newSelectedDate) {
                           setState(() => calendarSelectedDay = newSelectedDate);
                         },
                         titleStyle: TextStyle(
-                          color: Color(0xFFF6F6F6),
+                          color: Color(0xE1FFFFFF),
                         ),
                         dayOfWeekStyle: TextStyle(
+                          color: Color(0xE1FFFFFF),
+                        ),
+                        dateStyle: TextStyle(
                           color: Colors.white,
                         ),
-                        dateStyle: TextStyle(),
-                        selectedDateStyle: TextStyle(),
+                        selectedDateStyle: TextStyle(
+                          color: Colors.white,
+                        ),
                         inactiveDateStyle: TextStyle(
-                          color: Color(0xFFF6F6F6),
+                          color: FlutterFlowTheme.of(context).primaryText,
                         ),
                       ),
                       Container(
@@ -142,11 +146,12 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                   controller: textController,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelStyle:
-                                        FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Roboto',
-                                      color: Color(0xFF57636C),
-                                    ),
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Roboto',
+                                          color: Color(0xFF57636C),
+                                        ),
                                     hintText: 'Search here...',
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -168,10 +173,12 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                       size: 20,
                                     ),
                                   ),
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Roboto',
-                                    color: Color(0xFF262D34),
-                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Roboto',
+                                        color: Color(0xFF262D34),
+                                      ),
                                 ),
                               ),
                             ),
@@ -194,12 +201,14 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                 options: FFButtonOptions(
                                   width: 100,
                                   height: 40,
-                                  color: FlutterFlowTheme.primaryColor,
-                                  textStyle:
-                                      FlutterFlowTheme.subtitle2.override(
-                                    fontFamily: 'Roboto',
-                                    color: Colors.white,
-                                  ),
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Roboto',
+                                        color: Colors.white,
+                                      ),
                                   elevation: 2,
                                   borderSide: BorderSide(
                                     color: Colors.transparent,
@@ -224,7 +233,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                         width: MediaQuery.of(context).size.width,
                         height: double.infinity,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0),
                             bottomRight: Radius.circular(0),
@@ -248,13 +257,16 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                         children: [
                                           TabBar(
                                             labelColor:
-                                                FlutterFlowTheme.primaryColor,
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
                                             unselectedLabelColor:
                                                 Color(0xFF6E6E6E),
                                             labelStyle:
-                                                FlutterFlowTheme.bodyText1,
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyText1,
                                             indicatorColor:
-                                                FlutterFlowTheme.secondaryColor,
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
                                             tabs: [
                                               Tab(
                                                 text: 'Submitted',
@@ -287,9 +299,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                         children: [
                                                           Text(
                                                             'Search results',
-                                                            style:
-                                                                FlutterFlowTheme
-                                                                    .bodyText2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2,
                                                           ),
                                                         ],
                                                       ),
@@ -326,7 +338,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                 height: 60,
                                                                 child:
                                                                     SpinKitPulse(
-                                                                  color: FlutterFlowTheme
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
                                                                       .primaryColor,
                                                                   size: 60,
                                                                 ),
@@ -397,7 +410,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     IconSlideAction(
                                                                       caption:
                                                                           'Delete',
-                                                                      color: FlutterFlowTheme
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .campusRed,
                                                                       icon: Icons
                                                                           .delete_outline,
@@ -438,7 +452,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             duration:
                                                                                 Duration(milliseconds: 4000),
                                                                             backgroundColor:
-                                                                                FlutterFlowTheme.campusGrey,
+                                                                                FlutterFlowTheme.of(context).campusGrey,
                                                                           ),
                                                                         );
                                                                       },
@@ -450,33 +464,38 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                         Icon(
                                                                       Icons
                                                                           .account_circle,
-                                                                      color: FlutterFlowTheme
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .campusGrey,
                                                                       size: 35,
                                                                     ),
                                                                     title: Text(
                                                                       listViewMaintenanceRecord
                                                                           .issue,
-                                                                      style: FlutterFlowTheme
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .title2
                                                                           .override(
-                                                                        fontFamily:
-                                                                            'Roboto',
-                                                                        fontSize:
-                                                                            16,
-                                                                      ),
+                                                                            fontFamily:
+                                                                                'Roboto',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            fontSize:
+                                                                                16,
+                                                                          ),
                                                                     ),
                                                                     subtitle:
                                                                         Text(
                                                                       '${dateTimeFormat('MMMMEEEEd', listViewMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewMaintenanceRecord.createdTime)}',
-                                                                      style: FlutterFlowTheme
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .subtitle2
                                                                           .override(
-                                                                        fontFamily:
-                                                                            'Roboto',
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
+                                                                            fontFamily:
+                                                                                'Roboto',
+                                                                            fontSize:
+                                                                                14,
+                                                                          ),
                                                                     ),
                                                                     trailing:
                                                                         Icon(
@@ -486,9 +505,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           0xFF303030),
                                                                       size: 20,
                                                                     ),
-                                                                    tileColor:
-                                                                        Color(
-                                                                            0x00FFFFFF),
+                                                                    tileColor: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
                                                                     dense: true,
                                                                   ),
                                                                 ),
@@ -515,9 +534,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                         children: [
                                                           Text(
                                                             'Search results',
-                                                            style:
-                                                                FlutterFlowTheme
-                                                                    .bodyText2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2,
                                                           ),
                                                         ],
                                                       ),
@@ -556,7 +575,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   height: 60,
                                                                   child:
                                                                       SpinKitPulse(
-                                                                    color: FlutterFlowTheme
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
                                                                         .primaryColor,
                                                                     size: 60,
                                                                   ),
@@ -626,35 +646,40 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                         Icon(
                                                                       Icons
                                                                           .account_circle,
-                                                                      color: FlutterFlowTheme
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .campusGrey,
                                                                       size: 35,
                                                                     ),
                                                                     title: Text(
                                                                       listViewMaintenanceRecord
                                                                           .issue,
-                                                                      style: FlutterFlowTheme
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .title1
                                                                           .override(
-                                                                        fontFamily:
-                                                                            'Roboto',
-                                                                        fontSize:
-                                                                            16,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
+                                                                            fontFamily:
+                                                                                'Roboto',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            fontSize:
+                                                                                16,
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                          ),
                                                                     ),
                                                                     subtitle:
                                                                         Text(
                                                                       '${dateTimeFormat('MMMMEEEEd', listViewMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewMaintenanceRecord.createdTime)}',
-                                                                      style: FlutterFlowTheme
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .subtitle2
                                                                           .override(
-                                                                        fontFamily:
-                                                                            'Roboto',
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
+                                                                            fontFamily:
+                                                                                'Roboto',
+                                                                            fontSize:
+                                                                                14,
+                                                                          ),
                                                                     ),
                                                                     tileColor:
                                                                         Color(
@@ -687,9 +712,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                         children: [
                                                           Text(
                                                             'Search results',
-                                                            style:
-                                                                FlutterFlowTheme
-                                                                    .bodyText2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2,
                                                           ),
                                                         ],
                                                       ),
@@ -726,7 +751,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                 height: 60,
                                                                 child:
                                                                     SpinKitPulse(
-                                                                  color: FlutterFlowTheme
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
                                                                       .primaryColor,
                                                                   size: 60,
                                                                 ),
@@ -794,33 +820,38 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   leading: Icon(
                                                                     Icons
                                                                         .account_circle,
-                                                                    color: FlutterFlowTheme
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
                                                                         .campusGrey,
                                                                     size: 35,
                                                                   ),
                                                                   title: Text(
                                                                     listViewMaintenanceRecord
                                                                         .issue,
-                                                                    style: FlutterFlowTheme
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
                                                                         .title2
                                                                         .override(
-                                                                      fontFamily:
-                                                                          'Roboto',
-                                                                      fontSize:
-                                                                          16,
-                                                                    ),
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                          fontSize:
+                                                                              16,
+                                                                        ),
                                                                   ),
                                                                   subtitle:
                                                                       Text(
                                                                     '${dateTimeFormat('MMMMEEEEd', listViewMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewMaintenanceRecord.createdTime)}',
-                                                                    style: FlutterFlowTheme
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
                                                                         .subtitle2
                                                                         .override(
-                                                                      fontFamily:
-                                                                          'Roboto',
-                                                                      fontSize:
-                                                                          14,
-                                                                    ),
+                                                                          fontFamily:
+                                                                              'Roboto',
+                                                                          fontSize:
+                                                                              14,
+                                                                        ),
                                                                   ),
                                                                   trailing:
                                                                       Icon(
@@ -860,13 +891,16 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                         children: [
                                           TabBar(
                                             labelColor:
-                                                FlutterFlowTheme.primaryColor,
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
                                             unselectedLabelColor:
                                                 Color(0xFF6E6E6E),
                                             labelStyle:
-                                                FlutterFlowTheme.bodyText1,
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyText1,
                                             indicatorColor:
-                                                FlutterFlowTheme.secondaryColor,
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
                                             tabs: [
                                               Tab(
                                                 text: 'Submitted',
@@ -899,9 +933,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                         children: [
                                                           Text(
                                                             'Search results',
-                                                            style:
-                                                                FlutterFlowTheme
-                                                                    .bodyText2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2,
                                                           ),
                                                         ],
                                                       ),
@@ -945,7 +979,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   height: 60,
                                                                   child:
                                                                       SpinKitPulse(
-                                                                    color: FlutterFlowTheme
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
                                                                         .primaryColor,
                                                                     size: 60,
                                                                   ),
@@ -1019,7 +1054,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     child: Card(
                                                                       clipBehavior:
                                                                           Clip.antiAliasWithSaveLayer,
-                                                                      color: FlutterFlowTheme
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .tertiaryColor,
                                                                       elevation:
                                                                           1,
@@ -1044,7 +1080,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                               width: 4,
                                                                               height: 80,
                                                                               decoration: BoxDecoration(
-                                                                                color: FlutterFlowTheme.primaryColor,
+                                                                                color: FlutterFlowTheme.of(context).campusRed,
                                                                                 borderRadius: BorderRadius.circular(4),
                                                                               ),
                                                                             ),
@@ -1057,23 +1093,23 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                                   children: [
                                                                                     Text(
                                                                                       dateTimeFormat('MMMMEEEEd', listViewMaintenanceRecord.createdTime),
-                                                                                      style: FlutterFlowTheme.bodyText1.override(
-                                                                                        fontFamily: 'Roboto',
-                                                                                        color: FlutterFlowTheme.campusGrey,
-                                                                                        fontSize: 12,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Roboto',
+                                                                                            color: FlutterFlowTheme.of(context).campusGrey,
+                                                                                            fontSize: 12,
+                                                                                            fontWeight: FontWeight.w500,
+                                                                                          ),
                                                                                     ),
                                                                                     Padding(
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 2),
                                                                                       child: Text(
                                                                                         listViewMaintenanceRecord.issue,
-                                                                                        style: FlutterFlowTheme.bodyText1.override(
-                                                                                          fontFamily: 'Roboto',
-                                                                                          color: Colors.black,
-                                                                                          fontSize: 18,
-                                                                                          fontWeight: FontWeight.normal,
-                                                                                        ),
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: 'Roboto',
+                                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                                              fontSize: 18,
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                            ),
                                                                                       ),
                                                                                     ),
                                                                                     Row(
@@ -1087,23 +1123,23 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                                                 maxChars: 25,
                                                                                                 replacement: '…',
                                                                                               ),
-                                                                                              style: FlutterFlowTheme.bodyText1.override(
-                                                                                                fontFamily: 'Roboto',
-                                                                                                color: Color(0xFF595959),
-                                                                                                fontSize: 16,
-                                                                                                fontWeight: FontWeight.normal,
-                                                                                              ),
+                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                    fontFamily: 'Roboto',
+                                                                                                    color: FlutterFlowTheme.of(context).campusGrey,
+                                                                                                    fontSize: 16,
+                                                                                                    fontWeight: FontWeight.normal,
+                                                                                                  ),
                                                                                             ),
                                                                                           ),
                                                                                       ],
                                                                                     ),
                                                                                     Text(
                                                                                       listViewMaintenanceRecord.room,
-                                                                                      style: FlutterFlowTheme.bodyText1.override(
-                                                                                        fontFamily: 'Roboto',
-                                                                                        color: FlutterFlowTheme.primaryColor,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Roboto',
+                                                                                            color: FlutterFlowTheme.of(context).campusRed,
+                                                                                            fontWeight: FontWeight.w500,
+                                                                                          ),
                                                                                     ),
                                                                                   ],
                                                                                 ),
@@ -1140,9 +1176,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                         children: [
                                                           Text(
                                                             'Search results',
-                                                            style:
-                                                                FlutterFlowTheme
-                                                                    .bodyText2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2,
                                                           ),
                                                         ],
                                                       ),
@@ -1186,7 +1222,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   height: 60,
                                                                   child:
                                                                       SpinKitPulse(
-                                                                    color: FlutterFlowTheme
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
                                                                         .primaryColor,
                                                                     size: 60,
                                                                   ),
@@ -1260,7 +1297,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     child: Card(
                                                                       clipBehavior:
                                                                           Clip.antiAliasWithSaveLayer,
-                                                                      color: FlutterFlowTheme
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .tertiaryColor,
                                                                       elevation:
                                                                           1,
@@ -1285,7 +1323,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                               width: 4,
                                                                               height: 80,
                                                                               decoration: BoxDecoration(
-                                                                                color: FlutterFlowTheme.primaryColor,
+                                                                                color: FlutterFlowTheme.of(context).campusRed,
                                                                                 borderRadius: BorderRadius.circular(4),
                                                                               ),
                                                                             ),
@@ -1298,23 +1336,23 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                                   children: [
                                                                                     Text(
                                                                                       dateTimeFormat('MMMMEEEEd', listViewMaintenanceRecord.createdTime),
-                                                                                      style: FlutterFlowTheme.bodyText1.override(
-                                                                                        fontFamily: 'Roboto',
-                                                                                        color: FlutterFlowTheme.campusGrey,
-                                                                                        fontSize: 12,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Roboto',
+                                                                                            color: FlutterFlowTheme.of(context).campusGrey,
+                                                                                            fontSize: 12,
+                                                                                            fontWeight: FontWeight.w500,
+                                                                                          ),
                                                                                     ),
                                                                                     Padding(
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 2),
                                                                                       child: Text(
                                                                                         listViewMaintenanceRecord.issue,
-                                                                                        style: FlutterFlowTheme.bodyText1.override(
-                                                                                          fontFamily: 'Roboto',
-                                                                                          color: Colors.black,
-                                                                                          fontSize: 18,
-                                                                                          fontWeight: FontWeight.normal,
-                                                                                        ),
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: 'Roboto',
+                                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                                              fontSize: 18,
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                            ),
                                                                                       ),
                                                                                     ),
                                                                                     Row(
@@ -1328,23 +1366,23 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                                                 maxChars: 25,
                                                                                                 replacement: '…',
                                                                                               ),
-                                                                                              style: FlutterFlowTheme.bodyText1.override(
-                                                                                                fontFamily: 'Roboto',
-                                                                                                color: Color(0xFF595959),
-                                                                                                fontSize: 16,
-                                                                                                fontWeight: FontWeight.normal,
-                                                                                              ),
+                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                    fontFamily: 'Roboto',
+                                                                                                    color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                    fontSize: 16,
+                                                                                                    fontWeight: FontWeight.normal,
+                                                                                                  ),
                                                                                             ),
                                                                                           ),
                                                                                       ],
                                                                                     ),
                                                                                     Text(
                                                                                       listViewMaintenanceRecord.room,
-                                                                                      style: FlutterFlowTheme.bodyText1.override(
-                                                                                        fontFamily: 'Roboto',
-                                                                                        color: FlutterFlowTheme.primaryColor,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Roboto',
+                                                                                            color: FlutterFlowTheme.of(context).campusRed,
+                                                                                            fontWeight: FontWeight.w500,
+                                                                                          ),
                                                                                     ),
                                                                                   ],
                                                                                 ),
@@ -1363,7 +1401,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                                   value: listViewMaintenanceRecord.isDone,
                                                                                   onIcon: Icon(
                                                                                     Icons.check_box,
-                                                                                    color: Colors.black,
+                                                                                    color: FlutterFlowTheme.of(context).primaryBackground,
                                                                                     size: 25,
                                                                                   ),
                                                                                   offIcon: Icon(
@@ -1403,9 +1441,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                         children: [
                                                           Text(
                                                             'Search results',
-                                                            style:
-                                                                FlutterFlowTheme
-                                                                    .bodyText2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2,
                                                           ),
                                                         ],
                                                       ),
@@ -1446,7 +1484,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   height: 60,
                                                                   child:
                                                                       SpinKitPulse(
-                                                                    color: FlutterFlowTheme
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
                                                                         .primaryColor,
                                                                     size: 60,
                                                                   ),
@@ -1520,7 +1559,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     child: Card(
                                                                       clipBehavior:
                                                                           Clip.antiAliasWithSaveLayer,
-                                                                      color: FlutterFlowTheme
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
                                                                           .tertiaryColor,
                                                                       elevation:
                                                                           2,
@@ -1558,32 +1598,32 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                                   children: [
                                                                                     Text(
                                                                                       dateTimeFormat('MMMMEEEEd', listViewMaintenanceRecord.createdTime),
-                                                                                      style: FlutterFlowTheme.bodyText1.override(
-                                                                                        fontFamily: 'Roboto',
-                                                                                        color: FlutterFlowTheme.campusGrey,
-                                                                                        fontSize: 12,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Roboto',
+                                                                                            color: FlutterFlowTheme.of(context).campusGrey,
+                                                                                            fontSize: 12,
+                                                                                            fontWeight: FontWeight.w500,
+                                                                                          ),
                                                                                     ),
                                                                                     Padding(
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 2),
                                                                                       child: Text(
                                                                                         listViewMaintenanceRecord.issue,
-                                                                                        style: FlutterFlowTheme.bodyText1.override(
-                                                                                          fontFamily: 'Roboto',
-                                                                                          color: Colors.black,
-                                                                                          fontSize: 18,
-                                                                                          fontWeight: FontWeight.normal,
-                                                                                        ),
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: 'Roboto',
+                                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                                              fontSize: 18,
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                            ),
                                                                                       ),
                                                                                     ),
                                                                                     Text(
                                                                                       listViewMaintenanceRecord.room,
-                                                                                      style: FlutterFlowTheme.bodyText1.override(
-                                                                                        fontFamily: 'Roboto',
-                                                                                        color: FlutterFlowTheme.primaryColor,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                      ),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: 'Roboto',
+                                                                                            color: FlutterFlowTheme.of(context).campusRed,
+                                                                                            fontWeight: FontWeight.w500,
+                                                                                          ),
                                                                                     ),
                                                                                   ],
                                                                                 ),

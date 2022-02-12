@@ -21,7 +21,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.primaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).primaryColor,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -41,7 +41,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.campusRed,
+                          color: FlutterFlowTheme.of(context).campusRed,
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -71,12 +71,14 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                 children: [
                                   Text(
                                     'Campus Africa',
-                                    style: FlutterFlowTheme.title1.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Colors.white,
-                                      fontSize: 32,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .title1
+                                        .override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: Colors.white,
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                   ),
                                 ],
                               ),
@@ -90,13 +92,14 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                   Expanded(
                                     child: Text(
                                       'Live your best student life with our fun, friendly & fully equipped residences designed to support you in getting the most out of student years!',
-                                      style:
-                                          FlutterFlowTheme.subtitle2.override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: Color(0x99FFFFFF),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .subtitle2
+                                          .override(
+                                            fontFamily: 'Lexend Deca',
+                                            color: Color(0x99FFFFFF),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                     ),
                                   ),
                                 ],
@@ -131,14 +134,16 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                       options: FFButtonOptions(
                                         width: 170,
                                         height: 50,
-                                        color: FlutterFlowTheme.mellow,
-                                        textStyle:
-                                            FlutterFlowTheme.subtitle2.override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                        color:
+                                            FlutterFlowTheme.of(context).mellow,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .subtitle2
+                                            .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                         elevation: 2,
                                         borderSide: BorderSide(
                                           color: Colors.transparent,

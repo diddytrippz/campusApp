@@ -32,7 +32,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
         leading: ToggleIcon(
           onPressed: () async {
@@ -41,12 +41,12 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
           value: FFAppState().isPressed,
           onIcon: Icon(
             Icons.menu,
-            color: Colors.black,
+            color: FlutterFlowTheme.of(context).primaryText,
             size: 25,
           ),
           offIcon: Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: FlutterFlowTheme.of(context).primaryText,
             size: 25,
           ),
         ),
@@ -79,16 +79,20 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                     ),
                   ),
                 ),
-                style: FlutterFlowTheme.bodyText1,
+                style: FlutterFlowTheme.of(context).bodyText1.override(
+                      fontFamily: 'Roboto',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                    ),
                 keyboardType: TextInputType.name,
               ),
             if (FFAppState().isPressed ?? true)
               Text(
                 'Inbox',
-                style: FlutterFlowTheme.title3.override(
-                  fontFamily: 'Roboto',
-                  fontSize: 18,
-                ),
+                style: FlutterFlowTheme.of(context).title3.override(
+                      fontFamily: 'Roboto',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      fontSize: 18,
+                    ),
               ),
           ],
         ),
@@ -100,12 +104,12 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
             value: FFAppState().isPressed,
             onIcon: Icon(
               Icons.search_sharp,
-              color: Colors.black,
+              color: FlutterFlowTheme.of(context).primaryText,
               size: 25,
             ),
             offIcon: Icon(
               Icons.clear,
-              color: Color(0x8C000000),
+              color: FlutterFlowTheme.of(context).primaryText,
               size: 25,
             ),
           ),
@@ -113,7 +117,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
         centerTitle: false,
         elevation: 4,
       ),
-      backgroundColor: FlutterFlowTheme.tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
@@ -131,7 +135,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                     width: 60,
                     height: 60,
                     child: SpinKitPulse(
-                      color: FlutterFlowTheme.primaryColor,
+                      color: FlutterFlowTheme.of(context).primaryColor,
                       size: 60,
                     ),
                   ),
@@ -181,23 +185,23 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                               .contains(currentUserReference),
                           title: chatInfo.chatPreviewTitle(),
                           userProfilePic: chatInfo.chatPreviewPic(),
-                          color: FlutterFlowTheme.tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                           unreadColor: Colors.blue,
                           titleTextStyle: GoogleFonts.getFont(
                             'DM Sans',
-                            color: Colors.black,
+                            color: FlutterFlowTheme.of(context).primaryText,
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
                           ),
                           dateTextStyle: GoogleFonts.getFont(
                             'Roboto',
-                            color: Color(0x73000000),
+                            color: FlutterFlowTheme.of(context).primaryText,
                             fontWeight: FontWeight.normal,
                             fontSize: 12,
                           ),
                           previewTextStyle: GoogleFonts.getFont(
                             'DM Sans',
-                            color: Color(0x73000000),
+                            color: FlutterFlowTheme.of(context).campusGrey,
                             fontWeight: FontWeight.normal,
                             fontSize: 13,
                           ),

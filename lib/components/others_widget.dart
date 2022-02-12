@@ -56,7 +56,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                         width: double.infinity,
                         height: 100,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
@@ -74,7 +74,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 1,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.tertiaryColor,
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Column(
@@ -124,13 +124,16 @@ class _OthersWidgetState extends State<OthersWidget> {
                                         children: [
                                           Text(
                                             'Others',
-                                            style: FlutterFlowTheme.title1
+                                            style: FlutterFlowTheme.of(context)
+                                                .title1
                                                 .override(
-                                              fontFamily: 'Roboto',
-                                              color: FlutterFlowTheme.campusRed,
-                                              fontSize: 28,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                                  fontFamily: 'Roboto',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontSize: 28,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                           ),
                                         ],
                                       ),
@@ -143,19 +146,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'Additional notes',
-                                          labelStyle: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Lexend Deca',
-                                            color: Color(0xFF090F13),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                          ),
                                           hintText: 'Additional notes\n',
-                                          hintStyle: FlutterFlowTheme.subtitle1
-                                              .override(
-                                            fontFamily: 'Roboto',
-                                            fontSize: 14,
-                                          ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0xFFC5C5C5),
@@ -173,18 +164,23 @@ class _OthersWidgetState extends State<OthersWidget> {
                                                 BorderRadius.circular(8),
                                           ),
                                           filled: true,
-                                          fillColor: Colors.white,
+                                          fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryBackground,
                                           contentPadding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   20, 40, 24, 0),
                                         ),
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: Color(0xFF1E2429),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.normal,
+                                            ),
                                         textAlign: TextAlign.start,
                                         maxLines: 6,
                                         keyboardType:
@@ -219,18 +215,21 @@ class _OthersWidgetState extends State<OthersWidget> {
                                               Text(
                                                 uploadedFileUrl
                                                     .maybeHandleOverflow(
-                                                  maxChars: 30,
+                                                  maxChars: 40,
                                                   replacement: '…',
                                                 ),
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Roboto',
-                                                  color: FlutterFlowTheme
-                                                      .campusRed,
-                                                  fontSize: 12,
-                                                  fontStyle: FontStyle.italic,
-                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 12,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                        ),
                                               ),
                                             ],
                                           ),
@@ -245,8 +244,8 @@ class _OthersWidgetState extends State<OthersWidget> {
                                           width: double.infinity,
                                           height: 240,
                                           decoration: BoxDecoration(
-                                            color:
-                                                FlutterFlowTheme.tertiaryColor,
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
                                             boxShadow: [
                                               BoxShadow(
                                                 color: Color(0x3B1D2429),
@@ -272,7 +271,6 @@ class _OthersWidgetState extends State<OthersWidget> {
                                                         await selectMediaWithSourceBottomSheet(
                                                       context: context,
                                                       allowPhoto: true,
-                                                      allowVideo: true,
                                                     );
                                                     if (selectedMedia != null &&
                                                         validateFileFormat(
@@ -316,14 +314,17 @@ class _OthersWidgetState extends State<OthersWidget> {
                                                     height: 60,
                                                     color: Color(0xFFDBE2E7),
                                                     textStyle: FlutterFlowTheme
+                                                            .of(context)
                                                         .subtitle2
                                                         .override(
-                                                      fontFamily: 'Lexend Deca',
-                                                      color: Color(0xFF262D34),
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                    ),
+                                                          fontFamily:
+                                                              'Lexend Deca',
+                                                          color:
+                                                              Color(0xFF262D34),
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
                                                     borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1,
@@ -340,6 +341,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                                                           .validate()) {
                                                         return;
                                                       }
+
                                                       final maintenanceCreateData =
                                                           createMaintenanceRecordData(
                                                         issue: reasonController
@@ -396,17 +398,19 @@ class _OthersWidgetState extends State<OthersWidget> {
                                                       height: 60,
                                                       color: Color(0xFFDBE2E7),
                                                       textStyle:
-                                                          FlutterFlowTheme
+                                                          FlutterFlowTheme.of(
+                                                                  context)
                                                               .subtitle2
                                                               .override(
-                                                        fontFamily:
-                                                            'Lexend Deca',
-                                                        color:
-                                                            Color(0xFF262D34),
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
+                                                                fontFamily:
+                                                                    'Lexend Deca',
+                                                                color: Color(
+                                                                    0xFF262D34),
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
                                                       borderSide: BorderSide(
                                                         color:
                                                             Colors.transparent,
@@ -429,17 +433,19 @@ class _OthersWidgetState extends State<OthersWidget> {
                                                       height: 60,
                                                       color: Colors.white,
                                                       textStyle:
-                                                          FlutterFlowTheme
+                                                          FlutterFlowTheme.of(
+                                                                  context)
                                                               .subtitle2
                                                               .override(
-                                                        fontFamily:
-                                                            'Lexend Deca',
-                                                        color:
-                                                            Color(0xFF57636C),
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
+                                                                fontFamily:
+                                                                    'Lexend Deca',
+                                                                color: Color(
+                                                                    0xFF57636C),
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
                                                       elevation: 0,
                                                       borderSide: BorderSide(
                                                         color:

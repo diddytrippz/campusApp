@@ -75,10 +75,10 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: Text(
                         'Your Review',
-                        style: FlutterFlowTheme.title1.override(
-                          fontFamily: 'Roboto',
-                          fontSize: 18,
-                        ),
+                        style: FlutterFlowTheme.of(context).title1.override(
+                              fontFamily: 'Roboto',
+                              fontSize: 18,
+                            ),
                       ),
                     ),
                     Padding(
@@ -86,7 +86,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       child: Text(
                         'Your rating is really important for us as it helps us to improve our services for the future.',
                         textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.bodyText1,
+                        style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                     ),
                     Padding(
@@ -96,7 +96,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                             setState(() => ratingBarValue = newValue),
                         itemBuilder: (context, index) => Icon(
                           Icons.star_rounded,
-                          color: FlutterFlowTheme.mellow,
+                          color: FlutterFlowTheme.of(context).mellow,
                         ),
                         direction: Axis.horizontal,
                         initialRating: ratingBarValue ??=
@@ -104,7 +104,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                         unratedColor: Color(0xFF9E9E9E),
                         itemCount: 5,
                         itemSize: 35,
-                        glowColor: FlutterFlowTheme.mellow,
+                        glowColor: FlutterFlowTheme.of(context).mellow,
                       ),
                     ),
                     Padding(
@@ -115,35 +115,40 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                         children: [
                           Expanded(
                             child: FlutterFlowChoiceChips(
-                              initialOption: choiceChipsValue ??= 'Quality',
+                              initiallySelected: [choiceChipsValue],
                               options: [
                                 ChipData('Quality'),
                                 ChipData('Time'),
                                 ChipData('Convinience')
                               ],
                               onChanged: (val) =>
-                                  setState(() => choiceChipsValue = val),
+                                  setState(() => choiceChipsValue = val.first),
                               selectedChipStyle: ChipStyle(
                                 backgroundColor: Color(0xFF262D34),
-                                textStyle: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Roboto',
-                                  color: Colors.white,
-                                ),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Roboto',
+                                      color: Colors.white,
+                                    ),
                                 iconColor: Colors.white,
                                 iconSize: 18,
                                 elevation: 4,
                               ),
                               unselectedChipStyle: ChipStyle(
                                 backgroundColor: Colors.white,
-                                textStyle: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Roboto',
-                                  color: Color(0xFF262D34),
-                                ),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyText2
+                                    .override(
+                                      fontFamily: 'Roboto',
+                                      color: Color(0xFF262D34),
+                                    ),
                                 iconColor: Color(0xFF262D34),
                                 iconSize: 18,
                                 elevation: 4,
                               ),
                               chipSpacing: 20,
+                              multiselect: false,
                             ),
                           ),
                         ],
@@ -173,11 +178,12 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                         options: FFButtonOptions(
                           width: 130,
                           height: 40,
-                          color: FlutterFlowTheme.primaryColor,
-                          textStyle: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Roboto',
-                            color: Colors.white,
-                          ),
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle2.override(
+                                    fontFamily: 'Roboto',
+                                    color: Colors.white,
+                                  ),
                           borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1,
@@ -194,10 +200,11 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                         },
                         child: Text(
                           'DISMISS',
-                          style: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Roboto',
+                                    fontWeight: FontWeight.w600,
+                                  ),
                         ),
                       ),
                     ),

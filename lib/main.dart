@@ -21,6 +21,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
+  await FlutterFlowTheme.initialize();
   runApp(MyApp());
 }
 
@@ -35,6 +36,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale _locale;
+  ThemeMode _themeMode = FlutterFlowTheme.themeMode;
   Stream<CampusAfricaFirebaseUser> userStream;
   CampusAfricaFirebaseUser initialUser;
   bool displaySplashImage = true;
@@ -42,6 +44,10 @@ class _MyAppState extends State<MyApp> {
   final fcmTokenSub = fcmTokenUserStream.listen((_) {});
 
   void setLocale(Locale value) => setState(() => _locale = value);
+  void setThemeMode(ThemeMode mode) => setState(() {
+        _themeMode = mode;
+        FlutterFlowTheme.saveThemeMode(mode);
+      });
 
   @override
   void initState() {
@@ -73,10 +79,12 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: const [
         Locale('en', ''),
       ],
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(brightness: Brightness.light),
+      darkTheme: ThemeData(brightness: Brightness.dark),
+      themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
           ? Container(
-              color: FlutterFlowTheme.primaryColor,
+              color: FlutterFlowTheme.of(context).primaryColor,
               child: Center(
                 child: Builder(
                   builder: (context) => Image.asset(
@@ -129,10 +137,10 @@ class _NavBarPageState extends State<NavBarPage> {
         selectedIndex: currentIndex,
         onTabChange: (i) =>
             setState(() => _currentPage = tabs.keys.toList()[i]),
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        color: FlutterFlowTheme.campusGrey,
-        activeColor: FlutterFlowTheme.tertiaryColor,
-        tabBackgroundColor: FlutterFlowTheme.campusRed,
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+        color: FlutterFlowTheme.of(context).campusGrey,
+        activeColor: Colors.white,
+        tabBackgroundColor: FlutterFlowTheme.of(context).mellow,
         tabBorderRadius: 25,
         tabMargin: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 16),
         padding: EdgeInsetsDirectional.fromSTEB(14, 12, 4, 12),

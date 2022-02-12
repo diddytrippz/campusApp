@@ -72,10 +72,11 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 0, 15),
                             child: Text(
                               'Success!',
-                              style: FlutterFlowTheme.title1.override(
-                                fontFamily: 'Roboto',
-                                color: Color(0xFF181818),
-                              ),
+                              style:
+                                  FlutterFlowTheme.of(context).title1.override(
+                                        fontFamily: 'Roboto',
+                                        color: Color(0xFF181818),
+                                      ),
                             ),
                           ),
                         ],
@@ -90,11 +91,13 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                             child: AutoSizeText(
                               'Your request has been received\nby the Campus Africa maintenance\nteam.',
                               textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Roboto',
-                                color: Color(0xFF181818),
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Roboto',
+                                    color: Color(0xFF181818),
+                                    fontWeight: FontWeight.w500,
+                                  ),
                             ),
                           ),
                         ],
@@ -118,11 +121,12 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                           options: FFButtonOptions(
                             width: 130,
                             height: 40,
-                            color: FlutterFlowTheme.primaryColor,
-                            textStyle: FlutterFlowTheme.subtitle2.override(
-                              fontFamily: 'Roboto',
-                              color: Colors.white,
-                            ),
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Roboto',
+                                      color: Colors.white,
+                                    ),
                             borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1,

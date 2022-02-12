@@ -18,7 +18,6 @@ import '../../more_info/more_info_widget.dart';
 import '../../edit_profile/edit_profile_widget.dart';
 import '../../chat_page/chat_page_widget.dart';
 import '../../students/students_widget.dart';
-import '../../search_user/search_user_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -73,7 +72,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: FlutterFlowTheme.primaryColor,
+          color: FlutterFlowTheme.of(context).primaryColor,
           child: Center(
             child: Builder(
               builder: (context) => Image.asset(
@@ -107,7 +106,6 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
       ),
   'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPageWidget'),
   'students': (data) async => StudentsWidget(),
-  'searchUser': (data) async => SearchUserWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
