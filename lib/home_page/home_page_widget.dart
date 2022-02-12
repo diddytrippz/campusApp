@@ -219,37 +219,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 10, 0, 0),
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.9,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.25,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.contain,
-                                          image: Image.asset(
-                                            'assets/images/06_COMBINED_ELEMENT.png',
-                                          ).image,
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 6,
-                                            color: Color(0x4B1A1F24),
-                                            offset: Offset(0, 2),
-                                          )
-                                        ],
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            FlutterFlowTheme.of(context).mellow,
-                                            FlutterFlowTheme.of(context)
-                                                .campusRed
-                                          ],
-                                          stops: [0, 1],
-                                          begin: AlignmentDirectional(0.94, -1),
-                                          end: AlignmentDirectional(-0.94, 1),
-                                        ),
+                                    child: Material(
+                                      color: Colors.transparent,
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.9,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.25,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          image: DecorationImage(
+                                            fit: BoxFit.contain,
+                                            image: Image.asset(
+                                              'assets/images/06_COMBINED_ELEMENT.png',
+                                            ).image,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            width: 0,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
