@@ -719,7 +719,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         24, 0, 0, 0),
                                     child: Text(
-                                      'Toggle  Light Mode',
+                                      'Light Mode',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(

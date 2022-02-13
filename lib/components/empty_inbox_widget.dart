@@ -19,7 +19,7 @@ class _EmptyInboxWidgetState extends State<EmptyInboxWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 100, 0, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(0, 150, 0, 0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -31,23 +31,6 @@ class _EmptyInboxWidgetState extends State<EmptyInboxWidget> {
                 fit: BoxFit.cover,
                 repeat: false,
                 animate: true,
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(12, 60, 0, 0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'You do not have any messages.\nPlease check again later.',
-                textAlign: TextAlign.center,
-                style: FlutterFlowTheme.of(context).bodyText1.override(
-                      fontFamily: 'Roboto',
-                      color: Color(0xFF9E9E9E),
-                    ),
               ),
             ],
           ),

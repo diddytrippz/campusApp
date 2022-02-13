@@ -291,7 +291,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                           Padding(
                                                                             padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 18,
-                                                                                8,
+                                                                                16,
                                                                                 18,
                                                                                 0),
                                                                             child:
@@ -370,7 +370,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                           Padding(
                                                                             padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 18,
-                                                                                8,
+                                                                                16,
                                                                                 18,
                                                                                 0),
                                                                             child:
@@ -447,7 +447,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
                                                                               20,
-                                                                              0,
+                                                                              8,
                                                                               20,
                                                                               0),
                                                                           child:

@@ -316,13 +316,13 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             content: Text(
                               'Image successfully uploaded',
                               style: TextStyle(
-                                color:
-                                    FlutterFlowTheme.of(context).tertiaryColor,
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
                               ),
                             ),
                             duration: Duration(milliseconds: 4000),
                             backgroundColor:
-                                FlutterFlowTheme.of(context).campusGrey,
+                                FlutterFlowTheme.of(context).primaryText,
                           ),
                         );
                         await Navigator.push(
