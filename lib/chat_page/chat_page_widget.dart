@@ -112,7 +112,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
               ? FFChatPage(
                   chatInfo: snapshot.data,
                   allowImages: true,
-                  backgroundColor: Colors.black,
+                  backgroundColor:
+                      FlutterFlowTheme.of(context).primaryBackground,
                   timeDisplaySetting: TimeDisplaySetting.visibleOnTap,
                   currentUserBoxDecoration: BoxDecoration(
                     color: Color(0xFFDCF8C6),
@@ -130,20 +131,20 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                   ),
                   currentUserTextStyle: GoogleFonts.getFont(
                     'DM Sans',
-                    color: FlutterFlowTheme.of(context).campusGrey,
+                    color: FlutterFlowTheme.of(context).primaryText,
                     fontWeight: FontWeight.w500,
                     fontSize: 14,
                     fontStyle: FontStyle.normal,
                   ),
                   otherUsersTextStyle: GoogleFonts.getFont(
                     'DM Sans',
-                    color: FlutterFlowTheme.of(context).campusGrey,
+                    color: FlutterFlowTheme.of(context).primaryText,
                     fontWeight: FontWeight.w500,
                     fontSize: 14,
                   ),
                   inputHintTextStyle: GoogleFonts.getFont(
                     'DM Sans',
-                    color: FlutterFlowTheme.of(context).campusGrey,
+                    color: FlutterFlowTheme.of(context).primaryText,
                     fontWeight: FontWeight.normal,
                     fontSize: 14,
                   ),
