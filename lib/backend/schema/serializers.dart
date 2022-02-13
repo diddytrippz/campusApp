@@ -4,6 +4,7 @@ import 'users_record.dart';
 import 'maintenance_record.dart';
 import 'chats_record.dart';
 import 'chat_messages_record.dart';
+import 'checklist_record.dart';
 
 import 'index.dart';
 
@@ -19,6 +20,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   MaintenanceRecord,
   ChatsRecord,
   ChatMessagesRecord,
+  ChecklistRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

@@ -16,6 +16,7 @@ class FFAppState {
     prefs = await SharedPreferences.getInstance();
     _profilePic = prefs.getString('ff_profilePic') ?? _profilePic;
     _darkMode = prefs.getBool('ff_darkMode') ?? _darkMode;
+    _inspection = prefs.getStringList('ff_inspection') ?? [];
   }
 
   SharedPreferences prefs;
@@ -36,6 +37,23 @@ class FFAppState {
   set darkMode(bool _value) {
     _darkMode = _value;
     prefs.setBool('ff_darkMode', _value);
+  }
+
+  List<String> _inspection = ['Good', 'Fair', 'Dirty', 'Repair', 'Repalce'];
+  List<String> get inspection => _inspection;
+  set inspection(List<String> _value) {
+    _inspection = _value;
+    prefs.setStringList('ff_inspection', _value);
+  }
+
+  void addToInspection(String _value) {
+    _inspection.add(_value);
+    prefs.setStringList('ff_inspection', _inspection);
+  }
+
+  void removeFromInspection(String _value) {
+    _inspection.remove(_value);
+    prefs.setStringList('ff_inspection', _inspection);
   }
 }
 
