@@ -62,7 +62,7 @@ class _InspectionWidgetState extends State<InspectionWidget> {
           },
           child: Icon(
             Icons.arrow_back_rounded,
-            color: FlutterFlowTheme.of(context).primaryText,
+            color: Colors.black,
             size: 24,
           ),
         ),
@@ -71,7 +71,7 @@ class _InspectionWidgetState extends State<InspectionWidget> {
             currentUserDocument?.building,
             style: FlutterFlowTheme.of(context).title1.override(
                   fontFamily: 'Roboto',
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: Colors.black,
                   fontSize: 16,
                 ),
           ),
@@ -79,14 +79,14 @@ class _InspectionWidgetState extends State<InspectionWidget> {
         actions: [
           Icon(
             Icons.drive_file_rename_outline,
-            color: FlutterFlowTheme.of(context).primaryText,
+            color: Colors.black,
             size: 24,
           ),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(22, 0, 16, 0),
             child: Icon(
               Icons.file_copy,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: Colors.black,
               size: 24,
             ),
           ),
