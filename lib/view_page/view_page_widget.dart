@@ -570,6 +570,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                 .where('email',
                                                                     isEqualTo:
                                                                         currentUserEmail)
+                                                                .where('isDone',
+                                                                    isEqualTo:
+                                                                        false)
                                                                 .orderBy(
                                                                     'created_time',
                                                                     descending:
@@ -739,9 +742,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                           queryBuilder: (maintenanceRecord) =>
                                                               maintenanceRecord
                                                                   .where(
-                                                                      'status',
+                                                                      'isDone',
                                                                       isEqualTo:
-                                                                          'Completed')
+                                                                          true)
                                                                   .where(
                                                                       'email',
                                                                       isEqualTo:

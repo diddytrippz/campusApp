@@ -24,7 +24,7 @@ class ReviewWidget extends StatefulWidget {
 }
 
 class _ReviewWidgetState extends State<ReviewWidget> {
-  String choiceChipsValue;
+  List<String> choiceChipsValues;
   double ratingBarValue;
 
   @override
@@ -107,52 +107,58 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                         glowColor: FlutterFlowTheme.of(context).mellow,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: FlutterFlowChoiceChips(
-                              initiallySelected: [choiceChipsValue],
-                              options: [
-                                ChipData('Quality'),
-                                ChipData('Time'),
-                                ChipData('Convinience')
-                              ],
-                              onChanged: (val) =>
-                                  setState(() => choiceChipsValue = val.first),
-                              selectedChipStyle: ChipStyle(
-                                backgroundColor: Color(0xFF262D34),
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.white,
-                                    ),
-                                iconColor: Colors.white,
-                                iconSize: 18,
-                                elevation: 4,
-                              ),
-                              unselectedChipStyle: ChipStyle(
-                                backgroundColor: Colors.white,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Color(0xFF262D34),
-                                    ),
-                                iconColor: Color(0xFF262D34),
-                                iconSize: 18,
-                                elevation: 4,
-                              ),
-                              chipSpacing: 20,
-                              multiselect: false,
+                    Wrap(
+                      spacing: 0,
+                      runSpacing: 0,
+                      alignment: WrapAlignment.start,
+                      crossAxisAlignment: WrapCrossAlignment.start,
+                      direction: Axis.horizontal,
+                      runAlignment: WrapAlignment.start,
+                      verticalDirection: VerticalDirection.down,
+                      clipBehavior: Clip.none,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                          child: FlutterFlowChoiceChips(
+                            initiallySelected: choiceChipsValues != null
+                                ? choiceChipsValues
+                                : [],
+                            options: [
+                              ChipData('Quality'),
+                              ChipData('Time'),
+                              ChipData('Convinience')
+                            ],
+                            onChanged: (val) =>
+                                setState(() => choiceChipsValues = val),
+                            selectedChipStyle: ChipStyle(
+                              backgroundColor: Color(0xFF262D34),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Roboto',
+                                    color: Colors.white,
+                                  ),
+                              iconColor: Colors.white,
+                              iconSize: 18,
+                              elevation: 4,
                             ),
+                            unselectedChipStyle: ChipStyle(
+                              backgroundColor: Colors.white,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyText2
+                                  .override(
+                                    fontFamily: 'Roboto',
+                                    color: Color(0xFF262D34),
+                                  ),
+                              iconColor: Color(0xFF262D34),
+                              iconSize: 18,
+                              elevation: 4,
+                            ),
+                            chipSpacing: 20,
+                            multiselect: true,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 10),
