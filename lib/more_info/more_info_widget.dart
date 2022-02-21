@@ -167,22 +167,29 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(10, 25, 0, 0),
+                                                      .fromSTEB(15, 30, 0, 0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      InkWell(
-                                                        onTap: () async {
+                                                      FlutterFlowIconButton(
+                                                        borderColor:
+                                                            Colors.transparent,
+                                                        borderRadius: 30,
+                                                        borderWidth: 1,
+                                                        buttonSize: 45,
+                                                        fillColor:
+                                                            Color(0xF4EDEDED),
+                                                        icon: Icon(
+                                                          Icons
+                                                              .arrow_back_sharp,
+                                                          color: Colors.black,
+                                                          size: 25,
+                                                        ),
+                                                        onPressed: () async {
                                                           Navigator.pop(
                                                               context);
                                                         },
-                                                        child: Icon(
-                                                          Icons.cancel,
-                                                          color:
-                                                              Color(0xE4FFFFFF),
-                                                          size: 50,
-                                                        ),
                                                       ),
                                                     ],
                                                   ),
@@ -203,8 +210,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                           borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(0),
                                             bottomRight: Radius.circular(0),
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
+                                            topLeft: Radius.circular(6),
+                                            topRight: Radius.circular(6),
                                           ),
                                         ),
                                         child: Container(
@@ -217,8 +224,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                             borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(0),
                                               bottomRight: Radius.circular(0),
-                                              topLeft: Radius.circular(10),
-                                              topRight: Radius.circular(10),
+                                              topLeft: Radius.circular(6),
+                                              topRight: Radius.circular(6),
                                             ),
                                           ),
                                           child: Column(

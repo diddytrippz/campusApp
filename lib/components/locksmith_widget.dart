@@ -232,8 +232,6 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                                             ),
                                         textAlign: TextAlign.start,
                                         maxLines: 6,
-                                        keyboardType:
-                                            TextInputType.emailAddress,
                                         validator: (val) {
                                           if (val.isEmpty) {
                                             return 'This field cannot be empty';

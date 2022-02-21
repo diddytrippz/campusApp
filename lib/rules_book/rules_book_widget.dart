@@ -34,7 +34,7 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
                 horizontalScroll: false,
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 0),
                 child: FlutterFlowIconButton(
                   borderColor: Colors.transparent,
                   borderRadius: 30,

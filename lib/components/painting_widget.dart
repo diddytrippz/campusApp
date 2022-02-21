@@ -230,8 +230,6 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                                             ),
                                         textAlign: TextAlign.start,
                                         maxLines: 6,
-                                        keyboardType:
-                                            TextInputType.emailAddress,
                                         validator: (val) {
                                           if (val.isEmpty) {
                                             return 'This field cannot be empty';
