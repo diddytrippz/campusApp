@@ -126,7 +126,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           backgroundColor:
                                                               Color(0xFFF1F4F8),
                                                           center: Text(
-                                                            'Mode',
+                                                            'Modes',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText1

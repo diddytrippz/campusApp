@@ -743,7 +743,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                           ),
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              15,
+                                                                              12,
                                                                               10,
                                                                               16,
                                                                               0),
@@ -805,7 +805,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                           style: FlutterFlowTheme.of(context).subtitle1.override(
                                                                                                 fontFamily: 'Roboto',
                                                                                                 color: FlutterFlowTheme.of(context).primaryText,
-                                                                                                fontSize: 18,
+                                                                                                fontSize: 16,
                                                                                               ),
                                                                                         ),
                                                                                       ),
@@ -832,6 +832,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                               style: FlutterFlowTheme.of(context).title3.override(
                                                                                                     fontFamily: 'Roboto',
                                                                                                     color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                    fontSize: 18,
                                                                                                   ),
                                                                                             ),
                                                                                           ),

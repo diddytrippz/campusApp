@@ -16,7 +16,7 @@ class FFAppState {
     prefs = await SharedPreferences.getInstance();
     _profilePic = prefs.getString('ff_profilePic') ?? _profilePic;
     _darkMode = prefs.getBool('ff_darkMode') ?? _darkMode;
-    _inspection = prefs.getStringList('ff_inspection') ?? [];
+    _inspection = prefs.getStringList('ff_inspection') ?? _inspection;
   }
 
   SharedPreferences prefs;

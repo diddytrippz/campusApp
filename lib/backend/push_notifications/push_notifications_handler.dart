@@ -15,8 +15,8 @@ import '../../login_page/login_page_widget.dart';
 import '../../verification/verification_widget.dart';
 import '../../rules_book/rules_book_widget.dart';
 import '../../more_info/more_info_widget.dart';
-import '../../edit_profile/edit_profile_widget.dart';
 import '../../chat_page/chat_page_widget.dart';
+import '../../edit_profile/edit_profile_widget.dart';
 import '../../students/students_widget.dart';
 import '../../inspection/inspection_widget.dart';
 
@@ -99,12 +99,12 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         jobStatus: await getDocumentParameter(
             data, 'jobStatus', MaintenanceRecord.serializer),
       ),
-  'editProfile': (data) async => EditProfileWidget(),
   'ChatPage': (data) async => ChatPageWidget(
         chatUser: await getDocumentParameter(
             data, 'chatUser', UsersRecord.serializer),
         chatRef: getParameter(data, 'chatRef'),
       ),
+  'editProfile': (data) async => EditProfileWidget(),
   'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPageWidget'),
   'students': (data) async => StudentsWidget(),
   'Inspection': (data) async => InspectionWidget(),
