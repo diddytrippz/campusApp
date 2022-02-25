@@ -175,15 +175,15 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                       FlutterFlowIconButton(
                                                         borderColor:
                                                             Colors.transparent,
-                                                        borderRadius: 40,
+                                                        borderRadius: 8,
                                                         borderWidth: 1,
-                                                        buttonSize: 40,
+                                                        buttonSize: 45,
                                                         fillColor:
-                                                            Color(0xB2EDEDED),
+                                                            Color(0xABEDEDED),
                                                         icon: Icon(
                                                           Icons
                                                               .arrow_back_sharp,
-                                                          color: Colors.black,
+                                                          color: Colors.white,
                                                           size: 20,
                                                         ),
                                                         onPressed: () async {

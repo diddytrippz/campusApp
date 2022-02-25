@@ -252,7 +252,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                                 Icons.camera_alt,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .campusRed,
+                                                        .primaryText,
                                                 size: 30,
                                               ),
                                               onPressed: () async {
@@ -442,7 +442,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                   },
                                   text: 'Submit form',
                                   icon: FaIcon(
-                                    FontAwesomeIcons.edit,
+                                    FontAwesomeIcons.userEdit,
                                     size: 20,
                                   ),
                                   options: FFButtonOptions(

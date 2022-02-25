@@ -20,35 +20,89 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(100),
+        child: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          automaticallyImplyLeading: false,
+          flexibleSpace: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 14),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                        child: FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 30,
+                          borderWidth: 1,
+                          buttonSize: 50,
+                          icon: Icon(
+                            Icons.arrow_back_rounded,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 30,
+                          ),
+                          onPressed: () async {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                        child: Text(
+                          'Back',
+                          style: FlutterFlowTheme.of(context).title2.override(
+                                fontFamily: 'Roboto',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontSize: 16,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
+                  child: Text(
+                    'Campus Africa',
+                    style: FlutterFlowTheme.of(context).title2.override(
+                          fontFamily: 'Roboto',
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          fontSize: 22,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [],
+          elevation: 1,
+        ),
+      ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
             children: [
-              FlutterFlowPdfViewer(
-                assetPath:
-                    'assets/pdfs/CampusAfrica_StudentHandbook_2021_V2.pdf',
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 1,
-                horizontalScroll: false,
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 20, 0, 0),
-                child: FlutterFlowIconButton(
-                  borderColor: Colors.transparent,
-                  borderRadius: 30,
-                  borderWidth: 1,
-                  buttonSize: 55,
-                  fillColor: Color(0x61AAAAAA),
-                  icon: Icon(
-                    Icons.clear,
-                    color: FlutterFlowTheme.of(context).tertiaryColor,
-                    size: 30,
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(3, 0, 3, 3),
+                  child: FlutterFlowPdfViewer(
+                    assetPath:
+                        'assets/pdfs/CampusAfrica_StudentHandbook_2021_V2.pdf',
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 1,
+                    horizontalScroll: false,
                   ),
-                  onPressed: () async {
-                    Navigator.pop(context);
-                  },
                 ),
               ),
             ],
