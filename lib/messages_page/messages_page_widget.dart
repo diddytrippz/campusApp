@@ -115,7 +115,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
           ),
         ],
         centerTitle: false,
-        elevation: 4,
+        elevation: 1,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(

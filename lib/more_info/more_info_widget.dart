@@ -167,7 +167,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(15, 30, 0, 0),
+                                                      .fromSTEB(15, 35, 0, 0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -175,16 +175,16 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                       FlutterFlowIconButton(
                                                         borderColor:
                                                             Colors.transparent,
-                                                        borderRadius: 30,
+                                                        borderRadius: 40,
                                                         borderWidth: 1,
-                                                        buttonSize: 45,
+                                                        buttonSize: 40,
                                                         fillColor:
-                                                            Color(0xF4EDEDED),
+                                                            Color(0xB2EDEDED),
                                                         icon: Icon(
                                                           Icons
                                                               .arrow_back_sharp,
                                                           color: Colors.black,
-                                                          size: 25,
+                                                          size: 20,
                                                         ),
                                                         onPressed: () async {
                                                           Navigator.pop(
@@ -202,7 +202,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 250, 0, 0),
+                                          0, 280, 0, 0),
                                       child: Material(
                                         color: Colors.transparent,
                                         elevation: 30,

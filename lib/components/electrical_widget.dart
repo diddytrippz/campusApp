@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../components/submitted_icon_widget.dart';
@@ -193,9 +194,8 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                                         controller: reasonController,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: 'Additional notes',
                                           hintText: 'Additional notes\n',
-                                          enabledBorder: OutlineInputBorder(
+                                          enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0xFFC5C5C5),
                                               width: 2,
@@ -203,7 +203,7 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                                             borderRadius:
                                                 BorderRadius.circular(8),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
+                                          focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0xFFC5C5C5),
                                               width: 2,
@@ -442,6 +442,20 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                                                           .doc()
                                                           .set(
                                                               maintenanceCreateData);
+                                                      await AirtableCall.call(
+                                                        user: currentUserEmail,
+                                                        issue: budgetValue,
+                                                        room:
+                                                            currentUserDocument
+                                                                ?.room,
+                                                        building:
+                                                            currentUserDocument
+                                                                ?.building,
+                                                        status: 'Submitted',
+                                                        created: dateTimeFormat(
+                                                            'd/M/y',
+                                                            getCurrentTimestamp),
+                                                      );
                                                       await showModalBottomSheet(
                                                         isScrollControlled:
                                                             true,

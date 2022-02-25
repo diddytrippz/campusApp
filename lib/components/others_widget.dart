@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../components/submitted_icon_widget.dart';
@@ -140,14 +141,13 @@ class _OthersWidgetState extends State<OthersWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 10, 0, 0),
+                                          0, 30, 0, 0),
                                       child: TextFormField(
                                         controller: reasonController,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: 'Additional notes',
                                           hintText: 'Additional notes\n',
-                                          enabledBorder: OutlineInputBorder(
+                                          enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0xFFC5C5C5),
                                               width: 2,
@@ -155,7 +155,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                                             borderRadius:
                                                 BorderRadius.circular(8),
                                           ),
-                                          focusedBorder: OutlineInputBorder(
+                                          focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0xFFC5C5C5),
                                               width: 2,
@@ -370,6 +370,21 @@ class _OthersWidgetState extends State<OthersWidget> {
                                                           .doc()
                                                           .set(
                                                               maintenanceCreateData);
+                                                      await AirtableCall.call(
+                                                        user: currentUserEmail,
+                                                        issue: reasonController
+                                                            .text,
+                                                        room:
+                                                            currentUserDocument
+                                                                ?.room,
+                                                        building:
+                                                            currentUserDocument
+                                                                ?.building,
+                                                        status: 'Submitted',
+                                                        created: dateTimeFormat(
+                                                            'd/M/y',
+                                                            getCurrentTimestamp),
+                                                      );
                                                       await showModalBottomSheet(
                                                         isScrollControlled:
                                                             true,

@@ -41,7 +41,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                         width: 100,
                         height: 100,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).campusRed,
+                          color: FlutterFlowTheme.of(context).primaryColor,
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,

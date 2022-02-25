@@ -70,7 +70,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         ),
         actions: [],
         centerTitle: true,
-        elevation: 4,
+        elevation: 1,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(

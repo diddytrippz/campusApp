@@ -62,9 +62,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                    padding: EdgeInsetsDirectional.fromSTEB(40, 10, 40, 10),
                     child: Container(
-                      width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         color: Color(0x00EEEEEE),
                         image: DecorationImage(

@@ -70,14 +70,14 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                   controller: phoneNumberController,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Enter the 6 digit code',
+                    labelText: 'Enter Your Student Email',
                     labelStyle: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           color: Color(0x98FFFFFF),
                           fontSize: 14,
                           fontWeight: FontWeight.normal,
                         ),
-                    hintText: '000000',
+                    hintText: 'i.e 12345@students.wits.ac.za',
                     hintStyle: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           color: Color(0x98FFFFFF),
@@ -141,7 +141,7 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                       context: context,
                     );
                   },
-                  text: 'Verify Code',
+                  text: 'Verify email',
                   options: FFButtonOptions(
                     width: 230,
                     height: 60,

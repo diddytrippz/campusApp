@@ -1415,12 +1415,12 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                                   value: listViewMaintenanceRecord.isDone,
                                                                                   onIcon: Icon(
                                                                                     Icons.check_box,
-                                                                                    color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                    color: FlutterFlowTheme.of(context).primaryText,
                                                                                     size: 25,
                                                                                   ),
                                                                                   offIcon: Icon(
                                                                                     Icons.check_box_outline_blank,
-                                                                                    color: Colors.black,
+                                                                                    color: FlutterFlowTheme.of(context).primaryText,
                                                                                     size: 25,
                                                                                   ),
                                                                                 ),
