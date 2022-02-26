@@ -123,78 +123,119 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                   ],
                                 ),
                               ),
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        18, 25, 0, 0),
-                                    child: Text(
-                                      'Issue',
-                                      style: FlutterFlowTheme.of(context)
+                              Expanded(
+                                flex: 2,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          18, 25, 0, 0),
+                                      child: Text(
+                                        'Issue',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Roboto',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                    FlutterFlowDropDown(
+                                      options: [
+                                        'Stove not working',
+                                        'Oven not working',
+                                        'Microwave not working',
+                                        'Fridge not working'
+                                      ].toList(),
+                                      onChanged: (val) =>
+                                          setState(() => budgetValue = val),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.98,
+                                      height: 70,
+                                      textStyle: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(
-                                            fontFamily: 'Roboto',
+                                            fontFamily: 'Lexend Deca',
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
-                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.normal,
                                           ),
+                                      hintText: 'Please select...',
+                                      icon: FaIcon(
+                                        FontAwesomeIcons.pen,
+                                        color: FlutterFlowTheme.of(context)
+                                            .campusGrey,
+                                        size: 16,
+                                      ),
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      elevation: 8,
+                                      borderColor: Color(0x00FFFFFF),
+                                      borderWidth: 2,
+                                      borderRadius: 8,
+                                      margin: EdgeInsetsDirectional.fromSTEB(
+                                          20, 0, 12, 0),
                                     ),
-                                  ),
-                                  FlutterFlowDropDown(
-                                    options: [
-                                      'Stove not working',
-                                      'Oven not working',
-                                      'Microwave not working',
-                                      'Fridge not working'
-                                    ].toList(),
-                                    onChanged: (val) =>
-                                        setState(() => budgetValue = val),
-                                    width: MediaQuery.of(context).size.width *
-                                        0.98,
-                                    height: 70,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                    hintText: 'Please select...',
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.pen,
-                                      color: FlutterFlowTheme.of(context)
-                                          .campusGrey,
-                                      size: 16,
-                                    ),
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    elevation: 8,
-                                    borderColor: Color(0x00FFFFFF),
-                                    borderWidth: 2,
-                                    borderRadius: 8,
-                                    margin: EdgeInsetsDirectional.fromSTEB(
-                                        20, 0, 12, 0),
-                                  ),
-                                  Stack(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 20, 0, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: TextFormField(
-                                                controller: textController1,
-                                                obscureText: false,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Select Files',
-                                                  labelStyle: FlutterFlowTheme
-                                                          .of(context)
+                                    Stack(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 20, 0, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: TextFormField(
+                                                  controller: textController1,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Select Files',
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Roboto',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 14,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .campusGrey,
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .campusGrey,
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                    ),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .bodyText1
                                                       .override(
                                                         fontFamily: 'Roboto',
@@ -202,125 +243,92 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 14,
+                                                        fontSize: 12,
                                                       ),
-                                                  enabledBorder:
-                                                      OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .campusGrey,
-                                                      width: 1,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4),
-                                                  ),
-                                                  focusedBorder:
-                                                      OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .campusGrey,
-                                                      width: 1,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4),
-                                                  ),
                                                 ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 12,
-                                                        ),
                                               ),
-                                            ),
-                                            FlutterFlowIconButton(
-                                              borderColor: Colors.transparent,
-                                              borderRadius: 30,
-                                              borderWidth: 1,
-                                              buttonSize: 60,
-                                              icon: Icon(
-                                                Icons.camera_alt,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                size: 30,
-                                              ),
-                                              onPressed: () async {
-                                                final selectedMedia =
-                                                    await selectMediaWithSourceBottomSheet(
-                                                  context: context,
-                                                  allowPhoto: true,
-                                                );
-                                                if (selectedMedia != null &&
-                                                    validateFileFormat(
-                                                        selectedMedia
-                                                            .storagePath,
-                                                        context)) {
-                                                  showUploadMessage(
-                                                    context,
-                                                    'Uploading file...',
-                                                    showLoading: true,
+                                              FlutterFlowIconButton(
+                                                borderColor: Colors.transparent,
+                                                borderRadius: 30,
+                                                borderWidth: 1,
+                                                buttonSize: 60,
+                                                icon: Icon(
+                                                  Icons.camera_alt,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 30,
+                                                ),
+                                                onPressed: () async {
+                                                  final selectedMedia =
+                                                      await selectMediaWithSourceBottomSheet(
+                                                    context: context,
+                                                    allowPhoto: true,
                                                   );
-                                                  final downloadUrl =
-                                                      await uploadData(
+                                                  if (selectedMedia != null &&
+                                                      validateFileFormat(
                                                           selectedMedia
                                                               .storagePath,
-                                                          selectedMedia.bytes);
-                                                  ScaffoldMessenger.of(context)
-                                                      .hideCurrentSnackBar();
-                                                  if (downloadUrl != null) {
-                                                    setState(() =>
-                                                        uploadedFileUrl =
-                                                            downloadUrl);
+                                                          context)) {
                                                     showUploadMessage(
                                                       context,
-                                                      'File Uploaded!',
+                                                      'Uploading file...',
+                                                      showLoading: true,
                                                     );
-                                                  } else {
-                                                    showUploadMessage(
-                                                      context,
-                                                      'Failed to upload media',
-                                                    );
-                                                    return;
+                                                    final downloadUrl =
+                                                        await uploadData(
+                                                            selectedMedia
+                                                                .storagePath,
+                                                            selectedMedia
+                                                                .bytes);
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .hideCurrentSnackBar();
+                                                    if (downloadUrl != null) {
+                                                      setState(() =>
+                                                          uploadedFileUrl =
+                                                              downloadUrl);
+                                                      showUploadMessage(
+                                                        context,
+                                                        'File Uploaded!',
+                                                      );
+                                                    } else {
+                                                      showUploadMessage(
+                                                        context,
+                                                        'Failed to upload media',
+                                                      );
+                                                      return;
+                                                    }
                                                   }
-                                                }
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8, 0, 0, 0),
-                                    child: Text(
-                                      uploadedFileUrl.maybeHandleOverflow(
-                                        maxChars: 40,
-                                        replacement: '…',
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            fontSize: 12,
-                                            fontStyle: FontStyle.italic,
+                                                },
+                                              ),
+                                            ],
                                           ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ],
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8, 0, 0, 0),
+                                      child: Text(
+                                        uploadedFileUrl.maybeHandleOverflow(
+                                          maxChars: 40,
+                                          replacement: '…',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Roboto',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 12,
+                                              fontStyle: FontStyle.italic,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               TextFormField(
                                 controller: reasonController,
@@ -359,6 +367,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                     ),
                                 textAlign: TextAlign.start,
                                 maxLines: 3,
+                                keyboardType: TextInputType.name,
                                 validator: (val) {
                                   if (val.isEmpty) {
                                     return 'Field is required';
