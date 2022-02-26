@@ -124,7 +124,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                 ),
                               ),
                               Expanded(
-                                flex: 2,
+                                flex: 1,
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -497,7 +497,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                 ),
                               ),
                               Expanded(
-                                flex: 2,
+                                flex: 1,
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.start,
