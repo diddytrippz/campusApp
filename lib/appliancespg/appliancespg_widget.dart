@@ -33,7 +33,7 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
   @override
   void initState() {
     super.initState();
-    reasonController = TextEditingController(text: '  ');
+    reasonController = TextEditingController();
     textController1 = TextEditingController(text: uploadedFileUrl);
   }
 
@@ -259,23 +259,20 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                                       margin: EdgeInsetsDirectional.fromSTEB(
                                           20, 0, 12, 0),
                                     ),
-                                    Stack(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 20, 0, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Expanded(
-                                                child: TextFormField(
-                                                  controller: textController1,
-                                                  obscureText: false,
-                                                  decoration: InputDecoration(
-                                                    labelText: 'Select Files',
-                                                    labelStyle: FlutterFlowTheme
-                                                            .of(context)
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 20, 0, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: TextFormField(
+                                              controller: textController1,
+                                              obscureText: false,
+                                              decoration: InputDecoration(
+                                                labelText: 'Uploaded File URL',
+                                                labelStyle:
+                                                    FlutterFlowTheme.of(context)
                                                         .bodyText1
                                                         .override(
                                                           fontFamily: 'Roboto',
@@ -284,35 +281,31 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                                                               .primaryText,
                                                           fontSize: 14,
                                                         ),
-                                                    enabledBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .campusGrey,
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                    ),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .campusGrey,
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4),
-                                                    ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .campusGrey,
+                                                    width: 1,
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                ),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .campusGrey,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                ),
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
                                                       .bodyText1
                                                       .override(
                                                         fontFamily: 'Roboto',
@@ -322,9 +315,26 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                                                                 .primaryText,
                                                         fontSize: 12,
                                                       ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  6, 4, 0, 0),
+                                          child: Text(
+                                            uploadedFileUrl,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Roboto',
+                                                  fontSize: 12,
                                                 ),
-                                              ),
-                                            ],
                                           ),
                                         ),
                                       ],
@@ -485,31 +495,6 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                                             ),
                                             borderRadius: 7,
                                           ),
-                                        ),
-                                      ),
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          Navigator.pop(context);
-                                        },
-                                        text: 'Cancel',
-                                        options: FFButtonOptions(
-                                          width: double.infinity,
-                                          height: 50,
-                                          color: Color(0x00FFFFFF),
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .subtitle2
-                                              .override(
-                                                fontFamily: 'Roboto',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                              ),
-                                          elevation: 0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                          ),
-                                          borderRadius: 0,
                                         ),
                                       ),
                                     ],
