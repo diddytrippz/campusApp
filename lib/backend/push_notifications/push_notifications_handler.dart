@@ -19,6 +19,7 @@ import '../../chat_page/chat_page_widget.dart';
 import '../../edit_profile/edit_profile_widget.dart';
 import '../../students/students_widget.dart';
 import '../../inspection/inspection_widget.dart';
+import '../../appliancespg/appliancespg_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -108,6 +109,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPageWidget'),
   'students': (data) async => StudentsWidget(),
   'Inspection': (data) async => InspectionWidget(),
+  'Appliancespg': (data) async => AppliancespgWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

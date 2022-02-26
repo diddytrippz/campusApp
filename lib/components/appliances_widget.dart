@@ -32,7 +32,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
   @override
   void initState() {
     super.initState();
-    reasonController = TextEditingController(text: ' ');
+    reasonController = TextEditingController(text: '  ');
     textController1 = TextEditingController(text: uploadedFileUrl);
   }
 
@@ -378,7 +378,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 0),
+                                          16, 30, 16, 0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           if (!formKey.currentState
@@ -473,7 +473,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                             color: Colors.transparent,
                                             width: 1,
                                           ),
-                                          borderRadius: 5,
+                                          borderRadius: 7,
                                         ),
                                       ),
                                     ),

@@ -1,4 +1,4 @@
-import '../components/appliances_widget.dart';
+import '../appliancespg/appliancespg_widget.dart';
 import '../components/dark_mode_widget.dart';
 import '../components/electrical_widget.dart';
 import '../components/furniture_widget.dart';
@@ -281,17 +281,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     children: [
                                       InkWell(
                                         onTap: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            backgroundColor: Color(0x4CFFFFFF),
-                                            context: context,
-                                            builder: (context) {
-                                              return Padding(
-                                                padding: MediaQuery.of(context)
-                                                    .viewInsets,
-                                                child: AppliancesWidget(),
-                                              );
-                                            },
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .bottomToTop,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 300),
+                                              child: AppliancespgWidget(),
+                                            ),
                                           );
                                         },
                                         child: Material(
