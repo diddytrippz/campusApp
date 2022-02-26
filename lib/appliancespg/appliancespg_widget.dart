@@ -9,6 +9,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -113,6 +114,8 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
           final selectedMedia = await selectMediaWithSourceBottomSheet(
             context: context,
             allowPhoto: true,
+            backgroundColor: FlutterFlowTheme.of(context).campusGrey,
+            textColor: FlutterFlowTheme.of(context).primaryText,
           );
           if (selectedMedia != null &&
               validateFileFormat(selectedMedia.storagePath, context)) {
@@ -321,13 +324,13 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                                       ),
                                     ),
                                     Row(
-                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   6, 4, 0, 0),
-                                          child: Text(
+                                          child: AutoSizeText(
                                             uploadedFileUrl,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
