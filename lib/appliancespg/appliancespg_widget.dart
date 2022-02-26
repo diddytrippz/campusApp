@@ -27,9 +27,9 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
   String budgetValue;
   TextEditingController textController1;
   TextEditingController reasonController;
+  String uploadedFileUrl = '';
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  String uploadedFileUrl = '';
 
   @override
   void initState() {
@@ -342,13 +342,6 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                             textAlign: TextAlign.start,
                             maxLines: 3,
                             keyboardType: TextInputType.name,
-                            validator: (val) {
-                              if (val.isEmpty) {
-                                return 'Field is required';
-                              }
-
-                              return null;
-                            },
                           ),
                           Expanded(
                             flex: 1,
@@ -366,22 +359,23 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                                       }
 
                                       if (budgetValue == null) {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              content:
-                                                  Text('Field is required'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: Text('Ok'),
-                                                ),
-                                              ],
-                                            );
-                                          },
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Field is required',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                          ),
                                         );
                                         return;
                                       }
