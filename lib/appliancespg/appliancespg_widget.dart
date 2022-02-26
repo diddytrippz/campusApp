@@ -25,7 +25,6 @@ class AppliancespgWidget extends StatefulWidget {
 
 class _AppliancespgWidgetState extends State<AppliancespgWidget> {
   String budgetValue;
-  TextEditingController textController1;
   TextEditingController reasonController;
   String uploadedFileUrl = '';
   final formKey = GlobalKey<FormState>();
@@ -35,7 +34,6 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
   void initState() {
     super.initState();
     reasonController = TextEditingController();
-    textController1 = TextEditingController(text: uploadedFileUrl);
   }
 
   @override
@@ -235,56 +233,6 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                             borderRadius: 8,
                             margin:
                                 EdgeInsetsDirectional.fromSTEB(20, 0, 12, 0),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: textController1,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelText: 'Uploaded File URL',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            fontSize: 14,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(4),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(4),
-                                      ),
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Roboto',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          fontSize: 12,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.min,
