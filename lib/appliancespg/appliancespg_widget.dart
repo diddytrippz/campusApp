@@ -137,8 +137,8 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                         },
                         child: Icon(
                           Icons.camera_alt,
-                          color: Colors.black,
-                          size: 24,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 26,
                         ),
                       ),
                     ),
