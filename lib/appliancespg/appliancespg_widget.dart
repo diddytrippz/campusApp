@@ -85,64 +85,73 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                  child: Text(
-                    'Appliances',
-                    style: FlutterFlowTheme.of(context).title2.override(
-                          fontFamily: 'Roboto',
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          fontSize: 22,
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
+                      child: Text(
+                        'Appliances',
+                        style: FlutterFlowTheme.of(context).title2.override(
+                              fontFamily: 'Roboto',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              fontSize: 22,
+                            ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
+                      child: InkWell(
+                        onTap: () async {
+                          final selectedMedia =
+                              await selectMediaWithSourceBottomSheet(
+                            context: context,
+                            allowPhoto: true,
+                          );
+                          if (selectedMedia != null &&
+                              validateFileFormat(
+                                  selectedMedia.storagePath, context)) {
+                            showUploadMessage(
+                              context,
+                              'Uploading file...',
+                              showLoading: true,
+                            );
+                            final downloadUrl = await uploadData(
+                                selectedMedia.storagePath, selectedMedia.bytes);
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                            if (downloadUrl != null) {
+                              setState(() => uploadedFileUrl = downloadUrl);
+                              showUploadMessage(
+                                context,
+                                'File Uploaded!',
+                              );
+                            } else {
+                              showUploadMessage(
+                                context,
+                                'Failed to upload media',
+                              );
+                              return;
+                            }
+                          }
+                        },
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: Colors.black,
+                          size: 24,
                         ),
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
           actions: [],
-          elevation: 2,
+          elevation: 1,
         ),
       ),
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final selectedMedia = await selectMediaWithSourceBottomSheet(
-            context: context,
-            allowPhoto: true,
-          );
-          if (selectedMedia != null &&
-              validateFileFormat(selectedMedia.storagePath, context)) {
-            showUploadMessage(
-              context,
-              'Uploading file...',
-              showLoading: true,
-            );
-            final downloadUrl = await uploadData(
-                selectedMedia.storagePath, selectedMedia.bytes);
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            if (downloadUrl != null) {
-              setState(() => uploadedFileUrl = downloadUrl);
-              showUploadMessage(
-                context,
-                'File Uploaded!',
-              );
-            } else {
-              showUploadMessage(
-                context,
-                'Failed to upload media',
-              );
-              return;
-            }
-          }
-        },
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-        elevation: 8,
-        child: Icon(
-          Icons.perm_media_rounded,
-          color: Color(0xFFE2E3E7),
-          size: 24,
-        ),
-      ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Form(
