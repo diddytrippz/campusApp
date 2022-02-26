@@ -138,6 +138,16 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
               return;
             }
           }
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Image successfully uploaded!',
+                style: TextStyle(),
+              ),
+              duration: Duration(milliseconds: 4000),
+              backgroundColor: Color(0x00000000),
+            ),
+          );
         },
         backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         elevation: 8,
@@ -314,47 +324,10 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                                                       ),
                                                 ),
                                               ),
-                                              FlutterFlowIconButton(
-                                                borderColor: Colors.transparent,
-                                                borderRadius: 30,
-                                                borderWidth: 1,
-                                                buttonSize: 60,
-                                                icon: Icon(
-                                                  Icons.camera_alt,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  size: 30,
-                                                ),
-                                                onPressed: () {
-                                                  print(
-                                                      'IconButton pressed ...');
-                                                },
-                                              ),
                                             ],
                                           ),
                                         ),
                                       ],
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 0, 0, 0),
-                                      child: Text(
-                                        uploadedFileUrl.maybeHandleOverflow(
-                                          maxChars: 40,
-                                          replacement: '…',
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 12,
-                                              fontStyle: FontStyle.italic,
-                                            ),
-                                      ),
                                     ),
                                   ],
                                 ),
