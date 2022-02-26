@@ -55,7 +55,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
             );
           },
           child: Icon(
-            Icons.clear,
+            Icons.arrow_back,
             color: FlutterFlowTheme.of(context).primaryText,
             size: 24,
           ),

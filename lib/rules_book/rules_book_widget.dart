@@ -37,22 +37,19 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                        child: FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 30,
-                          borderWidth: 1,
-                          buttonSize: 50,
-                          icon: Icon(
-                            Icons.arrow_back_rounded,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30,
-                          ),
-                          onPressed: () async {
-                            Navigator.pop(context);
-                          },
+                      FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 30,
+                        borderWidth: 1,
+                        buttonSize: 50,
+                        icon: Icon(
+                          Icons.arrow_back_rounded,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 24,
                         ),
+                        onPressed: () async {
+                          Navigator.pop(context);
+                        },
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
