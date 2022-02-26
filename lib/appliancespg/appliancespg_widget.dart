@@ -370,21 +370,19 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                                   },
                                 );
                               },
-                              text: 'Submit form',
-                              icon: FaIcon(
-                                FontAwesomeIcons.edit,
-                                size: 20,
-                              ),
+                              text: 'Submit',
                               options: FFButtonOptions(
                                 width: double.infinity,
                                 height: 50,
                                 color:
                                     FlutterFlowTheme.of(context).primaryColor,
                                 textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
+                                    .title3
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Colors.white,
+                                      color: Color(0xFFE2E3E7),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
