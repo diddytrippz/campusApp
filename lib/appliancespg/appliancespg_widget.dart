@@ -155,6 +155,7 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Expanded(
+                flex: 1,
                 child: Material(
                   color: Colors.transparent,
                   elevation: 40,
@@ -342,112 +343,107 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                             textAlign: TextAlign.start,
                             maxLines: 3,
                             keyboardType: TextInputType.name,
+                            validator: (val) {
+                              if (val.isEmpty) {
+                                return 'Field is required';
+                              }
+
+                              return null;
+                            },
                           ),
-                          Expanded(
-                            flex: 1,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16, 30, 16, 0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      if (!formKey.currentState.validate()) {
-                                        return;
-                                      }
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                if (!formKey.currentState.validate()) {
+                                  return;
+                                }
 
-                                      if (budgetValue == null) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Field is required',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                              ),
-                                            ),
-                                            duration:
-                                                Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                          ),
-                                        );
-                                        return;
-                                      }
-
-                                      final maintenanceCreateData =
-                                          createMaintenanceRecordData(
-                                        issue: budgetValue,
-                                        status: 'Submitted',
-                                        email: currentUserEmail,
-                                        createdTime: getCurrentTimestamp,
-                                        displayName: currentUserDisplayName,
-                                        room: currentUserDocument?.room,
-                                        building: currentUserDocument?.building,
-                                        notes: reasonController.text,
-                                        rating: 0,
-                                        uid: currentUserUid,
-                                        category: 'Appliances',
-                                        isDone: false,
-                                        assigned: 'Maintenace Team',
-                                        photoUrl: uploadedFileUrl,
-                                      );
-                                      await MaintenanceRecord.collection
-                                          .doc()
-                                          .set(maintenanceCreateData);
-                                      await AirtableCall.call(
-                                        user: currentUserEmail,
-                                        issue: budgetValue,
-                                        room: currentUserDocument?.room,
-                                        building: currentUserDocument?.building,
-                                        status: 'Submitted',
-                                        created: dateTimeFormat(
-                                            'd/M/y', getCurrentTimestamp),
-                                      );
-                                      await showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: Colors.transparent,
-                                        barrierColor: Color(0x64F5F5F5),
-                                        context: context,
-                                        builder: (context) {
-                                          return Padding(
-                                            padding: MediaQuery.of(context)
-                                                .viewInsets,
-                                            child: SubmittedIconWidget(),
-                                          );
-                                        },
-                                      );
-                                    },
-                                    text: 'Submit form',
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.edit,
-                                      size: 20,
-                                    ),
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 50,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            color: Colors.white,
-                                          ),
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1,
+                                if (budgetValue == null) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Field is required',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                        ),
                                       ),
-                                      borderRadius: 7,
+                                      duration: Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .primaryText,
                                     ),
-                                  ),
+                                  );
+                                  return;
+                                }
+
+                                final maintenanceCreateData =
+                                    createMaintenanceRecordData(
+                                  issue: budgetValue,
+                                  status: 'Submitted',
+                                  email: currentUserEmail,
+                                  createdTime: getCurrentTimestamp,
+                                  displayName: currentUserDisplayName,
+                                  room: currentUserDocument?.room,
+                                  building: currentUserDocument?.building,
+                                  notes: reasonController.text,
+                                  rating: 0,
+                                  uid: currentUserUid,
+                                  category: 'Appliances',
+                                  isDone: false,
+                                  assigned: 'Maintenace Team',
+                                  photoUrl: uploadedFileUrl,
+                                );
+                                await MaintenanceRecord.collection
+                                    .doc()
+                                    .set(maintenanceCreateData);
+                                await AirtableCall.call(
+                                  user: currentUserEmail,
+                                  issue: budgetValue,
+                                  room: currentUserDocument?.room,
+                                  building: currentUserDocument?.building,
+                                  status: 'Submitted',
+                                  created: dateTimeFormat(
+                                      'd/M/y', getCurrentTimestamp),
+                                );
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  barrierColor: Color(0x64F5F5F5),
+                                  context: context,
+                                  builder: (context) {
+                                    return Padding(
+                                      padding:
+                                          MediaQuery.of(context).viewInsets,
+                                      child: SubmittedIconWidget(),
+                                    );
+                                  },
+                                );
+                              },
+                              text: 'Submit form',
+                              icon: FaIcon(
+                                FontAwesomeIcons.edit,
+                                size: 20,
+                              ),
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 50,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Roboto',
+                                      color: Colors.white,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
                                 ),
-                              ],
+                                borderRadius: 7,
+                              ),
                             ),
                           ),
                         ],
