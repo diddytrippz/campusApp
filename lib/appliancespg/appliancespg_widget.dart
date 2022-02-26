@@ -464,7 +464,7 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                                           },
                                           text: 'Submit form',
                                           icon: FaIcon(
-                                            FontAwesomeIcons.userEdit,
+                                            FontAwesomeIcons.edit,
                                             size: 20,
                                           ),
                                           options: FFButtonOptions(
