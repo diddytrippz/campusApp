@@ -227,7 +227,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           0.9,
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.25,
+                                              0.24,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
@@ -252,7 +252,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.42,
+                            height: MediaQuery.of(context).size.height * 0.4,
                             decoration: BoxDecoration(
                               color: Color(0x00FFFFFF),
                               boxShadow: [
