@@ -242,6 +242,13 @@ class _OthersWidgetState extends State<OthersWidget> {
                             textAlign: TextAlign.start,
                             maxLines: 4,
                             keyboardType: TextInputType.name,
+                            validator: (val) {
+                              if (val.isEmpty) {
+                                return 'Field is required';
+                              }
+
+                              return null;
+                            },
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.min,
@@ -269,25 +276,6 @@ class _OthersWidgetState extends State<OthersWidget> {
                             child: FFButtonWidget(
                               onPressed: () async {
                                 if (!formKey.currentState.validate()) {
-                                  return;
-                                }
-
-                                if (budgetValue == null) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Field is required',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                        ),
-                                      ),
-                                      duration: Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                    ),
-                                  );
                                   return;
                                 }
 
