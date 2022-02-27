@@ -271,7 +271,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 8, 16, 0),
+                                        16, 6, 16, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -303,7 +303,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width *
-                                                  0.27,
+                                                  0.26,
                                               height: MediaQuery.of(context)
                                                       .size
                                                       .height *
@@ -390,7 +390,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width *
-                                                  0.27,
+                                                  0.26,
                                               height: MediaQuery.of(context)
                                                       .size
                                                       .height *
@@ -479,7 +479,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width *
-                                                  0.27,
+                                                  0.26,
                                               height: MediaQuery.of(context)
                                                       .size
                                                       .height *
@@ -547,7 +547,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 8, 16, 0),
+                                        16, 6, 16, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -572,7 +572,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.27,
+                                                0.26,
                                             height: MediaQuery.of(context)
                                                     .size
                                                     .height *
@@ -650,7 +650,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.27,
+                                                0.26,
                                             height: MediaQuery.of(context)
                                                     .size
                                                     .height *
@@ -729,7 +729,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.27,
+                                                0.26,
                                             height: MediaQuery.of(context)
                                                     .size
                                                     .height *
@@ -794,7 +794,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 Expanded(
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 8, 16, 10),
+                                        16, 6, 16, 8),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -819,7 +819,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.27,
+                                                0.26,
                                             height: MediaQuery.of(context)
                                                     .size
                                                     .height *
@@ -884,7 +884,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              0.27,
+                                              0.26,
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
@@ -958,7 +958,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.27,
+                                                0.26,
                                             height: MediaQuery.of(context)
                                                     .size
                                                     .height *
