@@ -77,7 +77,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
               future: queryUsersRecordOnce(
                 queryBuilder: (usersRecord) => usersRecord.where('building',
                     isEqualTo: currentUserDocument?.building),
-                limit: 50,
+                limit: 100,
               ),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
