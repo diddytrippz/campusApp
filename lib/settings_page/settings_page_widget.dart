@@ -75,7 +75,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: Material(
                         color: Colors.transparent,
                         elevation: 0,
@@ -142,7 +142,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 20),
+                                            0, 0, 0, 10),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -466,23 +466,6 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       ),
                     ),
                   ],
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text(
-                        'VERSION 1.0.3',
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Roboto',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
-                            ),
-                      ),
-                    ],
-                  ),
                 ),
               ],
             ),
