@@ -45,7 +45,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     color: FlutterFlowTheme.of(context).tertiaryColor,
                   ),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,

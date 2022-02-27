@@ -66,29 +66,20 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).tertiaryColor,
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                    child: Material(
-                      color: Colors.transparent,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(1),
-                          bottomRight: Radius.circular(1),
-                          topLeft: Radius.circular(0),
-                          topRight: Radius.circular(1),
-                        ),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0x00FFFFFF),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(1),
                             bottomRight: Radius.circular(1),
@@ -96,135 +87,183 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             topRight: Radius.circular(1),
                           ),
                         ),
-                        child: Align(
-                          alignment: AlignmentDirectional(0, 1),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 60, 0, 20),
-                            child: FutureBuilder<List<UsersRecord>>(
-                              future: queryUsersRecordOnce(
-                                queryBuilder: (usersRecord) =>
-                                    usersRecord.where('email',
-                                        isEqualTo: currentUserEmail),
-                                singleRecord: true,
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 60,
-                                      height: 60,
-                                      child: SpinKitPulse(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        size: 60,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0x00FFFFFF),
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(1),
+                              bottomRight: Radius.circular(1),
+                              topLeft: Radius.circular(0),
+                              topRight: Radius.circular(1),
+                            ),
+                          ),
+                          child: Align(
+                            alignment: AlignmentDirectional(0, 1),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 60, 0, 20),
+                              child: FutureBuilder<List<UsersRecord>>(
+                                future: queryUsersRecordOnce(
+                                  queryBuilder: (usersRecord) =>
+                                      usersRecord.where('email',
+                                          isEqualTo: currentUserEmail),
+                                  singleRecord: true,
+                                ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 60,
+                                        height: 60,
+                                        child: SpinKitPulse(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          size: 60,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                }
-                                List<UsersRecord> columnUsersRecordList =
-                                    snapshot.data;
-                                // Return an empty Container when the document does not exist.
-                                if (snapshot.data.isEmpty) {
-                                  return Container();
-                                }
-                                final columnUsersRecord =
-                                    columnUsersRecordList.isNotEmpty
-                                        ? columnUsersRecordList.first
-                                        : null;
-                                return Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, 20),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 100,
-                                            height: 100,
-                                            decoration: BoxDecoration(
-                                              color: Color(0x00DBE2E7),
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(2, 2, 2, 2),
-                                              child: AuthUserStreamWidget(
-                                                child: InkWell(
-                                                  onTap: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .fade,
-                                                        child:
-                                                            FlutterFlowExpandedImageView(
-                                                          image:
-                                                              CachedNetworkImage(
-                                                            imageUrl:
-                                                                valueOrDefault<
-                                                                    String>(
+                                    );
+                                  }
+                                  List<UsersRecord> columnUsersRecordList =
+                                      snapshot.data;
+                                  // Return an empty Container when the document does not exist.
+                                  if (snapshot.data.isEmpty) {
+                                    return Container();
+                                  }
+                                  final columnUsersRecord =
+                                      columnUsersRecordList.isNotEmpty
+                                          ? columnUsersRecordList.first
+                                          : null;
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 20),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              width: 100,
+                                              height: 100,
+                                              decoration: BoxDecoration(
+                                                color: Color(0x00DBE2E7),
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(2, 2, 2, 2),
+                                                child: AuthUserStreamWidget(
+                                                  child: InkWell(
+                                                    onTap: () async {
+                                                      await Navigator.push(
+                                                        context,
+                                                        PageTransition(
+                                                          type:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          child:
+                                                              FlutterFlowExpandedImageView(
+                                                            image:
+                                                                CachedNetworkImage(
+                                                              imageUrl:
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                currentUserPhoto,
+                                                                'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                                              ),
+                                                              fit: BoxFit
+                                                                  .contain,
+                                                            ),
+                                                            allowRotation:
+                                                                false,
+                                                            tag: valueOrDefault<
+                                                                String>(
                                                               currentUserPhoto,
                                                               'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
                                                             ),
-                                                            fit: BoxFit.contain,
+                                                            useHeroAnimation:
+                                                                true,
                                                           ),
-                                                          allowRotation: false,
-                                                          tag: valueOrDefault<
-                                                              String>(
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: Hero(
+                                                      tag: valueOrDefault<
+                                                          String>(
+                                                        currentUserPhoto,
+                                                        'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                                      ),
+                                                      transitionOnUserGestures:
+                                                          true,
+                                                      child: Container(
+                                                        width: 90,
+                                                        height: 90,
+                                                        clipBehavior:
+                                                            Clip.antiAlias,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child:
+                                                            CachedNetworkImage(
+                                                          imageUrl:
+                                                              valueOrDefault<
+                                                                  String>(
                                                             currentUserPhoto,
                                                             'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
                                                           ),
-                                                          useHeroAnimation:
-                                                              true,
+                                                          fit: BoxFit.cover,
                                                         ),
-                                                      ),
-                                                    );
-                                                  },
-                                                  child: Hero(
-                                                    tag: valueOrDefault<String>(
-                                                      currentUserPhoto,
-                                                      'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
-                                                    ),
-                                                    transitionOnUserGestures:
-                                                        true,
-                                                    child: Container(
-                                                      width: 90,
-                                                      height: 90,
-                                                      clipBehavior:
-                                                          Clip.antiAlias,
-                                                      decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                      ),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            valueOrDefault<
-                                                                String>(
-                                                          currentUserPhoto,
-                                                          'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
-                                                        ),
-                                                        fit: BoxFit.cover,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 0),
-                                      child: Row(
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 30, 0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 4),
+                                              child: AuthUserStreamWidget(
+                                                child: Text(
+                                                  currentUserDisplayName,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .title1
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -232,244 +271,221 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 0, 4),
-                                            child: AuthUserStreamWidget(
-                                              child: Text(
-                                                currentUserDisplayName,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .title1
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                              ),
+                                                    0, 12, 0, 14),
+                                            child: Text(
+                                              currentUserEmail,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .subtitle1
+                                                  .override(
+                                                    fontFamily: 'Roboto',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .campusGrey,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                             ),
                                           ),
                                         ],
                                       ),
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 12, 0, 14),
-                                          child: Text(
-                                            currentUserEmail,
-                                            style: FlutterFlowTheme.of(context)
-                                                .subtitle1
-                                                .override(
-                                                  fontFamily: 'Roboto',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .campusGrey,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                );
-                              },
+                                    ],
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
-                    child: InkWell(
-                      onTap: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            duration: Duration(milliseconds: 300),
-                            reverseDuration: Duration(milliseconds: 300),
-                            child: EditProfileWidget(),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
+                      child: InkWell(
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              duration: Duration(milliseconds: 300),
+                              reverseDuration: Duration(milliseconds: 300),
+                              child: EditProfileWidget(),
+                            ),
+                          );
+                        },
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.person_outline_sharp,
+                            color: Color(0xFF464749),
                           ),
-                        );
-                      },
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.person_outline_sharp,
-                          color: Color(0xFF464749),
+                          title: Text(
+                            'Profile',
+                            style: FlutterFlowTheme.of(context).title3.override(
+                                  fontFamily: 'Roboto',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 16,
+                                ),
+                          ),
+                          tileColor: Color(0x00F5F5F5),
+                          dense: false,
                         ),
-                        title: Text(
-                          'Profile',
-                          style: FlutterFlowTheme.of(context).title3.override(
-                                fontFamily: 'Roboto',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 16,
-                              ),
-                        ),
-                        tileColor: Color(0x00F5F5F5),
-                        dense: false,
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
-                    child: InkWell(
-                      onTap: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.bottomToTop,
-                            duration: Duration(milliseconds: 300),
-                            reverseDuration: Duration(milliseconds: 300),
-                            child: NavBarPage(initialPage: 'MessagesPage'),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
+                      child: InkWell(
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              duration: Duration(milliseconds: 300),
+                              reverseDuration: Duration(milliseconds: 300),
+                              child: NavBarPage(initialPage: 'MessagesPage'),
+                            ),
+                          );
+                        },
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.message_outlined,
+                            color: FlutterFlowTheme.of(context).campusGrey,
                           ),
-                        );
-                      },
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.message_outlined,
-                          color: FlutterFlowTheme.of(context).campusGrey,
+                          title: Text(
+                            'Messages',
+                            style: FlutterFlowTheme.of(context).title3.override(
+                                  fontFamily: 'Roboto',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 16,
+                                ),
+                          ),
+                          tileColor: Color(0x00F5F5F5),
+                          dense: false,
                         ),
-                        title: Text(
-                          'Messages',
-                          style: FlutterFlowTheme.of(context).title3.override(
-                                fontFamily: 'Roboto',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 16,
-                              ),
-                        ),
-                        tileColor: Color(0x00F5F5F5),
-                        dense: false,
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
-                    child: InkWell(
-                      onTap: () async {
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            duration: Duration(milliseconds: 300),
-                            reverseDuration: Duration(milliseconds: 300),
-                            child: NavBarPage(initialPage: 'viewPage'),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
+                      child: InkWell(
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              duration: Duration(milliseconds: 300),
+                              reverseDuration: Duration(milliseconds: 300),
+                              child: NavBarPage(initialPage: 'viewPage'),
+                            ),
+                          );
+                        },
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.forum,
+                            color: FlutterFlowTheme.of(context).campusGrey,
                           ),
-                        );
-                      },
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.forum,
-                          color: FlutterFlowTheme.of(context).campusGrey,
+                          title: Text(
+                            'Mantenance',
+                            style: FlutterFlowTheme.of(context).title3.override(
+                                  fontFamily: 'Roboto',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 16,
+                                ),
+                          ),
+                          tileColor: Color(0x00F5F5F5),
+                          dense: false,
                         ),
-                        title: Text(
-                          'Mantenance',
-                          style: FlutterFlowTheme.of(context).title3.override(
-                                fontFamily: 'Roboto',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 16,
-                              ),
-                        ),
-                        tileColor: Color(0x00F5F5F5),
-                        dense: false,
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
-                    child: InkWell(
-                      onTap: () async {
-                        await Navigator.pushAndRemoveUntil(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            duration: Duration(milliseconds: 300),
-                            reverseDuration: Duration(milliseconds: 300),
-                            child: StudentsWidget(),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
+                      child: InkWell(
+                        onTap: () async {
+                          await Navigator.pushAndRemoveUntil(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              duration: Duration(milliseconds: 300),
+                              reverseDuration: Duration(milliseconds: 300),
+                              child: StudentsWidget(),
+                            ),
+                            (r) => false,
+                          );
+                        },
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.group_add,
+                            color: FlutterFlowTheme.of(context).campusGrey,
                           ),
-                          (r) => false,
-                        );
-                      },
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.group_add,
-                          color: FlutterFlowTheme.of(context).campusGrey,
+                          title: Text(
+                            'Students',
+                            style: FlutterFlowTheme.of(context).title3.override(
+                                  fontFamily: 'Roboto',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 16,
+                                ),
+                          ),
+                          tileColor: Color(0x00F5F5F5),
+                          dense: false,
                         ),
-                        title: Text(
-                          'Students',
-                          style: FlutterFlowTheme.of(context).title3.override(
-                                fontFamily: 'Roboto',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 16,
-                              ),
-                        ),
-                        tileColor: Color(0x00F5F5F5),
-                        dense: false,
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
-                    child: InkWell(
-                      onTap: () async {
-                        await signOut();
-                        await Navigator.pushAndRemoveUntil(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.bottomToTop,
-                            duration: Duration(milliseconds: 300),
-                            reverseDuration: Duration(milliseconds: 300),
-                            child: OnboardingWidget(),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
+                      child: InkWell(
+                        onTap: () async {
+                          await signOut();
+                          await Navigator.pushAndRemoveUntil(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              duration: Duration(milliseconds: 300),
+                              reverseDuration: Duration(milliseconds: 300),
+                              child: OnboardingWidget(),
+                            ),
+                            (r) => false,
+                          );
+                        },
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.logout,
+                            color: FlutterFlowTheme.of(context).campusGrey,
                           ),
-                          (r) => false,
-                        );
-                      },
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.logout,
-                          color: FlutterFlowTheme.of(context).campusGrey,
+                          title: Text(
+                            'Sign Out',
+                            style: FlutterFlowTheme.of(context).title3.override(
+                                  fontFamily: 'Roboto',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 16,
+                                ),
+                          ),
+                          tileColor: FlutterFlowTheme.of(context).primaryText,
+                          dense: false,
                         ),
-                        title: Text(
-                          'Sign Out',
-                          style: FlutterFlowTheme.of(context).title3.override(
-                                fontFamily: 'Roboto',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 16,
-                              ),
-                        ),
-                        tileColor: FlutterFlowTheme.of(context).primaryText,
-                        dense: false,
                       ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'VERSION 1.0.3',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Roboto',
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            fontSize: 12,
-                            fontWeight: FontWeight.normal,
-                          ),
                     ),
                   ],
                 ),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'VERSION 1.0.3',
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily: 'Roboto',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -58,8 +58,8 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                             color: Colors.white,
                             size: 30,
                           ),
-                          onPressed: () {
-                            print('IconButton pressed ...');
+                          onPressed: () async {
+                            Navigator.pop(context);
                           },
                         ),
                       ),
