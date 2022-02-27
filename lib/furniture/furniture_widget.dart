@@ -16,14 +16,14 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AppliancespgWidget extends StatefulWidget {
-  const AppliancespgWidget({Key key}) : super(key: key);
+class FurnitureWidget extends StatefulWidget {
+  const FurnitureWidget({Key key}) : super(key: key);
 
   @override
-  _AppliancespgWidgetState createState() => _AppliancespgWidgetState();
+  _FurnitureWidgetState createState() => _FurnitureWidgetState();
 }
 
-class _AppliancespgWidgetState extends State<AppliancespgWidget> {
+class _FurnitureWidgetState extends State<FurnitureWidget> {
   String budgetValue;
   TextEditingController reasonController;
   String uploadedFileUrl = '';
@@ -92,7 +92,7 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                       child: Text(
-                        'Appliances',
+                        'Furniture',
                         style: FlutterFlowTheme.of(context).title2.override(
                               fontFamily: 'Roboto',
                               color: FlutterFlowTheme.of(context).primaryText,
@@ -210,10 +210,13 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                           ),
                           FlutterFlowDropDown(
                             options: [
-                              'Stove not working',
-                              'Oven not working',
-                              'Microwave not working',
-                              'Fridge not working'
+                              'Damaged bed base',
+                              'Damaged mattress',
+                              'Curtain rail needs to be replaced',
+                              'Damaged study table',
+                              'Damaged chair',
+                              'Window cannot open',
+                              'Window cannot close'
                             ].toList(),
                             onChanged: (val) =>
                                 setState(() => budgetValue = val),
@@ -300,13 +303,6 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                             textAlign: TextAlign.start,
                             maxLines: 3,
                             keyboardType: TextInputType.name,
-                            validator: (val) {
-                              if (val.isEmpty) {
-                                return 'Field is required';
-                              }
-
-                              return null;
-                            },
                           ),
                           Padding(
                             padding:
@@ -348,9 +344,9 @@ class _AppliancespgWidgetState extends State<AppliancespgWidget> {
                                   notes: reasonController.text,
                                   rating: 0,
                                   uid: currentUserUid,
-                                  category: 'Appliances',
+                                  category: 'Furniture',
                                   isDone: false,
-                                  assigned: 'Maintenace Team',
+                                  assigned: 'Maintenance Team',
                                   photoUrl: uploadedFileUrl,
                                 );
                                 await MaintenanceRecord.collection

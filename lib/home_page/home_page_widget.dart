@@ -1,14 +1,14 @@
-import '../appliancespg/appliancespg_widget.dart';
+import '../appliances/appliances_widget.dart';
 import '../components/dark_mode_widget.dart';
-import '../components/electrical_widget.dart';
-import '../components/furniture_widget.dart';
-import '../components/locksmith_widget.dart';
-import '../components/others_widget.dart';
-import '../components/painting_widget.dart';
-import '../components/pest_control_widget.dart';
-import '../components/plumbing_widget.dart';
+import '../electrical/electrical_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../furniture/furniture_widget.dart';
+import '../locksmith/locksmith_widget.dart';
+import '../others/others_widget.dart';
+import '../painting/painting_widget.dart';
+import '../pestcontrol/pestcontrol_widget.dart';
+import '../plumbing/plumbing_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -290,7 +290,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   Duration(milliseconds: 300),
                                               reverseDuration:
                                                   Duration(milliseconds: 300),
-                                              child: AppliancespgWidget(),
+                                              child: AppliancesWidget(),
                                             ),
                                           );
                                         },
@@ -366,17 +366,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                       InkWell(
                                         onTap: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            backgroundColor: Color(0x5DFFFFFF),
-                                            context: context,
-                                            builder: (context) {
-                                              return Padding(
-                                                padding: MediaQuery.of(context)
-                                                    .viewInsets,
-                                                child: PlumbingWidget(),
-                                              );
-                                            },
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .bottomToTop,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 300),
+                                              child: PlumbingWidget(),
+                                            ),
                                           );
                                         },
                                         child: Material(
@@ -453,17 +453,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                       InkWell(
                                         onTap: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            backgroundColor: Color(0x5DFFFFFF),
-                                            context: context,
-                                            builder: (context) {
-                                              return Padding(
-                                                padding: MediaQuery.of(context)
-                                                    .viewInsets,
-                                                child: FurnitureWidget(),
-                                              );
-                                            },
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .bottomToTop,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 300),
+                                              child: FurnitureWidget(),
+                                            ),
                                           );
                                         },
                                         child: Material(
@@ -549,17 +549,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     children: [
                                       InkWell(
                                         onTap: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            backgroundColor: Color(0x5DFFFFFF),
-                                            context: context,
-                                            builder: (context) {
-                                              return Padding(
-                                                padding: MediaQuery.of(context)
-                                                    .viewInsets,
-                                                child: ElectricalWidget(),
-                                              );
-                                            },
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .bottomToTop,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 300),
+                                              child: ElectricalWidget(),
+                                            ),
                                           );
                                         },
                                         child: Container(
@@ -624,17 +624,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                       InkWell(
                                         onTap: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            backgroundColor: Color(0x5DFFFFFF),
-                                            context: context,
-                                            builder: (context) {
-                                              return Padding(
-                                                padding: MediaQuery.of(context)
-                                                    .viewInsets,
-                                                child: LocksmithWidget(),
-                                              );
-                                            },
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .bottomToTop,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 300),
+                                              child: LocksmithWidget(),
+                                            ),
                                           );
                                         },
                                         child: Container(
@@ -699,17 +699,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                       InkWell(
                                         onTap: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            backgroundColor: Color(0x5DFFFFFF),
-                                            context: context,
-                                            builder: (context) {
-                                              return Padding(
-                                                padding: MediaQuery.of(context)
-                                                    .viewInsets,
-                                                child: PaintingWidget(),
-                                              );
-                                            },
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .bottomToTop,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 300),
+                                              child: PaintingWidget(),
+                                            ),
                                           );
                                         },
                                         child: Container(
@@ -784,17 +784,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     children: [
                                       InkWell(
                                         onTap: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            backgroundColor: Color(0x5DFFFFFF),
-                                            context: context,
-                                            builder: (context) {
-                                              return Padding(
-                                                padding: MediaQuery.of(context)
-                                                    .viewInsets,
-                                                child: PestControlWidget(),
-                                              );
-                                            },
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .bottomToTop,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 300),
+                                              child: PestcontrolWidget(),
+                                            ),
                                           );
                                         },
                                         child: Container(
@@ -917,17 +917,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                       InkWell(
                                         onTap: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            backgroundColor: Color(0x5DFFFFFF),
-                                            context: context,
-                                            builder: (context) {
-                                              return Padding(
-                                                padding: MediaQuery.of(context)
-                                                    .viewInsets,
-                                                child: OthersWidget(),
-                                              );
-                                            },
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .bottomToTop,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 300),
+                                              child: OthersWidget(),
+                                            ),
                                           );
                                         },
                                         child: Container(
