@@ -22,6 +22,7 @@ void main() async {
   await Firebase.initializeApp();
 
   await FlutterFlowTheme.initialize();
+
   runApp(MyApp());
 }
 
