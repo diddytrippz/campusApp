@@ -30,6 +30,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'editProfile'});
     textController1 = TextEditingController(text: currentUserDisplayName);
     textController2 = TextEditingController(text: currentUserEmail);
   }
@@ -44,6 +45,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('Icon-ON_TAP');
+            logFirebaseEvent('Icon-Navigate-To');
             await Navigator.push(
               context,
               PageTransition(
@@ -105,6 +108,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               child: AuthUserStreamWidget(
                                 child: InkWell(
                                   onTap: () async {
+                                    logFirebaseEvent('CircleImage-ON_TAP');
+                                    logFirebaseEvent(
+                                        'CircleImage-Expand-Image');
                                     await Navigator.push(
                                       context,
                                       PageTransition(
@@ -168,6 +174,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   size: 30,
                                 ),
                                 onPressed: () async {
+                                  logFirebaseEvent('IconButton-ON_TAP');
+                                  logFirebaseEvent(
+                                      'IconButton-Upload-Photo-Video');
                                   final selectedMedia =
                                       await selectMediaWithSourceBottomSheet(
                                     context: context,
@@ -307,10 +316,14 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('Button-ON_TAP');
+                        logFirebaseEvent('Button-Backend-Call');
+
                         final usersUpdateData = createUsersRecordData(
                           photoUrl: uploadedFileUrl,
                         );
                         await currentUserReference.update(usersUpdateData);
+                        logFirebaseEvent('Button-Show-Snack-Bar');
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
@@ -325,6 +338,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 FlutterFlowTheme.of(context).primaryText,
                           ),
                         );
+                        logFirebaseEvent('Button-Navigate-To');
                         await Navigator.push(
                           context,
                           PageTransition(

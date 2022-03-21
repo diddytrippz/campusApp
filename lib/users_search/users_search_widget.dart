@@ -23,6 +23,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'usersSearch'});
     textController = TextEditingController();
   }
 
@@ -35,6 +36,8 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('Icon-ON_TAP');
+            logFirebaseEvent('Icon-Navigate-Back');
             Navigator.pop(context);
           },
           child: Icon(
@@ -82,6 +85,8 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 18, 0),
             child: InkWell(
               onTap: () async {
+                logFirebaseEvent('Icon-ON_TAP');
+                logFirebaseEvent('Icon-Algolia-Search');
                 setState(() => algoliaSearchResults = null);
                 await UsersRecord.search(
                   term: textController.text,
@@ -151,6 +156,8 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                         elevation: 3,
                         child: InkWell(
                           onTap: () async {
+                            logFirebaseEvent('Row-ON_TAP');
+                            logFirebaseEvent('Row-Navigate-To');
                             await Navigator.push(
                               context,
                               PageTransition(

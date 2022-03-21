@@ -17,6 +17,12 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'rulesBook'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -48,6 +54,8 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
                           size: 24,
                         ),
                         onPressed: () async {
+                          logFirebaseEvent('IconButton-ON_TAP');
+                          logFirebaseEvent('IconButton-Navigate-Back');
                           Navigator.pop(context);
                         },
                       ),

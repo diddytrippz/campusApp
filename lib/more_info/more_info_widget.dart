@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -27,6 +28,12 @@ class MoreInfoWidget extends StatefulWidget {
 
 class _MoreInfoWidgetState extends State<MoreInfoWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'moreInfo'});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +100,9 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                       children: [
                                         InkWell(
                                           onTap: () async {
+                                            logFirebaseEvent('Image-ON_TAP');
+                                            logFirebaseEvent(
+                                                'Image-Expand-Image');
                                             await Navigator.push(
                                               context,
                                               PageTransition(
@@ -167,6 +177,10 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                   size: 20,
                                                 ),
                                                 onPressed: () async {
+                                                  logFirebaseEvent(
+                                                      'IconButton-ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'IconButton-Navigate-Back');
                                                   Navigator.pop(context);
                                                 },
                                               ),
@@ -332,35 +346,55 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                     fontSize: 16,
                                                                                   ),
                                                                             ),
-                                                                            if ((currentUserDocument?.role) ==
-                                                                                'Admin')
-                                                                              AuthUserStreamWidget(
-                                                                                child: FlutterFlowIconButton(
-                                                                                  borderColor: Colors.transparent,
-                                                                                  borderRadius: 30,
-                                                                                  borderWidth: 1,
-                                                                                  buttonSize: 45,
-                                                                                  fillColor: FlutterFlowTheme.of(context).campusRed,
-                                                                                  icon: Icon(
-                                                                                    Icons.mail_outline,
-                                                                                    color: Colors.white,
-                                                                                    size: 25,
-                                                                                  ),
-                                                                                  onPressed: () async {
-                                                                                    await Navigator.push(
-                                                                                      context,
-                                                                                      PageTransition(
-                                                                                        type: PageTransitionType.bottomToTop,
-                                                                                        duration: Duration(milliseconds: 300),
-                                                                                        reverseDuration: Duration(milliseconds: 300),
-                                                                                        child: ChatPageWidget(
-                                                                                          chatUser: rowUsersRecord,
+                                                                            Badge(
+                                                                              badgeContent: Text(
+                                                                                '0',
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: 'Roboto',
+                                                                                      color: Colors.white,
+                                                                                    ),
+                                                                              ),
+                                                                              showBadge: true,
+                                                                              shape: BadgeShape.circle,
+                                                                              badgeColor: FlutterFlowTheme.of(context).mellow,
+                                                                              elevation: 4,
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                                                                              position: BadgePosition.topEnd(),
+                                                                              animationType: BadgeAnimationType.scale,
+                                                                              toAnimate: true,
+                                                                              child: Visibility(
+                                                                                visible: (currentUserDocument?.role) == 'Admin',
+                                                                                child: AuthUserStreamWidget(
+                                                                                  child: FlutterFlowIconButton(
+                                                                                    borderColor: Colors.transparent,
+                                                                                    borderRadius: 30,
+                                                                                    borderWidth: 1,
+                                                                                    buttonSize: 45,
+                                                                                    fillColor: FlutterFlowTheme.of(context).campusRed,
+                                                                                    icon: Icon(
+                                                                                      Icons.mail_outline,
+                                                                                      color: Colors.white,
+                                                                                      size: 25,
+                                                                                    ),
+                                                                                    onPressed: () async {
+                                                                                      logFirebaseEvent('IconButton-ON_TAP');
+                                                                                      logFirebaseEvent('IconButton-Navigate-To');
+                                                                                      await Navigator.push(
+                                                                                        context,
+                                                                                        PageTransition(
+                                                                                          type: PageTransitionType.bottomToTop,
+                                                                                          duration: Duration(milliseconds: 300),
+                                                                                          reverseDuration: Duration(milliseconds: 300),
+                                                                                          child: ChatPageWidget(
+                                                                                            chatUser: rowUsersRecord,
+                                                                                          ),
                                                                                         ),
-                                                                                      ),
-                                                                                    );
-                                                                                  },
+                                                                                      );
+                                                                                    },
+                                                                                  ),
                                                                                 ),
                                                                               ),
+                                                                            ),
                                                                           ],
                                                                         );
                                                                       },
@@ -433,35 +467,55 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                     fontSize: 16,
                                                                                   ),
                                                                             ),
-                                                                            if ((currentUserDocument?.role) ==
-                                                                                'Admin')
-                                                                              AuthUserStreamWidget(
-                                                                                child: FlutterFlowIconButton(
-                                                                                  borderColor: Colors.transparent,
-                                                                                  borderRadius: 30,
-                                                                                  borderWidth: 1,
-                                                                                  buttonSize: 45,
-                                                                                  fillColor: FlutterFlowTheme.of(context).campusRed,
-                                                                                  icon: Icon(
-                                                                                    Icons.mail_outlined,
-                                                                                    color: Colors.white,
-                                                                                    size: 25,
-                                                                                  ),
-                                                                                  onPressed: () async {
-                                                                                    await Navigator.push(
-                                                                                      context,
-                                                                                      PageTransition(
-                                                                                        type: PageTransitionType.bottomToTop,
-                                                                                        duration: Duration(milliseconds: 300),
-                                                                                        reverseDuration: Duration(milliseconds: 300),
-                                                                                        child: ChatPageWidget(
-                                                                                          chatUser: rowUsersRecord,
+                                                                            Badge(
+                                                                              badgeContent: Text(
+                                                                                '0',
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: 'Roboto',
+                                                                                      color: Colors.white,
+                                                                                    ),
+                                                                              ),
+                                                                              showBadge: true,
+                                                                              shape: BadgeShape.circle,
+                                                                              badgeColor: FlutterFlowTheme.of(context).mellow,
+                                                                              elevation: 4,
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                                                                              position: BadgePosition.topEnd(),
+                                                                              animationType: BadgeAnimationType.scale,
+                                                                              toAnimate: true,
+                                                                              child: Visibility(
+                                                                                visible: (currentUserDocument?.role) == 'Admin',
+                                                                                child: AuthUserStreamWidget(
+                                                                                  child: FlutterFlowIconButton(
+                                                                                    borderColor: Colors.transparent,
+                                                                                    borderRadius: 30,
+                                                                                    borderWidth: 1,
+                                                                                    buttonSize: 45,
+                                                                                    fillColor: FlutterFlowTheme.of(context).campusRed,
+                                                                                    icon: Icon(
+                                                                                      Icons.mail_outlined,
+                                                                                      color: Colors.white,
+                                                                                      size: 25,
+                                                                                    ),
+                                                                                    onPressed: () async {
+                                                                                      logFirebaseEvent('IconButton-ON_TAP');
+                                                                                      logFirebaseEvent('IconButton-Navigate-To');
+                                                                                      await Navigator.push(
+                                                                                        context,
+                                                                                        PageTransition(
+                                                                                          type: PageTransitionType.bottomToTop,
+                                                                                          duration: Duration(milliseconds: 300),
+                                                                                          reverseDuration: Duration(milliseconds: 300),
+                                                                                          child: ChatPageWidget(
+                                                                                            chatUser: rowUsersRecord,
+                                                                                          ),
                                                                                         ),
-                                                                                      ),
-                                                                                    );
-                                                                                  },
+                                                                                      );
+                                                                                    },
+                                                                                  ),
                                                                                 ),
                                                                               ),
+                                                                            ),
                                                                           ],
                                                                         );
                                                                       },
@@ -626,7 +680,9 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                               InkWell(
                                                                             onTap:
                                                                                 () async {
+                                                                              logFirebaseEvent('Container-ON_TAP');
                                                                               if ((widget.jobStatus.isDone) == true) {
+                                                                                logFirebaseEvent('Container-Bottom-Sheet');
                                                                                 await showModalBottomSheet(
                                                                                   isScrollControlled: true,
                                                                                   backgroundColor: Colors.transparent,
@@ -767,7 +823,9 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                               InkWell(
                                                                             onTap:
                                                                                 () async {
+                                                                              logFirebaseEvent('Container-ON_TAP');
                                                                               if ((widget.jobStatus.isDone) == true) {
+                                                                                logFirebaseEvent('Container-Bottom-Sheet');
                                                                                 await showModalBottomSheet(
                                                                                   isScrollControlled: true,
                                                                                   backgroundColor: Colors.transparent,
@@ -902,7 +960,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                     shape: BoxShape.circle,
                                                                                   ),
                                                                                   child: Icon(
-                                                                                    FFIcons.user,
+                                                                                    FFIcons.kuser,
                                                                                     color: FlutterFlowTheme.of(context).campusGrey,
                                                                                     size: 30,
                                                                                   ),
@@ -974,7 +1032,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                     leading:
                                                                         Icon(
                                                                       FFIcons
-                                                                          .location2,
+                                                                          .klocation2,
                                                                       color: Color(
                                                                           0xFF464749),
                                                                       size: 30,
@@ -1084,7 +1142,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                     leading:
                                                                         Icon(
                                                                       FFIcons
-                                                                          .user,
+                                                                          .kuser,
                                                                       color: Color(
                                                                           0xFF464749),
                                                                       size: 25,

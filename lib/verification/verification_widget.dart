@@ -22,6 +22,8 @@ class _VerificationWidgetState extends State<VerificationWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'verification'});
     phoneNumberController = TextEditingController();
   }
 
@@ -59,6 +61,8 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                             size: 30,
                           ),
                           onPressed: () async {
+                            logFirebaseEvent('IconButton-ON_TAP');
+                            logFirebaseEvent('IconButton-Navigate-Back');
                             Navigator.pop(context);
                           },
                         ),
@@ -174,6 +178,8 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                   child: FFButtonWidget(
                     onPressed: () async {
+                      logFirebaseEvent('Button-Login-ON_TAP');
+                      logFirebaseEvent('Button-Login-Auth');
                       if (phoneNumberController.text.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

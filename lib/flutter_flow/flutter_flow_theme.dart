@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 const kThemeModeKey = '__theme_mode__';
@@ -91,7 +92,7 @@ class LightModeTheme extends FlutterFlowTheme {
   Color primaryColor = const Color(0xFFD93A0E);
   Color secondaryColor = const Color(0xFFEE8B60);
   Color tertiaryColor = const Color(0xFFFFFFFF);
-  Color alternate = const Color(0x00000000);
+  Color alternate = const Color(0xFFEEEEEE);
   Color primaryBackground = const Color(0xFFFFFFFF);
   Color secondaryBackground = const Color(0xFFF2F2F2);
   Color primaryText = const Color(0xFF000000);
@@ -108,7 +109,7 @@ class DarkModeTheme extends FlutterFlowTheme {
   Color primaryColor = const Color(0xFF181818);
   Color secondaryColor = const Color(0xFFEE8B60);
   Color tertiaryColor = const Color(0xFF121212);
-  Color alternate = const Color(0x00000000);
+  Color alternate = const Color(0xFF181818);
   Color primaryBackground = const Color(0xFF121212);
   Color secondaryBackground = const Color(0xFF181818);
   Color primaryText = const Color(0xFFFFFFFF);

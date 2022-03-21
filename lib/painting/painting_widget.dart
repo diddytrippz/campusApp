@@ -33,6 +33,7 @@ class _PaintingWidgetState extends State<PaintingWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'painting'});
     reasonController = TextEditingController();
     textController1 = TextEditingController(text: currentUserDisplayName);
   }
@@ -69,6 +70,8 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                           size: 24,
                         ),
                         onPressed: () async {
+                          logFirebaseEvent('IconButton-ON_TAP');
+                          logFirebaseEvent('IconButton-Navigate-Back');
                           Navigator.pop(context);
                         },
                       ),
@@ -105,6 +108,8 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 24, 0),
                       child: InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Icon-ON_TAP');
+                          logFirebaseEvent('Icon-Upload-Photo-Video');
                           final selectedMedia =
                               await selectMediaWithSourceBottomSheet(
                             context: context,
@@ -196,7 +201,7 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                             ),
                           ),
                           suffixIcon: Icon(
-                            FFIcons.user,
+                            FFIcons.kuser,
                             color: Color(0xFF757575),
                             size: 18,
                           ),
@@ -295,6 +300,8 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(16, 50, 16, 0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('Button-ON_TAP');
+                        logFirebaseEvent('Button-Validate-Form');
                         if (!formKey.currentState.validate()) {
                           return;
                         }
@@ -317,6 +324,8 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                           return;
                         }
 
+                        logFirebaseEvent('Button-Backend-Call');
+
                         final maintenanceCreateData =
                             createMaintenanceRecordData(
                           issue: budgetValue,
@@ -337,6 +346,7 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                         await MaintenanceRecord.collection
                             .doc()
                             .set(maintenanceCreateData);
+                        logFirebaseEvent('Button-Backend-Call');
                         await AirtableCall.call(
                           user: currentUserEmail,
                           issue: budgetValue,
@@ -345,6 +355,7 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                           status: 'Submitted',
                           created: dateTimeFormat('d/M/y', getCurrentTimestamp),
                         );
+                        logFirebaseEvent('Button-Bottom-Sheet');
                         await showModalBottomSheet(
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,

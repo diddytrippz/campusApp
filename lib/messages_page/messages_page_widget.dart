@@ -24,6 +24,8 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
   @override
   void initState() {
     super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'MessagesPage'});
     textController = TextEditingController();
   }
 

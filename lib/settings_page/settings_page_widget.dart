@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/dark_mode_widget.dart';
 import '../edit_profile/edit_profile_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -27,6 +28,13 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'settingsPage'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -37,6 +45,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('Icon-ON_TAP');
+            logFirebaseEvent('Icon-Drawer');
             scaffoldKey.currentState.openDrawer();
           },
           child: Icon(
@@ -162,6 +172,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                 child: AuthUserStreamWidget(
                                                   child: InkWell(
                                                     onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'CircleImage-ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'CircleImage-Expand-Image');
                                                       await Navigator.push(
                                                         context,
                                                         PageTransition(
@@ -302,6 +316,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                       child: InkWell(
                         onTap: () async {
+                          logFirebaseEvent('ListTile-ON_TAP');
+                          logFirebaseEvent('ListTile-Navigate-To');
                           await Navigator.push(
                             context,
                             PageTransition(
@@ -335,6 +351,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                       child: InkWell(
                         onTap: () async {
+                          logFirebaseEvent('ListTile-ON_TAP');
+                          logFirebaseEvent('ListTile-Navigate-To');
                           await Navigator.push(
                             context,
                             PageTransition(
@@ -368,6 +386,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                       child: InkWell(
                         onTap: () async {
+                          logFirebaseEvent('ListTile-ON_TAP');
+                          logFirebaseEvent('ListTile-Navigate-To');
                           await Navigator.push(
                             context,
                             PageTransition(
@@ -401,6 +421,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                       child: InkWell(
                         onTap: () async {
+                          logFirebaseEvent('ListTile-ON_TAP');
+                          logFirebaseEvent('ListTile-Navigate-To');
                           await Navigator.pushAndRemoveUntil(
                             context,
                             PageTransition(
@@ -435,6 +457,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                       child: InkWell(
                         onTap: () async {
+                          logFirebaseEvent('ListTile-ON_TAP');
+                          logFirebaseEvent('ListTile-Auth');
                           await signOut();
                           await Navigator.pushAndRemoveUntil(
                             context,
@@ -518,6 +542,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                         child: InkWell(
                           onTap: () async {
+                            logFirebaseEvent('Row-ON_TAP');
+                            logFirebaseEvent('Row-Navigate-To');
                             await Navigator.push(
                               context,
                               PageTransition(
@@ -585,6 +611,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                         child: InkWell(
                           onTap: () async {
+                            logFirebaseEvent('Row-ON_TAP');
+                            logFirebaseEvent('Row-Navigate-To');
                             await Navigator.push(
                               context,
                               PageTransition(
@@ -636,8 +664,24 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                 ),
               ),
             ),
-            if (Theme.of(context).brightness == Brightness.dark ?? true)
-              Expanded(
+            Expanded(
+              child: InkWell(
+                onTap: () async {
+                  logFirebaseEvent('Row-ON_TAP');
+                  logFirebaseEvent('Row-Bottom-Sheet');
+                  await showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    barrierColor: Colors.transparent,
+                    context: context,
+                    builder: (context) {
+                      return Padding(
+                        padding: MediaQuery.of(context).viewInsets,
+                        child: DarkModeWidget(),
+                      );
+                    },
+                  );
+                },
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -649,99 +693,42 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                        child: InkWell(
-                          onTap: () async {
-                            setDarkModeSetting(context, ThemeMode.light);
-                          },
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Icon(
-                                    Icons.brightness_4,
-                                    color: Color(0xFF9E9E9E),
-                                    size: 24,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Icon(
+                                  Icons.brightness_4,
+                                  color: Color(0xFF9E9E9E),
+                                  size: 24,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      24, 0, 0, 0),
+                                  child: AutoSizeText(
+                                    'Appearance',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Roboto',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        24, 0, 0, 0),
-                                    child: Text(
-                                      'Light Mode',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-            if (!(Theme.of(context).brightness == Brightness.dark) ?? true)
-              Expanded(
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                        child: InkWell(
-                          onTap: () async {
-                            setDarkModeSetting(context, ThemeMode.dark);
-                          },
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Icon(
-                                    Icons.brightness_4,
-                                    color: Color(0xFF9E9E9E),
-                                    size: 24,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        24, 0, 0, 0),
-                                    child: AutoSizeText(
-                                      'Dark Mode',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            ),
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -775,6 +762,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                         child: InkWell(
                           onTap: () async {
+                            logFirebaseEvent('Row-ON_TAP');
+                            logFirebaseEvent('Row-Show-Snack-Bar');
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -847,6 +836,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                         child: InkWell(
                           onTap: () async {
+                            logFirebaseEvent('Row-ON_TAP');
+                            logFirebaseEvent('Row-Navigate-To');
                             await Navigator.push(
                               context,
                               PageTransition(
@@ -906,6 +897,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   children: [
                     InkWell(
                       onTap: () async {
+                        logFirebaseEvent('Container-ON_TAP');
+                        logFirebaseEvent('Container-Navigate-To');
                         await Navigator.push(
                           context,
                           PageTransition(
@@ -987,6 +980,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
                 child: InkWell(
                   onTap: () async {
+                    logFirebaseEvent('Row-ON_TAP');
+                    logFirebaseEvent('Row-Launch-U-R-L');
                     await launchURL('https://campusafrica.co.za');
                   },
                   child: Row(
@@ -1051,6 +1046,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('Button-ON_TAP');
+                        logFirebaseEvent('Button-Auth');
                         await signOut();
                         await Navigator.pushAndRemoveUntil(
                           context,
@@ -1065,7 +1062,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       },
                       text: 'Log Out',
                       icon: Icon(
-                        FFIcons.enter,
+                        FFIcons.kenter,
                         size: 15,
                       ),
                       options: FFButtonOptions(

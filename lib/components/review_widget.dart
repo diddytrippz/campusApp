@@ -156,6 +156,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                             ),
                             chipSpacing: 20,
                             multiselect: true,
+                            initialized: choiceChipsValues != null,
                           ),
                         ),
                       ],
@@ -164,12 +165,16 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 10),
                       child: FFButtonWidget(
                         onPressed: () async {
+                          logFirebaseEvent('Button-ON_TAP');
+                          logFirebaseEvent('Button-Backend-Call');
+
                           final maintenanceUpdateData =
                               createMaintenanceRecordData(
                             rating: ratingBarValue.round(),
                           );
                           await widget.forReviews.reference
                               .update(maintenanceUpdateData);
+                          logFirebaseEvent('Button-Navigate-To');
                           await Navigator.push(
                             context,
                             PageTransition(
@@ -202,6 +207,8 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
                       child: InkWell(
                         onTap: () async {
+                          logFirebaseEvent('Text-ON_TAP');
+                          logFirebaseEvent('Text-Navigate-Back');
                           Navigator.pop(context);
                         },
                         child: Text(

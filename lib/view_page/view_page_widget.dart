@@ -61,6 +61,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
       end: DateTime.now().endOfDay,
     );
     textController = TextEditingController();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'viewPage'});
   }
 
   @override
@@ -70,6 +71,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
       backgroundColor: FlutterFlowTheme.of(context).primaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
+          logFirebaseEvent('FloatingActionButton-ON_TAP');
+          logFirebaseEvent('FloatingActionButton-Navigate-To');
           await Navigator.push(
             context,
             PageTransition(
@@ -384,6 +387,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                               return InkWell(
                                                                 onTap:
                                                                     () async {
+                                                                  logFirebaseEvent(
+                                                                      'ListTile-ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'ListTile-Navigate-To');
                                                                   await Navigator
                                                                       .push(
                                                                     context,
@@ -418,6 +425,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           .delete_outline,
                                                                       onTap:
                                                                           () async {
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget-ON_TAP');
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget-Alert-Dialog');
                                                                         var confirmDialogResponse = await showDialog<bool>(
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
@@ -438,10 +449,14 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             ) ??
                                                                             false;
                                                                         if (confirmDialogResponse) {
+                                                                          logFirebaseEvent(
+                                                                              'SlidableActionWidget-Backend-Call');
                                                                           await listViewMaintenanceRecord
                                                                               .reference
                                                                               .delete();
                                                                         }
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget-Show-Snack-Bar');
                                                                         ScaffoldMessenger.of(context)
                                                                             .showSnackBar(
                                                                           SnackBar(
@@ -628,6 +643,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                 return InkWell(
                                                                   onTap:
                                                                       () async {
+                                                                    logFirebaseEvent(
+                                                                        'ListTile-ON_TAP');
+                                                                    logFirebaseEvent(
+                                                                        'ListTile-Navigate-To');
                                                                     await Navigator
                                                                         .push(
                                                                       context,
@@ -802,6 +821,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                               return InkWell(
                                                                 onTap:
                                                                     () async {
+                                                                  logFirebaseEvent(
+                                                                      'ListTile-ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'ListTile-Navigate-To');
                                                                   await Navigator
                                                                       .push(
                                                                     context,
@@ -1027,6 +1050,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                               return InkWell(
                                                                 onTap:
                                                                     () async {
+                                                                  logFirebaseEvent(
+                                                                      'ListTile-ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'ListTile-Navigate-To');
                                                                   await Navigator
                                                                       .push(
                                                                     context,
@@ -1058,9 +1085,14 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                               context)
                                                                           .campusRed,
                                                                       icon: FFIcons
-                                                                          .enter,
+                                                                          .kenter,
                                                                       onTap:
                                                                           () async {
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget-ON_TAP');
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget-Backend-Call');
+
                                                                         final maintenanceUpdateData =
                                                                             createMaintenanceRecordData(
                                                                           status:
@@ -1071,6 +1103,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                         await listViewMaintenanceRecord
                                                                             .reference
                                                                             .update(maintenanceUpdateData);
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget-Show-Snack-Bar');
                                                                         ScaffoldMessenger.of(context)
                                                                             .showSnackBar(
                                                                           SnackBar(
@@ -1269,6 +1303,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       InkWell(
                                                                     onTap:
                                                                         () async {
+                                                                      logFirebaseEvent(
+                                                                          'Card-ON_TAP');
+                                                                      logFirebaseEvent(
+                                                                          'Card-Navigate-To');
                                                                       await Navigator
                                                                           .push(
                                                                         context,
@@ -1531,6 +1569,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       InkWell(
                                                                     onTap:
                                                                         () async {
+                                                                      logFirebaseEvent(
+                                                                          'Card-ON_TAP');
+                                                                      logFirebaseEvent(
+                                                                          'Card-Navigate-To');
                                                                       await Navigator
                                                                           .push(
                                                                         context,

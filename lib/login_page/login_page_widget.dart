@@ -27,6 +27,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     emailAddressController = TextEditingController();
     passwordController = TextEditingController();
     passwordVisibility = false;
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'loginPage'});
   }
 
   @override
@@ -272,6 +273,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               children: [
                                 FFButtonWidget(
                                   onPressed: () async {
+                                    logFirebaseEvent(
+                                        'ButtonForgotPassword-ON_TAP');
+                                    logFirebaseEvent(
+                                        'ButtonForgotPassword-Auth');
                                     if (emailAddressController.text.isEmpty) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -312,6 +317,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
+                                    logFirebaseEvent('ButtonLogin-ON_TAP');
+                                    logFirebaseEvent('ButtonLogin-Auth');
+
                                     final user = await signInWithEmail(
                                       context,
                                       emailAddressController.text,
@@ -370,6 +378,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
                             child: FFButtonWidget(
                               onPressed: () async {
+                                logFirebaseEvent('ButtonCreateAccount-ON_TAP');
+                                logFirebaseEvent(
+                                    'ButtonCreateAccount-Navigate-To');
                                 await Navigator.push(
                                   context,
                                   PageTransition(

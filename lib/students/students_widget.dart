@@ -22,6 +22,12 @@ class _StudentsWidgetState extends State<StudentsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'students'});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -30,6 +36,8 @@ class _StudentsWidgetState extends State<StudentsWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
+            logFirebaseEvent('Icon-ON_TAP');
+            logFirebaseEvent('Icon-Navigate-To');
             await Navigator.push(
               context,
               PageTransition(
@@ -58,6 +66,8 @@ class _StudentsWidgetState extends State<StudentsWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 18, 0),
             child: InkWell(
               onTap: () async {
+                logFirebaseEvent('Icon-ON_TAP');
+                logFirebaseEvent('Icon-Navigate-To');
                 await Navigator.push(
                   context,
                   PageTransition(
@@ -126,6 +136,8 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                             elevation: 3,
                             child: InkWell(
                               onTap: () async {
+                                logFirebaseEvent('Row-ON_TAP');
+                                logFirebaseEvent('Row-Navigate-To');
                                 await Navigator.push(
                                   context,
                                   PageTransition(

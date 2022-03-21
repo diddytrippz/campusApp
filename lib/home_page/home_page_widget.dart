@@ -1,19 +1,19 @@
-import '../appliances/appliances_widget.dart';
-import '../components/dark_mode_widget.dart';
+import '../appliances_copy/appliances_copy_widget.dart';
 import '../electrical/electrical_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../furniture/furniture_widget.dart';
 import '../locksmith/locksmith_widget.dart';
+import '../main.dart';
 import '../others/others_widget.dart';
 import '../painting/painting_widget.dart';
 import '../pestcontrol/pestcontrol_widget.dart';
 import '../plumbing/plumbing_widget.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({Key key}) : super(key: key);
@@ -24,6 +24,12 @@ class HomePageWidget extends StatefulWidget {
 
 class _HomePageWidgetState extends State<HomePageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'homePage'});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,66 +105,70 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 6),
-                                                      child: InkWell(
-                                                        onTap: () async {
-                                                          await showModalBottomSheet(
-                                                            isScrollControlled:
-                                                                true,
-                                                            backgroundColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            barrierColor: Color(
-                                                                0x17FFFFFF),
-                                                            context: context,
-                                                            builder: (context) {
-                                                              return Padding(
-                                                                padding: MediaQuery.of(
-                                                                        context)
-                                                                    .viewInsets,
-                                                                child:
-                                                                    DarkModeWidget(),
-                                                              );
-                                                            },
-                                                          );
-                                                        },
-                                                        child:
-                                                            CircularPercentIndicator(
-                                                                percent: 0.75,
-                                                                radius: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.09,
-                                                                lineWidth: 11,
-                                                                animation: true,
-                                                                progressColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryColor,
-                                                                backgroundColor:
-                                                                    Color(
-                                                                        0xFFF1F4F8),
-                                                                center: Text(
-                                                                  'Mode',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Roboto',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        fontSize:
-                                                                            8,
-                                                                      ),
-                                                                ),
-                                                                startAngle:
-                                                                    360),
+                                                    InkWell(
+                                                      onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'Badge-ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'Badge-Navigate-To');
+                                                        await Navigator.push(
+                                                          context,
+                                                          PageTransition(
+                                                            type:
+                                                                PageTransitionType
+                                                                    .bottomToTop,
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    300),
+                                                            reverseDuration:
+                                                                Duration(
+                                                                    milliseconds:
+                                                                        300),
+                                                            child: NavBarPage(
+                                                                initialPage:
+                                                                    'MessagesPage'),
+                                                          ),
+                                                        );
+                                                      },
+                                                      child: Badge(
+                                                        badgeContent: Text(
+                                                          '0',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Roboto',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 12,
+                                                              ),
+                                                        ),
+                                                        showBadge: true,
+                                                        shape:
+                                                            BadgeShape.circle,
+                                                        badgeColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                        elevation: 4,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8, 8, 8, 8),
+                                                        position: BadgePosition
+                                                            .topEnd(),
+                                                        animationType:
+                                                            BadgeAnimationType
+                                                                .scale,
+                                                        toAnimate: true,
+                                                        child: Icon(
+                                                          Icons.mail,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          size: 34,
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
@@ -230,7 +240,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 100, 0, 0),
+                                          0, 60, 0, 0),
                                       child: Material(
                                         color: Colors.transparent,
                                         elevation: 0,
@@ -304,6 +314,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       children: [
                                         InkWell(
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'transferButton-ON_TAP');
+                                            logFirebaseEvent(
+                                                'transferButton-Navigate-To');
                                             await Navigator.push(
                                               context,
                                               PageTransition(
@@ -313,7 +327,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     Duration(milliseconds: 300),
                                                 reverseDuration:
                                                     Duration(milliseconds: 300),
-                                                child: AppliancesWidget(),
+                                                child: AppliancesCopyWidget(),
                                               ),
                                             );
                                           },
@@ -391,6 +405,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                         InkWell(
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'activityButton-ON_TAP');
+                                            logFirebaseEvent(
+                                                'activityButton-Navigate-To');
                                             await Navigator.push(
                                               context,
                                               PageTransition(
@@ -480,6 +498,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                         InkWell(
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'bankButton-ON_TAP');
+                                            logFirebaseEvent(
+                                                'bankButton-Navigate-To');
                                             await Navigator.push(
                                               context,
                                               PageTransition(
@@ -580,6 +602,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       children: [
                                         InkWell(
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'transferButton-ON_TAP');
+                                            logFirebaseEvent(
+                                                'transferButton-Navigate-To');
                                             await Navigator.push(
                                               context,
                                               PageTransition(
@@ -658,6 +684,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                         InkWell(
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'activityButton-ON_TAP');
+                                            logFirebaseEvent(
+                                                'activityButton-Navigate-To');
                                             await Navigator.push(
                                               context,
                                               PageTransition(
@@ -703,9 +733,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Icon(
-                                                    FFIcons.key2,
+                                                    FFIcons.kkey2,
                                                     color: Colors.white,
-                                                    size: 30,
+                                                    size: 28,
                                                   ),
                                                   Padding(
                                                     padding:
@@ -737,6 +767,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                         InkWell(
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'bankButton-ON_TAP');
+                                            logFirebaseEvent(
+                                                'bankButton-Navigate-To');
                                             await Navigator.push(
                                               context,
                                               PageTransition(
@@ -827,6 +861,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       children: [
                                         InkWell(
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'transferButton-ON_TAP');
+                                            logFirebaseEvent(
+                                                'transferButton-Navigate-To');
                                             await Navigator.push(
                                               context,
                                               PageTransition(
@@ -872,7 +910,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Icon(
-                                                    FFIcons.bug,
+                                                    FFIcons.kbug,
                                                     color: Colors.white,
                                                     size: 30,
                                                   ),
@@ -965,6 +1003,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                         InkWell(
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'bankButton-ON_TAP');
+                                            logFirebaseEvent(
+                                                'bankButton-Navigate-To');
                                             await Navigator.push(
                                               context,
                                               PageTransition(
@@ -1010,7 +1052,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Icon(
-                                                    FFIcons.filesEmpty,
+                                                    FFIcons.kclipboard,
                                                     color: Colors.white,
                                                     size: 30,
                                                   ),

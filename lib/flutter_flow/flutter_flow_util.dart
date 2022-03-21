@@ -19,6 +19,7 @@ export 'package:cloud_firestore/cloud_firestore.dart' show DocumentReference;
 export 'package:page_transition/page_transition.dart';
 export 'custom_icons.dart' show FFIcons;
 export 'internationalization.dart' show FFLocalizations;
+export '../backend/firebase_analytics/analytics.dart';
 export 'lat_lng.dart';
 export 'place.dart';
 
@@ -137,6 +138,8 @@ dynamic getJsonField(dynamic response, String jsonPath) {
 }
 
 bool get isAndroid => !kIsWeb && Platform.isAndroid;
+bool get isiOS => !kIsWeb && Platform.isIOS;
+bool get isWeb => kIsWeb;
 bool responsiveVisibility({
   @required BuildContext context,
   bool phone = true,

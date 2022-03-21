@@ -106,6 +106,8 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 29, 0, 20),
                         child: FFButtonWidget(
                           onPressed: () async {
+                            logFirebaseEvent('Button-ON_TAP');
+                            logFirebaseEvent('Button-Navigate-To');
                             await Navigator.pushAndRemoveUntil(
                               context,
                               PageTransition(
