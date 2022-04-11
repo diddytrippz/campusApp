@@ -41,7 +41,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
             Navigator.pop(context);
           },
           child: Icon(
-            Icons.keyboard_backspace,
+            Icons.arrow_back_ios_outlined,
             color: FlutterFlowTheme.of(context).primaryText,
             size: 24,
           ),
@@ -110,50 +110,73 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-          child: FutureBuilder<List<UsersRecord>>(
-            future: UsersRecord.search(
-              term: textController.text,
-              maxResults: 10,
-            ),
-            builder: (context, snapshot) {
-              // Customize what your widget looks like when it's loading.
-              if (!snapshot.hasData) {
-                return Center(
-                  child: SizedBox(
-                    width: 60,
-                    height: 60,
-                    child: SpinKitPulse(
-                      color: FlutterFlowTheme.of(context).primaryColor,
-                      size: 60,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Container(
+              width: double.infinity,
+              height: 50,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                    child: Text(
+                      'Search Contacts',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Open Sans',
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
                     ),
                   ),
-                );
-              }
-              List<UsersRecord> columnUsersRecordList = snapshot.data;
-              // Customize what your widget looks like with no search results.
-              if (snapshot.data.isEmpty) {
-                return Container(
-                  height: 100,
-                  child: Center(
-                    child: Text('No results.'),
-                  ),
-                );
-              }
-              return SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: List.generate(columnUsersRecordList.length,
-                      (columnIndex) {
-                    final columnUsersRecord =
-                        columnUsersRecordList[columnIndex];
-                    return Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Card(
+                ],
+              ),
+            ),
+            FutureBuilder<List<UsersRecord>>(
+              future: UsersRecord.search(
+                term: textController.text,
+                maxResults: 10,
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: SpinKitPulse(
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        size: 60,
+                      ),
+                    ),
+                  );
+                }
+                List<UsersRecord> columnUsersRecordList = snapshot.data;
+                // Customize what your widget looks like with no search results.
+                if (snapshot.data.isEmpty) {
+                  return Container(
+                    height: 100,
+                    child: Center(
+                      child: Text('No results.'),
+                    ),
+                  );
+                }
+                return SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: List.generate(columnUsersRecordList.length,
+                        (columnIndex) {
+                      final columnUsersRecord =
+                          columnUsersRecordList[columnIndex];
+                      return Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         color: FlutterFlowTheme.of(context).tertiaryColor,
-                        elevation: 3,
+                        elevation: 0,
                         child: InkWell(
                           onTap: () async {
                             logFirebaseEvent('Row-ON_TAP');
@@ -252,13 +275,13 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                             ],
                           ),
                         ),
-                      ),
-                    );
-                  }),
-                ),
-              );
-            },
-          ),
+                      );
+                    }),
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

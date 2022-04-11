@@ -166,7 +166,7 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                                         child: CachedNetworkImage(
                                           imageUrl: valueOrDefault<String>(
                                             uploadedFileUrl,
-                                            'https://cdn.dribbble.com/users/55871/screenshots/2158022/media/8f2a4a2c9126a9f265fb9e1023b1698a.jpg?compress=1&resize=400x300',
+                                            'https://www.posterprintfactory.com/assets/file_placeholder.png',
                                           ),
                                           width: MediaQuery.of(context)
                                                   .size
@@ -179,15 +179,6 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                                           fit: BoxFit.cover,
                                         ),
                                       ),
-                                      if ((uploadedFileUrl) == '')
-                                        Align(
-                                          alignment: AlignmentDirectional(0, 0),
-                                          child: Icon(
-                                            Icons.add_a_photo_rounded,
-                                            color: Colors.black,
-                                            size: 55,
-                                          ),
-                                        ),
                                     ],
                                   ),
                                 ),

@@ -786,7 +786,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       Icon(
                                                         FFIcons.kkey2,
                                                         color: Colors.white,
-                                                        size: 28,
+                                                        size: 26,
                                                       ),
                                                       Padding(
                                                         padding:

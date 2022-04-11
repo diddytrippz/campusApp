@@ -286,12 +286,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                 color: Colors.transparent,
                                 elevation: 5,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(0),
-                                    bottomRight: Radius.circular(0),
-                                    topLeft: Radius.circular(6),
-                                    topRight: Radius.circular(6),
-                                  ),
+                                  borderRadius: BorderRadius.circular(0),
                                 ),
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
@@ -299,12 +294,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .tertiaryColor,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(0),
-                                      bottomRight: Radius.circular(0),
-                                      topLeft: Radius.circular(6),
-                                      topRight: Radius.circular(6),
-                                    ),
+                                    borderRadius: BorderRadius.circular(0),
                                   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,

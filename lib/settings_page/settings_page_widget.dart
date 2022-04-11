@@ -499,41 +499,160 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
       ),
       body: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
-                      child: Text(
-                        'ACCOUNT',
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Open Sans',
-                              color: Color(0xFF9E9E9E),
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 85,
+                          height: 85,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).campusRed,
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).primaryText,
                             ),
+                          ),
+                          child: AuthUserStreamWidget(
+                            child: InkWell(
+                              onTap: () async {
+                                logFirebaseEvent('CircleImage-ON_TAP');
+                                logFirebaseEvent('CircleImage-Expand-Image');
+                                await Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: FlutterFlowExpandedImageView(
+                                      image: Image.network(
+                                        valueOrDefault<String>(
+                                          currentUserPhoto,
+                                          'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                        ),
+                                        fit: BoxFit.contain,
+                                      ),
+                                      allowRotation: false,
+                                      tag: valueOrDefault<String>(
+                                        currentUserPhoto,
+                                        'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                      ),
+                                      useHeroAnimation: true,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Hero(
+                                tag: valueOrDefault<String>(
+                                  currentUserPhoto,
+                                  'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                ),
+                                transitionOnUserGestures: true,
+                                child: Container(
+                                  width: 85,
+                                  height: 85,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.network(
+                                    valueOrDefault<String>(
+                                      currentUserPhoto,
+                                      'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                    child: Text(
+                      'Lincoln Mudau',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Open Sans',
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                    child: Text(
+                      '2188162@students.wits.ac.za',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Open Sans',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+                    child: FFButtonWidget(
+                      onPressed: () {
+                        print('Button pressed ...');
+                      },
+                      text: 'Edit Profile',
+                      options: FFButtonOptions(
+                        width: 150,
+                        height: 45,
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle2.override(
+                                  fontFamily: 'Open Sans',
+                                  color: Colors.white,
+                                ),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: 12,
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
-            Expanded(
-              child: Padding(
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
+                        child: Text(
+                          'ACCOUNT',
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Open Sans',
+                                    color: Color(0xFF9E9E9E),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.07,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         shape: BoxShape.rectangle,
@@ -594,15 +713,14 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   ],
                 ),
               ),
-            ),
-            Expanded(
-              child: Padding(
+              Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.07,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         shape: BoxShape.rectangle,
@@ -663,9 +781,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   ],
                 ),
               ),
-            ),
-            Expanded(
-              child: InkWell(
+              InkWell(
                 onTap: () async {
                   logFirebaseEvent('Row-ON_TAP');
                   logFirebaseEvent('Row-Bottom-Sheet');
@@ -687,6 +803,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.07,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         shape: BoxShape.rectangle,
@@ -728,32 +845,31 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   ],
                 ),
               ),
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
-                  child: Text(
-                    'STUDENTS',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Open Sans',
-                          color: Color(0xFF9E9E9E),
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
+                    child: Text(
+                      'STUDENTS',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Open Sans',
+                            color: Color(0xFF9E9E9E),
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Padding(
+                ],
+              ),
+              Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.07,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         shape: BoxShape.rectangle,
@@ -819,15 +935,14 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   ],
                 ),
               ),
-            ),
-            Expanded(
-              child: Padding(
+              Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.07,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         shape: BoxShape.rectangle,
@@ -888,9 +1003,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   ],
                 ),
               ),
-            ),
-            Expanded(
-              child: Padding(
+              Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -911,6 +1024,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.07,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
                           shape: BoxShape.rectangle,
@@ -921,7 +1035,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Icon(
-                                Icons.group_add,
+                                Icons.add_ic_call_rounded,
                                 color: Color(0xFF9E9E9E),
                                 size: 24,
                               ),
@@ -929,7 +1043,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                                 child: AutoSizeText(
-                                  'Students',
+                                  'Contacts',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
@@ -957,26 +1071,24 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   ],
                 ),
               ),
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 14, 0, 14),
-                  child: Text(
-                    'LEGAL',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Open Sans',
-                          color: Color(0xFF9E9E9E),
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(24, 14, 0, 14),
+                    child: Text(
+                      'LEGAL',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Open Sans',
+                            color: Color(0xFF9E9E9E),
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Padding(
+                ],
+              ),
+              Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
                 child: InkWell(
                   onTap: () async {
@@ -989,6 +1101,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.07,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
                           shape: BoxShape.rectangle,
@@ -1035,59 +1148,60 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 30),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        logFirebaseEvent('Button-ON_TAP');
-                        logFirebaseEvent('Button-Auth');
-                        await signOut();
-                        await Navigator.pushAndRemoveUntil(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.bottomToTop,
-                            duration: Duration(milliseconds: 300),
-                            reverseDuration: Duration(milliseconds: 300),
-                            child: OnboardingWidget(),
-                          ),
-                          (r) => false,
-                        );
-                      },
-                      text: 'Log Out',
-                      icon: Icon(
-                        FFIcons.kenter,
-                        size: 15,
-                      ),
-                      options: FFButtonOptions(
-                        width: 120,
-                        height: 45,
-                        color: Colors.white,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .bodyText2
-                            .override(
-                              fontFamily: 'Open Sans',
-                              color: FlutterFlowTheme.of(context).primaryColor,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 45, 0, 30),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          logFirebaseEvent('Button-ON_TAP');
+                          logFirebaseEvent('Button-Auth');
+                          await signOut();
+                          await Navigator.pushAndRemoveUntil(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              duration: Duration(milliseconds: 300),
+                              reverseDuration: Duration(milliseconds: 300),
+                              child: OnboardingWidget(),
                             ),
-                        elevation: 3,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
+                            (r) => false,
+                          );
+                        },
+                        text: 'Log Out',
+                        icon: Icon(
+                          FFIcons.kenter,
+                          size: 15,
                         ),
-                        borderRadius: 8,
+                        options: FFButtonOptions(
+                          width: 120,
+                          height: 45,
+                          color: Colors.white,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .bodyText2
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                              ),
+                          elevation: 3,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: 8,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
