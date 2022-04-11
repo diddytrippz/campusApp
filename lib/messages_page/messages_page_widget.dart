@@ -9,7 +9,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class MessagesPageWidget extends StatefulWidget {
   const MessagesPageWidget({Key key}) : super(key: key);
@@ -19,29 +18,12 @@ class MessagesPageWidget extends StatefulWidget {
 }
 
 class _MessagesPageWidgetState extends State<MessagesPageWidget> {
-  PagingController<DocumentSnapshot, ChatsRecord> _pagingController =
-      PagingController(firstPageKey: null);
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _pagingController.addPageRequestListener((nextPageMarker) {
-      queryChatsRecordOncePage(
-        queryBuilder: (chatsRecord) => chatsRecord
-            .where('users', arrayContains: currentUserReference)
-            .orderBy('last_message_time', descending: true),
-        nextPageMarker: nextPageMarker,
-        pageSize: 10,
-      ).then((page) {
-        _pagingController.appendPage(
-          page.data,
-          page.nextPageMarker,
-        );
-      });
-    });
-
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'MessagesPage'});
     textController = TextEditingController();
@@ -141,87 +123,100 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-          child: PagedListView<DocumentSnapshot<Object>, ChatsRecord>(
-            pagingController: _pagingController,
-            padding: EdgeInsets.zero,
-            scrollDirection: Axis.vertical,
-            builderDelegate: PagedChildBuilderDelegate<ChatsRecord>(
-              // Customize what your widget looks like when it's loading the first page.
-              firstPageProgressIndicatorBuilder: (_) => Center(
-                child: SizedBox(
-                  width: 60,
-                  height: 60,
-                  child: SpinKitPulse(
-                    color: FlutterFlowTheme.of(context).primaryColor,
-                    size: 60,
-                  ),
-                ),
-              ),
-              noItemsFoundIndicatorBuilder: (_) => EmptyListWidget(),
-              itemBuilder: (context, _, listViewIndex) {
-                final listViewChatsRecord =
-                    _pagingController.itemList[listViewIndex];
-                return Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-                  child: StreamBuilder<FFChatInfo>(
-                    stream: FFChatManager.instance
-                        .getChatInfo(chatRecord: listViewChatsRecord),
-                    builder: (context, snapshot) {
-                      final chatInfo =
-                          snapshot.data ?? FFChatInfo(listViewChatsRecord);
-                      return FFChatPreview(
-                        onTap: chatInfo != null
-                            ? () => Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.bottomToTop,
-                                    duration: Duration(milliseconds: 300),
-                                    reverseDuration:
-                                        Duration(milliseconds: 300),
-                                    child: ChatPageWidget(
-                                      chatUser: chatInfo.otherUsers.length == 1
-                                          ? chatInfo.otherUsersList.first
-                                          : null,
-                                      chatRef: chatInfo.chatRecord.reference,
-                                    ),
-                                  ),
-                                )
-                            : null,
-                        lastChatText: chatInfo.chatPreviewMessage(),
-                        lastChatTime: listViewChatsRecord.lastMessageTime,
-                        seen: listViewChatsRecord.lastMessageSeenBy
-                            .contains(currentUserReference),
-                        title: chatInfo.chatPreviewTitle(),
-                        userProfilePic: chatInfo.chatPreviewPic(),
-                        color: FlutterFlowTheme.of(context).tertiaryColor,
-                        unreadColor: Color(0xFF0078FF),
-                        titleTextStyle: GoogleFonts.getFont(
-                          'Open Sans',
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                        ),
-                        dateTextStyle: GoogleFonts.getFont(
-                          'Open Sans',
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 10,
-                        ),
-                        previewTextStyle: GoogleFonts.getFont(
-                          'Open Sans',
-                          color: FlutterFlowTheme.of(context).campusGrey,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 13,
-                        ),
-                        contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
-                        borderRadius: BorderRadius.circular(0),
-                      );
-                    },
+          child: StreamBuilder<List<ChatsRecord>>(
+            stream: queryChatsRecord(
+              queryBuilder: (chatsRecord) => chatsRecord
+                  .where('users', arrayContains: currentUserReference)
+                  .orderBy('last_message_time', descending: true),
+            ),
+            builder: (context, snapshot) {
+              // Customize what your widget looks like when it's loading.
+              if (!snapshot.hasData) {
+                return Center(
+                  child: SizedBox(
+                    width: 60,
+                    height: 60,
+                    child: SpinKitPulse(
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                      size: 60,
+                    ),
                   ),
                 );
-              },
-            ),
+              }
+              List<ChatsRecord> listViewChatsRecordList = snapshot.data;
+              if (listViewChatsRecordList.isEmpty) {
+                return EmptyListWidget();
+              }
+              return ListView.builder(
+                padding: EdgeInsets.zero,
+                scrollDirection: Axis.vertical,
+                itemCount: listViewChatsRecordList.length,
+                itemBuilder: (context, listViewIndex) {
+                  final listViewChatsRecord =
+                      listViewChatsRecordList[listViewIndex];
+                  return Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+                    child: StreamBuilder<FFChatInfo>(
+                      stream: FFChatManager.instance
+                          .getChatInfo(chatRecord: listViewChatsRecord),
+                      builder: (context, snapshot) {
+                        final chatInfo =
+                            snapshot.data ?? FFChatInfo(listViewChatsRecord);
+                        return FFChatPreview(
+                          onTap: chatInfo != null
+                              ? () => Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.bottomToTop,
+                                      duration: Duration(milliseconds: 300),
+                                      reverseDuration:
+                                          Duration(milliseconds: 300),
+                                      child: ChatPageWidget(
+                                        chatUser:
+                                            chatInfo.otherUsers.length == 1
+                                                ? chatInfo.otherUsersList.first
+                                                : null,
+                                        chatRef: chatInfo.chatRecord.reference,
+                                      ),
+                                    ),
+                                  )
+                              : null,
+                          lastChatText: chatInfo.chatPreviewMessage(),
+                          lastChatTime: listViewChatsRecord.lastMessageTime,
+                          seen: listViewChatsRecord.lastMessageSeenBy
+                              .contains(currentUserReference),
+                          title: chatInfo.chatPreviewTitle(),
+                          userProfilePic: chatInfo.chatPreviewPic(),
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
+                          unreadColor: Color(0xFF0078FF),
+                          titleTextStyle: GoogleFonts.getFont(
+                            'Open Sans',
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                          dateTextStyle: GoogleFonts.getFont(
+                            'Open Sans',
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 10,
+                          ),
+                          previewTextStyle: GoogleFonts.getFont(
+                            'Open Sans',
+                            color: FlutterFlowTheme.of(context).campusGrey,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 13,
+                          ),
+                          contentPadding:
+                              EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
+                          borderRadius: BorderRadius.circular(0),
+                        );
+                      },
+                    ),
+                  );
+                },
+              );
+            },
           ),
         ),
       ),

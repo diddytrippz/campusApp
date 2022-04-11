@@ -504,146 +504,190 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 85,
-                          height: 85,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).campusRed,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
-                          ),
-                          child: AuthUserStreamWidget(
-                            child: InkWell(
-                              onTap: () async {
-                                logFirebaseEvent('CircleImage-ON_TAP');
-                                logFirebaseEvent('CircleImage-Expand-Image');
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: FlutterFlowExpandedImageView(
-                                      image: Image.network(
+              FutureBuilder<List<UsersRecord>>(
+                future: queryUsersRecordOnce(
+                  singleRecord: true,
+                ),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 60,
+                        height: 60,
+                        child: SpinKitPulse(
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          size: 60,
+                        ),
+                      ),
+                    );
+                  }
+                  List<UsersRecord> columnUsersRecordList = snapshot.data;
+                  // Return an empty Container when the document does not exist.
+                  if (snapshot.data.isEmpty) {
+                    return Container();
+                  }
+                  final columnUsersRecord = columnUsersRecordList.isNotEmpty
+                      ? columnUsersRecordList.first
+                      : null;
+                  return Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 85,
+                              height: 85,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).campusRed,
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
+                              ),
+                              child: AuthUserStreamWidget(
+                                child: InkWell(
+                                  onTap: () async {
+                                    logFirebaseEvent('CircleImage-ON_TAP');
+                                    logFirebaseEvent(
+                                        'CircleImage-Expand-Image');
+                                    await Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: FlutterFlowExpandedImageView(
+                                          image: Image.network(
+                                            valueOrDefault<String>(
+                                              currentUserPhoto,
+                                              'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                            ),
+                                            fit: BoxFit.contain,
+                                          ),
+                                          allowRotation: false,
+                                          tag: valueOrDefault<String>(
+                                            currentUserPhoto,
+                                            'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                          ),
+                                          useHeroAnimation: true,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Hero(
+                                    tag: valueOrDefault<String>(
+                                      currentUserPhoto,
+                                      'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                    ),
+                                    transitionOnUserGestures: true,
+                                    child: Container(
+                                      width: 85,
+                                      height: 85,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
                                         valueOrDefault<String>(
                                           currentUserPhoto,
                                           'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
                                         ),
-                                        fit: BoxFit.contain,
+                                        fit: BoxFit.cover,
                                       ),
-                                      allowRotation: false,
-                                      tag: valueOrDefault<String>(
-                                        currentUserPhoto,
-                                        'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
-                                      ),
-                                      useHeroAnimation: true,
                                     ),
-                                  ),
-                                );
-                              },
-                              child: Hero(
-                                tag: valueOrDefault<String>(
-                                  currentUserPhoto,
-                                  'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
-                                ),
-                                transitionOnUserGestures: true,
-                                child: Container(
-                                  width: 85,
-                                  height: 85,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Image.network(
-                                    valueOrDefault<String>(
-                                      currentUserPhoto,
-                                      'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
-                                    ),
-                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-                    child: Text(
-                      'Lincoln Mudau',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Open Sans',
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                    child: Text(
-                      '2188162@students.wits.ac.za',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Open Sans',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
-                    child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: 'Edit Profile',
-                      options: FFButtonOptions(
-                        width: 150,
-                        height: 45,
-                        color: FlutterFlowTheme.of(context).primaryColor,
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Open Sans',
-                                  color: Colors.white,
-                                ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: 12,
                       ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                         child: Text(
-                          'ACCOUNT',
+                          columnUsersRecord.displayName,
                           style:
                               FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Open Sans',
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                        child: Text(
+                          columnUsersRecord.email,
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Open Sans',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent('Button-ON_TAP');
+                            logFirebaseEvent('Button-Navigate-To');
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.bottomToTop,
+                                duration: Duration(milliseconds: 300),
+                                reverseDuration: Duration(milliseconds: 300),
+                                child: EditProfileWidget(),
+                              ),
+                            );
+                          },
+                          text: 'Edit Profile',
+                          options: FFButtonOptions(
+                            width: 150,
+                            height: 45,
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            textStyle:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Open Sans',
+                                      color: Colors.white,
+                                    ),
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 12,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
+                            child: Text(
+                              'ACCOUNT',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
                                     fontFamily: 'Open Sans',
                                     color: Color(0xFF9E9E9E),
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
                                   ),
-                        ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
-                  ),
-                ],
+                  );
+                },
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
