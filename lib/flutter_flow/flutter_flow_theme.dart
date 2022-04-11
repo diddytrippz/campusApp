@@ -45,43 +45,43 @@ abstract class FlutterFlowTheme {
   Color campusGrey;
 
   TextStyle get title1 => GoogleFonts.getFont(
-        'Roboto',
+        'Open Sans',
         color: Color(0xFF303030),
         fontWeight: FontWeight.w600,
         fontSize: 24,
       );
   TextStyle get title2 => GoogleFonts.getFont(
-        'Roboto',
+        'Open Sans',
         color: Color(0xFF303030),
         fontWeight: FontWeight.w500,
         fontSize: 22,
       );
   TextStyle get title3 => GoogleFonts.getFont(
-        'Roboto',
+        'Open Sans',
         color: Color(0xFF303030),
         fontWeight: FontWeight.w500,
         fontSize: 20,
       );
   TextStyle get subtitle1 => GoogleFonts.getFont(
-        'Roboto',
+        'Open Sans',
         color: Color(0xFF757575),
         fontWeight: FontWeight.w500,
         fontSize: 18,
       );
   TextStyle get subtitle2 => GoogleFonts.getFont(
-        'Roboto',
+        'Open Sans',
         color: Color(0xFF616161),
         fontWeight: FontWeight.normal,
         fontSize: 16,
       );
   TextStyle get bodyText1 => GoogleFonts.getFont(
-        'Roboto',
+        'Open Sans',
         color: Color(0xFF303030),
         fontWeight: FontWeight.normal,
         fontSize: 14,
       );
   TextStyle get bodyText2 => GoogleFonts.getFont(
-        'Roboto',
+        'Open Sans',
         color: Color(0xFF424242),
         fontWeight: FontWeight.normal,
         fontSize: 14,
@@ -130,6 +130,7 @@ extension TextStyleHelper on TextStyle {
     FontWeight fontWeight,
     FontStyle fontStyle,
     bool useGoogleFonts = true,
+    TextDecoration decoration,
     double lineHeight,
   }) =>
       useGoogleFonts
@@ -139,6 +140,7 @@ extension TextStyleHelper on TextStyle {
               fontSize: fontSize ?? this.fontSize,
               fontWeight: fontWeight ?? this.fontWeight,
               fontStyle: fontStyle ?? this.fontStyle,
+              decoration: decoration,
               height: lineHeight,
             )
           : copyWith(
@@ -147,6 +149,7 @@ extension TextStyleHelper on TextStyle {
               fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
+              decoration: decoration,
               height: lineHeight,
             );
 }

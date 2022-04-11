@@ -66,271 +66,317 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
         title: Text(
           'Appliances',
           style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Roboto',
+                fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
                 fontSize: 18,
               ),
         ),
         actions: [],
-        centerTitle: false,
+        centerTitle: true,
         elevation: 2,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Form(
-          key: formKey,
-          autovalidateMode: AutovalidateMode.always,
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(12, 5, 12, 0),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                    child: Material(
-                      color: Colors.transparent,
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        height: MediaQuery.of(context).size.height * 0.4,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          borderRadius: BorderRadius.circular(8),
-                          shape: BoxShape.rectangle,
+      body: SafeArea(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Form(
+            key: formKey,
+            autovalidateMode: AutovalidateMode.always,
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(12, 5, 12, 0),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        child: InkWell(
-                          onTap: () async {
-                            logFirebaseEvent('Column-ON_TAP');
-                            logFirebaseEvent('Column-Upload-Photo-Video');
-                            final selectedMedia =
-                                await selectMediaWithSourceBottomSheet(
-                              context: context,
-                              allowPhoto: true,
-                            );
-                            if (selectedMedia != null &&
-                                validateFileFormat(
-                                    selectedMedia.storagePath, context)) {
-                              showUploadMessage(
-                                context,
-                                'Uploading file...',
-                                showLoading: true,
-                              );
-                              final downloadUrl = await uploadData(
-                                  selectedMedia.storagePath,
-                                  selectedMedia.bytes);
-                              ScaffoldMessenger.of(context)
-                                  .hideCurrentSnackBar();
-                              if (downloadUrl != null) {
-                                setState(() => uploadedFileUrl = downloadUrl);
-                                showUploadMessage(
-                                  context,
-                                  'File Uploaded!',
-                                );
-                              } else {
-                                showUploadMessage(
-                                  context,
-                                  'Failed to upload media',
-                                );
-                                return;
-                              }
-                            }
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.photo_camera_outlined,
-                                color: Color(0xFF939393),
-                                size: 55,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          height: MediaQuery.of(context).size.height * 0.35,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image: CachedNetworkImageProvider(
+                                '',
                               ),
-                            ],
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                            shape: BoxShape.rectangle,
+                          ),
+                          child: InkWell(
+                            onTap: () async {
+                              logFirebaseEvent('Column-ON_TAP');
+                              logFirebaseEvent('Column-Upload-Photo-Video');
+                              final selectedMedia =
+                                  await selectMediaWithSourceBottomSheet(
+                                context: context,
+                                allowPhoto: true,
+                              );
+                              if (selectedMedia != null &&
+                                  selectedMedia.every((m) => validateFileFormat(
+                                      m.storagePath, context))) {
+                                showUploadMessage(
+                                  context,
+                                  'Uploading file...',
+                                  showLoading: true,
+                                );
+                                final downloadUrls = await Future.wait(
+                                    selectedMedia.map((m) async =>
+                                        await uploadData(
+                                            m.storagePath, m.bytes)));
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
+                                if (downloadUrls != null) {
+                                  setState(() =>
+                                      uploadedFileUrl = downloadUrls.first);
+                                  showUploadMessage(
+                                    context,
+                                    'File Uploaded!',
+                                  );
+                                } else {
+                                  showUploadMessage(
+                                    context,
+                                    'Failed to upload media',
+                                  );
+                                  return;
+                                }
+                              }
+                            },
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.35,
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: CachedNetworkImage(
+                                          imageUrl: valueOrDefault<String>(
+                                            uploadedFileUrl,
+                                            'https://cdn.dribbble.com/users/55871/screenshots/2158022/media/8f2a4a2c9126a9f265fb9e1023b1698a.jpg?compress=1&resize=400x300',
+                                          ),
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.8,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.35,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      if ((uploadedFileUrl) == '')
+                                        Align(
+                                          alignment: AlignmentDirectional(0, 0),
+                                          child: Icon(
+                                            Icons.add_a_photo_rounded,
+                                            color: Colors.black,
+                                            size: 55,
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                    child: AuthUserStreamWidget(
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                      child: AuthUserStreamWidget(
+                        child: TextFormField(
+                          controller: textController1,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: ' ',
+                            hintText: currentUserDisplayName,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            filled: true,
+                            fillColor: FlutterFlowTheme.of(context).alternate,
+                            suffixIcon: Icon(
+                              FFIcons.kuser,
+                              color: Color(0xFF757575),
+                              size: 18,
+                            ),
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                          maxLines: 1,
+                          keyboardType: TextInputType.name,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                      child: FlutterFlowDropDown(
+                        options: [
+                          'Stove not working',
+                          'Oven not working',
+                          'Microwave not working',
+                          'Fridge not working'
+                        ].toList(),
+                        onChanged: (val) => setState(() => budgetValue = val),
+                        width: MediaQuery.of(context).size.width * 0.98,
+                        height: 70,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .bodyText1
+                            .override(
+                              fontFamily: 'Open Sans',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                        hintText: 'Please select...',
+                        icon: FaIcon(
+                          FontAwesomeIcons.pen,
+                          color: FlutterFlowTheme.of(context).campusGrey,
+                          size: 16,
+                        ),
+                        fillColor: FlutterFlowTheme.of(context).alternate,
+                        elevation: 8,
+                        borderColor: Color(0x00FFFFFF),
+                        borderWidth: 2,
+                        borderRadius: 8,
+                        margin: EdgeInsetsDirectional.fromSTEB(20, 0, 12, 0),
+                        hidesUnderline: true,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(12, 40, 12, 0),
                       child: TextFormField(
-                        controller: textController1,
+                        controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: ' ',
-                          hintText: currentUserDisplayName,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
+                          labelText: 'Description ',
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
                           filled: true,
                           fillColor: FlutterFlowTheme.of(context).alternate,
-                          suffixIcon: Icon(
-                            FFIcons.kuser,
-                            color: Color(0xFF757575),
-                            size: 18,
-                          ),
+                          contentPadding:
+                              EdgeInsetsDirectional.fromSTEB(20, 40, 24, 0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Open Sans',
                               color: FlutterFlowTheme.of(context).primaryText,
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
                             ),
-                        maxLines: 1,
+                        textAlign: TextAlign.start,
+                        maxLines: 5,
                         keyboardType: TextInputType.name,
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                    child: FlutterFlowDropDown(
-                      options: [
-                        'Stove not working',
-                        'Oven not working',
-                        'Microwave not working',
-                        'Fridge not working'
-                      ].toList(),
-                      onChanged: (val) => setState(() => budgetValue = val),
-                      width: MediaQuery.of(context).size.width * 0.98,
-                      height: 70,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyText1.override(
-                                fontFamily: 'Lexend Deca',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                              ),
-                      hintText: 'Please select...',
-                      icon: FaIcon(
-                        FontAwesomeIcons.pen,
-                        color: FlutterFlowTheme.of(context).campusGrey,
-                        size: 16,
-                      ),
-                      fillColor: FlutterFlowTheme.of(context).alternate,
-                      elevation: 8,
-                      borderColor: Color(0x00FFFFFF),
-                      borderWidth: 2,
-                      borderRadius: 8,
-                      margin: EdgeInsetsDirectional.fromSTEB(20, 0, 12, 0),
-                      hidesUnderline: true,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(12, 40, 12, 0),
-                    child: TextFormField(
-                      controller: reasonController,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: 'Description ',
-                        enabledBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        filled: true,
-                        fillColor: FlutterFlowTheme.of(context).alternate,
-                        contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(20, 40, 24, 0),
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Lexend Deca',
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(16, 50, 16, 50),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          logFirebaseEvent('Button-ON_TAP');
+                          logFirebaseEvent('Button-Validate-Form');
+                          if (!formKey.currentState.validate()) {
+                            return;
+                          }
+
+                          logFirebaseEvent('Button-Backend-Call');
+                          await AirtableCall.call(
+                            user: currentUserEmail,
+                            issue: budgetValue,
+                            room: currentUserDocument?.room,
+                            building: currentUserDocument?.building,
+                            status: 'Submitted',
+                            created:
+                                dateTimeFormat('d/M/y', getCurrentTimestamp),
+                          );
+                          logFirebaseEvent('Button-Backend-Call');
+
+                          final maintenanceCreateData =
+                              createMaintenanceRecordData(
+                            issue: budgetValue,
+                            status: 'Submitted',
+                            email: currentUserEmail,
+                            createdTime: getCurrentTimestamp,
+                            displayName: currentUserDisplayName,
+                            room: currentUserDocument?.room,
+                            building: currentUserDocument?.building,
+                            notes: reasonController.text,
+                            rating: 0,
+                            uid: currentUserUid,
+                            category: 'Appliances',
+                            isDone: false,
+                            assigned: 'Maintenance Team',
+                            photoUrl: uploadedFileUrl,
+                          );
+                          await MaintenanceRecord.collection
+                              .doc()
+                              .set(maintenanceCreateData);
+                          logFirebaseEvent('Button-Bottom-Sheet');
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            barrierColor: Color(0x64F5F5F5),
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: SubmittedIconWidget(),
+                              );
+                            },
+                          );
+                        },
+                        text: 'Submit',
+                        options: FFButtonOptions(
+                          width: double.infinity,
+                          height: 55,
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle:
+                              FlutterFlowTheme.of(context).title3.override(
+                                    fontFamily: 'Open Sans',
+                                    color: Color(0xFFE2E3E7),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
                           ),
-                      textAlign: TextAlign.start,
-                      maxLines: 5,
-                      keyboardType: TextInputType.name,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 50, 16, 50),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        logFirebaseEvent('Button-ON_TAP');
-                        logFirebaseEvent('Button-Validate-Form');
-                        if (!formKey.currentState.validate()) {
-                          return;
-                        }
-
-                        logFirebaseEvent('Button-Backend-Call');
-                        await AirtableCall.call(
-                          user: currentUserEmail,
-                          issue: budgetValue,
-                          room: currentUserDocument?.room,
-                          building: currentUserDocument?.building,
-                          status: 'Submitted',
-                          created: dateTimeFormat('d/M/y', getCurrentTimestamp),
-                        );
-                        logFirebaseEvent('Button-Backend-Call');
-
-                        final maintenanceCreateData =
-                            createMaintenanceRecordData(
-                          issue: budgetValue,
-                          status: 'Submitted',
-                          email: currentUserEmail,
-                          createdTime: getCurrentTimestamp,
-                          displayName: currentUserDisplayName,
-                          room: currentUserDocument?.room,
-                          building: currentUserDocument?.building,
-                          notes: reasonController.text,
-                          rating: 0,
-                          uid: currentUserUid,
-                          category: 'Appliances',
-                          isDone: false,
-                          assigned: 'Maintenance Team',
-                          photoUrl: uploadedFileUrl,
-                        );
-                        await MaintenanceRecord.collection
-                            .doc()
-                            .set(maintenanceCreateData);
-                        logFirebaseEvent('Button-Bottom-Sheet');
-                        await showModalBottomSheet(
-                          isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
-                          barrierColor: Color(0x64F5F5F5),
-                          context: context,
-                          builder: (context) {
-                            return Padding(
-                              padding: MediaQuery.of(context).viewInsets,
-                              child: SubmittedIconWidget(),
-                            );
-                          },
-                        );
-                      },
-                      text: 'Submit',
-                      options: FFButtonOptions(
-                        width: double.infinity,
-                        height: 55,
-                        color: FlutterFlowTheme.of(context).primaryColor,
-                        textStyle: FlutterFlowTheme.of(context).title3.override(
-                              fontFamily: 'Roboto',
-                              color: Color(0xFFE2E3E7),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                            ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
+                          borderRadius: 7,
                         ),
-                        borderRadius: 7,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

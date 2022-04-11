@@ -75,7 +75,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
               ),
             ),
             style: FlutterFlowTheme.of(context).bodyText1.override(
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Open Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
                 ),
           ),
@@ -214,7 +214,8 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                                             context)
                                                         .title2
                                                         .override(
-                                                          fontFamily: 'Roboto',
+                                                          fontFamily:
+                                                              'Open Sans',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
@@ -227,12 +228,12 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 4, 0, 0),
                                                 child: Text(
-                                                  columnUsersRecord.room,
+                                                  columnUsersRecord.building,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1
                                                       .override(
-                                                        fontFamily: 'Roboto',
+                                                        fontFamily: 'Open Sans',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)

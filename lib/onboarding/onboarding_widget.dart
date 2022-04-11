@@ -80,7 +80,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .title1
                                         .override(
-                                          fontFamily: 'Lexend Deca',
+                                          fontFamily: 'Open Sans',
                                           color: Colors.white,
                                           fontSize: 32,
                                           fontWeight: FontWeight.bold,
@@ -101,7 +101,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .subtitle2
                                           .override(
-                                            fontFamily: 'Lexend Deca',
+                                            fontFamily: 'Open Sans',
                                             color: Color(0x99FFFFFF),
                                             fontSize: 16,
                                             fontWeight: FontWeight.w500,
@@ -140,17 +140,17 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                       },
                                       text: 'NEXT',
                                       options: FFButtonOptions(
-                                        width: 170,
+                                        width: 200,
                                         height: 50,
                                         color:
                                             FlutterFlowTheme.of(context).mellow,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .subtitle2
                                             .override(
-                                              fontFamily: 'Lexend Deca',
+                                              fontFamily: 'Open Sans',
                                               color: Colors.white,
                                               fontSize: 16,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                         elevation: 2,
                                         borderSide: BorderSide(

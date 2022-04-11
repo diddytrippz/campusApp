@@ -61,7 +61,7 @@ class _DarkModeWidgetState extends State<DarkModeWidget> {
                         child: AutoSizeText(
                           'Light theme',
                           style: FlutterFlowTheme.of(context).title1.override(
-                                fontFamily: 'Roboto',
+                                fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -99,7 +99,7 @@ class _DarkModeWidgetState extends State<DarkModeWidget> {
                         child: AutoSizeText(
                           'Dark theme',
                           style: FlutterFlowTheme.of(context).title1.override(
-                                fontFamily: 'Roboto',
+                                fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -151,7 +151,7 @@ class _DarkModeWidgetState extends State<DarkModeWidget> {
                         child: AutoSizeText(
                           'From device settings',
                           style: FlutterFlowTheme.of(context).title1.override(
-                                fontFamily: 'Roboto',
+                                fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,

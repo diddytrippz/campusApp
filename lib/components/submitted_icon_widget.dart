@@ -74,7 +74,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                               'Success!',
                               style:
                                   FlutterFlowTheme.of(context).title1.override(
-                                        fontFamily: 'Roboto',
+                                        fontFamily: 'Open Sans',
                                         color: Color(0xFF181818),
                                       ),
                             ),
@@ -94,7 +94,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
-                                    fontFamily: 'Roboto',
+                                    fontFamily: 'Open Sans',
                                     color: Color(0xFF181818),
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -126,7 +126,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                             color: FlutterFlowTheme.of(context).primaryColor,
                             textStyle:
                                 FlutterFlowTheme.of(context).subtitle2.override(
-                                      fontFamily: 'Roboto',
+                                      fontFamily: 'Open Sans',
                                       color: Colors.white,
                                     ),
                             borderSide: BorderSide(

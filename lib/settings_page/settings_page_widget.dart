@@ -58,7 +58,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
         title: Text(
           'Settings',
           style: FlutterFlowTheme.of(context).title3.override(
-                fontFamily: 'Roboto',
+                fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -263,7 +263,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                           context)
                                                       .title1
                                                       .override(
-                                                        fontFamily: 'Roboto',
+                                                        fontFamily: 'Open Sans',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -336,7 +336,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           title: Text(
                             'Profile',
                             style: FlutterFlowTheme.of(context).title3.override(
-                                  fontFamily: 'Roboto',
+                                  fontFamily: 'Open Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   fontSize: 16,
@@ -442,7 +442,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           title: Text(
                             'Students',
                             style: FlutterFlowTheme.of(context).title3.override(
-                                  fontFamily: 'Roboto',
+                                  fontFamily: 'Open Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   fontSize: 16,
@@ -515,7 +515,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       child: Text(
                         'ACCOUNT',
                         style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Open Sans',
                               color: Color(0xFF9E9E9E),
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
@@ -570,7 +570,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
-                                        fontFamily: 'Roboto',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                       ),
@@ -639,7 +639,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
-                                        fontFamily: 'Roboto',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                       ),
@@ -713,7 +713,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
-                                          fontFamily: 'Roboto',
+                                          fontFamily: 'Open Sans',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                         ),
@@ -737,7 +737,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   child: Text(
                     'STUDENTS',
                     style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Open Sans',
                           color: Color(0xFF9E9E9E),
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
@@ -795,7 +795,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
-                                        fontFamily: 'Roboto',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                       ),
@@ -864,7 +864,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
-                                        fontFamily: 'Roboto',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                       ),
@@ -933,7 +933,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
-                                        fontFamily: 'Roboto',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                       ),
@@ -966,7 +966,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   child: Text(
                     'LEGAL',
                     style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Open Sans',
                           color: Color(0xFF9E9E9E),
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
@@ -1011,7 +1011,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
-                                        fontFamily: 'Roboto',
+                                        fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                       ),
@@ -1072,7 +1072,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         textStyle: FlutterFlowTheme.of(context)
                             .bodyText2
                             .override(
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Open Sans',
                               color: FlutterFlowTheme.of(context).primaryColor,
                             ),
                         elevation: 3,

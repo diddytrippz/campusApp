@@ -80,7 +80,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                         child: Text(
                           'Back',
                           style: FlutterFlowTheme.of(context).title2.override(
-                                fontFamily: 'Roboto',
+                                fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 16,
                               ),
@@ -98,7 +98,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                       child: Text(
                         'Locksmith',
                         style: FlutterFlowTheme.of(context).title2.override(
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Open Sans',
                               color: FlutterFlowTheme.of(context).primaryText,
                               fontSize: 18,
                             ),
@@ -116,18 +116,20 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                             allowPhoto: true,
                           );
                           if (selectedMedia != null &&
-                              validateFileFormat(
-                                  selectedMedia.storagePath, context)) {
+                              selectedMedia.every((m) =>
+                                  validateFileFormat(m.storagePath, context))) {
                             showUploadMessage(
                               context,
                               'Uploading file...',
                               showLoading: true,
                             );
-                            final downloadUrl = await uploadData(
-                                selectedMedia.storagePath, selectedMedia.bytes);
+                            final downloadUrls = await Future.wait(
+                                selectedMedia.map((m) async =>
+                                    await uploadData(m.storagePath, m.bytes)));
                             ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                            if (downloadUrl != null) {
-                              setState(() => uploadedFileUrl = downloadUrl);
+                            if (downloadUrls != null) {
+                              setState(
+                                  () => uploadedFileUrl = downloadUrls.first);
                               showUploadMessage(
                                 context,
                                 'File Uploaded!',
@@ -207,7 +209,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Open Sans',
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                         keyboardType: TextInputType.name,
@@ -219,7 +221,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                     child: Text(
                       'Issue',
                       style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Roboto',
+                            fontFamily: 'Open Sans',
                             color: FlutterFlowTheme.of(context).primaryText,
                             fontWeight: FontWeight.bold,
                           ),
@@ -352,7 +354,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                         height: 50,
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle: FlutterFlowTheme.of(context).title3.override(
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Open Sans',
                               color: Color(0xFFE2E3E7),
                               fontSize: 18,
                               fontWeight: FontWeight.w600,

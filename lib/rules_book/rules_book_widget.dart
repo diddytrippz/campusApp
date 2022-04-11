@@ -64,7 +64,7 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
                         child: Text(
                           'Back',
                           style: FlutterFlowTheme.of(context).title2.override(
-                                fontFamily: 'Roboto',
+                                fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 16,
                               ),
@@ -78,7 +78,7 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
                   child: Text(
                     'Campus Africa',
                     style: FlutterFlowTheme.of(context).title2.override(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Open Sans',
                           color: FlutterFlowTheme.of(context).primaryText,
                           fontSize: 18,
                         ),

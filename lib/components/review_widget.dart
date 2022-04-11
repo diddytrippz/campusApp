@@ -76,7 +76,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                       child: Text(
                         'Your Review',
                         style: FlutterFlowTheme.of(context).title1.override(
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Open Sans',
                               fontSize: 18,
                             ),
                       ),
@@ -135,7 +135,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
-                                    fontFamily: 'Roboto',
+                                    fontFamily: 'Open Sans',
                                     color: Colors.white,
                                   ),
                               iconColor: Colors.white,
@@ -147,7 +147,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .bodyText2
                                   .override(
-                                    fontFamily: 'Roboto',
+                                    fontFamily: 'Open Sans',
                                     color: Color(0xFF262D34),
                                   ),
                               iconColor: Color(0xFF262D34),
@@ -157,6 +157,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                             chipSpacing: 20,
                             multiselect: true,
                             initialized: choiceChipsValues != null,
+                            alignment: WrapAlignment.start,
                           ),
                         ),
                       ],
@@ -192,7 +193,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                           color: FlutterFlowTheme.of(context).primaryColor,
                           textStyle:
                               FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Roboto',
+                                    fontFamily: 'Open Sans',
                                     color: Colors.white,
                                   ),
                           borderSide: BorderSide(

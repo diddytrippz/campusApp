@@ -31,73 +31,41 @@ class _VerificationWidgetState extends State<VerificationWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100),
-        child: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-          automaticallyImplyLeading: false,
-          flexibleSpace: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 14),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                        child: FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 30,
-                          borderWidth: 1,
-                          buttonSize: 50,
-                          icon: Icon(
-                            Icons.arrow_back_rounded,
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                          onPressed: () async {
-                            logFirebaseEvent('IconButton-ON_TAP');
-                            logFirebaseEvent('IconButton-Navigate-Back');
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                        child: Text(
-                          'Back',
-                          style: FlutterFlowTheme.of(context).title2.override(
-                                fontFamily: 'Roboto',
-                                color: Colors.white,
-                                fontSize: 16,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                  child: Text(
-                    'Create password',
-                    style: FlutterFlowTheme.of(context).title2.override(
-                          fontFamily: 'Roboto',
-                          color: Colors.white,
-                          fontSize: 22,
-                        ),
-                  ),
-                ),
-              ],
+      appBar: AppBar(
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        automaticallyImplyLeading: false,
+        leading: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30,
+              borderWidth: 1,
+              buttonSize: 54,
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+                size: 24,
+              ),
+              onPressed: () async {
+                logFirebaseEvent('IconButton-ON_TAP');
+                logFirebaseEvent('IconButton-Navigate-Back');
+                Navigator.pop(context);
+              },
             ),
-          ),
-          actions: [],
-          elevation: 1,
+          ],
         ),
+        title: Text(
+          'Back',
+          style: FlutterFlowTheme.of(context).bodyText1.override(
+                fontFamily: 'Open Sans',
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
+        ),
+        actions: [],
+        centerTitle: true,
+        elevation: 2,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryColor,
       body: Form(
@@ -123,7 +91,7 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                       labelText: 'Enter Your Student Email',
                       labelStyle:
                           FlutterFlowTheme.of(context).bodyText1.override(
-                                fontFamily: 'Lexend Deca',
+                                fontFamily: 'Open Sans',
                                 color: Colors.white,
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,
@@ -131,7 +99,7 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                       hintText: 'i.e 12345@students.wits.ac.za',
                       hintStyle:
                           FlutterFlowTheme.of(context).bodyText1.override(
-                                fontFamily: 'Lexend Deca',
+                                fontFamily: 'Open Sans',
                                 color: Colors.white,
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,
@@ -160,7 +128,7 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                       ),
                     ),
                     style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Open Sans',
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.normal,
@@ -202,10 +170,10 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                       color: FlutterFlowTheme.of(context).primaryColor,
                       textStyle:
                           FlutterFlowTheme.of(context).subtitle2.override(
-                                fontFamily: 'Lexend Deca',
+                                fontFamily: 'Open Sans',
                                 color: Colors.white,
                                 fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                               ),
                       elevation: 3,
                       borderSide: BorderSide(

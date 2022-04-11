@@ -66,27 +66,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Stack(
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.15,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiaryColor,
-                                      ),
-                                      child: Visibility(
-                                        visible: responsiveVisibility(
-                                          context: context,
-                                          tablet: false,
-                                          desktop: false,
+                                Expanded(
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.15,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiaryColor,
                                         ),
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  16, 0, 16, 0),
+                                                  16, 15, 16, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -138,7 +134,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .bodyText1
                                                               .override(
                                                                 fontFamily:
-                                                                    'Roboto',
+                                                                    'Open Sans',
                                                                 color: Colors
                                                                     .white,
                                                                 fontSize: 12,
@@ -200,7 +196,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .subtitle1
                                                               .override(
                                                                 fontFamily:
-                                                                    'Roboto',
+                                                                    'Open Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
@@ -221,7 +217,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .subtitle1
                                                               .override(
                                                                 fontFamily:
-                                                                    'Roboto',
+                                                                    'Open Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
@@ -237,47 +233,46 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 60, 0, 0),
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        elevation: 0,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.9,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.3,
-                                          decoration: BoxDecoration(
-                                            color: Color(0x00121212),
-                                            image: DecorationImage(
-                                              fit: BoxFit.contain,
-                                              image: Image.asset(
-                                                'assets/images/06_COMBINED_ELEMENT.png',
-                                              ).image,
-                                            ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 60, 0, 0),
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(8),
-                                            border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              width: 0,
+                                          ),
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.3,
+                                            decoration: BoxDecoration(
+                                              color: Color(0x00121212),
+                                              image: DecorationImage(
+                                                fit: BoxFit.contain,
+                                                image: Image.asset(
+                                                  'assets/images/06_COMBINED_ELEMENT.png',
+                                                ).image,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                width: 0,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -312,32 +307,721 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        InkWell(
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'transferButton-ON_TAP');
-                                            logFirebaseEvent(
-                                                'transferButton-Navigate-To');
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .bottomToTop,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 300),
-                                                child: AppliancesCopyWidget(),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 20, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'transferButton-ON_TAP');
+                                                logFirebaseEvent(
+                                                    'transferButton-Navigate-To');
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType
+                                                        .bottomToTop,
+                                                    duration: Duration(
+                                                        milliseconds: 300),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 300),
+                                                    child:
+                                                        AppliancesCopyWidget(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                elevation: 24,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                ),
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.26,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.11,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .mellow,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 0,
+                                                        color:
+                                                            Color(0x3B000000),
+                                                        offset: Offset(0, 0),
+                                                      )
+                                                    ],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 4, 4, 4),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Icon(
+                                                          Icons.devices,
+                                                          color: Colors.white,
+                                                          size: 35,
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      8, 0, 0),
+                                                          child: Text(
+                                                            'Appliances',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
-                                            );
-                                          },
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            elevation: 24,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
                                             ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 20, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'activityButton-ON_TAP');
+                                                logFirebaseEvent(
+                                                    'activityButton-Navigate-To');
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType
+                                                        .bottomToTop,
+                                                    duration: Duration(
+                                                        milliseconds: 300),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 300),
+                                                    child: PlumbingWidget(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                elevation: 24,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                ),
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.26,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.11,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .mellow,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 0,
+                                                        color:
+                                                            Color(0x3A000000),
+                                                        offset: Offset(0, 0),
+                                                      )
+                                                    ],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 4, 4, 4),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        FaIcon(
+                                                          FontAwesomeIcons
+                                                              .server,
+                                                          color: Colors.white,
+                                                          size: 30,
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      8, 0, 0),
+                                                          child: Text(
+                                                            'Plumbing',
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 20, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'bankButton-ON_TAP');
+                                                logFirebaseEvent(
+                                                    'bankButton-Navigate-To');
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType
+                                                        .bottomToTop,
+                                                    duration: Duration(
+                                                        milliseconds: 300),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 300),
+                                                    child: FurnitureWidget(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                elevation: 12,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                ),
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.26,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.11,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .mellow,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 0,
+                                                        color:
+                                                            Color(0x39000000),
+                                                        offset: Offset(0, 0),
+                                                      )
+                                                    ],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4, 4, 4, 4),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        FaIcon(
+                                                          FontAwesomeIcons
+                                                              .couch,
+                                                          color: Colors.white,
+                                                          size: 32,
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      8, 0, 0),
+                                                          child: Text(
+                                                            'Furniture',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 6, 16, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 20, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'transferButton-ON_TAP');
+                                                logFirebaseEvent(
+                                                    'transferButton-Navigate-To');
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType
+                                                        .bottomToTop,
+                                                    duration: Duration(
+                                                        milliseconds: 300),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 300),
+                                                    child: ElectricalWidget(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.26,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.11,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .mellow,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 5,
+                                                      color: Color(0x3B000000),
+                                                      offset: Offset(0, 2),
+                                                    )
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(4, 4, 4, 4),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        Icons
+                                                            .electrical_services_rounded,
+                                                        color: Colors.white,
+                                                        size: 35,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 8, 0, 0),
+                                                        child: Text(
+                                                          'Electrical',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Lexend Deca',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 20, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'activityButton-ON_TAP');
+                                                logFirebaseEvent(
+                                                    'activityButton-Navigate-To');
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType
+                                                        .bottomToTop,
+                                                    duration: Duration(
+                                                        milliseconds: 300),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 300),
+                                                    child: LocksmithWidget(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.26,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.11,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .mellow,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 5,
+                                                      color: Color(0x3A000000),
+                                                      offset: Offset(0, 2),
+                                                    )
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(4, 4, 4, 4),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        FFIcons.kkey2,
+                                                        color: Colors.white,
+                                                        size: 28,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 8, 0, 0),
+                                                        child: Text(
+                                                          'Locksmith',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Lexend Deca',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 20, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'bankButton-ON_TAP');
+                                                logFirebaseEvent(
+                                                    'bankButton-Navigate-To');
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType
+                                                        .bottomToTop,
+                                                    duration: Duration(
+                                                        milliseconds: 300),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 300),
+                                                    child: PaintingWidget(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.26,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.11,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .mellow,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 5,
+                                                      color: Color(0x39000000),
+                                                      offset: Offset(0, 2),
+                                                    )
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(4, 4, 4, 4),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        Icons
+                                                            .format_paint_sharp,
+                                                        color: Colors.white,
+                                                        size: 35,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 8, 0, 0),
+                                                        child: Text(
+                                                          'Painting',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Lexend Deca',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 6, 16, 8),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 20, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'transferButton-ON_TAP');
+                                                logFirebaseEvent(
+                                                    'transferButton-Navigate-To');
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType
+                                                        .bottomToTop,
+                                                    duration: Duration(
+                                                        milliseconds: 300),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 300),
+                                                    child: PestcontrolWidget(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.26,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.11,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .mellow,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 5,
+                                                      color: Color(0x3B000000),
+                                                      offset: Offset(0, 2),
+                                                    )
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(4, 4, 4, 4),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        FFIcons.kbug,
+                                                        color: Colors.white,
+                                                        size: 30,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 8, 0, 0),
+                                                        child: Text(
+                                                          'Pest control',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Lexend Deca',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 20, 0),
                                             child: Container(
                                               width: MediaQuery.of(context)
                                                       .size
@@ -353,9 +1037,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .mellow,
                                                 boxShadow: [
                                                   BoxShadow(
-                                                    blurRadius: 0,
-                                                    color: Color(0x3B000000),
-                                                    offset: Offset(0, 0),
+                                                    blurRadius: 5,
+                                                    color: Color(0x3A000000),
+                                                    offset: Offset(0, 2),
                                                   )
                                                 ],
                                                 borderRadius:
@@ -371,7 +1055,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Icon(
-                                                      Icons.devices,
+                                                      Icons.business,
                                                       color: Colors.white,
                                                       size: 35,
                                                     ),
@@ -381,98 +1065,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .fromSTEB(
                                                                   0, 8, 0, 0),
                                                       child: Text(
-                                                        'Appliances',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyText1
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Lexend Deca',
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        InkWell(
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'activityButton-ON_TAP');
-                                            logFirebaseEvent(
-                                                'activityButton-Navigate-To');
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .bottomToTop,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 300),
-                                                child: PlumbingWidget(),
-                                              ),
-                                            );
-                                          },
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            elevation: 24,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            child: Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.26,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.11,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .mellow,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 0,
-                                                    color: Color(0x3A000000),
-                                                    offset: Offset(0, 0),
-                                                  )
-                                                ],
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(4, 4, 4, 4),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    FaIcon(
-                                                      FontAwesomeIcons.server,
-                                                      color: Colors.white,
-                                                      size: 30,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 8, 0, 0),
-                                                      child: Text(
-                                                        'Plumbing',
+                                                        'Communal',
                                                         textAlign:
                                                             TextAlign.center,
                                                         style: FlutterFlowTheme
@@ -496,588 +1089,93 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             ),
                                           ),
                                         ),
-                                        InkWell(
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'bankButton-ON_TAP');
-                                            logFirebaseEvent(
-                                                'bankButton-Navigate-To');
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .bottomToTop,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 300),
-                                                child: FurnitureWidget(),
-                                              ),
-                                            );
-                                          },
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            elevation: 12,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            child: Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.26,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  0.11,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .mellow,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 0,
-                                                    color: Color(0x39000000),
-                                                    offset: Offset(0, 0),
-                                                  )
-                                                ],
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(4, 4, 4, 4),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    FaIcon(
-                                                      FontAwesomeIcons.couch,
-                                                      color: Colors.white,
-                                                      size: 32,
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 8, 0, 0),
-                                                      child: Text(
-                                                        'Furniture',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyText1
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Lexend Deca',
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 6, 16, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        InkWell(
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'transferButton-ON_TAP');
-                                            logFirebaseEvent(
-                                                'transferButton-Navigate-To');
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .bottomToTop,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 300),
-                                                child: ElectricalWidget(),
-                                              ),
-                                            );
-                                          },
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.26,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.11,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .mellow,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 5,
-                                                  color: Color(0x3B000000),
-                                                  offset: Offset(0, 2),
-                                                )
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(4, 4, 4, 4),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Icon(
-                                                    Icons
-                                                        .electrical_services_rounded,
-                                                    color: Colors.white,
-                                                    size: 35,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 8, 0, 0),
-                                                    child: Text(
-                                                      'Electrical',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Lexend Deca',
-                                                            color: Colors.white,
-                                                            fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        InkWell(
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'activityButton-ON_TAP');
-                                            logFirebaseEvent(
-                                                'activityButton-Navigate-To');
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .bottomToTop,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 300),
-                                                child: LocksmithWidget(),
-                                              ),
-                                            );
-                                          },
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.26,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.11,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .mellow,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 5,
-                                                  color: Color(0x3A000000),
-                                                  offset: Offset(0, 2),
-                                                )
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(4, 4, 4, 4),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Icon(
-                                                    FFIcons.kkey2,
-                                                    color: Colors.white,
-                                                    size: 28,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 8, 0, 0),
-                                                    child: Text(
-                                                      'Locksmith',
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Lexend Deca',
-                                                            color: Colors.white,
-                                                            fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        InkWell(
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'bankButton-ON_TAP');
-                                            logFirebaseEvent(
-                                                'bankButton-Navigate-To');
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .bottomToTop,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 300),
-                                                child: PaintingWidget(),
-                                              ),
-                                            );
-                                          },
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.26,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.11,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .mellow,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 5,
-                                                  color: Color(0x39000000),
-                                                  offset: Offset(0, 2),
-                                                )
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(4, 4, 4, 4),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Icon(
-                                                    Icons.format_paint_sharp,
-                                                    color: Colors.white,
-                                                    size: 35,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 8, 0, 0),
-                                                    child: Text(
-                                                      'Painting',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Lexend Deca',
-                                                            color: Colors.white,
-                                                            fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 6, 16, 8),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        InkWell(
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'transferButton-ON_TAP');
-                                            logFirebaseEvent(
-                                                'transferButton-Navigate-To');
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .bottomToTop,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 300),
-                                                child: PestcontrolWidget(),
-                                              ),
-                                            );
-                                          },
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.26,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.11,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .mellow,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 5,
-                                                  color: Color(0x3B000000),
-                                                  offset: Offset(0, 2),
-                                                )
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(4, 4, 4, 4),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Icon(
-                                                    FFIcons.kbug,
-                                                    color: Colors.white,
-                                                    size: 30,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 8, 0, 0),
-                                                    child: Text(
-                                                      'Pest control',
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Lexend Deca',
-                                                            color: Colors.white,
-                                                            fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.26,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.11,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .mellow,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                blurRadius: 5,
-                                                color: Color(0x3A000000),
-                                                offset: Offset(0, 2),
-                                              )
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
+                                        Expanded(
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    4, 4, 4, 4),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.business,
-                                                  color: Colors.white,
-                                                  size: 35,
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 8, 0, 0),
-                                                  child: Text(
-                                                    'Communal',
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Lexend Deca',
-                                                          color: Colors.white,
-                                                          fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
+                                                    0, 0, 20, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'bankButton-ON_TAP');
+                                                logFirebaseEvent(
+                                                    'bankButton-Navigate-To');
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType
+                                                        .bottomToTop,
+                                                    duration: Duration(
+                                                        milliseconds: 300),
+                                                    reverseDuration: Duration(
+                                                        milliseconds: 300),
+                                                    child: OthersWidget(),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        InkWell(
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'bankButton-ON_TAP');
-                                            logFirebaseEvent(
-                                                'bankButton-Navigate-To');
-                                            await Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .bottomToTop,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                                reverseDuration:
-                                                    Duration(milliseconds: 300),
-                                                child: OthersWidget(),
-                                              ),
-                                            );
-                                          },
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.26,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.11,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                                );
+                                              },
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.26,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.11,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .mellow,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 5,
-                                                  color: Color(0x39000000),
-                                                  offset: Offset(0, 2),
-                                                )
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(4, 4, 4, 12),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Icon(
-                                                    FFIcons.kclipboard,
-                                                    color: Colors.white,
-                                                    size: 30,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 5,
+                                                      color: Color(0x39000000),
+                                                      offset: Offset(0, 2),
+                                                    )
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(4, 4, 4, 12),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      FaIcon(
+                                                        FontAwesomeIcons.paste,
+                                                        color: Colors.white,
+                                                        size: 30,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 8, 0, 0),
+                                                        child: Text(
+                                                          'Others',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Lexend Deca',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 8, 0, 0),
-                                                    child: Text(
-                                                      'Others',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyText1
-                                                          .override(
-                                                            fontFamily:
-                                                                'Lexend Deca',
-                                                            color: Colors.white,
-                                                            fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ],
+                                                ),
                                               ),
                                             ),
                                           ),

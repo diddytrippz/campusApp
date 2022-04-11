@@ -82,7 +82,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                   ),
                 ),
                 style: FlutterFlowTheme.of(context).bodyText1.override(
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Open Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
                     ),
                 keyboardType: TextInputType.name,
@@ -91,7 +91,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
               Text(
                 'Inbox',
                 style: FlutterFlowTheme.of(context).title3.override(
-                      fontFamily: 'Roboto',
+                      fontFamily: 'Open Sans',
                       color: FlutterFlowTheme.of(context).primaryText,
                       fontSize: 18,
                     ),
@@ -188,21 +188,21 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                           title: chatInfo.chatPreviewTitle(),
                           userProfilePic: chatInfo.chatPreviewPic(),
                           color: FlutterFlowTheme.of(context).tertiaryColor,
-                          unreadColor: Colors.blue,
+                          unreadColor: Color(0xFF0078FF),
                           titleTextStyle: GoogleFonts.getFont(
-                            'DM Sans',
+                            'Open Sans',
                             color: FlutterFlowTheme.of(context).primaryText,
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
                           ),
                           dateTextStyle: GoogleFonts.getFont(
-                            'Roboto',
+                            'Open Sans',
                             color: FlutterFlowTheme.of(context).primaryText,
                             fontWeight: FontWeight.normal,
-                            fontSize: 12,
+                            fontSize: 10,
                           ),
                           previewTextStyle: GoogleFonts.getFont(
-                            'DM Sans',
+                            'Open Sans',
                             color: FlutterFlowTheme.of(context).campusGrey,
                             fontWeight: FontWeight.normal,
                             fontSize: 13,

@@ -57,7 +57,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
         title: Text(
           'Students',
           style: FlutterFlowTheme.of(context).bodyText1.override(
-                fontFamily: 'Roboto',
+                fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
         ),
@@ -198,7 +198,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                                                 .title2
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Roboto',
+                                                                      'Open Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
@@ -221,7 +221,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                                               .bodyText1
                                                               .override(
                                                                 fontFamily:
-                                                                    'Roboto',
+                                                                    'Open Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .campusGrey,
