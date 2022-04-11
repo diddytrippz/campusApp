@@ -413,7 +413,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                         fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
-                                        fontSize: 14,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
