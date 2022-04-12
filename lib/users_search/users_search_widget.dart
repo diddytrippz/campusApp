@@ -4,7 +4,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -96,11 +95,6 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(18, 20, 18, 0),
                     child: TextFormField(
-                      onChanged: (_) => EasyDebounce.debounce(
-                        'textController',
-                        Duration(milliseconds: 2000),
-                        () => setState(() {}),
-                      ),
                       onFieldSubmitted: (_) async {
                         logFirebaseEvent('TextField-ON_TEXTFIELD_SUBMIT');
                         logFirebaseEvent('TextField-Algolia-Search');
