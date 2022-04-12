@@ -483,8 +483,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                       ),
                                                                     if ((widget
                                                                             .jobStatus
-                                                                            .status) ==
-                                                                        'Completed')
+                                                                            .isDone) ==
+                                                                        true)
                                                                       Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0,
