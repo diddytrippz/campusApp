@@ -384,7 +384,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                                                     0, 4, 0, 0),
                                                         child: Text(
                                                           columnUsersRecord
-                                                              .role,
+                                                              .room,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1
