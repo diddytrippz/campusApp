@@ -163,8 +163,8 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                                     children: [
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
-                                        child: CachedNetworkImage(
-                                          imageUrl: valueOrDefault<String>(
+                                        child: Image.network(
+                                          valueOrDefault<String>(
                                             uploadedFileUrl,
                                             'https://www.posterprintfactory.com/assets/file_placeholder.png',
                                           ),

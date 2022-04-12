@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MessagesPageWidget extends StatefulWidget {
@@ -120,6 +121,18 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
         elevation: 1,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print('FloatingActionButton pressed ...');
+        },
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        elevation: 8,
+        child: FaIcon(
+          FontAwesomeIcons.facebookMessenger,
+          color: Colors.white,
+          size: 24,
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),

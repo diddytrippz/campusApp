@@ -709,7 +709,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .bodyText1
                                                               .override(
                                                                 fontFamily:
-                                                                    'Lexend Deca',
+                                                                    'Open Sans',
                                                                 color: Colors
                                                                     .white,
                                                                 fontSize: 12,
@@ -802,7 +802,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .bodyText1
                                                               .override(
                                                                 fontFamily:
-                                                                    'Lexend Deca',
+                                                                    'Open Sans',
                                                                 color: Colors
                                                                     .white,
                                                                 fontSize: 12,
@@ -894,7 +894,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .bodyText1
                                                               .override(
                                                                 fontFamily:
-                                                                    'Lexend Deca',
+                                                                    'Open Sans',
                                                                 color: Colors
                                                                     .white,
                                                                 fontSize: 12,
