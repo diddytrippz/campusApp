@@ -168,19 +168,22 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(
-                          'Name',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Open Sans',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                        ),
-                      ],
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            'Name',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Open Sans',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                          ),
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
@@ -247,7 +250,7 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Issue',
+                          labelText: 'Describe your Issue',
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00C5C5C5),
