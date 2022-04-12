@@ -105,9 +105,9 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                             color: FlutterFlowTheme.of(context).alternate,
                             image: DecorationImage(
                               fit: BoxFit.fill,
-                              image: CachedNetworkImageProvider(
-                                '',
-                              ),
+                              image: Image.asset(
+                                'assets/images/df3hg_',
+                              ).image,
                             ),
                             borderRadius: BorderRadius.circular(10),
                             shape: BoxShape.rectangle,

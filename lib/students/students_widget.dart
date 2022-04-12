@@ -335,8 +335,12 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                                     shape: BoxShape.circle,
                                                   ),
                                                   child: CachedNetworkImage(
-                                                    imageUrl: columnUsersRecord
-                                                        .photoUrl,
+                                                    imageUrl:
+                                                        valueOrDefault<String>(
+                                                      columnUsersRecord
+                                                          .photoUrl,
+                                                      'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                                    ),
                                                     fit: BoxFit.fill,
                                                   ),
                                                 ),
@@ -496,8 +500,11 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: CachedNetworkImage(
-                                                  imageUrl: columnUsersRecord
-                                                      .photoUrl,
+                                                  imageUrl:
+                                                      valueOrDefault<String>(
+                                                    columnUsersRecord.photoUrl,
+                                                    'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                                  ),
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
