@@ -217,8 +217,20 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                         obscureText: false,
                         decoration: InputDecoration(
                           labelText: 'Issue',
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00C5C5C5),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00C5C5C5),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                           filled: true,
                           fillColor: FlutterFlowTheme.of(context).alternate,
                           contentPadding:
@@ -249,8 +261,20 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                         obscureText: false,
                         decoration: InputDecoration(
                           labelText: 'Place',
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00C5C5C5),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00C5C5C5),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                           filled: true,
                           fillColor: FlutterFlowTheme.of(context).alternate,
                           contentPadding:
