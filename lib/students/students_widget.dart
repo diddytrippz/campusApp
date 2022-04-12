@@ -276,7 +276,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                   onTap: () async {
                                     logFirebaseEvent('Row-ON_TAP');
                                     if ((columnUsersRecord.email) !=
-                                        'jeremy@conurban.co.za') {
+                                        'jeremy@conurban.co.za && brett_lensvelt@hotmail.com') {
                                       logFirebaseEvent('Row-Navigate-To');
                                       await Navigator.push(
                                         context,
