@@ -3,7 +3,6 @@ import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../components/submitted_icon_widget.dart';
-import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -12,29 +11,28 @@ import '../flutter_flow/upload_media.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AppliancesCopyWidget extends StatefulWidget {
-  const AppliancesCopyWidget({Key key}) : super(key: key);
+class CommunalWidget extends StatefulWidget {
+  const CommunalWidget({Key key}) : super(key: key);
 
   @override
-  _AppliancesCopyWidgetState createState() => _AppliancesCopyWidgetState();
+  _CommunalWidgetState createState() => _CommunalWidgetState();
 }
 
-class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
-  String budgetValue;
+class _CommunalWidgetState extends State<CommunalWidget> {
   String uploadedFileUrl = '';
   TextEditingController textController1;
   TextEditingController reasonController;
+  TextEditingController placeController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'AppliancesCopy'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Communal'});
+    placeController = TextEditingController();
     reasonController = TextEditingController();
     textController1 = TextEditingController(text: currentUserDisplayName);
   }
@@ -63,7 +61,7 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
           },
         ),
         title: Text(
-          'Appliances',
+          'Communal',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -213,47 +211,12 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                      child: FlutterFlowDropDown(
-                        options: [
-                          'Stove not working',
-                          'Oven not working',
-                          'Microwave not working',
-                          'Fridge not working'
-                        ].toList(),
-                        onChanged: (val) => setState(() => budgetValue = val),
-                        width: MediaQuery.of(context).size.width * 0.98,
-                        height: 70,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .bodyText1
-                            .override(
-                              fontFamily: 'Open Sans',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
-                        hintText: 'Please select...',
-                        icon: FaIcon(
-                          FontAwesomeIcons.pen,
-                          color: FlutterFlowTheme.of(context).campusGrey,
-                          size: 16,
-                        ),
-                        fillColor: FlutterFlowTheme.of(context).alternate,
-                        elevation: 8,
-                        borderColor: Color(0x00FFFFFF),
-                        borderWidth: 2,
-                        borderRadius: 8,
-                        margin: EdgeInsetsDirectional.fromSTEB(20, 0, 12, 0),
-                        hidesUnderline: true,
-                      ),
-                    ),
-                    Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(12, 40, 12, 0),
                       child: TextFormField(
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Description ',
+                          labelText: 'Issue',
                           enabledBorder: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           filled: true,
@@ -280,6 +243,42 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                       ),
                     ),
                     Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(12, 40, 12, 0),
+                      child: TextFormField(
+                        controller: placeController,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'Place',
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          filled: true,
+                          fillColor: FlutterFlowTheme.of(context).alternate,
+                          contentPadding:
+                              EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
+                          suffixIcon: Icon(
+                            Icons.location_pin,
+                            color: FlutterFlowTheme.of(context).campusGrey,
+                            size: 22,
+                          ),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily: 'Open Sans',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
+                        textAlign: TextAlign.start,
+                        keyboardType: TextInputType.name,
+                        validator: (val) {
+                          if (val.isEmpty) {
+                            return 'Field is required';
+                          }
+
+                          return null;
+                        },
+                      ),
+                    ),
+                    Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 50, 16, 50),
                       child: FFButtonWidget(
                         onPressed: () async {
@@ -289,29 +288,11 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                             return;
                           }
 
-                          if (budgetValue == null) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Field is required',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                  ),
-                                ),
-                                duration: Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            );
-                            return;
-                          }
-
                           logFirebaseEvent('Button-Backend-Call');
                           await AirtableCall.call(
                             user: currentUserEmail,
-                            issue: budgetValue,
-                            room: currentUserDocument?.room,
+                            issue: reasonController.text,
+                            room: placeController.text,
                             building: currentUserDocument?.building,
                             status: 'Submitted',
                             created:
@@ -321,17 +302,17 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
 
                           final maintenanceCreateData =
                               createMaintenanceRecordData(
-                            issue: budgetValue,
+                            issue: reasonController.text,
                             status: 'Submitted',
                             email: currentUserEmail,
                             createdTime: getCurrentTimestamp,
                             displayName: currentUserDisplayName,
-                            room: currentUserDocument?.room,
+                            room: placeController.text,
                             building: currentUserDocument?.building,
                             notes: reasonController.text,
                             rating: 0,
                             uid: currentUserUid,
-                            category: 'Appliances',
+                            category: 'Other',
                             isDone: false,
                             assigned: 'Maintenance Team',
                             photoUrl: uploadedFileUrl,

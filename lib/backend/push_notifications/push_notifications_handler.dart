@@ -18,16 +18,16 @@ import '../../more_info/more_info_widget.dart';
 import '../../chat_page/chat_page_widget.dart';
 import '../../edit_profile/edit_profile_widget.dart';
 import '../../students/students_widget.dart';
+import '../../users_search/users_search_widget.dart';
+import '../../appliances/appliances_widget.dart';
 import '../../plumbing/plumbing_widget.dart';
 import '../../furniture/furniture_widget.dart';
-import '../../appliances/appliances_widget.dart';
 import '../../electrical/electrical_widget.dart';
 import '../../locksmith/locksmith_widget.dart';
 import '../../painting/painting_widget.dart';
 import '../../pestcontrol/pestcontrol_widget.dart';
 import '../../others/others_widget.dart';
-import '../../users_search/users_search_widget.dart';
-import '../../appliances_copy/appliances_copy_widget.dart';
+import '../../communal/communal_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -116,16 +116,16 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'editProfile': (data) async => EditProfileWidget(),
   'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPageWidget'),
   'students': (data) async => StudentsWidget(),
+  'usersSearch': (data) async => UsersSearchWidget(),
+  'Appliances': (data) async => AppliancesWidget(),
   'Plumbing': (data) async => PlumbingWidget(),
   'Furniture': (data) async => FurnitureWidget(),
-  'Appliances': (data) async => AppliancesWidget(),
   'Electrical': (data) async => ElectricalWidget(),
   'Locksmith': (data) async => LocksmithWidget(),
   'painting': (data) async => PaintingWidget(),
   'Pestcontrol': (data) async => PestcontrolWidget(),
   'Others': (data) async => OthersWidget(),
-  'usersSearch': (data) async => UsersSearchWidget(),
-  'AppliancesCopy': (data) async => AppliancesCopyWidget(),
+  'Communal': (data) async => CommunalWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
