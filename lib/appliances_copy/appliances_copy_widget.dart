@@ -9,7 +9,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -103,12 +102,6 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                           height: MediaQuery.of(context).size.height * 0.35,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).alternate,
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: Image.asset(
-                                'assets/images/df3hg_',
-                              ).image,
-                            ),
                             borderRadius: BorderRadius.circular(10),
                             shape: BoxShape.rectangle,
                           ),
