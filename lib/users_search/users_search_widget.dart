@@ -189,19 +189,39 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                               child: InkWell(
                                 onTap: () async {
                                   logFirebaseEvent('Row-ON_TAP');
-                                  logFirebaseEvent('Row-Navigate-To');
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.bottomToTop,
-                                      duration: Duration(milliseconds: 300),
-                                      reverseDuration:
-                                          Duration(milliseconds: 300),
-                                      child: ChatPageWidget(
-                                        chatUser: columnUsersRecord,
+                                  if ((columnUsersRecord.email) ==
+                                      'jeremy@conurban.co.za | | marvin@conurban.co.za') {
+                                    logFirebaseEvent('Row-Show-Snack-Bar');
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Contact unavailable!',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                          ),
+                                        ),
+                                        duration: Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primaryText,
                                       ),
-                                    ),
-                                  );
+                                    );
+                                  } else {
+                                    logFirebaseEvent('Row-Navigate-To');
+                                    await Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.bottomToTop,
+                                        duration: Duration(milliseconds: 300),
+                                        reverseDuration:
+                                            Duration(milliseconds: 300),
+                                        child: ChatPageWidget(
+                                          chatUser: columnUsersRecord,
+                                        ),
+                                      ),
+                                    );
+                                  }
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
