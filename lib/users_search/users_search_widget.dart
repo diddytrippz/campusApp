@@ -135,7 +135,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                         fillColor:
                             FlutterFlowTheme.of(context).secondaryBackground,
                         contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(25, 25, 25, 25),
+                            EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
                         suffixIcon: Icon(
                           Icons.search_rounded,
                           color: FlutterFlowTheme.of(context).primaryText,
