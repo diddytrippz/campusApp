@@ -268,7 +268,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                   contentPadding:
                                       EdgeInsetsDirectional.fromSTEB(
-                                          25, 25, 25, 25),
+                                          20, 20, 20, 20),
                                   prefixIcon: Icon(
                                     Icons.person_outline_sharp,
                                     color:
@@ -329,7 +329,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    25, 25, 25, 25),
+                                    20, 20, 20, 20),
                                 prefixIcon: Icon(
                                   Icons.mail_outline_rounded,
                                   color:
@@ -393,7 +393,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                   contentPadding:
                                       EdgeInsetsDirectional.fromSTEB(
-                                          25, 25, 25, 25),
+                                          25, 20, 25, 25),
                                   prefixIcon: Icon(
                                     Icons.radio_button_off,
                                     color:
@@ -435,7 +435,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                   contentPadding:
                                       EdgeInsetsDirectional.fromSTEB(
-                                          25, 25, 25, 25),
+                                          20, 20, 20, 20),
                                   prefixIcon: Icon(
                                     Icons.radio_button_off,
                                     color:
@@ -456,7 +456,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 40, 20, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 40, 20, 20),
                       child: FFButtonWidget(
                         onPressed: () async {
                           logFirebaseEvent('Button-ON_TAP');
