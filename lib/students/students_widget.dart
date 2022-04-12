@@ -275,28 +275,14 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                 return InkWell(
                                   onTap: () async {
                                     logFirebaseEvent('Row-ON_TAP');
-                                    if ((columnUsersRecord.email) !=
-                                        'jeremy@conurban.co.za && brett_lensvelt@hotmail.com') {
-                                      logFirebaseEvent('Row-Navigate-To');
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.bottomToTop,
-                                          duration: Duration(milliseconds: 300),
-                                          reverseDuration:
-                                              Duration(milliseconds: 300),
-                                          child: ChatPageWidget(
-                                            chatUser: columnUsersRecord,
-                                          ),
-                                        ),
-                                      );
-                                    } else {
+                                    if ((columnUsersRecord.email) ==
+                                        'jeremy@conurban.co.za || brett_lensvelt@hotmail.com') {
                                       logFirebaseEvent('Row-Show-Snack-Bar');
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
                                           content: Text(
-                                            'Contact unavailable.',
+                                            'Contact unavailable',
                                             style: TextStyle(
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -308,6 +294,20 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                           backgroundColor:
                                               FlutterFlowTheme.of(context)
                                                   .primaryText,
+                                        ),
+                                      );
+                                    } else {
+                                      logFirebaseEvent('Row-Navigate-To');
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.bottomToTop,
+                                          duration: Duration(milliseconds: 300),
+                                          reverseDuration:
+                                              Duration(milliseconds: 300),
+                                          child: ChatPageWidget(
+                                            chatUser: columnUsersRecord,
+                                          ),
                                         ),
                                       );
                                     }
