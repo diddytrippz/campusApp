@@ -270,6 +270,13 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                         textAlign: TextAlign.start,
                         maxLines: 5,
                         keyboardType: TextInputType.name,
+                        validator: (val) {
+                          if (val.isEmpty) {
+                            return 'Field is required';
+                          }
+
+                          return null;
+                        },
                       ),
                     ),
                     Padding(
@@ -279,6 +286,24 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                           logFirebaseEvent('Button-ON_TAP');
                           logFirebaseEvent('Button-Validate-Form');
                           if (!formKey.currentState.validate()) {
+                            return;
+                          }
+
+                          if (budgetValue == null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Field is required',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                  ),
+                                ),
+                                duration: Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            );
                             return;
                           }
 
