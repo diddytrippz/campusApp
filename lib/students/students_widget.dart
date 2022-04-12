@@ -275,7 +275,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                 return InkWell(
                                   onTap: () async {
                                     logFirebaseEvent('Row-ON_TAP');
-                                    if ((columnUsersRecord.email) ==
+                                    if ((columnUsersRecord.email) !=
                                         'jeremy@conurban.co.za') {
                                       logFirebaseEvent('Row-Navigate-To');
                                       await Navigator.push(
