@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../users_search/users_search_widget.dart';
-import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -336,11 +335,8 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                                     shape: BoxShape.circle,
                                                   ),
                                                   child: CachedNetworkImage(
-                                                    imageUrl: random_data
-                                                        .randomImageUrl(
-                                                      200,
-                                                      200,
-                                                    ),
+                                                    imageUrl: columnUsersRecord
+                                                        .photoUrl,
                                                     fit: BoxFit.fill,
                                                   ),
                                                 ),
@@ -500,11 +496,8 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: CachedNetworkImage(
-                                                  imageUrl: random_data
-                                                      .randomImageUrl(
-                                                    200,
-                                                    200,
-                                                  ),
+                                                  imageUrl: columnUsersRecord
+                                                      .photoUrl,
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),

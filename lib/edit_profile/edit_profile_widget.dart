@@ -234,7 +234,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             'Display name',
                             style: FlutterFlowTheme.of(context).title1.override(
                                   fontFamily: 'Open Sans',
-                                  fontSize: 18,
+                                  fontSize: 16,
                                 ),
                           ),
                         ],
@@ -297,7 +297,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             'Email',
                             style: FlutterFlowTheme.of(context).title1.override(
                                   fontFamily: 'Open Sans',
-                                  fontSize: 18,
+                                  fontSize: 16,
                                 ),
                           ),
                         ],
@@ -357,7 +357,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             'Gender',
                             style: FlutterFlowTheme.of(context).title1.override(
                                   fontFamily: 'Open Sans',
-                                  fontSize: 18,
+                                  fontSize: 16,
                                 ),
                           ),
                         ],

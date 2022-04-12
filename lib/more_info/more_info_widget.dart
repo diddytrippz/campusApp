@@ -735,6 +735,20 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                         );
                                                                                       },
                                                                                     );
+                                                                                  } else {
+                                                                                    logFirebaseEvent('Container-Show-Snack-Bar');
+                                                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                                                      SnackBar(
+                                                                                        content: Text(
+                                                                                          'Item not ready to be rated',
+                                                                                          style: TextStyle(
+                                                                                            color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                          ),
+                                                                                        ),
+                                                                                        duration: Duration(milliseconds: 4000),
+                                                                                        backgroundColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                      ),
+                                                                                    );
                                                                                   }
                                                                                 },
                                                                                 child: Container(
@@ -856,6 +870,21 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                           ),
                                                                                         );
                                                                                       },
+                                                                                    );
+                                                                                  } else {
+                                                                                    logFirebaseEvent('Container-Show-Snack-Bar');
+                                                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                                                      SnackBar(
+                                                                                        content: Text(
+                                                                                          'Item not ready to be rated.',
+                                                                                          style: GoogleFonts.getFont(
+                                                                                            'Open Sans',
+                                                                                            color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                          ),
+                                                                                        ),
+                                                                                        duration: Duration(milliseconds: 4000),
+                                                                                        backgroundColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                      ),
                                                                                     );
                                                                                   }
                                                                                 },
