@@ -90,10 +90,10 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
                       child: Material(
                         color: Colors.transparent,
-                        elevation: 2,
+                        elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -101,7 +101,7 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                           width: MediaQuery.of(context).size.width * 0.8,
                           height: MediaQuery.of(context).size.height * 0.35,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).alternate,
+                            color: Color(0x00C70707),
                             borderRadius: BorderRadius.circular(10),
                             shape: BoxShape.rectangle,
                           ),
@@ -148,31 +148,20 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.35,
-                                  child: Stack(
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Image.network(
-                                          valueOrDefault<String>(
-                                            uploadedFileUrl,
-                                            'https://www.posterprintfactory.com/assets/file_placeholder.png',
-                                          ),
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.8,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.35,
-                                          fit: BoxFit.cover,
-                                        ),
+                                Expanded(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(
+                                      valueOrDefault<String>(
+                                        uploadedFileUrl,
+                                        'https://static.vecteezy.com/system/resources/previews/004/968/473/original/upload-or-add-a-picture-jpg-file-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-etc-vector.jpg',
                                       ),
-                                    ],
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.3,
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
                               ],
