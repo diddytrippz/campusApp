@@ -276,7 +276,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
                                   onTap: () async {
                                     logFirebaseEvent('Row-ON_TAP');
                                     if ((columnUsersRecord.email) ==
-                                        'jeremy@conurban.co.za || marvin@conurban.co.za') {
+                                        'jeremy@conurban.co.za | | marvin@conurban.co.za') {
                                       logFirebaseEvent('Row-Show-Snack-Bar');
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
