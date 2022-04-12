@@ -83,12 +83,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SingleChildScrollView(
-                child: Column(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
@@ -455,70 +455,65 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 30),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    FFButtonWidget(
-                      onPressed: () async {
-                        logFirebaseEvent('Button-ON_TAP');
-                        logFirebaseEvent('Button-Backend-Call');
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 40, 20, 0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          logFirebaseEvent('Button-ON_TAP');
+                          logFirebaseEvent('Button-Backend-Call');
 
-                        final usersUpdateData = createUsersRecordData(
-                          photoUrl: uploadedFileUrl,
-                        );
-                        await currentUserReference.update(usersUpdateData);
-                        logFirebaseEvent('Button-Show-Snack-Bar');
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Image successfully uploaded',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                              ),
-                            ),
-                            duration: Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).primaryText,
-                          ),
-                        );
-                        logFirebaseEvent('Button-Navigate-To');
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.bottomToTop,
-                            duration: Duration(milliseconds: 300),
-                            reverseDuration: Duration(milliseconds: 300),
-                            child: NavBarPage(initialPage: 'settingsPage'),
-                          ),
-                        );
-                      },
-                      text: 'UPDATE PROFILE',
-                      options: FFButtonOptions(
-                        width: double.infinity,
-                        height: 55,
-                        color: FlutterFlowTheme.of(context).primaryColor,
-                        textStyle:
-                            FlutterFlowTheme.of(context).subtitle2.override(
-                                  fontFamily: 'Open Sans',
-                                  color: Colors.white,
+                          final usersUpdateData = createUsersRecordData(
+                            photoUrl: uploadedFileUrl,
+                          );
+                          await currentUserReference.update(usersUpdateData);
+                          logFirebaseEvent('Button-Show-Snack-Bar');
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Image successfully uploaded',
+                                style: TextStyle(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                 ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
+                              ),
+                              duration: Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          );
+                          logFirebaseEvent('Button-Navigate-To');
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              duration: Duration(milliseconds: 300),
+                              reverseDuration: Duration(milliseconds: 300),
+                              child: NavBarPage(initialPage: 'settingsPage'),
+                            ),
+                          );
+                        },
+                        text: 'UPDATE PROFILE',
+                        options: FFButtonOptions(
+                          width: double.infinity,
+                          height: 55,
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle2.override(
+                                    fontFamily: 'Open Sans',
+                                    color: Colors.white,
+                                  ),
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: 12,
                         ),
-                        borderRadius: 12,
                       ),
                     ),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
