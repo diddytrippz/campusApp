@@ -1280,7 +1280,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             .center,
                                                                     children: [
                                                                       Text(
-                                                                        'No results were found from your seaech.\nPlease try again.',
+                                                                        'No attachments were found.\nPlease try again.',
                                                                         textAlign:
                                                                             TextAlign.center,
                                                                         style: FlutterFlowTheme.of(context)

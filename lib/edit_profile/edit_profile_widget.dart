@@ -364,7 +364,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -393,7 +393,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                   contentPadding:
                                       EdgeInsetsDirectional.fromSTEB(
-                                          25, 20, 25, 25),
+                                          15, 15, 15, 15),
                                   prefixIcon: Icon(
                                     Icons.radio_button_off,
                                     color:
@@ -435,7 +435,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                   contentPadding:
                                       EdgeInsetsDirectional.fromSTEB(
-                                          20, 20, 20, 20),
+                                          15, 15, 15, 15),
                                   prefixIcon: Icon(
                                     Icons.radio_button_off,
                                     color:

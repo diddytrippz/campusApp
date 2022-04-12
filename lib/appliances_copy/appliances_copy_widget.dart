@@ -176,7 +176,7 @@ class _AppliancesCopyWidgetState extends State<AppliancesCopyWidget> {
                                                   .size
                                                   .height *
                                               0.35,
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ],
