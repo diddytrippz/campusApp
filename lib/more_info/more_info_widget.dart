@@ -372,8 +372,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                   children: [
                                                                     if ((widget
                                                                             .jobStatus
-                                                                            .status) ==
-                                                                        'Submitted')
+                                                                            .isDone) ==
+                                                                        false)
                                                                       Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0,
@@ -1115,54 +1115,94 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             true,
                                                                       ),
                                                                     ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              0,
-                                                                              2,
-                                                                              0,
-                                                                              15),
-                                                                      child:
-                                                                          ListTile(
-                                                                        leading:
-                                                                            Icon(
-                                                                          FFIcons
-                                                                              .kuser,
-                                                                          color:
-                                                                              Color(0xFF464749),
-                                                                          size:
-                                                                              25,
+                                                                    if ((widget
+                                                                            .jobStatus
+                                                                            .isDone) ==
+                                                                        false)
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            2,
+                                                                            0,
+                                                                            15),
+                                                                        child:
+                                                                            ListTile(
+                                                                          leading:
+                                                                              Icon(
+                                                                            FFIcons.kuser,
+                                                                            color:
+                                                                                Color(0xFF464749),
+                                                                            size:
+                                                                                25,
+                                                                          ),
+                                                                          title:
+                                                                              Text(
+                                                                            'Assigned to',
+                                                                            style: FlutterFlowTheme.of(context).subtitle1.override(
+                                                                                  fontFamily: 'Open Sans',
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  fontSize: 16,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                ),
+                                                                          ),
+                                                                          subtitle:
+                                                                              Text(
+                                                                            widget.jobStatus.assigned,
+                                                                            style: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                  fontFamily: 'Open Sans',
+                                                                                  fontSize: 16,
+                                                                                ),
+                                                                          ),
+                                                                          tileColor:
+                                                                              FlutterFlowTheme.of(context).tertiaryColor,
+                                                                          dense:
+                                                                              true,
                                                                         ),
-                                                                        title:
-                                                                            Text(
-                                                                          'Assigned to',
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .subtitle1
-                                                                              .override(
-                                                                                fontFamily: 'Open Sans',
-                                                                                color: FlutterFlowTheme.of(context).primaryText,
-                                                                                fontSize: 16,
-                                                                                fontWeight: FontWeight.w600,
-                                                                              ),
-                                                                        ),
-                                                                        subtitle:
-                                                                            Text(
-                                                                          widget
-                                                                              .jobStatus
-                                                                              .assigned,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .subtitle2
-                                                                              .override(
-                                                                                fontFamily: 'Open Sans',
-                                                                                fontSize: 16,
-                                                                              ),
-                                                                        ),
-                                                                        tileColor:
-                                                                            FlutterFlowTheme.of(context).tertiaryColor,
-                                                                        dense:
-                                                                            true,
                                                                       ),
-                                                                    ),
+                                                                    if ((widget
+                                                                            .jobStatus
+                                                                            .isDone) ==
+                                                                        true)
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            2,
+                                                                            0,
+                                                                            15),
+                                                                        child:
+                                                                            ListTile(
+                                                                          leading:
+                                                                              Icon(
+                                                                            FFIcons.kuser,
+                                                                            color:
+                                                                                Color(0xFF464749),
+                                                                            size:
+                                                                                25,
+                                                                          ),
+                                                                          title:
+                                                                              Text(
+                                                                            'Completed by',
+                                                                            style: FlutterFlowTheme.of(context).subtitle1.override(
+                                                                                  fontFamily: 'Open Sans',
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  fontSize: 16,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                ),
+                                                                          ),
+                                                                          subtitle:
+                                                                              Text(
+                                                                            widget.jobStatus.assigned,
+                                                                            style: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                  fontFamily: 'Open Sans',
+                                                                                  fontSize: 16,
+                                                                                ),
+                                                                          ),
+                                                                          tileColor:
+                                                                              FlutterFlowTheme.of(context).tertiaryColor,
+                                                                          dense:
+                                                                              true,
+                                                                        ),
+                                                                      ),
                                                                   ],
                                                                 ),
                                                               ),
