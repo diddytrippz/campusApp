@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import '../onboarding/onboarding_widget.dart';
 import '../rules_book/rules_book_widget.dart';
+import '../students/students_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -448,7 +449,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             type: PageTransitionType.bottomToTop,
                             duration: Duration(milliseconds: 300),
                             reverseDuration: Duration(milliseconds: 300),
-                            child: NavBarPage(initialPage: 'students'),
+                            child: StudentsWidget(),
                           ),
                         );
                       },
