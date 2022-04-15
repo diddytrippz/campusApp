@@ -158,7 +158,9 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
               }
               List<ChatsRecord> listViewChatsRecordList = snapshot.data;
               if (listViewChatsRecordList.isEmpty) {
-                return EmptyListWidget();
+                return Center(
+                  child: EmptyListWidget(),
+                );
               }
               return ListView.builder(
                 padding: EdgeInsets.zero,

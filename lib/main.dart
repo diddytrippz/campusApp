@@ -10,10 +10,10 @@ import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:campus_africa/onboarding/onboarding_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'home_page/home_page_widget.dart';
 import 'view_page/view_page_widget.dart';
+import 'students/students_widget.dart';
+import 'home_page/home_page_widget.dart';
 import 'messages_page/messages_page_widget.dart';
 import 'settings_page/settings_page_widget.dart';
 
@@ -126,49 +126,64 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'homePage': HomePageWidget(),
       'viewPage': ViewPageWidget(),
+      'students': StudentsWidget(),
+      'homePage': HomePageWidget(),
       'MessagesPage': MessagesPageWidget(),
       'settingsPage': SettingsPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
       body: tabs[_currentPage],
-      bottomNavigationBar: GNav(
-        selectedIndex: currentIndex,
-        onTabChange: (i) =>
-            setState(() => _currentPage = tabs.keys.toList()[i]),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-        color: FlutterFlowTheme.of(context).campusGrey,
-        activeColor: Colors.white,
-        tabBackgroundColor: FlutterFlowTheme.of(context).mellow,
-        tabBorderRadius: 25,
-        tabMargin: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 16),
-        padding: EdgeInsetsDirectional.fromSTEB(14, 12, 4, 12),
-        gap: 8,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        duration: Duration(milliseconds: 1000),
-        haptic: true,
-        tabs: [
-          GButton(
-            icon: Icons.home_sharp,
-            text: 'HOME',
-            iconSize: 24,
+        selectedItemColor: FlutterFlowTheme.of(context).mellow,
+        unselectedItemColor: FlutterFlowTheme.of(context).campusGrey,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_filled,
+              size: 30,
+            ),
+            label: 'VIEW',
+            tooltip: '',
           ),
-          GButton(
-            icon: Icons.auto_awesome_motion,
-            text: 'VIEW',
-            iconSize: 24,
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.perm_contact_cal_rounded,
+              size: 30,
+            ),
+            label: 'FRIENDS',
+            tooltip: '',
           ),
-          GButton(
-            icon: currentIndex == 2 ? Icons.mail : Icons.email_outlined,
-            text: 'MESSAGES',
-            iconSize: 24,
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.add_circle,
+              size: 56,
+            ),
+            label: 'HOME',
+            tooltip: '',
           ),
-          GButton(
-            icon: currentIndex == 3 ? Icons.person : Icons.person_outline,
-            text: 'SETTINGS',
-            iconSize: 24,
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.email_outlined,
+              size: 30,
+            ),
+            label: 'MESSAGES',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person_outline,
+              size: 30,
+            ),
+            label: 'SETTINGS',
+            tooltip: '',
           )
         ],
       ),

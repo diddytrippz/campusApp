@@ -33,7 +33,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         leading: InkWell(
           onTap: () async {
             logFirebaseEvent('Icon-ON_TAP');
@@ -46,12 +46,17 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
             size: 24,
           ),
         ),
-        title: Container(
-          width: 200,
-          decoration: BoxDecoration(),
+        title: Text(
+          'Campus Africa',
+          style: FlutterFlowTheme.of(context).bodyText1.override(
+                fontFamily: 'Open Sans',
+                color: FlutterFlowTheme.of(context).primaryText,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
         ),
         actions: [],
-        centerTitle: false,
+        centerTitle: true,
         elevation: 2,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
