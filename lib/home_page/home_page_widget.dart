@@ -13,7 +13,6 @@ import '../plumbing/plumbing_widget.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -379,7 +378,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         Icon(
                                                           Icons.devices,
                                                           color: Colors.white,
-                                                          size: 35,
+                                                          size: 40,
                                                         ),
                                                         Padding(
                                                           padding:
@@ -584,11 +583,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           MainAxisAlignment
                                                               .center,
                                                       children: [
-                                                        FaIcon(
-                                                          FontAwesomeIcons
-                                                              .couch,
+                                                        Icon(
+                                                          FFIcons.ksofa,
                                                           color: Colors.white,
-                                                          size: 32,
+                                                          size: 40,
                                                         ),
                                                         Padding(
                                                           padding:
@@ -691,10 +689,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             .center,
                                                     children: [
                                                       Icon(
-                                                        Icons
-                                                            .electrical_services_rounded,
+                                                        FFIcons.kbulb,
                                                         color: Colors.white,
-                                                        size: 35,
+                                                        size: 45,
                                                       ),
                                                       Padding(
                                                         padding:
@@ -782,11 +779,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         MainAxisAlignment
                                                             .center,
                                                     children: [
-                                                      FaIcon(
-                                                        FontAwesomeIcons
-                                                            .doorOpen,
+                                                      Icon(
+                                                        FFIcons.kroomKey,
                                                         color: Colors.white,
-                                                        size: 26,
+                                                        size: 40,
                                                       ),
                                                       Padding(
                                                         padding:
@@ -877,8 +873,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             .center,
                                                     children: [
                                                       Icon(
-                                                        Icons
-                                                            .format_paint_sharp,
+                                                        FFIcons.kpaintRoller,
                                                         color: Colors.white,
                                                         size: 35,
                                                       ),
@@ -985,7 +980,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         Icons
                                                             .pest_control_rodent,
                                                         color: Colors.white,
-                                                        size: 30,
+                                                        size: 40,
                                                       ),
                                                       Padding(
                                                         padding:
@@ -1076,7 +1071,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             .center,
                                                     children: [
                                                       Icon(
-                                                        Icons.business,
+                                                        FFIcons.kofficeBuilding,
                                                         color: Colors.white,
                                                         size: 35,
                                                       ),
@@ -1168,10 +1163,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         MainAxisAlignment
                                                             .center,
                                                     children: [
-                                                      FaIcon(
-                                                        FontAwesomeIcons.paste,
+                                                      Icon(
+                                                        FFIcons.kmenu,
                                                         color: Colors.white,
-                                                        size: 30,
+                                                        size: 40,
                                                       ),
                                                       Padding(
                                                         padding:

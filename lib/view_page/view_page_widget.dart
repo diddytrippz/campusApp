@@ -1318,8 +1318,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .secondaryBackground,
-                                                                      icon: Icons
-                                                                          .cancel_presentation,
+                                                                      icon: FFIcons
+                                                                          .kthumbsDown1,
                                                                       onTap:
                                                                           () async {
                                                                         logFirebaseEvent(

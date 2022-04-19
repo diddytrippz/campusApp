@@ -45,7 +45,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
           onIcon: Icon(
             FFIcons.kmenu,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 19,
+            size: 20,
           ),
           offIcon: Icon(
             FFIcons.kback,

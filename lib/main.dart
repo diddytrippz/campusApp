@@ -158,12 +158,12 @@ class _NavBarPageState extends State<NavBarPage> {
             iconSize: 24,
           ),
           GButton(
-            icon: FFIcons.kcategory,
+            icon: FFIcons.kapp,
             text: '',
             iconSize: 24,
           ),
           GButton(
-            icon: FFIcons.kgroup,
+            icon: FFIcons.kcontact,
             text: '',
             iconSize: 25,
           ),
