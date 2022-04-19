@@ -44,7 +44,7 @@ class _StudentsWidgetState extends State<StudentsWidget> {
           icon: Icon(
             FFIcons.kmenu,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 20,
+            size: 18,
           ),
           onPressed: () {
             print('IconButton pressed ...');
