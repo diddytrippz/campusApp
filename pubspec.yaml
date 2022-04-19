@@ -127,9 +127,6 @@ flutter:
     - family: Icomoon3
       fonts:
         - asset: assets/fonts/icomoon3.ttf
-    - family: Icomoon4
-      fonts:
-        - asset: assets/fonts/icomoon4.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

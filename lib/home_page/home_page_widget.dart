@@ -378,7 +378,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         Icon(
                                                           Icons.devices,
                                                           color: Colors.white,
-                                                          size: 40,
+                                                          size: 35,
                                                         ),
                                                         Padding(
                                                           padding:
@@ -481,7 +481,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         Icon(
                                                           FFIcons.kplunger,
                                                           color: Colors.white,
-                                                          size: 40,
+                                                          size: 35,
                                                         ),
                                                         Padding(
                                                           padding:
@@ -586,7 +586,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         Icon(
                                                           FFIcons.ksofa,
                                                           color: Colors.white,
-                                                          size: 40,
+                                                          size: 35,
                                                         ),
                                                         Padding(
                                                           padding:
@@ -691,7 +691,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       Icon(
                                                         FFIcons.kbulb,
                                                         color: Colors.white,
-                                                        size: 45,
+                                                        size: 40,
                                                       ),
                                                       Padding(
                                                         padding:
@@ -782,7 +782,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       Icon(
                                                         FFIcons.kroomKey,
                                                         color: Colors.white,
-                                                        size: 40,
+                                                        size: 35,
                                                       ),
                                                       Padding(
                                                         padding:
@@ -980,7 +980,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         Icons
                                                             .pest_control_rodent,
                                                         color: Colors.white,
-                                                        size: 40,
+                                                        size: 35,
                                                       ),
                                                       Padding(
                                                         padding:
@@ -1166,7 +1166,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       Icon(
                                                         FFIcons.kcategory,
                                                         color: Colors.white,
-                                                        size: 40,
+                                                        size: 35,
                                                       ),
                                                       Padding(
                                                         padding:
