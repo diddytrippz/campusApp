@@ -954,7 +954,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                     .primaryText,
                                             tabs: [
                                               Tab(
-                                                text: 'Submitted',
+                                                text: 'Latest',
                                               ),
                                               Tab(
                                                 text: 'Pending',
