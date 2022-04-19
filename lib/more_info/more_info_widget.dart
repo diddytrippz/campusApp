@@ -193,14 +193,14 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                     color: Colors.transparent,
                     elevation: 40,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(0),
                     ),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 1,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).tertiaryColor,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(0),
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -212,6 +212,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                               height: MediaQuery.of(context).size.height * 0.4,
                               decoration: BoxDecoration(
                                 color: Color(0x00FFFFFF),
+                                borderRadius: BorderRadius.circular(0),
                               ),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -247,12 +248,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                             tag: widget.jobStatus.photoUrl,
                                             transitionOnUserGestures: true,
                                             child: ClipRRect(
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(0),
-                                                bottomRight: Radius.circular(0),
-                                                topLeft: Radius.circular(6),
-                                                topRight: Radius.circular(6),
-                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(0),
                                               child: CachedNetworkImage(
                                                 imageUrl:
                                                     widget.jobStatus.photoUrl,
