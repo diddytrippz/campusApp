@@ -386,7 +386,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   .fromSTEB(0,
                                                                       8, 0, 0),
                                                           child: Text(
-                                                            'Appliances',
+                                                            'Appliances1',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText1
