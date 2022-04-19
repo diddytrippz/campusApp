@@ -268,35 +268,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                             ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  15, 35, 0, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              FlutterFlowIconButton(
-                                                borderColor: Colors.transparent,
-                                                borderRadius: 8,
-                                                borderWidth: 1,
-                                                buttonSize: 45,
-                                                fillColor: Color(0xABEDEDED),
-                                                icon: Icon(
-                                                  Icons.arrow_back_sharp,
-                                                  color: Colors.white,
-                                                  size: 20,
-                                                ),
-                                                onPressed: () async {
-                                                  logFirebaseEvent(
-                                                      'IconButton-ON_TAP');
-                                                  logFirebaseEvent(
-                                                      'IconButton-Navigate-Back');
-                                                  Navigator.pop(context);
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        ),
                                       ],
                                     ),
                                   ),

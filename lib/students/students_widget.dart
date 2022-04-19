@@ -42,14 +42,12 @@ class _StudentsWidgetState extends State<StudentsWidget> {
           borderWidth: 1,
           buttonSize: 54,
           icon: Icon(
-            FFIcons.kback,
+            FFIcons.kmenu,
             color: FlutterFlowTheme.of(context).primaryText,
             size: 24,
           ),
-          onPressed: () async {
-            logFirebaseEvent('IconButton-ON_TAP');
-            logFirebaseEvent('IconButton-Navigate-Back');
-            Navigator.pop(context);
+          onPressed: () {
+            print('IconButton pressed ...');
           },
         ),
         title: Text(
