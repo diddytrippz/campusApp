@@ -1314,6 +1314,20 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   secondaryActions: [
                                                                     IconSlideAction(
                                                                       caption:
+                                                                          'Reject',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                      icon: Icons
+                                                                          .cancel_presentation,
+                                                                      onTap:
+                                                                          () {
+                                                                        print(
+                                                                            'SlidableActionWidget pressed ...');
+                                                                      },
+                                                                    ),
+                                                                    IconSlideAction(
+                                                                      caption:
                                                                           'Complete',
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
