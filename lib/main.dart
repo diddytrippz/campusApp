@@ -14,6 +14,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'home_page/home_page_widget.dart';
 import 'view_page/view_page_widget.dart';
+import 'students/students_widget.dart';
 import 'messages_page/messages_page_widget.dart';
 import 'settings_page/settings_page_widget.dart';
 
@@ -128,6 +129,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'homePage': HomePageWidget(),
       'viewPage': ViewPageWidget(),
+      'students': StudentsWidget(),
       'MessagesPage': MessagesPageWidget(),
       'settingsPage': SettingsPageWidget(),
     };
@@ -142,32 +144,37 @@ class _NavBarPageState extends State<NavBarPage> {
         color: FlutterFlowTheme.of(context).campusGrey,
         activeColor: Colors.white,
         tabBackgroundColor: FlutterFlowTheme.of(context).mellow,
-        tabBorderRadius: 25,
+        tabBorderRadius: 15,
         tabMargin: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 16),
         padding: EdgeInsetsDirectional.fromSTEB(14, 12, 4, 12),
-        gap: 8,
+        gap: 4,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         duration: Duration(milliseconds: 1000),
         haptic: true,
         tabs: [
           GButton(
-            icon: Icons.home_sharp,
-            text: 'HOME',
+            icon: FFIcons.khome3,
+            text: '',
             iconSize: 24,
           ),
           GButton(
-            icon: Icons.auto_awesome_motion,
-            text: 'VIEW',
+            icon: FFIcons.kcategory,
+            text: '',
             iconSize: 24,
           ),
           GButton(
-            icon: currentIndex == 2 ? Icons.mail : Icons.email_outlined,
-            text: 'MESSAGES',
+            icon: FFIcons.kgroup,
+            text: '',
+            iconSize: 25,
+          ),
+          GButton(
+            icon: FFIcons.kmessage3,
+            text: '',
             iconSize: 24,
           ),
           GButton(
-            icon: currentIndex == 3 ? Icons.person : Icons.person_outline,
-            text: 'SETTINGS',
+            icon: FFIcons.kprofile,
+            text: '',
             iconSize: 24,
           )
         ],

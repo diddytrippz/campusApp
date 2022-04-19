@@ -49,7 +49,7 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
                         borderWidth: 1,
                         buttonSize: 50,
                         icon: Icon(
-                          Icons.arrow_back_rounded,
+                          FFIcons.kback,
                           color: FlutterFlowTheme.of(context).primaryText,
                           size: 24,
                         ),

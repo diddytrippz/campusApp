@@ -12,7 +12,6 @@ import '../flutter_flow/upload_media.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PestcontrolWidget extends StatefulWidget {
@@ -215,9 +214,9 @@ class _PestcontrolWidgetState extends State<PestcontrolWidget> {
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context).alternate,
                             suffixIcon: Icon(
-                              FFIcons.kuser,
-                              color: Color(0xFF757575),
-                              size: 18,
+                              FFIcons.kprofile,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 25,
                             ),
                           ),
                           style: FlutterFlowTheme.of(context)
@@ -271,10 +270,10 @@ class _PestcontrolWidgetState extends State<PestcontrolWidget> {
                               fontWeight: FontWeight.normal,
                             ),
                         hintText: 'Please select...',
-                        icon: FaIcon(
-                          FontAwesomeIcons.pen,
-                          color: FlutterFlowTheme.of(context).campusGrey,
-                          size: 16,
+                        icon: Icon(
+                          FFIcons.kedit,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 30,
                         ),
                         fillColor: FlutterFlowTheme.of(context).alternate,
                         elevation: 8,

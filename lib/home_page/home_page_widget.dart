@@ -160,7 +160,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .scale,
                                                         toAnimate: true,
                                                         child: Icon(
-                                                          Icons.mail,
+                                                          FFIcons.kmessage3,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
@@ -479,11 +479,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           MainAxisAlignment
                                                               .center,
                                                       children: [
-                                                        FaIcon(
-                                                          FontAwesomeIcons
-                                                              .server,
+                                                        Icon(
+                                                          FFIcons.kplunger,
                                                           color: Colors.white,
-                                                          size: 30,
+                                                          size: 40,
                                                         ),
                                                         Padding(
                                                           padding:
@@ -783,8 +782,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         MainAxisAlignment
                                                             .center,
                                                     children: [
-                                                      Icon(
-                                                        FFIcons.kkey2,
+                                                      FaIcon(
+                                                        FontAwesomeIcons
+                                                            .doorOpen,
                                                         color: Colors.white,
                                                         size: 26,
                                                       ),
@@ -982,7 +982,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             .center,
                                                     children: [
                                                       Icon(
-                                                        FFIcons.kbug,
+                                                        Icons
+                                                            .pest_control_rodent,
                                                         color: Colors.white,
                                                         size: 30,
                                                       ),

@@ -62,7 +62,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
             );
           },
           child: Icon(
-            Icons.arrow_back_ios_outlined,
+            FFIcons.kback,
             color: FlutterFlowTheme.of(context).primaryText,
             size: 24,
           ),
@@ -174,7 +174,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   fillColor:
                                       FlutterFlowTheme.of(context).campusRed,
                                   icon: Icon(
-                                    Icons.edit_outlined,
+                                    FFIcons.kedit,
                                     color: Colors.white,
                                     size: 30,
                                   ),
@@ -270,9 +270,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       EdgeInsetsDirectional.fromSTEB(
                                           20, 20, 20, 20),
                                   prefixIcon: Icon(
-                                    Icons.person_outline_sharp,
-                                    color:
-                                        FlutterFlowTheme.of(context).campusGrey,
+                                    FFIcons.kprofile,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 20,
                                   ),
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -331,9 +332,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     20, 20, 20, 20),
                                 prefixIcon: Icon(
-                                  Icons.mail_outline_rounded,
+                                  FFIcons.kmessage3,
                                   color:
-                                      FlutterFlowTheme.of(context).campusGrey,
+                                      FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
                               style: FlutterFlowTheme.of(context)

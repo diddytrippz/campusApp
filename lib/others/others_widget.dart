@@ -212,9 +212,9 @@ class _OthersWidgetState extends State<OthersWidget> {
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context).alternate,
                             suffixIcon: Icon(
-                              FFIcons.kuser,
-                              color: Color(0xFF757575),
-                              size: 18,
+                              FFIcons.kprofile,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 25,
                             ),
                           ),
                           style: FlutterFlowTheme.of(context)

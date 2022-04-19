@@ -43,12 +43,12 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
           },
           value: FFAppState().isPressed,
           onIcon: Icon(
-            Icons.menu,
+            FFIcons.kmenu,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 25,
+            size: 20,
           ),
           offIcon: Icon(
-            Icons.arrow_back,
+            FFIcons.kback,
             color: FlutterFlowTheme.of(context).primaryText,
             size: 25,
           ),
@@ -100,20 +100,24 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
           ],
         ),
         actions: [
-          ToggleIcon(
-            onPressed: () async {
-              setState(() => FFAppState().isPressed = !FFAppState().isPressed);
-            },
-            value: FFAppState().isPressed,
-            onIcon: Icon(
-              Icons.search_sharp,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 25,
-            ),
-            offIcon: Icon(
-              Icons.clear,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 25,
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+            child: ToggleIcon(
+              onPressed: () async {
+                setState(
+                    () => FFAppState().isPressed = !FFAppState().isPressed);
+              },
+              value: FFAppState().isPressed,
+              onIcon: Icon(
+                FFIcons.ksearch,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 25,
+              ),
+              offIcon: Icon(
+                Icons.clear,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 25,
+              ),
             ),
           ),
         ],

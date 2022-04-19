@@ -1,9 +1,11 @@
 import '../backend/backend.dart';
+import '../chat_page/chat_page_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -44,7 +46,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
           borderWidth: 1,
           buttonSize: 54,
           icon: Icon(
-            Icons.arrow_back,
+            FFIcons.kback,
             color: FlutterFlowTheme.of(context).primaryText,
             size: 24,
           ),
@@ -55,15 +57,125 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
           },
         ),
         title: Text(
-          'Requests',
+          'Info',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
                 fontSize: 18,
               ),
         ),
-        actions: [],
-        centerTitle: false,
+        actions: [
+          FutureBuilder<List<UsersRecord>>(
+            future: queryUsersRecordOnce(
+              queryBuilder: (usersRecord) => usersRecord.where('email',
+                  isEqualTo: widget.jobStatus.email != ''
+                      ? widget.jobStatus.email
+                      : null),
+              singleRecord: true,
+            ),
+            builder: (context, snapshot) {
+              // Customize what your widget looks like when it's loading.
+              if (!snapshot.hasData) {
+                return Center(
+                  child: SizedBox(
+                    width: 60,
+                    height: 60,
+                    child: SpinKitPulse(
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                      size: 60,
+                    ),
+                  ),
+                );
+              }
+              List<UsersRecord> rowUsersRecordList = snapshot.data;
+              // Return an empty Container when the document does not exist.
+              if (snapshot.data.isEmpty) {
+                return Container();
+              }
+              final rowUsersRecord = rowUsersRecordList.isNotEmpty
+                  ? rowUsersRecordList.first
+                  : null;
+              return Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                    child: InkWell(
+                      onTap: () async {
+                        logFirebaseEvent('Icon-ON_TAP');
+                        logFirebaseEvent('Icon-Show-Snack-Bar');
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Item not ready to be rated',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).primaryText,
+                          ),
+                        );
+                      },
+                      child: Icon(
+                        FFIcons.kedit,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 30,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                    child: InkWell(
+                      onTap: () async {
+                        logFirebaseEvent('Badge-ON_TAP');
+                        logFirebaseEvent('Badge-Navigate-To');
+                        await Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.bottomToTop,
+                            duration: Duration(milliseconds: 300),
+                            reverseDuration: Duration(milliseconds: 300),
+                            child: ChatPageWidget(
+                              chatUser: rowUsersRecord,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Badge(
+                        badgeContent: Text(
+                          '0',
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Open Sans',
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                  ),
+                        ),
+                        showBadge: true,
+                        shape: BadgeShape.circle,
+                        badgeColor: FlutterFlowTheme.of(context).primaryColor,
+                        elevation: 4,
+                        padding: EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
+                        position: BadgePosition.topEnd(),
+                        animationType: BadgeAnimationType.scale,
+                        toAnimate: true,
+                        child: Icon(
+                          FFIcons.kmessage3,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ],
+        centerTitle: true,
         elevation: 2,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -339,7 +451,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                           .fromSTEB(
                                                                               0,
                                                                               10,
-                                                                              16,
+                                                                              0,
                                                                               2),
                                                                       child:
                                                                           AutoSizeText(
@@ -426,7 +538,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                               2),
                                                                           child:
                                                                               AutoSizeText(
-                                                                            'Occupant Details',
+                                                                            'Tenant Details',
                                                                             style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                   fontFamily: 'Open Sans',
                                                                                   color: Color(0xFFA2A2A2),
@@ -439,6 +551,15 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                     ),
                                                                   ),
                                                                   ListTile(
+                                                                    leading:
+                                                                        Icon(
+                                                                      FFIcons
+                                                                          .kprofile,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      size: 30,
+                                                                    ),
                                                                     title: Text(
                                                                       'Tenant ID',
                                                                       style: FlutterFlowTheme.of(
@@ -476,6 +597,15 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                     dense: true,
                                                                   ),
                                                                   ListTile(
+                                                                    leading:
+                                                                        Icon(
+                                                                      FFIcons
+                                                                          .kuserCommunication,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      size: 30,
+                                                                    ),
                                                                     title: Text(
                                                                       widget
                                                                           .jobStatus
@@ -545,6 +675,15 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                     ),
                                                                   ),
                                                                   ListTile(
+                                                                    leading:
+                                                                        Icon(
+                                                                      FFIcons
+                                                                          .kcalendar1,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      size: 28,
+                                                                    ),
                                                                     title: Text(
                                                                       '${dateTimeFormat('MMMMEEEEd', widget.jobStatus.createdTime)} at ${dateTimeFormat('jm', widget.jobStatus.createdTime)}',
                                                                       style: FlutterFlowTheme.of(
@@ -564,7 +703,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                     subtitle:
                                                                         Text(
                                                                       dateTimeFormat(
-                                                                          'relative',
+                                                                          'EEEE',
                                                                           widget
                                                                               .jobStatus
                                                                               .createdTime),
@@ -590,9 +729,62 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                           .isDone) ==
                                                                       false)
                                                                     ListTile(
+                                                                      leading:
+                                                                          Icon(
+                                                                        FFIcons
+                                                                            .kdownload1,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        size:
+                                                                            30,
+                                                                      ),
                                                                       title:
                                                                           Text(
                                                                         'Status',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .subtitle1
+                                                                            .override(
+                                                                              fontFamily: 'Open Sans',
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                              fontSize: 16,
+                                                                              fontWeight: FontWeight.w600,
+                                                                            ),
+                                                                      ),
+                                                                      subtitle:
+                                                                          Text(
+                                                                        widget
+                                                                            .jobStatus
+                                                                            .status,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .subtitle2
+                                                                            .override(
+                                                                              fontFamily: 'Open Sans',
+                                                                              fontSize: 16,
+                                                                            ),
+                                                                      ),
+                                                                      tileColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .tertiaryColor,
+                                                                      dense:
+                                                                          true,
+                                                                    ),
+                                                                  if ((widget
+                                                                          .jobStatus
+                                                                          .isDone) ==
+                                                                      false)
+                                                                    ListTile(
+                                                                      leading:
+                                                                          Icon(
+                                                                        FFIcons
+                                                                            .kcategory,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        size:
+                                                                            30,
+                                                                      ),
+                                                                      title:
+                                                                          Text(
+                                                                        'Category',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .subtitle1
                                                                             .override(
@@ -623,7 +815,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                   Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0,
+                                                                            20,
                                                                             10,
                                                                             0,
                                                                             0),
@@ -676,6 +868,14 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             Row(
                                                                               mainAxisSize: MainAxisSize.max,
                                                                               children: [
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                                                                                  child: Icon(
+                                                                                    FFIcons.kedit,
+                                                                                    color: FlutterFlowTheme.of(context).primaryText,
+                                                                                    size: 30,
+                                                                                  ),
+                                                                                ),
                                                                                 Text(
                                                                                   'Job Rating',
                                                                                   style: FlutterFlowTheme.of(context).subtitle1.override(
@@ -731,6 +931,15 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                           .isDone) ==
                                                                       false)
                                                                     ListTile(
+                                                                      leading:
+                                                                          Icon(
+                                                                        FFIcons
+                                                                            .kworker,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        size:
+                                                                            30,
+                                                                      ),
                                                                       title:
                                                                           Text(
                                                                         'Team Member ID',

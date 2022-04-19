@@ -211,9 +211,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context).alternate,
                             suffixIcon: Icon(
-                              FFIcons.kuser,
-                              color: Color(0xFF757575),
-                              size: 18,
+                              FFIcons.kprofile,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 25,
                             ),
                           ),
                           style: FlutterFlowTheme.of(context)
@@ -332,7 +332,7 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                               EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
                           suffixIcon: Icon(
                             Icons.location_pin,
-                            color: FlutterFlowTheme.of(context).campusGrey,
+                            color: FlutterFlowTheme.of(context).primaryText,
                             size: 22,
                           ),
                         ),
@@ -387,7 +387,7 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                             notes: reasonController.text,
                             rating: 0,
                             uid: currentUserUid,
-                            category: 'Other',
+                            category: 'Communal',
                             isDone: false,
                             assigned: 'Maintenance Team',
                             photoUrl: uploadedFileUrl,

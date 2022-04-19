@@ -41,7 +41,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
             Navigator.pop(context);
           },
           child: Icon(
-            Icons.arrow_back_ios_outlined,
+            FFIcons.kback,
             color: FlutterFlowTheme.of(context).primaryText,
             size: 24,
           ),
@@ -138,9 +138,9 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
                           suffixIcon: Icon(
-                            Icons.search_rounded,
+                            FFIcons.ksearch,
                             color: FlutterFlowTheme.of(context).primaryText,
-                            size: 25,
+                            size: 20,
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -249,7 +249,10 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                               ),
                                               child: CachedNetworkImage(
                                                 imageUrl:
-                                                    'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                                    valueOrDefault<String>(
+                                                  columnUsersRecord.photoUrl,
+                                                  'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                                ),
                                                 fit: BoxFit.scaleDown,
                                               ),
                                             ),

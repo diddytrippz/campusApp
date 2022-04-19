@@ -17,7 +17,6 @@ import '../../rules_book/rules_book_widget.dart';
 import '../../more_info/more_info_widget.dart';
 import '../../chat_page/chat_page_widget.dart';
 import '../../edit_profile/edit_profile_widget.dart';
-import '../../students/students_widget.dart';
 import '../../users_search/users_search_widget.dart';
 import '../../appliances/appliances_widget.dart';
 import '../../plumbing/plumbing_widget.dart';
@@ -115,7 +114,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
       ),
   'editProfile': (data) async => EditProfileWidget(),
   'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPageWidget'),
-  'students': (data) async => StudentsWidget(),
+  'students': (data) async => NavBarPage(initialPage: 'StudentsWidget'),
   'usersSearch': (data) async => UsersSearchWidget(),
   'Appliances': (data) async => AppliancesWidget(),
   'Plumbing': (data) async => PlumbingWidget(),

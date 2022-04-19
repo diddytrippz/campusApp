@@ -173,6 +173,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       contentPadding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               16, 24, 0, 24),
+                                      suffixIcon: Icon(
+                                        FFIcons.kprofile,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 22,
+                                      ),
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
@@ -245,7 +251,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           passwordVisibility
                                               ? Icons.visibility_outlined
                                               : Icons.visibility_off_outlined,
-                                          color: Color(0xFF95A1AC),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
                                           size: 22,
                                         ),
                                       ),

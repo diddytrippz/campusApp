@@ -61,7 +61,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         automaticallyImplyLeading: false,
         leading: Row(
           mainAxisSize: MainAxisSize.max,
@@ -72,7 +72,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
               borderWidth: 1,
               buttonSize: 50,
               icon: Icon(
-                Icons.arrow_back_ios_sharp,
+                FFIcons.kback,
                 color: FlutterFlowTheme.of(context).primaryText,
                 size: 24,
               ),
@@ -150,7 +150,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
         centerTitle: true,
         elevation: 2,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -164,7 +164,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                     chatInfo: snapshot.data,
                     allowImages: true,
                     backgroundColor:
-                        FlutterFlowTheme.of(context).primaryBackground,
+                        FlutterFlowTheme.of(context).secondaryBackground,
                     timeDisplaySetting: TimeDisplaySetting.alwaysVisible,
                     currentUserBoxDecoration: BoxDecoration(
                       color: Color(0xFF0078FF),
