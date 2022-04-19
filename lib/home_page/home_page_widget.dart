@@ -386,7 +386,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   .fromSTEB(0,
                                                                       8, 0, 0),
                                                           child: Text(
-                                                            'Appliances1',
+                                                            'Appliances',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText1
@@ -584,7 +584,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .center,
                                                       children: [
                                                         Icon(
-                                                          FFIcons.ksofa,
+                                                          FFIcons.ksofas,
                                                           color: Colors.white,
                                                           size: 35,
                                                         ),
@@ -689,7 +689,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             .center,
                                                     children: [
                                                       Icon(
-                                                        FFIcons.kbulb,
+                                                        FFIcons.kbulbs,
                                                         color: Colors.white,
                                                         size: 40,
                                                       ),
@@ -780,7 +780,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             .center,
                                                     children: [
                                                       Icon(
-                                                        FFIcons.kroomKey,
+                                                        FFIcons.kroomkeys,
                                                         color: Colors.white,
                                                         size: 35,
                                                       ),
@@ -873,7 +873,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             .center,
                                                     children: [
                                                       Icon(
-                                                        FFIcons.kpaintRoller,
+                                                        FFIcons.kpaintRollers,
                                                         color: Colors.white,
                                                         size: 35,
                                                       ),
@@ -1071,7 +1071,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             .center,
                                                     children: [
                                                       Icon(
-                                                        FFIcons.kofficeBuilding,
+                                                        FFIcons
+                                                            .kofficebuildings,
                                                         color: Colors.white,
                                                         size: 35,
                                                       ),
@@ -1164,7 +1165,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             .center,
                                                     children: [
                                                       Icon(
-                                                        FFIcons.kapp,
+                                                        FFIcons.kmenus,
                                                         color: Colors.white,
                                                         size: 35,
                                                       ),

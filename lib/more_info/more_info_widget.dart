@@ -571,7 +571,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                     leading:
                                                                         Icon(
                                                                       FFIcons
-                                                                          .kpin,
+                                                                          .kpins,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .primaryText,
@@ -747,7 +747,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                       leading:
                                                                           Icon(
                                                                         FFIcons
-                                                                            .kapp,
+                                                                            .kapps,
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryText,
                                                                         size:

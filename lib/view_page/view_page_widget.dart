@@ -1319,7 +1319,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                               context)
                                                                           .secondaryBackground,
                                                                       icon: FFIcons
-                                                                          .kthumbsDown1,
+                                                                          .kthumbsDowns,
                                                                       onTap:
                                                                           () async {
                                                                         logFirebaseEvent(

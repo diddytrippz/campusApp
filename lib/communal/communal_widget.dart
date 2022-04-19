@@ -331,7 +331,7 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
                           suffixIcon: Icon(
-                            FFIcons.kpin,
+                            FFIcons.kpins,
                             color: FlutterFlowTheme.of(context).primaryText,
                             size: 22,
                           ),
