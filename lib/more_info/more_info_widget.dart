@@ -1,5 +1,6 @@
 import '../backend/backend.dart';
 import '../chat_page/chat_page_widget.dart';
+import '../components/review_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -103,21 +104,39 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                     child: InkWell(
                       onTap: () async {
                         logFirebaseEvent('Icon-ON_TAP');
-                        logFirebaseEvent('Icon-Show-Snack-Bar');
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Item not ready to be rated',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
+                        if ((widget.jobStatus.status) == 'Completed') {
+                          logFirebaseEvent('Icon-Bottom-Sheet');
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            barrierColor: Color(0x1EFFFFFF),
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: ReviewWidget(
+                                  forReviews: widget.jobStatus,
+                                ),
+                              );
+                            },
+                          );
+                        } else {
+                          logFirebaseEvent('Icon-Show-Snack-Bar');
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Item not ready to be rated',
+                                style: TextStyle(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                ),
                               ),
+                              duration: Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).primaryText,
                             ),
-                            duration: Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).primaryText,
-                          ),
-                        );
+                          );
+                        }
                       },
                       child: Icon(
                         FFIcons.kedit,
