@@ -1321,9 +1321,38 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       icon: Icons
                                                                           .cancel_presentation,
                                                                       onTap:
-                                                                          () {
-                                                                        print(
-                                                                            'SlidableActionWidget pressed ...');
+                                                                          () async {
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget-ON_TAP');
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget-Backend-Call');
+
+                                                                        final maintenanceUpdateData =
+                                                                            createMaintenanceRecordData(
+                                                                          status:
+                                                                              'Submitted',
+                                                                        );
+                                                                        await listViewMaintenanceRecord
+                                                                            .reference
+                                                                            .update(maintenanceUpdateData);
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget-Show-Snack-Bar');
+                                                                        ScaffoldMessenger.of(context)
+                                                                            .showSnackBar(
+                                                                          SnackBar(
+                                                                            content:
+                                                                                Text(
+                                                                              'Item rejected',
+                                                                              style: TextStyle(
+                                                                                color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                              ),
+                                                                            ),
+                                                                            duration:
+                                                                                Duration(milliseconds: 4000),
+                                                                            backgroundColor:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                          ),
+                                                                        );
                                                                       },
                                                                     ),
                                                                     IconSlideAction(
@@ -1345,8 +1374,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             createMaintenanceRecordData(
                                                                           status:
                                                                               'Completed',
-                                                                          assigned:
-                                                                              currentUserDisplayName,
+                                                                          updateTime:
+                                                                              getCurrentTimestamp,
                                                                         );
                                                                         await listViewMaintenanceRecord
                                                                             .reference
