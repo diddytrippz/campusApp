@@ -160,7 +160,7 @@ class _NavBarPageState extends State<NavBarPage> {
           GButton(
             icon: FFIcons.kapps,
             text: '',
-            iconSize: 24,
+            iconSize: 20,
           ),
           GButton(
             icon: FFIcons.ksearch,
