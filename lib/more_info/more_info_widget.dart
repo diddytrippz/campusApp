@@ -747,7 +747,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                       leading:
                                                                           Icon(
                                                                         FFIcons
-                                                                            .kattention,
+                                                                            .kapp,
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryText,
                                                                         size:

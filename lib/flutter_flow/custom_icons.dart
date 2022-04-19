@@ -6,6 +6,7 @@ class FFIcons {
   static const String _icomoonFamily = 'Icomoon';
   static const String _icomoonscndFamily = 'Icomoonscnd';
   static const String _icomoon3Family = 'Icomoon3';
+  static const String _icomoonLTDFamily = 'IcomoonLTD';
 
   // icomoon
   static const IconData kbrightness =
@@ -82,4 +83,32 @@ class FFIcons {
       IconData(0xe90a, fontFamily: _icomoon3Family);
   static const IconData kgroup = IconData(0xe90b, fontFamily: _icomoon3Family);
   static const IconData ksearch = IconData(0xe90c, fontFamily: _icomoon3Family);
+
+  // icomoonLTD
+  static const IconData kroomKey =
+      IconData(0xe900, fontFamily: _icomoonLTDFamily);
+  static const IconData kofficeBuilding =
+      IconData(0xe901, fontFamily: _icomoonLTDFamily);
+  static const IconData kapp = IconData(0xe902, fontFamily: _icomoonLTDFamily);
+  static const IconData khomeRenovation =
+      IconData(0xe903, fontFamily: _icomoonLTDFamily);
+  static const IconData kpaintRoller =
+      IconData(0xe904, fontFamily: _icomoonLTDFamily);
+  static const IconData kbulb = IconData(0xe905, fontFamily: _icomoonLTDFamily);
+  static const IconData ksofa = IconData(0xe906, fontFamily: _icomoonLTDFamily);
+  static const IconData kheart =
+      IconData(0xe907, fontFamily: _icomoonLTDFamily);
+  static const IconData kthumbsDown1 =
+      IconData(0xe908, fontFamily: _icomoonLTDFamily);
+  static const IconData kenter =
+      IconData(0xe909, fontFamily: _icomoonLTDFamily);
+  static const IconData kcontact =
+      IconData(0xe90a, fontFamily: _icomoonLTDFamily);
+  static const IconData kpin = IconData(0xe90b, fontFamily: _icomoonLTDFamily);
+  static const IconData kmuted =
+      IconData(0xe90c, fontFamily: _icomoonLTDFamily);
+  static const IconData kuser = IconData(0xe90d, fontFamily: _icomoonLTDFamily);
+  static const IconData koptions =
+      IconData(0xe90f, fontFamily: _icomoonLTDFamily);
+  static const IconData kpin1 = IconData(0xe910, fontFamily: _icomoonLTDFamily);
 }

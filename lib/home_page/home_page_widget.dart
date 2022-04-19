@@ -1164,7 +1164,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             .center,
                                                     children: [
                                                       Icon(
-                                                        FFIcons.kcategory,
+                                                        FFIcons.kmenu,
                                                         color: Colors.white,
                                                         size: 35,
                                                       ),
