@@ -1,10 +1,11 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../chat_page/chat_page_widget.dart';
-import '../components/review_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../reviews/reviews_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -47,7 +48,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
           borderWidth: 1,
           buttonSize: 54,
           icon: Icon(
-            FFIcons.kback,
+            Icons.arrow_back_rounded,
             color: FlutterFlowTheme.of(context).primaryText,
             size: 24,
           ),
@@ -105,21 +106,22 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                       onTap: () async {
                         logFirebaseEvent('Icon-ON_TAP');
                         if ((widget.jobStatus.status) == 'Completed') {
-                          logFirebaseEvent('Icon-Bottom-Sheet');
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            barrierColor: Color(0x1EFFFFFF),
-                            context: context,
-                            builder: (context) {
-                              return Padding(
-                                padding: MediaQuery.of(context).viewInsets,
-                                child: ReviewWidget(
-                                  forReviews: widget.jobStatus,
+                          if ((widget.jobStatus.email) == (currentUserEmail)) {
+                            logFirebaseEvent('Icon-Navigate-To');
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.bottomToTop,
+                                duration: Duration(milliseconds: 300),
+                                reverseDuration: Duration(milliseconds: 300),
+                                child: ReviewsWidget(
+                                  jobReviews: widget.jobStatus,
                                 ),
-                              );
-                            },
-                          );
+                              ),
+                            );
+                          } else {
+                            return;
+                          }
                         } else {
                           logFirebaseEvent('Icon-Show-Snack-Bar');
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -139,7 +141,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                         }
                       },
                       child: Icon(
-                        FFIcons.kedit,
+                        FFIcons.kreview1,
                         color: FlutterFlowTheme.of(context).primaryText,
                         size: 30,
                       ),
@@ -858,7 +860,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                                                                                   child: Icon(
-                                                                                    FFIcons.kedit,
+                                                                                    FFIcons.kreview1,
                                                                                     color: FlutterFlowTheme.of(context).primaryText,
                                                                                     size: 30,
                                                                                   ),

@@ -43,12 +43,12 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
           },
           value: FFAppState().isPressed,
           onIcon: Icon(
-            FFIcons.kmenu,
+            Icons.menu_outlined,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 20,
+            size: 26,
           ),
           offIcon: Icon(
-            FFIcons.kback,
+            Icons.chevron_left,
             color: FlutterFlowTheme.of(context).primaryText,
             size: 25,
           ),
@@ -111,18 +111,18 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
               onIcon: Icon(
                 FFIcons.ksearch,
                 color: FlutterFlowTheme.of(context).primaryText,
-                size: 25,
+                size: 22,
               ),
               offIcon: Icon(
                 Icons.clear,
                 color: FlutterFlowTheme.of(context).primaryText,
-                size: 25,
+                size: 22,
               ),
             ),
           ),
         ],
         centerTitle: false,
-        elevation: 1,
+        elevation: 0,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       floatingActionButton: FloatingActionButton(

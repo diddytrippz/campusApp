@@ -9,24 +9,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
+import '../../index.dart';
 import '../../main.dart';
-import '../../onboarding/onboarding_widget.dart';
-import '../../login_page/login_page_widget.dart';
-import '../../verification/verification_widget.dart';
-import '../../rules_book/rules_book_widget.dart';
-import '../../more_info/more_info_widget.dart';
-import '../../chat_page/chat_page_widget.dart';
-import '../../edit_profile/edit_profile_widget.dart';
-import '../../users_search/users_search_widget.dart';
-import '../../appliances/appliances_widget.dart';
-import '../../plumbing/plumbing_widget.dart';
-import '../../furniture/furniture_widget.dart';
-import '../../electrical/electrical_widget.dart';
-import '../../locksmith/locksmith_widget.dart';
-import '../../painting/painting_widget.dart';
-import '../../pestcontrol/pestcontrol_widget.dart';
-import '../../others/others_widget.dart';
-import '../../communal/communal_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler(
@@ -114,8 +98,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
       ),
   'editProfile': (data) async => EditProfileWidget(),
   'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPageWidget'),
-  'students': (data) async => NavBarPage(initialPage: 'StudentsWidget'),
-  'usersSearch': (data) async => UsersSearchWidget(),
+  'usersSearch': (data) async => NavBarPage(initialPage: 'UsersSearchWidget'),
   'Appliances': (data) async => AppliancesWidget(),
   'Plumbing': (data) async => PlumbingWidget(),
   'Furniture': (data) async => FurnitureWidget(),
@@ -125,6 +108,10 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'Pestcontrol': (data) async => PestcontrolWidget(),
   'Others': (data) async => OthersWidget(),
   'Communal': (data) async => CommunalWidget(),
+  'reviews': (data) async => ReviewsWidget(
+        jobReviews: await getDocumentParameter(
+            data, 'jobReviews', MaintenanceRecord.serializer),
+      ),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

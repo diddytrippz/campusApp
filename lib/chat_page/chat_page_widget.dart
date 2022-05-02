@@ -2,7 +2,6 @@ import '../backend/backend.dart';
 import '../components/empty_inbox_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -63,91 +62,128 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         automaticallyImplyLeading: false,
-        leading: Row(
+        leading: InkWell(
+          onTap: () async {
+            logFirebaseEvent('Icon-ON_TAP');
+            logFirebaseEvent('Icon-Navigate-Back');
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back_rounded,
+            color: FlutterFlowTheme.of(context).primaryText,
+            size: 24,
+          ),
+        ),
+        title: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
-            FlutterFlowIconButton(
-              borderColor: Colors.transparent,
-              borderRadius: 30,
-              borderWidth: 1,
-              buttonSize: 50,
-              icon: Icon(
-                FFIcons.kback,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 24,
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+              child: InkWell(
+                onTap: () async {
+                  logFirebaseEvent('CircleImage-ON_TAP');
+                  logFirebaseEvent('CircleImage-Expand-Image');
+                  await Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.fade,
+                      child: FlutterFlowExpandedImageView(
+                        image: Image.network(
+                          valueOrDefault<String>(
+                            widget.chatUser.photoUrl,
+                            'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                          ),
+                          fit: BoxFit.contain,
+                        ),
+                        allowRotation: false,
+                        tag: valueOrDefault<String>(
+                          widget.chatUser.photoUrl,
+                          'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                        ),
+                        useHeroAnimation: true,
+                      ),
+                    ),
+                  );
+                },
+                child: Hero(
+                  tag: valueOrDefault<String>(
+                    widget.chatUser.photoUrl,
+                    'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                  ),
+                  transitionOnUserGestures: true,
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child: Image.network(
+                      valueOrDefault<String>(
+                        widget.chatUser.photoUrl,
+                        'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ),
-              onPressed: () async {
-                logFirebaseEvent('IconButton-ON_TAP');
-                logFirebaseEvent('IconButton-Navigate-Back');
-                Navigator.pop(context);
-              },
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.chatUser.displayName,
+                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                        fontFamily: 'Open Sans',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                ),
+                Text(
+                  dateTimeFormat('jms', getCurrentTimestamp),
+                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                        fontFamily: 'Open Sans',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                ),
+              ],
             ),
           ],
-        ),
-        title: Text(
-          widget.chatUser.displayName,
-          style: FlutterFlowTheme.of(context).bodyText1.override(
-                fontFamily: 'Open Sans',
-                color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-              ),
         ),
         actions: [
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
             child: InkWell(
               onTap: () async {
-                logFirebaseEvent('CircleImage-ON_TAP');
-                logFirebaseEvent('CircleImage-Expand-Image');
-                await Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    child: FlutterFlowExpandedImageView(
-                      image: Image.network(
-                        valueOrDefault<String>(
-                          widget.chatUser.photoUrl,
-                          'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
-                        ),
-                        fit: BoxFit.contain,
+                logFirebaseEvent('Icon-ON_TAP');
+                logFirebaseEvent('Icon-Show-Snack-Bar');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'Video call not supported yet',
+                      style: TextStyle(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
                       ),
-                      allowRotation: false,
-                      tag: valueOrDefault<String>(
-                        widget.chatUser.photoUrl,
-                        'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
-                      ),
-                      useHeroAnimation: true,
                     ),
+                    duration: Duration(milliseconds: 4000),
+                    backgroundColor: FlutterFlowTheme.of(context).primaryText,
                   ),
                 );
               },
-              child: Hero(
-                tag: valueOrDefault<String>(
-                  widget.chatUser.photoUrl,
-                  'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
-                ),
-                transitionOnUserGestures: true,
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: Image.network(
-                    valueOrDefault<String>(
-                      widget.chatUser.photoUrl,
-                      'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              child: Icon(
+                Icons.videocam_outlined,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 30,
               ),
             ),
           ),
         ],
-        centerTitle: true,
+        centerTitle: false,
         elevation: 2,
       ),
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,

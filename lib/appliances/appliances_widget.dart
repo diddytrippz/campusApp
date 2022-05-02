@@ -1,5 +1,4 @@
 import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../components/submitted_icon_widget.dart';
@@ -50,7 +49,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
           borderWidth: 1,
           buttonSize: 54,
           icon: Icon(
-            FFIcons.kback,
+            Icons.arrow_back_rounded,
             color: FlutterFlowTheme.of(context).primaryText,
             size: 24,
           ),
@@ -193,6 +192,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                       child: AuthUserStreamWidget(
                         child: TextFormField(
                           controller: textController1,
+                          readOnly: true,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: ' ',
@@ -311,7 +311,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Describe your Issue',
+                          hintText: 'Describe your Issue',
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00C5C5C5),
@@ -377,16 +377,6 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             return;
                           }
 
-                          logFirebaseEvent('Button-Backend-Call');
-                          await AirtableCall.call(
-                            user: currentUserEmail,
-                            issue: budgetValue,
-                            room: currentUserDocument?.room,
-                            building: currentUserDocument?.building,
-                            status: 'Submitted',
-                            created:
-                                dateTimeFormat('d/M/y', getCurrentTimestamp),
-                          );
                           logFirebaseEvent('Button-Backend-Call');
 
                           final maintenanceCreateData =

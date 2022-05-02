@@ -7,6 +7,7 @@ class FFIcons {
   static const String _icomoonscndFamily = 'Icomoonscnd';
   static const String _icomoon3Family = 'Icomoon3';
   static const String _icomoonLTDsFamily = 'IcomoonLTDs';
+  static const String _icomoonReviewsFamily = 'IcomoonReviews';
 
   // icomoon
   static const IconData kbrightness =
@@ -119,4 +120,14 @@ class FFIcons {
       IconData(0xe90f, fontFamily: _icomoonLTDsFamily);
   static const IconData kpinses =
       IconData(0xe910, fontFamily: _icomoonLTDsFamily);
+
+  // icomoonReviews
+  static const IconData kratingSupportService =
+      IconData(0xe900, fontFamily: _icomoonReviewsFamily);
+  static const IconData kthumbsUp =
+      IconData(0xe902, fontFamily: _icomoonReviewsFamily);
+  static const IconData kreview1 =
+      IconData(0xe903, fontFamily: _icomoonReviewsFamily);
+  static const IconData kreview =
+      IconData(0xe904, fontFamily: _icomoonReviewsFamily);
 }

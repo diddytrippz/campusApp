@@ -58,7 +58,7 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                           buttonSize: 45,
                           fillColor: Colors.white,
                           icon: Icon(
-                            Icons.clear_outlined,
+                            Icons.arrow_back_rounded,
                             color: Colors.black,
                             size: 20,
                           ),

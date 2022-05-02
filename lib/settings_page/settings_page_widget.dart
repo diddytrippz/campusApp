@@ -54,16 +54,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            width: 85,
-                            height: 85,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).campusRed,
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
+                          Align(
+                            alignment: AlignmentDirectional(0, 0),
                             child: AuthUserStreamWidget(
                               child: InkWell(
                                 onTap: () async {
@@ -77,14 +69,14 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                         image: Image.network(
                                           valueOrDefault<String>(
                                             currentUserPhoto,
-                                            'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                            'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                           ),
                                           fit: BoxFit.contain,
                                         ),
                                         allowRotation: false,
                                         tag: valueOrDefault<String>(
                                           currentUserPhoto,
-                                          'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                          'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                         ),
                                         useHeroAnimation: true,
                                       ),
@@ -94,12 +86,12 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                 child: Hero(
                                   tag: valueOrDefault<String>(
                                     currentUserPhoto,
-                                    'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                    'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                   ),
                                   transitionOnUserGestures: true,
                                   child: Container(
-                                    width: 85,
-                                    height: 85,
+                                    width: 95,
+                                    height: 95,
                                     clipBehavior: Clip.antiAlias,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
@@ -107,7 +99,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     child: Image.network(
                                       valueOrDefault<String>(
                                         currentUserPhoto,
-                                        'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                        'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                       ),
                                       fit: BoxFit.cover,
                                     ),

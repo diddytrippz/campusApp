@@ -1,5 +1,4 @@
 import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../components/submitted_icon_widget.dart';
@@ -190,6 +189,7 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                       child: AuthUserStreamWidget(
                         child: TextFormField(
                           controller: textController1,
+                          readOnly: true,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: ' ',
@@ -363,16 +363,6 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                             return;
                           }
 
-                          logFirebaseEvent('Button-Backend-Call');
-                          await AirtableCall.call(
-                            user: currentUserEmail,
-                            issue: reasonController.text,
-                            room: placeController.text,
-                            building: currentUserDocument?.building,
-                            status: 'Submitted',
-                            created:
-                                dateTimeFormat('d/M/y', getCurrentTimestamp),
-                          );
                           logFirebaseEvent('Button-Backend-Call');
 
                           final maintenanceCreateData =

@@ -1,9 +1,12 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../chat_page/chat_page_widget.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,30 +35,40 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-        automaticallyImplyLeading: true,
-        leading: InkWell(
-          onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-Back');
-            Navigator.pop(context);
-          },
-          child: Icon(
-            FFIcons.kback,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30,
+          borderWidth: 1,
+          buttonSize: 54,
+          icon: Icon(
+            Icons.menu_rounded,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 24,
+            size: 28,
           ),
+          onPressed: () {
+            print('IconButton pressed ...');
+          },
         ),
         title: Text(
-          'Campus Africa',
-          style: FlutterFlowTheme.of(context).bodyText1.override(
+          'Contacts',
+          style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+                fontSize: 18,
               ),
         ),
-        actions: [],
+        actions: [
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+            child: Icon(
+              Icons.add,
+              color: FlutterFlowTheme.of(context).primaryText,
+              size: 30,
+            ),
+          ),
+        ],
         centerTitle: true,
         elevation: 2,
       ),
@@ -102,6 +115,12 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(18, 20, 18, 0),
                       child: TextFormField(
+                        controller: textController,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          'textController',
+                          Duration(milliseconds: 450),
+                          () => setState(() {}),
+                        ),
                         onFieldSubmitted: (_) async {
                           logFirebaseEvent('TextField-ON_TEXTFIELD_SUBMIT');
                           logFirebaseEvent('TextField-Algolia-Search');
@@ -114,7 +133,6 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                               .onError((_, __) => algoliaSearchResults = [])
                               .whenComplete(() => setState(() {}));
                         },
-                        controller: textController,
                         obscureText: false,
                         decoration: InputDecoration(
                           hintText: 'Search',
@@ -136,7 +154,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           contentPadding:
-                              EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+                              EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
                           suffixIcon: Icon(
                             FFIcons.ksearch,
                             color: FlutterFlowTheme.of(context).primaryText,
@@ -150,10 +168,223 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                          child: Text(
+                            'Admin contacts',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  AuthUserStreamWidget(
+                    child: FutureBuilder<List<UsersRecord>>(
+                      future: queryUsersRecordOnce(
+                        queryBuilder: (usersRecord) => usersRecord
+                            .where('role', isEqualTo: 'Admin')
+                            .where('building',
+                                isEqualTo: currentUserDocument?.building != ''
+                                    ? currentUserDocument?.building
+                                    : null)
+                            .orderBy('display_name'),
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 60,
+                              height: 60,
+                              child: SpinKitPulse(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                size: 60,
+                              ),
+                            ),
+                          );
+                        }
+                        List<UsersRecord> columnUsersRecordList = snapshot.data
+                            .where((u) => u.uid != currentUserUid)
+                            .toList();
+                        return Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: List.generate(columnUsersRecordList.length,
+                              (columnIndex) {
+                            final columnUsersRecord =
+                                columnUsersRecordList[columnIndex];
+                            return InkWell(
+                              onTap: () async {
+                                logFirebaseEvent('Row-ON_TAP');
+                                if ((columnUsersRecord.email) ==
+                                    'jeremy@conurban.co.za | | marvin@conurban.co.za') {
+                                  logFirebaseEvent('Row-Show-Snack-Bar');
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Contact unavailable',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                        ),
+                                      ),
+                                      duration: Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                    ),
+                                  );
+                                } else {
+                                  logFirebaseEvent('Row-Navigate-To');
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.bottomToTop,
+                                      duration: Duration(milliseconds: 300),
+                                      reverseDuration:
+                                          Duration(milliseconds: 300),
+                                      child: ChatPageWidget(
+                                        chatUser: columnUsersRecord,
+                                      ),
+                                    ),
+                                  );
+                                }
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12, 0, 0, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 5, 12, 5),
+                                            child: Container(
+                                              width: 40,
+                                              height: 40,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: CachedNetworkImage(
+                                                imageUrl:
+                                                    valueOrDefault<String>(
+                                                  columnUsersRecord.photoUrl,
+                                                  'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                                ),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    AutoSizeText(
+                                                      columnUsersRecord
+                                                          .displayName,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .title2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Text(
+                                                  columnUsersRecord.room,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .campusGrey,
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                        );
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                          child: Text(
+                            'Other contacts',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   FutureBuilder<List<UsersRecord>>(
                     future: UsersRecord.search(
                       term: textController.text,
-                      maxResults: 10,
+                      maxResults: 5,
                     ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
@@ -236,80 +467,78 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                     Expanded(
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 8, 0, 8),
+                                            12, 0, 0, 0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Container(
-                                              width: 55,
-                                              height: 55,
-                                              clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: CachedNetworkImage(
-                                                imageUrl:
-                                                    valueOrDefault<String>(
-                                                  columnUsersRecord.photoUrl,
-                                                  'https://www.pngitem.com/pimgs/m/348-3483562_fox-icon-png-transparent-png.png',
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 12, 0),
+                                              child: Container(
+                                                width: 40,
+                                                height: 40,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
                                                 ),
-                                                fit: BoxFit.scaleDown,
+                                                child: CachedNetworkImage(
+                                                  imageUrl:
+                                                      valueOrDefault<String>(
+                                                    columnUsersRecord.photoUrl,
+                                                    'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                                  ),
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
                                             Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(10, 0, 0, 10),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        AutoSizeText(
-                                                          columnUsersRecord
-                                                              .displayName,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .title2
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 16,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 4, 0, 0),
-                                                      child: Text(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      AutoSizeText(
                                                         columnUsersRecord
-                                                            .building,
+                                                            .displayName,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText1
+                                                                .title2
                                                                 .override(
                                                                   fontFamily:
                                                                       'Open Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .campusGrey,
+                                                                      .primaryText,
+                                                                  fontSize: 16,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
                                                                 ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
+                                                    ],
+                                                  ),
+                                                  Text(
+                                                    columnUsersRecord.building,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .campusGrey,
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ],
