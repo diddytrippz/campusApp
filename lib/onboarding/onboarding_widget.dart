@@ -1,7 +1,6 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../login_page/login_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -124,18 +123,15 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                       onPressed: () async {
                                         logFirebaseEvent('Button-ON_TAP');
                                         logFirebaseEvent('Button-Navigate-To');
-                                        await Navigator.pushAndRemoveUntil(
-                                          context,
-                                          PageTransition(
-                                            type:
-                                                PageTransitionType.topToBottom,
-                                            duration:
-                                                Duration(milliseconds: 300),
-                                            reverseDuration:
-                                                Duration(milliseconds: 300),
-                                            child: LoginPageWidget(),
-                                          ),
-                                          (r) => false,
+                                        context.goNamed(
+                                          'loginPage',
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType: PageTransitionType
+                                                  .topToBottom,
+                                            ),
+                                          },
                                         );
                                       },
                                       text: 'NEXT',

@@ -6,8 +6,6 @@ import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
-import '../more_info/more_info_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -27,8 +25,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
     with TickerProviderStateMixin {
   DateTimeRange calendarSelectedDay;
   TextEditingController textController;
-  PagingController<DocumentSnapshot, MaintenanceRecord> _pagingController =
-      PagingController(firstPageKey: null);
+  PagingController<DocumentSnapshot, MaintenanceRecord> _pagingController;
+  Query _pagingQuery;
   List<StreamSubscription> _streamSubscriptions = [];
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -55,36 +53,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
   @override
   void initState() {
     super.initState();
-    _pagingController.addPageRequestListener((nextPageMarker) {
-      queryMaintenanceRecordPage(
-        queryBuilder: (maintenanceRecord) => maintenanceRecord
-            .where('status', isEqualTo: 'Pending')
-            .where('building', isEqualTo: currentUserDocument?.building)
-            .where('isDone', isEqualTo: false)
-            .orderBy('created_time', descending: true),
-        nextPageMarker: nextPageMarker,
-        pageSize: 10,
-        isStream: true,
-      ).then((page) {
-        _pagingController.appendPage(
-          page.data,
-          page.nextPageMarker,
-        );
-        final streamSubscription = page.dataStream?.listen((data) {
-          final itemIndexes = _pagingController.itemList
-              .asMap()
-              .map((k, v) => MapEntry(v.reference.id, k));
-          data.forEach((item) {
-            final index = itemIndexes[item.reference.id];
-            if (index != null) {
-              _pagingController.itemList.replaceRange(index, index + 1, [item]);
-            }
-          });
-          setState(() {});
-        });
-        _streamSubscriptions.add(streamSubscription);
-      });
-    });
+    startPageLoadAnimations(
+      animationsMap.values
+          .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
+      this,
+    );
 
     calendarSelectedDay = DateTimeRange(
       start: DateTime.now().startOfDay,
@@ -92,11 +65,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
     );
     textController = TextEditingController();
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'viewPage'});
-    startPageLoadAnimations(
-      animationsMap.values
-          .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
-      this,
-    );
   }
 
   @override
@@ -114,14 +82,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
         onPressed: () async {
           logFirebaseEvent('FloatingActionButton-ON_TAP');
           logFirebaseEvent('FloatingActionButton-Navigate-To');
-          await Navigator.push(
-            context,
-            PageTransition(
-              type: PageTransitionType.bottomToTop,
-              duration: Duration(milliseconds: 300),
-              reverseDuration: Duration(milliseconds: 300),
-              child: NavBarPage(initialPage: 'homePage'),
-            ),
+          context.pushNamed(
+            'homePage',
           );
         },
         backgroundColor: FlutterFlowTheme.of(context).mellow,
@@ -432,24 +394,21 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       'ListTile-ON_TAP');
                                                                   logFirebaseEvent(
                                                                       'ListTile-Navigate-To');
-                                                                  await Navigator
-                                                                      .push(
-                                                                    context,
-                                                                    PageTransition(
-                                                                      type: PageTransitionType
-                                                                          .bottomToTop,
-                                                                      duration: Duration(
-                                                                          milliseconds:
-                                                                              300),
-                                                                      reverseDuration:
-                                                                          Duration(
-                                                                              milliseconds: 300),
-                                                                      child:
-                                                                          MoreInfoWidget(
-                                                                        jobStatus:
-                                                                            listViewMaintenanceRecord,
-                                                                      ),
-                                                                    ),
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'moreInfo',
+                                                                    queryParams: {
+                                                                      'jobStatus': serializeParam(
+                                                                          listViewMaintenanceRecord,
+                                                                          ParamType
+                                                                              .Document),
+                                                                    },
+                                                                    extra: <
+                                                                        String,
+                                                                        dynamic>{
+                                                                      'jobStatus':
+                                                                          listViewMaintenanceRecord,
+                                                                    },
                                                                   );
                                                                 },
                                                                 child: Slidable(
@@ -686,22 +645,20 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                         'ListTile-ON_TAP');
                                                                     logFirebaseEvent(
                                                                         'ListTile-Navigate-To');
-                                                                    await Navigator
-                                                                        .push(
-                                                                      context,
-                                                                      PageTransition(
-                                                                        type: PageTransitionType
-                                                                            .bottomToTop,
-                                                                        duration:
-                                                                            Duration(milliseconds: 300),
-                                                                        reverseDuration:
-                                                                            Duration(milliseconds: 300),
-                                                                        child:
-                                                                            MoreInfoWidget(
-                                                                          jobStatus:
-                                                                              listViewMaintenanceRecord,
-                                                                        ),
-                                                                      ),
+                                                                    context
+                                                                        .pushNamed(
+                                                                      'moreInfo',
+                                                                      queryParams: {
+                                                                        'jobStatus': serializeParam(
+                                                                            listViewMaintenanceRecord,
+                                                                            ParamType.Document),
+                                                                      },
+                                                                      extra: <
+                                                                          String,
+                                                                          dynamic>{
+                                                                        'jobStatus':
+                                                                            listViewMaintenanceRecord,
+                                                                      },
                                                                     );
                                                                   },
                                                                   child:
@@ -864,24 +821,21 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       'ListTile-ON_TAP');
                                                                   logFirebaseEvent(
                                                                       'ListTile-Navigate-To');
-                                                                  await Navigator
-                                                                      .push(
-                                                                    context,
-                                                                    PageTransition(
-                                                                      type: PageTransitionType
-                                                                          .bottomToTop,
-                                                                      duration: Duration(
-                                                                          milliseconds:
-                                                                              300),
-                                                                      reverseDuration:
-                                                                          Duration(
-                                                                              milliseconds: 300),
-                                                                      child:
-                                                                          MoreInfoWidget(
-                                                                        jobStatus:
-                                                                            listViewMaintenanceRecord,
-                                                                      ),
-                                                                    ),
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'moreInfo',
+                                                                    queryParams: {
+                                                                      'jobStatus': serializeParam(
+                                                                          listViewMaintenanceRecord,
+                                                                          ParamType
+                                                                              .Document),
+                                                                    },
+                                                                    extra: <
+                                                                        String,
+                                                                        dynamic>{
+                                                                      'jobStatus':
+                                                                          listViewMaintenanceRecord,
+                                                                    },
                                                                   );
                                                                 },
                                                                 child: ListTile(
@@ -1096,24 +1050,21 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       'ListTile-ON_TAP');
                                                                   logFirebaseEvent(
                                                                       'ListTile-Navigate-To');
-                                                                  await Navigator
-                                                                      .push(
-                                                                    context,
-                                                                    PageTransition(
-                                                                      type: PageTransitionType
-                                                                          .bottomToTop,
-                                                                      duration: Duration(
-                                                                          milliseconds:
-                                                                              300),
-                                                                      reverseDuration:
-                                                                          Duration(
-                                                                              milliseconds: 300),
-                                                                      child:
-                                                                          MoreInfoWidget(
-                                                                        jobStatus:
-                                                                            listViewMaintenanceRecord,
-                                                                      ),
-                                                                    ),
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'moreInfo',
+                                                                    queryParams: {
+                                                                      'jobStatus': serializeParam(
+                                                                          listViewMaintenanceRecord,
+                                                                          ParamType
+                                                                              .Document),
+                                                                    },
+                                                                    extra: <
+                                                                        String,
+                                                                        dynamic>{
+                                                                      'jobStatus':
+                                                                          listViewMaintenanceRecord,
+                                                                    },
                                                                   );
                                                                 },
                                                                 child: Slidable(
@@ -1260,8 +1211,128 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                           DocumentSnapshot<
                                                               Object>,
                                                           MaintenanceRecord>(
-                                                        pagingController:
-                                                            _pagingController,
+                                                        pagingController: () {
+                                                          final Query<Object> Function(
+                                                                  Query<Object>)
+                                                              queryBuilder =
+                                                              (maintenanceRecord) => maintenanceRecord
+                                                                  .where(
+                                                                      'status',
+                                                                      isEqualTo:
+                                                                          'Pending')
+                                                                  .where(
+                                                                      'building',
+                                                                      isEqualTo:
+                                                                          currentUserDocument
+                                                                              ?.building)
+                                                                  .where(
+                                                                      'isDone',
+                                                                      isEqualTo:
+                                                                          false)
+                                                                  .orderBy(
+                                                                      'created_time',
+                                                                      descending:
+                                                                          true);
+                                                          if (_pagingController !=
+                                                              null) {
+                                                            final query = queryBuilder(
+                                                                MaintenanceRecord
+                                                                    .collection);
+                                                            if (query !=
+                                                                _pagingQuery) {
+                                                              // The query has changed
+                                                              _pagingQuery =
+                                                                  query;
+                                                              _streamSubscriptions
+                                                                  .forEach((s) =>
+                                                                      s?.cancel());
+                                                              _streamSubscriptions
+                                                                  .clear();
+                                                              _pagingController
+                                                                  .refresh();
+                                                            }
+                                                            return _pagingController;
+                                                          }
+
+                                                          _pagingController =
+                                                              PagingController(
+                                                                  firstPageKey:
+                                                                      null);
+                                                          _pagingQuery = queryBuilder(
+                                                              MaintenanceRecord
+                                                                  .collection);
+                                                          _pagingController
+                                                              .addPageRequestListener(
+                                                                  (nextPageMarker) {
+                                                            queryMaintenanceRecordPage(
+                                                              queryBuilder: (maintenanceRecord) => maintenanceRecord
+                                                                  .where(
+                                                                      'status',
+                                                                      isEqualTo:
+                                                                          'Pending')
+                                                                  .where(
+                                                                      'building',
+                                                                      isEqualTo:
+                                                                          currentUserDocument
+                                                                              ?.building)
+                                                                  .where(
+                                                                      'isDone',
+                                                                      isEqualTo:
+                                                                          false)
+                                                                  .orderBy(
+                                                                      'created_time',
+                                                                      descending:
+                                                                          true),
+                                                              nextPageMarker:
+                                                                  nextPageMarker,
+                                                              pageSize: 10,
+                                                              isStream: true,
+                                                            ).then((page) {
+                                                              _pagingController
+                                                                  .appendPage(
+                                                                page.data,
+                                                                page.nextPageMarker,
+                                                              );
+                                                              final streamSubscription =
+                                                                  page
+                                                                      .dataStream
+                                                                      ?.listen(
+                                                                          (data) {
+                                                                final itemIndexes = _pagingController
+                                                                    .itemList
+                                                                    .asMap()
+                                                                    .map((k,
+                                                                            v) =>
+                                                                        MapEntry(
+                                                                            v.reference.id,
+                                                                            k));
+                                                                data.forEach(
+                                                                    (item) {
+                                                                  final index =
+                                                                      itemIndexes[item
+                                                                          .reference
+                                                                          .id];
+                                                                  if (index !=
+                                                                      null) {
+                                                                    _pagingController
+                                                                        .itemList
+                                                                        .replaceRange(
+                                                                            index,
+                                                                            index + 1,
+                                                                            [
+                                                                          item
+                                                                        ]);
+                                                                  }
+                                                                });
+                                                                setState(() {});
+                                                              });
+                                                              _streamSubscriptions
+                                                                  .add(
+                                                                      streamSubscription);
+                                                            });
+                                                          });
+                                                          return _pagingController;
+                                                        }(),
                                                         padding:
                                                             EdgeInsets.zero,
                                                         primary: false,
@@ -1311,25 +1382,21 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     'ListTile-ON_TAP');
                                                                 logFirebaseEvent(
                                                                     'ListTile-Navigate-To');
-                                                                await Navigator
-                                                                    .push(
-                                                                  context,
-                                                                  PageTransition(
-                                                                    type: PageTransitionType
-                                                                        .bottomToTop,
-                                                                    duration: Duration(
-                                                                        milliseconds:
-                                                                            300),
-                                                                    reverseDuration:
-                                                                        Duration(
-                                                                            milliseconds:
-                                                                                300),
-                                                                    child:
-                                                                        MoreInfoWidget(
-                                                                      jobStatus:
-                                                                          listViewMaintenanceRecord,
-                                                                    ),
-                                                                  ),
+                                                                context
+                                                                    .pushNamed(
+                                                                  'moreInfo',
+                                                                  queryParams: {
+                                                                    'jobStatus': serializeParam(
+                                                                        listViewMaintenanceRecord,
+                                                                        ParamType
+                                                                            .Document),
+                                                                  },
+                                                                  extra: <
+                                                                      String,
+                                                                      dynamic>{
+                                                                    'jobStatus':
+                                                                        listViewMaintenanceRecord,
+                                                                  },
                                                                 );
                                                               },
                                                               child: Slidable(
@@ -1616,22 +1683,20 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                         'Card-ON_TAP');
                                                                     logFirebaseEvent(
                                                                         'Card-Navigate-To');
-                                                                    await Navigator
-                                                                        .push(
-                                                                      context,
-                                                                      PageTransition(
-                                                                        type: PageTransitionType
-                                                                            .bottomToTop,
-                                                                        duration:
-                                                                            Duration(milliseconds: 300),
-                                                                        reverseDuration:
-                                                                            Duration(milliseconds: 300),
-                                                                        child:
-                                                                            MoreInfoWidget(
-                                                                          jobStatus:
-                                                                              listViewMaintenanceRecord,
-                                                                        ),
-                                                                      ),
+                                                                    context
+                                                                        .pushNamed(
+                                                                      'moreInfo',
+                                                                      queryParams: {
+                                                                        'jobStatus': serializeParam(
+                                                                            listViewMaintenanceRecord,
+                                                                            ParamType.Document),
+                                                                      },
+                                                                      extra: <
+                                                                          String,
+                                                                          dynamic>{
+                                                                        'jobStatus':
+                                                                            listViewMaintenanceRecord,
+                                                                      },
                                                                     );
                                                                   },
                                                                   child: Card(

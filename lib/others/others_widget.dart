@@ -54,7 +54,7 @@ class _OthersWidgetState extends State<OthersWidget> {
           onPressed: () async {
             logFirebaseEvent('IconButton-ON_TAP');
             logFirebaseEvent('IconButton-Navigate-Back');
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -117,13 +117,17 @@ class _OthersWidgetState extends State<OthersWidget> {
                                   'Uploading file...',
                                   showLoading: true,
                                 );
-                                final downloadUrls = await Future.wait(
-                                    selectedMedia.map((m) async =>
-                                        await uploadData(
-                                            m.storagePath, m.bytes)));
+                                final downloadUrls = (await Future.wait(
+                                        selectedMedia.map((m) async =>
+                                            await uploadData(
+                                                m.storagePath, m.bytes))))
+                                    .where((u) => u != null)
+                                    .toList();
                                 ScaffoldMessenger.of(context)
                                     .hideCurrentSnackBar();
-                                if (downloadUrls != null) {
+                                if (downloadUrls != null &&
+                                    downloadUrls.length ==
+                                        selectedMedia.length) {
                                   setState(() =>
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
@@ -284,7 +288,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                         maxLines: 5,
                         keyboardType: TextInputType.name,
                         validator: (val) {
-                          if (val.isEmpty) {
+                          if (val == null || val.isEmpty) {
                             return 'Field is required';
                           }
 
@@ -298,7 +302,8 @@ class _OthersWidgetState extends State<OthersWidget> {
                         onPressed: () async {
                           logFirebaseEvent('Button-ON_TAP');
                           logFirebaseEvent('Button-Validate-Form');
-                          if (!formKey.currentState.validate()) {
+                          if (formKey.currentState == null ||
+                              !formKey.currentState.validate()) {
                             return;
                           }
 

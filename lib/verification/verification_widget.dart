@@ -15,9 +15,9 @@ class VerificationWidget extends StatefulWidget {
 }
 
 class _VerificationWidgetState extends State<VerificationWidget> {
-  TextEditingController phoneNumberController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController phoneNumberController;
 
   @override
   void initState() {
@@ -65,7 +65,7 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                           onPressed: () async {
                             logFirebaseEvent('IconButton-ON_TAP');
                             logFirebaseEvent('IconButton-Navigate-Back');
-                            Navigator.pop(context);
+                            context.pop();
                           },
                         ),
                       ],
@@ -133,7 +133,7 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                             fontWeight: FontWeight.normal,
                           ),
                       validator: (val) {
-                        if (val.isEmpty) {
+                        if (val == null || val.isEmpty) {
                           return 'Field required';
                         }
 

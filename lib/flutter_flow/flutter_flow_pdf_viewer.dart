@@ -32,7 +32,7 @@ class _FlutterFlowPdfViewerState extends State<FlutterFlowPdfViewer> {
       controller = networkPath.isNotEmpty || assetPath.isNotEmpty
           ? PdfController(
               document: assetPath.isNotEmpty
-                  ? PdfDocument.openAsset(widget.assetPath)
+                  ? PdfDocument.openAsset(assetPath)
                   : PdfDocument.openData(InternetFile.get(networkPath)),
             )
           : null;

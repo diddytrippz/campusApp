@@ -2,8 +2,6 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
-import '../verification/verification_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,10 +14,10 @@ class LoginPageWidget extends StatefulWidget {
 }
 
 class _LoginPageWidgetState extends State<LoginPageWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController emailAddressController;
   TextEditingController passwordController;
   bool passwordVisibility;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -336,17 +334,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       return;
                                     }
 
-                                    await Navigator.pushAndRemoveUntil(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.bottomToTop,
-                                        duration: Duration(milliseconds: 300),
-                                        reverseDuration:
-                                            Duration(milliseconds: 300),
-                                        child:
-                                            NavBarPage(initialPage: 'homePage'),
-                                      ),
-                                      (r) => false,
+                                    context.goNamed(
+                                      'homePage',
                                     );
                                   },
                                   text: 'Login',
@@ -388,15 +377,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 logFirebaseEvent('ButtonCreateAccount-ON_TAP');
                                 logFirebaseEvent(
                                     'ButtonCreateAccount-Navigate-To');
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.bottomToTop,
-                                    duration: Duration(milliseconds: 300),
-                                    reverseDuration:
-                                        Duration(milliseconds: 300),
-                                    child: VerificationWidget(),
-                                  ),
+                                context.pushNamed(
+                                  'verification',
                                 );
                               },
                               text: 'Create Account',

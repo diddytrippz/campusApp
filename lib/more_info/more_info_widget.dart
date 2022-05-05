@@ -1,11 +1,9 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../chat_page/chat_page_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../reviews/reviews_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -55,7 +53,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
           onPressed: () async {
             logFirebaseEvent('IconButton-ON_TAP');
             logFirebaseEvent('IconButton-Navigate-Back');
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -108,16 +106,15 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                         if ((widget.jobStatus.status) == 'Completed') {
                           if ((widget.jobStatus.email) == (currentUserEmail)) {
                             logFirebaseEvent('Icon-Navigate-To');
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.bottomToTop,
-                                duration: Duration(milliseconds: 300),
-                                reverseDuration: Duration(milliseconds: 300),
-                                child: ReviewsWidget(
-                                  jobReviews: widget.jobStatus,
-                                ),
-                              ),
+                            context.pushNamed(
+                              'reviews',
+                              queryParams: {
+                                'jobReviews': serializeParam(
+                                    widget.jobStatus, ParamType.Document),
+                              },
+                              extra: <String, dynamic>{
+                                'jobReviews': widget.jobStatus,
+                              },
                             );
                           } else {
                             return;
@@ -153,16 +150,15 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                       onTap: () async {
                         logFirebaseEvent('Badge-ON_TAP');
                         logFirebaseEvent('Badge-Navigate-To');
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.bottomToTop,
-                            duration: Duration(milliseconds: 300),
-                            reverseDuration: Duration(milliseconds: 300),
-                            child: ChatPageWidget(
-                              chatUser: rowUsersRecord,
-                            ),
-                          ),
+                        context.pushNamed(
+                          'ChatPage',
+                          queryParams: {
+                            'chatUser': serializeParam(
+                                rowUsersRecord, ParamType.Document),
+                          },
+                          extra: <String, dynamic>{
+                            'chatUser': rowUsersRecord,
+                          },
                         );
                       },
                       child: Badge(

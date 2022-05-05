@@ -1,7 +1,6 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -108,15 +107,8 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                           onPressed: () async {
                             logFirebaseEvent('Button-ON_TAP');
                             logFirebaseEvent('Button-Navigate-To');
-                            await Navigator.pushAndRemoveUntil(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.bottomToTop,
-                                duration: Duration(milliseconds: 300),
-                                reverseDuration: Duration(milliseconds: 300),
-                                child: NavBarPage(initialPage: 'viewPage'),
-                              ),
-                              (r) => false,
+                            context.goNamed(
+                              'viewPage',
                             );
                           },
                           text: 'Continue',

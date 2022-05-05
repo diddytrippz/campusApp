@@ -21,9 +21,9 @@ class ElectricalWidget extends StatefulWidget {
 }
 
 class _ElectricalWidgetState extends State<ElectricalWidget> {
-  String budgetValue;
   String uploadedFileUrl = '';
   TextEditingController textController1;
+  String budgetValue;
   TextEditingController reasonController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -56,7 +56,7 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
           onPressed: () async {
             logFirebaseEvent('IconButton-ON_TAP');
             logFirebaseEvent('IconButton-Navigate-Back');
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -119,13 +119,17 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                                   'Uploading file...',
                                   showLoading: true,
                                 );
-                                final downloadUrls = await Future.wait(
-                                    selectedMedia.map((m) async =>
-                                        await uploadData(
-                                            m.storagePath, m.bytes)));
+                                final downloadUrls = (await Future.wait(
+                                        selectedMedia.map((m) async =>
+                                            await uploadData(
+                                                m.storagePath, m.bytes))))
+                                    .where((u) => u != null)
+                                    .toList();
                                 ScaffoldMessenger.of(context)
                                     .hideCurrentSnackBar();
-                                if (downloadUrls != null) {
+                                if (downloadUrls != null &&
+                                    downloadUrls.length ==
+                                        selectedMedia.length) {
                                   setState(() =>
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
@@ -343,7 +347,7 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                         maxLines: 5,
                         keyboardType: TextInputType.name,
                         validator: (val) {
-                          if (val.isEmpty) {
+                          if (val == null || val.isEmpty) {
                             return 'Field is required';
                           }
 
@@ -357,7 +361,8 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                         onPressed: () async {
                           logFirebaseEvent('Button-ON_TAP');
                           logFirebaseEvent('Button-Validate-Form');
-                          if (!formKey.currentState.validate()) {
+                          if (formKey.currentState == null ||
+                              !formKey.currentState.validate()) {
                             return;
                           }
 

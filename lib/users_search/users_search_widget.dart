@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../chat_page/chat_page_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -249,17 +248,16 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                   );
                                 } else {
                                   logFirebaseEvent('Row-Navigate-To');
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.bottomToTop,
-                                      duration: Duration(milliseconds: 300),
-                                      reverseDuration:
-                                          Duration(milliseconds: 300),
-                                      child: ChatPageWidget(
-                                        chatUser: columnUsersRecord,
-                                      ),
-                                    ),
+                                  context.pushNamed(
+                                    'ChatPage',
+                                    queryParams: {
+                                      'chatUser': serializeParam(
+                                          columnUsersRecord,
+                                          ParamType.Document),
+                                    },
+                                    extra: <String, dynamic>{
+                                      'chatUser': columnUsersRecord,
+                                    },
                                   );
                                 }
                               },
@@ -445,17 +443,16 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                     );
                                   } else {
                                     logFirebaseEvent('Row-Navigate-To');
-                                    await Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.bottomToTop,
-                                        duration: Duration(milliseconds: 300),
-                                        reverseDuration:
-                                            Duration(milliseconds: 300),
-                                        child: ChatPageWidget(
-                                          chatUser: columnUsersRecord,
-                                        ),
-                                      ),
+                                    context.pushNamed(
+                                      'ChatPage',
+                                      queryParams: {
+                                        'chatUser': serializeParam(
+                                            columnUsersRecord,
+                                            ParamType.Document),
+                                      },
+                                      extra: <String, dynamic>{
+                                        'chatUser': columnUsersRecord,
+                                      },
                                     );
                                   }
                                 },

@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
-import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -48,14 +47,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
           onTap: () async {
             logFirebaseEvent('Icon-ON_TAP');
             logFirebaseEvent('Icon-Navigate-To');
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.bottomToTop,
-                duration: Duration(milliseconds: 300),
-                reverseDuration: Duration(milliseconds: 300),
-                child: NavBarPage(initialPage: 'settingsPage'),
-              ),
+            context.pushNamed(
+              'settingsPage',
             );
           },
           child: Icon(
@@ -115,13 +108,17 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                     'Uploading file...',
                                     showLoading: true,
                                   );
-                                  final downloadUrls = await Future.wait(
-                                      selectedMedia.map((m) async =>
-                                          await uploadData(
-                                              m.storagePath, m.bytes)));
+                                  final downloadUrls = (await Future.wait(
+                                          selectedMedia.map((m) async =>
+                                              await uploadData(
+                                                  m.storagePath, m.bytes))))
+                                      .where((u) => u != null)
+                                      .toList();
                                   ScaffoldMessenger.of(context)
                                       .hideCurrentSnackBar();
-                                  if (downloadUrls != null) {
+                                  if (downloadUrls != null &&
+                                      downloadUrls.length ==
+                                          selectedMedia.length) {
                                     setState(() =>
                                         uploadedFileUrl = downloadUrls.first);
                                     showUploadMessage(
@@ -420,14 +417,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           ),
                         );
                         logFirebaseEvent('Button-Navigate-To');
-                        await Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.bottomToTop,
-                            duration: Duration(milliseconds: 300),
-                            reverseDuration: Duration(milliseconds: 300),
-                            child: NavBarPage(initialPage: 'settingsPage'),
-                          ),
+                        context.pushNamed(
+                          'settingsPage',
                         );
                       },
                       text: 'UPDATE PROFILE',

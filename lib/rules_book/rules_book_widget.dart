@@ -56,7 +56,7 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
                         onPressed: () async {
                           logFirebaseEvent('IconButton-ON_TAP');
                           logFirebaseEvent('IconButton-Navigate-Back');
-                          Navigator.pop(context);
+                          context.pop();
                         },
                       ),
                       Padding(

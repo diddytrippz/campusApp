@@ -6,7 +6,6 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -60,7 +59,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
           onPressed: () async {
             logFirebaseEvent('IconButton-ON_TAP');
             logFirebaseEvent('IconButton-Navigate-Back');
-            Navigator.pop(context);
+            context.pop();
           },
         ),
         title: Text(
@@ -395,7 +394,8 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                               onPressed: () async {
                                 logFirebaseEvent('Button-ON_TAP');
                                 logFirebaseEvent('Button-Validate-Form');
-                                if (!formKey.currentState.validate()) {
+                                if (formKey.currentState == null ||
+                                    !formKey.currentState.validate()) {
                                   return;
                                 }
 
@@ -424,15 +424,8 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                   ),
                                 );
                                 logFirebaseEvent('Button-Navigate-To');
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.bottomToTop,
-                                    duration: Duration(milliseconds: 300),
-                                    reverseDuration:
-                                        Duration(milliseconds: 300),
-                                    child: NavBarPage(initialPage: 'viewPage'),
-                                  ),
+                                context.pushNamed(
+                                  'viewPage',
                                 );
                               },
                               text: 'Confirm',

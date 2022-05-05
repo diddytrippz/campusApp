@@ -1,15 +1,5 @@
-import '../appliances/appliances_widget.dart';
-import '../communal/communal_widget.dart';
-import '../electrical/electrical_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../furniture/furniture_widget.dart';
-import '../locksmith/locksmith_widget.dart';
-import '../main.dart';
-import '../others/others_widget.dart';
-import '../painting/painting_widget.dart';
-import '../pestcontrol/pestcontrol_widget.dart';
-import '../plumbing/plumbing_widget.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -107,23 +97,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             'Badge-ON_TAP');
                                                         logFirebaseEvent(
                                                             'Badge-Navigate-To');
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .bottomToTop,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    300),
-                                                            reverseDuration:
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        300),
-                                                            child: NavBarPage(
-                                                                initialPage:
-                                                                    'MessagesPage'),
-                                                          ),
+                                                        context.pushNamed(
+                                                          'MessagesPage',
                                                         );
                                                       },
                                                       child: Badge(
@@ -318,17 +293,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'transferButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'transferButton-Navigate-To');
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .bottomToTop,
-                                                    duration: Duration(
-                                                        milliseconds: 300),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 300),
-                                                    child: AppliancesWidget(),
-                                                  ),
+                                                context.pushNamed(
+                                                  'Appliances',
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .bottomToTop,
+                                                    ),
+                                                  },
                                                 );
                                               },
                                               child: Material(
@@ -421,17 +396,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'activityButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'activityButton-Navigate-To');
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .bottomToTop,
-                                                    duration: Duration(
-                                                        milliseconds: 300),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 300),
-                                                    child: PlumbingWidget(),
-                                                  ),
+                                                context.pushNamed(
+                                                  'Plumbing',
                                                 );
                                               },
                                               child: Material(
@@ -526,17 +492,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'bankButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'bankButton-Navigate-To');
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .bottomToTop,
-                                                    duration: Duration(
-                                                        milliseconds: 300),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 300),
-                                                    child: FurnitureWidget(),
-                                                  ),
+                                                context.pushNamed(
+                                                  'Furniture',
                                                 );
                                               },
                                               child: Material(
@@ -642,17 +599,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'transferButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'transferButton-Navigate-To');
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .bottomToTop,
-                                                    duration: Duration(
-                                                        milliseconds: 300),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 300),
-                                                    child: ElectricalWidget(),
-                                                  ),
+                                                context.pushNamed(
+                                                  'Electrical',
                                                 );
                                               },
                                               child: Container(
@@ -733,17 +681,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'activityButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'activityButton-Navigate-To');
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .bottomToTop,
-                                                    duration: Duration(
-                                                        milliseconds: 300),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 300),
-                                                    child: LocksmithWidget(),
-                                                  ),
+                                                context.pushNamed(
+                                                  'Locksmith',
                                                 );
                                               },
                                               child: Container(
@@ -826,17 +765,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'bankButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'bankButton-Navigate-To');
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .bottomToTop,
-                                                    duration: Duration(
-                                                        milliseconds: 300),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 300),
-                                                    child: PaintingWidget(),
-                                                  ),
+                                                context.pushNamed(
+                                                  'painting',
                                                 );
                                               },
                                               child: Container(
@@ -930,17 +860,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'transferButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'transferButton-Navigate-To');
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .bottomToTop,
-                                                    duration: Duration(
-                                                        milliseconds: 300),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 300),
-                                                    child: PestcontrolWidget(),
-                                                  ),
+                                                context.pushNamed(
+                                                  'Pestcontrol',
                                                 );
                                               },
                                               child: Container(
@@ -1024,17 +945,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'activityButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'activityButton-Navigate-To');
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .bottomToTop,
-                                                    duration: Duration(
-                                                        milliseconds: 300),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 300),
-                                                    child: CommunalWidget(),
-                                                  ),
+                                                context.pushNamed(
+                                                  'Communal',
                                                 );
                                               },
                                               child: Container(
@@ -1118,17 +1030,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'bankButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'bankButton-Navigate-To');
-                                                await Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .bottomToTop,
-                                                    duration: Duration(
-                                                        milliseconds: 300),
-                                                    reverseDuration: Duration(
-                                                        milliseconds: 300),
-                                                    child: OthersWidget(),
-                                                  ),
+                                                context.pushNamed(
+                                                  'Others',
                                                 );
                                               },
                                               child: Container(

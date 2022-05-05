@@ -66,7 +66,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
           onTap: () async {
             logFirebaseEvent('Icon-ON_TAP');
             logFirebaseEvent('Icon-Navigate-Back');
-            Navigator.pop(context);
+            context.pop();
           },
           child: Icon(
             Icons.arrow_back_rounded,

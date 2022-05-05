@@ -84,8 +84,8 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'onboarding': (data) async => OnboardingWidget(),
   'loginPage': (data) async => LoginPageWidget(),
   'verification': (data) async => VerificationWidget(),
-  'settingsPage': (data) async => NavBarPage(initialPage: 'SettingsPageWidget'),
-  'viewPage': (data) async => NavBarPage(initialPage: 'ViewPageWidget'),
+  'settingsPage': (data) async => NavBarPage(initialPage: 'settingsPage'),
+  'viewPage': (data) async => NavBarPage(initialPage: 'viewPage'),
   'rulesBook': (data) async => RulesBookWidget(),
   'moreInfo': (data) async => MoreInfoWidget(
         jobStatus: await getDocumentParameter(
@@ -97,8 +97,8 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         chatRef: getParameter(data, 'chatRef'),
       ),
   'editProfile': (data) async => EditProfileWidget(),
-  'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPageWidget'),
-  'usersSearch': (data) async => NavBarPage(initialPage: 'UsersSearchWidget'),
+  'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPage'),
+  'usersSearch': (data) async => NavBarPage(initialPage: 'usersSearch'),
   'Appliances': (data) async => AppliancesWidget(),
   'Plumbing': (data) async => PlumbingWidget(),
   'Furniture': (data) async => FurnitureWidget(),

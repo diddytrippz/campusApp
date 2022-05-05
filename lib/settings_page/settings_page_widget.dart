@@ -1,13 +1,9 @@
 import '../auth/auth_util.dart';
 import '../components/dark_mode_widget.dart';
-import '../edit_profile/edit_profile_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../main.dart';
-import '../onboarding/onboarding_widget.dart';
-import '../rules_book/rules_book_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -146,15 +142,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           logFirebaseEvent('Button-ON_TAP');
                           logFirebaseEvent('Button-Auth');
                           await signOut();
-                          await Navigator.pushAndRemoveUntil(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.bottomToTop,
-                              duration: Duration(milliseconds: 300),
-                              reverseDuration: Duration(milliseconds: 300),
-                              child: OnboardingWidget(),
-                            ),
-                            (r) => false,
+                          context.goNamed(
+                            'onboarding',
                           );
                         },
                         text: 'Logout',
@@ -214,14 +203,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             onTap: () async {
                               logFirebaseEvent('Row-ON_TAP');
                               logFirebaseEvent('Row-Navigate-To');
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.bottomToTop,
-                                  duration: Duration(milliseconds: 300),
-                                  reverseDuration: Duration(milliseconds: 300),
-                                  child: EditProfileWidget(),
-                                ),
+                              context.pushNamed(
+                                'editProfile',
                               );
                             },
                             child: Row(
@@ -283,15 +266,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             onTap: () async {
                               logFirebaseEvent('Row-ON_TAP');
                               logFirebaseEvent('Row-Navigate-To');
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.bottomToTop,
-                                  duration: Duration(milliseconds: 300),
-                                  reverseDuration: Duration(milliseconds: 300),
-                                  child:
-                                      NavBarPage(initialPage: 'MessagesPage'),
-                                ),
+                              context.pushNamed(
+                                'MessagesPage',
                               );
                             },
                             child: Row(
@@ -509,14 +485,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             onTap: () async {
                               logFirebaseEvent('Row-ON_TAP');
                               logFirebaseEvent('Row-Navigate-To');
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.bottomToTop,
-                                  duration: Duration(milliseconds: 300),
-                                  reverseDuration: Duration(milliseconds: 300),
-                                  child: RulesBookWidget(),
-                                ),
+                              context.pushNamed(
+                                'rulesBook',
                               );
                             },
                             child: Row(
@@ -653,15 +623,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             logFirebaseEvent('Button-ON_TAP');
                             logFirebaseEvent('Button-Auth');
                             await signOut();
-                            await Navigator.pushAndRemoveUntil(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.bottomToTop,
-                                duration: Duration(milliseconds: 300),
-                                reverseDuration: Duration(milliseconds: 300),
-                                child: OnboardingWidget(),
-                              ),
-                              (r) => false,
+                            context.goNamed(
+                              'onboarding',
                             );
                           },
                           text: 'Log Out',

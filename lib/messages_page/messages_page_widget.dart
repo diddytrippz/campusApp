@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../chat_page/chat_page_widget.dart';
 import '../components/empty_list_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -19,8 +18,8 @@ class MessagesPageWidget extends StatefulWidget {
 }
 
 class _MessagesPageWidgetState extends State<MessagesPageWidget> {
-  TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController textController;
 
   @override
   void initState() {
@@ -183,21 +182,24 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                             snapshot.data ?? FFChatInfo(listViewChatsRecord);
                         return FFChatPreview(
                           onTap: chatInfo != null
-                              ? () => Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.bottomToTop,
-                                      duration: Duration(milliseconds: 300),
-                                      reverseDuration:
-                                          Duration(milliseconds: 300),
-                                      child: ChatPageWidget(
-                                        chatUser:
-                                            chatInfo.otherUsers.length == 1
-                                                ? chatInfo.otherUsersList.first
-                                                : null,
-                                        chatRef: chatInfo.chatRecord.reference,
-                                      ),
-                                    ),
+                              ? () => context.pushNamed(
+                                    'ChatPage',
+                                    queryParams: {
+                                      'chatUser': serializeParam(
+                                          chatInfo.otherUsers.length == 1
+                                              ? chatInfo.otherUsersList.first
+                                              : null,
+                                          ParamType.Document),
+                                      'chatRef': serializeParam(
+                                          chatInfo.chatRecord.reference,
+                                          ParamType.DocumentReference),
+                                    },
+                                    extra: <String, dynamic>{
+                                      'chatUser':
+                                          chatInfo.otherUsers.length == 1
+                                              ? chatInfo.otherUsersList.first
+                                              : null,
+                                    },
                                   )
                               : null,
                           lastChatText: chatInfo.chatPreviewMessage(),
