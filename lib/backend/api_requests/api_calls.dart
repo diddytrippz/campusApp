@@ -60,25 +60,25 @@ class SendGridCall {
     {
       "to": [
         {
-          "email": "<enter_to_email>"
+          "email": "${toEmail}"
         }
       ],
-      "subject": "<enter_to_subject>"
+      "subject": "${subject}"
     }
   ],
   "content": [
     {
       "type": "text/plain",
-      "value": "<enter_content>"
+      "value": "${content}"
     }
   ],
   "from": {
-    "email": "<enter_from_email>",
-    "name": "<enter_from_name>"
+    "email": "campusafricapp@gmail.com",
+    "name": "admin"
   },
   "reply_to": {
-    "email": "<enter_reply_to_email>",
-    "name": "<enter_reply_to_name>"
+    "email": "campusafricapp@gmail.com",
+    "name": "admin"
   }
 }''';
     return ApiManager.instance.makeApiCall(
