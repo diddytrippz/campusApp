@@ -1514,7 +1514,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                         building:
                                                                             listViewMaintenanceRecord.building,
                                                                         status:
-                                                                            listViewMaintenanceRecord.status,
+                                                                            'Completed',
                                                                         updated: dateTimeFormat(
                                                                             'MMMMEEEEd',
                                                                             listViewMaintenanceRecord.updateTime),
