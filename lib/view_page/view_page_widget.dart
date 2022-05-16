@@ -1518,6 +1518,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                         updated: dateTimeFormat(
                                                                             'MMMMEEEEd',
                                                                             listViewMaintenanceRecord.updateTime),
+                                                                        name: listViewMaintenanceRecord
+                                                                            .displayName,
                                                                       );
                                                                       logFirebaseEvent(
                                                                           'SlidableActionWidget-Show-Snack-Bar');
