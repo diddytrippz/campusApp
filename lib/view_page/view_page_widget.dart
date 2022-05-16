@@ -1503,14 +1503,21 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                               maintenanceUpdateData);
                                                                       logFirebaseEvent(
                                                                           'SlidableActionWidget-Backend-Call');
-                                                                      await SendGridCall
+                                                                      await AirtableCall
                                                                           .call(
-                                                                        toEmail:
-                                                                            listViewMaintenanceRecord.email,
-                                                                        subject:
-                                                                            'RE: Maintenance Status Change',
-                                                                        content:
-                                                                            'Good day,   Please note that your maintenance ticket has been completed. Click on this link to leave a review for our team.  Campusafrica://campusafrica.com/ViewPage  Regards Maintenance Team',
+                                                                        user: listViewMaintenanceRecord
+                                                                            .email,
+                                                                        issue: listViewMaintenanceRecord
+                                                                            .issue,
+                                                                        room: listViewMaintenanceRecord
+                                                                            .room,
+                                                                        building:
+                                                                            listViewMaintenanceRecord.building,
+                                                                        status:
+                                                                            listViewMaintenanceRecord.status,
+                                                                        updated: dateTimeFormat(
+                                                                            'MMMMEEEEd',
+                                                                            listViewMaintenanceRecord.updateTime),
                                                                       );
                                                                       logFirebaseEvent(
                                                                           'SlidableActionWidget-Show-Snack-Bar');
