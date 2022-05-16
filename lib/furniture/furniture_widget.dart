@@ -318,7 +318,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Describe your Issue',
+                          hintText: 'Describe your Issue',
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00C5C5C5),
