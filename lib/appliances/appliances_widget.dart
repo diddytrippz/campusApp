@@ -23,7 +23,7 @@ class AppliancesWidget extends StatefulWidget {
 class _AppliancesWidgetState extends State<AppliancesWidget> {
   String uploadedFileUrl = '';
   TextEditingController textController1;
-  String budgetValue;
+  String issueValue;
   TextEditingController reasonController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -263,7 +263,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                           'Microwave not working',
                           'Fridge not working'
                         ].toList(),
-                        onChanged: (val) => setState(() => budgetValue = val),
+                        onChanged: (val) => setState(() => issueValue = val),
                         width: MediaQuery.of(context).size.width * 0.98,
                         height: 70,
                         textStyle: FlutterFlowTheme.of(context)
@@ -364,7 +364,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             return;
                           }
 
-                          if (budgetValue == null) {
+                          if (issueValue == null) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -386,7 +386,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
 
                           final maintenanceCreateData =
                               createMaintenanceRecordData(
-                            issue: budgetValue,
+                            issue: issueValue,
                             status: 'Submitted',
                             email: currentUserEmail,
                             createdTime: getCurrentTimestamp,

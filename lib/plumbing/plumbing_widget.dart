@@ -23,7 +23,7 @@ class PlumbingWidget extends StatefulWidget {
 class _PlumbingWidgetState extends State<PlumbingWidget> {
   String uploadedFileUrl = '';
   TextEditingController textController1;
-  String budgetValue;
+  String issueValue;
   TextEditingController reasonController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -270,7 +270,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                           'Leaking gyser',
                           'Burst pipes'
                         ].toList(),
-                        onChanged: (val) => setState(() => budgetValue = val),
+                        onChanged: (val) => setState(() => issueValue = val),
                         width: MediaQuery.of(context).size.width * 0.98,
                         height: 70,
                         textStyle: FlutterFlowTheme.of(context)
@@ -371,7 +371,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                             return;
                           }
 
-                          if (budgetValue == null) {
+                          if (issueValue == null) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -394,7 +394,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
 
                           final maintenanceCreateData =
                               createMaintenanceRecordData(
-                            issue: budgetValue,
+                            issue: issueValue,
                             status: 'Submitted',
                             email: currentUserEmail,
                             createdTime: getCurrentTimestamp,

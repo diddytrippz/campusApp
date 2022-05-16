@@ -3,12 +3,12 @@ import '../backend/backend.dart';
 import '../components/empty_list_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:text_search/text_search.dart';
 
 class MessagesPageWidget extends StatefulWidget {
   const MessagesPageWidget({Key key}) : super(key: key);
@@ -18,8 +18,9 @@ class MessagesPageWidget extends StatefulWidget {
 }
 
 class _MessagesPageWidgetState extends State<MessagesPageWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+  List<ChatsRecord> simpleSearchResults = [];
   TextEditingController textController;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -36,86 +37,85 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
-        leading: ToggleIcon(
-          onPressed: () async {
-            setState(() => FFAppState().isPressed = !FFAppState().isPressed);
+        leading: InkWell(
+          onTap: () async {
+            logFirebaseEvent('Icon-ON_TAP');
+            logFirebaseEvent('Icon-Simple-Search');
+            await queryChatsRecordOnce()
+                .then(
+                  (records) => simpleSearchResults = TextSearch(
+                    records
+                        .map(
+                          (record) =>
+                              TextSearchItem(record, [record.lastMessage]),
+                        )
+                        .toList(),
+                  )
+                      .search(textController.text)
+                      .map((r) => r.object)
+                      .take(5)
+                      .toList(),
+                )
+                .onError((_, __) => simpleSearchResults = [])
+                .whenComplete(() => setState(() {}));
           },
-          value: FFAppState().isPressed,
-          onIcon: Icon(
-            Icons.menu_outlined,
+          child: Icon(
+            FFIcons.ksearch,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 26,
-          ),
-          offIcon: Icon(
-            Icons.chevron_left,
-            color: FlutterFlowTheme.of(context).primaryText,
-            size: 25,
+            size: 24,
           ),
         ),
         title: Stack(
           children: [
-            if (!(FFAppState().isPressed) ?? true)
-              TextFormField(
-                controller: textController,
-                obscureText: false,
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1,
-                    ),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(4.0),
-                      topRight: Radius.circular(4.0),
-                    ),
+            TextFormField(
+              controller: textController,
+              obscureText: false,
+              decoration: InputDecoration(
+                hintText: 'Search',
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0x00000000),
+                    width: 1,
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1,
-                    ),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(4.0),
-                      topRight: Radius.circular(4.0),
-                    ),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(4.0),
+                    topRight: Radius.circular(4.0),
                   ),
                 ),
-                style: FlutterFlowTheme.of(context).bodyText1.override(
-                      fontFamily: 'Open Sans',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                    ),
-                keyboardType: TextInputType.name,
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0x00000000),
+                    width: 1,
+                  ),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(4.0),
+                    topRight: Radius.circular(4.0),
+                  ),
+                ),
               ),
-            if (FFAppState().isPressed ?? true)
-              Text(
-                'Inbox',
-                style: FlutterFlowTheme.of(context).title3.override(
-                      fontFamily: 'Open Sans',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 18,
-                    ),
-              ),
+              style: FlutterFlowTheme.of(context).bodyText1.override(
+                    fontFamily: 'Open Sans',
+                    color: FlutterFlowTheme.of(context).primaryText,
+                  ),
+              keyboardType: TextInputType.name,
+            ),
           ],
         ),
         actions: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-            child: ToggleIcon(
-              onPressed: () async {
-                setState(
-                    () => FFAppState().isPressed = !FFAppState().isPressed);
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 18, 0),
+            child: InkWell(
+              onTap: () async {
+                logFirebaseEvent('Icon-ON_TAP');
+                logFirebaseEvent('Icon-Clear-Text-Fields');
+                setState(() {
+                  textController.clear();
+                });
               },
-              value: FFAppState().isPressed,
-              onIcon: Icon(
-                FFIcons.ksearch,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 22,
-              ),
-              offIcon: Icon(
+              child: Icon(
                 Icons.clear,
                 color: FlutterFlowTheme.of(context).primaryText,
-                size: 22,
+                size: 24,
               ),
             ),
           ),

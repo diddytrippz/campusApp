@@ -324,6 +324,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   onPressed: () async {
                                     logFirebaseEvent('ButtonLogin-ON_TAP');
                                     logFirebaseEvent('ButtonLogin-Auth');
+                                    GoRouter.of(context).ignoringAuthChange();
 
                                     final user = await signInWithEmail(
                                       context,
@@ -334,9 +335,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       return;
                                     }
 
-                                    context.goNamed(
-                                      'homePage',
-                                    );
+                                    context.goNamed('homePage');
                                   },
                                   text: 'Login',
                                   options: FFButtonOptions(
@@ -377,9 +376,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 logFirebaseEvent('ButtonCreateAccount-ON_TAP');
                                 logFirebaseEvent(
                                     'ButtonCreateAccount-Navigate-To');
-                                context.pushNamed(
-                                  'verification',
-                                );
+                                context.pushNamed('verification');
                               },
                               text: 'Create Account',
                               options: FFButtonOptions(

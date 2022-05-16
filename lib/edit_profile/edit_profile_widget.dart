@@ -47,9 +47,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
           onTap: () async {
             logFirebaseEvent('Icon-ON_TAP');
             logFirebaseEvent('Icon-Navigate-To');
-            context.pushNamed(
-              'settingsPage',
-            );
+            context.pushNamed('settingsPage');
           },
           child: Icon(
             Icons.arrow_back_rounded,
@@ -417,9 +415,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           ),
                         );
                         logFirebaseEvent('Button-Navigate-To');
-                        context.pushNamed(
-                          'settingsPage',
-                        );
+                        context.pushNamed('settingsPage');
                       },
                       text: 'UPDATE PROFILE',
                       options: FFButtonOptions(

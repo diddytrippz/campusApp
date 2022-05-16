@@ -141,10 +141,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         onPressed: () async {
                           logFirebaseEvent('Button-ON_TAP');
                           logFirebaseEvent('Button-Auth');
+                          GoRouter.of(context).ignoringAuthChange();
                           await signOut();
-                          context.goNamed(
-                            'onboarding',
-                          );
+                          context.goNamed('onboarding');
                         },
                         text: 'Logout',
                         options: FFButtonOptions(
@@ -203,9 +202,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             onTap: () async {
                               logFirebaseEvent('Row-ON_TAP');
                               logFirebaseEvent('Row-Navigate-To');
-                              context.pushNamed(
-                                'editProfile',
-                              );
+                              context.pushNamed('editProfile');
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -266,9 +263,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             onTap: () async {
                               logFirebaseEvent('Row-ON_TAP');
                               logFirebaseEvent('Row-Navigate-To');
-                              context.pushNamed(
-                                'MessagesPage',
-                              );
+                              context.pushNamed('MessagesPage');
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -485,9 +480,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                             onTap: () async {
                               logFirebaseEvent('Row-ON_TAP');
                               logFirebaseEvent('Row-Navigate-To');
-                              context.pushNamed(
-                                'rulesBook',
-                              );
+                              context.pushNamed('rulesBook');
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -622,10 +615,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           onPressed: () async {
                             logFirebaseEvent('Button-ON_TAP');
                             logFirebaseEvent('Button-Auth');
+                            GoRouter.of(context).ignoringAuthChange();
                             await signOut();
-                            context.goNamed(
-                              'onboarding',
-                            );
+                            context.goNamed('onboarding');
                           },
                           text: 'Log Out',
                           options: FFButtonOptions(

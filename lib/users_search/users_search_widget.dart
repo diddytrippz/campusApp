@@ -331,7 +331,10 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                                       ),
                                                       Icon(
                                                         Icons.person_add_alt,
-                                                        color: Colors.black,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
                                                         size: 24,
                                                       ),
                                                     ],
@@ -506,30 +509,46 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      AutoSizeText(
-                                                        columnUsersRecord
-                                                            .displayName,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .title2
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                      ),
-                                                    ],
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 12, 0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        AutoSizeText(
+                                                          columnUsersRecord
+                                                              .displayName,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .title2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                        Icon(
+                                                          Icons
+                                                              .person_add_outlined,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          size: 24,
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                   Text(
                                                     columnUsersRecord.building,

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
+import '../flutter_flow_theme.dart';
 import '../../backend/backend.dart';
 import '../../auth/firebase_user_provider.dart';
 import '../../backend/push_notifications/push_notifications_handler.dart'
@@ -21,14 +22,31 @@ class AppStateNotifier extends ChangeNotifier {
   CampusAfricaFirebaseUser user;
   bool showSplashImage = true;
 
+  /// Determines whether the app will refresh and build again when a sign
+  /// in or sign out happens. This is useful when the app is launched or
+  /// on an unexpected logout. However, this must be turned off when we
+  /// intend to sign in/out and then navigate or perform any actions after.
+  /// Otherwise, this will trigger a refresh and interrupt the action(s).
+  bool notifyOnAuthChange = true;
+
   bool get loading => user == null || showSplashImage;
   bool get loggedIn => user?.loggedIn ?? false;
   bool get initiallyLoggedIn => initialUser?.loggedIn ?? false;
 
+  /// Mark as not needing to notify on a sign in / out when we intend
+  /// to perform subsequent actions (such as navigation) afterwards.
+  void updateNotifyOnAuthChange(bool notify) => notifyOnAuthChange = notify;
+
   void update(CampusAfricaFirebaseUser newUser) {
     initialUser ??= newUser;
     user = newUser;
-    notifyListeners();
+    // Refresh the app on auth change unless explicitly marked otherwise.
+    if (notifyOnAuthChange) {
+      notifyListeners();
+    }
+    // Once again mark the notifier as needing to update on auth change
+    // (in order to catch sign in / out events).
+    updateNotifyOnAuthChange(true);
   }
 
   void stopShowingSplashImage() {
@@ -160,14 +178,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => LocksmithWidget(),
         ),
         FFRoute(
-          name: 'painting',
-          path: '/painting',
-          builder: (context, params) => PaintingWidget(),
-        ),
-        FFRoute(
           name: 'Pestcontrol',
           path: '/pestcontrol',
           builder: (context, params) => PestcontrolWidget(),
+        ),
+        FFRoute(
+          name: 'painting',
+          path: '/painting',
+          builder: (context, params) => PaintingWidget(),
         ),
         FFRoute(
           name: 'Others',
@@ -192,7 +210,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
 
-extension _GoRouterExtensions on GoRouterState {
+extension GoRouterExtensions on GoRouter {
+  void ignoringAuthChange() =>
+      (routerDelegate.refreshListenable as AppStateNotifier)
+          .updateNotifyOnAuthChange(false);
+}
+
+extension _GoRouterStateExtensions on GoRouterState {
   Map<String, dynamic> get extraMap =>
       extra != null ? extra as Map<String, dynamic> : {};
   Map<String, dynamic> get allParams => <String, dynamic>{}

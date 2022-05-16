@@ -7,12 +7,14 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:text_search/text_search.dart';
 
 class ViewPageWidget extends StatefulWidget {
   const ViewPageWidget({Key key}) : super(key: key);
@@ -24,6 +26,7 @@ class ViewPageWidget extends StatefulWidget {
 class _ViewPageWidgetState extends State<ViewPageWidget>
     with TickerProviderStateMixin {
   DateTimeRange calendarSelectedDay;
+  List<MaintenanceRecord> simpleSearchResults = [];
   TextEditingController textController;
   PagingController<DocumentSnapshot, MaintenanceRecord> _pagingController;
   Query _pagingQuery;
@@ -82,9 +85,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
         onPressed: () async {
           logFirebaseEvent('FloatingActionButton-ON_TAP');
           logFirebaseEvent('FloatingActionButton-Navigate-To');
-          context.pushNamed(
-            'homePage',
-          );
+          context.pushNamed('homePage');
         },
         backgroundColor: FlutterFlowTheme.of(context).mellow,
         elevation: 8,
@@ -150,6 +151,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
                                 child: TextFormField(
                                   controller: textController,
+                                  onChanged: (_) => EasyDebounce.debounce(
+                                    'textController',
+                                    Duration(milliseconds: 400),
+                                    () => setState(() {}),
+                                  ),
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelStyle: FlutterFlowTheme.of(context)
@@ -201,8 +207,28 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                               child: FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
+                                onPressed: () async {
+                                  logFirebaseEvent('Button-ON_TAP');
+                                  logFirebaseEvent('Button-Simple-Search');
+                                  await queryMaintenanceRecordOnce()
+                                      .then(
+                                        (records) => simpleSearchResults =
+                                            TextSearch(
+                                          records
+                                              .map(
+                                                (record) => TextSearchItem(
+                                                    record, [record.issue]),
+                                              )
+                                              .toList(),
+                                        )
+                                                .search(textController.text)
+                                                .map((r) => r.object)
+                                                .take(5)
+                                                .toList(),
+                                      )
+                                      .onError(
+                                          (_, __) => simpleSearchResults = [])
+                                      .whenComplete(() => setState(() {}));
                                 },
                                 text: 'Search',
                                 options: FFButtonOptions(
@@ -1192,7 +1218,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(16, 12,
-                                                                  16, 10),
+                                                                  16, 0),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -1673,7 +1699,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             4,
-                                                                            0,
+                                                                            5,
                                                                             4,
                                                                             0),
                                                                 child: InkWell(
@@ -1725,6 +1751,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           Row(
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
                                                                         children: [
                                                                           Icon(
                                                                             Icons.account_circle,

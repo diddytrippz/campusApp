@@ -1,5 +1,6 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -98,8 +99,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         logFirebaseEvent(
                                                             'Badge-Navigate-To');
                                                         context.pushNamed(
-                                                          'MessagesPage',
-                                                        );
+                                                            'MessagesPage');
                                                       },
                                                       child: Badge(
                                                         badgeContent: Text(
@@ -342,7 +342,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                4, 4, 4, 4),
+                                                                4, 8, 4, 4),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -355,26 +355,32 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           color: Colors.white,
                                                           size: 35,
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      8, 0, 0),
-                                                          child: Text(
-                                                            'Appliances',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
+                                                        Expanded(
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        4,
+                                                                        0,
+                                                                        4),
+                                                            child: Text(
+                                                              'Appliances',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        12,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ),
                                                       ],
@@ -396,9 +402,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'activityButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'activityButton-Navigate-To');
-                                                context.pushNamed(
-                                                  'Plumbing',
-                                                );
+                                                context.pushNamed('Plumbing');
                                               },
                                               child: Material(
                                                 color: Colors.transparent,
@@ -436,7 +440,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                4, 4, 4, 4),
+                                                                4, 8, 4, 4),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -449,28 +453,35 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           color: Colors.white,
                                                           size: 35,
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      8, 0, 0),
-                                                          child: Text(
-                                                            'Plumbing',
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
+                                                        Expanded(
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        4,
+                                                                        0,
+                                                                        4),
+                                                            child: Text(
+                                                              'Plumbing',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        12,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ),
                                                       ],
@@ -492,9 +503,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'bankButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'bankButton-Navigate-To');
-                                                context.pushNamed(
-                                                  'Furniture',
-                                                );
+                                                context.pushNamed('Furniture');
                                               },
                                               child: Material(
                                                 color: Colors.transparent,
@@ -540,31 +549,43 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           MainAxisAlignment
                                                               .center,
                                                       children: [
-                                                        Icon(
-                                                          FFIcons.ksofas,
-                                                          color: Colors.white,
-                                                          size: 35,
-                                                        ),
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(0,
                                                                       8, 0, 0),
-                                                          child: Text(
-                                                            'Furniture',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
+                                                          child: Icon(
+                                                            FFIcons.ksofas,
+                                                            color: Colors.white,
+                                                            size: 35,
+                                                          ),
+                                                        ),
+                                                        Expanded(
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        4,
+                                                                        0,
+                                                                        4),
+                                                            child: Text(
+                                                              'Furniture',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        12,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ),
                                                       ],
@@ -599,9 +620,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'transferButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'transferButton-Navigate-To');
-                                                context.pushNamed(
-                                                  'Electrical',
-                                                );
+                                                context.pushNamed('Electrical');
                                               },
                                               child: Container(
                                                 width: MediaQuery.of(context)
@@ -628,7 +647,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(4, 4, 4, 4),
+                                                      .fromSTEB(4, 8, 4, 4),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -641,26 +660,28 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         color: Colors.white,
                                                         size: 40,
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0, 8, 0, 0),
-                                                        child: Text(
-                                                          'Electrical',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      4, 0, 4),
+                                                          child: Text(
+                                                            'Electrical',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ],
@@ -681,9 +702,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'activityButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'activityButton-Navigate-To');
-                                                context.pushNamed(
-                                                  'Locksmith',
-                                                );
+                                                context.pushNamed('Locksmith');
                                               },
                                               child: Container(
                                                 width: MediaQuery.of(context)
@@ -710,7 +729,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(4, 4, 4, 4),
+                                                      .fromSTEB(4, 8, 4, 4),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -723,28 +742,30 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         color: Colors.white,
                                                         size: 35,
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0, 8, 0, 0),
-                                                        child: Text(
-                                                          'Locksmith',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      4, 0, 4),
+                                                          child: Text(
+                                                            'Locksmith',
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ],
@@ -765,9 +786,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'bankButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'bankButton-Navigate-To');
-                                                context.pushNamed(
-                                                  'painting',
-                                                );
+                                                context.pushNamed('painting');
                                               },
                                               child: Container(
                                                 width: MediaQuery.of(context)
@@ -794,7 +813,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(4, 4, 4, 4),
+                                                      .fromSTEB(4, 8, 4, 4),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -807,26 +826,28 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         color: Colors.white,
                                                         size: 35,
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0, 8, 0, 0),
-                                                        child: Text(
-                                                          'Painting',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      4, 0, 4),
+                                                          child: Text(
+                                                            'Painting',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ],
@@ -860,9 +881,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'transferButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'transferButton-Navigate-To');
-                                                context.pushNamed(
-                                                  'Pestcontrol',
-                                                );
+                                                context
+                                                    .pushNamed('Pestcontrol');
                                               },
                                               child: Container(
                                                 width: MediaQuery.of(context)
@@ -889,7 +909,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(4, 4, 4, 4),
+                                                      .fromSTEB(4, 8, 4, 4),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -897,18 +917,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         MainAxisAlignment
                                                             .center,
                                                     children: [
-                                                      Icon(
-                                                        Icons
-                                                            .pest_control_rodent,
-                                                        color: Colors.white,
-                                                        size: 35,
+                                                      Expanded(
+                                                        child: Icon(
+                                                          Icons
+                                                              .pest_control_rodent,
+                                                          color: Colors.white,
+                                                          size: 35,
+                                                        ),
                                                       ),
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    0, 8, 0, 0),
-                                                        child: Text(
+                                                                    0, 4, 0, 4),
+                                                        child: AutoSizeText(
                                                           'Pest control',
                                                           textAlign:
                                                               TextAlign.center,
@@ -945,9 +967,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'activityButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'activityButton-Navigate-To');
-                                                context.pushNamed(
-                                                  'Communal',
-                                                );
+                                                context.pushNamed('Communal');
                                               },
                                               child: Container(
                                                 width: MediaQuery.of(context)
@@ -974,7 +994,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(4, 4, 4, 4),
+                                                      .fromSTEB(4, 8, 4, 4),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -988,28 +1008,30 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         color: Colors.white,
                                                         size: 35,
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0, 8, 0, 0),
-                                                        child: Text(
-                                                          'Communal',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Lexend Deca',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      4, 0, 4),
+                                                          child: Text(
+                                                            'Communal',
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Lexend Deca',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ],
@@ -1030,9 +1052,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     'bankButton-ON_TAP');
                                                 logFirebaseEvent(
                                                     'bankButton-Navigate-To');
-                                                context.pushNamed(
-                                                  'Others',
-                                                );
+                                                context.pushNamed('Others');
                                               },
                                               child: Container(
                                                 width: MediaQuery.of(context)
@@ -1059,7 +1079,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(4, 4, 4, 12),
+                                                      .fromSTEB(4, 8, 4, 12),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -1072,26 +1092,28 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         color: Colors.white,
                                                         size: 35,
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0, 8, 0, 0),
-                                                        child: Text(
-                                                          'Others',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Lexend Deca',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      4, 0, 0),
+                                                          child: Text(
+                                                            'Others',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Lexend Deca',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ],
