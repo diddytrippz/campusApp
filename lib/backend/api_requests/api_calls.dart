@@ -46,3 +46,58 @@ class AirtableCall {
     );
   }
 }
+
+class SendGridCall {
+  static Future<ApiCallResponse> call({
+    String toEmail = '',
+    String subject = '',
+    String content = '',
+    String name = '',
+  }) {
+    final body = '''
+{
+  "personalizations": [
+    {
+      "to": [
+        {
+          "email": "<enter_to_email>"
+        }
+      ],
+      "subject": "<enter_to_subject>"
+    }
+  ],
+  "content": [
+    {
+      "type": "text/plain",
+      "value": "<enter_content>"
+    }
+  ],
+  "from": {
+    "email": "<enter_from_email>",
+    "name": "<enter_from_name>"
+  },
+  "reply_to": {
+    "email": "<enter_reply_to_email>",
+    "name": "<enter_reply_to_name>"
+  }
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'SendGrid',
+      apiUrl: 'https://api.sendgrid.com/v3/mail/send',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization':
+            'Bearer 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',
+      },
+      params: {
+        'toEmail': toEmail,
+        'subject': subject,
+        'content': content,
+        'name': name,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}

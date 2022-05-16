@@ -1503,18 +1503,14 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                               maintenanceUpdateData);
                                                                       logFirebaseEvent(
                                                                           'SlidableActionWidget-Backend-Call');
-                                                                      await AirtableCall
+                                                                      await SendGridCall
                                                                           .call(
-                                                                        user: listViewMaintenanceRecord
-                                                                            .email,
-                                                                        room: listViewMaintenanceRecord
-                                                                            .room,
-                                                                        status:
-                                                                            'Completed',
-                                                                        building:
-                                                                            listViewMaintenanceRecord.building,
-                                                                        issue: listViewMaintenanceRecord
-                                                                            .issue,
+                                                                        toEmail:
+                                                                            listViewMaintenanceRecord.email,
+                                                                        subject:
+                                                                            'RE: Maintenance Status Change',
+                                                                        content:
+                                                                            'Good day,   Please note that your maintenance ticket has been completed. Click on this link to leave a review for our team.  Campusafrica://campusafrica.com/ViewPage  Regards Maintenance Team',
                                                                       );
                                                                       logFirebaseEvent(
                                                                           'SlidableActionWidget-Show-Snack-Bar');
