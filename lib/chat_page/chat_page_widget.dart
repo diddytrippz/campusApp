@@ -4,6 +4,7 @@ import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -129,29 +130,31 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                 ),
               ),
             ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.chatUser.displayName,
-                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Open Sans',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                ),
-                Text(
-                  dateTimeFormat('jms', getCurrentTimestamp),
-                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Open Sans',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AutoSizeText(
+                    widget.chatUser.displayName,
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Open Sans',
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
+                  Text(
+                    dateTimeFormat('jms', getCurrentTimestamp),
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Open Sans',
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
