@@ -61,10 +61,18 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
         actions: [
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-            child: Icon(
-              Icons.add,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30,
+            child: InkWell(
+              onTap: () async {
+                logFirebaseEvent('Icon-ON_TAP');
+                logFirebaseEvent('Icon-Launch-U-R-L');
+                await launchURL(
+                    'reviews://campusafrica.com${GoRouter.of(context).location}');
+              },
+              child: Icon(
+                Icons.add,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 30,
+              ),
             ),
           ),
         ],
