@@ -284,87 +284,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            color: Color(0x00FFFFFF),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if ((widget.jobStatus.notes != null) &&
-                                  (widget.jobStatus.notes != ''))
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 8, 16, 2),
-                                  child: AutoSizeText(
-                                    'Issue:',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: Color(0xFFA2A2A2),
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0, 10, 20, 0),
-                                child: AutoSizeText(
-                                  widget.jobStatus.issue,
-                                  style: FlutterFlowTheme.of(context)
-                                      .title1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontSize: 18,
-                                      ),
-                                ),
-                              ),
-                              if ((widget.jobStatus.notes != null) &&
-                                  (widget.jobStatus.notes != ''))
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 10, 0, 2),
-                                  child: AutoSizeText(
-                                    'Description:',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: Color(0xFFA2A2A2),
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ),
-                              if ((widget.jobStatus.notes != null) &&
-                                  (widget.jobStatus.notes != ''))
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 8, 16, 2),
-                                  child: AutoSizeText(
-                                    valueOrDefault<String>(
-                                      widget.jobStatus.notes,
-                                      'This section is currently empty. No additional notes/attachments were added in this request',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: Color(0xFF595959),
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ),
-                        Container(
                           height: MediaQuery.of(context).size.height * 1,
                           decoration: BoxDecoration(
                             color: Colors.transparent,
@@ -373,6 +292,83 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    if ((widget.jobStatus.notes != null) &&
+                                        (widget.jobStatus.notes != ''))
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 8, 16, 2),
+                                        child: AutoSizeText(
+                                          'Issue:',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                color: Color(0xFFA2A2A2),
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 10, 20, 0),
+                                      child: AutoSizeText(
+                                        widget.jobStatus.issue,
+                                        style: FlutterFlowTheme.of(context)
+                                            .title1
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 18,
+                                            ),
+                                      ),
+                                    ),
+                                    if ((widget.jobStatus.notes != null) &&
+                                        (widget.jobStatus.notes != ''))
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 10, 0, 2),
+                                        child: AutoSizeText(
+                                          'Description:',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                color: Color(0xFFA2A2A2),
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                    if ((widget.jobStatus.notes != null) &&
+                                        (widget.jobStatus.notes != ''))
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 8, 16, 2),
+                                        child: AutoSizeText(
+                                          valueOrDefault<String>(
+                                            widget.jobStatus.notes,
+                                            'This section is currently empty. No additional notes/attachments were added in this request',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                color: Color(0xFF595959),
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
                                 Container(
                                   width: double.infinity,
                                   color: Color(0x00FFFFFF),
