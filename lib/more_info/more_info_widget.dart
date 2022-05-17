@@ -269,7 +269,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
               ),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: MediaQuery.of(context).size.height * 1,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).tertiaryColor,
                   borderRadius: BorderRadius.circular(0),
@@ -753,7 +753,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                     .fromSTEB(18, 20, 18, 0),
                                                 child: Material(
                                                   color: Colors.transparent,
-                                                  elevation: 10,
+                                                  elevation: 0,
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
