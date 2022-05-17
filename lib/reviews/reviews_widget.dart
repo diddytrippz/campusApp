@@ -418,6 +418,35 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                     return;
                                   }
 
+                                  logFirebaseEvent('Button-Alert-Dialog');
+                                  var confirmDialogResponse =
+                                      await showDialog<bool>(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: Text('Confirm'),
+                                                content: Text(
+                                                    'Are you sure you want to submit your review?\nPlease note that this section cannot be edited once the review goes live'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext,
+                                                            false),
+                                                    child: Text('Cancel'),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext,
+                                                            true),
+                                                    child: Text('Confirm'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          ) ??
+                                          false;
                                   logFirebaseEvent('Button-Backend-Call');
 
                                   final maintenanceUpdateData =

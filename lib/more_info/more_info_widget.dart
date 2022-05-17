@@ -111,7 +111,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    'Reviews section cannot be edited once you submit',
+                                    'You cannot edit a review that has been published!',
                                     style: GoogleFonts.getFont(
                                       'Open Sans',
                                       color: FlutterFlowTheme.of(context)
