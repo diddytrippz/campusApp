@@ -638,11 +638,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             ListTile(
-                                                                              leading: Icon(
-                                                                                FFIcons.kcalendar1,
-                                                                                color: FlutterFlowTheme.of(context).primaryText,
-                                                                                size: 28,
-                                                                              ),
                                                                               title: Text(
                                                                                 '${dateTimeFormat('MMMMEEEEd', widget.jobStatus.createdTime)} at ${dateTimeFormat('jm', widget.jobStatus.createdTime)}',
                                                                                 style: FlutterFlowTheme.of(context).title3.override(
@@ -666,11 +661,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             if ((widget.jobStatus.isDone) ==
                                                                                 false)
                                                                               ListTile(
-                                                                                leading: Icon(
-                                                                                  FFIcons.kdownload1,
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  size: 30,
-                                                                                ),
                                                                                 title: Text(
                                                                                   'Status',
                                                                                   style: FlutterFlowTheme.of(context).subtitle1.override(
@@ -693,11 +683,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             if ((widget.jobStatus.isDone) ==
                                                                                 false)
                                                                               ListTile(
-                                                                                leading: Icon(
-                                                                                  FFIcons.kapps,
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  size: 30,
-                                                                                ),
                                                                                 title: Text(
                                                                                   'Category',
                                                                                   style: FlutterFlowTheme.of(context).subtitle1.override(
@@ -720,11 +705,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             if ((widget.jobStatus.isDone) ==
                                                                                 false)
                                                                               ListTile(
-                                                                                leading: Icon(
-                                                                                  FFIcons.kworker,
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  size: 30,
-                                                                                ),
                                                                                 title: Text(
                                                                                   'Team Member ID',
                                                                                   style: FlutterFlowTheme.of(context).subtitle1.override(
@@ -844,13 +824,13 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                     padding: EdgeInsetsDirectional.fromSTEB(18, 20, 18, 0),
                                                                                     child: Material(
                                                                                       color: Colors.transparent,
-                                                                                      elevation: 20,
+                                                                                      elevation: 10,
                                                                                       shape: RoundedRectangleBorder(
                                                                                         borderRadius: BorderRadius.circular(8),
                                                                                       ),
                                                                                       child: Container(
                                                                                         width: MediaQuery.of(context).size.width,
-                                                                                        height: 370,
+                                                                                        height: MediaQuery.of(context).size.height * 0.5,
                                                                                         decoration: BoxDecoration(
                                                                                           color: FlutterFlowTheme.of(context).primaryBackground,
                                                                                           borderRadius: BorderRadius.circular(8),
