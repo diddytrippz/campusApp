@@ -117,14 +117,14 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                       image: Image.network(
                                         valueOrDefault<String>(
                                           widget.jobReviews.photoUrl,
-                                          'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
+                                          'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                         ),
                                         fit: BoxFit.contain,
                                       ),
                                       allowRotation: false,
                                       tag: valueOrDefault<String>(
                                         widget.jobReviews.photoUrl,
-                                        'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
+                                        'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                       ),
                                       useHeroAnimation: true,
                                     ),
@@ -134,7 +134,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                               child: Hero(
                                 tag: valueOrDefault<String>(
                                   widget.jobReviews.photoUrl,
-                                  'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
+                                  'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                 ),
                                 transitionOnUserGestures: true,
                                 child: ClipRRect(
@@ -142,7 +142,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                   child: Image.network(
                                     valueOrDefault<String>(
                                       widget.jobReviews.photoUrl,
-                                      'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
+                                      'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                     ),
                                     width: 100,
                                     height: 100,
