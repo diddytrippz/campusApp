@@ -209,7 +209,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                 (widget.jobStatus.photoUrl != ''))
               Material(
                 color: Colors.transparent,
-                elevation: 15,
+                elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(12),
@@ -290,12 +290,12 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
               ),
             Material(
               color: Colors.transparent,
-              elevation: 5,
+              elevation: 0,
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 1.5,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).tertiaryColor,
+                  color: Color(0x00121212),
                 ),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(12, 20, 12, 0),
