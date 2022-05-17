@@ -29,14 +29,12 @@ class MoreInfoWidget extends StatefulWidget {
 
 class _MoreInfoWidgetState extends State<MoreInfoWidget> {
   List<String> choiceChipsValues;
-  TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'moreInfo'});
-    textController = TextEditingController();
   }
 
   @override
@@ -769,7 +767,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                         MediaQuery.of(context)
                                                                 .size
                                                                 .height *
-                                                            0.5,
+                                                            0.35,
                                                     decoration: BoxDecoration(
                                                       color: FlutterFlowTheme
                                                               .of(context)
@@ -902,79 +900,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                             endIndent: 10,
                                                             color: Color(
                                                                 0x62464749),
-                                                          ),
-                                                          Expanded(
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          10,
-                                                                          0,
-                                                                          0),
-                                                              child:
-                                                                  TextFormField(
-                                                                controller:
-                                                                    textController,
-                                                                readOnly: true,
-                                                                obscureText:
-                                                                    false,
-                                                                decoration:
-                                                                    InputDecoration(
-                                                                  hintText:
-                                                                      'Anything you\'d like us to know?\n(optional)',
-                                                                  enabledBorder:
-                                                                      UnderlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Color(
-                                                                          0x00000000),
-                                                                      width: 1,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        const BorderRadius
-                                                                            .only(
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              4.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              4.0),
-                                                                    ),
-                                                                  ),
-                                                                  focusedBorder:
-                                                                      UnderlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Color(
-                                                                          0x00000000),
-                                                                      width: 1,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        const BorderRadius
-                                                                            .only(
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              4.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              4.0),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Open Sans',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                    ),
-                                                                maxLines: 4,
-                                                              ),
-                                                            ),
                                                           ),
                                                         ],
                                                       ),
