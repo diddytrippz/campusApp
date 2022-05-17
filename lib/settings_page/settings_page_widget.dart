@@ -50,54 +50,57 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Align(
-                            alignment: AlignmentDirectional(0, 0),
-                            child: AuthUserStreamWidget(
-                              child: InkWell(
-                                onTap: () async {
-                                  logFirebaseEvent('CircleImage-ON_TAP');
-                                  logFirebaseEvent('CircleImage-Expand-Image');
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: FlutterFlowExpandedImageView(
-                                        image: Image.network(
-                                          valueOrDefault<String>(
+                          Expanded(
+                            child: Align(
+                              alignment: AlignmentDirectional(0, 0),
+                              child: AuthUserStreamWidget(
+                                child: InkWell(
+                                  onTap: () async {
+                                    logFirebaseEvent('CircleImage-ON_TAP');
+                                    logFirebaseEvent(
+                                        'CircleImage-Expand-Image');
+                                    await Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: FlutterFlowExpandedImageView(
+                                          image: Image.network(
+                                            valueOrDefault<String>(
+                                              currentUserPhoto,
+                                              'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                            ),
+                                            fit: BoxFit.contain,
+                                          ),
+                                          allowRotation: false,
+                                          tag: valueOrDefault<String>(
                                             currentUserPhoto,
                                             'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                           ),
-                                          fit: BoxFit.contain,
+                                          useHeroAnimation: true,
                                         ),
-                                        allowRotation: false,
-                                        tag: valueOrDefault<String>(
+                                      ),
+                                    );
+                                  },
+                                  child: Hero(
+                                    tag: valueOrDefault<String>(
+                                      currentUserPhoto,
+                                      'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                    ),
+                                    transitionOnUserGestures: true,
+                                    child: Container(
+                                      width: 95,
+                                      height: 95,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
+                                        valueOrDefault<String>(
                                           currentUserPhoto,
                                           'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                         ),
-                                        useHeroAnimation: true,
+                                        fit: BoxFit.cover,
                                       ),
-                                    ),
-                                  );
-                                },
-                                child: Hero(
-                                  tag: valueOrDefault<String>(
-                                    currentUserPhoto,
-                                    'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                  ),
-                                  transitionOnUserGestures: true,
-                                  child: Container(
-                                    width: 95,
-                                    height: 95,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.network(
-                                      valueOrDefault<String>(
-                                        currentUserPhoto,
-                                        'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                      ),
-                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),

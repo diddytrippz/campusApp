@@ -105,48 +105,50 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            InkWell(
-                              onTap: () async {
-                                logFirebaseEvent('Image-ON_TAP');
-                                logFirebaseEvent('Image-Expand-Image');
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: FlutterFlowExpandedImageView(
-                                      image: Image.network(
-                                        valueOrDefault<String>(
-                                          widget.jobReviews.photoUrl,
+                            AuthUserStreamWidget(
+                              child: InkWell(
+                                onTap: () async {
+                                  logFirebaseEvent('Image-ON_TAP');
+                                  logFirebaseEvent('Image-Expand-Image');
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: FlutterFlowExpandedImageView(
+                                        image: Image.network(
+                                          valueOrDefault<String>(
+                                            currentUserPhoto,
+                                            'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                          ),
+                                          fit: BoxFit.contain,
+                                        ),
+                                        allowRotation: false,
+                                        tag: valueOrDefault<String>(
+                                          currentUserPhoto,
                                           'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                         ),
-                                        fit: BoxFit.contain,
+                                        useHeroAnimation: true,
                                       ),
-                                      allowRotation: false,
-                                      tag: valueOrDefault<String>(
-                                        widget.jobReviews.photoUrl,
+                                    ),
+                                  );
+                                },
+                                child: Hero(
+                                  tag: valueOrDefault<String>(
+                                    currentUserPhoto,
+                                    'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                  ),
+                                  transitionOnUserGestures: true,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(80),
+                                    child: Image.network(
+                                      valueOrDefault<String>(
+                                        currentUserPhoto,
                                         'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                       ),
-                                      useHeroAnimation: true,
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.cover,
                                     ),
-                                  ),
-                                );
-                              },
-                              child: Hero(
-                                tag: valueOrDefault<String>(
-                                  widget.jobReviews.photoUrl,
-                                  'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                ),
-                                transitionOnUserGestures: true,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(80),
-                                  child: Image.network(
-                                    valueOrDefault<String>(
-                                      widget.jobReviews.photoUrl,
-                                      'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                    ),
-                                    width: 100,
-                                    height: 100,
-                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
