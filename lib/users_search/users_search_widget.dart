@@ -9,7 +9,6 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:share_plus/share_plus.dart';
 
 class UsersSearchWidget extends StatefulWidget {
   const UsersSearchWidget({Key key}) : super(key: key);
@@ -62,18 +61,10 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
         actions: [
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-            child: InkWell(
-              onTap: () async {
-                logFirebaseEvent('Icon-ON_TAP');
-                logFirebaseEvent('Icon-Share');
-                await Share.share(
-                    'reviews://campusafrica.com${GoRouter.of(context).location}');
-              },
-              child: Icon(
-                Icons.add,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 30,
-              ),
+            child: Icon(
+              Icons.add,
+              color: FlutterFlowTheme.of(context).primaryText,
+              size: 30,
             ),
           ),
         ],
