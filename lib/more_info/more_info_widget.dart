@@ -287,7 +287,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(12, 20, 12, 0),
                     child: Column(
-                      mainAxisSize: MainAxisSize.max,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Column(
                           mainAxisSize: MainAxisSize.max,
@@ -638,7 +638,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        12, 20, 0, 0),
+                                        1, 10, 0, 0),
                                     child: Text(
                                       widget.jobStatus.displayName,
                                       style: FlutterFlowTheme.of(context)
@@ -654,7 +654,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        12, 10, 0, 0),
+                                        1, 10, 0, 0),
                                     child: RatingBarIndicator(
                                       itemBuilder: (context, index) => Icon(
                                         Icons.star_rounded,
@@ -671,7 +671,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        12, 10, 0, 0),
+                                        1, 10, 0, 0),
                                     child: Text(
                                       'Private Feedback',
                                       style: FlutterFlowTheme.of(context)
@@ -687,7 +687,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        12, 30, 12, 0),
+                                        1, 30, 12, 0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
