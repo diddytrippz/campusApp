@@ -148,6 +148,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'usersSearch',
           path: '/usersSearch',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'usersSearch')
               : UsersSearchWidget(),
