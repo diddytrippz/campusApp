@@ -717,7 +717,11 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                 initiallySelected:
                                                     choiceChipsValues != null
                                                         ? choiceChipsValues
-                                                        : [],
+                                                        : [
+                                                            'Time',
+                                                            'Cleanliness',
+                                                            'Communication'
+                                                          ],
                                                 options: [
                                                   ChipData('Time'),
                                                   ChipData('Convinience'),
