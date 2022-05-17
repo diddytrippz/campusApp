@@ -1522,7 +1522,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             listViewMaintenanceRecord.updateTime),
                                                                         name: listViewMaintenanceRecord
                                                                             .displayName,
-                                                                        body:
+                                                                        links:
                                                                             'reviews://campusafrica.com${GoRouter.of(context).location}',
                                                                       );
                                                                       logFirebaseEvent(
