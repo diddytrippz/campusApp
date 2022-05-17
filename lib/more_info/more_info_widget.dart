@@ -128,7 +128,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                'Item not ready to be reviewed',
+                                'Ticket not ready to be rated',
                                 style: GoogleFonts.getFont(
                                   'Open Sans',
                                   color: FlutterFlowTheme.of(context)

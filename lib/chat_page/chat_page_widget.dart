@@ -168,7 +168,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
-                      'Video call not supported yet',
+                      'Video call not yet supported ',
                       style: TextStyle(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                       ),
