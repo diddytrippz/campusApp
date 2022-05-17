@@ -764,7 +764,13 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                  Expanded(
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            20),
                                                                     child:
                                                                         Container(
                                                                       width: double
@@ -841,7 +847,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                     ),
                                                                                   ),
                                                                                   Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(18, 20, 18, 0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(18, 0, 18, 0),
                                                                                     child: Material(
                                                                                       color: Colors.transparent,
                                                                                       elevation: 20,
