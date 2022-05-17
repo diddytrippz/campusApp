@@ -40,7 +40,7 @@
         <string>campusafrica.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>reviews</string>
+        <string>campusafrica</string>
         </array>
         </dict>
     </array>

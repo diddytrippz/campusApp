@@ -87,7 +87,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
           logFirebaseEvent('FloatingActionButton-ON_TAP');
           logFirebaseEvent('FloatingActionButton-Share');
           await Share.share(
-              'reviews://campusafrica.com${GoRouter.of(context).location}');
+              'campusafrica://campusafrica.com${GoRouter.of(context).location}');
         },
         backgroundColor: FlutterFlowTheme.of(context).mellow,
         elevation: 8,
@@ -1523,7 +1523,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                         name: listViewMaintenanceRecord
                                                                             .displayName,
                                                                         links:
-                                                                            'reviews://campusafrica.com${GoRouter.of(context).location}',
+                                                                            'campusafrica://campusafrica.com${GoRouter.of(context).location}',
                                                                       );
                                                                       logFirebaseEvent(
                                                                           'SlidableActionWidget-Show-Snack-Bar');
