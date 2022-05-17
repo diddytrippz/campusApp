@@ -14,6 +14,7 @@ class AirtableCall {
     String created = '',
     String updated = '',
     String name = '',
+    String body = '',
   }) {
     final body = '''
 {
@@ -23,7 +24,8 @@ class AirtableCall {
     "Building": "${building}",
     "Room": "${room}",
     "Status": "${status}",
-    "Name": "${name}"
+    "Name": "${name}",
+    "Body": "${body}"
   }
 }''';
     return ApiManager.instance.makeApiCall(
@@ -42,6 +44,7 @@ class AirtableCall {
         'Created': created,
         'Updated': updated,
         'Name': name,
+        'Body': body,
       },
       body: body,
       bodyType: BodyType.JSON,

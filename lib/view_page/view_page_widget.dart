@@ -1522,6 +1522,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             listViewMaintenanceRecord.updateTime),
                                                                         name: listViewMaintenanceRecord
                                                                             .displayName,
+                                                                        body:
+                                                                            'reviews://campusafrica.com${GoRouter.of(context).location}',
                                                                       );
                                                                       logFirebaseEvent(
                                                                           'SlidableActionWidget-Show-Snack-Bar');
