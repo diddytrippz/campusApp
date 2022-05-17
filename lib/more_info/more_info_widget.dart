@@ -764,242 +764,236 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            20),
+                                                                  Container(
+                                                                    width: double
+                                                                        .infinity,
+                                                                    color: Color(
+                                                                        0x00FFFFFF),
                                                                     child:
-                                                                        Container(
-                                                                      width: double
-                                                                          .infinity,
-                                                                      color: Color(
-                                                                          0x00FFFFFF),
+                                                                        ExpandableNotifier(
+                                                                      initialExpanded:
+                                                                          true,
                                                                       child:
-                                                                          ExpandableNotifier(
-                                                                        initialExpanded:
-                                                                            true,
-                                                                        child:
-                                                                            ExpandablePanel(
-                                                                          header:
-                                                                              Text(
-                                                                            'Reviews',
-                                                                            style: FlutterFlowTheme.of(context).title1.override(
-                                                                                  fontFamily: 'Open Sans',
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  fontSize: 18,
-                                                                                ),
-                                                                          ),
-                                                                          collapsed:
-                                                                              Container(),
-                                                                          expanded:
-                                                                              Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                0,
-                                                                                20,
-                                                                                0,
-                                                                                15),
+                                                                          ExpandablePanel(
+                                                                        header:
+                                                                            Text(
+                                                                          'Reviews',
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .title1
+                                                                              .override(
+                                                                                fontFamily: 'Open Sans',
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                                fontSize: 18,
+                                                                              ),
+                                                                        ),
+                                                                        collapsed:
+                                                                            Container(),
+                                                                        expanded:
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              20,
+                                                                              0,
+                                                                              15),
+                                                                          child:
+                                                                              SingleChildScrollView(
                                                                             child:
-                                                                                SingleChildScrollView(
-                                                                              child: Column(
-                                                                                mainAxisSize: MainAxisSize.min,
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                                                                    child: Text(
-                                                                                      widget.jobStatus.displayName,
-                                                                                      style: FlutterFlowTheme.of(context).title1.override(
-                                                                                            fontFamily: 'Open Sans',
-                                                                                            color: FlutterFlowTheme.of(context).primaryText,
-                                                                                            fontSize: 20,
-                                                                                            fontWeight: FontWeight.bold,
-                                                                                          ),
-                                                                                    ),
+                                                                                Column(
+                                                                              mainAxisSize: MainAxisSize.min,
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                                                              children: [
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                                                  child: Text(
+                                                                                    widget.jobStatus.displayName,
+                                                                                    style: FlutterFlowTheme.of(context).title1.override(
+                                                                                          fontFamily: 'Open Sans',
+                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                          fontSize: 20,
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                        ),
                                                                                   ),
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                                                                                    child: RatingBarIndicator(
-                                                                                      itemBuilder: (context, index) => Icon(
-                                                                                        Icons.star_rounded,
-                                                                                        color: Color(0xFFEFB842),
-                                                                                      ),
-                                                                                      direction: Axis.horizontal,
-                                                                                      rating: widget.jobStatus.rating.toDouble(),
-                                                                                      unratedColor: FlutterFlowTheme.of(context).campusGrey,
-                                                                                      itemCount: 5,
-                                                                                      itemSize: 35,
+                                                                                ),
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                                                                                  child: RatingBarIndicator(
+                                                                                    itemBuilder: (context, index) => Icon(
+                                                                                      Icons.star_rounded,
+                                                                                      color: Color(0xFFEFB842),
                                                                                     ),
+                                                                                    direction: Axis.horizontal,
+                                                                                    rating: widget.jobStatus.rating.toDouble(),
+                                                                                    unratedColor: FlutterFlowTheme.of(context).campusGrey,
+                                                                                    itemCount: 5,
+                                                                                    itemSize: 35,
                                                                                   ),
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                                                                                    child: Text(
-                                                                                      'Private Feedback',
-                                                                                      style: FlutterFlowTheme.of(context).title1.override(
-                                                                                            fontFamily: 'Open Sans',
-                                                                                            color: FlutterFlowTheme.of(context).primaryText,
-                                                                                            fontSize: 22,
-                                                                                            fontWeight: FontWeight.bold,
-                                                                                          ),
+                                                                                ),
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                                                                                  child: Text(
+                                                                                    'Private Feedback',
+                                                                                    style: FlutterFlowTheme.of(context).title1.override(
+                                                                                          fontFamily: 'Open Sans',
+                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                          fontSize: 22,
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(18, 0, 18, 0),
+                                                                                  child: Material(
+                                                                                    color: Colors.transparent,
+                                                                                    elevation: 20,
+                                                                                    shape: RoundedRectangleBorder(
+                                                                                      borderRadius: BorderRadius.circular(8),
                                                                                     ),
-                                                                                  ),
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(18, 0, 18, 0),
-                                                                                    child: Material(
-                                                                                      color: Colors.transparent,
-                                                                                      elevation: 20,
-                                                                                      shape: RoundedRectangleBorder(
+                                                                                    child: Container(
+                                                                                      width: MediaQuery.of(context).size.width,
+                                                                                      height: 370,
+                                                                                      decoration: BoxDecoration(
+                                                                                        color: FlutterFlowTheme.of(context).primaryBackground,
                                                                                         borderRadius: BorderRadius.circular(8),
                                                                                       ),
-                                                                                      child: Container(
-                                                                                        width: MediaQuery.of(context).size.width,
-                                                                                        height: 370,
-                                                                                        decoration: BoxDecoration(
-                                                                                          color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                          borderRadius: BorderRadius.circular(8),
-                                                                                        ),
-                                                                                        child: Padding(
-                                                                                          padding: EdgeInsetsDirectional.fromSTEB(12, 30, 12, 20),
-                                                                                          child: Column(
-                                                                                            mainAxisSize: MainAxisSize.max,
-                                                                                            children: [
-                                                                                              Text(
-                                                                                                'What was your most important concern with this  ticket?',
-                                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                      fontFamily: 'Open Sans',
-                                                                                                      color: FlutterFlowTheme.of(context).primaryText,
-                                                                                                    ),
-                                                                                              ),
-                                                                                              Row(
-                                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                                children: [
-                                                                                                  Expanded(
-                                                                                                    child: Padding(
-                                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
-                                                                                                      child: FlutterFlowChoiceChips(
-                                                                                                        initiallySelected: choiceChipsValues != null ? choiceChipsValues : [],
-                                                                                                        options: [
-                                                                                                          ChipData('Time'),
-                                                                                                          ChipData('Convinience'),
-                                                                                                          ChipData('Cleanliness'),
-                                                                                                          ChipData('Communication'),
-                                                                                                          ChipData('Quality')
-                                                                                                        ],
-                                                                                                        onChanged: (val) => setState(() => choiceChipsValues = val),
-                                                                                                        selectedChipStyle: ChipStyle(
-                                                                                                          backgroundColor: Color(0xFF141313),
-                                                                                                          textStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                                fontFamily: 'Open Sans',
-                                                                                                                color: Color(0xFFF4F4F4),
-                                                                                                              ),
-                                                                                                          iconColor: Colors.white,
-                                                                                                          iconSize: 18,
-                                                                                                          elevation: 10,
-                                                                                                        ),
-                                                                                                        unselectedChipStyle: ChipStyle(
-                                                                                                          backgroundColor: Color(0xFFFFFEFE),
-                                                                                                          textStyle: FlutterFlowTheme.of(context).bodyText2.override(
-                                                                                                                fontFamily: 'Open Sans',
-                                                                                                                color: Color(0xFF0D0909),
-                                                                                                                fontWeight: FontWeight.w600,
-                                                                                                              ),
-                                                                                                          iconColor: Color(0xFF323B45),
-                                                                                                          iconSize: 18,
-                                                                                                          elevation: 10,
-                                                                                                        ),
-                                                                                                        chipSpacing: 20,
-                                                                                                        multiselect: true,
-                                                                                                        initialized: choiceChipsValues != null,
-                                                                                                        alignment: WrapAlignment.start,
-                                                                                                      ),
-                                                                                                    ),
+                                                                                      child: Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(12, 30, 12, 20),
+                                                                                        child: Column(
+                                                                                          mainAxisSize: MainAxisSize.max,
+                                                                                          children: [
+                                                                                            Text(
+                                                                                              'What was your most important concern with this  ticket?',
+                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                    fontFamily: 'Open Sans',
+                                                                                                    color: FlutterFlowTheme.of(context).primaryText,
                                                                                                   ),
-                                                                                                ],
-                                                                                              ),
-                                                                                              Divider(
-                                                                                                thickness: 2,
-                                                                                                indent: 10,
-                                                                                                endIndent: 10,
-                                                                                                color: Color(0x62464749),
-                                                                                              ),
-                                                                                              Expanded(
-                                                                                                child: Padding(
-                                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                                                                                                  child: TextFormField(
-                                                                                                    controller: textController,
-                                                                                                    autofocus: true,
-                                                                                                    readOnly: true,
-                                                                                                    obscureText: false,
-                                                                                                    decoration: InputDecoration(
-                                                                                                      hintText: 'Anything you\'d like us to know?\n(optional)',
-                                                                                                      enabledBorder: UnderlineInputBorder(
-                                                                                                        borderSide: BorderSide(
-                                                                                                          color: Color(0x00000000),
-                                                                                                          width: 1,
-                                                                                                        ),
-                                                                                                        borderRadius: const BorderRadius.only(
-                                                                                                          topLeft: Radius.circular(4.0),
-                                                                                                          topRight: Radius.circular(4.0),
-                                                                                                        ),
+                                                                                            ),
+                                                                                            Row(
+                                                                                              mainAxisSize: MainAxisSize.max,
+                                                                                              children: [
+                                                                                                Expanded(
+                                                                                                  child: Padding(
+                                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+                                                                                                    child: FlutterFlowChoiceChips(
+                                                                                                      initiallySelected: choiceChipsValues != null ? choiceChipsValues : [],
+                                                                                                      options: [
+                                                                                                        ChipData('Time'),
+                                                                                                        ChipData('Convinience'),
+                                                                                                        ChipData('Cleanliness'),
+                                                                                                        ChipData('Communication'),
+                                                                                                        ChipData('Quality')
+                                                                                                      ],
+                                                                                                      onChanged: (val) => setState(() => choiceChipsValues = val),
+                                                                                                      selectedChipStyle: ChipStyle(
+                                                                                                        backgroundColor: Color(0xFF141313),
+                                                                                                        textStyle: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                              fontFamily: 'Open Sans',
+                                                                                                              color: Color(0xFFF4F4F4),
+                                                                                                            ),
+                                                                                                        iconColor: Colors.white,
+                                                                                                        iconSize: 18,
+                                                                                                        elevation: 10,
                                                                                                       ),
-                                                                                                      focusedBorder: UnderlineInputBorder(
-                                                                                                        borderSide: BorderSide(
-                                                                                                          color: Color(0x00000000),
-                                                                                                          width: 1,
-                                                                                                        ),
-                                                                                                        borderRadius: const BorderRadius.only(
-                                                                                                          topLeft: Radius.circular(4.0),
-                                                                                                          topRight: Radius.circular(4.0),
-                                                                                                        ),
+                                                                                                      unselectedChipStyle: ChipStyle(
+                                                                                                        backgroundColor: Color(0xFFFFFEFE),
+                                                                                                        textStyle: FlutterFlowTheme.of(context).bodyText2.override(
+                                                                                                              fontFamily: 'Open Sans',
+                                                                                                              color: Color(0xFF0D0909),
+                                                                                                              fontWeight: FontWeight.w600,
+                                                                                                            ),
+                                                                                                        iconColor: Color(0xFF323B45),
+                                                                                                        iconSize: 18,
+                                                                                                        elevation: 10,
                                                                                                       ),
+                                                                                                      chipSpacing: 20,
+                                                                                                      multiselect: true,
+                                                                                                      initialized: choiceChipsValues != null,
+                                                                                                      alignment: WrapAlignment.start,
                                                                                                     ),
-                                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                          fontFamily: 'Open Sans',
-                                                                                                          color: FlutterFlowTheme.of(context).primaryText,
-                                                                                                        ),
-                                                                                                    maxLines: 4,
                                                                                                   ),
                                                                                                 ),
+                                                                                              ],
+                                                                                            ),
+                                                                                            Divider(
+                                                                                              thickness: 2,
+                                                                                              indent: 10,
+                                                                                              endIndent: 10,
+                                                                                              color: Color(0x62464749),
+                                                                                            ),
+                                                                                            Expanded(
+                                                                                              child: Padding(
+                                                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                                                                                                child: TextFormField(
+                                                                                                  controller: textController,
+                                                                                                  autofocus: true,
+                                                                                                  readOnly: true,
+                                                                                                  obscureText: false,
+                                                                                                  decoration: InputDecoration(
+                                                                                                    hintText: 'Anything you\'d like us to know?\n(optional)',
+                                                                                                    enabledBorder: UnderlineInputBorder(
+                                                                                                      borderSide: BorderSide(
+                                                                                                        color: Color(0x00000000),
+                                                                                                        width: 1,
+                                                                                                      ),
+                                                                                                      borderRadius: const BorderRadius.only(
+                                                                                                        topLeft: Radius.circular(4.0),
+                                                                                                        topRight: Radius.circular(4.0),
+                                                                                                      ),
+                                                                                                    ),
+                                                                                                    focusedBorder: UnderlineInputBorder(
+                                                                                                      borderSide: BorderSide(
+                                                                                                        color: Color(0x00000000),
+                                                                                                        width: 1,
+                                                                                                      ),
+                                                                                                      borderRadius: const BorderRadius.only(
+                                                                                                        topLeft: Radius.circular(4.0),
+                                                                                                        topRight: Radius.circular(4.0),
+                                                                                                      ),
+                                                                                                    ),
+                                                                                                  ),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                        fontFamily: 'Open Sans',
+                                                                                                        color: FlutterFlowTheme.of(context).primaryText,
+                                                                                                      ),
+                                                                                                  maxLines: 4,
+                                                                                                ),
                                                                                               ),
-                                                                                            ],
-                                                                                          ),
+                                                                                            ),
+                                                                                          ],
                                                                                         ),
                                                                                       ),
                                                                                     ),
                                                                                   ),
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(18, 20, 18, 0),
-                                                                                    child: Text(
-                                                                                      'Your rating is really important for us as it helps us to improve our services for the future.',
-                                                                                      textAlign: TextAlign.start,
-                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                            fontFamily: 'Open Sans',
-                                                                                            color: FlutterFlowTheme.of(context).primaryText,
-                                                                                          ),
-                                                                                    ),
+                                                                                ),
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(18, 20, 18, 20),
+                                                                                  child: Text(
+                                                                                    'Your rating is really important for us as it helps us to improve our services for the future.',
+                                                                                    textAlign: TextAlign.start,
+                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                          fontFamily: 'Open Sans',
+                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                        ),
                                                                                   ),
-                                                                                ],
-                                                                              ),
+                                                                                ),
+                                                                              ],
                                                                             ),
                                                                           ),
-                                                                          theme:
-                                                                              ExpandableThemeData(
-                                                                            tapHeaderToExpand:
-                                                                                true,
-                                                                            tapBodyToExpand:
-                                                                                true,
-                                                                            tapBodyToCollapse:
-                                                                                true,
-                                                                            headerAlignment:
-                                                                                ExpandablePanelHeaderAlignment.center,
-                                                                            hasIcon:
-                                                                                true,
-                                                                            iconColor:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                          ),
+                                                                        ),
+                                                                        theme:
+                                                                            ExpandableThemeData(
+                                                                          tapHeaderToExpand:
+                                                                              true,
+                                                                          tapBodyToExpand:
+                                                                              true,
+                                                                          tapBodyToCollapse:
+                                                                              true,
+                                                                          headerAlignment:
+                                                                              ExpandablePanelHeaderAlignment.center,
+                                                                          hasIcon:
+                                                                              true,
+                                                                          iconColor:
+                                                                              FlutterFlowTheme.of(context).primaryText,
                                                                         ),
                                                                       ),
                                                                     ),
