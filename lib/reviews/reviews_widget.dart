@@ -424,9 +424,10 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: Text('Confirm'),
+                                                title: Text(
+                                                    'Are you sure you want to submit your review?'),
                                                 content: Text(
-                                                    'Are you sure you want to submit your review?\nPlease note that this section cannot be edited once the review goes live'),
+                                                    'Please note that this section cannot be edited once the review goes live'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
