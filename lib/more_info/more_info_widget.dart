@@ -106,27 +106,45 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                         logFirebaseEvent('Icon-ON_TAP');
                         if ((widget.jobStatus.status) == 'Completed') {
                           if ((widget.jobStatus.email) == (currentUserEmail)) {
-                            logFirebaseEvent('Icon-Navigate-To');
-                            context.pushNamed(
-                              'reviews',
-                              queryParams: {
-                                'jobReviews': serializeParam(
-                                    widget.jobStatus, ParamType.Document),
-                              },
-                              extra: <String, dynamic>{
-                                'jobReviews': widget.jobStatus,
-                              },
-                            );
-                          } else {
-                            return;
+                            if ((widget.jobStatus.rating) != 0) {
+                              logFirebaseEvent('Icon-Navigate-To');
+                              context.pushNamed(
+                                'reviews',
+                                queryParams: {
+                                  'jobReviews': serializeParam(
+                                      widget.jobStatus, ParamType.Document),
+                                },
+                                extra: <String, dynamic>{
+                                  'jobReviews': widget.jobStatus,
+                                },
+                              );
+                            } else {
+                              logFirebaseEvent('Icon-Show-Snack-Bar');
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Reviews section cannot be edited once you submit',
+                                    style: GoogleFonts.getFont(
+                                      'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                    ),
+                                  ),
+                                  duration: Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
+                              );
+                            }
                           }
                         } else {
                           logFirebaseEvent('Icon-Show-Snack-Bar');
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                'Item not ready to be rated',
-                                style: TextStyle(
+                                'Item not ready to be reviewed',
+                                style: GoogleFonts.getFont(
+                                  'Open Sans',
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
                                 ),
