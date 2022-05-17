@@ -201,66 +201,67 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
         elevation: 2,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          if ((widget.jobStatus.photoUrl != null) &&
-              (widget.jobStatus.photoUrl != ''))
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.4,
-              decoration: BoxDecoration(
-                color: Color(0x00FFFFFF),
-                borderRadius: BorderRadius.circular(0),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        InkWell(
-                          onTap: () async {
-                            logFirebaseEvent('Image-ON_TAP');
-                            logFirebaseEvent('Image-Expand-Image');
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                child: FlutterFlowExpandedImageView(
-                                  image: CachedNetworkImage(
-                                    imageUrl: widget.jobStatus.photoUrl,
-                                    fit: BoxFit.contain,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            if ((widget.jobStatus.photoUrl != null) &&
+                (widget.jobStatus.photoUrl != ''))
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.4,
+                decoration: BoxDecoration(
+                  color: Color(0x00FFFFFF),
+                  borderRadius: BorderRadius.circular(0),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Stack(
+                        children: [
+                          InkWell(
+                            onTap: () async {
+                              logFirebaseEvent('Image-ON_TAP');
+                              logFirebaseEvent('Image-Expand-Image');
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: FlutterFlowExpandedImageView(
+                                    image: CachedNetworkImage(
+                                      imageUrl: widget.jobStatus.photoUrl,
+                                      fit: BoxFit.contain,
+                                    ),
+                                    allowRotation: false,
+                                    tag: widget.jobStatus.photoUrl,
+                                    useHeroAnimation: true,
                                   ),
-                                  allowRotation: false,
-                                  tag: widget.jobStatus.photoUrl,
-                                  useHeroAnimation: true,
                                 ),
-                              ),
-                            );
-                          },
-                          child: Hero(
-                            tag: widget.jobStatus.photoUrl,
-                            transitionOnUserGestures: true,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(0),
-                              child: CachedNetworkImage(
-                                imageUrl: widget.jobStatus.photoUrl,
-                                width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height * 1,
-                                fit: BoxFit.cover,
+                              );
+                            },
+                            child: Hero(
+                              tag: widget.jobStatus.photoUrl,
+                              transitionOnUserGestures: true,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(0),
+                                child: CachedNetworkImage(
+                                  imageUrl: widget.jobStatus.photoUrl,
+                                  width: MediaQuery.of(context).size.width,
+                                  height:
+                                      MediaQuery.of(context).size.height * 1,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          Expanded(
-            child: Material(
+            Material(
               color: Colors.transparent,
               elevation: 5,
               shape: RoundedRectangleBorder(
@@ -935,8 +936,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
