@@ -616,7 +616,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                     child:
                                                                         ExpandableNotifier(
                                                                       initialExpanded:
-                                                                          false,
+                                                                          true,
                                                                       child:
                                                                           ExpandablePanel(
                                                                         header:
@@ -792,7 +792,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                             Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0,
-                                                                              20,
+                                                                              0,
                                                                               0,
                                                                               15),
                                                                           child:
@@ -801,22 +801,22 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                 Column(
                                                                               mainAxisSize: MainAxisSize.min,
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: [
                                                                                 Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(18, 20, 0, 0),
                                                                                   child: Text(
                                                                                     widget.jobStatus.displayName,
                                                                                     style: FlutterFlowTheme.of(context).title1.override(
                                                                                           fontFamily: 'Open Sans',
                                                                                           color: FlutterFlowTheme.of(context).primaryText,
-                                                                                          fontSize: 20,
+                                                                                          fontSize: 18,
                                                                                           fontWeight: FontWeight.bold,
                                                                                         ),
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(18, 10, 0, 0),
                                                                                   child: RatingBarIndicator(
                                                                                     itemBuilder: (context, index) => Icon(
                                                                                       Icons.star_rounded,
@@ -826,17 +826,17 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                     rating: widget.jobStatus.rating.toDouble(),
                                                                                     unratedColor: FlutterFlowTheme.of(context).campusGrey,
                                                                                     itemCount: 5,
-                                                                                    itemSize: 35,
+                                                                                    itemSize: 30,
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(18, 10, 0, 0),
                                                                                   child: Text(
                                                                                     'Private Feedback',
                                                                                     style: FlutterFlowTheme.of(context).title1.override(
                                                                                           fontFamily: 'Open Sans',
                                                                                           color: FlutterFlowTheme.of(context).primaryText,
-                                                                                          fontSize: 22,
+                                                                                          fontSize: 18,
                                                                                           fontWeight: FontWeight.bold,
                                                                                         ),
                                                                                   ),
@@ -966,7 +966,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(18, 20, 18, 20),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(18, 10, 18, 20),
                                                                                   child: Text(
                                                                                     'Your rating is really important for us as it helps us to improve our services for the future.',
                                                                                     textAlign: TextAlign.start,
