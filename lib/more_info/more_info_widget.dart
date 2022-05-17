@@ -107,18 +107,6 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                         if ((widget.jobStatus.status) == 'Completed') {
                           if ((widget.jobStatus.email) == (currentUserEmail)) {
                             if ((widget.jobStatus.rating) != 0) {
-                              logFirebaseEvent('Icon-Navigate-To');
-                              context.pushNamed(
-                                'reviews',
-                                queryParams: {
-                                  'jobReviews': serializeParam(
-                                      widget.jobStatus, ParamType.Document),
-                                },
-                                extra: <String, dynamic>{
-                                  'jobReviews': widget.jobStatus,
-                                },
-                              );
-                            } else {
                               logFirebaseEvent('Icon-Show-Snack-Bar');
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -134,6 +122,18 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                   backgroundColor:
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
+                              );
+                            } else {
+                              logFirebaseEvent('Icon-Navigate-To');
+                              context.pushNamed(
+                                'reviews',
+                                queryParams: {
+                                  'jobReviews': serializeParam(
+                                      widget.jobStatus, ParamType.Document),
+                                },
+                                extra: <String, dynamic>{
+                                  'jobReviews': widget.jobStatus,
+                                },
                               );
                             }
                           }
