@@ -468,7 +468,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                           width: double.infinity,
                           color: Color(0x00FFFFFF),
                           child: ExpandableNotifier(
-                            initialExpanded: true,
+                            initialExpanded: false,
                             child: ExpandablePanel(
                               header: Text(
                                 'Request details',
