@@ -340,6 +340,8 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                             child: TextFormField(
                                               controller: textController,
                                               autofocus: true,
+                                              readOnly:
+                                                  (ratingBarValue != null),
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 hintText:
