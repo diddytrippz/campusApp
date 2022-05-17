@@ -261,66 +261,77 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 20, 0, 20),
-                                                child: FlutterFlowChoiceChips(
-                                                  initiallySelected:
-                                                      choiceChipsValues != null
-                                                          ? choiceChipsValues
-                                                          : [],
-                                                  options: [
-                                                    ChipData('Time'),
-                                                    ChipData('Convinience'),
-                                                    ChipData('Cleanliness'),
-                                                    ChipData('Communication'),
-                                                    ChipData('Quality')
-                                                  ],
-                                                  onChanged: (val) => setState(
-                                                      () => choiceChipsValues =
-                                                          val),
-                                                  selectedChipStyle: ChipStyle(
-                                                    backgroundColor:
-                                                        Color(0xFF141313),
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Open Sans',
-                                                          color:
-                                                              Color(0xFFF4F4F4),
-                                                        ),
-                                                    iconColor: Colors.white,
-                                                    iconSize: 18,
-                                                    elevation: 10,
+                                              child: Align(
+                                                alignment:
+                                                    AlignmentDirectional(0, 0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 20, 0, 20),
+                                                  child: FlutterFlowChoiceChips(
+                                                    initiallySelected:
+                                                        choiceChipsValues !=
+                                                                null
+                                                            ? choiceChipsValues
+                                                            : [],
+                                                    options: [
+                                                      ChipData('Time'),
+                                                      ChipData('Convinience'),
+                                                      ChipData('Cleanliness'),
+                                                      ChipData('Communication'),
+                                                      ChipData('Quality')
+                                                    ],
+                                                    onChanged: (val) =>
+                                                        setState(() =>
+                                                            choiceChipsValues =
+                                                                val),
+                                                    selectedChipStyle:
+                                                        ChipStyle(
+                                                      backgroundColor:
+                                                          Color(0xFF141313),
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: Color(
+                                                                    0xFFF4F4F4),
+                                                              ),
+                                                      iconColor: Colors.white,
+                                                      iconSize: 18,
+                                                      elevation: 10,
+                                                    ),
+                                                    unselectedChipStyle:
+                                                        ChipStyle(
+                                                      backgroundColor:
+                                                          Color(0xFFFFFEFE),
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: Color(
+                                                                    0xFF0D0909),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                      iconColor:
+                                                          Color(0xFF323B45),
+                                                      iconSize: 18,
+                                                      elevation: 10,
+                                                    ),
+                                                    chipSpacing: 20,
+                                                    multiselect: true,
+                                                    initialized:
+                                                        choiceChipsValues !=
+                                                            null,
+                                                    alignment:
+                                                        WrapAlignment.start,
                                                   ),
-                                                  unselectedChipStyle:
-                                                      ChipStyle(
-                                                    backgroundColor:
-                                                        Color(0xFFFFFEFE),
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodyText2
-                                                        .override(
-                                                          fontFamily:
-                                                              'Open Sans',
-                                                          color:
-                                                              Color(0xFF0D0909),
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                    iconColor:
-                                                        Color(0xFF323B45),
-                                                    iconSize: 18,
-                                                    elevation: 10,
-                                                  ),
-                                                  chipSpacing: 20,
-                                                  multiselect: true,
-                                                  initialized:
-                                                      choiceChipsValues != null,
-                                                  alignment:
-                                                      WrapAlignment.start,
                                                 ),
                                               ),
                                             ),
@@ -410,94 +421,97 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                     ),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  22, 30, 22, 30),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  logFirebaseEvent('Button-ON_TAP');
-                                  logFirebaseEvent('Button-Validate-Form');
-                                  if (formKey.currentState == null ||
-                                      !formKey.currentState.validate()) {
-                                    return;
-                                  }
+                            Align(
+                              alignment: AlignmentDirectional(0, 1),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    22, 30, 22, 30),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    logFirebaseEvent('Button-ON_TAP');
+                                    logFirebaseEvent('Button-Validate-Form');
+                                    if (formKey.currentState == null ||
+                                        !formKey.currentState.validate()) {
+                                      return;
+                                    }
 
-                                  logFirebaseEvent('Button-Alert-Dialog');
-                                  var confirmDialogResponse =
-                                      await showDialog<bool>(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: Text(
-                                                    'Are you sure you want to submit your review?'),
-                                                content: Text(
-                                                    'Please note that this section cannot be edited once the review goes live'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            false),
-                                                    child: Text('Cancel'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            true),
-                                                    child: Text('Confirm'),
-                                                  ),
-                                                ],
-                                              );
-                                            },
-                                          ) ??
-                                          false;
-                                  logFirebaseEvent('Button-Backend-Call');
+                                    logFirebaseEvent('Button-Alert-Dialog');
+                                    var confirmDialogResponse =
+                                        await showDialog<bool>(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                      'Are you sure you want to submit your review?'),
+                                                  content: Text(
+                                                      'Please note that this section cannot be edited once the review goes live'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: Text('Cancel'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: Text('Confirm'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ) ??
+                                            false;
+                                    logFirebaseEvent('Button-Backend-Call');
 
-                                  final maintenanceUpdateData =
-                                      createMaintenanceRecordData(
-                                    rating: ratingBarValue.round(),
-                                  );
-                                  await widget.jobReviews.reference
-                                      .update(maintenanceUpdateData);
-                                  logFirebaseEvent('Button-Show-Snack-Bar');
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Review submitted sucessfully!',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
+                                    final maintenanceUpdateData =
+                                        createMaintenanceRecordData(
+                                      rating: ratingBarValue.round(),
+                                    );
+                                    await widget.jobReviews.reference
+                                        .update(maintenanceUpdateData);
+                                    logFirebaseEvent('Button-Show-Snack-Bar');
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Review submitted sucessfully!',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                          ),
                                         ),
+                                        duration: Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primaryText,
                                       ),
-                                      duration: Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
+                                    );
+                                    logFirebaseEvent('Button-Navigate-To');
+                                    context.pushNamed('viewPage');
+                                  },
+                                  text: 'Confirm',
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 55,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
                                               .primaryText,
+                                        ),
+                                    elevation: 5,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
                                     ),
-                                  );
-                                  logFirebaseEvent('Button-Navigate-To');
-                                  context.pushNamed('viewPage');
-                                },
-                                text: 'Confirm',
-                                options: FFButtonOptions(
-                                  width: double.infinity,
-                                  height: 55,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                  elevation: 5,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1,
+                                    borderRadius: 22,
                                   ),
-                                  borderRadius: 22,
                                 ),
                               ),
                             ),

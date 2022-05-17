@@ -211,24 +211,14 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                 color: Colors.transparent,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(12),
-                    bottomRight: Radius.circular(12),
-                    topLeft: Radius.circular(0),
-                    topRight: Radius.circular(0),
-                  ),
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.4,
                   decoration: BoxDecoration(
                     color: Color(0x00FFFFFF),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12),
-                      topLeft: Radius.circular(0),
-                      topRight: Radius.circular(0),
-                    ),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -263,12 +253,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                   tag: widget.jobStatus.photoUrl,
                                   transitionOnUserGestures: true,
                                   child: ClipRRect(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(12),
-                                      bottomRight: Radius.circular(12),
-                                      topLeft: Radius.circular(0),
-                                      topRight: Radius.circular(0),
-                                    ),
+                                    borderRadius: BorderRadius.circular(12),
                                     child: CachedNetworkImage(
                                       imageUrl: widget.jobStatus.photoUrl,
                                       width: MediaQuery.of(context).size.width,
@@ -626,7 +611,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                           initialExpanded: true,
                           child: ExpandablePanel(
                             header: Text(
-                              'Reviews',
+                              'View Ratings',
                               style:
                                   FlutterFlowTheme.of(context).title1.override(
                                         fontFamily: 'Open Sans',
