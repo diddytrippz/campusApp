@@ -207,86 +207,95 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
           children: [
             if ((widget.jobStatus.photoUrl != null) &&
                 (widget.jobStatus.photoUrl != ''))
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.4,
-                decoration: BoxDecoration(
-                  color: Color(0x00FFFFFF),
-                  borderRadius: BorderRadius.circular(0),
+              Material(
+                color: Colors.transparent,
+                elevation: 15,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(12),
+                    bottomRight: Radius.circular(12),
+                    topLeft: Radius.circular(0),
+                    topRight: Radius.circular(0),
+                  ),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.4,
-                        child: Stack(
-                          children: [
-                            InkWell(
-                              onTap: () async {
-                                logFirebaseEvent('Image-ON_TAP');
-                                logFirebaseEvent('Image-Expand-Image');
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: FlutterFlowExpandedImageView(
-                                      image: CachedNetworkImage(
-                                        imageUrl: widget.jobStatus.photoUrl,
-                                        fit: BoxFit.contain,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  decoration: BoxDecoration(
+                    color: Color(0x00FFFFFF),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(12),
+                      bottomRight: Radius.circular(12),
+                      topLeft: Radius.circular(0),
+                      topRight: Radius.circular(0),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          child: Stack(
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  logFirebaseEvent('Image-ON_TAP');
+                                  logFirebaseEvent('Image-Expand-Image');
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: FlutterFlowExpandedImageView(
+                                        image: CachedNetworkImage(
+                                          imageUrl: widget.jobStatus.photoUrl,
+                                          fit: BoxFit.contain,
+                                        ),
+                                        allowRotation: false,
+                                        tag: widget.jobStatus.photoUrl,
+                                        useHeroAnimation: true,
                                       ),
-                                      allowRotation: false,
-                                      tag: widget.jobStatus.photoUrl,
-                                      useHeroAnimation: true,
                                     ),
-                                  ),
-                                );
-                              },
-                              child: Hero(
-                                tag: widget.jobStatus.photoUrl,
-                                transitionOnUserGestures: true,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(0),
-                                  child: CachedNetworkImage(
-                                    imageUrl: widget.jobStatus.photoUrl,
-                                    width: MediaQuery.of(context).size.width,
-                                    height:
-                                        MediaQuery.of(context).size.height * 1,
-                                    fit: BoxFit.cover,
+                                  );
+                                },
+                                child: Hero(
+                                  tag: widget.jobStatus.photoUrl,
+                                  transitionOnUserGestures: true,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(12),
+                                      bottomRight: Radius.circular(12),
+                                      topLeft: Radius.circular(0),
+                                      topRight: Radius.circular(0),
+                                    ),
+                                    child: CachedNetworkImage(
+                                      imageUrl: widget.jobStatus.photoUrl,
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              1,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             Material(
               color: Colors.transparent,
               elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(0),
-                  bottomRight: Radius.circular(0),
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
-                ),
-              ),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 1,
+                height: MediaQuery.of(context).size.height * 1.5,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).tertiaryColor,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(0),
-                    bottomRight: Radius.circular(0),
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12),
-                  ),
                 ),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(12, 20, 12, 0),
@@ -634,7 +643,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      18, 20, 0, 0),
+                                      12, 20, 0, 0),
                                   child: Text(
                                     widget.jobStatus.displayName,
                                     style: FlutterFlowTheme.of(context)
@@ -650,7 +659,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      18, 10, 0, 0),
+                                      12, 10, 0, 0),
                                   child: RatingBarIndicator(
                                     itemBuilder: (context, index) => Icon(
                                       Icons.star_rounded,
@@ -666,7 +675,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      18, 10, 0, 0),
+                                      12, 10, 0, 0),
                                   child: Text(
                                     'Private Feedback',
                                     style: FlutterFlowTheme.of(context)
