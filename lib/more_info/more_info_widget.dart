@@ -390,7 +390,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                       FFIcons.kprofile,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
-                                      size: 30,
+                                      size: 25,
                                     ),
                                     title: Text(
                                       'Tenant ID',
@@ -422,7 +422,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                       FFIcons.kpins,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
-                                      size: 30,
+                                      size: 25,
                                     ),
                                     title: Text(
                                       widget.jobStatus.building,
@@ -438,6 +438,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                                     ),
                                     subtitle: Text(
                                       'Room: ${widget.jobStatus.room}',
+                                      textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .subtitle2
                                           .override(

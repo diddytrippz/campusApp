@@ -14,7 +14,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:text_search/text_search.dart';
 
 class ViewPageWidget extends StatefulWidget {
@@ -85,9 +84,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           logFirebaseEvent('FloatingActionButton-ON_TAP');
-          logFirebaseEvent('FloatingActionButton-Share');
-          await Share.share(
-              'campusafrica://campusafrica.com${GoRouter.of(context).location}');
+          logFirebaseEvent('FloatingActionButton-Navigate-To');
+          context.pushNamed('homePage');
         },
         backgroundColor: FlutterFlowTheme.of(context).mellow,
         elevation: 8,
