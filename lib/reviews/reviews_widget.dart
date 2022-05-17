@@ -379,7 +379,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .campusGrey,
+                                                                .primaryText,
                                                       ),
                                               maxLines: 4,
                                             ),
