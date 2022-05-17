@@ -44,7 +44,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="campusafrica.com" />
+                <data android:scheme="reviews" android:host="campusafrica.com" />
             </intent-filter>
 
         </activity>
