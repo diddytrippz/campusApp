@@ -21,3 +21,4 @@ export 'painting/painting_widget.dart' show PaintingWidget;
 export 'others/others_widget.dart' show OthersWidget;
 export 'communal/communal_widget.dart' show CommunalWidget;
 export 'reviews/reviews_widget.dart' show ReviewsWidget;
+export 'test/test_widget.dart' show TestWidget;

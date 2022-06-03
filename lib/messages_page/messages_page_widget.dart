@@ -39,8 +39,8 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Simple-Search');
+            logFirebaseEvent('MESSAGES_PAGE_PAGE_Icon_jhlxzfbo_ON_TAP');
+            logFirebaseEvent('Icon_Simple-Search');
             await queryChatsRecordOnce()
                 .then(
                   (records) => simpleSearchResults = TextSearch(
@@ -106,10 +106,10 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 18, 0),
             child: InkWell(
               onTap: () async {
-                logFirebaseEvent('Icon-ON_TAP');
-                logFirebaseEvent('Icon-Clear-Text-Fields');
+                logFirebaseEvent('MESSAGES_PAGE_PAGE_Icon_ucqfl2md_ON_TAP');
+                logFirebaseEvent('Icon_Clear-Text-Fields');
                 setState(() {
-                  textController.clear();
+                  textController?.clear();
                 });
               },
               child: Icon(
@@ -181,27 +181,24 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                         final chatInfo =
                             snapshot.data ?? FFChatInfo(listViewChatsRecord);
                         return FFChatPreview(
-                          onTap: chatInfo != null
-                              ? () => context.pushNamed(
-                                    'ChatPage',
-                                    queryParams: {
-                                      'chatUser': serializeParam(
-                                          chatInfo.otherUsers.length == 1
-                                              ? chatInfo.otherUsersList.first
-                                              : null,
-                                          ParamType.Document),
-                                      'chatRef': serializeParam(
-                                          chatInfo.chatRecord.reference,
-                                          ParamType.DocumentReference),
-                                    },
-                                    extra: <String, dynamic>{
-                                      'chatUser':
-                                          chatInfo.otherUsers.length == 1
-                                              ? chatInfo.otherUsersList.first
-                                              : null,
-                                    },
-                                  )
-                              : null,
+                          onTap: () => context.pushNamed(
+                            'ChatPage',
+                            queryParams: {
+                              'chatUser': serializeParam(
+                                  chatInfo.otherUsers.length == 1
+                                      ? chatInfo.otherUsersList.first
+                                      : null,
+                                  ParamType.Document),
+                              'chatRef': serializeParam(
+                                  chatInfo.chatRecord.reference,
+                                  ParamType.DocumentReference),
+                            }.withoutNulls,
+                            extra: <String, dynamic>{
+                              'chatUser': chatInfo.otherUsers.length == 1
+                                  ? chatInfo.otherUsersList.first
+                                  : null,
+                            },
+                          ),
                           lastChatText: chatInfo.chatPreviewMessage(),
                           lastChatTime: listViewChatsRecord.lastMessageTime,
                           seen: listViewChatsRecord.lastMessageSeenBy

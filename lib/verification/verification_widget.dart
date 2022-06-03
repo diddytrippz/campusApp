@@ -15,9 +15,9 @@ class VerificationWidget extends StatefulWidget {
 }
 
 class _VerificationWidgetState extends State<VerificationWidget> {
+  TextEditingController phoneNumberController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  TextEditingController phoneNumberController;
 
   @override
   void initState() {
@@ -63,8 +63,9 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                             size: 20,
                           ),
                           onPressed: () async {
-                            logFirebaseEvent('IconButton-ON_TAP');
-                            logFirebaseEvent('IconButton-Navigate-Back');
+                            logFirebaseEvent(
+                                'VERIFICATION_PAGE_arrow_back_rounded_ICON_ON_TAP');
+                            logFirebaseEvent('IconButton_Navigate-Back');
                             context.pop();
                           },
                         ),
@@ -75,8 +76,8 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                       child: Image.asset(
-                        'assets/images/login.png',
-                        fit: BoxFit.cover,
+                        'assets/images/06_COMBINED_ELEMENT.png',
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ),
@@ -145,8 +146,9 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 80),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        logFirebaseEvent('Button-Login-ON_TAP');
-                        logFirebaseEvent('Button-Login-Auth');
+                        logFirebaseEvent(
+                            'VERIFICATION_PAGE_Button-Login_ON_TAP');
+                        logFirebaseEvent('Button-Login_Auth');
                         if (phoneNumberController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

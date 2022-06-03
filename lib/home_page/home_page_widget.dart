@@ -95,9 +95,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     InkWell(
                                                       onTap: () async {
                                                         logFirebaseEvent(
-                                                            'Badge-ON_TAP');
+                                                            'HOME_PAGE_PAGE_Badge_p5sr70sy_ON_TAP');
                                                         logFirebaseEvent(
-                                                            'Badge-Navigate-To');
+                                                            'Badge_Navigate-To');
                                                         context.pushNamed(
                                                             'MessagesPage');
                                                       },
@@ -290,9 +290,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'transferButton-ON_TAP');
+                                                    'HOME_PAGE_PAGE_transferButton_ON_TAP');
                                                 logFirebaseEvent(
-                                                    'transferButton-Navigate-To');
+                                                    'transferButton_Navigate-To');
                                                 context.pushNamed(
                                                   'Appliances',
                                                   extra: <String, dynamic>{
@@ -392,9 +392,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'activityButton-ON_TAP');
+                                                    'HOME_PAGE_PAGE_activityButton_ON_TAP');
                                                 logFirebaseEvent(
-                                                    'activityButton-Navigate-To');
+                                                    'activityButton_Navigate-To');
                                                 context.pushNamed('Plumbing');
                                               },
                                               child: Material(
@@ -485,9 +485,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'bankButton-ON_TAP');
+                                                    'HOME_PAGE_PAGE_bankButton_ON_TAP');
                                                 logFirebaseEvent(
-                                                    'bankButton-Navigate-To');
+                                                    'bankButton_Navigate-To');
                                                 context.pushNamed('Furniture');
                                               },
                                               child: Material(
@@ -595,9 +595,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'transferButton-ON_TAP');
+                                                    'HOME_PAGE_PAGE_transferButton_ON_TAP');
                                                 logFirebaseEvent(
-                                                    'transferButton-Navigate-To');
+                                                    'transferButton_Navigate-To');
                                                 context.pushNamed('Electrical');
                                               },
                                               child: Container(
@@ -676,9 +676,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'activityButton-ON_TAP');
+                                                    'HOME_PAGE_PAGE_activityButton_ON_TAP');
                                                 logFirebaseEvent(
-                                                    'activityButton-Navigate-To');
+                                                    'activityButton_Navigate-To');
                                                 context.pushNamed('Locksmith');
                                               },
                                               child: Container(
@@ -759,9 +759,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'bankButton-ON_TAP');
+                                                    'HOME_PAGE_PAGE_bankButton_ON_TAP');
                                                 logFirebaseEvent(
-                                                    'bankButton-Navigate-To');
+                                                    'bankButton_Navigate-To');
                                                 context.pushNamed('painting');
                                               },
                                               child: Container(
@@ -853,9 +853,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'transferButton-ON_TAP');
+                                                    'HOME_PAGE_PAGE_transferButton_ON_TAP');
                                                 logFirebaseEvent(
-                                                    'transferButton-Navigate-To');
+                                                    'transferButton_Navigate-To');
                                                 context
                                                     .pushNamed('Pestcontrol');
                                               },
@@ -938,9 +938,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'activityButton-ON_TAP');
+                                                    'HOME_PAGE_PAGE_activityButton_ON_TAP');
                                                 logFirebaseEvent(
-                                                    'activityButton-Navigate-To');
+                                                    'activityButton_Navigate-To');
                                                 context.pushNamed('Communal');
                                               },
                                               child: Container(
@@ -1022,9 +1022,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'bankButton-ON_TAP');
+                                                    'HOME_PAGE_PAGE_bankButton_ON_TAP');
                                                 logFirebaseEvent(
-                                                    'bankButton-Navigate-To');
+                                                    'bankButton_Navigate-To');
                                                 context.pushNamed('Others');
                                               },
                                               child: Container(

@@ -55,8 +55,8 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
             size: 24,
           ),
           onPressed: () async {
-            logFirebaseEvent('IconButton-ON_TAP');
-            logFirebaseEvent('IconButton-Navigate-Back');
+            logFirebaseEvent('MORE_INFO_PAGE_arrow_back_rounded_ICON_ON_TAP');
+            logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
         ),
@@ -106,16 +106,16 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('Icon-ON_TAP');
+                        logFirebaseEvent('MORE_INFO_PAGE_Icon_mxo5lvfh_ON_TAP');
                         if ((widget.jobStatus.status) == 'Completed') {
                           if ((widget.jobStatus.email) == (currentUserEmail)) {
-                            logFirebaseEvent('Icon-Navigate-To');
+                            logFirebaseEvent('Icon_Navigate-To');
                             context.pushNamed(
                               'reviews',
                               queryParams: {
                                 'jobReviews': serializeParam(
                                     widget.jobStatus, ParamType.Document),
-                              },
+                              }.withoutNulls,
                               extra: <String, dynamic>{
                                 'jobReviews': widget.jobStatus,
                               },
@@ -124,7 +124,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                             return;
                           }
                         } else {
-                          logFirebaseEvent('Icon-Show-Snack-Bar');
+                          logFirebaseEvent('Icon_Show-Snack-Bar');
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
@@ -153,14 +153,15 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('Badge-ON_TAP');
-                        logFirebaseEvent('Badge-Navigate-To');
+                        logFirebaseEvent(
+                            'MORE_INFO_PAGE_Badge_o8o9mh9j_ON_TAP');
+                        logFirebaseEvent('Badge_Navigate-To');
                         context.pushNamed(
                           'ChatPage',
                           queryParams: {
                             'chatUser': serializeParam(
                                 rowUsersRecord, ParamType.Document),
-                          },
+                          }.withoutNulls,
                           extra: <String, dynamic>{
                             'chatUser': rowUsersRecord,
                           },
@@ -232,8 +233,9 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
                               children: [
                                 InkWell(
                                   onTap: () async {
-                                    logFirebaseEvent('Image-ON_TAP');
-                                    logFirebaseEvent('Image-Expand-Image');
+                                    logFirebaseEvent(
+                                        'MORE_INFO_PAGE_Image_tolcwaqe_ON_TAP');
+                                    logFirebaseEvent('Image_Expand-Image');
                                     await Navigator.push(
                                       context,
                                       PageTransition(

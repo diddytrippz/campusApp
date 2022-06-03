@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import '../flutter_flow_theme.dart';
@@ -8,12 +9,16 @@ import '../../backend/backend.dart';
 import '../../auth/firebase_user_provider.dart';
 import '../../backend/push_notifications/push_notifications_handler.dart'
     show PushNotificationsHandler;
+import '../../backend/firebase_dynamic_links/firebase_dynamic_links.dart'
+    show DynamicLinksHandler;
 import '../../index.dart';
 import '../../main.dart';
 import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
+export '../../backend/firebase_dynamic_links/firebase_dynamic_links.dart'
+    show generateCurrentPageLink;
 
 const kTransitionInfoKey = '__transition_info__';
 
@@ -21,6 +26,7 @@ class AppStateNotifier extends ChangeNotifier {
   CampusAfricaFirebaseUser initialUser;
   CampusAfricaFirebaseUser user;
   bool showSplashImage = true;
+  String _redirectLocation;
 
   /// Determines whether the app will refresh and build again when a sign
   /// in or sign out happens. This is useful when the app is launched or
@@ -32,6 +38,12 @@ class AppStateNotifier extends ChangeNotifier {
   bool get loading => user == null || showSplashImage;
   bool get loggedIn => user?.loggedIn ?? false;
   bool get initiallyLoggedIn => initialUser?.loggedIn ?? false;
+  bool get shouldRedirect => loggedIn && _redirectLocation != null;
+
+  String getRedirectLocation() => _redirectLocation;
+  bool hasRedirect() => _redirectLocation != null;
+  void setRedirectLocationIfUnset(String loc) => _redirectLocation ??= loc;
+  void clearRedirectLocation() => _redirectLocation = null;
 
   /// Mark as not needing to notify on a sign in / out when we intend
   /// to perform subsequent actions (such as navigation) afterwards.
@@ -58,7 +70,6 @@ class AppStateNotifier extends ChangeNotifier {
 GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
-      urlPathStrategy: UrlPathStrategy.path,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
           appStateNotifier.loggedIn ? NavBarPage() : OnboardingWidget(),
@@ -68,151 +79,234 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/',
           builder: (context, _) =>
               appStateNotifier.loggedIn ? NavBarPage() : OnboardingWidget(),
-        ),
-        FFRoute(
-          name: 'onboarding',
-          path: '/onboarding',
-          builder: (context, params) => OnboardingWidget(),
-        ),
-        FFRoute(
-          name: 'loginPage',
-          path: '/loginPage',
-          builder: (context, params) => LoginPageWidget(),
-        ),
-        FFRoute(
-          name: 'verification',
-          path: '/verification',
-          builder: (context, params) => VerificationWidget(),
-        ),
-        FFRoute(
-          name: 'homePage',
-          path: '/homePage',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'homePage')
-              : HomePageWidget(),
-        ),
-        FFRoute(
-          name: 'settingsPage',
-          path: '/settingsPage',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'settingsPage')
-              : SettingsPageWidget(),
-        ),
-        FFRoute(
-          name: 'viewPage',
-          path: '/viewPage',
-          requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'viewPage')
-              : ViewPageWidget(),
-        ),
-        FFRoute(
-          name: 'rulesBook',
-          path: '/rulesBook',
-          builder: (context, params) => RulesBookWidget(),
-        ),
-        FFRoute(
-          name: 'moreInfo',
-          path: '/moreInfo',
-          asyncParams: {
-            'jobStatus': getDoc('maintenance', MaintenanceRecord.serializer),
-          },
-          builder: (context, params) => MoreInfoWidget(
-            jobStatus: params.getParam('jobStatus', ParamType.Document),
-          ),
-        ),
-        FFRoute(
-          name: 'ChatPage',
-          path: '/chatPage',
-          asyncParams: {
-            'chatUser': getDoc('users', UsersRecord.serializer),
-          },
-          builder: (context, params) => ChatPageWidget(
-            chatUser: params.getParam('chatUser', ParamType.Document),
-            chatRef: params.getParam(
-                'chatRef', ParamType.DocumentReference, 'chats'),
-          ),
-        ),
-        FFRoute(
-          name: 'editProfile',
-          path: '/editProfile',
-          builder: (context, params) => EditProfileWidget(),
-        ),
-        FFRoute(
-          name: 'MessagesPage',
-          path: '/messagesPage',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MessagesPage')
-              : MessagesPageWidget(),
-        ),
-        FFRoute(
-          name: 'usersSearch',
-          path: '/usersSearch',
-          requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'usersSearch')
-              : UsersSearchWidget(),
-        ),
-        FFRoute(
-          name: 'Appliances',
-          path: '/appliances',
-          builder: (context, params) => AppliancesWidget(),
-        ),
-        FFRoute(
-          name: 'Plumbing',
-          path: '/plumbing',
-          builder: (context, params) => PlumbingWidget(),
-        ),
-        FFRoute(
-          name: 'Furniture',
-          path: '/furniture',
-          builder: (context, params) => FurnitureWidget(),
-        ),
-        FFRoute(
-          name: 'Electrical',
-          path: '/electrical',
-          builder: (context, params) => ElectricalWidget(),
-        ),
-        FFRoute(
-          name: 'Locksmith',
-          path: '/locksmith',
-          builder: (context, params) => LocksmithWidget(),
-        ),
-        FFRoute(
-          name: 'Pestcontrol',
-          path: '/pestcontrol',
-          builder: (context, params) => PestcontrolWidget(),
-        ),
-        FFRoute(
-          name: 'painting',
-          path: '/painting',
-          builder: (context, params) => PaintingWidget(),
-        ),
-        FFRoute(
-          name: 'Others',
-          path: '/others',
-          builder: (context, params) => OthersWidget(),
-        ),
-        FFRoute(
-          name: 'Communal',
-          path: '/communal',
-          builder: (context, params) => CommunalWidget(),
-        ),
-        FFRoute(
-          name: 'reviews',
-          path: '/reviews',
-          asyncParams: {
-            'jobReviews': getDoc('maintenance', MaintenanceRecord.serializer),
-          },
-          builder: (context, params) => ReviewsWidget(
-            jobReviews: params.getParam('jobReviews', ParamType.Document),
-          ),
-        )
-      ].map((r) => r.toRoute(appStateNotifier)).toList(),
+          routes: [
+            FFRoute(
+              name: 'onboarding',
+              path: 'onboarding',
+              builder: (context, params) => OnboardingWidget(),
+            ),
+            FFRoute(
+              name: 'loginPage',
+              path: 'loginPage',
+              requireAuth: true,
+              builder: (context, params) => LoginPageWidget(),
+            ),
+            FFRoute(
+              name: 'verification',
+              path: 'verification',
+              requireAuth: true,
+              builder: (context, params) => VerificationWidget(),
+            ),
+            FFRoute(
+              name: 'homePage',
+              path: 'homePage',
+              requireAuth: true,
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'homePage')
+                  : HomePageWidget(),
+            ),
+            FFRoute(
+              name: 'settingsPage',
+              path: 'settingsPage',
+              requireAuth: true,
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'settingsPage')
+                  : SettingsPageWidget(),
+            ),
+            FFRoute(
+              name: 'viewPage',
+              path: 'viewPage',
+              requireAuth: true,
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'viewPage')
+                  : ViewPageWidget(),
+            ),
+            FFRoute(
+              name: 'rulesBook',
+              path: 'rulesBook',
+              requireAuth: true,
+              builder: (context, params) => RulesBookWidget(),
+            ),
+            FFRoute(
+              name: 'moreInfo',
+              path: 'moreInfo',
+              requireAuth: true,
+              asyncParams: {
+                'jobStatus':
+                    getDoc('maintenance', MaintenanceRecord.serializer),
+              },
+              builder: (context, params) => MoreInfoWidget(
+                jobStatus: params.getParam('jobStatus', ParamType.Document),
+              ),
+            ),
+            FFRoute(
+              name: 'ChatPage',
+              path: 'chatPage',
+              requireAuth: true,
+              asyncParams: {
+                'chatUser': getDoc('users', UsersRecord.serializer),
+              },
+              builder: (context, params) => ChatPageWidget(
+                chatUser: params.getParam('chatUser', ParamType.Document),
+                chatRef: params.getParam(
+                    'chatRef', ParamType.DocumentReference, 'chats'),
+              ),
+            ),
+            FFRoute(
+              name: 'editProfile',
+              path: 'editProfile',
+              requireAuth: true,
+              builder: (context, params) => EditProfileWidget(),
+            ),
+            FFRoute(
+              name: 'MessagesPage',
+              path: 'messagesPage',
+              requireAuth: true,
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'MessagesPage')
+                  : MessagesPageWidget(),
+            ),
+            FFRoute(
+              name: 'usersSearch',
+              path: 'usersSearch',
+              requireAuth: true,
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'usersSearch')
+                  : UsersSearchWidget(),
+            ),
+            FFRoute(
+              name: 'Appliances',
+              path: 'appliances',
+              requireAuth: true,
+              builder: (context, params) => AppliancesWidget(),
+            ),
+            FFRoute(
+              name: 'Plumbing',
+              path: 'plumbing',
+              requireAuth: true,
+              builder: (context, params) => PlumbingWidget(),
+            ),
+            FFRoute(
+              name: 'Furniture',
+              path: 'furniture',
+              requireAuth: true,
+              builder: (context, params) => FurnitureWidget(),
+            ),
+            FFRoute(
+              name: 'Electrical',
+              path: 'electrical',
+              requireAuth: true,
+              builder: (context, params) => ElectricalWidget(),
+            ),
+            FFRoute(
+              name: 'Locksmith',
+              path: 'locksmith',
+              requireAuth: true,
+              builder: (context, params) => LocksmithWidget(),
+            ),
+            FFRoute(
+              name: 'Pestcontrol',
+              path: 'pestcontrol',
+              requireAuth: true,
+              builder: (context, params) => PestcontrolWidget(),
+            ),
+            FFRoute(
+              name: 'painting',
+              path: 'painting',
+              requireAuth: true,
+              builder: (context, params) => PaintingWidget(),
+            ),
+            FFRoute(
+              name: 'Others',
+              path: 'others',
+              requireAuth: true,
+              builder: (context, params) => OthersWidget(),
+            ),
+            FFRoute(
+              name: 'Communal',
+              path: 'communal',
+              requireAuth: true,
+              builder: (context, params) => CommunalWidget(),
+            ),
+            FFRoute(
+              name: 'reviews',
+              path: 'reviews',
+              requireAuth: true,
+              asyncParams: {
+                'jobReviews':
+                    getDoc('maintenance', MaintenanceRecord.serializer),
+              },
+              builder: (context, params) => ReviewsWidget(
+                jobReviews: params.getParam('jobReviews', ParamType.Document),
+              ),
+            ),
+            FFRoute(
+              name: 'test',
+              path: 'test',
+              requireAuth: true,
+              asyncParams: {
+                'jobs': getDoc('maintenance', MaintenanceRecord.serializer),
+              },
+              builder: (context, params) => TestWidget(
+                jobs: params.getParam('jobs', ParamType.Document),
+              ),
+            )
+          ].map((r) => r.toRoute(appStateNotifier)).toList(),
+        ).toRoute(appStateNotifier),
+      ],
     );
 
+extension NavParamExtensions on Map<String, String> {
+  Map<String, String> get withoutNulls =>
+      Map.fromEntries(entries.where((e) => e.value != null));
+}
+
+extension NavigationExtensions on BuildContext {
+  void goNamedAuth(
+    String name,
+    bool mounted, {
+    Map<String, String> params = const <String, String>{},
+    Map<String, String> queryParams = const <String, String>{},
+    Object extra,
+    bool ignoreRedirect = false,
+  }) =>
+      !mounted || GoRouter.of(this).shouldRedirect(ignoreRedirect)
+          ? null
+          : goNamed(
+              name,
+              params: params,
+              queryParams: queryParams,
+              extra: extra,
+            );
+
+  void pushNamedAuth(
+    String name,
+    bool mounted, {
+    Map<String, String> params = const <String, String>{},
+    Map<String, String> queryParams = const <String, String>{},
+    Object extra,
+    bool ignoreRedirect = false,
+  }) =>
+      !mounted || GoRouter.of(this).shouldRedirect(ignoreRedirect)
+          ? null
+          : pushNamed(
+              name,
+              params: params,
+              queryParams: queryParams,
+              extra: extra,
+            );
+}
+
 extension GoRouterExtensions on GoRouter {
-  void ignoringAuthChange() =>
+  AppStateNotifier get appState =>
+      (routerDelegate.refreshListenable as AppStateNotifier);
+  void prepareAuthEvent([bool ignoreRedirect = false]) =>
+      appState.hasRedirect() && !ignoreRedirect
+          ? null
+          : appState.updateNotifyOnAuthChange(false);
+  bool shouldRedirect(bool ignoreRedirect) =>
+      !ignoreRedirect && appState.hasRedirect();
+  void setRedirectLocationIfUnset(String location) =>
       (routerDelegate.refreshListenable as AppStateNotifier)
           .updateNotifyOnAuthChange(false);
 }
@@ -283,6 +377,7 @@ class FFRoute {
     @required this.builder,
     this.requireAuth = false,
     this.asyncParams = const {},
+    this.routes = const [],
   });
 
   final String name;
@@ -290,10 +385,24 @@ class FFRoute {
   final bool requireAuth;
   final Map<String, Future<dynamic> Function(String)> asyncParams;
   final Widget Function(BuildContext, FFParameters) builder;
+  final List<GoRoute> routes;
 
   GoRoute toRoute(AppStateNotifier appStateNotifier) => GoRoute(
         name: name,
         path: path,
+        redirect: (state) {
+          if (appStateNotifier.shouldRedirect) {
+            final redirectLocation = appStateNotifier.getRedirectLocation();
+            appStateNotifier.clearRedirectLocation();
+            return redirectLocation;
+          }
+
+          if (requireAuth && !appStateNotifier.loggedIn) {
+            appStateNotifier.setRedirectLocationIfUnset(state.location);
+            return '/onboarding';
+          }
+          return null;
+        },
         pageBuilder: (context, state) {
           final ffParams = FFParameters(state, asyncParams);
           final page = ffParams.hasFutures
@@ -316,9 +425,8 @@ class FFRoute {
                     ),
                   ),
                 )
-              : requireAuth && !appStateNotifier.loggedIn
-                  ? OnboardingWidget()
-                  : PushNotificationsHandler(child: page);
+              : PushNotificationsHandler(
+                  child: DynamicLinksHandler(child: page));
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition
@@ -336,21 +444,22 @@ class FFRoute {
                 )
               : MaterialPage(key: state.pageKey, child: child);
         },
+        routes: routes,
       );
 }
 
 class TransitionInfo {
   const TransitionInfo({
     this.hasTransition,
-    this.transitionType,
+    this.transitionType = PageTransitionType.fade,
     this.duration = const Duration(milliseconds: 300),
     this.alignment,
   });
 
   final bool hasTransition;
   final PageTransitionType transitionType;
-  final Alignment alignment;
   final Duration duration;
+  final Alignment alignment;
 
   static TransitionInfo appDefault() => TransitionInfo(
         hasTransition: true,

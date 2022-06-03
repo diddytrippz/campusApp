@@ -37,10 +37,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>campusafrica.com</string>
+        <string>campus_africa</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>campusafrica</string>
+        <string>com.campusafrica.app</string>
         </array>
         </dict>
     </array>

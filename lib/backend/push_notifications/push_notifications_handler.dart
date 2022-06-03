@@ -13,11 +13,8 @@ import '../../index.dart';
 import '../../main.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
-  const PushNotificationsHandler(
-      {Key key, this.handlePushNotification, this.child})
-      : super(key: key);
+  const PushNotificationsHandler({Key key, this.child}) : super(key: key);
 
-  final Function(BuildContext) handlePushNotification;
   final Widget child;
 
   @override
@@ -29,6 +26,10 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   bool _loading = false;
 
   Future handleOpenedPushNotification() async {
+    if (isWeb) {
+      return;
+    }
+
     final notification = await FirebaseMessaging.instance.getInitialMessage();
     if (notification != null) {
       await _handlePushNotification(notification);
@@ -111,6 +112,10 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'reviews': (data) async => ReviewsWidget(
         jobReviews: await getDocumentParameter(
             data, 'jobReviews', MaintenanceRecord.serializer),
+      ),
+  'test': (data) async => TestWidget(
+        jobs: await getDocumentParameter(
+            data, 'jobs', MaintenanceRecord.serializer),
       ),
 };
 

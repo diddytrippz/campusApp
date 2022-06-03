@@ -57,8 +57,8 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
             size: 24,
           ),
           onPressed: () async {
-            logFirebaseEvent('IconButton-ON_TAP');
-            logFirebaseEvent('IconButton-Navigate-Back');
+            logFirebaseEvent('REVIEWS_PAGE_arrow_back_ICON_ON_TAP');
+            logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
         ),
@@ -108,8 +108,9 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                             AuthUserStreamWidget(
                               child: InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('Image-ON_TAP');
-                                  logFirebaseEvent('Image-Expand-Image');
+                                  logFirebaseEvent(
+                                      'REVIEWS_PAGE_Image_6fzsaa1o_ON_TAP');
+                                  logFirebaseEvent('Image_Expand-Image');
                                   await Navigator.push(
                                     context,
                                     PageTransition(
@@ -428,14 +429,15 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                     22, 30, 22, 30),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    logFirebaseEvent('Button-ON_TAP');
-                                    logFirebaseEvent('Button-Validate-Form');
+                                    logFirebaseEvent(
+                                        'REVIEWS_PAGE_CONFIRM_BUTTON_ON_TAP');
+                                    logFirebaseEvent('Button_Validate-Form');
                                     if (formKey.currentState == null ||
                                         !formKey.currentState.validate()) {
                                       return;
                                     }
 
-                                    logFirebaseEvent('Button-Alert-Dialog');
+                                    logFirebaseEvent('Button_Alert-Dialog');
                                     var confirmDialogResponse =
                                         await showDialog<bool>(
                                               context: context,
@@ -465,7 +467,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                               },
                                             ) ??
                                             false;
-                                    logFirebaseEvent('Button-Backend-Call');
+                                    logFirebaseEvent('Button_Backend-Call');
 
                                     final maintenanceUpdateData =
                                         createMaintenanceRecordData(
@@ -473,7 +475,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                     );
                                     await widget.jobReviews.reference
                                         .update(maintenanceUpdateData);
-                                    logFirebaseEvent('Button-Show-Snack-Bar');
+                                    logFirebaseEvent('Button_Show-Snack-Bar');
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -489,7 +491,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                                 .primaryText,
                                       ),
                                     );
-                                    logFirebaseEvent('Button-Navigate-To');
+                                    logFirebaseEvent('Button_Navigate-To');
                                     context.pushNamed('viewPage');
                                   },
                                   text: 'Confirm',

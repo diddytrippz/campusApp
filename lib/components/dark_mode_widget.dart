@@ -24,8 +24,8 @@ class _DarkModeWidgetState extends State<DarkModeWidget> {
         children: [
           InkWell(
             onTap: () async {
-              logFirebaseEvent('Container-ON_TAP');
-              logFirebaseEvent('Container-Set-Dark-Mode-Settings');
+              logFirebaseEvent('DARK_MODE_COMP_Container_p3nzubfr_ON_TAP');
+              logFirebaseEvent('Container_Set-Dark-Mode-Settings');
               setDarkModeSetting(context, ThemeMode.light);
             },
             child: Material(
@@ -76,8 +76,8 @@ class _DarkModeWidgetState extends State<DarkModeWidget> {
           ),
           InkWell(
             onTap: () async {
-              logFirebaseEvent('Container-ON_TAP');
-              logFirebaseEvent('Container-Set-Dark-Mode-Settings');
+              logFirebaseEvent('DARK_MODE_COMP_Container_uq4n3iod_ON_TAP');
+              logFirebaseEvent('Container_Set-Dark-Mode-Settings');
               setDarkModeSetting(context, ThemeMode.dark);
             },
             child: Material(
@@ -114,8 +114,8 @@ class _DarkModeWidgetState extends State<DarkModeWidget> {
           ),
           InkWell(
             onTap: () async {
-              logFirebaseEvent('Container-ON_TAP');
-              logFirebaseEvent('Container-Set-Dark-Mode-Settings');
+              logFirebaseEvent('DARK_MODE_COMP_Container_o8gpwlya_ON_TAP');
+              logFirebaseEvent('Container_Set-Dark-Mode-Settings');
               setDarkModeSetting(context, ThemeMode.system);
             },
             child: Material(

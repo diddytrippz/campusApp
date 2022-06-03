@@ -54,8 +54,8 @@ class _CommunalWidgetState extends State<CommunalWidget> {
             size: 24,
           ),
           onPressed: () async {
-            logFirebaseEvent('IconButton-ON_TAP');
-            logFirebaseEvent('IconButton-Navigate-Back');
+            logFirebaseEvent('COMMUNAL_PAGE_arrow_back_ICON_ON_TAP');
+            logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
         ),
@@ -104,8 +104,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              logFirebaseEvent('Column-ON_TAP');
-                              logFirebaseEvent('Column-Upload-Photo-Video');
+                              logFirebaseEvent(
+                                  'COMMUNAL_PAGE_Column_xg7mg2ku_ON_TAP');
+                              logFirebaseEvent('Column_Upload-Photo-Video');
                               final selectedMedia =
                                   await selectMediaWithSourceBottomSheet(
                                 context: context,
@@ -288,6 +289,10 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                             return 'Field is required';
                           }
 
+                          if (val.length > 180) {
+                            return 'Maximum 180 characters allowed, currently ${val.length}.';
+                          }
+
                           return null;
                         },
                       ),
@@ -353,6 +358,10 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                             return 'Field is required';
                           }
 
+                          if (val.length > 90) {
+                            return 'Maximum 90 characters allowed, currently ${val.length}.';
+                          }
+
                           return null;
                         },
                       ),
@@ -361,14 +370,15 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(16, 50, 16, 50),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          logFirebaseEvent('Button-ON_TAP');
-                          logFirebaseEvent('Button-Validate-Form');
+                          logFirebaseEvent(
+                              'COMMUNAL_PAGE_SUBMIT_BUTTON_ON_TAP');
+                          logFirebaseEvent('Button_Validate-Form');
                           if (formKey.currentState == null ||
                               !formKey.currentState.validate()) {
                             return;
                           }
 
-                          logFirebaseEvent('Button-Backend-Call');
+                          logFirebaseEvent('Button_Backend-Call');
 
                           final maintenanceCreateData =
                               createMaintenanceRecordData(
@@ -378,7 +388,8 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                             createdTime: getCurrentTimestamp,
                             displayName: currentUserDisplayName,
                             room: placeController.text,
-                            building: currentUserDocument?.building,
+                            building: valueOrDefault(
+                                currentUserDocument?.building, ''),
                             notes: reasonController.text,
                             rating: 0,
                             uid: currentUserUid,
@@ -390,7 +401,7 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                           await MaintenanceRecord.collection
                               .doc()
                               .set(maintenanceCreateData);
-                          logFirebaseEvent('Button-Bottom-Sheet');
+                          logFirebaseEvent('Button_Bottom-Sheet');
                           await showModalBottomSheet(
                             isScrollControlled: true,
                             backgroundColor: Colors.transparent,

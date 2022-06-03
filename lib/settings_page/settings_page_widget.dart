@@ -56,9 +56,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                               child: AuthUserStreamWidget(
                                 child: InkWell(
                                   onTap: () async {
-                                    logFirebaseEvent('CircleImage-ON_TAP');
                                     logFirebaseEvent(
-                                        'CircleImage-Expand-Image');
+                                        'SETTINGS_PAGE_PAGE_CircleImage_kl8yb3dy_ON_TAP');
+                                    logFirebaseEvent(
+                                        'CircleImage_Expand-Image');
                                     await Navigator.push(
                                       context,
                                       PageTransition(
@@ -142,11 +143,12 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          logFirebaseEvent('Button-ON_TAP');
-                          logFirebaseEvent('Button-Auth');
-                          GoRouter.of(context).ignoringAuthChange();
+                          logFirebaseEvent(
+                              'SETTINGS_PAGE_PAGE_LOGOUT_BUTTON_ON_TAP');
+                          logFirebaseEvent('Button_Auth');
+                          GoRouter.of(context).prepareAuthEvent();
                           await signOut();
-                          context.goNamed('onboarding');
+                          context.goNamedAuth('onboarding', mounted);
                         },
                         text: 'Logout',
                         options: FFButtonOptions(
@@ -203,8 +205,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                           child: InkWell(
                             onTap: () async {
-                              logFirebaseEvent('Row-ON_TAP');
-                              logFirebaseEvent('Row-Navigate-To');
+                              logFirebaseEvent(
+                                  'SETTINGS_PAGE_PAGE_Row_4vymwgaz_ON_TAP');
+                              logFirebaseEvent('Row_Navigate-To');
                               context.pushNamed('editProfile');
                             },
                             child: Row(
@@ -264,8 +267,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                           child: InkWell(
                             onTap: () async {
-                              logFirebaseEvent('Row-ON_TAP');
-                              logFirebaseEvent('Row-Navigate-To');
+                              logFirebaseEvent(
+                                  'SETTINGS_PAGE_PAGE_Row_3epu68f8_ON_TAP');
+                              logFirebaseEvent('Row_Navigate-To');
                               context.pushNamed('MessagesPage');
                             },
                             child: Row(
@@ -311,8 +315,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                 ),
                 InkWell(
                   onTap: () async {
-                    logFirebaseEvent('Row-ON_TAP');
-                    logFirebaseEvent('Row-Bottom-Sheet');
+                    logFirebaseEvent('SETTINGS_PAGE_PAGE_Row_58how599_ON_TAP');
+                    logFirebaseEvent('Row_Bottom-Sheet');
                     await showModalBottomSheet(
                       isScrollControlled: true,
                       backgroundColor: Colors.transparent,
@@ -407,8 +411,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                           child: InkWell(
                             onTap: () async {
-                              logFirebaseEvent('Row-ON_TAP');
-                              logFirebaseEvent('Row-Show-Snack-Bar');
+                              logFirebaseEvent(
+                                  'SETTINGS_PAGE_PAGE_Row_mcp7m1u8_ON_TAP');
+                              logFirebaseEvent('Row_Show-Snack-Bar');
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -481,8 +486,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                           child: InkWell(
                             onTap: () async {
-                              logFirebaseEvent('Row-ON_TAP');
-                              logFirebaseEvent('Row-Navigate-To');
+                              logFirebaseEvent(
+                                  'SETTINGS_PAGE_PAGE_Row_7gja1499_ON_TAP');
+                              logFirebaseEvent('Row_Navigate-To');
                               context.pushNamed('rulesBook');
                             },
                             child: Row(
@@ -547,8 +553,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
                   child: InkWell(
                     onTap: () async {
-                      logFirebaseEvent('Row-ON_TAP');
-                      logFirebaseEvent('Row-Launch-U-R-L');
+                      logFirebaseEvent(
+                          'SETTINGS_PAGE_PAGE_Row_q9dex8d6_ON_TAP');
+                      logFirebaseEvent('Row_Launch-U-R-L');
                       await launchURL('https://campusafrica.co.za');
                     },
                     child: Row(
@@ -616,11 +623,12 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            logFirebaseEvent('Button-ON_TAP');
-                            logFirebaseEvent('Button-Auth');
-                            GoRouter.of(context).ignoringAuthChange();
+                            logFirebaseEvent(
+                                'SETTINGS_PAGE_PAGE_LOG_OUT_BUTTON_ON_TAP');
+                            logFirebaseEvent('Button_Auth');
+                            GoRouter.of(context).prepareAuthEvent();
                             await signOut();
-                            context.goNamed('onboarding');
+                            context.goNamedAuth('onboarding', mounted);
                           },
                           text: 'Log Out',
                           options: FFButtonOptions(

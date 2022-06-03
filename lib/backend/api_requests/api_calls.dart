@@ -55,9 +55,9 @@ class AirtableCall {
 
 class SendGridCall {
   static Future<ApiCallResponse> call({
-    String toEmail = '',
-    String subject = '',
-    String content = '',
+    String toEmail = '2188162@students.wits.ac.za',
+    String subject = 'Re: Maintenance',
+    String content = 'Dynanmic link',
     String name = '',
   }) {
     final body = '''

@@ -121,8 +121,9 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                           () => setState(() {}),
                         ),
                         onFieldSubmitted: (_) async {
-                          logFirebaseEvent('TextField-ON_TEXTFIELD_SUBMIT');
-                          logFirebaseEvent('TextField-Algolia-Search');
+                          logFirebaseEvent(
+                              'USERS_SEARCH_PAGE_TextField_mrvl0h5c_ON_TEXTFIELD_SUBMIT');
+                          logFirebaseEvent('TextField_Algolia-Search');
                           setState(() => algoliaSearchResults = null);
                           await UsersRecord.search(
                             term: textController.text,
@@ -196,8 +197,12 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                         queryBuilder: (usersRecord) => usersRecord
                             .where('role', isEqualTo: 'Admin')
                             .where('building',
-                                isEqualTo: currentUserDocument?.building != ''
-                                    ? currentUserDocument?.building
+                                isEqualTo: valueOrDefault(
+                                            currentUserDocument?.building,
+                                            '') !=
+                                        ''
+                                    ? valueOrDefault(
+                                        currentUserDocument?.building, '')
                                     : null)
                             .orderBy('display_name'),
                       ),
@@ -227,10 +232,11 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                 columnUsersRecordList[columnIndex];
                             return InkWell(
                               onTap: () async {
-                                logFirebaseEvent('Row-ON_TAP');
+                                logFirebaseEvent(
+                                    'USERS_SEARCH_PAGE_Row_mzx4ec3s_ON_TAP');
                                 if ((columnUsersRecord.email) ==
                                     'jeremy@conurban.co.za | | marvin@conurban.co.za') {
-                                  logFirebaseEvent('Row-Show-Snack-Bar');
+                                  logFirebaseEvent('Row_Show-Snack-Bar');
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -247,14 +253,14 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                     ),
                                   );
                                 } else {
-                                  logFirebaseEvent('Row-Navigate-To');
+                                  logFirebaseEvent('Row_Navigate-To');
                                   context.pushNamed(
                                     'ChatPage',
                                     queryParams: {
                                       'chatUser': serializeParam(
                                           columnUsersRecord,
                                           ParamType.Document),
-                                    },
+                                    }.withoutNulls,
                                     extra: <String, dynamic>{
                                       'chatUser': columnUsersRecord,
                                     },
@@ -437,10 +443,11 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                               elevation: 0,
                               child: InkWell(
                                 onTap: () async {
-                                  logFirebaseEvent('Row-ON_TAP');
+                                  logFirebaseEvent(
+                                      'USERS_SEARCH_PAGE_Row_u5ggcgtv_ON_TAP');
                                   if ((columnUsersRecord.email) ==
                                       'jeremy@conurban.co.za | | marvin@conurban.co.za') {
-                                    logFirebaseEvent('Row-Show-Snack-Bar');
+                                    logFirebaseEvent('Row_Show-Snack-Bar');
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -457,14 +464,14 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                       ),
                                     );
                                   } else {
-                                    logFirebaseEvent('Row-Navigate-To');
+                                    logFirebaseEvent('Row_Navigate-To');
                                     context.pushNamed(
                                       'ChatPage',
                                       queryParams: {
                                         'chatUser': serializeParam(
                                             columnUsersRecord,
                                             ParamType.Document),
-                                      },
+                                      }.withoutNulls,
                                       extra: <String, dynamic>{
                                         'chatUser': columnUsersRecord,
                                       },

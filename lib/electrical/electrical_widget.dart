@@ -54,8 +54,8 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
             size: 24,
           ),
           onPressed: () async {
-            logFirebaseEvent('IconButton-ON_TAP');
-            logFirebaseEvent('IconButton-Navigate-Back');
+            logFirebaseEvent('ELECTRICAL_PAGE_arrow_back_ICON_ON_TAP');
+            logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
         ),
@@ -104,8 +104,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                           ),
                           child: InkWell(
                             onTap: () async {
-                              logFirebaseEvent('Column-ON_TAP');
-                              logFirebaseEvent('Column-Upload-Photo-Video');
+                              logFirebaseEvent(
+                                  'ELECTRICAL_PAGE_Column_p34ee1n5_ON_TAP');
+                              logFirebaseEvent('Column_Upload-Photo-Video');
                               final selectedMedia =
                                   await selectMediaWithSourceBottomSheet(
                                 context: context,
@@ -264,7 +265,7 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                           'Faulty prepaid meter',
                           'Lights in my room are not working',
                           'Lights in my unit are not working'
-                        ].toList(),
+                        ],
                         onChanged: (val) => setState(() => budgetValue = val),
                         width: MediaQuery.of(context).size.width * 0.98,
                         height: 70,
@@ -351,6 +352,10 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                             return 'Field is required';
                           }
 
+                          if (val.length > 120) {
+                            return 'Maximum 120 characters allowed, currently ${val.length}.';
+                          }
+
                           return null;
                         },
                       ),
@@ -359,8 +364,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(16, 50, 16, 50),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          logFirebaseEvent('Button-ON_TAP');
-                          logFirebaseEvent('Button-Validate-Form');
+                          logFirebaseEvent(
+                              'ELECTRICAL_PAGE_SUBMIT_BUTTON_ON_TAP');
+                          logFirebaseEvent('Button_Validate-Form');
                           if (formKey.currentState == null ||
                               !formKey.currentState.validate()) {
                             return;
@@ -384,7 +390,7 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                             return;
                           }
 
-                          logFirebaseEvent('Button-Backend-Call');
+                          logFirebaseEvent('Button_Backend-Call');
 
                           final maintenanceCreateData =
                               createMaintenanceRecordData(
@@ -393,8 +399,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                             email: currentUserEmail,
                             createdTime: getCurrentTimestamp,
                             displayName: currentUserDisplayName,
-                            room: currentUserDocument?.room,
-                            building: currentUserDocument?.building,
+                            room: valueOrDefault(currentUserDocument?.room, ''),
+                            building: valueOrDefault(
+                                currentUserDocument?.building, ''),
                             notes: reasonController.text,
                             rating: 0,
                             uid: currentUserUid,
@@ -406,7 +413,7 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                           await MaintenanceRecord.collection
                               .doc()
                               .set(maintenanceCreateData);
-                          logFirebaseEvent('Button-Bottom-Sheet');
+                          logFirebaseEvent('Button_Bottom-Sheet');
                           await showModalBottomSheet(
                             isScrollControlled: true,
                             backgroundColor: Colors.transparent,

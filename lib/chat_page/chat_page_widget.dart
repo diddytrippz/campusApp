@@ -65,8 +65,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-Back');
+            logFirebaseEvent('CHAT_PAGE_PAGE_Icon_9aaekj7i_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-Back');
             context.pop();
           },
           child: Icon(
@@ -82,8 +82,9 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
               child: InkWell(
                 onTap: () async {
-                  logFirebaseEvent('CircleImage-ON_TAP');
-                  logFirebaseEvent('CircleImage-Expand-Image');
+                  logFirebaseEvent(
+                      'CHAT_PAGE_PAGE_CircleImage_16m8m50m_ON_TAP');
+                  logFirebaseEvent('CircleImage_Expand-Image');
                   await Navigator.push(
                     context,
                     PageTransition(
@@ -163,8 +164,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
             child: InkWell(
               onTap: () async {
-                logFirebaseEvent('Icon-ON_TAP');
-                logFirebaseEvent('Icon-Show-Snack-Bar');
+                logFirebaseEvent('CHAT_PAGE_PAGE_Icon_78qjwv36_ON_TAP');
+                logFirebaseEvent('Icon_Show-Snack-Bar');
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(

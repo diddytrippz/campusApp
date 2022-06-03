@@ -101,8 +101,9 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              logFirebaseEvent('Button-ON_TAP');
-                              logFirebaseEvent('Button-Navigate-To');
+                              logFirebaseEvent(
+                                  'ONBOARDING_PAGE_NEXT_BUTTON_ON_TAP');
+                              logFirebaseEvent('Button_Navigate-To');
                               context.goNamed(
                                 'loginPage',
                                 extra: <String, dynamic>{

@@ -45,8 +45,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
-            logFirebaseEvent('Icon-ON_TAP');
-            logFirebaseEvent('Icon-Navigate-To');
+            logFirebaseEvent('EDIT_PROFILE_PAGE_Icon_bbsibzef_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-To');
             context.pushNamed('settingsPage');
           },
           child: Icon(
@@ -89,9 +89,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           child: AuthUserStreamWidget(
                             child: InkWell(
                               onTap: () async {
-                                logFirebaseEvent('CircleImage-ON_TAP');
                                 logFirebaseEvent(
-                                    'CircleImage-Upload-Photo-Video');
+                                    'EDIT_PROFILE_PAGE_CircleImage_vy3eal4i_ON_TAP');
+                                logFirebaseEvent(
+                                    'CircleImage_Upload-Photo-Video');
                                 final selectedMedia =
                                     await selectMediaWithSourceBottomSheet(
                                   context: context,
@@ -392,14 +393,15 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(20, 40, 20, 20),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        logFirebaseEvent('Button-ON_TAP');
-                        logFirebaseEvent('Button-Backend-Call');
+                        logFirebaseEvent(
+                            'EDIT_PROFILE_PAGE_UPDATE_PROFILE_BUTTON_ON_TAP');
+                        logFirebaseEvent('Button_Backend-Call');
 
                         final usersUpdateData = createUsersRecordData(
                           photoUrl: uploadedFileUrl,
                         );
                         await currentUserReference.update(usersUpdateData);
-                        logFirebaseEvent('Button-Show-Snack-Bar');
+                        logFirebaseEvent('Button_Show-Snack-Bar');
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
@@ -414,7 +416,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 FlutterFlowTheme.of(context).primaryText,
                           ),
                         );
-                        logFirebaseEvent('Button-Navigate-To');
+                        logFirebaseEvent('Button_Navigate-To');
                         context.pushNamed('settingsPage');
                       },
                       text: 'UPDATE PROFILE',

@@ -14,10 +14,10 @@ class LoginPageWidget extends StatefulWidget {
 }
 
 class _LoginPageWidgetState extends State<LoginPageWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController emailAddressController;
   TextEditingController passwordController;
   bool passwordVisibility;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -245,6 +245,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           () => passwordVisibility =
                                               !passwordVisibility,
                                         ),
+                                        focusNode:
+                                            FocusNode(skipTraversal: true),
                                         child: Icon(
                                           passwordVisibility
                                               ? Icons.visibility_outlined
@@ -279,9 +281,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 FFButtonWidget(
                                   onPressed: () async {
                                     logFirebaseEvent(
-                                        'ButtonForgotPassword-ON_TAP');
+                                        'LOGIN_PAGE_PAGE_ButtonForgotPassword_ON_TAP');
                                     logFirebaseEvent(
-                                        'ButtonForgotPassword-Auth');
+                                        'ButtonForgotPassword_Auth');
                                     if (emailAddressController.text.isEmpty) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -322,9 +324,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    logFirebaseEvent('ButtonLogin-ON_TAP');
-                                    logFirebaseEvent('ButtonLogin-Auth');
-                                    GoRouter.of(context).ignoringAuthChange();
+                                    logFirebaseEvent(
+                                        'LOGIN_PAGE_PAGE_ButtonLogin_ON_TAP');
+                                    logFirebaseEvent('ButtonLogin_Auth');
+                                    GoRouter.of(context).prepareAuthEvent();
 
                                     final user = await signInWithEmail(
                                       context,
@@ -335,7 +338,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       return;
                                     }
 
-                                    context.goNamed('homePage');
+                                    context.goNamedAuth('homePage', mounted);
                                   },
                                   text: 'Login',
                                   options: FFButtonOptions(
@@ -373,9 +376,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                logFirebaseEvent('ButtonCreateAccount-ON_TAP');
                                 logFirebaseEvent(
-                                    'ButtonCreateAccount-Navigate-To');
+                                    'LOGIN_PAGE_PAGE_ButtonCreateAccount_ON_TAP');
+                                logFirebaseEvent(
+                                    'ButtonCreateAccount_Navigate-To');
                                 context.pushNamed('verification');
                               },
                               text: 'Create Account',

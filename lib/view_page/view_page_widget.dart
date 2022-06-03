@@ -83,8 +83,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
       backgroundColor: FlutterFlowTheme.of(context).primaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          logFirebaseEvent('FloatingActionButton-ON_TAP');
-          logFirebaseEvent('FloatingActionButton-Navigate-To');
+          logFirebaseEvent(
+              'VIEW_PAGE_PAGE_FloatingActionButton_9nto5evo_ON_TAP');
+          logFirebaseEvent('FloatingActionButton_Navigate-To');
           context.pushNamed('homePage');
         },
         backgroundColor: FlutterFlowTheme.of(context).mellow,
@@ -110,28 +111,33 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      FlutterFlowCalendar(
-                        color: Color(0xFFFFBA00),
-                        iconColor: FlutterFlowTheme.of(context).campusGrey,
-                        weekFormat: true,
-                        weekStartsMonday: false,
-                        onChange: (DateTimeRange newSelectedDate) {
-                          setState(() => calendarSelectedDay = newSelectedDate);
-                        },
-                        titleStyle: TextStyle(
-                          color: Color(0xE1FFFFFF),
-                        ),
-                        dayOfWeekStyle: TextStyle(
-                          color: Color(0xE1FFFFFF),
-                        ),
-                        dateStyle: TextStyle(
-                          color: Colors.white,
-                        ),
-                        selectedDateStyle: TextStyle(
-                          color: Colors.white,
-                        ),
-                        inactiveDateStyle: TextStyle(
-                          color: FlutterFlowTheme.of(context).primaryText,
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                        child: FlutterFlowCalendar(
+                          color: Color(0xFFFFBA00),
+                          iconColor: Color(0xE1F5F5F5),
+                          weekFormat: true,
+                          weekStartsMonday: false,
+                          onChange: (DateTimeRange newSelectedDate) {
+                            setState(
+                                () => calendarSelectedDay = newSelectedDate);
+                          },
+                          titleStyle: TextStyle(
+                            color: Color(0xE1FFFFFF),
+                          ),
+                          dayOfWeekStyle: TextStyle(
+                            color: Color(0xE1FFFFFF),
+                          ),
+                          dateStyle: TextStyle(
+                            color: Colors.white,
+                          ),
+                          selectedDateStyle: TextStyle(
+                            color: Colors.white,
+                          ),
+                          inactiveDateStyle: TextStyle(
+                            color: FlutterFlowTheme.of(context).primaryText,
+                          ),
+                          locale: FFLocalizations.of(context).languageCode,
                         ),
                       ),
                       Container(
@@ -208,8 +214,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  logFirebaseEvent('Button-ON_TAP');
-                                  logFirebaseEvent('Button-Simple-Search');
+                                  logFirebaseEvent(
+                                      'VIEW_PAGE_PAGE_SEARCH_BUTTON_ON_TAP');
+                                  logFirebaseEvent('Button_Simple-Search');
                                   await queryMaintenanceRecordOnce()
                                       .then(
                                         (records) => simpleSearchResults =
@@ -280,7 +287,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              if ((currentUserDocument?.role) == 'Tenant')
+                              if ((valueOrDefault(
+                                      currentUserDocument?.role, '')) ==
+                                  'Tenant')
                                 Expanded(
                                   child: AuthUserStreamWidget(
                                     child: DefaultTabController(
@@ -417,22 +426,23 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                 onTap:
                                                                     () async {
                                                                   logFirebaseEvent(
-                                                                      'ListTile-ON_TAP');
+                                                                      'VIEW_PAGE_PAGE_ListTile_eb8h3glo_ON_TAP');
                                                                   logFirebaseEvent(
-                                                                      'ListTile-Navigate-To');
+                                                                      'ListTile_Navigate-To');
                                                                   context
                                                                       .pushNamed(
-                                                                    'moreInfo',
-                                                                    queryParams: {
-                                                                      'jobStatus': serializeParam(
+                                                                    'test',
+                                                                    queryParams:
+                                                                        {
+                                                                      'jobs': serializeParam(
                                                                           listViewMaintenanceRecord,
                                                                           ParamType
                                                                               .Document),
-                                                                    },
+                                                                    }.withoutNulls,
                                                                     extra: <
                                                                         String,
                                                                         dynamic>{
-                                                                      'jobStatus':
+                                                                      'jobs':
                                                                           listViewMaintenanceRecord,
                                                                     },
                                                                   );
@@ -452,9 +462,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       onTap:
                                                                           () async {
                                                                         logFirebaseEvent(
-                                                                            'SlidableActionWidget-ON_TAP');
+                                                                            'VIEW_PAGE_PAGE_SlidableActionWidget_aynk2i2a_ON_TAP');
                                                                         logFirebaseEvent(
-                                                                            'SlidableActionWidget-Alert-Dialog');
+                                                                            'SlidableActionWidget_Alert-Dialog');
                                                                         var confirmDialogResponse = await showDialog<bool>(
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
@@ -476,13 +486,13 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             false;
                                                                         if (confirmDialogResponse) {
                                                                           logFirebaseEvent(
-                                                                              'SlidableActionWidget-Backend-Call');
+                                                                              'SlidableActionWidget_Backend-Call');
                                                                           await listViewMaintenanceRecord
                                                                               .reference
                                                                               .delete();
                                                                         }
                                                                         logFirebaseEvent(
-                                                                            'SlidableActionWidget-Show-Snack-Bar');
+                                                                            'SlidableActionWidget_Show-Snack-Bar');
                                                                         ScaffoldMessenger.of(context)
                                                                             .showSnackBar(
                                                                           SnackBar(
@@ -668,21 +678,22 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   onTap:
                                                                       () async {
                                                                     logFirebaseEvent(
-                                                                        'ListTile-ON_TAP');
+                                                                        'VIEW_PAGE_PAGE_ListTile_gznh7u5n_ON_TAP');
                                                                     logFirebaseEvent(
-                                                                        'ListTile-Navigate-To');
+                                                                        'ListTile_Navigate-To');
                                                                     context
                                                                         .pushNamed(
-                                                                      'moreInfo',
-                                                                      queryParams: {
-                                                                        'jobStatus': serializeParam(
+                                                                      'test',
+                                                                      queryParams:
+                                                                          {
+                                                                        'jobs': serializeParam(
                                                                             listViewMaintenanceRecord,
                                                                             ParamType.Document),
-                                                                      },
+                                                                      }.withoutNulls,
                                                                       extra: <
                                                                           String,
                                                                           dynamic>{
-                                                                        'jobStatus':
+                                                                        'jobs':
                                                                             listViewMaintenanceRecord,
                                                                       },
                                                                     );
@@ -844,22 +855,23 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                 onTap:
                                                                     () async {
                                                                   logFirebaseEvent(
-                                                                      'ListTile-ON_TAP');
+                                                                      'VIEW_PAGE_PAGE_ListTile_asqyo1jd_ON_TAP');
                                                                   logFirebaseEvent(
-                                                                      'ListTile-Navigate-To');
+                                                                      'ListTile_Navigate-To');
                                                                   context
                                                                       .pushNamed(
-                                                                    'moreInfo',
-                                                                    queryParams: {
-                                                                      'jobStatus': serializeParam(
+                                                                    'test',
+                                                                    queryParams:
+                                                                        {
+                                                                      'jobs': serializeParam(
                                                                           listViewMaintenanceRecord,
                                                                           ParamType
                                                                               .Document),
-                                                                    },
+                                                                    }.withoutNulls,
                                                                     extra: <
                                                                         String,
                                                                         dynamic>{
-                                                                      'jobStatus':
+                                                                      'jobs':
                                                                           listViewMaintenanceRecord,
                                                                     },
                                                                   );
@@ -932,7 +944,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                     ),
                                   ),
                                 ),
-                              if ((currentUserDocument?.role) == 'Admin')
+                              if ((valueOrDefault(
+                                      currentUserDocument?.role, '')) ==
+                                  'Admin')
                                 Expanded(
                                   child: AuthUserStreamWidget(
                                     child: DefaultTabController(
@@ -1002,11 +1016,15 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   isEqualTo:
                                                                       'Submitted')
                                                               .where('building',
-                                                                  isEqualTo: currentUserDocument
-                                                                              ?.building !=
+                                                                  isEqualTo: valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.building,
+                                                                              '') !=
                                                                           ''
-                                                                      ? currentUserDocument
-                                                                          ?.building
+                                                                      ? valueOrDefault(
+                                                                          currentUserDocument
+                                                                              ?.building,
+                                                                          '')
                                                                       : null)
                                                               .where('isDone',
                                                                   isEqualTo:
@@ -1073,22 +1091,23 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                 onTap:
                                                                     () async {
                                                                   logFirebaseEvent(
-                                                                      'ListTile-ON_TAP');
+                                                                      'VIEW_PAGE_PAGE_ListTile_cblb6ffj_ON_TAP');
                                                                   logFirebaseEvent(
-                                                                      'ListTile-Navigate-To');
+                                                                      'ListTile_Navigate-To');
                                                                   context
                                                                       .pushNamed(
-                                                                    'moreInfo',
-                                                                    queryParams: {
-                                                                      'jobStatus': serializeParam(
+                                                                    'test',
+                                                                    queryParams:
+                                                                        {
+                                                                      'jobs': serializeParam(
                                                                           listViewMaintenanceRecord,
                                                                           ParamType
                                                                               .Document),
-                                                                    },
+                                                                    }.withoutNulls,
                                                                     extra: <
                                                                         String,
                                                                         dynamic>{
-                                                                      'jobStatus':
+                                                                      'jobs':
                                                                           listViewMaintenanceRecord,
                                                                     },
                                                                   );
@@ -1108,9 +1127,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       onTap:
                                                                           () async {
                                                                         logFirebaseEvent(
-                                                                            'SlidableActionWidget-ON_TAP');
+                                                                            'VIEW_PAGE_PAGE_SlidableActionWidget_sug5r641_ON_TAP');
                                                                         logFirebaseEvent(
-                                                                            'SlidableActionWidget-Backend-Call');
+                                                                            'SlidableActionWidget_Backend-Call');
 
                                                                         final maintenanceUpdateData =
                                                                             createMaintenanceRecordData(
@@ -1123,7 +1142,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             .reference
                                                                             .update(maintenanceUpdateData);
                                                                         logFirebaseEvent(
-                                                                            'SlidableActionWidget-Show-Snack-Bar');
+                                                                            'SlidableActionWidget_Show-Snack-Bar');
                                                                         ScaffoldMessenger.of(context)
                                                                             .showSnackBar(
                                                                           SnackBar(
@@ -1168,7 +1187,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             fontSize:
                                                                                 16,
                                                                             fontWeight:
-                                                                                FontWeight.w500,
+                                                                                FontWeight.normal,
                                                                           ),
                                                                     ),
                                                                     subtitle:
@@ -1181,8 +1200,12 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           .override(
                                                                             fontFamily:
                                                                                 'Open Sans',
+                                                                            color:
+                                                                                Color(0xFFB91D13),
                                                                             fontSize:
                                                                                 14,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
                                                                           ),
                                                                     ),
                                                                     trailing:
@@ -1248,9 +1271,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           'Pending')
                                                                   .where(
                                                                       'building',
-                                                                      isEqualTo:
+                                                                      isEqualTo: valueOrDefault(
                                                                           currentUserDocument
-                                                                              ?.building)
+                                                                              ?.building,
+                                                                          ''))
                                                                   .where(
                                                                       'isDone',
                                                                       isEqualTo:
@@ -1298,9 +1322,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           'Pending')
                                                                   .where(
                                                                       'building',
-                                                                      isEqualTo:
+                                                                      isEqualTo: valueOrDefault(
                                                                           currentUserDocument
-                                                                              ?.building)
+                                                                              ?.building,
+                                                                          ''))
                                                                   .where(
                                                                       'isDone',
                                                                       isEqualTo:
@@ -1405,22 +1430,22 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                             return InkWell(
                                                               onTap: () async {
                                                                 logFirebaseEvent(
-                                                                    'ListTile-ON_TAP');
+                                                                    'VIEW_PAGE_PAGE_ListTile_gfs86ivb_ON_TAP');
                                                                 logFirebaseEvent(
-                                                                    'ListTile-Navigate-To');
+                                                                    'ListTile_Navigate-To');
                                                                 context
                                                                     .pushNamed(
-                                                                  'moreInfo',
+                                                                  'test',
                                                                   queryParams: {
-                                                                    'jobStatus': serializeParam(
+                                                                    'jobs': serializeParam(
                                                                         listViewMaintenanceRecord,
                                                                         ParamType
                                                                             .Document),
-                                                                  },
+                                                                  }.withoutNulls,
                                                                   extra: <
                                                                       String,
                                                                       dynamic>{
-                                                                    'jobStatus':
+                                                                    'jobs':
                                                                         listViewMaintenanceRecord,
                                                                   },
                                                                 );
@@ -1440,9 +1465,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     onTap:
                                                                         () async {
                                                                       logFirebaseEvent(
-                                                                          'SlidableActionWidget-ON_TAP');
+                                                                          'VIEW_PAGE_PAGE_SlidableActionWidget_se7xu763_ON_TAP');
                                                                       logFirebaseEvent(
-                                                                          'SlidableActionWidget-Backend-Call');
+                                                                          'SlidableActionWidget_Backend-Call');
 
                                                                       final maintenanceUpdateData =
                                                                           createMaintenanceRecordData(
@@ -1454,7 +1479,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           .update(
                                                                               maintenanceUpdateData);
                                                                       logFirebaseEvent(
-                                                                          'SlidableActionWidget-Show-Snack-Bar');
+                                                                          'SlidableActionWidget_Show-Snack-Bar');
                                                                       ScaffoldMessenger.of(
                                                                               context)
                                                                           .showSnackBar(
@@ -1486,9 +1511,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     onTap:
                                                                         () async {
                                                                       logFirebaseEvent(
-                                                                          'SlidableActionWidget-ON_TAP');
+                                                                          'VIEW_PAGE_PAGE_SlidableActionWidget_6qww6kpi_ON_TAP');
                                                                       logFirebaseEvent(
-                                                                          'SlidableActionWidget-Backend-Call');
+                                                                          'SlidableActionWidget_Backend-Call');
 
                                                                       final maintenanceUpdateData =
                                                                           createMaintenanceRecordData(
@@ -1502,7 +1527,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           .update(
                                                                               maintenanceUpdateData);
                                                                       logFirebaseEvent(
-                                                                          'SlidableActionWidget-Backend-Call');
+                                                                          'SlidableActionWidget_Backend-Call');
                                                                       await AirtableCall
                                                                           .call(
                                                                         user: listViewMaintenanceRecord
@@ -1520,11 +1545,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             listViewMaintenanceRecord.updateTime),
                                                                         name: listViewMaintenanceRecord
                                                                             .displayName,
-                                                                        links:
-                                                                            'campusafrica://campusafrica.com${GoRouter.of(context).location}',
                                                                       );
                                                                       logFirebaseEvent(
-                                                                          'SlidableActionWidget-Show-Snack-Bar');
+                                                                          'SlidableActionWidget_Show-Snack-Bar');
                                                                       ScaffoldMessenger.of(
                                                                               context)
                                                                           .showSnackBar(
@@ -1582,8 +1605,12 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                         .override(
                                                                           fontFamily:
                                                                               'Open Sans',
+                                                                          color:
+                                                                              Color(0xFFEFB701),
                                                                           fontSize:
                                                                               14,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
                                                                         ),
                                                                   ),
                                                                   trailing:
@@ -1637,9 +1664,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                             queryMaintenanceRecord(
                                                           queryBuilder: (maintenanceRecord) => maintenanceRecord
                                                               .where('building',
-                                                                  isEqualTo:
+                                                                  isEqualTo: valueOrDefault(
                                                                       currentUserDocument
-                                                                          ?.building)
+                                                                          ?.building,
+                                                                      ''))
                                                               .where('status',
                                                                   isEqualTo:
                                                                       'Completed')
@@ -1713,21 +1741,22 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   onTap:
                                                                       () async {
                                                                     logFirebaseEvent(
-                                                                        'Card-ON_TAP');
+                                                                        'VIEW_PAGE_PAGE_Card_ngil69ok_ON_TAP');
                                                                     logFirebaseEvent(
-                                                                        'Card-Navigate-To');
+                                                                        'Card_Navigate-To');
                                                                     context
                                                                         .pushNamed(
-                                                                      'moreInfo',
-                                                                      queryParams: {
-                                                                        'jobStatus': serializeParam(
+                                                                      'test',
+                                                                      queryParams:
+                                                                          {
+                                                                        'jobs': serializeParam(
                                                                             listViewMaintenanceRecord,
                                                                             ParamType.Document),
-                                                                      },
+                                                                      }.withoutNulls,
                                                                       extra: <
                                                                           String,
                                                                           dynamic>{
-                                                                        'jobStatus':
+                                                                        'jobs':
                                                                             listViewMaintenanceRecord,
                                                                       },
                                                                     );
@@ -1792,8 +1821,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                                     listViewMaintenanceRecord.room,
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: 'Open Sans',
-                                                                                          color: FlutterFlowTheme.of(context).campusRed,
-                                                                                          fontWeight: FontWeight.w500,
+                                                                                          color: Color(0xFF0C8450),
+                                                                                          fontWeight: FontWeight.bold,
                                                                                         ),
                                                                                   ),
                                                                                 ],
