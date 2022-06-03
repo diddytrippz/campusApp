@@ -88,19 +88,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'loginPage',
               path: 'loginPage',
-              requireAuth: true,
               builder: (context, params) => LoginPageWidget(),
             ),
             FFRoute(
               name: 'verification',
               path: 'verification',
-              requireAuth: true,
               builder: (context, params) => VerificationWidget(),
             ),
             FFRoute(
               name: 'homePage',
               path: 'homePage',
-              requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'homePage')
                   : HomePageWidget(),
@@ -108,7 +105,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'settingsPage',
               path: 'settingsPage',
-              requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'settingsPage')
                   : SettingsPageWidget(),
@@ -124,13 +120,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'rulesBook',
               path: 'rulesBook',
-              requireAuth: true,
               builder: (context, params) => RulesBookWidget(),
             ),
             FFRoute(
               name: 'moreInfo',
               path: 'moreInfo',
-              requireAuth: true,
               asyncParams: {
                 'jobStatus':
                     getDoc('maintenance', MaintenanceRecord.serializer),
@@ -142,7 +136,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'ChatPage',
               path: 'chatPage',
-              requireAuth: true,
               asyncParams: {
                 'chatUser': getDoc('users', UsersRecord.serializer),
               },
@@ -155,13 +148,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'editProfile',
               path: 'editProfile',
-              requireAuth: true,
               builder: (context, params) => EditProfileWidget(),
             ),
             FFRoute(
               name: 'MessagesPage',
               path: 'messagesPage',
-              requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'MessagesPage')
                   : MessagesPageWidget(),
@@ -177,61 +168,51 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'Appliances',
               path: 'appliances',
-              requireAuth: true,
               builder: (context, params) => AppliancesWidget(),
             ),
             FFRoute(
               name: 'Plumbing',
               path: 'plumbing',
-              requireAuth: true,
               builder: (context, params) => PlumbingWidget(),
             ),
             FFRoute(
               name: 'Furniture',
               path: 'furniture',
-              requireAuth: true,
               builder: (context, params) => FurnitureWidget(),
             ),
             FFRoute(
               name: 'Electrical',
               path: 'electrical',
-              requireAuth: true,
               builder: (context, params) => ElectricalWidget(),
             ),
             FFRoute(
               name: 'Locksmith',
               path: 'locksmith',
-              requireAuth: true,
               builder: (context, params) => LocksmithWidget(),
             ),
             FFRoute(
               name: 'Pestcontrol',
               path: 'pestcontrol',
-              requireAuth: true,
               builder: (context, params) => PestcontrolWidget(),
             ),
             FFRoute(
               name: 'painting',
               path: 'painting',
-              requireAuth: true,
               builder: (context, params) => PaintingWidget(),
             ),
             FFRoute(
               name: 'Others',
               path: 'others',
-              requireAuth: true,
               builder: (context, params) => OthersWidget(),
             ),
             FFRoute(
               name: 'Communal',
               path: 'communal',
-              requireAuth: true,
               builder: (context, params) => CommunalWidget(),
             ),
             FFRoute(
               name: 'reviews',
               path: 'reviews',
-              requireAuth: true,
               asyncParams: {
                 'jobReviews':
                     getDoc('maintenance', MaintenanceRecord.serializer),
@@ -243,7 +224,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'test',
               path: 'test',
-              requireAuth: true,
               asyncParams: {
                 'jobs': getDoc('maintenance', MaintenanceRecord.serializer),
               },
