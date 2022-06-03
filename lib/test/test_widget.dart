@@ -61,13 +61,17 @@ class _TestWidgetState extends State<TestWidget> {
             context.pop();
           },
         ),
-        title: Text(
-          widget.jobs.displayName,
-          style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Open Sans',
-                color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 16,
-              ),
+        title: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+          child: Text(
+            widget.jobs.displayName,
+            style: FlutterFlowTheme.of(context).title2.override(
+                  fontFamily: 'Open Sans',
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+          ),
         ),
         actions: [
           FutureBuilder<List<UsersRecord>>(

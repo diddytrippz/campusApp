@@ -32,6 +32,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
   Query _pagingQuery;
   List<StreamSubscription> _streamSubscriptions = [];
 
+  String _currentPageLink = '';
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final animationsMap = {
     'floatingActionButtonOnPageLoadAnimation': AnimationInfo(
@@ -1527,6 +1528,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           .update(
                                                                               maintenanceUpdateData);
                                                                       logFirebaseEvent(
+                                                                          'SlidableActionWidget_Generate-Current-Page-Link');
+                                                                      _currentPageLink =
+                                                                          await generateCurrentPageLink(
+                                                                              context);
+                                                                      logFirebaseEvent(
                                                                           'SlidableActionWidget_Backend-Call');
                                                                       await AirtableCall
                                                                           .call(
@@ -1534,8 +1540,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             .email,
                                                                         issue: listViewMaintenanceRecord
                                                                             .issue,
-                                                                        room: listViewMaintenanceRecord
-                                                                            .room,
+                                                                        room:
+                                                                            _currentPageLink,
                                                                         building:
                                                                             listViewMaintenanceRecord.building,
                                                                         status:
