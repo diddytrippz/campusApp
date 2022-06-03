@@ -1007,256 +1007,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                       ),
                                                     ),
                                                     Expanded(
-                                                      child: StreamBuilder<
-                                                          List<
-                                                              MaintenanceRecord>>(
-                                                        stream:
-                                                            queryMaintenanceRecord(
-                                                          queryBuilder: (maintenanceRecord) => maintenanceRecord
-                                                              .where('status',
-                                                                  isEqualTo:
-                                                                      'Submitted')
-                                                              .where('building',
-                                                                  isEqualTo: valueOrDefault(
-                                                                              currentUserDocument
-                                                                                  ?.building,
-                                                                              '') !=
-                                                                          ''
-                                                                      ? valueOrDefault(
-                                                                          currentUserDocument
-                                                                              ?.building,
-                                                                          '')
-                                                                      : null)
-                                                              .where('isDone',
-                                                                  isEqualTo:
-                                                                      false)
-                                                              .orderBy(
-                                                                  'created_time',
-                                                                  descending:
-                                                                      true),
-                                                        ),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 60,
-                                                                height: 60,
-                                                                child:
-                                                                    SpinKitPulse(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryColor,
-                                                                  size: 60,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                          List<MaintenanceRecord>
-                                                              listViewMaintenanceRecordList =
-                                                              snapshot.data;
-                                                          if (listViewMaintenanceRecordList
-                                                              .isEmpty) {
-                                                            return Center(
-                                                              child:
-                                                                  Image.asset(
-                                                                'assets/images/undraw_no_data_re_kwbl.png',
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.5,
-                                                                fit: BoxFit
-                                                                    .contain,
-                                                              ),
-                                                            );
-                                                          }
-                                                          return ListView
-                                                              .builder(
-                                                            padding:
-                                                                EdgeInsets.zero,
-                                                            primary: false,
-                                                            scrollDirection:
-                                                                Axis.vertical,
-                                                            itemCount:
-                                                                listViewMaintenanceRecordList
-                                                                    .length,
-                                                            itemBuilder: (context,
-                                                                listViewIndex) {
-                                                              final listViewMaintenanceRecord =
-                                                                  listViewMaintenanceRecordList[
-                                                                      listViewIndex];
-                                                              return InkWell(
-                                                                onTap:
-                                                                    () async {
-                                                                  logFirebaseEvent(
-                                                                      'VIEW_PAGE_PAGE_ListTile_cblb6ffj_ON_TAP');
-                                                                  logFirebaseEvent(
-                                                                      'ListTile_Navigate-To');
-                                                                  context
-                                                                      .pushNamed(
-                                                                    'test',
-                                                                    queryParams:
-                                                                        {
-                                                                      'jobs': serializeParam(
-                                                                          listViewMaintenanceRecord,
-                                                                          ParamType
-                                                                              .Document),
-                                                                    }.withoutNulls,
-                                                                    extra: <
-                                                                        String,
-                                                                        dynamic>{
-                                                                      'jobs':
-                                                                          listViewMaintenanceRecord,
-                                                                    },
-                                                                  );
-                                                                },
-                                                                child: Slidable(
-                                                                  actionPane:
-                                                                      const SlidableScrollActionPane(),
-                                                                  secondaryActions: [
-                                                                    IconSlideAction(
-                                                                      caption:
-                                                                          'Complete',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .campusRed,
-                                                                      icon: Icons
-                                                                          .logout,
-                                                                      onTap:
-                                                                          () async {
-                                                                        logFirebaseEvent(
-                                                                            'VIEW_PAGE_PAGE_SlidableActionWidget_sug5r641_ON_TAP');
-                                                                        logFirebaseEvent(
-                                                                            'SlidableActionWidget_Backend-Call');
-
-                                                                        final maintenanceUpdateData =
-                                                                            createMaintenanceRecordData(
-                                                                          status:
-                                                                              'Pending',
-                                                                          assigned:
-                                                                              currentUserDisplayName,
-                                                                        );
-                                                                        await listViewMaintenanceRecord
-                                                                            .reference
-                                                                            .update(maintenanceUpdateData);
-                                                                        logFirebaseEvent(
-                                                                            'SlidableActionWidget_Show-Snack-Bar');
-                                                                        ScaffoldMessenger.of(context)
-                                                                            .showSnackBar(
-                                                                          SnackBar(
-                                                                            content:
-                                                                                Text(
-                                                                              'Item successfully completed',
-                                                                              style: TextStyle(
-                                                                                color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                              ),
-                                                                            ),
-                                                                            duration:
-                                                                                Duration(milliseconds: 4000),
-                                                                            backgroundColor:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    ),
-                                                                  ],
-                                                                  child:
-                                                                      ListTile(
-                                                                    leading:
-                                                                        Icon(
-                                                                      Icons
-                                                                          .account_circle,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      size: 35,
-                                                                    ),
-                                                                    title: Text(
-                                                                      listViewMaintenanceRecord
-                                                                          .issue,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .title2
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Open Sans',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                            fontSize:
-                                                                                16,
-                                                                            fontWeight:
-                                                                                FontWeight.normal,
-                                                                          ),
-                                                                    ),
-                                                                    subtitle:
-                                                                        Text(
-                                                                      listViewMaintenanceRecord
-                                                                          .room,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .subtitle2
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Open Sans',
-                                                                            color:
-                                                                                Color(0xFFB91D13),
-                                                                            fontSize:
-                                                                                14,
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                          ),
-                                                                    ),
-                                                                    trailing:
-                                                                        Icon(
-                                                                      Icons
-                                                                          .keyboard_arrow_right_sharp,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      size: 20,
-                                                                    ),
-                                                                    tileColor:
-                                                                        Color(
-                                                                            0x00FFFFFF),
-                                                                    dense: true,
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            },
-                                                          );
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(16, 12,
-                                                                  16, 0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
-                                                            'Search results',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText2,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Expanded(
                                                       child: PagedListView<
                                                           DocumentSnapshot<
                                                               Object>,
@@ -1266,24 +1016,22 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   Query<Object>)
                                                               queryBuilder =
                                                               (maintenanceRecord) => maintenanceRecord
-                                                                  .where(
-                                                                      'status',
+                                                                  .where('status',
                                                                       isEqualTo:
-                                                                          'Pending')
-                                                                  .where(
-                                                                      'building',
-                                                                      isEqualTo: valueOrDefault(
-                                                                          currentUserDocument
-                                                                              ?.building,
-                                                                          ''))
-                                                                  .where(
-                                                                      'isDone',
+                                                                          'Submitted')
+                                                                  .where('building',
+                                                                      isEqualTo: valueOrDefault(currentUserDocument?.building, '') != ''
+                                                                          ? valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.building,
+                                                                              '')
+                                                                          : null)
+                                                                  .where('isDone',
                                                                       isEqualTo:
                                                                           false)
                                                                   .orderBy(
                                                                       'created_time',
-                                                                      descending:
-                                                                          true);
+                                                                      descending: true);
                                                           if (_pagingController !=
                                                               null) {
                                                             final query = queryBuilder(
@@ -1320,13 +1068,16 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   .where(
                                                                       'status',
                                                                       isEqualTo:
-                                                                          'Pending')
+                                                                          'Submitted')
                                                                   .where(
                                                                       'building',
-                                                                      isEqualTo: valueOrDefault(
-                                                                          currentUserDocument
-                                                                              ?.building,
-                                                                          ''))
+                                                                      isEqualTo: valueOrDefault(currentUserDocument?.building, '') !=
+                                                                              ''
+                                                                          ? valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.building,
+                                                                              '')
+                                                                          : null)
                                                                   .where(
                                                                       'isDone',
                                                                       isEqualTo:
@@ -1431,7 +1182,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                             return InkWell(
                                                               onTap: () async {
                                                                 logFirebaseEvent(
-                                                                    'VIEW_PAGE_PAGE_ListTile_gfs86ivb_ON_TAP');
+                                                                    'VIEW_PAGE_PAGE_ListTile_cblb6ffj_ON_TAP');
                                                                 logFirebaseEvent(
                                                                     'ListTile_Navigate-To');
                                                                 context
@@ -1457,52 +1208,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                 secondaryActions: [
                                                                   IconSlideAction(
                                                                     caption:
-                                                                        'Reject',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                    icon: FFIcons
-                                                                        .kthumbsDowns,
-                                                                    onTap:
-                                                                        () async {
-                                                                      logFirebaseEvent(
-                                                                          'VIEW_PAGE_PAGE_SlidableActionWidget_se7xu763_ON_TAP');
-                                                                      logFirebaseEvent(
-                                                                          'SlidableActionWidget_Backend-Call');
-
-                                                                      final maintenanceUpdateData =
-                                                                          createMaintenanceRecordData(
-                                                                        status:
-                                                                            'Submitted',
-                                                                      );
-                                                                      await listViewMaintenanceRecord
-                                                                          .reference
-                                                                          .update(
-                                                                              maintenanceUpdateData);
-                                                                      logFirebaseEvent(
-                                                                          'SlidableActionWidget_Show-Snack-Bar');
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            'Item rejected',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                            ),
-                                                                          ),
-                                                                          duration:
-                                                                              Duration(milliseconds: 4000),
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).primaryText,
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                  ),
-                                                                  IconSlideAction(
-                                                                    caption:
                                                                         'Complete',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
@@ -1512,46 +1217,21 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     onTap:
                                                                         () async {
                                                                       logFirebaseEvent(
-                                                                          'VIEW_PAGE_PAGE_SlidableActionWidget_6qww6kpi_ON_TAP');
+                                                                          'VIEW_PAGE_PAGE_SlidableActionWidget_sug5r641_ON_TAP');
                                                                       logFirebaseEvent(
                                                                           'SlidableActionWidget_Backend-Call');
 
                                                                       final maintenanceUpdateData =
                                                                           createMaintenanceRecordData(
                                                                         status:
-                                                                            'Completed',
-                                                                        updateTime:
-                                                                            getCurrentTimestamp,
+                                                                            'Pending',
+                                                                        assigned:
+                                                                            currentUserDisplayName,
                                                                       );
                                                                       await listViewMaintenanceRecord
                                                                           .reference
                                                                           .update(
                                                                               maintenanceUpdateData);
-                                                                      logFirebaseEvent(
-                                                                          'SlidableActionWidget_Generate-Current-Page-Link');
-                                                                      _currentPageLink =
-                                                                          await generateCurrentPageLink(
-                                                                              context);
-                                                                      logFirebaseEvent(
-                                                                          'SlidableActionWidget_Backend-Call');
-                                                                      await AirtableCall
-                                                                          .call(
-                                                                        user: listViewMaintenanceRecord
-                                                                            .email,
-                                                                        issue: listViewMaintenanceRecord
-                                                                            .issue,
-                                                                        room:
-                                                                            _currentPageLink,
-                                                                        building:
-                                                                            listViewMaintenanceRecord.building,
-                                                                        status:
-                                                                            'Completed',
-                                                                        updated: dateTimeFormat(
-                                                                            'MMMMEEEEd',
-                                                                            listViewMaintenanceRecord.updateTime),
-                                                                        name: listViewMaintenanceRecord
-                                                                            .displayName,
-                                                                      );
                                                                       logFirebaseEvent(
                                                                           'SlidableActionWidget_Show-Snack-Bar');
                                                                       ScaffoldMessenger.of(
@@ -1598,7 +1278,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           fontSize:
                                                                               16,
                                                                           fontWeight:
-                                                                              FontWeight.w500,
+                                                                              FontWeight.normal,
                                                                         ),
                                                                   ),
                                                                   subtitle:
@@ -1612,11 +1292,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           fontFamily:
                                                                               'Open Sans',
                                                                           color:
-                                                                              Color(0xFFEFB701),
+                                                                              Color(0xFFB91D13),
                                                                           fontSize:
                                                                               14,
                                                                           fontWeight:
-                                                                              FontWeight.bold,
+                                                                              FontWeight.w600,
                                                                         ),
                                                                   ),
                                                                   trailing:
@@ -1636,6 +1316,317 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                             );
                                                           },
                                                         ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(16, 12,
+                                                                  16, 0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'Search results',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText2,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: StreamBuilder<
+                                                          List<
+                                                              MaintenanceRecord>>(
+                                                        stream:
+                                                            queryMaintenanceRecord(
+                                                          queryBuilder: (maintenanceRecord) => maintenanceRecord
+                                                              .where('status',
+                                                                  isEqualTo:
+                                                                      'Pending')
+                                                              .where('building',
+                                                                  isEqualTo: valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.building,
+                                                                      ''))
+                                                              .where('isDone',
+                                                                  isEqualTo:
+                                                                      false)
+                                                              .orderBy(
+                                                                  'created_time',
+                                                                  descending:
+                                                                      true),
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 60,
+                                                                height: 60,
+                                                                child:
+                                                                    SpinKitPulse(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                  size: 60,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<MaintenanceRecord>
+                                                              listViewMaintenanceRecordList =
+                                                              snapshot.data;
+                                                          if (listViewMaintenanceRecordList
+                                                              .isEmpty) {
+                                                            return Center(
+                                                              child:
+                                                                  Image.asset(
+                                                                'assets/images/undraw_no_data_re_kwbl.png',
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.5,
+                                                                fit: BoxFit
+                                                                    .contain,
+                                                              ),
+                                                            );
+                                                          }
+                                                          return ListView
+                                                              .builder(
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            primary: false,
+                                                            scrollDirection:
+                                                                Axis.vertical,
+                                                            itemCount:
+                                                                listViewMaintenanceRecordList
+                                                                    .length,
+                                                            itemBuilder: (context,
+                                                                listViewIndex) {
+                                                              final listViewMaintenanceRecord =
+                                                                  listViewMaintenanceRecordList[
+                                                                      listViewIndex];
+                                                              return InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  logFirebaseEvent(
+                                                                      'VIEW_PAGE_PAGE_ListTile_gfs86ivb_ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'ListTile_Navigate-To');
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'test',
+                                                                    queryParams:
+                                                                        {
+                                                                      'jobs': serializeParam(
+                                                                          listViewMaintenanceRecord,
+                                                                          ParamType
+                                                                              .Document),
+                                                                    }.withoutNulls,
+                                                                    extra: <
+                                                                        String,
+                                                                        dynamic>{
+                                                                      'jobs':
+                                                                          listViewMaintenanceRecord,
+                                                                    },
+                                                                  );
+                                                                },
+                                                                child: Slidable(
+                                                                  actionPane:
+                                                                      const SlidableScrollActionPane(),
+                                                                  secondaryActions: [
+                                                                    IconSlideAction(
+                                                                      caption:
+                                                                          'Reject',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                      icon: FFIcons
+                                                                          .kthumbsDowns,
+                                                                      onTap:
+                                                                          () async {
+                                                                        logFirebaseEvent(
+                                                                            'VIEW_PAGE_PAGE_SlidableActionWidget_se7xu763_ON_TAP');
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget_Backend-Call');
+
+                                                                        final maintenanceUpdateData =
+                                                                            createMaintenanceRecordData(
+                                                                          status:
+                                                                              'Submitted',
+                                                                        );
+                                                                        await listViewMaintenanceRecord
+                                                                            .reference
+                                                                            .update(maintenanceUpdateData);
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget_Show-Snack-Bar');
+                                                                        ScaffoldMessenger.of(context)
+                                                                            .showSnackBar(
+                                                                          SnackBar(
+                                                                            content:
+                                                                                Text(
+                                                                              'Item rejected',
+                                                                              style: TextStyle(
+                                                                                color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                              ),
+                                                                            ),
+                                                                            duration:
+                                                                                Duration(milliseconds: 4000),
+                                                                            backgroundColor:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                    ),
+                                                                    IconSlideAction(
+                                                                      caption:
+                                                                          'Complete',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .campusRed,
+                                                                      icon: Icons
+                                                                          .logout,
+                                                                      onTap:
+                                                                          () async {
+                                                                        logFirebaseEvent(
+                                                                            'VIEW_PAGE_PAGE_SlidableActionWidget_6qww6kpi_ON_TAP');
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget_Backend-Call');
+
+                                                                        final maintenanceUpdateData =
+                                                                            createMaintenanceRecordData(
+                                                                          status:
+                                                                              'Completed',
+                                                                          updateTime:
+                                                                              getCurrentTimestamp,
+                                                                        );
+                                                                        await listViewMaintenanceRecord
+                                                                            .reference
+                                                                            .update(maintenanceUpdateData);
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget_Generate-Current-Page-Link');
+                                                                        _currentPageLink =
+                                                                            await generateCurrentPageLink(context);
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget_Backend-Call');
+                                                                        await AirtableCall
+                                                                            .call(
+                                                                          user:
+                                                                              listViewMaintenanceRecord.email,
+                                                                          issue:
+                                                                              listViewMaintenanceRecord.issue,
+                                                                          room:
+                                                                              _currentPageLink,
+                                                                          building:
+                                                                              listViewMaintenanceRecord.building,
+                                                                          status:
+                                                                              'Completed',
+                                                                          updated: dateTimeFormat(
+                                                                              'MMMMEEEEd',
+                                                                              listViewMaintenanceRecord.updateTime),
+                                                                          name:
+                                                                              listViewMaintenanceRecord.displayName,
+                                                                        );
+                                                                        logFirebaseEvent(
+                                                                            'SlidableActionWidget_Show-Snack-Bar');
+                                                                        ScaffoldMessenger.of(context)
+                                                                            .showSnackBar(
+                                                                          SnackBar(
+                                                                            content:
+                                                                                Text(
+                                                                              'Item successfully completed',
+                                                                              style: TextStyle(
+                                                                                color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                              ),
+                                                                            ),
+                                                                            duration:
+                                                                                Duration(milliseconds: 4000),
+                                                                            backgroundColor:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                    ),
+                                                                  ],
+                                                                  child:
+                                                                      ListTile(
+                                                                    leading:
+                                                                        Icon(
+                                                                      Icons
+                                                                          .account_circle,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      size: 35,
+                                                                    ),
+                                                                    title: Text(
+                                                                      listViewMaintenanceRecord
+                                                                          .issue,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .title2
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Open Sans',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            fontSize:
+                                                                                16,
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                          ),
+                                                                    ),
+                                                                    subtitle:
+                                                                        Text(
+                                                                      listViewMaintenanceRecord
+                                                                          .room,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .subtitle2
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Open Sans',
+                                                                            color:
+                                                                                Color(0xFFEFB701),
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                          ),
+                                                                    ),
+                                                                    trailing:
+                                                                        Icon(
+                                                                      Icons
+                                                                          .keyboard_arrow_right_sharp,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      size: 20,
+                                                                    ),
+                                                                    tileColor:
+                                                                        Color(
+                                                                            0x00FFFFFF),
+                                                                    dense: true,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
                                                       ),
                                                     ),
                                                   ],
