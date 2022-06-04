@@ -32,7 +32,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
   Query _pagingQuery;
   List<StreamSubscription> _streamSubscriptions = [];
 
-  String _currentPageLink = '';
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final animationsMap = {
     'floatingActionButtonOnPageLoadAnimation': AnimationInfo(
@@ -1518,10 +1517,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             .reference
                                                                             .update(maintenanceUpdateData);
                                                                         logFirebaseEvent(
-                                                                            'SlidableActionWidget_Generate-Current-Page-Link');
-                                                                        _currentPageLink =
-                                                                            await generateCurrentPageLink(context);
-                                                                        logFirebaseEvent(
                                                                             'SlidableActionWidget_Backend-Call');
                                                                         await AirtableCall
                                                                             .call(
@@ -1530,7 +1525,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           issue:
                                                                               listViewMaintenanceRecord.issue,
                                                                           room:
-                                                                              _currentPageLink,
+                                                                              listViewMaintenanceRecord.room,
                                                                           building:
                                                                               listViewMaintenanceRecord.building,
                                                                           status:
