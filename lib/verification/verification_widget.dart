@@ -64,7 +64,7 @@ class _VerificationWidgetState extends State<VerificationWidget> {
                           ),
                           onPressed: () async {
                             logFirebaseEvent(
-                                'VERIFICATION_PAGE_arrow_back_rounded_ICON_ON_TAP');
+                                'VERIFICATION_arrow_back_rounded_ICN_ON_T');
                             logFirebaseEvent('IconButton_Navigate-Back');
                             context.pop();
                           },

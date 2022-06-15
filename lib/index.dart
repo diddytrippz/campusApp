@@ -1,5 +1,5 @@
 // Export pages
-export 'onboarding/onboarding_widget.dart' show OnboardingWidget;
+export 'test_onboarding/test_onboarding_widget.dart' show TestOnboardingWidget;
 export 'login_page/login_page_widget.dart' show LoginPageWidget;
 export 'verification/verification_widget.dart' show VerificationWidget;
 export 'home_page/home_page_widget.dart' show HomePageWidget;
@@ -21,4 +21,5 @@ export 'painting/painting_widget.dart' show PaintingWidget;
 export 'others/others_widget.dart' show OthersWidget;
 export 'communal/communal_widget.dart' show CommunalWidget;
 export 'reviews/reviews_widget.dart' show ReviewsWidget;
-export 'test/test_widget.dart' show TestWidget;
+export 'test_more_info/test_more_info_widget.dart' show TestMoreInfoWidget;
+export 'test_login/test_login_widget.dart' show TestLoginWidget;

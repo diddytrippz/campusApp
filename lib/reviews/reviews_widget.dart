@@ -57,7 +57,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
             size: 24,
           ),
           onPressed: () async {
-            logFirebaseEvent('REVIEWS_PAGE_arrow_back_ICON_ON_TAP');
+            logFirebaseEvent('REVIEWS_PAGE_arrow_back_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -430,7 +430,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     logFirebaseEvent(
-                                        'REVIEWS_PAGE_CONFIRM_BUTTON_ON_TAP');
+                                        'REVIEWS_PAGE_CONFIRM_BTN_ON_TAP');
                                     logFirebaseEvent('Button_Validate-Form');
                                     if (formKey.currentState == null ||
                                         !formKey.currentState.validate()) {

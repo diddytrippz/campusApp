@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:text_search/text_search.dart';
@@ -83,17 +84,16 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
       backgroundColor: FlutterFlowTheme.of(context).primaryColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          logFirebaseEvent(
-              'VIEW_PAGE_PAGE_FloatingActionButton_9nto5evo_ON_TAP');
+          logFirebaseEvent('VIEW_FloatingActionButton_9nto5evo_ON_TA');
           logFirebaseEvent('FloatingActionButton_Navigate-To');
           context.pushNamed('homePage');
         },
         backgroundColor: FlutterFlowTheme.of(context).mellow,
         elevation: 8,
         child: Icon(
-          Icons.edit_sharp,
+          Icons.home_rounded,
           color: Colors.white,
-          size: 24,
+          size: 26,
         ),
       ).animated([animationsMap['floatingActionButtonOnPageLoadAnimation']]),
       body: SafeArea(
@@ -117,7 +117,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                           color: Color(0xFFFFBA00),
                           iconColor: Color(0xE1F5F5F5),
                           weekFormat: true,
-                          weekStartsMonday: false,
+                          weekStartsMonday: true,
                           onChange: (DateTimeRange newSelectedDate) {
                             setState(
                                 () => calendarSelectedDay = newSelectedDate);
@@ -215,7 +215,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   logFirebaseEvent(
-                                      'VIEW_PAGE_PAGE_SEARCH_BUTTON_ON_TAP');
+                                      'VIEW_PAGE_PAGE_SEARCH_BTN_ON_TAP');
                                   logFirebaseEvent('Button_Simple-Search');
                                   await queryMaintenanceRecordOnce()
                                       .then(
@@ -431,7 +431,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       'ListTile_Navigate-To');
                                                                   context
                                                                       .pushNamed(
-                                                                    'test',
+                                                                    'testMoreInfo',
                                                                     queryParams:
                                                                         {
                                                                       'jobs': serializeParam(
@@ -462,7 +462,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       onTap:
                                                                           () async {
                                                                         logFirebaseEvent(
-                                                                            'VIEW_PAGE_PAGE_SlidableActionWidget_aynk2i2a_ON_TAP');
+                                                                            'VIEW_SlidableActionWidget_aynk2i2a_ON_TA');
                                                                         logFirebaseEvent(
                                                                             'SlidableActionWidget_Alert-Dialog');
                                                                         var confirmDialogResponse = await showDialog<bool>(
@@ -683,7 +683,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                         'ListTile_Navigate-To');
                                                                     context
                                                                         .pushNamed(
-                                                                      'test',
+                                                                      'testMoreInfo',
                                                                       queryParams:
                                                                           {
                                                                         'jobs': serializeParam(
@@ -860,7 +860,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       'ListTile_Navigate-To');
                                                                   context
                                                                       .pushNamed(
-                                                                    'test',
+                                                                    'testMoreInfo',
                                                                     queryParams:
                                                                         {
                                                                       'jobs': serializeParam(
@@ -1015,22 +1015,24 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                   Query<Object>)
                                                               queryBuilder =
                                                               (maintenanceRecord) => maintenanceRecord
-                                                                  .where('status',
+                                                                  .where(
+                                                                      'status',
                                                                       isEqualTo:
                                                                           'Submitted')
-                                                                  .where('building',
-                                                                      isEqualTo: valueOrDefault(currentUserDocument?.building, '') != ''
-                                                                          ? valueOrDefault(
-                                                                              currentUserDocument
-                                                                                  ?.building,
-                                                                              '')
-                                                                          : null)
-                                                                  .where('isDone',
+                                                                  .where(
+                                                                      'building',
+                                                                      isEqualTo: valueOrDefault(
+                                                                          currentUserDocument
+                                                                              ?.building,
+                                                                          ''))
+                                                                  .where(
+                                                                      'isDone',
                                                                       isEqualTo:
                                                                           false)
                                                                   .orderBy(
                                                                       'created_time',
-                                                                      descending: true);
+                                                                      descending:
+                                                                          true);
                                                           if (_pagingController !=
                                                               null) {
                                                             final query = queryBuilder(
@@ -1070,13 +1072,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           'Submitted')
                                                                   .where(
                                                                       'building',
-                                                                      isEqualTo: valueOrDefault(currentUserDocument?.building, '') !=
-                                                                              ''
-                                                                          ? valueOrDefault(
-                                                                              currentUserDocument
-                                                                                  ?.building,
-                                                                              '')
-                                                                          : null)
+                                                                      isEqualTo: valueOrDefault(
+                                                                          currentUserDocument
+                                                                              ?.building,
+                                                                          ''))
                                                                   .where(
                                                                       'isDone',
                                                                       isEqualTo:
@@ -1114,8 +1113,16 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       itemIndexes[item
                                                                           .reference
                                                                           .id];
+                                                                  final items =
+                                                                      _pagingController
+                                                                          .itemList;
                                                                   if (index !=
                                                                       null) {
+                                                                    items.replaceRange(
+                                                                        index,
+                                                                        index +
+                                                                            1,
+                                                                        [item]);
                                                                     _pagingController
                                                                         .itemList
                                                                         .replaceRange(
@@ -1124,6 +1131,15 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                             [
                                                                           item
                                                                         ]);
+                                                                    _pagingController
+                                                                        .itemList = {
+                                                                      for (var item
+                                                                          in items)
+                                                                        item.reference:
+                                                                            item
+                                                                    }
+                                                                        .values
+                                                                        .toList();
                                                                   }
                                                                 });
                                                                 setState(() {});
@@ -1186,7 +1202,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     'ListTile_Navigate-To');
                                                                 context
                                                                     .pushNamed(
-                                                                  'test',
+                                                                  'testMoreInfo',
                                                                   queryParams: {
                                                                     'jobs': serializeParam(
                                                                         listViewMaintenanceRecord,
@@ -1216,7 +1232,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     onTap:
                                                                         () async {
                                                                       logFirebaseEvent(
-                                                                          'VIEW_PAGE_PAGE_SlidableActionWidget_sug5r641_ON_TAP');
+                                                                          'VIEW_SlidableActionWidget_sug5r641_ON_TA');
                                                                       logFirebaseEvent(
                                                                           'SlidableActionWidget_Backend-Call');
 
@@ -1428,7 +1444,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       'ListTile_Navigate-To');
                                                                   context
                                                                       .pushNamed(
-                                                                    'test',
+                                                                    'testMoreInfo',
                                                                     queryParams:
                                                                         {
                                                                       'jobs': serializeParam(
@@ -1459,7 +1475,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       onTap:
                                                                           () async {
                                                                         logFirebaseEvent(
-                                                                            'VIEW_PAGE_PAGE_SlidableActionWidget_se7xu763_ON_TAP');
+                                                                            'VIEW_SlidableActionWidget_se7xu763_ON_TA');
                                                                         logFirebaseEvent(
                                                                             'SlidableActionWidget_Backend-Call');
 
@@ -1502,7 +1518,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       onTap:
                                                                           () async {
                                                                         logFirebaseEvent(
-                                                                            'VIEW_PAGE_PAGE_SlidableActionWidget_6qww6kpi_ON_TAP');
+                                                                            'VIEW_SlidableActionWidget_6qww6kpi_ON_TA');
                                                                         logFirebaseEvent(
                                                                             'SlidableActionWidget_Backend-Call');
 
@@ -1738,7 +1754,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                         'Card_Navigate-To');
                                                                     context
                                                                         .pushNamed(
-                                                                      'test',
+                                                                      'testMoreInfo',
                                                                       queryParams:
                                                                           {
                                                                         'jobs': serializeParam(

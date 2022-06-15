@@ -54,7 +54,7 @@ class _PestcontrolWidgetState extends State<PestcontrolWidget> {
             size: 24,
           ),
           onPressed: () async {
-            logFirebaseEvent('PESTCONTROL_PAGE_arrow_back_ICON_ON_TAP');
+            logFirebaseEvent('PESTCONTROL_PAGE_arrow_back_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -362,7 +362,7 @@ class _PestcontrolWidgetState extends State<PestcontrolWidget> {
                       child: FFButtonWidget(
                         onPressed: () async {
                           logFirebaseEvent(
-                              'PESTCONTROL_PAGE_SUBMIT_BUTTON_ON_TAP');
+                              'PESTCONTROL_PAGE_SUBMIT_BTN_ON_TAP');
                           logFirebaseEvent('Button_Validate-Form');
                           if (formKey.currentState == null ||
                               !formKey.currentState.validate()) {

@@ -82,7 +82,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 }
 
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
-  'onboarding': (data) async => OnboardingWidget(),
+  'testOnboarding': (data) async => TestOnboardingWidget(),
   'loginPage': (data) async => LoginPageWidget(),
   'verification': (data) async => VerificationWidget(),
   'settingsPage': (data) async => NavBarPage(initialPage: 'settingsPage'),
@@ -113,10 +113,11 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         jobReviews: await getDocumentParameter(
             data, 'jobReviews', MaintenanceRecord.serializer),
       ),
-  'test': (data) async => TestWidget(
+  'testMoreInfo': (data) async => TestMoreInfoWidget(
         jobs: await getDocumentParameter(
             data, 'jobs', MaintenanceRecord.serializer),
       ),
+  'testLogin': (data) async => TestLoginWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

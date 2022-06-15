@@ -54,7 +54,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
             size: 24,
           ),
           onPressed: () async {
-            logFirebaseEvent('FURNITURE_PAGE_arrow_back_ICON_ON_TAP');
+            logFirebaseEvent('FURNITURE_PAGE_arrow_back_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -365,8 +365,7 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(16, 50, 16, 50),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          logFirebaseEvent(
-                              'FURNITURE_PAGE_SUBMIT_BUTTON_ON_TAP');
+                          logFirebaseEvent('FURNITURE_PAGE_SUBMIT_BTN_ON_TAP');
                           logFirebaseEvent('Button_Validate-Form');
                           if (formKey.currentState == null ||
                               !formKey.currentState.validate()) {

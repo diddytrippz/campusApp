@@ -72,18 +72,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? NavBarPage() : OnboardingWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : TestOnboardingWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : OnboardingWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : TestOnboardingWidget(),
           routes: [
             FFRoute(
-              name: 'onboarding',
-              path: 'onboarding',
-              builder: (context, params) => OnboardingWidget(),
+              name: 'testOnboarding',
+              path: 'testOnboarding',
+              builder: (context, params) => TestOnboardingWidget(),
             ),
             FFRoute(
               name: 'loginPage',
@@ -222,14 +222,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'test',
-              path: 'test',
+              name: 'testMoreInfo',
+              path: 'testMoreInfo',
               asyncParams: {
                 'jobs': getDoc('maintenance', MaintenanceRecord.serializer),
               },
-              builder: (context, params) => TestWidget(
+              builder: (context, params) => TestMoreInfoWidget(
                 jobs: params.getParam('jobs', ParamType.Document),
               ),
+            ),
+            FFRoute(
+              name: 'testLogin',
+              path: 'testLogin',
+              builder: (context, params) => TestLoginWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -379,7 +384,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/onboarding';
+            return '/testOnboarding';
           }
           return null;
         },

@@ -43,6 +43,9 @@ abstract class FlutterFlowTheme {
   Color campusMellow;
   Color zellow;
   Color campusGrey;
+  Color primaryBtnText;
+  Color lineColor;
+  Color backgroundComponents;
 
   TextStyle get title1 => GoogleFonts.getFont(
         'Open Sans',
@@ -96,13 +99,16 @@ class LightModeTheme extends FlutterFlowTheme {
   Color primaryBackground = const Color(0xFFFFFFFF);
   Color secondaryBackground = const Color(0xFFF2F2F2);
   Color primaryText = const Color(0xFF000000);
-  Color secondaryText = const Color(0x00000000);
+  Color secondaryText = const Color(0xFF57636C);
 
   Color campusRed = Color(0xFFD93A0E);
   Color mellow = Color(0xFFFFBA00);
   Color campusMellow = Color(0xFFFEF058);
   Color zellow = Color(0xFFF0E020);
   Color campusGrey = Color(0xE1464749);
+  Color primaryBtnText = Color(0xFFFFFFFF);
+  Color lineColor = Color(0xFFE0E3E7);
+  Color backgroundComponents = Color(0xFF1D2428);
 }
 
 class DarkModeTheme extends FlutterFlowTheme {
@@ -113,13 +119,16 @@ class DarkModeTheme extends FlutterFlowTheme {
   Color primaryBackground = const Color(0xFF121212);
   Color secondaryBackground = const Color(0xFF181818);
   Color primaryText = const Color(0xFFFFFFFF);
-  Color secondaryText = const Color(0x00000000);
+  Color secondaryText = const Color(0xFF95A1AC);
 
   Color campusRed = Color(0xFFD93A0E);
   Color mellow = Color(0xFF181818);
   Color campusMellow = Color(0xFF040404);
   Color zellow = Color(0xFFF0E020);
   Color campusGrey = Color(0xFF464749);
+  Color primaryBtnText = Color(0xFFFFFFFF);
+  Color lineColor = Color(0xFF22282F);
+  Color backgroundComponents = Color(0xFF1D2428);
 }
 
 extension TextStyleHelper on TextStyle {

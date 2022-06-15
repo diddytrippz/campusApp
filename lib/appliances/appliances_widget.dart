@@ -54,7 +54,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
             size: 24,
           ),
           onPressed: () async {
-            logFirebaseEvent('APPLIANCES_PAGE_arrow_back_rounded_ICON_ON_TAP');
+            logFirebaseEvent('APPLIANCES_arrow_back_rounded_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -362,8 +362,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(16, 50, 16, 50),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          logFirebaseEvent(
-                              'APPLIANCES_PAGE_SUBMIT_BUTTON_ON_TAP');
+                          logFirebaseEvent('APPLIANCES_PAGE_SUBMIT_BTN_ON_TAP');
                           logFirebaseEvent('Button_Validate-Form');
                           if (formKey.currentState == null ||
                               !formKey.currentState.validate()) {

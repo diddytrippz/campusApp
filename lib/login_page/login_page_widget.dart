@@ -71,6 +71,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             'assets/images/campus_logo_1.png',
                           ).image,
                         ),
+                        shape: BoxShape.circle,
                       ),
                     ),
                   ),
@@ -281,7 +282,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 FFButtonWidget(
                                   onPressed: () async {
                                     logFirebaseEvent(
-                                        'LOGIN_PAGE_PAGE_ButtonForgotPassword_ON_TAP');
+                                        'LOGIN_ButtonForgotPassword_ON_TAP');
                                     logFirebaseEvent(
                                         'ButtonForgotPassword_Auth');
                                     if (emailAddressController.text.isEmpty) {
@@ -377,7 +378,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             child: FFButtonWidget(
                               onPressed: () async {
                                 logFirebaseEvent(
-                                    'LOGIN_PAGE_PAGE_ButtonCreateAccount_ON_TAP');
+                                    'LOGIN_ButtonCreateAccount_ON_TAP');
                                 logFirebaseEvent(
                                     'ButtonCreateAccount_Navigate-To');
                                 context.pushNamed('verification');

@@ -106,7 +106,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                         child: FFButtonWidget(
                           onPressed: () async {
                             logFirebaseEvent(
-                                'SUBMITTED_ICON_COMP_CONTINUE_BUTTON_ON_TAP');
+                                'SUBMITTED_ICON_COMP_CONTINUE_BTN_ON_TAP');
                             logFirebaseEvent('Button_Navigate-To');
                             context.goNamed('viewPage');
                           },

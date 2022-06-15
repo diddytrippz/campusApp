@@ -90,7 +90,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             child: InkWell(
                               onTap: () async {
                                 logFirebaseEvent(
-                                    'EDIT_PROFILE_PAGE_CircleImage_vy3eal4i_ON_TAP');
+                                    'EDIT_PROFILE_CircleImage_vy3eal4i_ON_TAP');
                                 logFirebaseEvent(
                                     'CircleImage_Upload-Photo-Video');
                                 final selectedMedia =
@@ -394,7 +394,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         logFirebaseEvent(
-                            'EDIT_PROFILE_PAGE_UPDATE_PROFILE_BUTTON_ON_TAP');
+                            'EDIT_PROFILE_UPDATE_PROFILE_BTN_ON_TAP');
                         logFirebaseEvent('Button_Backend-Call');
 
                         final usersUpdateData = createUsersRecordData(

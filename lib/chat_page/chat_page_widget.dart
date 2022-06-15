@@ -82,8 +82,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
               child: InkWell(
                 onTap: () async {
-                  logFirebaseEvent(
-                      'CHAT_PAGE_PAGE_CircleImage_16m8m50m_ON_TAP');
+                  logFirebaseEvent('CHAT_CircleImage_16m8m50m_ON_TAP');
                   logFirebaseEvent('CircleImage_Expand-Image');
                   await Navigator.push(
                     context,
@@ -205,7 +204,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                     allowImages: true,
                     backgroundColor:
                         FlutterFlowTheme.of(context).secondaryBackground,
-                    timeDisplaySetting: TimeDisplaySetting.alwaysVisible,
+                    timeDisplaySetting: TimeDisplaySetting.visibleOnTap,
                     currentUserBoxDecoration: BoxDecoration(
                       color: Color(0xFF0078FF),
                       border: Border.all(

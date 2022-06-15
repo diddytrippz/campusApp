@@ -57,7 +57,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                 child: InkWell(
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'SETTINGS_PAGE_PAGE_CircleImage_kl8yb3dy_ON_TAP');
+                                        'SETTINGS_CircleImage_kl8yb3dy_ON_TAP');
                                     logFirebaseEvent(
                                         'CircleImage_Expand-Image');
                                     await Navigator.push(
@@ -144,11 +144,11 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       child: FFButtonWidget(
                         onPressed: () async {
                           logFirebaseEvent(
-                              'SETTINGS_PAGE_PAGE_LOGOUT_BUTTON_ON_TAP');
+                              'SETTINGS_PAGE_PAGE_LOGOUT_BTN_ON_TAP');
                           logFirebaseEvent('Button_Auth');
                           GoRouter.of(context).prepareAuthEvent();
                           await signOut();
-                          context.goNamedAuth('onboarding', mounted);
+                          context.goNamedAuth('testOnboarding', mounted);
                         },
                         text: 'Logout',
                         options: FFButtonOptions(
@@ -624,11 +624,11 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         child: FFButtonWidget(
                           onPressed: () async {
                             logFirebaseEvent(
-                                'SETTINGS_PAGE_PAGE_LOG_OUT_BUTTON_ON_TAP');
+                                'SETTINGS_PAGE_PAGE_LOG_OUT_BTN_ON_TAP');
                             logFirebaseEvent('Button_Auth');
                             GoRouter.of(context).prepareAuthEvent();
                             await signOut();
-                            context.goNamedAuth('onboarding', mounted);
+                            context.goNamedAuth('testOnboarding', mounted);
                           },
                           text: 'Log Out',
                           options: FFButtonOptions(

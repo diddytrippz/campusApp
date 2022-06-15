@@ -55,7 +55,7 @@ class _MoreInfoWidgetState extends State<MoreInfoWidget> {
             size: 24,
           ),
           onPressed: () async {
-            logFirebaseEvent('MORE_INFO_PAGE_arrow_back_rounded_ICON_ON_TAP');
+            logFirebaseEvent('MORE_INFO_arrow_back_rounded_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },

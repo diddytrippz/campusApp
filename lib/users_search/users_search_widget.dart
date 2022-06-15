@@ -122,7 +122,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                         ),
                         onFieldSubmitted: (_) async {
                           logFirebaseEvent(
-                              'USERS_SEARCH_PAGE_TextField_mrvl0h5c_ON_TEXTFIELD_SUBMIT');
+                              'USERS_SEARCH_TextField_mrvl0h5c_ON_TEXTF');
                           logFirebaseEvent('TextField_Algolia-Search');
                           setState(() => algoliaSearchResults = null);
                           await UsersRecord.search(
@@ -234,8 +234,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                               onTap: () async {
                                 logFirebaseEvent(
                                     'USERS_SEARCH_PAGE_Row_mzx4ec3s_ON_TAP');
-                                if ((columnUsersRecord.email) ==
-                                    'jeremy@conurban.co.za | | marvin@conurban.co.za') {
+                                if ((columnUsersRecord.room) == 'Management') {
                                   logFirebaseEvent('Row_Show-Snack-Bar');
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
@@ -252,6 +251,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                               .primaryText,
                                     ),
                                   );
+                                  return;
                                 } else {
                                   logFirebaseEvent('Row_Navigate-To');
                                   context.pushNamed(
