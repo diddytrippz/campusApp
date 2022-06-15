@@ -91,11 +91,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => LoginPageWidget(),
             ),
             FFRoute(
-              name: 'verification',
-              path: 'verification',
-              builder: (context, params) => VerificationWidget(),
-            ),
-            FFRoute(
               name: 'homePage',
               path: 'homePage',
               builder: (context, params) => params.isEmpty
@@ -121,17 +116,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'rulesBook',
               path: 'rulesBook',
               builder: (context, params) => RulesBookWidget(),
-            ),
-            FFRoute(
-              name: 'moreInfo',
-              path: 'moreInfo',
-              asyncParams: {
-                'jobStatus':
-                    getDoc('maintenance', MaintenanceRecord.serializer),
-              },
-              builder: (context, params) => MoreInfoWidget(
-                jobStatus: params.getParam('jobStatus', ParamType.Document),
-              ),
             ),
             FFRoute(
               name: 'ChatPage',

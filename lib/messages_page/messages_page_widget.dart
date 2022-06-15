@@ -34,19 +34,14 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
-        title: AuthUserStreamWidget(
-          child: AutoSizeText(
-            currentUserDisplayName.maybeHandleOverflow(
-              maxChars: 16,
-              replacement: '…',
-            ),
-            style: FlutterFlowTheme.of(context).bodyText1.override(
-                  fontFamily: 'Open Sans',
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
+        title: AutoSizeText(
+          'Inbox',
+          style: FlutterFlowTheme.of(context).bodyText1.override(
+                fontFamily: 'Open Sans',
+                color: FlutterFlowTheme.of(context).primaryText,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         actions: [
           Padding(
@@ -63,8 +58,10 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print('FloatingActionButton pressed ...');
+        onPressed: () async {
+          logFirebaseEvent('MESSAGES_FloatingActionButton_gm6ml9ul_O');
+          logFirebaseEvent('FloatingActionButton_Navigate-To');
+          context.pushNamed('usersSearch');
         },
         backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         elevation: 8,
@@ -80,143 +77,216 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 8),
-              child: AuthUserStreamWidget(
-                child: FutureBuilder<List<UsersRecord>>(
-                  future: queryUsersRecordOnce(
-                    queryBuilder: (usersRecord) => usersRecord
-                        .where('building',
-                            isEqualTo: valueOrDefault(
-                                        currentUserDocument?.building, '') !=
-                                    ''
-                                ? valueOrDefault(
-                                    currentUserDocument?.building, '')
-                                : null)
-                        .where('role', isEqualTo: 'Admin'),
-                    limit: 10,
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 60,
-                          height: 60,
-                          child: SpinKitPulse(
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                            size: 60,
+              padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                          child: AuthUserStreamWidget(
+                            child: Material(
+                              color: Colors.transparent,
+                              elevation: 10,
+                              shape: const CircleBorder(),
+                              child: Container(
+                                width: 70,
+                                height: 70,
+                                decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: Image.network(
+                                      valueOrDefault<String>(
+                                        currentUserPhoto,
+                                        'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                      ),
+                                    ).image,
+                                  ),
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Color(0xFF0C8450),
+                                    width: 4,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      );
-                    }
-                    List<UsersRecord> rowUsersRecordList = snapshot.data;
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: List.generate(rowUsersRecordList.length,
-                            (rowIndex) {
-                          final rowUsersRecord = rowUsersRecordList[rowIndex];
-                          return Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'MESSAGES_Container_s1h71akl_ON_TAP');
-                                    if ((rowUsersRecord.room) == 'Management') {
-                                      logFirebaseEvent(
-                                          'Container_Show-Snack-Bar');
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Contact unavailable',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 6, 12, 0),
+                          child: AuthUserStreamWidget(
+                            child: AutoSizeText(
+                              currentUserDisplayName.maybeHandleOverflow(
+                                maxChars: 8,
+                                replacement: '…',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Open Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 8),
+                      child: AuthUserStreamWidget(
+                        child: FutureBuilder<List<UsersRecord>>(
+                          future: queryUsersRecordOnce(
+                            queryBuilder: (usersRecord) => usersRecord
+                                .where('building',
+                                    isEqualTo: valueOrDefault(
+                                                currentUserDocument?.building,
+                                                '') !=
+                                            ''
+                                        ? valueOrDefault(
+                                            currentUserDocument?.building, '')
+                                        : null)
+                                .where('role', isEqualTo: 'Admin'),
+                            limit: 10,
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 60,
+                                  height: 60,
+                                  child: SpinKitPulse(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    size: 60,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<UsersRecord> rowUsersRecordList =
+                                snapshot.data;
+                            return Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: List.generate(rowUsersRecordList.length,
+                                  (rowIndex) {
+                                final rowUsersRecord =
+                                    rowUsersRecordList[rowIndex];
+                                return Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12, 0, 12, 0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'MESSAGES_Container_s1h71akl_ON_TAP');
+                                          if ((rowUsersRecord.room) ==
+                                              'Management') {
+                                            logFirebaseEvent(
+                                                'Container_Show-Snack-Bar');
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Contact unavailable',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryBackground,
+                                                  ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                            );
+                                            return;
+                                          } else {
+                                            logFirebaseEvent(
+                                                'Container_Navigate-To');
+                                            context.pushNamed(
+                                              'ChatPage',
+                                              queryParams: {
+                                                'chatUser': serializeParam(
+                                                    rowUsersRecord,
+                                                    ParamType.Document),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                'chatUser': rowUsersRecord,
+                                              },
+                                            );
+                                          }
+                                        },
+                                        child: Material(
+                                          color: Colors.transparent,
+                                          elevation: 10,
+                                          shape: const CircleBorder(),
+                                          child: Container(
+                                            width: 70,
+                                            height: 70,
+                                            decoration: BoxDecoration(
+                                              color: Colors.transparent,
+                                              image: DecorationImage(
+                                                fit: BoxFit.contain,
+                                                image: Image.asset(
+                                                  'assets/images/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpeg',
+                                                ).image,
+                                              ),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .campusRed,
+                                                width: 3,
+                                              ),
                                             ),
                                           ),
-                                          duration:
-                                              Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                        ),
-                                      );
-                                      return;
-                                    } else {
-                                      logFirebaseEvent('Container_Navigate-To');
-                                      context.pushNamed(
-                                        'ChatPage',
-                                        queryParams: {
-                                          'chatUser': serializeParam(
-                                              rowUsersRecord,
-                                              ParamType.Document),
-                                        }.withoutNulls,
-                                        extra: <String, dynamic>{
-                                          'chatUser': rowUsersRecord,
-                                        },
-                                      );
-                                    }
-                                  },
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    elevation: 10,
-                                    shape: const CircleBorder(),
-                                    child: Container(
-                                      width: 70,
-                                      height: 70,
-                                      decoration: BoxDecoration(
-                                        color: Colors.transparent,
-                                        image: DecorationImage(
-                                          fit: BoxFit.contain,
-                                          image: Image.asset(
-                                            'assets/images/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpeg',
-                                          ).image,
-                                        ),
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .campusRed,
-                                          width: 3,
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 6, 12, 0),
-                                child: AutoSizeText(
-                                  rowUsersRecord.displayName
-                                      .maybeHandleOverflow(
-                                    maxChars: 8,
-                                    replacement: '…',
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontWeight: FontWeight.w600,
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12, 6, 12, 0),
+                                      child: AutoSizeText(
+                                        rowUsersRecord.displayName
+                                            .maybeHandleOverflow(
+                                          maxChars: 8,
+                                          replacement: '…',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                       ),
-                                ),
-                              ),
-                            ],
-                          );
-                        }),
+                                    ),
+                                  ],
+                                );
+                              }),
+                            );
+                          },
+                        ),
                       ),
-                    );
-                  },
+                    ),
+                  ],
                 ),
               ),
             ),

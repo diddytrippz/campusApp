@@ -376,12 +376,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
                             child: FFButtonWidget(
-                              onPressed: () async {
-                                logFirebaseEvent(
-                                    'LOGIN_ButtonCreateAccount_ON_TAP');
-                                logFirebaseEvent(
-                                    'ButtonCreateAccount_Navigate-To');
-                                context.pushNamed('verification');
+                              onPressed: () {
+                                print('ButtonCreateAccount pressed ...');
                               },
                               text: 'Create Account',
                               options: FFButtonOptions(

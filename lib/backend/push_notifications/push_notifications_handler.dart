@@ -84,14 +84,9 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'testOnboarding': (data) async => TestOnboardingWidget(),
   'loginPage': (data) async => LoginPageWidget(),
-  'verification': (data) async => VerificationWidget(),
   'settingsPage': (data) async => NavBarPage(initialPage: 'settingsPage'),
   'viewPage': (data) async => NavBarPage(initialPage: 'viewPage'),
   'rulesBook': (data) async => RulesBookWidget(),
-  'moreInfo': (data) async => MoreInfoWidget(
-        jobStatus: await getDocumentParameter(
-            data, 'jobStatus', MaintenanceRecord.serializer),
-      ),
   'ChatPage': (data) async => ChatPageWidget(
         chatUser: await getDocumentParameter(
             data, 'chatUser', UsersRecord.serializer),
