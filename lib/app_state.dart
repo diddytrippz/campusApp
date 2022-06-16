@@ -16,6 +16,7 @@ class FFAppState {
     prefs = await SharedPreferences.getInstance();
     _profilePic = prefs.getString('ff_profilePic') ?? _profilePic;
     _darkMode = prefs.getBool('ff_darkMode') ?? _darkMode;
+    _numberOfDocs = prefs.getInt('ff_numberOfDocs') ?? _numberOfDocs;
   }
 
   SharedPreferences prefs;
@@ -36,6 +37,13 @@ class FFAppState {
   set darkMode(bool _value) {
     _darkMode = _value;
     prefs.setBool('ff_darkMode', _value);
+  }
+
+  int _numberOfDocs = 0;
+  int get numberOfDocs => _numberOfDocs;
+  set numberOfDocs(int _value) {
+    _numberOfDocs = _value;
+    prefs.setInt('ff_numberOfDocs', _value);
   }
 }
 

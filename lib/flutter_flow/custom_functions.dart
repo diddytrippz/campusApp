@@ -14,3 +14,8 @@ String capitalia(String inputtext) {
   // make a string all uppercase
   return inputtext.toUpperCase();
 }
+
+int getLength(List<MaintenanceRecord> myList) {
+  // Add your function code here!
+  return myList.length;
+}

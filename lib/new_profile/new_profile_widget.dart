@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import 'package:badges/badges.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -90,57 +91,79 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Align(
-                      alignment: AlignmentDirectional(0, 0),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
-                        child: AuthUserStreamWidget(
-                          child: InkWell(
-                            onTap: () async {
-                              logFirebaseEvent(
-                                  'NEW_PROFILE_CircleImage_zogl7ik1_ON_TAP');
-                              logFirebaseEvent('CircleImage_Expand-Image');
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  child: FlutterFlowExpandedImageView(
-                                    image: Image.network(
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                      child: Badge(
+                        badgeContent: Text(
+                          '0',
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Open Sans',
+                                    color: Colors.white,
+                                  ),
+                        ),
+                        showBadge: true,
+                        shape: BadgeShape.circle,
+                        badgeColor: Color(0xFFE23A0C),
+                        elevation: 10,
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        position: BadgePosition.topEnd(),
+                        animationType: BadgeAnimationType.scale,
+                        toAnimate: true,
+                        child: Align(
+                          alignment: AlignmentDirectional(0, 0),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
+                            child: AuthUserStreamWidget(
+                              child: InkWell(
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'NEW_PROFILE_CircleImage_zogl7ik1_ON_TAP');
+                                  logFirebaseEvent('CircleImage_Expand-Image');
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: FlutterFlowExpandedImageView(
+                                        image: Image.network(
+                                          valueOrDefault<String>(
+                                            currentUserPhoto,
+                                            'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                          ),
+                                          fit: BoxFit.contain,
+                                        ),
+                                        allowRotation: false,
+                                        tag: valueOrDefault<String>(
+                                          currentUserPhoto,
+                                          'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                        ),
+                                        useHeroAnimation: true,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Hero(
+                                  tag: valueOrDefault<String>(
+                                    currentUserPhoto,
+                                    'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                  ),
+                                  transitionOnUserGestures: true,
+                                  child: Container(
+                                    width: 110,
+                                    height: 110,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Image.network(
                                       valueOrDefault<String>(
                                         currentUserPhoto,
                                         'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                       ),
-                                      fit: BoxFit.contain,
+                                      fit: BoxFit.cover,
                                     ),
-                                    allowRotation: false,
-                                    tag: valueOrDefault<String>(
-                                      currentUserPhoto,
-                                      'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                    ),
-                                    useHeroAnimation: true,
                                   ),
-                                ),
-                              );
-                            },
-                            child: Hero(
-                              tag: valueOrDefault<String>(
-                                currentUserPhoto,
-                                'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                              ),
-                              transitionOnUserGestures: true,
-                              child: Container(
-                                width: 110,
-                                height: 110,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.network(
-                                  valueOrDefault<String>(
-                                    currentUserPhoto,
-                                    'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                  ),
-                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
@@ -195,9 +218,10 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                       'Change my picture',
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Open Sans',
-                            color: Color(0xFFB91D13),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
                           ),
                     ),
                   ),
@@ -248,8 +272,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                                        color: Color(0xFFB91D13),
                                         fontSize: 30,
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -302,8 +325,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                                        color: Color(0xFF0C8450),
                                         fontSize: 30,
                                         fontWeight: FontWeight.w600,
                                       ),
