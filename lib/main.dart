@@ -145,7 +145,7 @@ class _NavBarPageState extends State<NavBarPage> {
           GButton(
             icon: FontAwesomeIcons.houseUser,
             text: '',
-            iconSize: 24,
+            iconSize: 20,
           ),
           GButton(
             icon: FontAwesomeIcons.edit,

@@ -55,113 +55,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Align(
-                          alignment: AlignmentDirectional(0, 0),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
-                            child: AuthUserStreamWidget(
-                              child: InkWell(
-                                onTap: () async {
-                                  logFirebaseEvent(
-                                      'NEW_SETTINGS_CircleImage_ett6gq2h_ON_TAP');
-                                  logFirebaseEvent('CircleImage_Expand-Image');
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: FlutterFlowExpandedImageView(
-                                        image: Image.network(
-                                          valueOrDefault<String>(
-                                            currentUserPhoto,
-                                            'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                          ),
-                                          fit: BoxFit.contain,
-                                        ),
-                                        allowRotation: false,
-                                        tag: valueOrDefault<String>(
-                                          currentUserPhoto,
-                                          'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                        ),
-                                        useHeroAnimation: true,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Hero(
-                                  tag: valueOrDefault<String>(
-                                    currentUserPhoto,
-                                    'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                  ),
-                                  transitionOnUserGestures: true,
-                                  child: Container(
-                                    width: 65,
-                                    height: 65,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.network(
-                                      valueOrDefault<String>(
-                                        currentUserPhoto,
-                                        'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                      ),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AuthUserStreamWidget(
-                                  child: AutoSizeText(
-                                    currentUserDisplayName.maybeHandleOverflow(
-                                        maxChars: 14),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ),
-                                AutoSizeText(
-                                  currentUserEmail,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+                    padding: EdgeInsetsDirectional.fromSTEB(12, 22, 12, 10),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
@@ -177,11 +71,136 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                         children: [
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
+                                EdgeInsetsDirectional.fromSTEB(18, 15, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 10, 0, 20),
+                                    child: AuthUserStreamWidget(
+                                      child: InkWell(
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'NEW_SETTINGS_CircleImage_ett6gq2h_ON_TAP');
+                                          logFirebaseEvent(
+                                              'CircleImage_Expand-Image');
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.fade,
+                                              child:
+                                                  FlutterFlowExpandedImageView(
+                                                image: Image.network(
+                                                  valueOrDefault<String>(
+                                                    currentUserPhoto,
+                                                    'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                                  ),
+                                                  fit: BoxFit.contain,
+                                                ),
+                                                allowRotation: false,
+                                                tag: valueOrDefault<String>(
+                                                  currentUserPhoto,
+                                                  'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                                ),
+                                                useHeroAnimation: true,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: Hero(
+                                          tag: valueOrDefault<String>(
+                                            currentUserPhoto,
+                                            'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                          ),
+                                          transitionOnUserGestures: true,
+                                          child: Container(
+                                            width: 65,
+                                            height: 65,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Image.network(
+                                              valueOrDefault<String>(
+                                                currentUserPhoto,
+                                                'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        12, 0, 12, 0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        AuthUserStreamWidget(
+                                          child: AutoSizeText(
+                                            currentUserDisplayName
+                                                .maybeHandleOverflow(
+                                                    maxChars: 14),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ),
+                                        AutoSizeText(
+                                          currentUserEmail,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(70, 0, 0, 0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 0.2,
+                              decoration: BoxDecoration(
+                                color: Color(0x81464749),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
                             child: InkWell(
                               onTap: () async {
                                 logFirebaseEvent(
-                                    'NEW_SETTINGS_ListTile_7pdm61ho_ON_TAP');
+                                    'NEW_SETTINGS_ListTile_7x0b896n_ON_TAP');
                                 logFirebaseEvent('ListTile_Navigate-To');
                                 context.pushNamed('newProfile');
                               },
@@ -190,6 +209,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   FontAwesomeIcons.userCircle,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
+                                  size: 24,
                                 ),
                                 title: Text(
                                   'Account',
@@ -216,12 +236,28 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                               ),
                             ),
                           ),
-                          Divider(
-                            indent: 50,
-                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(18),
+                        border: Border.all(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
                             child: InkWell(
                               onTap: () async {
                                 logFirebaseEvent(
@@ -234,6 +270,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   FFIcons.ksend1,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
+                                  size: 24,
                                 ),
                                 title: Text(
                                   'Messages',
@@ -257,12 +294,20 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                               ),
                             ),
                           ),
-                          Divider(
-                            indent: 50,
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(50, 0, 0, 0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 0.2,
+                              decoration: BoxDecoration(
+                                color: Color(0x81464749),
+                              ),
+                            ),
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                EdgeInsetsDirectional.fromSTEB(0, 5, 10, 10),
                             child: InkWell(
                               onTap: () async {
                                 logFirebaseEvent(
@@ -287,6 +332,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   Icons.color_lens,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
+                                  size: 28,
                                 ),
                                 title: Text(
                                   'Appearance',
@@ -310,40 +356,6 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18),
                                 ),
-                              ),
-                            ),
-                          ),
-                          Divider(
-                            indent: 50,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.bolt,
-                                color: FlutterFlowTheme.of(context).campusGrey,
-                              ),
-                              title: Text(
-                                'What\'s New',
-                                style: FlutterFlowTheme.of(context)
-                                    .title3
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      fontSize: 18,
-                                    ),
-                              ),
-                              trailing: Icon(
-                                Icons.arrow_forward_ios,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 16,
-                              ),
-                              tileColor: Color(0x00F5F5F5),
-                              dense: false,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18),
                               ),
                             ),
                           ),
@@ -395,6 +407,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   FFIcons.kchecklist,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
+                                  size: 24,
                                 ),
                                 title: Text(
                                   'Checklist',
@@ -421,12 +434,20 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                               ),
                             ),
                           ),
-                          Divider(
-                            indent: 50,
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(50, 0, 0, 0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 0.2,
+                              decoration: BoxDecoration(
+                                color: Color(0x81464749),
+                              ),
+                            ),
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                EdgeInsetsDirectional.fromSTEB(0, 5, 10, 0),
                             child: InkWell(
                               onTap: () async {
                                 logFirebaseEvent(
@@ -439,6 +460,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   FontAwesomeIcons.stickyNote,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
+                                  size: 24,
                                 ),
                                 title: Text(
                                   'Student handbook',
@@ -465,12 +487,20 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                               ),
                             ),
                           ),
-                          Divider(
-                            indent: 50,
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(50, 0, 0, 0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 0.2,
+                              decoration: BoxDecoration(
+                                color: Color(0x81464749),
+                              ),
+                            ),
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
+                                EdgeInsetsDirectional.fromSTEB(0, 5, 10, 10),
                             child: InkWell(
                               onTap: () async {
                                 logFirebaseEvent(
@@ -494,10 +524,10 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                               },
                               child: ListTile(
                                 leading: Icon(
-                                  Icons.power,
+                                  Icons.bolt,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
-                                  size: 30,
+                                  size: 24,
                                 ),
                                 title: Text(
                                   'Loadshedding Updates',
@@ -546,40 +576,6 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.sync_outlined,
-                                color: FlutterFlowTheme.of(context).campusGrey,
-                              ),
-                              title: Text(
-                                'Sync',
-                                style: FlutterFlowTheme.of(context)
-                                    .title3
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      fontSize: 18,
-                                    ),
-                              ),
-                              trailing: Icon(
-                                Icons.arrow_forward_ios,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 16,
-                              ),
-                              tileColor: Color(0x00F5F5F5),
-                              dense: false,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                            ),
-                          ),
-                          Divider(
-                            indent: 50,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                             child: InkWell(
                               onTap: () async {
                                 logFirebaseEvent(
@@ -592,6 +588,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   Icons.info_outlined,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
+                                  size: 24,
                                 ),
                                 title: Text(
                                   'About us',
@@ -618,12 +615,20 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                               ),
                             ),
                           ),
-                          Divider(
-                            indent: 50,
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(50, 0, 0, 0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 0.2,
+                              decoration: BoxDecoration(
+                                color: Color(0x81464749),
+                              ),
+                            ),
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 20),
+                                EdgeInsetsDirectional.fromSTEB(0, 5, 10, 20),
                             child: InkWell(
                               onTap: () async {
                                 logFirebaseEvent(
@@ -638,6 +643,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   Icons.logout,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
+                                  size: 24,
                                 ),
                                 title: Text(
                                   'Logout',
