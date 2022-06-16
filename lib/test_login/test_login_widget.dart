@@ -39,6 +39,7 @@ class _TestLoginWidgetState extends State<TestLoginWidget> {
         automaticallyImplyLeading: false,
         actions: [],
         centerTitle: false,
+        elevation: 0,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryColor,
       body: SafeArea(

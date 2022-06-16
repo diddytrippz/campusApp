@@ -2,11 +2,9 @@
 export 'test_onboarding/test_onboarding_widget.dart' show TestOnboardingWidget;
 export 'login_page/login_page_widget.dart' show LoginPageWidget;
 export 'home_page/home_page_widget.dart' show HomePageWidget;
-export 'settings_page/settings_page_widget.dart' show SettingsPageWidget;
 export 'view_page/view_page_widget.dart' show ViewPageWidget;
 export 'rules_book/rules_book_widget.dart' show RulesBookWidget;
 export 'chat_page/chat_page_widget.dart' show ChatPageWidget;
-export 'edit_profile/edit_profile_widget.dart' show EditProfileWidget;
 export 'messages_page/messages_page_widget.dart' show MessagesPageWidget;
 export 'users_search/users_search_widget.dart' show UsersSearchWidget;
 export 'appliances/appliances_widget.dart' show AppliancesWidget;
@@ -21,3 +19,5 @@ export 'communal/communal_widget.dart' show CommunalWidget;
 export 'reviews/reviews_widget.dart' show ReviewsWidget;
 export 'test_more_info/test_more_info_widget.dart' show TestMoreInfoWidget;
 export 'test_login/test_login_widget.dart' show TestLoginWidget;
+export 'new_profile/new_profile_widget.dart' show NewProfileWidget;
+export 'new_settings/new_settings_widget.dart' show NewSettingsWidget;

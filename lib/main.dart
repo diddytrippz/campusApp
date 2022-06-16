@@ -121,7 +121,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'viewPage': ViewPageWidget(),
       'usersSearch': UsersSearchWidget(),
       'MessagesPage': MessagesPageWidget(),
-      'settingsPage': SettingsPageWidget(),
+      'newSettings': NewSettingsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -143,7 +143,7 @@ class _NavBarPageState extends State<NavBarPage> {
         haptic: true,
         tabs: [
           GButton(
-            icon: FFIcons.khome3,
+            icon: FontAwesomeIcons.houseUser,
             text: '',
             iconSize: 24,
           ),
@@ -163,9 +163,9 @@ class _NavBarPageState extends State<NavBarPage> {
             iconSize: 26,
           ),
           GButton(
-            icon: FFIcons.kprofile,
+            icon: Icons.settings_outlined,
             text: '',
-            iconSize: 25,
+            iconSize: 24,
           )
         ],
       ),

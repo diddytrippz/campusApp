@@ -1,5 +1,4 @@
 import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_calendar.dart';
@@ -1532,26 +1531,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                         await listViewMaintenanceRecord
                                                                             .reference
                                                                             .update(maintenanceUpdateData);
-                                                                        logFirebaseEvent(
-                                                                            'SlidableActionWidget_Backend-Call');
-                                                                        await AirtableCall
-                                                                            .call(
-                                                                          user:
-                                                                              listViewMaintenanceRecord.email,
-                                                                          issue:
-                                                                              listViewMaintenanceRecord.issue,
-                                                                          room:
-                                                                              listViewMaintenanceRecord.room,
-                                                                          building:
-                                                                              listViewMaintenanceRecord.building,
-                                                                          status:
-                                                                              'Completed',
-                                                                          updated: dateTimeFormat(
-                                                                              'MMMMEEEEd',
-                                                                              listViewMaintenanceRecord.updateTime),
-                                                                          name:
-                                                                              listViewMaintenanceRecord.displayName,
-                                                                        );
                                                                         logFirebaseEvent(
                                                                             'SlidableActionWidget_Show-Snack-Bar');
                                                                         ScaffoldMessenger.of(context)

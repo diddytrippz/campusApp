@@ -98,13 +98,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : HomePageWidget(),
             ),
             FFRoute(
-              name: 'settingsPage',
-              path: 'settingsPage',
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'settingsPage')
-                  : SettingsPageWidget(),
-            ),
-            FFRoute(
               name: 'viewPage',
               path: 'viewPage',
               requireAuth: true,
@@ -128,11 +121,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 chatRef: params.getParam(
                     'chatRef', ParamType.DocumentReference, 'chats'),
               ),
-            ),
-            FFRoute(
-              name: 'editProfile',
-              path: 'editProfile',
-              builder: (context, params) => EditProfileWidget(),
             ),
             FFRoute(
               name: 'MessagesPage',
@@ -219,6 +207,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'testLogin',
               path: 'testLogin',
               builder: (context, params) => TestLoginWidget(),
+            ),
+            FFRoute(
+              name: 'newProfile',
+              path: 'newProfile',
+              builder: (context, params) => NewProfileWidget(),
+            ),
+            FFRoute(
+              name: 'newSettings',
+              path: 'newSettings',
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'newSettings')
+                  : NewSettingsWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

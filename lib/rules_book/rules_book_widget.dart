@@ -26,71 +26,36 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100),
-        child: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
-          flexibleSpace: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 14),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30,
-                        borderWidth: 1,
-                        buttonSize: 50,
-                        icon: Icon(
-                          Icons.arrow_back_rounded,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 24,
-                        ),
-                        onPressed: () async {
-                          logFirebaseEvent(
-                              'RULES_BOOK_arrow_back_rounded_ICN_ON_TAP');
-                          logFirebaseEvent('IconButton_Navigate-Back');
-                          context.pop();
-                        },
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                        child: Text(
-                          'Back',
-                          style: FlutterFlowTheme.of(context).title2.override(
-                                fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 16,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                  child: Text(
-                    'Campus Africa',
-                    style: FlutterFlowTheme.of(context).title2.override(
-                          fontFamily: 'Open Sans',
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          fontSize: 18,
-                        ),
-                  ),
-                ),
-              ],
-            ),
+      appBar: AppBar(
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30,
+          borderWidth: 1,
+          buttonSize: 54,
+          icon: Icon(
+            Icons.arrow_back,
+            color: FlutterFlowTheme.of(context).primaryText,
+            size: 24,
           ),
-          actions: [],
-          elevation: 1,
+          onPressed: () async {
+            logFirebaseEvent('RULES_BOOK_PAGE_arrow_back_ICN_ON_TAP');
+            logFirebaseEvent('IconButton_Navigate-Back');
+            context.pop();
+          },
         ),
+        title: Text(
+          'Campus Africa',
+          style: FlutterFlowTheme.of(context).title2.override(
+                fontFamily: 'Open Sans',
+                color: FlutterFlowTheme.of(context).primaryText,
+                fontSize: 18,
+              ),
+        ),
+        actions: [],
+        centerTitle: false,
+        elevation: 2,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
@@ -101,7 +66,7 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(3, 0, 3, 3),
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
                   child: FlutterFlowPdfViewer(
                     assetPath:
                         'assets/pdfs/CampusAfrica_StudentHandbook_2021_V2.pdf',
