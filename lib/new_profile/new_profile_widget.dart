@@ -479,7 +479,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                   fontFamily: 'Open Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                 ),
                           ),
                         ),

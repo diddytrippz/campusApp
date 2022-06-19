@@ -339,7 +339,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                           ],
                                         ),
                                         Divider(
-                                          thickness: 2,
+                                          thickness: 1,
                                           indent: 10,
                                           endIndent: 10,
                                           color: Color(0x62464749),

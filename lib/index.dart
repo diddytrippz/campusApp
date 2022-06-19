@@ -21,3 +21,4 @@ export 'test_more_info/test_more_info_widget.dart' show TestMoreInfoWidget;
 export 'test_login/test_login_widget.dart' show TestLoginWidget;
 export 'new_profile/new_profile_widget.dart' show NewProfileWidget;
 export 'new_settings/new_settings_widget.dart' show NewSettingsWidget;
+export 'inspect/inspect_widget.dart' show InspectWidget;

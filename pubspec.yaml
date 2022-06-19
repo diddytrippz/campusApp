@@ -37,6 +37,7 @@ dependencies:
   dash_chat: 1.1.16
   easy_debounce: 2.0.1
   equatable: 2.0.3
+  expandable: 5.0.1
   file_picker: 4.5.1
   firebase_analytics: 9.1.0
   firebase_auth: 3.2.0
@@ -75,6 +76,7 @@ dependencies:
       url: https://github.com/asmengistu/dart_packages
       ref: ab18d53a80e0a4bb90f1ad84f37f1b408930f28d
       path: packages/sign_in_with_apple/sign_in_with_apple/
+  signature: 5.0.1
   smooth_page_indicator: 1.0.0+2
   table_calendar: 3.0.5
   text_search: 0.0.2

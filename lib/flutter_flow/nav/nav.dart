@@ -219,6 +219,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'newSettings')
                   : NewSettingsWidget(),
+            ),
+            FFRoute(
+              name: 'inspect',
+              path: 'inspect',
+              builder: (context, params) => InspectWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

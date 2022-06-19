@@ -184,19 +184,19 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(70, 0, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(70, 0, 50, 0),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 0.2,
                               decoration: BoxDecoration(
                                 color: Color(0x81464749),
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(0),
                               ),
                             ),
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
+                                EdgeInsetsDirectional.fromSTEB(0, 8, 10, 10),
                             child: InkWell(
                               onTap: () async {
                                 logFirebaseEvent(
@@ -205,8 +205,8 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                 context.pushNamed('newProfile');
                               },
                               child: ListTile(
-                                leading: FaIcon(
-                                  FontAwesomeIcons.userCircle,
+                                leading: Icon(
+                                  FFIcons.kprofile,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
                                   size: 24,
@@ -296,7 +296,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(50, 0, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(50, 0, 50, 0),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 0.2,
@@ -385,22 +385,8 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                               onTap: () async {
                                 logFirebaseEvent(
                                     'NEW_SETTINGS_ListTile_dcv0ybyv_ON_TAP');
-                                logFirebaseEvent('ListTile_Show-Snack-Bar');
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Currently unavailable',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                      ),
-                                    ),
-                                    duration: Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                  ),
-                                );
+                                logFirebaseEvent('ListTile_Navigate-To');
+                                context.pushNamed('inspect');
                               },
                               child: ListTile(
                                 leading: Icon(
@@ -436,7 +422,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(50, 0, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(50, 0, 50, 0),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 0.2,
@@ -489,7 +475,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(50, 0, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(50, 0, 50, 0),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 0.2,
@@ -584,8 +570,8 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                 await launchURL('https://campusafrica.co.za');
                               },
                               child: ListTile(
-                                leading: Icon(
-                                  Icons.info_outlined,
+                                leading: FaIcon(
+                                  FontAwesomeIcons.externalLinkAlt,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
                                   size: 24,
@@ -617,7 +603,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(50, 0, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(50, 0, 50, 0),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 0.2,
@@ -643,7 +629,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   Icons.logout,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
-                                  size: 24,
+                                  size: 28,
                                 ),
                                 title: Text(
                                   'Logout',

@@ -12,14 +12,18 @@ abstract class ChecklistRecord
       _$checklistRecordSerializer;
 
   @nullable
-  BuiltList<String> get check;
+  String get description;
+
+  @nullable
+  BuiltList<String> get options;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
-  static void _initializeBuilder(ChecklistRecordBuilder builder) =>
-      builder..check = ListBuilder();
+  static void _initializeBuilder(ChecklistRecordBuilder builder) => builder
+    ..description = ''
+    ..options = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('checklist');
@@ -42,5 +46,11 @@ abstract class ChecklistRecord
           {...mapFromFirestore(data), kDocumentReferenceField: reference});
 }
 
-Map<String, dynamic> createChecklistRecordData() => serializers.toFirestore(
-    ChecklistRecord.serializer, ChecklistRecord((c) => c..check = null));
+Map<String, dynamic> createChecklistRecordData({
+  String description,
+}) =>
+    serializers.toFirestore(
+        ChecklistRecord.serializer,
+        ChecklistRecord((c) => c
+          ..description = description
+          ..options = null));

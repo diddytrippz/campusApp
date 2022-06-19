@@ -112,7 +112,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     color: Color(0xFF0C8450),
-                                    width: 4,
+                                    width: 3,
                                   ),
                                 ),
                               ),
