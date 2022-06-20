@@ -224,6 +224,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'inspect',
               path: 'inspect',
               builder: (context, params) => InspectWidget(),
+            ),
+            FFRoute(
+              name: 'viewInspections',
+              path: 'viewInspections',
+              builder: (context, params) => ViewInspectionsWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

@@ -1,10 +1,12 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../components/signature_widget.dart';
 import '../flutter_flow/flutter_flow_choice_chips.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/upload_media.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,7 @@ class InspectWidget extends StatefulWidget {
 }
 
 class _InspectWidgetState extends State<InspectWidget> {
+  String uploadedFileUrl = '';
   String choiceChipsValue;
   TextEditingController commentTextController;
   TextEditingController textController1;
@@ -63,7 +66,7 @@ class _InspectWidgetState extends State<InspectWidget> {
           },
         ),
         title: Text(
-          'Checklist ',
+          'Inspection Sheet',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -487,6 +490,106 @@ class _InspectWidgetState extends State<InspectWidget> {
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 10, 10, 10, 10),
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'INSPECT_PAGE_Container_jpu5rdw4_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'Container_Upload-Photo-Video');
+                                                        final selectedMedia =
+                                                            await selectMediaWithSourceBottomSheet(
+                                                          context: context,
+                                                          imageQuality: 100,
+                                                          allowPhoto: true,
+                                                        );
+                                                        if (selectedMedia !=
+                                                                null &&
+                                                            selectedMedia.every((m) =>
+                                                                validateFileFormat(
+                                                                    m.storagePath,
+                                                                    context))) {
+                                                          showUploadMessage(
+                                                            context,
+                                                            'Uploading file...',
+                                                            showLoading: true,
+                                                          );
+                                                          final downloadUrls =
+                                                              (await Future.wait(selectedMedia.map(
+                                                                      (m) async =>
+                                                                          await uploadData(
+                                                                              m
+                                                                                  .storagePath,
+                                                                              m
+                                                                                  .bytes))))
+                                                                  .where((u) =>
+                                                                      u != null)
+                                                                  .toList();
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .hideCurrentSnackBar();
+                                                          if (downloadUrls !=
+                                                                  null &&
+                                                              downloadUrls
+                                                                      .length ==
+                                                                  selectedMedia
+                                                                      .length) {
+                                                            setState(() =>
+                                                                uploadedFileUrl =
+                                                                    downloadUrls
+                                                                        .first);
+                                                            showUploadMessage(
+                                                              context,
+                                                              'File Uploaded!',
+                                                            );
+                                                          } else {
+                                                            showUploadMessage(
+                                                              context,
+                                                              'Failed to upload media',
+                                                            );
+                                                            return;
+                                                          }
+                                                        }
+                                                      },
+                                                      child: Material(
+                                                        color:
+                                                            Colors.transparent,
+                                                        elevation: 10,
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                        ),
+                                                        child: Container(
+                                                          width: 80,
+                                                          height: 80,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            image:
+                                                                DecorationImage(
+                                                              fit: BoxFit.cover,
+                                                              image:
+                                                                  Image.network(
+                                                                'https://image.pngaaa.com/768/791768-middle.png',
+                                                              ).image,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                10, 10, 10, 10),
                                                     child: Material(
                                                       color: Colors.transparent,
                                                       elevation: 10,
@@ -509,7 +612,7 @@ class _InspectWidgetState extends State<InspectWidget> {
                                                             fit: BoxFit.cover,
                                                             image:
                                                                 Image.network(
-                                                              'https://thumbs.dreamstime.com/b/photo-camera-icon-technology-icon-add-sign-photo-camera-icon-new-plus-positive-symbol-photo-camera-icon-technology-icon-118528370.jpg',
+                                                              'https://image.pngaaa.com/768/791768-middle.png',
                                                             ).image,
                                                           ),
                                                           borderRadius:
@@ -546,7 +649,7 @@ class _InspectWidgetState extends State<InspectWidget> {
                                                             fit: BoxFit.cover,
                                                             image:
                                                                 Image.network(
-                                                              'https://thumbs.dreamstime.com/b/photo-camera-icon-technology-icon-add-sign-photo-camera-icon-new-plus-positive-symbol-photo-camera-icon-technology-icon-118528370.jpg',
+                                                              'https://image.pngaaa.com/768/791768-middle.png',
                                                             ).image,
                                                           ),
                                                           borderRadius:
@@ -583,44 +686,7 @@ class _InspectWidgetState extends State<InspectWidget> {
                                                             fit: BoxFit.cover,
                                                             image:
                                                                 Image.network(
-                                                              'https://thumbs.dreamstime.com/b/photo-camera-icon-technology-icon-add-sign-photo-camera-icon-new-plus-positive-symbol-photo-camera-icon-technology-icon-118528370.jpg',
-                                                            ).image,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                10, 10, 10, 10),
-                                                    child: Material(
-                                                      color: Colors.transparent,
-                                                      elevation: 10,
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                      ),
-                                                      child: Container(
-                                                        width: 80,
-                                                        height: 80,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          image:
-                                                              DecorationImage(
-                                                            fit: BoxFit.cover,
-                                                            image:
-                                                                Image.network(
-                                                              'https://thumbs.dreamstime.com/b/photo-camera-icon-technology-icon-add-sign-photo-camera-icon-new-plus-positive-symbol-photo-camera-icon-technology-icon-118528370.jpg',
+                                                              'https://image.pngaaa.com/768/791768-middle.png',
                                                             ).image,
                                                           ),
                                                           borderRadius:

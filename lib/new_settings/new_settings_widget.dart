@@ -386,7 +386,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                 logFirebaseEvent(
                                     'NEW_SETTINGS_ListTile_dcv0ybyv_ON_TAP');
                                 logFirebaseEvent('ListTile_Navigate-To');
-                                context.pushNamed('inspect');
+                                context.pushNamed('viewInspections');
                               },
                               child: ListTile(
                                 leading: Icon(

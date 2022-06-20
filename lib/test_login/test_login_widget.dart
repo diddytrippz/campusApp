@@ -34,30 +34,36 @@ class _TestLoginWidgetState extends State<TestLoginWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-        automaticallyImplyLeading: false,
-        actions: [],
-        centerTitle: false,
-        elevation: 0,
+      appBar: PreferredSize(
+        preferredSize:
+            Size.fromHeight(MediaQuery.of(context).size.height * 0.05),
+        child: AppBar(
+          backgroundColor: Color(0xFF080808),
+          automaticallyImplyLeading: false,
+          actions: [],
+          elevation: 0,
+        ),
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+      backgroundColor: Color(0xFF080808),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Align(
-            alignment: AlignmentDirectional(0, 0),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 1,
+            decoration: BoxDecoration(
+              color: Color(0x00EEEEEE),
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                  flex: 1,
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(40, 20, 40, 10),
+                    padding: EdgeInsetsDirectional.fromSTEB(40, 0, 40, 10),
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.75,
-                      height: MediaQuery.of(context).size.width * 0.75,
+                      width: double.infinity,
                       decoration: BoxDecoration(
                         color: Color(0x00EEEEEE),
                         image: DecorationImage(
@@ -66,7 +72,7 @@ class _TestLoginWidgetState extends State<TestLoginWidget> {
                             'assets/images/campus_logo_1.png',
                           ).image,
                         ),
-                        shape: BoxShape.circle,
+                        shape: BoxShape.rectangle,
                       ),
                     ),
                   ),
@@ -74,8 +80,7 @@ class _TestLoginWidgetState extends State<TestLoginWidget> {
                 Expanded(
                   flex: 2,
                   child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.5,
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: Color(0x00EEEEEE),
                     ),
@@ -108,181 +113,186 @@ class _TestLoginWidgetState extends State<TestLoginWidget> {
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      24, 14, 24, 0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 20, 10, 0),
-                                        child: TextFormField(
-                                          controller: emailAddressController1,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyText2,
-                                            hintText: 'Enter your email...',
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyText1
-                                                    .override(
-                                                      fontFamily: 'Lexend Deca',
-                                                      color: Color(0x98FFFFFF),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                    ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Colors.white,
-                                                width: 1,
+                                      24, 0, 24, 0),
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 60, 0, 0),
+                                          child: TextFormField(
+                                            controller: emailAddressController1,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelText: 'Email Address',
+                                              hintText:
+                                                  'Enter your email here...',
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  width: 2,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Colors.white,
-                                                width: 1,
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  width: 2,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 16, 20, 16),
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Open Sans',
-                                                color: Color(0xFF0F1113),
-                                              ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 12, 10, 0),
-                                        child: TextFormField(
-                                          controller: passwordController,
-                                          obscureText: !passwordVisibility,
-                                          decoration: InputDecoration(
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyText2,
-                                            hintText: 'Enter your password...',
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyText1
-                                                    .override(
-                                                      fontFamily: 'Lexend Deca',
-                                                      color: Color(0x98FFFFFF),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                    ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Colors.white,
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Colors.white,
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            filled: true,
-                                            fillColor: Colors.white,
-                                            contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20, 16, 20, 16),
-                                            suffixIcon: InkWell(
-                                              onTap: () => setState(
-                                                () => passwordVisibility =
-                                                    !passwordVisibility,
-                                              ),
-                                              focusNode: FocusNode(
-                                                  skipTraversal: true),
-                                              child: Icon(
-                                                passwordVisibility
-                                                    ? Icons.visibility_outlined
-                                                    : Icons
-                                                        .visibility_off_outlined,
+                                              contentPadding:
+                                                  EdgeInsetsDirectional
+                                                      .fromSTEB(16, 24, 0, 24),
+                                              suffixIcon: Icon(
+                                                FFIcons.kprofile,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 20,
+                                                        .primaryBtnText,
+                                                size: 22,
                                               ),
                                             ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                            keyboardType:
+                                                TextInputType.emailAddress,
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Open Sans',
-                                                color: Color(0xFF0F1113),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 20, 0, 0),
+                                          child: TextFormField(
+                                            controller: passwordController,
+                                            obscureText: !passwordVisibility,
+                                            decoration: InputDecoration(
+                                              labelText: 'Password',
+                                              hintText:
+                                                  'Enter your password here...',
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  width: 2,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
                                               ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 24, 0, 0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            logFirebaseEvent(
-                                                'TEST_LOGIN_PAGE_Button-Login_ON_TAP');
-                                            logFirebaseEvent(
-                                                'Button-Login_Auth');
-                                            GoRouter.of(context)
-                                                .prepareAuthEvent();
-
-                                            final user = await signInWithEmail(
-                                              context,
-                                              emailAddressController1.text,
-                                              passwordController.text,
-                                            );
-                                            if (user == null) {
-                                              return;
-                                            }
-
-                                            context.goNamedAuth(
-                                                'homePage', mounted);
-                                          },
-                                          text: 'Sign In',
-                                          options: FFButtonOptions(
-                                            width: 230,
-                                            height: 50,
-                                            color: Colors.white,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Open Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryColor,
-                                                    ),
-                                            elevation: 3,
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  width: 2,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              contentPadding:
+                                                  EdgeInsetsDirectional
+                                                      .fromSTEB(16, 24, 0, 24),
+                                              suffixIcon: InkWell(
+                                                onTap: () => setState(
+                                                  () => passwordVisibility =
+                                                      !passwordVisibility,
+                                                ),
+                                                focusNode: FocusNode(
+                                                    skipTraversal: true),
+                                                child: Icon(
+                                                  passwordVisibility
+                                                      ? Icons
+                                                          .visibility_outlined
+                                                      : Icons
+                                                          .visibility_off_outlined,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  size: 22,
+                                                ),
+                                              ),
                                             ),
-                                            borderRadius: 8,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
                                           ),
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: Padding(
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 24, 0, 0),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'TEST_LOGIN_PAGE_Button-Login_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Button-Login_Auth');
+                                              GoRouter.of(context)
+                                                  .prepareAuthEvent();
+
+                                              final user =
+                                                  await signInWithEmail(
+                                                context,
+                                                emailAddressController1.text,
+                                                passwordController.text,
+                                              );
+                                              if (user == null) {
+                                                return;
+                                              }
+
+                                              context.goNamedAuth(
+                                                  'homePage', mounted);
+                                            },
+                                            text: 'Sign In',
+                                            options: FFButtonOptions(
+                                              width: 230,
+                                              height: 50,
+                                              color: Colors.white,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            Color(0xFF080808),
+                                                      ),
+                                              elevation: 3,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius: 8,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 20, 0, 0),
@@ -316,15 +326,17 @@ class _TestLoginWidgetState extends State<TestLoginWidget> {
                                                   .bodyText1
                                                   .override(
                                                     fontFamily: 'Open Sans',
-                                                    color: Color(0xFFFEFEFE),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryBtnText,
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -335,58 +347,62 @@ class _TestLoginWidgetState extends State<TestLoginWidget> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 20, 10, 0),
+                                            0, 40, 0, 0),
                                         child: TextFormField(
                                           controller: emailAddressController2,
                                           obscureText: false,
                                           decoration: InputDecoration(
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyText2,
-                                            hintText: 'Enter your email...',
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyText1
-                                                    .override(
-                                                      fontFamily: 'Lexend Deca',
-                                                      color: Color(0x98FFFFFF),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                    ),
+                                            labelText: 'Email Address',
+                                            hintText:
+                                                'Enter your email here...',
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
-                                                color: Colors.white,
-                                                width: 1,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBtnText,
+                                                width: 2,
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                             ),
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
-                                                color: Colors.white,
-                                                width: 1,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBtnText,
+                                                width: 2,
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                             ),
-                                            filled: true,
-                                            fillColor: Colors.white,
                                             contentPadding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    20, 16, 20, 16),
+                                                    16, 24, 0, 24),
+                                            suffixIcon: Icon(
+                                              FFIcons.kprofile,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBtnText,
+                                              size: 22,
+                                            ),
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
                                               .override(
                                                 fontFamily: 'Open Sans',
-                                                color: Color(0xFF0F1113),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBtnText,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal,
                                               ),
+                                          keyboardType:
+                                              TextInputType.emailAddress,
                                         ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 24, 0, 20),
+                                            0, 35, 0, 20),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
@@ -421,10 +437,7 @@ class _TestLoginWidgetState extends State<TestLoginWidget> {
                                                     .subtitle2
                                                     .override(
                                                       fontFamily: 'Open Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryColor,
+                                                      color: Color(0xFF080808),
                                                     ),
                                             elevation: 3,
                                             borderSide: BorderSide(
