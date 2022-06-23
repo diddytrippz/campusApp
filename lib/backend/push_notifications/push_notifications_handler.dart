@@ -91,8 +91,8 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
             data, 'chatUser', UsersRecord.serializer),
         chatRef: getParameter(data, 'chatRef'),
       ),
+  'usersSearch': (data) async => UsersSearchWidget(),
   'MessagesPage': (data) async => NavBarPage(initialPage: 'MessagesPage'),
-  'usersSearch': (data) async => NavBarPage(initialPage: 'usersSearch'),
   'Appliances': (data) async => AppliancesWidget(),
   'Plumbing': (data) async => PlumbingWidget(),
   'Furniture': (data) async => FurnitureWidget(),
@@ -110,11 +110,10 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         jobs: await getDocumentParameter(
             data, 'jobs', MaintenanceRecord.serializer),
       ),
-  'testLogin': (data) async => TestLoginWidget(),
   'newProfile': (data) async => NewProfileWidget(),
   'newSettings': (data) async => NavBarPage(initialPage: 'newSettings'),
   'inspect': (data) async => InspectWidget(),
-  'viewInspections': (data) async => ViewInspectionsWidget(),
+  'loooget': (data) async => LooogetWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

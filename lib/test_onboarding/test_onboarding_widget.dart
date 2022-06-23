@@ -158,16 +158,16 @@ class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 16),
+                padding: EdgeInsetsDirectional.fromSTEB(60, 12, 60, 16),
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent('TEST_ONBOARDING_PAGE_LOGIN_BTN_ON_TAP');
                     logFirebaseEvent('Button_Navigate-To');
-                    context.pushNamed('testLogin');
+                    context.pushNamed('loooget');
                   },
                   text: 'Login',
                   options: FFButtonOptions(
-                    width: 300,
+                    width: 600,
                     height: 50,
                     color: FlutterFlowTheme.of(context).primaryBackground,
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
@@ -184,17 +184,17 @@ class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 60),
+                padding: EdgeInsetsDirectional.fromSTEB(60, 0, 60, 60),
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent(
                         'TEST_ONBOARDING_PAGE_REGISTER_BTN_ON_TAP');
                     logFirebaseEvent('Button_Navigate-To');
-                    context.pushNamed('testLogin');
+                    context.pushNamed('loooget');
                   },
                   text: 'Register',
                   options: FFButtonOptions(
-                    width: 300,
+                    width: 600,
                     height: 50,
                     color: FlutterFlowTheme.of(context).primaryText,
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(

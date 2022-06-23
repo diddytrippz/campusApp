@@ -43,6 +43,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
         ),
         actions: [],
         centerTitle: true,
+        elevation: 1,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
@@ -151,7 +152,9 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                           child: AutoSizeText(
                                             currentUserDisplayName
                                                 .maybeHandleOverflow(
-                                                    maxChars: 14),
+                                              maxChars: 14,
+                                              replacement: '…',
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -229,7 +232,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 16,
                                 ),
                                 tileColor: Color(0x00F5F5F5),
-                                dense: false,
+                                dense: true,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18),
                                 ),
@@ -290,7 +293,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 16,
                                 ),
                                 tileColor: Color(0x00F5F5F5),
-                                dense: false,
+                                dense: true,
                               ),
                             ),
                           ),
@@ -352,7 +355,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 16,
                                 ),
                                 tileColor: Color(0x00F5F5F5),
-                                dense: false,
+                                dense: true,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18),
                                 ),
@@ -381,42 +384,32 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
-                            child: InkWell(
-                              onTap: () async {
-                                logFirebaseEvent(
-                                    'NEW_SETTINGS_ListTile_dcv0ybyv_ON_TAP');
-                                logFirebaseEvent('ListTile_Navigate-To');
-                                context.pushNamed('viewInspections');
-                              },
-                              child: ListTile(
-                                leading: Icon(
-                                  FFIcons.kchecklist,
-                                  color:
-                                      FlutterFlowTheme.of(context).campusGrey,
-                                  size: 24,
-                                ),
-                                title: Text(
-                                  'Checklist',
-                                  style: FlutterFlowTheme.of(context)
-                                      .title3
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontSize: 18,
-                                      ),
-                                ),
-                                trailing: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 16,
-                                ),
-                                tileColor: Color(0x00F5F5F5),
-                                dense: false,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18),
-                                ),
+                            child: ListTile(
+                              leading: Icon(
+                                FFIcons.kchecklist,
+                                color: FlutterFlowTheme.of(context).campusGrey,
+                                size: 24,
+                              ),
+                              title: Text(
+                                'Checklist',
+                                style: FlutterFlowTheme.of(context)
+                                    .title3
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontSize: 18,
+                                    ),
+                              ),
+                              trailing: Icon(
+                                Icons.arrow_forward_ios,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 16,
+                              ),
+                              tileColor: Color(0x00F5F5F5),
+                              dense: true,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18),
                               ),
                             ),
                           ),
@@ -466,7 +459,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 16,
                                 ),
                                 tileColor: Color(0x00F5F5F5),
-                                dense: false,
+                                dense: true,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18),
                                 ),
@@ -533,7 +526,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 16,
                                 ),
                                 tileColor: Color(0x00F5F5F5),
-                                dense: false,
+                                dense: true,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18),
                                 ),
@@ -594,7 +587,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 16,
                                 ),
                                 tileColor: Color(0x00F5F5F5),
-                                dense: false,
+                                dense: true,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18),
                                 ),
@@ -622,7 +615,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                 logFirebaseEvent('ListTile_Auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 await signOut();
-                                context.goNamedAuth('testOnboarding', mounted);
+                                context.goNamedAuth('loooget', mounted);
                               },
                               child: ListTile(
                                 leading: Icon(
@@ -649,7 +642,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 16,
                                 ),
                                 tileColor: Color(0x00F5F5F5),
-                                dense: false,
+                                dense: true,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18),
                                 ),

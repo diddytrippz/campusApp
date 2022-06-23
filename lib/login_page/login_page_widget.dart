@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../components/sign_up_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -376,8 +377,28 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('ButtonCreateAccount pressed ...');
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'LOGIN_ButtonCreateAccount_ON_TAP');
+                                logFirebaseEvent(
+                                    'ButtonCreateAccount_Bottom-Sheet');
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  context: context,
+                                  builder: (context) {
+                                    return Padding(
+                                      padding:
+                                          MediaQuery.of(context).viewInsets,
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.35,
+                                        child: SignUpWidget(),
+                                      ),
+                                    );
+                                  },
+                                );
                               },
                               text: 'Create Account',
                               options: FFButtonOptions(

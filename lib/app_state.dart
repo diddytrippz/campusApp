@@ -17,6 +17,7 @@ class FFAppState {
     _profilePic = prefs.getString('ff_profilePic') ?? _profilePic;
     _darkMode = prefs.getBool('ff_darkMode') ?? _darkMode;
     _numberOfDocs = prefs.getInt('ff_numberOfDocs') ?? _numberOfDocs;
+    _caLogo = prefs.getString('ff_caLogo') ?? _caLogo;
   }
 
   SharedPreferences prefs;
@@ -44,6 +45,13 @@ class FFAppState {
   set numberOfDocs(int _value) {
     _numberOfDocs = _value;
     prefs.setInt('ff_numberOfDocs', _value);
+  }
+
+  String _caLogo;
+  String get caLogo => _caLogo;
+  set caLogo(String _value) {
+    _caLogo = _value;
+    prefs.setString('ff_caLogo', _value);
   }
 }
 

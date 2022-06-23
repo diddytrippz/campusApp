@@ -101,11 +101,13 @@ class _SignatureWidgetState extends State<SignatureWidget> {
               Expanded(
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 10),
-                  child: Signature(
-                    controller: signatureController,
-                    backgroundColor:
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                    height: 250,
+                  child: ClipRect(
+                    child: Signature(
+                      controller: signatureController,
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      height: 250,
+                    ),
                   ),
                 ),
               ),

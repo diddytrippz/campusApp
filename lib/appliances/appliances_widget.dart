@@ -406,6 +406,8 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             isDone: false,
                             assigned: 'Maintenance Team',
                             photoUrl: uploadedFileUrl,
+                            phoneNumber: '',
+                            userRec: currentUserReference,
                           );
                           await MaintenanceRecord.collection
                               .doc()

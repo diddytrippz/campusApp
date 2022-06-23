@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -76,9 +75,48 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                 fontSize: 18,
               ),
         ),
-        actions: [],
+        actions: [
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 12, 18, 0),
+            child: InkWell(
+              onTap: () async {
+                logFirebaseEvent('NEW_PROFILE_PAGE_Text_xyr3lgop_ON_TAP');
+                logFirebaseEvent('Text_Backend-Call');
+
+                final usersUpdateData = createUsersRecordData(
+                  photoUrl: uploadedFileUrl,
+                );
+                await currentUserReference.update(usersUpdateData);
+                logFirebaseEvent('Text_Show-Snack-Bar');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'Image successfully uploaded',
+                      style: TextStyle(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                      ),
+                    ),
+                    duration: Duration(milliseconds: 4000),
+                    backgroundColor: FlutterFlowTheme.of(context).primaryText,
+                  ),
+                );
+                logFirebaseEvent('Text_Navigate-To');
+                context.pushNamed('newProfile');
+              },
+              child: Text(
+                'Save',
+                style: FlutterFlowTheme.of(context).bodyText1.override(
+                      fontFamily: 'Open Sans',
+                      color: Color(0xFF1F78FF),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ),
+          ),
+        ],
         centerTitle: true,
-        elevation: 0,
+        elevation: 1,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
@@ -95,7 +133,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                     Align(
                       alignment: AlignmentDirectional(0, 0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 20),
                         child: AuthUserStreamWidget(
                           child: InkWell(
                             onTap: () async {
@@ -198,7 +236,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Open Sans',
                             color: Color(0xFF1F78FF),
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
@@ -268,7 +306,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                   fontFamily: 'Open Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                 ),
                           ),
                         ),
@@ -338,7 +376,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                               .override(
                                 fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 16,
+                                fontSize: 14,
                               ),
                         ),
                       ),
@@ -479,7 +517,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                   fontFamily: 'Open Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 14,
+                                  fontSize: 12,
                                 ),
                           ),
                         ),
@@ -488,7 +526,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 20, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 20, 40),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -551,59 +589,12 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                   fontFamily: 'Open Sans',
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                 ),
                           ),
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(50, 80, 50, 40),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      logFirebaseEvent('NEW_PROFILE_PAGE_SAVE_BTN_ON_TAP');
-                      logFirebaseEvent('Button_Backend-Call');
-
-                      final usersUpdateData = createUsersRecordData(
-                        photoUrl: uploadedFileUrl,
-                      );
-                      await currentUserReference.update(usersUpdateData);
-                      logFirebaseEvent('Button_Show-Snack-Bar');
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Image successfully uploaded',
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                            ),
-                          ),
-                          duration: Duration(milliseconds: 4000),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).primaryText,
-                        ),
-                      );
-                      logFirebaseEvent('Button_Navigate-To');
-                      context.pushNamed('newProfile');
-                    },
-                    text: 'SAVE',
-                    options: FFButtonOptions(
-                      width: double.infinity,
-                      height: 55,
-                      color: FlutterFlowTheme.of(context).primaryColor,
-                      textStyle:
-                          FlutterFlowTheme.of(context).subtitle2.override(
-                                fontFamily: 'Open Sans',
-                                color: Colors.white,
-                              ),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1,
-                      ),
-                      borderRadius: 12,
-                    ),
                   ),
                 ),
               ],

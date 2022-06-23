@@ -1,14 +1,14 @@
-import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:text_search/text_search.dart';
 
 class UsersSearchWidget extends StatefulWidget {
   const UsersSearchWidget({Key key}) : super(key: key);
@@ -18,7 +18,7 @@ class UsersSearchWidget extends StatefulWidget {
 }
 
 class _UsersSearchWidgetState extends State<UsersSearchWidget> {
-  List<UsersRecord> algoliaSearchResults = [];
+  List<UsersRecord> simpleSearchResults = [];
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -39,526 +39,313 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
           borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 54,
+          buttonSize: 24,
           icon: Icon(
-            Icons.menu_rounded,
+            Icons.arrow_back_rounded,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 28,
+            size: 24,
           ),
-          onPressed: () {
-            print('IconButton pressed ...');
+          onPressed: () async {
+            logFirebaseEvent('USERS_SEARCH_arrow_back_rounded_ICN_ON_T');
+            logFirebaseEvent('IconButton_Navigate-Back');
+            context.pop();
           },
         ),
-        title: Text(
-          'Contacts',
-          style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Open Sans',
-                color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 18,
-              ),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-            child: Icon(
-              Icons.add,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30,
+        title: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Search Friends to chat',
+              style: FlutterFlowTheme.of(context).subtitle1.override(
+                    fontFamily: 'Open Sans',
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
             ),
-          ),
-        ],
-        centerTitle: true,
-        elevation: 2,
+            Text(
+              'Select the friends to add to chat.',
+              style: FlutterFlowTheme.of(context).bodyText2.override(
+                    fontFamily: 'Open Sans',
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    fontSize: 12,
+                    fontWeight: FontWeight.normal,
+                  ),
+            ),
+          ],
+        ),
+        actions: [],
+        centerTitle: false,
+        elevation: 0,
       ),
       backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                          child: Text(
-                            'Search Contacts',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 100,
-                    decoration: BoxDecoration(),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(18, 20, 18, 0),
-                      child: TextFormField(
-                        controller: textController,
-                        onChanged: (_) => EasyDebounce.debounce(
-                          'textController',
-                          Duration(milliseconds: 450),
-                          () => setState(() {}),
-                        ),
-                        onFieldSubmitted: (_) async {
-                          logFirebaseEvent(
-                              'USERS_SEARCH_TextField_mrvl0h5c_ON_TEXTF');
-                          logFirebaseEvent('TextField_Algolia-Search');
-                          setState(() => algoliaSearchResults = null);
-                          await UsersRecord.search(
-                            term: textController.text,
-                            maxResults: 5,
-                          )
-                              .then((r) => algoliaSearchResults = r)
-                              .onError((_, __) => algoliaSearchResults = [])
-                              .whenComplete(() => setState(() {}));
-                        },
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          hintText: 'Search',
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
+      body: SafeArea(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                            child: Text(
+                              'Search Contacts',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Open Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                             ),
-                            borderRadius: BorderRadius.circular(18),
                           ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(18),
-                          ),
-                          filled: true,
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          contentPadding:
-                              EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
-                          suffixIcon: Icon(
-                            FFIcons.ksearch,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 20,
-                          ),
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Open Sans',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
+                        ],
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                          child: Text(
-                            'Admin contacts',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                    Container(
+                      height: 100,
+                      decoration: BoxDecoration(),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(18, 20, 18, 0),
+                        child: TextFormField(
+                          controller: textController,
+                          onChanged: (_) => EasyDebounce.debounce(
+                            'textController',
+                            Duration(milliseconds: 450),
+                            () => setState(() {}),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  AuthUserStreamWidget(
-                    child: FutureBuilder<List<UsersRecord>>(
-                      future: queryUsersRecordOnce(
-                        queryBuilder: (usersRecord) => usersRecord
-                            .where('role', isEqualTo: 'Admin')
-                            .where('building',
-                                isEqualTo: valueOrDefault(
-                                            currentUserDocument?.building,
-                                            '') !=
-                                        ''
-                                    ? valueOrDefault(
-                                        currentUserDocument?.building, '')
-                                    : null)
-                            .orderBy('display_name'),
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 60,
-                              height: 60,
-                              child: SpinKitPulse(
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                size: 60,
+                          onFieldSubmitted: (_) async {
+                            logFirebaseEvent(
+                                'USERS_SEARCH_TextField_mrvl0h5c_ON_TEXTF');
+                            logFirebaseEvent('TextField_Simple-Search');
+                            await queryUsersRecordOnce()
+                                .then(
+                                  (records) => simpleSearchResults = TextSearch(
+                                    records
+                                        .map(
+                                          (record) => TextSearchItem(record, [
+                                            record.displayName,
+                                            record.building
+                                          ]),
+                                        )
+                                        .toList(),
+                                  )
+                                      .search(textController.text)
+                                      .map((r) => r.object)
+                                      .take(10)
+                                      .toList(),
+                                )
+                                .onError((_, __) => simpleSearchResults = [])
+                                .whenComplete(() => setState(() {}));
+                          },
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            hintText: 'Search',
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1,
                               ),
+                              borderRadius: BorderRadius.circular(18),
                             ),
-                          );
-                        }
-                        List<UsersRecord> columnUsersRecordList = snapshot.data
-                            .where((u) => u.uid != currentUserUid)
-                            .toList();
-                        return Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: List.generate(columnUsersRecordList.length,
-                              (columnIndex) {
-                            final columnUsersRecord =
-                                columnUsersRecordList[columnIndex];
-                            return InkWell(
-                              onTap: () async {
-                                logFirebaseEvent(
-                                    'USERS_SEARCH_PAGE_Row_mzx4ec3s_ON_TAP');
-                                if ((columnUsersRecord.room) == 'Management') {
-                                  logFirebaseEvent('Row_Show-Snack-Bar');
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Contact unavailable',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            filled: true,
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            contentPadding:
+                                EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
+                            suffixIcon: Icon(
+                              FFIcons.ksearch,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 20,
+                            ),
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                            child: Text(
+                              'Search Contacts',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Open Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                        child: Builder(
+                          builder: (context) {
+                            final listSearrch =
+                                (simpleSearchResults?.toList() ?? [])
+                                    .take(15)
+                                    .toList();
+                            if (listSearrch.isEmpty) {
+                              return Center(
+                                child: SvgPicture.asset(
+                                  'assets/images/undraw_the_search_s0xf.svg',
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.6,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.6,
+                                ),
+                              );
+                            }
+                            return ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: listSearrch.length,
+                              itemBuilder: (context, listSearrchIndex) {
+                                final listSearrchItem =
+                                    listSearrch[listSearrchIndex];
+                                return InkWell(
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'USERS_SEARCH_PAGE_userEntry_ON_TAP');
+                                    if ((listSearrchItem.room) ==
+                                        'Management') {
+                                      logFirebaseEvent(
+                                          'userEntry_Show-Snack-Bar');
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Contact unavailable',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryText,
                                         ),
-                                      ),
-                                      duration: Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                      );
+                                      return;
+                                    } else {
+                                      logFirebaseEvent('userEntry_Navigate-To');
+                                      context.pushNamed(
+                                        'ChatPage',
+                                        queryParams: {
+                                          'chatUser': serializeParam(
+                                              listSearrchItem,
+                                              ParamType.Document),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          'chatUser': listSearrchItem,
+                                        },
+                                      );
+                                    }
+                                  },
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 70,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      borderRadius: BorderRadius.circular(0),
                                     ),
-                                  );
-                                  return;
-                                } else {
-                                  logFirebaseEvent('Row_Navigate-To');
-                                  context.pushNamed(
-                                    'ChatPage',
-                                    queryParams: {
-                                      'chatUser': serializeParam(
-                                          columnUsersRecord,
-                                          ParamType.Document),
-                                    }.withoutNulls,
-                                    extra: <String, dynamic>{
-                                      'chatUser': columnUsersRecord,
-                                    },
-                                  );
-                                }
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          12, 0, 0, 0),
+                                          8, 0, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    8, 5, 12, 5),
-                                            child: Container(
-                                              width: 40,
-                                              height: 40,
-                                              clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: CachedNetworkImage(
-                                                imageUrl:
-                                                    valueOrDefault<String>(
-                                                  columnUsersRecord.photoUrl,
-                                                  'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                                    8, 0, 8, 0),
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              elevation: 10,
+                                              shape: const CircleBorder(),
+                                              child: Container(
+                                                width: 55,
+                                                height: 55,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.transparent,
+                                                  image: DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    image:
+                                                        CachedNetworkImageProvider(
+                                                      valueOrDefault<String>(
+                                                        listSearrchItem
+                                                            .photoUrl,
+                                                        'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                    color: Color(0xFF4E39F9),
+                                                    width: 3,
+                                                  ),
                                                 ),
-                                                fit: BoxFit.cover,
                                               ),
                                             ),
                                           ),
                                           Expanded(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 12, 0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      AutoSizeText(
-                                                        columnUsersRecord
-                                                            .displayName,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .title2
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                      ),
-                                                      Icon(
-                                                        Icons.person_add_alt,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        size: 24,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Text(
-                                                  columnUsersRecord.room,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Open Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .campusGrey,
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }),
-                        );
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                          child: Text(
-                            'Other contacts',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  FutureBuilder<List<UsersRecord>>(
-                    future: UsersRecord.search(
-                      term: textController.text,
-                      maxResults: 5,
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 60,
-                            height: 60,
-                            child: SpinKitPulse(
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              size: 60,
-                            ),
-                          ),
-                        );
-                      }
-                      List<UsersRecord> columnUsersRecordList = snapshot.data;
-                      // Customize what your widget looks like with no search results.
-                      if (snapshot.data.isEmpty) {
-                        return Container(
-                          height: 100,
-                          child: Center(
-                            child: Text('No results.'),
-                          ),
-                        );
-                      }
-                      return SingleChildScrollView(
-                        primary: false,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: List.generate(columnUsersRecordList.length,
-                              (columnIndex) {
-                            final columnUsersRecord =
-                                columnUsersRecordList[columnIndex];
-                            return Card(
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              color: FlutterFlowTheme.of(context).tertiaryColor,
-                              elevation: 0,
-                              child: InkWell(
-                                onTap: () async {
-                                  logFirebaseEvent(
-                                      'USERS_SEARCH_PAGE_Row_u5ggcgtv_ON_TAP');
-                                  if ((columnUsersRecord.email) ==
-                                      'jeremy@conurban.co.za | | marvin@conurban.co.za') {
-                                    logFirebaseEvent('Row_Show-Snack-Bar');
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Contact unavailable!',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                          ),
-                                        ),
-                                        duration: Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                      ),
-                                    );
-                                  } else {
-                                    logFirebaseEvent('Row_Navigate-To');
-                                    context.pushNamed(
-                                      'ChatPage',
-                                      queryParams: {
-                                        'chatUser': serializeParam(
-                                            columnUsersRecord,
-                                            ParamType.Document),
-                                      }.withoutNulls,
-                                      extra: <String, dynamic>{
-                                        'chatUser': columnUsersRecord,
-                                      },
-                                    );
-                                  }
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 0, 0, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
+                                            child: Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 12, 0),
-                                              child: Container(
-                                                width: 40,
-                                                height: 40,
-                                                clipBehavior: Clip.antiAlias,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: CachedNetworkImage(
-                                                  imageUrl:
-                                                      valueOrDefault<String>(
-                                                    columnUsersRecord.photoUrl,
-                                                    'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                                  ),
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
+                                                  .fromSTEB(8, 0, 8, 0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 12, 0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        AutoSizeText(
-                                                          columnUsersRecord
-                                                              .displayName,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .title2
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 16,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                        ),
-                                                        Icon(
-                                                          Icons
-                                                              .person_add_outlined,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 24,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
                                                   Text(
-                                                    columnUsersRecord.building,
+                                                    listSearrchItem.displayName,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyText1
@@ -567,31 +354,46 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                                               'Open Sans',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .campusGrey,
-                                                          fontSize: 12,
+                                                              .primaryText,
+                                                          fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.w600,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    listSearrchItem.building,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontWeight:
+                                                              FontWeight.w500,
                                                         ),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
+                                  ),
+                                );
+                              },
                             );
-                          }),
+                          },
                         ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

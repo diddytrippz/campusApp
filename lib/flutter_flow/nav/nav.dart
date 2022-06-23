@@ -72,13 +72,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? NavBarPage() : TestOnboardingWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : LooogetWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : TestOnboardingWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : LooogetWidget(),
           routes: [
             FFRoute(
               name: 'testOnboarding',
@@ -123,19 +123,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
+              name: 'usersSearch',
+              path: 'usersSearch',
+              requireAuth: true,
+              builder: (context, params) => UsersSearchWidget(),
+            ),
+            FFRoute(
               name: 'MessagesPage',
               path: 'messagesPage',
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'MessagesPage')
                   : MessagesPageWidget(),
-            ),
-            FFRoute(
-              name: 'usersSearch',
-              path: 'usersSearch',
-              requireAuth: true,
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'usersSearch')
-                  : UsersSearchWidget(),
             ),
             FFRoute(
               name: 'Appliances',
@@ -204,11 +202,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'testLogin',
-              path: 'testLogin',
-              builder: (context, params) => TestLoginWidget(),
-            ),
-            FFRoute(
               name: 'newProfile',
               path: 'newProfile',
               builder: (context, params) => NewProfileWidget(),
@@ -226,9 +219,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => InspectWidget(),
             ),
             FFRoute(
-              name: 'viewInspections',
-              path: 'viewInspections',
-              builder: (context, params) => ViewInspectionsWidget(),
+              name: 'loooget',
+              path: 'loooget',
+              builder: (context, params) => LooogetWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -378,7 +371,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/testOnboarding';
+            return '/loooget';
           }
           return null;
         },

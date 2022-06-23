@@ -982,7 +982,6 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                                   context)
                                                               .size
                                                               .width,
-                                                          height: 250,
                                                           decoration:
                                                               BoxDecoration(
                                                             color: FlutterFlowTheme
@@ -1088,7 +1087,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                                   ],
                                                                 ),
                                                                 Divider(
-                                                                  thickness: 2,
+                                                                  thickness: 1,
                                                                   indent: 10,
                                                                   endIndent: 10,
                                                                   color: Color(

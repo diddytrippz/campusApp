@@ -119,7 +119,6 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'homePage': HomePageWidget(),
       'viewPage': ViewPageWidget(),
-      'usersSearch': UsersSearchWidget(),
       'MessagesPage': MessagesPageWidget(),
       'newSettings': NewSettingsWidget(),
     };
@@ -154,11 +153,6 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           GButton(
             icon: FFIcons.ksearch,
-            text: '',
-            iconSize: 24,
-          ),
-          GButton(
-            icon: FFIcons.kmessage3,
             text: '',
             iconSize: 26,
           ),
