@@ -192,7 +192,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                         animationType: BadgeAnimationType.scale,
                         toAnimate: true,
                         child: Icon(
-                          FFIcons.kmessage3,
+                          FFIcons.kchatboxes,
                           color: FlutterFlowTheme.of(context).primaryText,
                           size: 30,
                         ),

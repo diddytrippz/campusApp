@@ -131,8 +131,8 @@ class _NavBarPageState extends State<NavBarPage> {
             setState(() => _currentPage = tabs.keys.toList()[i]),
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         color: FlutterFlowTheme.of(context).campusGrey,
-        activeColor: Colors.white,
-        tabBackgroundColor: FlutterFlowTheme.of(context).mellow,
+        activeColor: FlutterFlowTheme.of(context).primaryText,
+        tabBackgroundColor: Color(0x00181818),
         tabBorderRadius: 15,
         tabMargin: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 16),
         padding: EdgeInsetsDirectional.fromSTEB(14, 12, 4, 12),
@@ -142,24 +142,24 @@ class _NavBarPageState extends State<NavBarPage> {
         haptic: true,
         tabs: [
           GButton(
-            icon: FontAwesomeIcons.houseUser,
-            text: '',
-            iconSize: 20,
-          ),
-          GButton(
-            icon: FontAwesomeIcons.edit,
+            icon: FontAwesomeIcons.home,
             text: '',
             iconSize: 22,
           ),
           GButton(
-            icon: FFIcons.ksearch,
+            icon: FontAwesomeIcons.edit,
+            text: '',
+            iconSize: 24,
+          ),
+          GButton(
+            icon: FFIcons.kchatboxes,
             text: '',
             iconSize: 26,
           ),
           GButton(
             icon: Icons.settings_outlined,
             text: '',
-            iconSize: 24,
+            iconSize: 26,
           )
         ],
       ),

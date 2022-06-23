@@ -135,7 +135,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .scale,
                                                         toAnimate: true,
                                                         child: Icon(
-                                                          FFIcons.kmessage3,
+                                                          FFIcons.kchatboxes,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,

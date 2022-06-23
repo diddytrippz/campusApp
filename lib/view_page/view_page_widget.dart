@@ -1621,21 +1621,21 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     child:
                                                                         Container(
                                                                       height:
-                                                                          60,
+                                                                          50,
                                                                       child:
                                                                           Center(
                                                                         child:
                                                                             SizedBox(
                                                                           width:
-                                                                              60,
+                                                                              50,
                                                                           height:
-                                                                              60,
+                                                                              50,
                                                                           child:
                                                                               SpinKitPulse(
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).primaryColor,
+                                                                                Color(0xFF1F78FF),
                                                                             size:
-                                                                                60,
+                                                                                50,
                                                                           ),
                                                                         ),
                                                                       ),
@@ -1647,7 +1647,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           .only(
                                                                     top: controller
                                                                             .isLoading
-                                                                        ? 60
+                                                                        ? 50
                                                                         : 0.0,
                                                                   ),
                                                                   child: child,
@@ -1985,21 +1985,21 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     child:
                                                                         Container(
                                                                       height:
-                                                                          60,
+                                                                          50,
                                                                       child:
                                                                           Center(
                                                                         child:
                                                                             SizedBox(
                                                                           width:
-                                                                              60,
+                                                                              50,
                                                                           height:
-                                                                              60,
+                                                                              50,
                                                                           child:
                                                                               SpinKitPulse(
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).primaryColor,
+                                                                                Color(0xFF1F78FF),
                                                                             size:
-                                                                                60,
+                                                                                50,
                                                                           ),
                                                                         ),
                                                                       ),
@@ -2011,7 +2011,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           .only(
                                                                     top: controller
                                                                             .isLoading
-                                                                        ? 60
+                                                                        ? 50
                                                                         : 0.0,
                                                                   ),
                                                                   child: child,
