@@ -338,7 +338,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(16, 12,
-                                                                  16, 0),
+                                                                  16, 12),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
