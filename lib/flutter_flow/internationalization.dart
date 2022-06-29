@@ -1596,13 +1596,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'st': 'Kgetha Puo',
       'zu': 'Khetha Ulimi',
     },
-    '4q6pjis2': {
+    'sqrg3zoi': {
       'en': 'ZA',
       'af': '',
       'st': '',
       'zu': '',
     },
-    'u6snpcm8': {
+    'un04v4sm': {
       'en': 'ZA',
       'af': '',
       'st': '',
