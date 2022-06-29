@@ -9,6 +9,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:share_plus/share_plus.dart';
 
 class NewSettingsWidget extends StatefulWidget {
   const NewSettingsWidget({Key? key}) : super(key: key);
@@ -374,8 +375,8 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                     'ListTile_Generate-Current-Page-Link');
                                 _currentPageLink =
                                     await generateCurrentPageLink(context);
-                                logFirebaseEvent('ListTile_Launch-U-R-L');
-                                await launchURL(_currentPageLink);
+                                logFirebaseEvent('ListTile_Share');
+                                await Share.share(_currentPageLink);
                               },
                               child: ListTile(
                                 leading: Icon(
@@ -385,7 +386,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 28,
                                 ),
                                 title: Text(
-                                  'DeepLinks',
+                                  'DeepLinkState',
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
