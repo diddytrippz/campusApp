@@ -18,6 +18,7 @@ class NewSettingsWidget extends StatefulWidget {
 }
 
 class _NewSettingsWidgetState extends State<NewSettingsWidget> {
+  String _currentPageLink = '';
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -339,6 +340,52 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                 ),
                                 title: Text(
                                   'Appearance',
+                                  style: FlutterFlowTheme.of(context)
+                                      .title3
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: 18,
+                                      ),
+                                ),
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 16,
+                                ),
+                                tileColor: Color(0x00F5F5F5),
+                                dense: true,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 5, 10, 10),
+                            child: InkWell(
+                              onTap: () async {
+                                logFirebaseEvent(
+                                    'NEW_SETTINGS_ListTile_ua95ob38_ON_TAP');
+                                logFirebaseEvent(
+                                    'ListTile_Generate-Current-Page-Link');
+                                _currentPageLink =
+                                    await generateCurrentPageLink(context);
+                                logFirebaseEvent('ListTile_Launch-U-R-L');
+                                await launchURL(_currentPageLink);
+                              },
+                              child: ListTile(
+                                leading: Icon(
+                                  Icons.color_lens,
+                                  color:
+                                      FlutterFlowTheme.of(context).campusGrey,
+                                  size: 28,
+                                ),
+                                title: Text(
+                                  'DeepLink',
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
