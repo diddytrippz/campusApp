@@ -1596,7 +1596,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'st': 'Kgetha Puo',
       'zu': 'Khetha Ulimi',
     },
-    'wdgjcdwk': {
+    'wznmlwtb': {
       'en': '[Some hint text...]',
       'af': '',
       'st': '',
@@ -1897,12 +1897,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'i29v1v2d': {
       'en': 'English',
-      'af': 'Engels',
-      'st': 'Senyesemane',
-      'zu': 'IsiNgisi',
-    },
-    'tvek8m90': {
-      'en': 'Sesotho',
       'af': 'Engels',
       'st': 'Senyesemane',
       'zu': 'IsiNgisi',

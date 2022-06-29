@@ -157,67 +157,6 @@ class _LanguageWidgetState extends State<LanguageWidget> {
           ),
           InkWell(
             onTap: () async {
-              logFirebaseEvent('LANGUAGE_COMP_Container_moxrrfid_ON_TAP');
-              logFirebaseEvent('Container_Set-App-Language');
-              setAppLanguage(context, 'st');
-              logFirebaseEvent('Container_Update-Local-State');
-              setState(() => FFAppState().defaultLanguage =
-                      FFLocalizations.of(context).getVariableText(
-                    enText: '',
-                    afText: '',
-                    zuText: '',
-                    stText: '',
-                  ));
-            },
-            child: Material(
-              color: Colors.transparent,
-              elevation: 10,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(0),
-              ),
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.55,
-                height: 80,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryBackground,
-                  borderRadius: BorderRadius.circular(0),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Flag_of_South_Africa.svg/2560px-Flag_of_South_Africa.svg.png',
-                        width: 60,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
-                        child: AutoSizeText(
-                          FFLocalizations.of(context).getText(
-                            'tvek8m90' /* Sesotho */,
-                          ),
-                          style: FlutterFlowTheme.of(context).title1.override(
-                                fontFamily: 'Open Sans',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () async {
               logFirebaseEvent('LANGUAGE_COMP_Container_8by4dcs8_ON_TAP');
               logFirebaseEvent('Container_Set-App-Language');
               setAppLanguage(context, 'zu');
