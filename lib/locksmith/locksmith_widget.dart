@@ -347,7 +347,6 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                             ),
                         textAlign: TextAlign.start,
                         maxLines: 5,
-                        keyboardType: TextInputType.name,
                         validator: (val) {
                           if (val == null || val.isEmpty) {
                             return 'Field is required';
@@ -409,6 +408,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                             isDone: false,
                             assigned: 'Maintenance Team',
                             photoUrl: uploadedFileUrl,
+                            userRec: currentUserReference,
                           );
                           await MaintenanceRecord.collection
                               .doc()

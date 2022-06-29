@@ -18,6 +18,7 @@ class FFAppState {
     _darkMode = prefs.getBool('ff_darkMode') ?? _darkMode;
     _numberOfDocs = prefs.getInt('ff_numberOfDocs') ?? _numberOfDocs;
     _caLogo = prefs.getString('ff_caLogo') ?? _caLogo;
+    _myBio = prefs.getString('ff_myBio') ?? _myBio;
   }
 
   SharedPreferences prefs;
@@ -52,6 +53,13 @@ class FFAppState {
   set caLogo(String _value) {
     _caLogo = _value;
     prefs.setString('ff_caLogo', _value);
+  }
+
+  String _myBio = 'Write about yourself...';
+  String get myBio => _myBio;
+  set myBio(String _value) {
+    _myBio = _value;
+    prefs.setString('ff_myBio', _value);
   }
 }
 

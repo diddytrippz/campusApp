@@ -64,9 +64,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       Container(
                                         width:
                                             MediaQuery.of(context).size.width,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.15,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .tertiaryColor,
@@ -87,7 +84,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     .fromSTEB(12, 0, 12, 0),
                                                 child: Column(
                                                   mainAxisSize:
-                                                      MainAxisSize.max,
+                                                      MainAxisSize.min,
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   crossAxisAlignment:
@@ -104,7 +101,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       },
                                                       child: Badge(
                                                         badgeContent: Text(
-                                                          '0',
+                                                          '1',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1
@@ -122,12 +119,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         badgeColor:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primaryColor,
+                                                                .campusRed,
                                                         elevation: 4,
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    8, 8, 8, 8),
+                                                                    6, 6, 6, 6),
                                                         position: BadgePosition
                                                             .topEnd(),
                                                         animationType:
@@ -146,63 +143,63 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   ],
                                                 ),
                                               ),
-                                              Expanded(
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(12, 0, 0, 0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0, 0, 0, 4),
-                                                        child: Text(
-                                                          dateTimeFormat(
-                                                              'MMMMEEEEd',
-                                                              getCurrentTimestamp),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .subtitle1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 14,
-                                                              ),
-                                                        ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(12, 0, 0, 0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 0, 4),
+                                                      child: Text(
+                                                        dateTimeFormat(
+                                                            'MMMMEEEEd',
+                                                            getCurrentTimestamp),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize: 14,
+                                                                ),
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0, 0, 0, 4),
-                                                        child: Text(
-                                                          dateTimeFormat('jm',
-                                                              getCurrentTimestamp),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .subtitle1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 14,
-                                                              ),
-                                                        ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 0, 4),
+                                                      child: Text(
+                                                        dateTimeFormat('jm',
+                                                            getCurrentTimestamp),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize: 14,
+                                                                ),
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ],
@@ -272,7 +269,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Expanded(
                                   child: Padding(
@@ -281,13 +278,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                          MainAxisAlignment.spaceAround,
                                       children: [
                                         Expanded(
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 20, 0),
+                                                    5, 5, 5, 5),
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
@@ -315,26 +312,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       BorderRadius.circular(8),
                                                 ),
                                                 child: Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.26,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.11,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .mellow,
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        blurRadius: 0,
-                                                        color:
-                                                            Color(0x3B000000),
-                                                        offset: Offset(0, 0),
-                                                      )
-                                                    ],
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8),
@@ -389,7 +370,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 20, 0),
+                                                    5, 5, 5, 5),
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
@@ -406,14 +387,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       BorderRadius.circular(8),
                                                 ),
                                                 child: Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.26,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.11,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -482,7 +455,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 20, 0),
+                                                    5, 5, 5, 5),
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
@@ -499,14 +472,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       BorderRadius.circular(8),
                                                 ),
                                                 child: Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.26,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.11,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -592,7 +557,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 20, 0),
+                                                    5, 5, 5, 5),
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
@@ -602,14 +567,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 context.pushNamed('Electrical');
                                               },
                                               child: Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.26,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.11,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -673,7 +630,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 20, 0),
+                                                    5, 5, 5, 5),
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
@@ -683,14 +640,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 context.pushNamed('Locksmith');
                                               },
                                               child: Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.26,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.11,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -756,7 +705,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 20, 0),
+                                                    5, 5, 5, 5),
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
@@ -766,14 +715,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 context.pushNamed('painting');
                                               },
                                               child: Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.26,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.11,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -850,7 +791,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 20, 0),
+                                                    5, 5, 5, 5),
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
@@ -861,14 +802,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     .pushNamed('Pestcontrol');
                                               },
                                               child: Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.26,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.11,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -935,24 +868,39 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 20, 0),
+                                                    5, 5, 5, 5),
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
                                                     'HOME_PAGE_PAGE_activityButton_ON_TAP');
                                                 logFirebaseEvent(
+                                                    'activityButton_Alert-Dialog');
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text(
+                                                          'Communal Areas'),
+                                                      content: Text(
+                                                          'Report communal areas other than your unit/room (i.e Gym, study area etc.)'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child:
+                                                              Text('Continue'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                                logFirebaseEvent(
                                                     'activityButton_Navigate-To');
                                                 context.pushNamed('Communal');
                                               },
                                               child: Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.26,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.11,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -1019,7 +967,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 20, 0),
+                                                    5, 5, 5, 5),
                                             child: InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
@@ -1029,14 +977,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 context.pushNamed('Others');
                                               },
                                               child: Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.26,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.11,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)

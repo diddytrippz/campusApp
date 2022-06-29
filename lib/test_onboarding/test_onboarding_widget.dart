@@ -163,7 +163,7 @@ class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
                   onPressed: () async {
                     logFirebaseEvent('TEST_ONBOARDING_PAGE_LOGIN_BTN_ON_TAP');
                     logFirebaseEvent('Button_Navigate-To');
-                    context.pushNamed('loooget');
+                    context.pushNamed('loginPage');
                   },
                   text: 'Login',
                   options: FFButtonOptions(
@@ -190,7 +190,7 @@ class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
                     logFirebaseEvent(
                         'TEST_ONBOARDING_PAGE_REGISTER_BTN_ON_TAP');
                     logFirebaseEvent('Button_Navigate-To');
-                    context.pushNamed('loooget');
+                    context.pushNamed('loginPage');
                   },
                   text: 'Register',
                   options: FFButtonOptions(

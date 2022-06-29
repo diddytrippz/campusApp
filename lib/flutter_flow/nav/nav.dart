@@ -72,13 +72,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LooogetWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LooogetWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
           routes: [
             FFRoute(
               name: 'testOnboarding',
@@ -121,6 +121,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 chatRef: params.getParam(
                     'chatRef', ParamType.DocumentReference, 'chats'),
               ),
+            ),
+            FFRoute(
+              name: 'notifications',
+              path: 'notifications',
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'notifications')
+                  : NotificationsWidget(),
             ),
             FFRoute(
               name: 'usersSearch',
@@ -219,9 +226,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => InspectWidget(),
             ),
             FFRoute(
-              name: 'loooget',
-              path: 'loooget',
-              builder: (context, params) => LooogetWidget(),
+              name: 'sendNotifi',
+              path: 'sendNotifi',
+              builder: (context, params) => SendNotifiWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -371,7 +378,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/loooget';
+            return '/loginPage';
           }
           return null;
         },

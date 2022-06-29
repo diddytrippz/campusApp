@@ -344,7 +344,6 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             ),
                         textAlign: TextAlign.start,
                         maxLines: 5,
-                        keyboardType: TextInputType.name,
                         validator: (val) {
                           if (val == null || val.isEmpty) {
                             return 'Field is required';

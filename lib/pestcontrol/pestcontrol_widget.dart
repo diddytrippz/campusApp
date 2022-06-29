@@ -343,7 +343,6 @@ class _PestcontrolWidgetState extends State<PestcontrolWidget> {
                             ),
                         textAlign: TextAlign.start,
                         maxLines: 5,
-                        keyboardType: TextInputType.name,
                         validator: (val) {
                           if (val == null || val.isEmpty) {
                             return 'Field is required';
@@ -406,6 +405,7 @@ class _PestcontrolWidgetState extends State<PestcontrolWidget> {
                             isDone: false,
                             assigned: 'Maintenance Team',
                             photoUrl: uploadedFileUrl,
+                            userRec: currentUserReference,
                           );
                           await MaintenanceRecord.collection
                               .doc()

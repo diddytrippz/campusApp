@@ -56,7 +56,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(12, 22, 12, 10),
+                    padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 10),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
@@ -208,11 +208,11 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                 context.pushNamed('newProfile');
                               },
                               child: ListTile(
-                                leading: Icon(
-                                  FFIcons.kprofile,
+                                leading: FaIcon(
+                                  FontAwesomeIcons.userAlt,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
-                                  size: 24,
+                                  size: 20,
                                 ),
                                 title: Text(
                                   'Account',
@@ -384,32 +384,56 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
-                            child: ListTile(
-                              leading: Icon(
-                                FFIcons.kchecklist,
-                                color: FlutterFlowTheme.of(context).campusGrey,
-                                size: 24,
-                              ),
-                              title: Text(
-                                'Checklist',
-                                style: FlutterFlowTheme.of(context)
-                                    .title3
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      fontSize: 18,
+                            child: InkWell(
+                              onTap: () async {
+                                logFirebaseEvent(
+                                    'NEW_SETTINGS_ListTile_dcv0ybyv_ON_TAP');
+                                logFirebaseEvent('ListTile_Show-Snack-Bar');
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Currently unavailable',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                      ),
                                     ),
-                              ),
-                              trailing: Icon(
-                                Icons.arrow_forward_ios,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 16,
-                              ),
-                              tileColor: Color(0x00F5F5F5),
-                              dense: true,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18),
+                                    duration: Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                  ),
+                                );
+                              },
+                              child: ListTile(
+                                leading: Icon(
+                                  FFIcons.kchecklist,
+                                  color:
+                                      FlutterFlowTheme.of(context).campusGrey,
+                                  size: 24,
+                                ),
+                                title: Text(
+                                  'Checklist',
+                                  style: FlutterFlowTheme.of(context)
+                                      .title3
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: 18,
+                                      ),
+                                ),
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 16,
+                                ),
+                                tileColor: Color(0x00F5F5F5),
+                                dense: true,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
                               ),
                             ),
                           ),
@@ -484,32 +508,18 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                               onTap: () async {
                                 logFirebaseEvent(
                                     'NEW_SETTINGS_ListTile_upo1bc6t_ON_TAP');
-                                logFirebaseEvent('ListTile_Show-Snack-Bar');
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Currently unavailable',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                      ),
-                                    ),
-                                    duration: Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                  ),
-                                );
+                                logFirebaseEvent('ListTile_Navigate-To');
+                                context.pushNamed('notifications');
                               },
                               child: ListTile(
                                 leading: Icon(
-                                  Icons.bolt,
+                                  Icons.notifications_active,
                                   color:
                                       FlutterFlowTheme.of(context).campusGrey,
-                                  size: 24,
+                                  size: 26,
                                 ),
                                 title: Text(
-                                  'Loadshedding Updates',
+                                  'Notifications',
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
@@ -538,7 +548,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 40),
+                    padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 30),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
@@ -560,7 +570,8 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                 logFirebaseEvent(
                                     'NEW_SETTINGS_ListTile_nodnox8i_ON_TAP');
                                 logFirebaseEvent('ListTile_Launch-U-R-L');
-                                await launchURL('https://campusafrica.co.za');
+                                await launchURL(
+                                    'https://campusafrica.co.za/contact-us/');
                               },
                               child: ListTile(
                                 leading: FaIcon(
@@ -615,7 +626,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                 logFirebaseEvent('ListTile_Auth');
                                 GoRouter.of(context).prepareAuthEvent();
                                 await signOut();
-                                context.goNamedAuth('loooget', mounted);
+                                context.goNamedAuth('loginPage', mounted);
                               },
                               child: ListTile(
                                 leading: Icon(

@@ -25,9 +25,10 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
   String uploadedFileUrl = '';
   TextEditingController textController1;
   TextEditingController textController2;
-  TextEditingController textController3;
+  TextEditingController textFieldBioController;
   TextEditingController textController4;
   TextEditingController textController5;
+  TextEditingController textController6;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -36,12 +37,13 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'newProfile'});
     textController1 = TextEditingController(text: currentUserDisplayName);
     textController2 = TextEditingController(text: currentUserEmail);
-    textController3 = TextEditingController();
+    textFieldBioController = TextEditingController(text: FFAppState().myBio);
     textController4 = TextEditingController(
         text: functions
             .capitalia(valueOrDefault(currentUserDocument?.building, '')));
     textController5 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.room, ''));
+    textController6 = TextEditingController(text: currentUserUid);
   }
 
   @override
@@ -81,27 +83,46 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
             child: InkWell(
               onTap: () async {
                 logFirebaseEvent('NEW_PROFILE_PAGE_Text_xyr3lgop_ON_TAP');
-                logFirebaseEvent('Text_Backend-Call');
+                if ((uploadedFileUrl != null) && (uploadedFileUrl != '')) {
+                  logFirebaseEvent('Text_Backend-Call');
 
-                final usersUpdateData = createUsersRecordData(
-                  photoUrl: uploadedFileUrl,
-                );
-                await currentUserReference.update(usersUpdateData);
-                logFirebaseEvent('Text_Show-Snack-Bar');
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      'Image successfully uploaded',
-                      style: TextStyle(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
+                  final usersUpdateData = createUsersRecordData(
+                    photoUrl: uploadedFileUrl,
+                  );
+                  await currentUserReference.update(usersUpdateData);
+                  logFirebaseEvent('Text_Show-Snack-Bar');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'Image successfully uploaded',
+                        style: TextStyle(
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                        ),
                       ),
+                      duration: Duration(milliseconds: 4000),
+                      backgroundColor: FlutterFlowTheme.of(context).primaryText,
                     ),
-                    duration: Duration(milliseconds: 4000),
-                    backgroundColor: FlutterFlowTheme.of(context).primaryText,
-                  ),
-                );
-                logFirebaseEvent('Text_Navigate-To');
-                context.pushNamed('newProfile');
+                  );
+                  logFirebaseEvent('Text_Navigate-To');
+                  context.pushNamed('newProfile');
+                } else {
+                  logFirebaseEvent('Text_Update-Local-State');
+                  setState(
+                      () => FFAppState().myBio = textFieldBioController.text);
+                  logFirebaseEvent('Text_Show-Snack-Bar');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'Bio successfully updated.',
+                        style: TextStyle(
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                        ),
+                      ),
+                      duration: Duration(milliseconds: 4000),
+                      backgroundColor: FlutterFlowTheme.of(context).primaryText,
+                    ),
+                  );
+                }
               },
               child: Text(
                 'Save',
@@ -261,7 +282,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   fontSize: 16,
-                                  fontWeight: FontWeight.normal,
+                                  fontWeight: FontWeight.w600,
                                 ),
                           ),
                         ),
@@ -333,7 +354,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   fontSize: 16,
-                                  fontWeight: FontWeight.normal,
+                                  fontWeight: FontWeight.w600,
                                 ),
                           ),
                         ),
@@ -402,7 +423,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   fontSize: 16,
-                                  fontWeight: FontWeight.normal,
+                                  fontWeight: FontWeight.w600,
                                 ),
                           ),
                         ),
@@ -410,9 +431,9 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                       Expanded(
                         flex: 2,
                         child: TextFormField(
-                          controller: textController3,
+                          controller: textFieldBioController,
                           onChanged: (_) => EasyDebounce.debounce(
-                            'textController3',
+                            'textFieldBioController',
                             Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
@@ -445,7 +466,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                               .override(
                                 fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 16,
+                                fontSize: 14,
                               ),
                           maxLines: 3,
                         ),
@@ -472,7 +493,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   fontSize: 16,
-                                  fontWeight: FontWeight.normal,
+                                  fontWeight: FontWeight.w600,
                                 ),
                           ),
                         ),
@@ -526,7 +547,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 20, 40),
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 20, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -544,7 +565,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   fontSize: 16,
-                                  fontWeight: FontWeight.normal,
+                                  fontWeight: FontWeight.w600,
                                 ),
                           ),
                         ),
@@ -592,6 +613,75 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                   fontSize: 14,
                                 ),
                           ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 20, 40),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                          child: Text(
+                            'UID',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: TextFormField(
+                          controller: textController6,
+                          onChanged: (_) => EasyDebounce.debounce(
+                            'textController6',
+                            Duration(milliseconds: 2000),
+                            () => setState(() {}),
+                          ),
+                          readOnly: true,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x2E464749),
+                                width: 1,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x2E464749),
+                                width: 1,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontSize: 14,
+                              ),
                         ),
                       ),
                     ],

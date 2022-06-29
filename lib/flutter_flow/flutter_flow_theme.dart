@@ -46,6 +46,12 @@ abstract class FlutterFlowTheme {
   Color primaryBtnText;
   Color lineColor;
   Color backgroundComponents;
+  Color grayIcon;
+  Color gray200;
+  Color gray600;
+  Color black600;
+  Color tertiary400;
+  Color textColor;
 
   TextStyle get title1 => GoogleFonts.getFont(
         'Open Sans',
@@ -109,6 +115,12 @@ class LightModeTheme extends FlutterFlowTheme {
   Color primaryBtnText = Color(0xFFFFFFFF);
   Color lineColor = Color(0xFFE0E3E7);
   Color backgroundComponents = Color(0xFF1D2428);
+  Color grayIcon = Color(0xFF95A1AC);
+  Color gray200 = Color(0xFFDBE2E7);
+  Color gray600 = Color(0xFF262D34);
+  Color black600 = Color(0xFF090F13);
+  Color tertiary400 = Color(0xFF39D2C0);
+  Color textColor = Color(0xFF1E2429);
 }
 
 class DarkModeTheme extends FlutterFlowTheme {
@@ -125,10 +137,16 @@ class DarkModeTheme extends FlutterFlowTheme {
   Color mellow = Color(0xFF181818);
   Color campusMellow = Color(0xFF040404);
   Color zellow = Color(0xFFF0E020);
-  Color campusGrey = Color(0xFF464749);
+  Color campusGrey = Color(0xE1464749);
   Color primaryBtnText = Color(0xFFFFFFFF);
   Color lineColor = Color(0xFF22282F);
   Color backgroundComponents = Color(0xFF1D2428);
+  Color grayIcon = Color(0xFF95A1AC);
+  Color gray200 = Color(0xFFDBE2E7);
+  Color gray600 = Color(0xFF262D34);
+  Color black600 = Color(0xFF090F13);
+  Color tertiary400 = Color(0xFF39D2C0);
+  Color textColor = Color(0xFF1E2429);
 }
 
 extension TextStyleHelper on TextStyle {

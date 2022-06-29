@@ -29,7 +29,6 @@ class TestMoreInfoWidget extends StatefulWidget {
 
 class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
   List<String> choiceChipsValues;
-  bool switchListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -175,7 +174,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                       },
                       child: Badge(
                         badgeContent: Text(
-                          '0',
+                          '1',
                           style:
                               FlutterFlowTheme.of(context).bodyText1.override(
                                     fontFamily: 'Open Sans',
@@ -185,7 +184,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                         ),
                         showBadge: true,
                         shape: BadgeShape.circle,
-                        badgeColor: FlutterFlowTheme.of(context).primaryColor,
+                        badgeColor: FlutterFlowTheme.of(context).campusRed,
                         elevation: 4,
                         padding: EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
                         position: BadgePosition.topEnd(),
@@ -194,7 +193,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                         child: Icon(
                           FFIcons.kchatboxes,
                           color: FlutterFlowTheme.of(context).primaryText,
-                          size: 30,
+                          size: 28,
                         ),
                       ),
                     ),
@@ -242,53 +241,62 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'TEST_MORE_INFO_Image_t816w9ax_ON_TAP');
-                                      logFirebaseEvent('Image_Expand-Image');
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          child: FlutterFlowExpandedImageView(
-                                            image: CachedNetworkImage(
-                                              imageUrl: valueOrDefault<String>(
+                                  if ((widget.jobs.photoUrl != null) &&
+                                      (widget.jobs.photoUrl != ''))
+                                    InkWell(
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'TEST_MORE_INFO_Image_t816w9ax_ON_TAP');
+                                        logFirebaseEvent('Image_Expand-Image');
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: CachedNetworkImage(
+                                                imageUrl:
+                                                    valueOrDefault<String>(
+                                                  widget.jobs.photoUrl,
+                                                  'https://fmconline.org.uk/wp-content/uploads/2018/01/no-image.jpg',
+                                                ),
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: false,
+                                              tag: valueOrDefault<String>(
                                                 widget.jobs.photoUrl,
                                                 'https://fmconline.org.uk/wp-content/uploads/2018/01/no-image.jpg',
                                               ),
-                                              fit: BoxFit.contain,
+                                              useHeroAnimation: true,
                                             ),
-                                            allowRotation: false,
-                                            tag: valueOrDefault<String>(
-                                              widget.jobs.photoUrl,
-                                              'https://fmconline.org.uk/wp-content/uploads/2018/01/no-image.jpg',
-                                            ),
-                                            useHeroAnimation: true,
                                           ),
-                                        ),
-                                      );
-                                    },
-                                    child: Hero(
-                                      tag: valueOrDefault<String>(
-                                        widget.jobs.photoUrl,
-                                        'https://fmconline.org.uk/wp-content/uploads/2018/01/no-image.jpg',
-                                      ),
-                                      transitionOnUserGestures: true,
-                                      child: CachedNetworkImage(
-                                        imageUrl: valueOrDefault<String>(
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: valueOrDefault<String>(
                                           widget.jobs.photoUrl,
                                           'https://fmconline.org.uk/wp-content/uploads/2018/01/no-image.jpg',
                                         ),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height:
-                                            MediaQuery.of(context).size.height *
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(2),
+                                          child: CachedNetworkImage(
+                                            imageUrl: valueOrDefault<String>(
+                                              widget.jobs.photoUrl,
+                                              'https://fmconline.org.uk/wp-content/uploads/2018/01/no-image.jpg',
+                                            ),
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
                                                 0.3,
-                                        fit: BoxFit.cover,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 8, 0, 0),
@@ -357,16 +365,23 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                               ),
                                             ],
                                           ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    5, 0, 4, 0),
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 0.3,
+                                              decoration: BoxDecoration(
+                                                color: Color(0x81464749),
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
-                                  ),
-                                  Divider(
-                                    height: 8,
-                                    thickness: 2,
-                                    indent: 5,
-                                    endIndent: 5,
-                                    color: Color(0xFFC0C0C0),
                                   ),
                                   Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -441,49 +456,22 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                             ),
                                           ],
                                         ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5, 0, 5, 0),
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 0.3,
+                                            decoration: BoxDecoration(
+                                              color: Color(0x81464749),
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
-                                  ),
-                                  Divider(
-                                    height: 8,
-                                    thickness: 2,
-                                    indent: 5,
-                                    endIndent: 5,
-                                    color: Color(0xFFC0C0C0),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 10, 0, 0),
-                                    child: SwitchListTile(
-                                      value: switchListTileValue ??= true,
-                                      onChanged: (newValue) => setState(
-                                          () => switchListTileValue = newValue),
-                                      title: Text(
-                                        'Maintenance',
-                                        style: FlutterFlowTheme.of(context)
-                                            .title3
-                                            .override(
-                                              fontFamily: 'Open Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                      ),
-                                      tileColor: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      dense: false,
-                                      controlAffinity:
-                                          ListTileControlAffinity.trailing,
-                                    ),
-                                  ),
-                                  Divider(
-                                    height: 8,
-                                    thickness: 2,
-                                    indent: 5,
-                                    endIndent: 5,
-                                    color: Color(0xFFC0C0C0),
                                   ),
                                   Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -590,15 +578,22 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                             ),
                                           ],
                                         ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5, 0, 5, 0),
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 0.3,
+                                            decoration: BoxDecoration(
+                                              color: Color(0x81464749),
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
-                                  ),
-                                  Divider(
-                                    height: 8,
-                                    thickness: 2,
-                                    indent: 5,
-                                    endIndent: 5,
-                                    color: Color(0xFFC0C0C0),
                                   ),
                                   Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -704,15 +699,22 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                             ),
                                           ],
                                         ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5, 0, 5, 0),
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 0.3,
+                                            decoration: BoxDecoration(
+                                              color: Color(0x81464749),
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
-                                  ),
-                                  Divider(
-                                    height: 8,
-                                    thickness: 2,
-                                    indent: 5,
-                                    endIndent: 5,
-                                    color: Color(0xFFC0C0C0),
                                   ),
                                   Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -818,15 +820,22 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                             ),
                                           ],
                                         ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5, 0, 5, 0),
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 0.3,
+                                            decoration: BoxDecoration(
+                                              color: Color(0x81464749),
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
-                                  ),
-                                  Divider(
-                                    height: 8,
-                                    thickness: 2,
-                                    indent: 5,
-                                    endIndent: 5,
-                                    color: Color(0xFFC0C0C0),
                                   ),
                                   SingleChildScrollView(
                                     child: Column(
@@ -1086,12 +1095,26 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                                     ),
                                                                   ],
                                                                 ),
-                                                                Divider(
-                                                                  thickness: 1,
-                                                                  indent: 10,
-                                                                  endIndent: 10,
-                                                                  color: Color(
-                                                                      0x62464749),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          5,
+                                                                          0,
+                                                                          5,
+                                                                          0),
+                                                                  child:
+                                                                      Container(
+                                                                    width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width,
+                                                                    height: 0.2,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: Color(
+                                                                          0x81464749),
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ],
                                                             ),

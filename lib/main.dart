@@ -120,6 +120,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'homePage': HomePageWidget(),
       'viewPage': ViewPageWidget(),
       'MessagesPage': MessagesPageWidget(),
+      'notifications': NotificationsWidget(),
       'newSettings': NewSettingsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
@@ -147,14 +148,23 @@ class _NavBarPageState extends State<NavBarPage> {
             iconSize: 22,
           ),
           GButton(
-            icon: FontAwesomeIcons.edit,
+            icon: currentIndex == 1
+                ? FontAwesomeIcons.solidEdit
+                : FontAwesomeIcons.edit,
             text: '',
-            iconSize: 24,
+            iconSize: 22,
           ),
           GButton(
             icon: FFIcons.kchatboxes,
             text: '',
             iconSize: 26,
+          ),
+          GButton(
+            icon: currentIndex == 3
+                ? FontAwesomeIcons.solidBell
+                : FontAwesomeIcons.bell,
+            text: '',
+            iconSize: 22,
           ),
           GButton(
             icon: Icons.settings_outlined,
