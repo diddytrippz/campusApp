@@ -28,14 +28,6 @@ class _LanguageWidgetState extends State<LanguageWidget> {
               logFirebaseEvent('LANGUAGE_COMP_Container_gxinj2kq_ON_TAP');
               logFirebaseEvent('Container_Set-App-Language');
               setAppLanguage(context, 'af');
-              logFirebaseEvent('Container_Update-Local-State');
-              setState(() => FFAppState().defaultLanguage =
-                      FFLocalizations.of(context).getVariableText(
-                    enText: '',
-                    afText: '',
-                    zuText: '',
-                    stText: '',
-                  ));
             },
             child: Material(
               color: Colors.transparent,
@@ -99,14 +91,6 @@ class _LanguageWidgetState extends State<LanguageWidget> {
               logFirebaseEvent('LANGUAGE_COMP_Container_g6qmst4n_ON_TAP');
               logFirebaseEvent('Container_Set-App-Language');
               setAppLanguage(context, 'en');
-              logFirebaseEvent('Container_Update-Local-State');
-              setState(() => FFAppState().defaultLanguage =
-                      FFLocalizations.of(context).getVariableText(
-                    enText: '',
-                    afText: '',
-                    zuText: '',
-                    stText: '',
-                  ));
             },
             child: Material(
               color: Colors.transparent,
@@ -160,14 +144,6 @@ class _LanguageWidgetState extends State<LanguageWidget> {
               logFirebaseEvent('LANGUAGE_COMP_Container_8by4dcs8_ON_TAP');
               logFirebaseEvent('Container_Set-App-Language');
               setAppLanguage(context, 'zu');
-              logFirebaseEvent('Container_Update-Local-State');
-              setState(() => FFAppState().defaultLanguage =
-                      FFLocalizations.of(context).getVariableText(
-                    enText: '',
-                    afText: '',
-                    zuText: '',
-                    stText: '',
-                  ));
             },
             child: Material(
               color: Colors.transparent,

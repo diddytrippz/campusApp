@@ -45,8 +45,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
     textController5 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.room, ''));
     textController6 = TextEditingController(text: currentUserUid);
-    textController7 =
-        TextEditingController(text: FFLocalizations.of(context).languageCode);
+    textController7 = TextEditingController(text: 'ZA');
   }
 
   @override
@@ -714,7 +713,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 30, 50, 40),
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 10, 50, 40),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -725,7 +724,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'ie0kbdvu' /* Select
+                              'ie0kbdvu' /* Selected
 Language */
                               ,
                             ),
@@ -756,8 +755,7 @@ Language */
                             readOnly: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText:
-                                  FFLocalizations.of(context).languageCode,
+                              hintText: 'ZA',
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
@@ -779,7 +777,15 @@ Language */
                                 ),
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context).bodyText1,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
                             textAlign: TextAlign.end,
                           ),
                         ),
