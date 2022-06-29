@@ -221,11 +221,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : NewSettingsWidget(),
             ),
             FFRoute(
-              name: 'inspect',
-              path: 'inspect',
-              builder: (context, params) => InspectWidget(),
-            ),
-            FFRoute(
               name: 'sendNotifi',
               path: 'sendNotifi',
               builder: (context, params) => SendNotifiWidget(),

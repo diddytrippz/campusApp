@@ -21,5 +21,4 @@ export 'reviews/reviews_widget.dart' show ReviewsWidget;
 export 'test_more_info/test_more_info_widget.dart' show TestMoreInfoWidget;
 export 'new_profile/new_profile_widget.dart' show NewProfileWidget;
 export 'new_settings/new_settings_widget.dart' show NewSettingsWidget;
-export 'inspect/inspect_widget.dart' show InspectWidget;
 export 'send_notifi/send_notifi_widget.dart' show SendNotifiWidget;
