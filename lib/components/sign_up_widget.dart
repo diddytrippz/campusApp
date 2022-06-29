@@ -7,14 +7,14 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignUpWidget extends StatefulWidget {
-  const SignUpWidget({Key key}) : super(key: key);
+  const SignUpWidget({Key? key}) : super(key: key);
 
   @override
   _SignUpWidgetState createState() => _SignUpWidgetState();
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
-  TextEditingController emailAddressController;
+  TextEditingController? emailAddressController;
 
   @override
   void initState() {
@@ -160,7 +160,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   logFirebaseEvent(
                                       'SIGN_UP_COMP_ButtonLogin_ON_TAP');
                                   logFirebaseEvent('ButtonLogin_Auth');
-                                  if (emailAddressController.text.isEmpty) {
+                                  if (emailAddressController!.text.isEmpty) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -171,7 +171,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                     return;
                                   }
                                   await resetPassword(
-                                    email: emailAddressController.text,
+                                    email: emailAddressController!.text,
                                     context: context,
                                   );
                                 },

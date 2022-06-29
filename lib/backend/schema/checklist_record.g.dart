@@ -17,10 +17,10 @@ class _$ChecklistRecordSerializer
   final String wireName = 'ChecklistRecord';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, ChecklistRecord object,
+  Iterable<Object?> serialize(Serializers serializers, ChecklistRecord object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.description;
     if (value != null) {
       result
@@ -36,20 +36,20 @@ class _$ChecklistRecordSerializer
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
-    value = object.reference;
+    value = object.ref;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
   ChecklistRecord deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new ChecklistRecordBuilder();
 
@@ -57,23 +57,23 @@ class _$ChecklistRecordSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'description':
           result.description = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'options':
           result.options.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(String)]))
-              as BuiltList<Object>);
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'Document__Reference__Field':
-          result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+          result.ref = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -84,17 +84,16 @@ class _$ChecklistRecordSerializer
 
 class _$ChecklistRecord extends ChecklistRecord {
   @override
-  final String description;
+  final String? description;
   @override
-  final BuiltList<String> options;
+  final BuiltList<String>? options;
   @override
-  final DocumentReference<Object> reference;
+  final DocumentReference<Object?>? ref;
 
-  factory _$ChecklistRecord([void Function(ChecklistRecordBuilder) updates]) =>
+  factory _$ChecklistRecord([void Function(ChecklistRecordBuilder)? updates]) =>
       (new ChecklistRecordBuilder()..update(updates)).build();
 
-  _$ChecklistRecord._({this.description, this.options, this.reference})
-      : super._();
+  _$ChecklistRecord._({this.description, this.options, this.ref}) : super._();
 
   @override
   ChecklistRecord rebuild(void Function(ChecklistRecordBuilder) updates) =>
@@ -110,13 +109,13 @@ class _$ChecklistRecord extends ChecklistRecord {
     return other is ChecklistRecord &&
         description == other.description &&
         options == other.options &&
-        reference == other.reference;
+        ref == other.ref;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, description.hashCode), options.hashCode),
-        reference.hashCode));
+    return $jf(
+        $jc($jc($jc(0, description.hashCode), options.hashCode), ref.hashCode));
   }
 
   @override
@@ -124,28 +123,27 @@ class _$ChecklistRecord extends ChecklistRecord {
     return (newBuiltValueToStringHelper('ChecklistRecord')
           ..add('description', description)
           ..add('options', options)
-          ..add('reference', reference))
+          ..add('ref', ref))
         .toString();
   }
 }
 
 class ChecklistRecordBuilder
     implements Builder<ChecklistRecord, ChecklistRecordBuilder> {
-  _$ChecklistRecord _$v;
+  _$ChecklistRecord? _$v;
 
-  String _description;
-  String get description => _$this._description;
-  set description(String description) => _$this._description = description;
+  String? _description;
+  String? get description => _$this._description;
+  set description(String? description) => _$this._description = description;
 
-  ListBuilder<String> _options;
+  ListBuilder<String>? _options;
   ListBuilder<String> get options =>
       _$this._options ??= new ListBuilder<String>();
-  set options(ListBuilder<String> options) => _$this._options = options;
+  set options(ListBuilder<String>? options) => _$this._options = options;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  DocumentReference<Object?>? _ref;
+  DocumentReference<Object?>? get ref => _$this._ref;
+  set ref(DocumentReference<Object?>? ref) => _$this._ref = ref;
 
   ChecklistRecordBuilder() {
     ChecklistRecord._initializeBuilder(this);
@@ -156,7 +154,7 @@ class ChecklistRecordBuilder
     if ($v != null) {
       _description = $v.description;
       _options = $v.options?.toBuilder();
-      _reference = $v.reference;
+      _ref = $v.ref;
       _$v = null;
     }
     return this;
@@ -169,7 +167,7 @@ class ChecklistRecordBuilder
   }
 
   @override
-  void update(void Function(ChecklistRecordBuilder) updates) {
+  void update(void Function(ChecklistRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -179,11 +177,9 @@ class ChecklistRecordBuilder
     try {
       _$result = _$v ??
           new _$ChecklistRecord._(
-              description: description,
-              options: _options?.build(),
-              reference: reference);
+              description: description, options: _options?.build(), ref: ref);
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'options';
         _options?.build();

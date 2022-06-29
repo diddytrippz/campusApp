@@ -11,15 +11,13 @@ abstract class ChecklistRecord
   static Serializer<ChecklistRecord> get serializer =>
       _$checklistRecordSerializer;
 
-  @nullable
-  String get description;
+  String? get description;
 
-  @nullable
-  BuiltList<String> get options;
+  BuiltList<String>? get options;
 
-  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference get reference;
+  DocumentReference? get ref;
+  DocumentReference get reference => ref!;
 
   static void _initializeBuilder(ChecklistRecordBuilder builder) => builder
     ..description = ''
@@ -30,11 +28,11 @@ abstract class ChecklistRecord
 
   static Stream<ChecklistRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   static Future<ChecklistRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
   ChecklistRecord._();
   factory ChecklistRecord([void Function(ChecklistRecordBuilder) updates]) =
@@ -43,11 +41,11 @@ abstract class ChecklistRecord
   static ChecklistRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference});
+          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
 Map<String, dynamic> createChecklistRecordData({
-  String description,
+  String? description,
 }) =>
     serializers.toFirestore(
         ChecklistRecord.serializer,

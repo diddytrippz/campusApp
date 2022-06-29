@@ -13,7 +13,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OthersWidget extends StatefulWidget {
-  const OthersWidget({Key key}) : super(key: key);
+  const OthersWidget({Key? key}) : super(key: key);
 
   @override
   _OthersWidgetState createState() => _OthersWidgetState();
@@ -21,8 +21,8 @@ class OthersWidget extends StatefulWidget {
 
 class _OthersWidgetState extends State<OthersWidget> {
   String uploadedFileUrl = '';
-  TextEditingController textController1;
-  TextEditingController reasonController;
+  TextEditingController? textController1;
+  TextEditingController? reasonController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -123,6 +123,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                                             await uploadData(
                                                 m.storagePath, m.bytes))))
                                     .where((u) => u != null)
+                                    .map((u) => u!)
                                     .toList();
                                 ScaffoldMessenger.of(context)
                                     .hideCurrentSnackBar();
@@ -307,7 +308,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                           logFirebaseEvent('OTHERS_PAGE_SUBMIT_BTN_ON_TAP');
                           logFirebaseEvent('Button_Validate-Form');
                           if (formKey.currentState == null ||
-                              !formKey.currentState.validate()) {
+                              !formKey.currentState!.validate()) {
                             return;
                           }
 
@@ -315,7 +316,7 @@ class _OthersWidgetState extends State<OthersWidget> {
 
                           final maintenanceCreateData =
                               createMaintenanceRecordData(
-                            issue: reasonController.text,
+                            issue: reasonController!.text,
                             status: 'Submitted',
                             email: currentUserEmail,
                             createdTime: getCurrentTimestamp,

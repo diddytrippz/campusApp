@@ -21,9 +21,9 @@ class FFAppState {
     _myBio = prefs.getString('ff_myBio') ?? _myBio;
   }
 
-  SharedPreferences prefs;
+  late SharedPreferences prefs;
 
-  String _profilePic;
+  String _profilePic = '';
   String get profilePic => _profilePic;
   set profilePic(String _value) {
     _profilePic = _value;
@@ -48,7 +48,7 @@ class FFAppState {
     prefs.setInt('ff_numberOfDocs', _value);
   }
 
-  String _caLogo;
+  String _caLogo = '';
   String get caLogo => _caLogo;
   set caLogo(String _value) {
     _caLogo = _value;
@@ -63,7 +63,7 @@ class FFAppState {
   }
 }
 
-LatLng _latLngFromString(String val) {
+LatLng? _latLngFromString(String? val) {
   if (val == null) {
     return null;
   }

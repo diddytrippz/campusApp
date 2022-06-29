@@ -15,14 +15,16 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UsersRecord.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [
-            const FullType(DocumentReference, const [const FullType(Object)])
+            const FullType(
+                DocumentReference, const [const FullType.nullable(Object)])
           ]),
-          () => new ListBuilder<DocumentReference<Object>>())
+          () => new ListBuilder<DocumentReference<Object?>>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
-            const FullType(DocumentReference, const [const FullType(Object)])
+            const FullType(
+                DocumentReference, const [const FullType.nullable(Object)])
           ]),
-          () => new ListBuilder<DocumentReference<Object>>())
+          () => new ListBuilder<DocumentReference<Object?>>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>()))

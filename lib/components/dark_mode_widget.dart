@@ -6,7 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DarkModeWidget extends StatefulWidget {
-  const DarkModeWidget({Key key}) : super(key: key);
+  const DarkModeWidget({Key? key}) : super(key: key);
 
   @override
   _DarkModeWidgetState createState() => _DarkModeWidgetState();

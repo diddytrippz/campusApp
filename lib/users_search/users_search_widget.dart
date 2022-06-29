@@ -11,7 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:text_search/text_search.dart';
 
 class UsersSearchWidget extends StatefulWidget {
-  const UsersSearchWidget({Key key}) : super(key: key);
+  const UsersSearchWidget({Key? key}) : super(key: key);
 
   @override
   _UsersSearchWidgetState createState() => _UsersSearchWidgetState();
@@ -19,7 +19,7 @@ class UsersSearchWidget extends StatefulWidget {
 
 class _UsersSearchWidgetState extends State<UsersSearchWidget> {
   List<UsersRecord> simpleSearchResults = [];
-  TextEditingController textController;
+  TextEditingController? textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -129,13 +129,13 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                   records
                                       .map(
                                         (record) => TextSearchItem(record, [
-                                          record.displayName,
-                                          record.building
+                                          record.displayName!,
+                                          record.building!
                                         ]),
                                       )
                                       .toList(),
                                 )
-                                    .search(textController.text)
+                                    .search(textController!.text)
                                     .map((r) => r.object)
                                     .take(10)
                                     .toList(),
@@ -234,7 +234,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'USERS_SEARCH_PAGE_userEntry_ON_TAP');
-                                  if ((listSearrchItem.room) == 'Management') {
+                                  if ((listSearrchItem!.room) == 'Management') {
                                     logFirebaseEvent(
                                         'userEntry_Show-Snack-Bar');
                                     ScaffoldMessenger.of(context).showSnackBar(
@@ -300,7 +300,8 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                                   image:
                                                       CachedNetworkImageProvider(
                                                     valueOrDefault<String>(
-                                                      listSearrchItem.photoUrl,
+                                                      listSearrchItem!
+                                                          .photoUrl!,
                                                       'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                                     ),
                                                   ),
@@ -327,7 +328,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  listSearrchItem.displayName,
+                                                  listSearrchItem!.displayName!,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1
@@ -343,7 +344,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  listSearrchItem.building,
+                                                  listSearrchItem!.building!,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1

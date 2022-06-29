@@ -17,18 +17,18 @@ import 'package:page_transition/page_transition.dart';
 
 class TestMoreInfoWidget extends StatefulWidget {
   const TestMoreInfoWidget({
-    Key key,
+    Key? key,
     this.jobs,
   }) : super(key: key);
 
-  final MaintenanceRecord jobs;
+  final MaintenanceRecord? jobs;
 
   @override
   _TestMoreInfoWidgetState createState() => _TestMoreInfoWidgetState();
 }
 
 class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
-  List<String> choiceChipsValues;
+  List<String>? choiceChipsValues;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -64,7 +64,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
         title: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
           child: Text(
-            widget.jobs.displayName,
+            widget.jobs!.displayName!,
             style: FlutterFlowTheme.of(context).title2.override(
                   fontFamily: 'Open Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
@@ -78,7 +78,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
             future: queryUsersRecordOnce(
               queryBuilder: (usersRecord) => usersRecord.where('email',
                   isEqualTo:
-                      widget.jobs.email != '' ? widget.jobs.email : null),
+                      widget.jobs!.email != '' ? widget.jobs!.email : null),
               singleRecord: true,
             ),
             builder: (context, snapshot) {
@@ -95,14 +95,12 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                   ),
                 );
               }
-              List<UsersRecord> rowUsersRecordList = snapshot.data;
+              List<UsersRecord> rowUsersRecordList = snapshot.data!;
               // Return an empty Container when the document does not exist.
-              if (snapshot.data.isEmpty) {
+              if (snapshot.data!.isEmpty) {
                 return Container();
               }
-              final rowUsersRecord = rowUsersRecordList.isNotEmpty
-                  ? rowUsersRecordList.first
-                  : null;
+              final rowUsersRecord = rowUsersRecordList.first;
               return Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -112,8 +110,8 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                       onTap: () async {
                         logFirebaseEvent(
                             'TEST_MORE_INFO_PAGE_Icon_l2th48my_ON_TAP');
-                        if ((widget.jobs.status) == 'Completed') {
-                          if ((widget.jobs.email) == (currentUserEmail)) {
+                        if ((widget.jobs!.status) == 'Completed') {
+                          if ((widget.jobs!.email) == (currentUserEmail)) {
                             logFirebaseEvent('Icon_Navigate-To');
                             context.pushNamed(
                               'reviews',
@@ -241,8 +239,8 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  if ((widget.jobs.photoUrl != null) &&
-                                      (widget.jobs.photoUrl != ''))
+                                  if ((widget.jobs!.photoUrl != null) &&
+                                      (widget.jobs!.photoUrl != ''))
                                     InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
@@ -256,14 +254,14 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                               image: CachedNetworkImage(
                                                 imageUrl:
                                                     valueOrDefault<String>(
-                                                  widget.jobs.photoUrl,
+                                                  widget.jobs!.photoUrl!,
                                                   'https://fmconline.org.uk/wp-content/uploads/2018/01/no-image.jpg',
                                                 ),
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: false,
                                               tag: valueOrDefault<String>(
-                                                widget.jobs.photoUrl,
+                                                widget.jobs!.photoUrl!,
                                                 'https://fmconline.org.uk/wp-content/uploads/2018/01/no-image.jpg',
                                               ),
                                               useHeroAnimation: true,
@@ -273,7 +271,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                       },
                                       child: Hero(
                                         tag: valueOrDefault<String>(
-                                          widget.jobs.photoUrl,
+                                          widget.jobs!.photoUrl!,
                                           'https://fmconline.org.uk/wp-content/uploads/2018/01/no-image.jpg',
                                         ),
                                         transitionOnUserGestures: true,
@@ -282,7 +280,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                               BorderRadius.circular(2),
                                           child: CachedNetworkImage(
                                             imageUrl: valueOrDefault<String>(
-                                              widget.jobs.photoUrl,
+                                              widget.jobs!.photoUrl!,
                                               'https://fmconline.org.uk/wp-content/uploads/2018/01/no-image.jpg',
                                             ),
                                             width: MediaQuery.of(context)
@@ -325,7 +323,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        widget.jobs.issue,
+                                                        widget.jobs!.issue!,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -342,12 +340,12 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                                           .bold,
                                                                 ),
                                                       ),
-                                                      if ((widget.jobs.notes !=
+                                                      if ((widget.jobs!.notes !=
                                                               null) &&
-                                                          (widget.jobs.notes !=
+                                                          (widget.jobs!.notes !=
                                                               ''))
                                                         Text(
-                                                          widget.jobs.notes,
+                                                          widget.jobs!.notes!,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1
@@ -407,8 +405,8 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      functions.capitalia(
-                                                          widget.jobs.building),
+                                                      functions.capitalia(widget
+                                                          .jobs!.building),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -426,7 +424,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                               ),
                                                     ),
                                                     Text(
-                                                      'ROOM ${widget.jobs.room}',
+                                                      'ROOM ${widget.jobs!.room}',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -542,8 +540,8 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                                         0,
                                                                         0),
                                                             child: Text(
-                                                              widget.jobs
-                                                                  .category,
+                                                              widget.jobs!
+                                                                  .category!,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyText1
@@ -663,8 +661,8 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                                         0,
                                                                         0),
                                                             child: Text(
-                                                              widget
-                                                                  .jobs.status,
+                                                              widget.jobs!
+                                                                  .status!,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyText1
@@ -784,8 +782,8 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                                         0,
                                                                         0),
                                                             child: Text(
-                                                              widget.jobs
-                                                                  .assigned,
+                                                              widget.jobs!
+                                                                  .assigned!,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyText1
@@ -903,7 +901,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                               .fromSTEB(
                                                                   12, 10, 0, 0),
                                                       child: Text(
-                                                        '${dateTimeFormat('MMMMEEEEd', widget.jobs.createdTime)} at ${dateTimeFormat('jms', widget.jobs.createdTime)}',
+                                                        '${dateTimeFormat('MMMMEEEEd', widget.jobs!.createdTime)} at ${dateTimeFormat('jms', widget.jobs!.createdTime)}',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -937,7 +935,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                         direction:
                                                             Axis.horizontal,
                                                         rating: widget
-                                                            .jobs.rating
+                                                            .jobs!.rating!
                                                             .toDouble(),
                                                         unratedColor:
                                                             FlutterFlowTheme.of(

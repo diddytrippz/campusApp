@@ -14,7 +14,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppliancesWidget extends StatefulWidget {
-  const AppliancesWidget({Key key}) : super(key: key);
+  const AppliancesWidget({Key? key}) : super(key: key);
 
   @override
   _AppliancesWidgetState createState() => _AppliancesWidgetState();
@@ -22,9 +22,9 @@ class AppliancesWidget extends StatefulWidget {
 
 class _AppliancesWidgetState extends State<AppliancesWidget> {
   String uploadedFileUrl = '';
-  TextEditingController textController1;
-  String issueValue;
-  TextEditingController reasonController;
+  TextEditingController? textController1;
+  String? issueValue;
+  TextEditingController? reasonController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -125,6 +125,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                             await uploadData(
                                                 m.storagePath, m.bytes))))
                                     .where((u) => u != null)
+                                    .map((u) => u!)
                                     .toList();
                                 ScaffoldMessenger.of(context)
                                     .hideCurrentSnackBar();
@@ -364,7 +365,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                           logFirebaseEvent('APPLIANCES_PAGE_SUBMIT_BTN_ON_TAP');
                           logFirebaseEvent('Button_Validate-Form');
                           if (formKey.currentState == null ||
-                              !formKey.currentState.validate()) {
+                              !formKey.currentState!.validate()) {
                             return;
                           }
 
@@ -398,7 +399,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             room: valueOrDefault(currentUserDocument?.room, ''),
                             building: valueOrDefault(
                                 currentUserDocument?.building, ''),
-                            notes: reasonController.text,
+                            notes: reasonController!.text,
                             rating: 0,
                             uid: currentUserUid,
                             category: 'Appliances',

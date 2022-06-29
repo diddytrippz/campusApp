@@ -14,7 +14,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PlumbingWidget extends StatefulWidget {
-  const PlumbingWidget({Key key}) : super(key: key);
+  const PlumbingWidget({Key? key}) : super(key: key);
 
   @override
   _PlumbingWidgetState createState() => _PlumbingWidgetState();
@@ -22,9 +22,9 @@ class PlumbingWidget extends StatefulWidget {
 
 class _PlumbingWidgetState extends State<PlumbingWidget> {
   String uploadedFileUrl = '';
-  TextEditingController textController1;
-  String issueValue;
-  TextEditingController reasonController;
+  TextEditingController? textController1;
+  String? issueValue;
+  TextEditingController? reasonController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -125,6 +125,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                             await uploadData(
                                                 m.storagePath, m.bytes))))
                                     .where((u) => u != null)
+                                    .map((u) => u!)
                                     .toList();
                                 ScaffoldMessenger.of(context)
                                     .hideCurrentSnackBar();
@@ -371,7 +372,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                           logFirebaseEvent('PLUMBING_PAGE_SUBMIT_BTN_ON_TAP');
                           logFirebaseEvent('Button_Validate-Form');
                           if (formKey.currentState == null ||
-                              !formKey.currentState.validate()) {
+                              !formKey.currentState!.validate()) {
                             return;
                           }
 
@@ -406,7 +407,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                             room: valueOrDefault(currentUserDocument?.room, ''),
                             building: valueOrDefault(
                                 currentUserDocument?.building, ''),
-                            notes: reasonController.text,
+                            notes: reasonController!.text,
                             rating: 0,
                             uid: currentUserUid,
                             category: 'Plumbing',

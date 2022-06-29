@@ -20,7 +20,7 @@ Future<String> generateCurrentPageLink(BuildContext context) async {
 }
 
 class DynamicLinksHandler extends StatefulWidget {
-  const DynamicLinksHandler({Key key, this.child}) : super(key: key);
+  const DynamicLinksHandler({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 
@@ -29,13 +29,13 @@ class DynamicLinksHandler extends StatefulWidget {
 }
 
 class _DynamicLinksHandlerState extends State<DynamicLinksHandler> {
-  StreamSubscription linkSubscription;
+  StreamSubscription? linkSubscription;
 
   static Set<String> kInitialLinks = {};
 
   Future handleOpenedPushNotification() async {
     final linkData = await FirebaseDynamicLinks.instance.getInitialLink();
-    final link = linkData?.link?.toString();
+    final link = linkData?.link.toString();
     if (linkData != null && link != null && !kInitialLinks.contains(link)) {
       kInitialLinks.add(link);
       _handleDynamicLink(linkData);

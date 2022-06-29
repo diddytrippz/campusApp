@@ -11,7 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
 class NewSettingsWidget extends StatefulWidget {
-  const NewSettingsWidget({Key key}) : super(key: key);
+  const NewSettingsWidget({Key? key}) : super(key: key);
 
   @override
   _NewSettingsWidgetState createState() => _NewSettingsWidgetState();

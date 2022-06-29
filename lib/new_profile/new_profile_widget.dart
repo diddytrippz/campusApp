@@ -15,7 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
 class NewProfileWidget extends StatefulWidget {
-  const NewProfileWidget({Key key}) : super(key: key);
+  const NewProfileWidget({Key? key}) : super(key: key);
 
   @override
   _NewProfileWidgetState createState() => _NewProfileWidgetState();
@@ -23,12 +23,12 @@ class NewProfileWidget extends StatefulWidget {
 
 class _NewProfileWidgetState extends State<NewProfileWidget> {
   String uploadedFileUrl = '';
-  TextEditingController textController1;
-  TextEditingController textController2;
-  TextEditingController textFieldBioController;
-  TextEditingController textController4;
-  TextEditingController textController5;
-  TextEditingController textController6;
+  TextEditingController? textController1;
+  TextEditingController? textController2;
+  TextEditingController? textFieldBioController;
+  TextEditingController? textController4;
+  TextEditingController? textController5;
+  TextEditingController? textController6;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -89,7 +89,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                   final usersUpdateData = createUsersRecordData(
                     photoUrl: uploadedFileUrl,
                   );
-                  await currentUserReference.update(usersUpdateData);
+                  await currentUserReference!.update(usersUpdateData);
                   logFirebaseEvent('Text_Show-Snack-Bar');
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -108,7 +108,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                 } else {
                   logFirebaseEvent('Text_Update-Local-State');
                   setState(
-                      () => FFAppState().myBio = textFieldBioController.text);
+                      () => FFAppState().myBio = textFieldBioController!.text);
                   logFirebaseEvent('Text_Show-Snack-Bar');
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -234,6 +234,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                 selectedMedia.map((m) async =>
                                     await uploadData(m.storagePath, m.bytes))))
                             .where((u) => u != null)
+                            .map((u) => u!)
                             .toList();
                         ScaffoldMessenger.of(context).hideCurrentSnackBar();
                         if (downloadUrls != null &&

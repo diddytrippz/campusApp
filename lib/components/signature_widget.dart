@@ -7,14 +7,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:signature/signature.dart';
 
 class SignatureWidget extends StatefulWidget {
-  const SignatureWidget({Key key}) : super(key: key);
+  const SignatureWidget({Key? key}) : super(key: key);
 
   @override
   _SignatureWidgetState createState() => _SignatureWidgetState();
 }
 
 class _SignatureWidgetState extends State<SignatureWidget> {
-  SignatureController signatureController;
+  late SignatureController signatureController;
 
   @override
   void initState() {

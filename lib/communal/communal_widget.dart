@@ -13,7 +13,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CommunalWidget extends StatefulWidget {
-  const CommunalWidget({Key key}) : super(key: key);
+  const CommunalWidget({Key? key}) : super(key: key);
 
   @override
   _CommunalWidgetState createState() => _CommunalWidgetState();
@@ -21,9 +21,9 @@ class CommunalWidget extends StatefulWidget {
 
 class _CommunalWidgetState extends State<CommunalWidget> {
   String uploadedFileUrl = '';
-  TextEditingController textController1;
-  TextEditingController reasonController;
-  TextEditingController placeController;
+  TextEditingController? textController1;
+  TextEditingController? reasonController;
+  TextEditingController? placeController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -125,6 +125,7 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                                             await uploadData(
                                                 m.storagePath, m.bytes))))
                                     .where((u) => u != null)
+                                    .map((u) => u!)
                                     .toList();
                                 ScaffoldMessenger.of(context)
                                     .hideCurrentSnackBar();
@@ -372,7 +373,7 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                           logFirebaseEvent('COMMUNAL_PAGE_SUBMIT_BTN_ON_TAP');
                           logFirebaseEvent('Button_Validate-Form');
                           if (formKey.currentState == null ||
-                              !formKey.currentState.validate()) {
+                              !formKey.currentState!.validate()) {
                             return;
                           }
 
@@ -380,15 +381,15 @@ class _CommunalWidgetState extends State<CommunalWidget> {
 
                           final maintenanceCreateData =
                               createMaintenanceRecordData(
-                            issue: reasonController.text,
+                            issue: reasonController!.text,
                             status: 'Submitted',
                             email: currentUserEmail,
                             createdTime: getCurrentTimestamp,
                             displayName: currentUserDisplayName,
-                            room: placeController.text,
+                            room: placeController!.text,
                             building: valueOrDefault(
                                 currentUserDocument?.building, ''),
-                            notes: reasonController.text,
+                            notes: reasonController!.text,
                             rating: 0,
                             uid: currentUserUid,
                             category: 'Communal',

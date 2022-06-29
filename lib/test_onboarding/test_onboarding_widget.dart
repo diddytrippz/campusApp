@@ -7,14 +7,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class TestOnboardingWidget extends StatefulWidget {
-  const TestOnboardingWidget({Key key}) : super(key: key);
+  const TestOnboardingWidget({Key? key}) : super(key: key);
 
   @override
   _TestOnboardingWidgetState createState() => _TestOnboardingWidgetState();
 }
 
 class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
-  PageController pageViewController;
+  PageController? pageViewController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -133,7 +133,7 @@ class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
                             count: 2,
                             axisDirection: Axis.horizontal,
                             onDotClicked: (i) {
-                              pageViewController.animateToPage(
+                              pageViewController!.animateToPage(
                                 i,
                                 duration: Duration(milliseconds: 500),
                                 curve: Curves.ease,

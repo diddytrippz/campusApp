@@ -7,7 +7,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RulesBookWidget extends StatefulWidget {
-  const RulesBookWidget({Key key}) : super(key: key);
+  const RulesBookWidget({Key? key}) : super(key: key);
 
   @override
   _RulesBookWidgetState createState() => _RulesBookWidgetState();

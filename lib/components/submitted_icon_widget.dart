@@ -7,7 +7,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SubmittedIconWidget extends StatefulWidget {
-  const SubmittedIconWidget({Key key}) : super(key: key);
+  const SubmittedIconWidget({Key? key}) : super(key: key);
 
   @override
   _SubmittedIconWidgetState createState() => _SubmittedIconWidgetState();

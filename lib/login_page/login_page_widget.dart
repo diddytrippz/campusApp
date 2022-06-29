@@ -8,17 +8,17 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPageWidget extends StatefulWidget {
-  const LoginPageWidget({Key key}) : super(key: key);
+  const LoginPageWidget({Key? key}) : super(key: key);
 
   @override
   _LoginPageWidgetState createState() => _LoginPageWidgetState();
 }
 
 class _LoginPageWidgetState extends State<LoginPageWidget> {
-  TextEditingController textFieldEmailController1;
-  TextEditingController textFieldPassController;
-  bool textFieldPassVisibility;
-  TextEditingController textFieldEmailController2;
+  TextEditingController? textFieldEmailController1;
+  TextEditingController? textFieldPassController;
+  late bool textFieldPassVisibility;
+  TextEditingController? textFieldEmailController2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -343,9 +343,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                     final user =
                                                         await signInWithEmail(
                                                       context,
-                                                      textFieldEmailController1
+                                                      textFieldEmailController1!
                                                           .text,
-                                                      textFieldPassController
+                                                      textFieldPassController!
                                                           .text,
                                                     );
                                                     if (user == null) {
@@ -386,7 +386,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                         'LOGIN_PAGE_PAGE_Text_ptt7hotr_ON_TAP');
                                                     logFirebaseEvent(
                                                         'Text_Auth');
-                                                    if (textFieldEmailController1
+                                                    if (textFieldEmailController1!
                                                         .text.isEmpty) {
                                                       ScaffoldMessenger.of(
                                                               context)
@@ -401,7 +401,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                     }
                                                     await resetPassword(
                                                       email:
-                                                          textFieldEmailController1
+                                                          textFieldEmailController1!
                                                               .text,
                                                       context: context,
                                                     );
@@ -502,7 +502,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                               logFirebaseEvent(
                                                   'LOGIN_CREATE_ACCOUNT_BTN_ON_TAP');
                                               logFirebaseEvent('Button_Auth');
-                                              if (textFieldEmailController1
+                                              if (textFieldEmailController1!
                                                   .text.isEmpty) {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
@@ -515,8 +515,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 return;
                                               }
                                               await resetPassword(
-                                                email: textFieldEmailController1
-                                                    .text,
+                                                email:
+                                                    textFieldEmailController1!
+                                                        .text,
                                                 context: context,
                                               );
                                             },

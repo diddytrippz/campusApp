@@ -14,7 +14,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InspectWidget extends StatefulWidget {
-  const InspectWidget({Key key}) : super(key: key);
+  const InspectWidget({Key? key}) : super(key: key);
 
   @override
   _InspectWidgetState createState() => _InspectWidgetState();
@@ -22,11 +22,11 @@ class InspectWidget extends StatefulWidget {
 
 class _InspectWidgetState extends State<InspectWidget> {
   String uploadedFileUrl = '';
-  String choiceChipsValue;
-  TextEditingController commentTextController;
-  TextEditingController textController1;
-  TextEditingController textController2;
-  TextEditingController textController3;
+  String? choiceChipsValue;
+  TextEditingController? commentTextController;
+  TextEditingController? textController1;
+  TextEditingController? textController2;
+  TextEditingController? textController3;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -83,7 +83,7 @@ class _InspectWidgetState extends State<InspectWidget> {
           logFirebaseEvent('INSPECT_FloatingActionButton_amfv05ov_ON');
           logFirebaseEvent('FloatingActionButton_Validate-Form');
           if (formKey.currentState == null ||
-              !formKey.currentState.validate()) {
+              !formKey.currentState!.validate()) {
             return;
           }
 
@@ -372,7 +372,7 @@ class _InspectWidgetState extends State<InspectWidget> {
                           );
                         }
                         List<ChecklistRecord> columnChecklistRecordList =
-                            snapshot.data;
+                            snapshot.data!;
                         return SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -392,7 +392,7 @@ class _InspectWidgetState extends State<InspectWidget> {
                                     initialExpanded: true,
                                     child: ExpandablePanel(
                                       header: Text(
-                                        columnChecklistRecord.description,
+                                        columnChecklistRecord!.description!,
                                         style: FlutterFlowTheme.of(context)
                                             .title1
                                             .override(
@@ -427,15 +427,16 @@ class _InspectWidgetState extends State<InspectWidget> {
                                               initiallySelected: [
                                                 choiceChipsValue
                                               ],
-                                              options: (columnChecklistRecord
-                                                          .options
-                                                          .toList() ??
+                                              options: (columnChecklistRecord!
+                                                          .options!
+                                                          .toList()! ??
                                                       [])
                                                   .map((label) =>
                                                       ChipData(label))
                                                   .toList(),
                                               onChanged: (val) => setState(() =>
-                                                  choiceChipsValue = val.first),
+                                                  choiceChipsValue =
+                                                      val?.first),
                                               selectedChipStyle: ChipStyle(
                                                 backgroundColor:
                                                     Color(0xFF040404),
@@ -514,15 +515,16 @@ class _InspectWidgetState extends State<InspectWidget> {
                                                             showLoading: true,
                                                           );
                                                           final downloadUrls =
-                                                              (await Future.wait(selectedMedia.map(
-                                                                      (m) async =>
-                                                                          await uploadData(
-                                                                              m
-                                                                                  .storagePath,
-                                                                              m
-                                                                                  .bytes))))
+                                                              (await Future.wait(selectedMedia
+                                                                      .map((m) async => await uploadData(
+                                                                          m
+                                                                              .storagePath,
+                                                                          m
+                                                                              .bytes))))
                                                                   .where((u) =>
                                                                       u != null)
+                                                                  .map(
+                                                                      (u) => u!)
                                                                   .toList();
                                                           ScaffoldMessenger.of(
                                                                   context)

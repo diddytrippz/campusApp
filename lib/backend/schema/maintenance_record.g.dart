@@ -17,10 +17,10 @@ class _$MaintenanceRecordSerializer
   final String wireName = 'MaintenanceRecord';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, MaintenanceRecord object,
+  Iterable<Object?> serialize(Serializers serializers, MaintenanceRecord object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.issue;
     if (value != null) {
       result
@@ -138,22 +138,22 @@ class _$MaintenanceRecordSerializer
         ..add('userRec')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
-    value = object.reference;
+    value = object.ref;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
   MaintenanceRecord deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new MaintenanceRecordBuilder();
 
@@ -161,83 +161,83 @@ class _$MaintenanceRecordSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'issue':
           result.issue = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'status':
           result.status = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'email':
           result.email = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'photo_url':
           result.photoUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'uid':
           result.uid = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'created_time':
           result.createdTime = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'phone_number':
           result.phoneNumber = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'display_name':
           result.displayName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'room':
           result.room = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'building':
           result.building = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'notes':
           result.notes = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'rating':
           result.rating = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'isDone':
           result.isDone = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'category':
           result.category = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'assigned':
           result.assigned = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'updateTime':
           result.updateTime = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'userRec':
           result.userRec = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
         case 'Document__Reference__Field':
-          result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+          result.ref = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -248,44 +248,44 @@ class _$MaintenanceRecordSerializer
 
 class _$MaintenanceRecord extends MaintenanceRecord {
   @override
-  final String issue;
+  final String? issue;
   @override
-  final String status;
+  final String? status;
   @override
-  final String email;
+  final String? email;
   @override
-  final String photoUrl;
+  final String? photoUrl;
   @override
-  final String uid;
+  final String? uid;
   @override
-  final DateTime createdTime;
+  final DateTime? createdTime;
   @override
-  final String phoneNumber;
+  final String? phoneNumber;
   @override
-  final String displayName;
+  final String? displayName;
   @override
-  final String room;
+  final String? room;
   @override
-  final String building;
+  final String? building;
   @override
-  final String notes;
+  final String? notes;
   @override
-  final int rating;
+  final int? rating;
   @override
-  final bool isDone;
+  final bool? isDone;
   @override
-  final String category;
+  final String? category;
   @override
-  final String assigned;
+  final String? assigned;
   @override
-  final DateTime updateTime;
+  final DateTime? updateTime;
   @override
-  final DocumentReference<Object> userRec;
+  final DocumentReference<Object?>? userRec;
   @override
-  final DocumentReference<Object> reference;
+  final DocumentReference<Object?>? ref;
 
   factory _$MaintenanceRecord(
-          [void Function(MaintenanceRecordBuilder) updates]) =>
+          [void Function(MaintenanceRecordBuilder)? updates]) =>
       (new MaintenanceRecordBuilder()..update(updates)).build();
 
   _$MaintenanceRecord._(
@@ -306,7 +306,7 @@ class _$MaintenanceRecord extends MaintenanceRecord {
       this.assigned,
       this.updateTime,
       this.userRec,
-      this.reference})
+      this.ref})
       : super._();
 
   @override
@@ -338,7 +338,7 @@ class _$MaintenanceRecord extends MaintenanceRecord {
         assigned == other.assigned &&
         updateTime == other.updateTime &&
         userRec == other.userRec &&
-        reference == other.reference;
+        ref == other.ref;
   }
 
   @override
@@ -383,7 +383,7 @@ class _$MaintenanceRecord extends MaintenanceRecord {
                     assigned.hashCode),
                 updateTime.hashCode),
             userRec.hashCode),
-        reference.hashCode));
+        ref.hashCode));
   }
 
   @override
@@ -406,87 +406,86 @@ class _$MaintenanceRecord extends MaintenanceRecord {
           ..add('assigned', assigned)
           ..add('updateTime', updateTime)
           ..add('userRec', userRec)
-          ..add('reference', reference))
+          ..add('ref', ref))
         .toString();
   }
 }
 
 class MaintenanceRecordBuilder
     implements Builder<MaintenanceRecord, MaintenanceRecordBuilder> {
-  _$MaintenanceRecord _$v;
+  _$MaintenanceRecord? _$v;
 
-  String _issue;
-  String get issue => _$this._issue;
-  set issue(String issue) => _$this._issue = issue;
+  String? _issue;
+  String? get issue => _$this._issue;
+  set issue(String? issue) => _$this._issue = issue;
 
-  String _status;
-  String get status => _$this._status;
-  set status(String status) => _$this._status = status;
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
 
-  String _email;
-  String get email => _$this._email;
-  set email(String email) => _$this._email = email;
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
 
-  String _photoUrl;
-  String get photoUrl => _$this._photoUrl;
-  set photoUrl(String photoUrl) => _$this._photoUrl = photoUrl;
+  String? _photoUrl;
+  String? get photoUrl => _$this._photoUrl;
+  set photoUrl(String? photoUrl) => _$this._photoUrl = photoUrl;
 
-  String _uid;
-  String get uid => _$this._uid;
-  set uid(String uid) => _$this._uid = uid;
+  String? _uid;
+  String? get uid => _$this._uid;
+  set uid(String? uid) => _$this._uid = uid;
 
-  DateTime _createdTime;
-  DateTime get createdTime => _$this._createdTime;
-  set createdTime(DateTime createdTime) => _$this._createdTime = createdTime;
+  DateTime? _createdTime;
+  DateTime? get createdTime => _$this._createdTime;
+  set createdTime(DateTime? createdTime) => _$this._createdTime = createdTime;
 
-  String _phoneNumber;
-  String get phoneNumber => _$this._phoneNumber;
-  set phoneNumber(String phoneNumber) => _$this._phoneNumber = phoneNumber;
+  String? _phoneNumber;
+  String? get phoneNumber => _$this._phoneNumber;
+  set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
 
-  String _displayName;
-  String get displayName => _$this._displayName;
-  set displayName(String displayName) => _$this._displayName = displayName;
+  String? _displayName;
+  String? get displayName => _$this._displayName;
+  set displayName(String? displayName) => _$this._displayName = displayName;
 
-  String _room;
-  String get room => _$this._room;
-  set room(String room) => _$this._room = room;
+  String? _room;
+  String? get room => _$this._room;
+  set room(String? room) => _$this._room = room;
 
-  String _building;
-  String get building => _$this._building;
-  set building(String building) => _$this._building = building;
+  String? _building;
+  String? get building => _$this._building;
+  set building(String? building) => _$this._building = building;
 
-  String _notes;
-  String get notes => _$this._notes;
-  set notes(String notes) => _$this._notes = notes;
+  String? _notes;
+  String? get notes => _$this._notes;
+  set notes(String? notes) => _$this._notes = notes;
 
-  int _rating;
-  int get rating => _$this._rating;
-  set rating(int rating) => _$this._rating = rating;
+  int? _rating;
+  int? get rating => _$this._rating;
+  set rating(int? rating) => _$this._rating = rating;
 
-  bool _isDone;
-  bool get isDone => _$this._isDone;
-  set isDone(bool isDone) => _$this._isDone = isDone;
+  bool? _isDone;
+  bool? get isDone => _$this._isDone;
+  set isDone(bool? isDone) => _$this._isDone = isDone;
 
-  String _category;
-  String get category => _$this._category;
-  set category(String category) => _$this._category = category;
+  String? _category;
+  String? get category => _$this._category;
+  set category(String? category) => _$this._category = category;
 
-  String _assigned;
-  String get assigned => _$this._assigned;
-  set assigned(String assigned) => _$this._assigned = assigned;
+  String? _assigned;
+  String? get assigned => _$this._assigned;
+  set assigned(String? assigned) => _$this._assigned = assigned;
 
-  DateTime _updateTime;
-  DateTime get updateTime => _$this._updateTime;
-  set updateTime(DateTime updateTime) => _$this._updateTime = updateTime;
+  DateTime? _updateTime;
+  DateTime? get updateTime => _$this._updateTime;
+  set updateTime(DateTime? updateTime) => _$this._updateTime = updateTime;
 
-  DocumentReference<Object> _userRec;
-  DocumentReference<Object> get userRec => _$this._userRec;
-  set userRec(DocumentReference<Object> userRec) => _$this._userRec = userRec;
+  DocumentReference<Object?>? _userRec;
+  DocumentReference<Object?>? get userRec => _$this._userRec;
+  set userRec(DocumentReference<Object?>? userRec) => _$this._userRec = userRec;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  DocumentReference<Object?>? _ref;
+  DocumentReference<Object?>? get ref => _$this._ref;
+  set ref(DocumentReference<Object?>? ref) => _$this._ref = ref;
 
   MaintenanceRecordBuilder() {
     MaintenanceRecord._initializeBuilder(this);
@@ -512,7 +511,7 @@ class MaintenanceRecordBuilder
       _assigned = $v.assigned;
       _updateTime = $v.updateTime;
       _userRec = $v.userRec;
-      _reference = $v.reference;
+      _ref = $v.ref;
       _$v = null;
     }
     return this;
@@ -525,7 +524,7 @@ class MaintenanceRecordBuilder
   }
 
   @override
-  void update(void Function(MaintenanceRecordBuilder) updates) {
+  void update(void Function(MaintenanceRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -550,7 +549,7 @@ class MaintenanceRecordBuilder
             assigned: assigned,
             updateTime: updateTime,
             userRec: userRec,
-            reference: reference);
+            ref: ref);
     replace(_$result);
     return _$result;
   }

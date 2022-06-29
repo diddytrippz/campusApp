@@ -12,18 +12,18 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SendNotifiWidget extends StatefulWidget {
-  const SendNotifiWidget({Key key}) : super(key: key);
+  const SendNotifiWidget({Key? key}) : super(key: key);
 
   @override
   _SendNotifiWidgetState createState() => _SendNotifiWidgetState();
 }
 
 class _SendNotifiWidgetState extends State<SendNotifiWidget> {
-  DateTime datePicked;
-  String teamSelectValue;
-  TextEditingController shortBioController;
-  TextEditingController userNameController;
-  bool checkboxListTileValue;
+  DateTime? datePicked;
+  String? teamSelectValue;
+  TextEditingController? shortBioController;
+  TextEditingController? userNameController;
+  bool? checkboxListTileValue;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -328,7 +328,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                             child: CheckboxListTile(
                               value: checkboxListTileValue ??= false,
                               onChanged: (newValue) => setState(
-                                  () => checkboxListTileValue = newValue),
+                                  () => checkboxListTileValue = newValue!),
                               title: Text(
                                 'Select all users?',
                                 style: FlutterFlowTheme.of(context)
@@ -356,7 +356,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                                   'SEND_NOTIFI_SEND_NOTIFICATION_BTN_ON_TAP');
                               logFirebaseEvent('Button_Validate-Form');
                               if (formKey.currentState == null ||
-                                  !formKey.currentState.validate()) {
+                                  !formKey.currentState!.validate()) {
                                 return;
                               }
 
@@ -365,7 +365,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
 
                                 final notificationsCreateData =
                                     createNotificationsRecordData(
-                                  title: userNameController.text,
+                                  title: userNameController!.text,
                                   sentBy: currentUserDisplayName,
                                   building: valueOrDefault(
                                       currentUserDocument?.building, ''),
@@ -381,7 +381,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
 
                                 final notificationsCreateData =
                                     createNotificationsRecordData(
-                                  title: userNameController.text,
+                                  title: userNameController!.text,
                                   sentBy: currentUserDisplayName,
                                   building: valueOrDefault(
                                       currentUserDocument?.building, ''),

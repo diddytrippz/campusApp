@@ -20,11 +20,11 @@ class _$NotificationsRecordSerializer
   final String wireName = 'NotificationsRecord';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, NotificationsRecord object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.title;
     if (value != null) {
       result
@@ -67,20 +67,20 @@ class _$NotificationsRecordSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
-    value = object.reference;
+    value = object.ref;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
-                DocumentReference, const [const FullType(Object)])));
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     return result;
   }
 
   @override
   NotificationsRecord deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new NotificationsRecordBuilder();
 
@@ -88,37 +88,37 @@ class _$NotificationsRecordSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'title':
           result.title = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'sentBy':
           result.sentBy = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'building':
           result.building = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'dateCreate':
           result.dateCreate = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'Urgency':
           result.urgency = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'sendToAll':
           result.sendToAll = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'Document__Reference__Field':
-          result.reference = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      DocumentReference, const [const FullType(Object)]))
-              as DocumentReference<Object>;
+          result.ref = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
       }
     }
@@ -129,22 +129,22 @@ class _$NotificationsRecordSerializer
 
 class _$NotificationsRecord extends NotificationsRecord {
   @override
-  final String title;
+  final String? title;
   @override
-  final String sentBy;
+  final String? sentBy;
   @override
-  final String building;
+  final String? building;
   @override
-  final DateTime dateCreate;
+  final DateTime? dateCreate;
   @override
-  final String urgency;
+  final String? urgency;
   @override
-  final bool sendToAll;
+  final bool? sendToAll;
   @override
-  final DocumentReference<Object> reference;
+  final DocumentReference<Object?>? ref;
 
   factory _$NotificationsRecord(
-          [void Function(NotificationsRecordBuilder) updates]) =>
+          [void Function(NotificationsRecordBuilder)? updates]) =>
       (new NotificationsRecordBuilder()..update(updates)).build();
 
   _$NotificationsRecord._(
@@ -154,7 +154,7 @@ class _$NotificationsRecord extends NotificationsRecord {
       this.dateCreate,
       this.urgency,
       this.sendToAll,
-      this.reference})
+      this.ref})
       : super._();
 
   @override
@@ -176,7 +176,7 @@ class _$NotificationsRecord extends NotificationsRecord {
         dateCreate == other.dateCreate &&
         urgency == other.urgency &&
         sendToAll == other.sendToAll &&
-        reference == other.reference;
+        ref == other.ref;
   }
 
   @override
@@ -190,7 +190,7 @@ class _$NotificationsRecord extends NotificationsRecord {
                     dateCreate.hashCode),
                 urgency.hashCode),
             sendToAll.hashCode),
-        reference.hashCode));
+        ref.hashCode));
   }
 
   @override
@@ -202,43 +202,42 @@ class _$NotificationsRecord extends NotificationsRecord {
           ..add('dateCreate', dateCreate)
           ..add('urgency', urgency)
           ..add('sendToAll', sendToAll)
-          ..add('reference', reference))
+          ..add('ref', ref))
         .toString();
   }
 }
 
 class NotificationsRecordBuilder
     implements Builder<NotificationsRecord, NotificationsRecordBuilder> {
-  _$NotificationsRecord _$v;
+  _$NotificationsRecord? _$v;
 
-  String _title;
-  String get title => _$this._title;
-  set title(String title) => _$this._title = title;
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
 
-  String _sentBy;
-  String get sentBy => _$this._sentBy;
-  set sentBy(String sentBy) => _$this._sentBy = sentBy;
+  String? _sentBy;
+  String? get sentBy => _$this._sentBy;
+  set sentBy(String? sentBy) => _$this._sentBy = sentBy;
 
-  String _building;
-  String get building => _$this._building;
-  set building(String building) => _$this._building = building;
+  String? _building;
+  String? get building => _$this._building;
+  set building(String? building) => _$this._building = building;
 
-  DateTime _dateCreate;
-  DateTime get dateCreate => _$this._dateCreate;
-  set dateCreate(DateTime dateCreate) => _$this._dateCreate = dateCreate;
+  DateTime? _dateCreate;
+  DateTime? get dateCreate => _$this._dateCreate;
+  set dateCreate(DateTime? dateCreate) => _$this._dateCreate = dateCreate;
 
-  String _urgency;
-  String get urgency => _$this._urgency;
-  set urgency(String urgency) => _$this._urgency = urgency;
+  String? _urgency;
+  String? get urgency => _$this._urgency;
+  set urgency(String? urgency) => _$this._urgency = urgency;
 
-  bool _sendToAll;
-  bool get sendToAll => _$this._sendToAll;
-  set sendToAll(bool sendToAll) => _$this._sendToAll = sendToAll;
+  bool? _sendToAll;
+  bool? get sendToAll => _$this._sendToAll;
+  set sendToAll(bool? sendToAll) => _$this._sendToAll = sendToAll;
 
-  DocumentReference<Object> _reference;
-  DocumentReference<Object> get reference => _$this._reference;
-  set reference(DocumentReference<Object> reference) =>
-      _$this._reference = reference;
+  DocumentReference<Object?>? _ref;
+  DocumentReference<Object?>? get ref => _$this._ref;
+  set ref(DocumentReference<Object?>? ref) => _$this._ref = ref;
 
   NotificationsRecordBuilder() {
     NotificationsRecord._initializeBuilder(this);
@@ -253,7 +252,7 @@ class NotificationsRecordBuilder
       _dateCreate = $v.dateCreate;
       _urgency = $v.urgency;
       _sendToAll = $v.sendToAll;
-      _reference = $v.reference;
+      _ref = $v.ref;
       _$v = null;
     }
     return this;
@@ -266,7 +265,7 @@ class NotificationsRecordBuilder
   }
 
   @override
-  void update(void Function(NotificationsRecordBuilder) updates) {
+  void update(void Function(NotificationsRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -280,7 +279,7 @@ class NotificationsRecordBuilder
             dateCreate: dateCreate,
             urgency: urgency,
             sendToAll: sendToAll,
-            reference: reference);
+            ref: ref);
     replace(_$result);
     return _$result;
   }

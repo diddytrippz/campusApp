@@ -19,7 +19,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:text_search/text_search.dart';
 
 class ViewPageWidget extends StatefulWidget {
-  const ViewPageWidget({Key key}) : super(key: key);
+  const ViewPageWidget({Key? key}) : super(key: key);
 
   @override
   _ViewPageWidgetState createState() => _ViewPageWidgetState();
@@ -27,13 +27,13 @@ class ViewPageWidget extends StatefulWidget {
 
 class _ViewPageWidgetState extends State<ViewPageWidget>
     with TickerProviderStateMixin {
-  Completer<List<MaintenanceRecord>> _firestoreRequestCompleter1;
-  Completer<List<MaintenanceRecord>> _firestoreRequestCompleter2;
-  Completer<List<MaintenanceRecord>> _firestoreRequestCompleter3;
-  Completer<List<MaintenanceRecord>> _firestoreRequestCompleter4;
-  DateTimeRange calendarSelectedDay;
+  Completer<List<MaintenanceRecord>>? _firestoreRequestCompleter1;
+  Completer<List<MaintenanceRecord>>? _firestoreRequestCompleter2;
+  Completer<List<MaintenanceRecord>>? _firestoreRequestCompleter3;
+  Completer<List<MaintenanceRecord>>? _firestoreRequestCompleter4;
+  DateTimeRange? calendarSelectedDay;
   List<MaintenanceRecord> simpleSearchResults = [];
-  TextEditingController textController;
+  TextEditingController? textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final animationsMap = {
     'floatingActionButtonOnPageLoadAnimation': AnimationInfo(
@@ -91,7 +91,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
           color: Colors.white,
           size: 26,
         ),
-      ).animated([animationsMap['floatingActionButtonOnPageLoadAnimation']]),
+      ).animated([animationsMap['floatingActionButtonOnPageLoadAnimation']!]),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -118,8 +118,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                             iconColor: Color(0xE1F5F5F5),
                             weekFormat: true,
                             weekStartsMonday: false,
-                            rowHeight: 60,
-                            onChange: (DateTimeRange newSelectedDate) {
+                            onChange: (DateTimeRange? newSelectedDate) {
                               setState(
                                   () => calendarSelectedDay = newSelectedDate);
                             },
@@ -227,11 +226,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                             records
                                                 .map(
                                                   (record) => TextSearchItem(
-                                                      record, [record.issue]),
+                                                      record, [record.issue!]),
                                                 )
                                                 .toList(),
                                           )
-                                                  .search(textController.text)
+                                                  .search(textController!.text)
                                                   .map((r) => r.object)
                                                   .take(5)
                                                   .toList(),
@@ -399,7 +398,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                           }
                                                           List<MaintenanceRecord>
                                                               listViewSubSTDMaintenanceRecordList =
-                                                              snapshot.data;
+                                                              snapshot.data!;
                                                           if (listViewSubSTDMaintenanceRecordList
                                                               .isEmpty) {
                                                             return Center(
@@ -561,7 +560,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                               false;
                                                                           if (confirmDialogResponse) {
                                                                             logFirebaseEvent('SlidableActionWidget_Backend-Call');
-                                                                            await listViewSubSTDMaintenanceRecord.reference.delete();
+                                                                            await listViewSubSTDMaintenanceRecord!.reference.delete();
                                                                           } else {
                                                                             return;
                                                                           }
@@ -597,8 +596,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       ),
                                                                       title:
                                                                           Text(
-                                                                        listViewSubSTDMaintenanceRecord
-                                                                            .issue,
+                                                                        listViewSubSTDMaintenanceRecord!
+                                                                            .issue!,
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .title2
                                                                             .override(
@@ -609,7 +608,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       ),
                                                                       subtitle:
                                                                           Text(
-                                                                        '${dateTimeFormat('MMMMEEEEd', listViewSubSTDMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewSubSTDMaintenanceRecord.createdTime)}',
+                                                                        '${dateTimeFormat('MMMMEEEEd', listViewSubSTDMaintenanceRecord!.createdTime)} ${dateTimeFormat('jm', listViewSubSTDMaintenanceRecord!.createdTime)}',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .subtitle2
                                                                             .override(
@@ -714,7 +713,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                             }
                                                             List<MaintenanceRecord>
                                                                 listViewPendSTDMaintenanceRecordList =
-                                                                snapshot.data;
+                                                                snapshot.data!;
                                                             if (listViewPendSTDMaintenanceRecordList
                                                                 .isEmpty) {
                                                               return Center(
@@ -851,8 +850,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       ),
                                                                       title:
                                                                           Text(
-                                                                        listViewPendSTDMaintenanceRecord
-                                                                            .issue,
+                                                                        listViewPendSTDMaintenanceRecord!
+                                                                            .issue!,
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .title1
                                                                             .override(
@@ -864,7 +863,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       ),
                                                                       subtitle:
                                                                           Text(
-                                                                        '${dateTimeFormat('MMMMEEEEd', listViewPendSTDMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewPendSTDMaintenanceRecord.createdTime)}',
+                                                                        '${dateTimeFormat('MMMMEEEEd', listViewPendSTDMaintenanceRecord!.createdTime)} ${dateTimeFormat('jm', listViewPendSTDMaintenanceRecord!.createdTime)}',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .subtitle2
                                                                             .override(
@@ -958,7 +957,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                           }
                                                           List<MaintenanceRecord>
                                                               listViewCompSTDMaintenanceRecordList =
-                                                              snapshot.data;
+                                                              snapshot.data!;
                                                           if (listViewCompSTDMaintenanceRecordList
                                                               .isEmpty) {
                                                             return Center(
@@ -1093,8 +1092,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       size: 35,
                                                                     ),
                                                                     title: Text(
-                                                                      listViewCompSTDMaintenanceRecord
-                                                                          .issue,
+                                                                      listViewCompSTDMaintenanceRecord!
+                                                                          .issue!,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .title2
@@ -1111,7 +1110,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     ),
                                                                     subtitle:
                                                                         Text(
-                                                                      '${dateTimeFormat('MMMMEEEEd', listViewCompSTDMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewCompSTDMaintenanceRecord.createdTime)}',
+                                                                      '${dateTimeFormat('MMMMEEEEd', listViewCompSTDMaintenanceRecord!.createdTime)} ${dateTimeFormat('jm', listViewCompSTDMaintenanceRecord!.createdTime)}',
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .subtitle2
@@ -1266,7 +1265,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                           }
                                                           List<MaintenanceRecord>
                                                               listViewSubmitMaintenanceRecordList =
-                                                              snapshot.data;
+                                                              snapshot.data!;
                                                           if (listViewSubmitMaintenanceRecordList
                                                               .isEmpty) {
                                                             return Center(
@@ -1349,7 +1348,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           assigned:
                                                                               currentUserDisplayName,
                                                                         );
-                                                                        await listViewSubmitMaintenanceRecord
+                                                                        await listViewSubmitMaintenanceRecord!
                                                                             .reference
                                                                             .update(maintenanceUpdateData);
                                                                         logFirebaseEvent(
@@ -1391,8 +1390,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       size: 35,
                                                                     ),
                                                                     title: Text(
-                                                                      listViewSubmitMaintenanceRecord
-                                                                          .issue,
+                                                                      listViewSubmitMaintenanceRecord!
+                                                                          .issue!,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .title2
@@ -1409,8 +1408,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     ),
                                                                     subtitle:
                                                                         Text(
-                                                                      listViewSubmitMaintenanceRecord
-                                                                          .room,
+                                                                      listViewSubmitMaintenanceRecord!
+                                                                          .room!,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .subtitle2
@@ -1516,7 +1515,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                           }
                                                           List<MaintenanceRecord>
                                                               listViewPendingMaintenanceRecordList =
-                                                              snapshot.data;
+                                                              snapshot.data!;
                                                           if (listViewPendingMaintenanceRecordList
                                                               .isEmpty) {
                                                             return Center(
@@ -1597,7 +1596,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           status:
                                                                               'Submitted',
                                                                         );
-                                                                        await listViewPendingMaintenanceRecord
+                                                                        await listViewPendingMaintenanceRecord!
                                                                             .reference
                                                                             .update(maintenanceUpdateData);
                                                                         logFirebaseEvent(
@@ -1642,7 +1641,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           updateTime:
                                                                               getCurrentTimestamp,
                                                                         );
-                                                                        await listViewPendingMaintenanceRecord
+                                                                        await listViewPendingMaintenanceRecord!
                                                                             .reference
                                                                             .update(maintenanceUpdateData);
                                                                         // pushNotifications
@@ -1656,7 +1655,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                           notificationImageUrl:
                                                                               FFAppState().caLogo,
                                                                           userRefs: [
-                                                                            listViewPendingMaintenanceRecord.userRec
+                                                                            listViewPendingMaintenanceRecord!.userRec!
                                                                           ],
                                                                           initialPageName:
                                                                               'viewPage',
@@ -1695,8 +1694,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       size: 35,
                                                                     ),
                                                                     title: Text(
-                                                                      listViewPendingMaintenanceRecord
-                                                                          .issue,
+                                                                      listViewPendingMaintenanceRecord!
+                                                                          .issue!,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .title2
@@ -1713,8 +1712,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     ),
                                                                     subtitle:
                                                                         Text(
-                                                                      listViewPendingMaintenanceRecord
-                                                                          .room,
+                                                                      listViewPendingMaintenanceRecord!
+                                                                          .room!,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .subtitle2
@@ -1815,7 +1814,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                           }
                                                           List<MaintenanceRecord>
                                                               listViewCompletedMaintenanceRecordList =
-                                                              snapshot.data;
+                                                              snapshot.data!;
                                                           if (listViewCompletedMaintenanceRecordList
                                                               .isEmpty) {
                                                             return Center(
@@ -1926,7 +1925,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                                   Padding(
                                                                                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 2),
                                                                                     child: Text(
-                                                                                      listViewCompletedMaintenanceRecord.issue,
+                                                                                      listViewCompletedMaintenanceRecord!.issue!,
                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                             fontFamily: 'Open Sans',
                                                                                             color: FlutterFlowTheme.of(context).primaryText,
@@ -1936,7 +1935,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                                     ),
                                                                                   ),
                                                                                   Text(
-                                                                                    listViewCompletedMaintenanceRecord.room,
+                                                                                    listViewCompletedMaintenanceRecord!.room!,
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: 'Open Sans',
                                                                                           color: Color(0xFF0C8450),

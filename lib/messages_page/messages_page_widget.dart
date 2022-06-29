@@ -12,16 +12,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class MessagesPageWidget extends StatefulWidget {
-  const MessagesPageWidget({Key key}) : super(key: key);
+  const MessagesPageWidget({Key? key}) : super(key: key);
 
   @override
   _MessagesPageWidgetState createState() => _MessagesPageWidgetState();
 }
 
 class _MessagesPageWidgetState extends State<MessagesPageWidget> {
-  PagingController<DocumentSnapshot, ChatsRecord> _pagingController;
-  Query _pagingQuery;
-  List<StreamSubscription> _streamSubscriptions = [];
+  PagingController<DocumentSnapshot?, ChatsRecord>? _pagingController;
+  Query? _pagingQuery;
+  List<StreamSubscription?> _streamSubscriptions = [];
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -124,7 +124,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                         ),
                       );
                     }
-                    List<UsersRecord> rowUsersRecordList = snapshot.data
+                    List<UsersRecord> rowUsersRecordList = snapshot.data!
                         .where((u) => u.uid != currentUserUid)
                         .toList();
                     return SingleChildScrollView(
@@ -146,7 +146,8 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                                   onTap: () async {
                                     logFirebaseEvent(
                                         'MESSAGES_Container_s1h71akl_ON_TAP');
-                                    if ((rowUsersRecord.room) == 'Management') {
+                                    if ((rowUsersRecord!.room) ==
+                                        'Management') {
                                       logFirebaseEvent(
                                           'Container_Show-Snack-Bar');
                                       ScaffoldMessenger.of(context)
@@ -212,7 +213,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(8, 6, 0, 0),
                                 child: AutoSizeText(
-                                  rowUsersRecord.displayName
+                                  rowUsersRecord!.displayName!
                                       .maybeHandleOverflow(
                                     maxChars: 8,
                                     replacement: '…',
@@ -240,9 +241,9 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
             Expanded(
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                child: PagedListView<DocumentSnapshot<Object>, ChatsRecord>(
+                child: PagedListView<DocumentSnapshot<Object?>?, ChatsRecord>(
                   pagingController: () {
-                    final Query<Object> Function(Query<Object>) queryBuilder =
+                    final Query<Object?> Function(Query<Object?>) queryBuilder =
                         (chatsRecord) => chatsRecord
                             .where('users', arrayContains: currentUserReference)
                             .orderBy('last_message_time', descending: true);
@@ -253,14 +254,14 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                         _pagingQuery = query;
                         _streamSubscriptions.forEach((s) => s?.cancel());
                         _streamSubscriptions.clear();
-                        _pagingController.refresh();
+                        _pagingController!.refresh();
                       }
-                      return _pagingController;
+                      return _pagingController!;
                     }
 
                     _pagingController = PagingController(firstPageKey: null);
                     _pagingQuery = queryBuilder(ChatsRecord.collection);
-                    _pagingController.addPageRequestListener((nextPageMarker) {
+                    _pagingController!.addPageRequestListener((nextPageMarker) {
                       queryChatsRecordPage(
                         queryBuilder: (chatsRecord) => chatsRecord
                             .where('users', arrayContains: currentUserReference)
@@ -269,21 +270,21 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                         pageSize: 10,
                         isStream: true,
                       ).then((page) {
-                        _pagingController.appendPage(
+                        _pagingController!.appendPage(
                           page.data,
                           page.nextPageMarker,
                         );
                         final streamSubscription =
                             page.dataStream?.listen((data) {
-                          final itemIndexes = _pagingController.itemList
+                          final itemIndexes = _pagingController!.itemList!
                               .asMap()
                               .map((k, v) => MapEntry(v.reference.id, k));
                           data.forEach((item) {
                             final index = itemIndexes[item.reference.id];
-                            final items = _pagingController.itemList;
+                            final items = _pagingController!.itemList!;
                             if (index != null) {
                               items.replaceRange(index, index + 1, [item]);
-                              _pagingController.itemList = {
+                              _pagingController!.itemList = {
                                 for (var item in items) item.reference: item
                               }.values.toList();
                             }
@@ -293,7 +294,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                         _streamSubscriptions.add(streamSubscription);
                       });
                     });
-                    return _pagingController;
+                    return _pagingController!;
                   }(),
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
@@ -315,7 +316,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                     ),
                     itemBuilder: (context, _, listViewIndex) {
                       final listViewChatsRecord =
-                          _pagingController.itemList[listViewIndex];
+                          _pagingController!.itemList![listViewIndex];
                       return Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
                         child: StreamBuilder<FFChatInfo>(
@@ -345,7 +346,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                               ),
                               lastChatText: chatInfo.chatPreviewMessage(),
                               lastChatTime: listViewChatsRecord.lastMessageTime,
-                              seen: listViewChatsRecord.lastMessageSeenBy
+                              seen: listViewChatsRecord.lastMessageSeenBy!
                                   .contains(currentUserReference),
                               title: chatInfo.chatPreviewTitle(),
                               userProfilePic: chatInfo.chatPreviewPic(),

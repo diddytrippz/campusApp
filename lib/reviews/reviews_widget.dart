@@ -15,20 +15,20 @@ import 'package:page_transition/page_transition.dart';
 
 class ReviewsWidget extends StatefulWidget {
   const ReviewsWidget({
-    Key key,
+    Key? key,
     this.jobReviews,
   }) : super(key: key);
 
-  final MaintenanceRecord jobReviews;
+  final MaintenanceRecord? jobReviews;
 
   @override
   _ReviewsWidgetState createState() => _ReviewsWidgetState();
 }
 
 class _ReviewsWidgetState extends State<ReviewsWidget> {
-  List<String> choiceChipsValues;
-  TextEditingController textController;
-  double ratingBarValue;
+  List<String>? choiceChipsValues;
+  TextEditingController? textController;
+  double? ratingBarValue;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -158,7 +158,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                               child: Text(
-                                widget.jobReviews.displayName,
+                                widget.jobReviews!.displayName!,
                                 style: FlutterFlowTheme.of(context)
                                     .title1
                                     .override(
@@ -175,7 +175,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                   EdgeInsetsDirectional.fromSTEB(18, 8, 18, 0),
                               child: Text(
                                 dateTimeFormat(
-                                    'yMMMd', widget.jobReviews.createdTime),
+                                    'yMMMd', widget.jobReviews!.createdTime!),
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -200,7 +200,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                 ),
                                 direction: Axis.horizontal,
                                 initialRating: ratingBarValue ??=
-                                    widget.jobReviews.rating.toDouble(),
+                                    widget.jobReviews!.rating!.toDouble(),
                                 unratedColor:
                                     FlutterFlowTheme.of(context).campusGrey,
                                 itemCount: 5,
@@ -433,7 +433,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                         'REVIEWS_PAGE_CONFIRM_BTN_ON_TAP');
                                     logFirebaseEvent('Button_Validate-Form');
                                     if (formKey.currentState == null ||
-                                        !formKey.currentState.validate()) {
+                                        !formKey.currentState!.validate()) {
                                       return;
                                     }
 
@@ -471,9 +471,9 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
 
                                     final maintenanceUpdateData =
                                         createMaintenanceRecordData(
-                                      rating: ratingBarValue.round(),
+                                      rating: ratingBarValue?.round(),
                                     );
-                                    await widget.jobReviews.reference
+                                    await widget.jobReviews!.reference
                                         .update(maintenanceUpdateData);
                                     logFirebaseEvent('Button_Show-Snack-Bar');
                                     ScaffoldMessenger.of(context).showSnackBar(

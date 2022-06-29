@@ -14,7 +14,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LocksmithWidget extends StatefulWidget {
-  const LocksmithWidget({Key key}) : super(key: key);
+  const LocksmithWidget({Key? key}) : super(key: key);
 
   @override
   _LocksmithWidgetState createState() => _LocksmithWidgetState();
@@ -22,9 +22,9 @@ class LocksmithWidget extends StatefulWidget {
 
 class _LocksmithWidgetState extends State<LocksmithWidget> {
   String uploadedFileUrl = '';
-  TextEditingController textController1;
-  String budgetValue;
-  TextEditingController reasonController;
+  TextEditingController? textController1;
+  String? budgetValue;
+  TextEditingController? reasonController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -125,6 +125,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                                             await uploadData(
                                                 m.storagePath, m.bytes))))
                                     .where((u) => u != null)
+                                    .map((u) => u!)
                                     .toList();
                                 ScaffoldMessenger.of(context)
                                     .hideCurrentSnackBar();
@@ -367,7 +368,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                           logFirebaseEvent('LOCKSMITH_PAGE_SUBMIT_BTN_ON_TAP');
                           logFirebaseEvent('Button_Validate-Form');
                           if (formKey.currentState == null ||
-                              !formKey.currentState.validate()) {
+                              !formKey.currentState!.validate()) {
                             return;
                           }
 
@@ -401,7 +402,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                             room: valueOrDefault(currentUserDocument?.room, ''),
                             building: valueOrDefault(
                                 currentUserDocument?.building, ''),
-                            notes: reasonController.text,
+                            notes: reasonController!.text,
                             rating: 0,
                             uid: currentUserUid,
                             category: 'Locksmith',

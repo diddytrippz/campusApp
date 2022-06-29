@@ -11,7 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NotificationsWidget extends StatefulWidget {
-  const NotificationsWidget({Key key}) : super(key: key);
+  const NotificationsWidget({Key? key}) : super(key: key);
 
   @override
   _NotificationsWidgetState createState() => _NotificationsWidgetState();
@@ -166,7 +166,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                     }
                                     List<NotificationsRecord>
                                         columnNotificationsRecordList =
-                                        snapshot.data;
+                                        snapshot.data!;
                                     if (columnNotificationsRecordList.isEmpty) {
                                       return Center(
                                         child: SvgPicture.asset(
@@ -241,7 +241,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                   if (confirmDialogResponse) {
                                                     logFirebaseEvent(
                                                         'Row_Backend-Call');
-                                                    await columnNotificationsRecord
+                                                    await columnNotificationsRecord!
                                                         .reference
                                                         .delete();
                                                   } else {
@@ -287,8 +287,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                                 .start,
                                                         children: [
                                                           AutoSizeText(
-                                                            columnNotificationsRecord
-                                                                .title
+                                                            columnNotificationsRecord!
+                                                                .title!
                                                                 .maybeHandleOverflow(
                                                               maxChars: 75,
                                                               replacement: '…',
@@ -327,8 +327,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                                 Text(
                                                                   dateTimeFormat(
                                                                       'relative',
-                                                                      columnNotificationsRecord
-                                                                          .dateCreate),
+                                                                      columnNotificationsRecord!
+                                                                          .dateCreate!),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyText1
@@ -344,8 +344,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                                       ),
                                                                 ),
                                                                 Text(
-                                                                  columnNotificationsRecord
-                                                                      .urgency,
+                                                                  columnNotificationsRecord!
+                                                                      .urgency!,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyText1
@@ -453,7 +453,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                   }
                                   List<NotificationsRecord>
                                       columnNotificationsRecordList =
-                                      snapshot.data;
+                                      snapshot.data!;
                                   if (columnNotificationsRecordList.isEmpty) {
                                     return Center(
                                       child: SvgPicture.asset(
@@ -525,7 +525,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                 if (confirmDialogResponse) {
                                                   logFirebaseEvent(
                                                       'Row_Backend-Call');
-                                                  await columnNotificationsRecord
+                                                  await columnNotificationsRecord!
                                                       .reference
                                                       .delete();
                                                 } else {
@@ -570,8 +570,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                               .start,
                                                       children: [
                                                         AutoSizeText(
-                                                          columnNotificationsRecord
-                                                              .title
+                                                          columnNotificationsRecord!
+                                                              .title!
                                                               .maybeHandleOverflow(
                                                             maxChars: 75,
                                                             replacement: '…',
@@ -607,8 +607,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                               Text(
                                                                 dateTimeFormat(
                                                                     'relative',
-                                                                    columnNotificationsRecord
-                                                                        .dateCreate),
+                                                                    columnNotificationsRecord!
+                                                                        .dateCreate!),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyText1
@@ -626,8 +626,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                                     ),
                                                               ),
                                                               Text(
-                                                                columnNotificationsRecord
-                                                                    .urgency,
+                                                                columnNotificationsRecord!
+                                                                    .urgency!,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyText1
