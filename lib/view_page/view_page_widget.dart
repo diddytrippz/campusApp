@@ -113,7 +113,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                           color: Color(0xFFFFBA00),
                           iconColor: Color(0xE1F5F5F5),
                           weekFormat: true,
-                          weekStartsMonday: true,
+                          weekStartsMonday: false,
+                          rowHeight: 60,
                           onChange: (DateTimeRange newSelectedDate) {
                             setState(
                                 () => calendarSelectedDay = newSelectedDate);
@@ -129,6 +130,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                           ),
                           selectedDateStyle: TextStyle(
                             color: Colors.white,
+                            fontSize: 12,
                           ),
                           inactiveDateStyle: TextStyle(
                             color: FlutterFlowTheme.of(context).primaryBtnText,
@@ -261,6 +263,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                   ),
                 ),
                 Expanded(
+                  flex: 2,
                   child: Align(
                     alignment: AlignmentDirectional(1, 1),
                     child: Padding(
@@ -287,6 +290,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                       currentUserDocument?.role, '')) ==
                                   'Tenant')
                                 Expanded(
+                                  flex: 2,
                                   child: AuthUserStreamWidget(
                                     child: DefaultTabController(
                                       length: 3,
