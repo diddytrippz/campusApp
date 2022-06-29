@@ -45,7 +45,8 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
     textController5 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.room, ''));
     textController6 = TextEditingController(text: currentUserUid);
-    textController7 = TextEditingController(text: FFAppState().defaultLanguage);
+    textController7 =
+        TextEditingController(text: FFLocalizations.of(context).languageCode);
   }
 
   @override
@@ -755,7 +756,8 @@ Language */
                             readOnly: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: '[Some hint text...]',
+                              hintText:
+                                  FFLocalizations.of(context).languageCode,
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),
