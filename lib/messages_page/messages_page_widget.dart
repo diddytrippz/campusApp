@@ -46,7 +46,9 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
         title: AutoSizeText(
-          'Inbox',
+          FFLocalizations.of(context).getText(
+            'ziacko5o' /* Inbox */,
+          ),
           style: FlutterFlowTheme.of(context).bodyText1.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,

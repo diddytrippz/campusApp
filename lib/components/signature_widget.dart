@@ -63,7 +63,9 @@ class _SignatureWidgetState extends State<SignatureWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Signature',
+                      FFLocalizations.of(context).getText(
+                        'm5h8e46u' /* Signature */,
+                      ),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Open Sans',
                             color: FlutterFlowTheme.of(context).primaryText,
@@ -83,7 +85,9 @@ class _SignatureWidgetState extends State<SignatureWidget> {
                           });
                         },
                         child: Text(
-                          'Clear',
+                          FFLocalizations.of(context).getText(
+                            '2gbpplsv' /* Clear */,
+                          ),
                           style: FlutterFlowTheme.of(context)
                               .bodyText1
                               .override(
@@ -123,7 +127,9 @@ class _SignatureWidgetState extends State<SignatureWidget> {
                         logFirebaseEvent('Button_Close-Dialog,-Drawer,-Etc');
                         Navigator.pop(context);
                       },
-                      text: 'Cancel',
+                      text: FFLocalizations.of(context).getText(
+                        'lflh79c1' /* Cancel */,
+                      ),
                       options: FFButtonOptions(
                         width: 130,
                         height: 45,
@@ -144,7 +150,9 @@ class _SignatureWidgetState extends State<SignatureWidget> {
                       onPressed: () {
                         print('Button pressed ...');
                       },
-                      text: 'Confirm',
+                      text: FFLocalizations.of(context).getText(
+                        '1sijgjm7' /* Confirm */,
+                      ),
                       options: FFButtonOptions(
                         width: 130,
                         height: 45,

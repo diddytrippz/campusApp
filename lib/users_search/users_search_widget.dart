@@ -56,7 +56,9 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Search Friends to chat',
+              FFLocalizations.of(context).getText(
+                '9r5p3whq' /* Search Friends to chat */,
+              ),
               style: FlutterFlowTheme.of(context).subtitle1.override(
                     fontFamily: 'Open Sans',
                     color: FlutterFlowTheme.of(context).primaryText,
@@ -92,7 +94,9 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                           child: Text(
-                            'Search Contacts',
+                            FFLocalizations.of(context).getText(
+                              'vwnld80s' /* Search Contacts */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -145,7 +149,9 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                         },
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'Search',
+                          hintText: FFLocalizations.of(context).getText(
+                            'hulawll3' /* Search */,
+                          ),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
@@ -186,7 +192,9 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                           child: Text(
-                            'Search Contacts',
+                            FFLocalizations.of(context).getText(
+                              'cym7ky30' /* Search Contacts */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(

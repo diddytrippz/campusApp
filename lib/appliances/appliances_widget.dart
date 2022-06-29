@@ -60,7 +60,9 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
           },
         ),
         title: Text(
-          'Appliances',
+          FFLocalizations.of(context).getText(
+            '379z4gvh' /* Appliances */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -136,7 +138,9 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
                                     context,
-                                    'File Uploaded!',
+                                    FFLocalizations.of(context).getText(
+                                      'z40c2u6r' /* File Uploaded! */,
+                                    ),
                                   );
                                 } else {
                                   showUploadMessage(
@@ -179,7 +183,9 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Name',
+                            FFLocalizations.of(context).getText(
+                              'kk3edzbs' /* Name */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -201,7 +207,9 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                           readOnly: true,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: ' ',
+                            labelText: FFLocalizations.of(context).getText(
+                              '4fsu6x0m' /*   */,
+                            ),
                             hintText: currentUserDisplayName,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -242,7 +250,9 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Issue',
+                            FFLocalizations.of(context).getText(
+                              'nzk8ziaw' /* Issue */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -260,10 +270,18 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: FlutterFlowDropDown(
                         options: [
-                          'Stove not working',
-                          'Oven not working',
-                          'Microwave not working',
-                          'Fridge not working'
+                          FFLocalizations.of(context).getText(
+                            'b282kjk3' /* Stove not working */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'v7swjfni' /* Oven not working */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'jdaewo5r' /* Microwave not working */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'b8su8jqc' /* Fridge not working */,
+                          )
                         ],
                         onChanged: (val) => setState(() => issueValue = val),
                         width: MediaQuery.of(context).size.width * 0.98,
@@ -276,7 +294,9 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
-                        hintText: 'Please select...',
+                        hintText: FFLocalizations.of(context).getText(
+                          'jzxq70zt' /* Please select... */,
+                        ),
                         icon: Icon(
                           FFIcons.kedit,
                           color: FlutterFlowTheme.of(context).primaryText,
@@ -297,7 +317,9 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Description',
+                            FFLocalizations.of(context).getText(
+                              'ujr70769' /* Description */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -317,7 +339,9 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'Describe your Issue',
+                          hintText: FFLocalizations.of(context).getText(
+                            '5mhqusqz' /* Describe your Issue */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00C5C5C5),
@@ -347,7 +371,9 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                         maxLines: 5,
                         validator: (val) {
                           if (val == null || val.isEmpty) {
-                            return 'Field is required';
+                            return FFLocalizations.of(context).getText(
+                              'aw66xj2z' /* Field is required */,
+                            );
                           }
 
                           if (val.length > 120) {
@@ -426,7 +452,9 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             },
                           );
                         },
-                        text: 'Submit',
+                        text: FFLocalizations.of(context).getText(
+                          'xmb7t2fh' /* Submit */,
+                        ),
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 55,

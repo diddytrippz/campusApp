@@ -19,7 +19,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:text_search/text_search.dart';
 
 class ViewPageWidget extends StatefulWidget {
-  const ViewPageWidget({Key? key}) : super(key: key);
+  const ViewPageWidget({
+    Key? key,
+    this.completeTemp,
+  }) : super(key: key);
+
+  final double? completeTemp;
 
   @override
   _ViewPageWidgetState createState() => _ViewPageWidgetState();
@@ -142,125 +147,139 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                             locale: FFLocalizations.of(context).languageCode,
                           ),
                         ),
-                        Container(
-                          width: double.infinity,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          alignment: AlignmentDirectional(0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Padding(
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
+                          child: Container(
+                            width: double.infinity,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            alignment: AlignmentDirectional(0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        4, 0, 4, 0),
+                                    child: TextFormField(
+                                      controller: textController,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        'textController',
+                                        Duration(milliseconds: 400),
+                                        () => setState(() {}),
+                                      ),
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .campusGrey,
+                                            ),
+                                        hintText:
+                                            FFLocalizations.of(context).getText(
+                                          'g6o86hf9' /* Search here... */,
+                                        ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .campusGrey,
+                                            ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        prefixIcon: Icon(
+                                          Icons.search,
+                                          color: Color(0xFF57636C),
+                                          size: 20,
+                                        ),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .campusGrey,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 0, 4, 0),
-                                  child: TextFormField(
-                                    controller: textController,
-                                    onChanged: (_) => EasyDebounce.debounce(
-                                      'textController',
-                                      Duration(milliseconds: 400),
-                                      () => setState(() {}),
-                                    ),
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Open Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .campusGrey,
-                                          ),
-                                      hintText: 'Search here...',
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Open Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .campusGrey,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 0,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 0,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      prefixIcon: Icon(
-                                        Icons.search,
-                                        color: Color(0xFF57636C),
-                                        size: 20,
-                                      ),
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    logFirebaseEvent(
-                                        'VIEW_PAGE_PAGE_SEARCH_BTN_ON_TAP');
-                                    logFirebaseEvent('Button_Simple-Search');
-                                    await queryMaintenanceRecordOnce()
-                                        .then(
-                                          (records) => simpleSearchResults =
-                                              TextSearch(
-                                            records
-                                                .map(
-                                                  (record) => TextSearchItem(
-                                                      record, [record.issue!]),
-                                                )
-                                                .toList(),
-                                          )
-                                                  .search(textController!.text)
-                                                  .map((r) => r.object)
-                                                  .take(5)
+                                      0, 0, 8, 0),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      logFirebaseEvent(
+                                          'VIEW_PAGE_PAGE_SEARCH_BTN_ON_TAP');
+                                      logFirebaseEvent('Button_Simple-Search');
+                                      await queryMaintenanceRecordOnce()
+                                          .then(
+                                            (records) => simpleSearchResults =
+                                                TextSearch(
+                                              records
+                                                  .map(
+                                                    (record) => TextSearchItem(
+                                                        record,
+                                                        [record.issue!]),
+                                                  )
                                                   .toList(),
-                                        )
-                                        .onError(
-                                            (_, __) => simpleSearchResults = [])
-                                        .whenComplete(() => setState(() {}));
-                                  },
-                                  text: 'Search',
-                                  options: FFButtonOptions(
-                                    width: 100,
-                                    height: 40,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: Colors.white,
-                                        ),
-                                    elevation: 2,
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1,
+                                            )
+                                                    .search(
+                                                        textController!.text)
+                                                    .map((r) => r.object)
+                                                    .take(5)
+                                                    .toList(),
+                                          )
+                                          .onError((_, __) =>
+                                              simpleSearchResults = [])
+                                          .whenComplete(() => setState(() {}));
+                                    },
+                                    text: FFLocalizations.of(context).getText(
+                                      '16xkmm6b' /* Search */,
                                     ),
-                                    borderRadius: 50,
+                                    options: FFButtonOptions(
+                                      width: 100,
+                                      height: 40,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .subtitle2
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: Colors.white,
+                                          ),
+                                      elevation: 2,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1,
+                                      ),
+                                      borderRadius: 50,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -315,13 +334,25 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                     .primaryText,
                                             tabs: [
                                               Tab(
-                                                text: 'Submitted',
+                                                text:
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                  'fxusdesr' /* Submitted */,
+                                                ),
                                               ),
                                               Tab(
-                                                text: 'Pending',
+                                                text:
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                  'xliyc9jb' /* Pending */,
+                                                ),
                                               ),
                                               Tab(
-                                                text: 'Completed',
+                                                text:
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                  'nj9umfeo' /* Completed */,
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -344,7 +375,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                             MainAxisSize.max,
                                                         children: [
                                                           Text(
-                                                            'Search results',
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'x8cw3w69' /* Search results */,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText2,
@@ -528,7 +563,9 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                     secondaryActions: [
                                                                       IconSlideAction(
                                                                         caption:
-                                                                            'Delete',
+                                                                            FFLocalizations.of(context).getText(
+                                                                          '47qcs9t7' /* Delete */,
+                                                                        ),
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .campusRed,
                                                                         icon: Icons
@@ -655,7 +692,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                             MainAxisSize.max,
                                                         children: [
                                                           Text(
-                                                            'Search results',
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              '4e2bu1eh' /* Search results */,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText2,
@@ -903,7 +944,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                             MainAxisSize.max,
                                                         children: [
                                                           Text(
-                                                            'Search results',
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              '9zcs84ro' /* Search results */,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText2,
@@ -1176,13 +1221,25 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                     .primaryText,
                                             tabs: [
                                               Tab(
-                                                text: 'Submitted',
+                                                text:
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                  '4mu7n5uz' /* Submitted */,
+                                                ),
                                               ),
                                               Tab(
-                                                text: 'Pending',
+                                                text:
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                  '6firyr35' /* Pending */,
+                                                ),
                                               ),
                                               Tab(
-                                                text: 'Completed',
+                                                text:
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                  'n3dnbo6v' /* Completed */,
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -1205,7 +1262,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                             MainAxisSize.max,
                                                         children: [
                                                           Text(
-                                                            'Search results',
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'epsh7pdm' /* Search results */,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText2,
@@ -1327,8 +1388,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       const SlidableScrollActionPane(),
                                                                   secondaryActions: [
                                                                     IconSlideAction(
-                                                                      caption:
-                                                                          'Complete',
+                                                                      caption: FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'zset6avm' /* Complete */,
+                                                                      ),
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .campusRed,
@@ -1463,7 +1527,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                             MainAxisSize.max,
                                                         children: [
                                                           Text(
-                                                            'Search results',
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'xv02t8u2' /* Search results */,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText2,
@@ -1577,8 +1645,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       const SlidableScrollActionPane(),
                                                                   secondaryActions: [
                                                                     IconSlideAction(
-                                                                      caption:
-                                                                          'Reject',
+                                                                      caption: FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'r52o7k9c' /* Reject */,
+                                                                      ),
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .secondaryBackground,
@@ -1620,8 +1691,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                       },
                                                                     ),
                                                                     IconSlideAction(
-                                                                      caption:
-                                                                          'Complete',
+                                                                      caption: FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'ib1fouvv' /* Complete */,
+                                                                      ),
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .campusRed,
@@ -1654,6 +1728,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                                               'Your maintenance ticket has been completed. Click here to leave a review ',
                                                                           notificationImageUrl:
                                                                               FFAppState().caLogo,
+                                                                          notificationSound:
+                                                                              'default',
                                                                           userRefs: [
                                                                             listViewPendingMaintenanceRecord!.userRec!
                                                                           ],
@@ -1765,7 +1841,11 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
                                                             MainAxisSize.max,
                                                         children: [
                                                           Text(
-                                                            'Search results',
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'afgqhb9l' /* Search results */,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText2,

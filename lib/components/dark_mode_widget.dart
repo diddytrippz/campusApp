@@ -59,7 +59,9 @@ class _DarkModeWidgetState extends State<DarkModeWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                         child: AutoSizeText(
-                          'Light theme',
+                          FFLocalizations.of(context).getText(
+                            '1ni48z6d' /* Light theme */,
+                          ),
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
@@ -97,7 +99,9 @@ class _DarkModeWidgetState extends State<DarkModeWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                         child: AutoSizeText(
-                          'Dark theme',
+                          FFLocalizations.of(context).getText(
+                            'lhga9n6k' /* Dark theme */,
+                          ),
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
@@ -149,7 +153,9 @@ class _DarkModeWidgetState extends State<DarkModeWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(22, 0, 0, 0),
                         child: AutoSizeText(
-                          'From device settings',
+                          FFLocalizations.of(context).getText(
+                            'cgkby2zl' /* From device settings */,
+                          ),
                           style: FlutterFlowTheme.of(context).title1.override(
                                 fontFamily: 'Open Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,

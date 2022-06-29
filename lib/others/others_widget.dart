@@ -58,7 +58,9 @@ class _OthersWidgetState extends State<OthersWidget> {
           },
         ),
         title: Text(
-          'Other',
+          FFLocalizations.of(context).getText(
+            '2ytiwh02' /* Other */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -134,7 +136,9 @@ class _OthersWidgetState extends State<OthersWidget> {
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
                                     context,
-                                    'File Uploaded!',
+                                    FFLocalizations.of(context).getText(
+                                      'z40c2u6r' /* File Uploaded! */,
+                                    ),
                                   );
                                 } else {
                                   showUploadMessage(
@@ -177,7 +181,9 @@ class _OthersWidgetState extends State<OthersWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Name',
+                            FFLocalizations.of(context).getText(
+                              'crrao6ih' /* Name */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -199,7 +205,9 @@ class _OthersWidgetState extends State<OthersWidget> {
                           readOnly: true,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: ' ',
+                            labelText: FFLocalizations.of(context).getText(
+                              'xi810ac6' /*   */,
+                            ),
                             hintText: currentUserDisplayName,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -240,7 +248,9 @@ class _OthersWidgetState extends State<OthersWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Issue',
+                            FFLocalizations.of(context).getText(
+                              '8jet81fh' /* Issue */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -260,7 +270,9 @@ class _OthersWidgetState extends State<OthersWidget> {
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'Describe your Issue',
+                          hintText: FFLocalizations.of(context).getText(
+                            'gn9nsu4y' /* Describe your Issue */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00C5C5C5),
@@ -290,7 +302,9 @@ class _OthersWidgetState extends State<OthersWidget> {
                         maxLines: 5,
                         validator: (val) {
                           if (val == null || val.isEmpty) {
-                            return 'Field is required';
+                            return FFLocalizations.of(context).getText(
+                              '6wg4lijw' /* Field is required */,
+                            );
                           }
 
                           if (val.length > 250) {
@@ -349,7 +363,9 @@ class _OthersWidgetState extends State<OthersWidget> {
                             },
                           );
                         },
-                        text: 'Submit',
+                        text: FFLocalizations.of(context).getText(
+                          'joeg6jq5' /* Submit */,
+                        ),
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 55,

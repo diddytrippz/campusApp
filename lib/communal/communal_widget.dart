@@ -60,7 +60,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
           },
         ),
         title: Text(
-          'Communal',
+          FFLocalizations.of(context).getText(
+            '98jt63cp' /* Communal */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -136,7 +138,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
                                     context,
-                                    'File Uploaded!',
+                                    FFLocalizations.of(context).getText(
+                                      'z40c2u6r' /* File Uploaded! */,
+                                    ),
                                   );
                                 } else {
                                   showUploadMessage(
@@ -179,7 +183,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Name',
+                            FFLocalizations.of(context).getText(
+                              '7nmev92l' /* Name */,
+                            ),
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Open Sans',
@@ -198,7 +204,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                           readOnly: true,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: ' ',
+                            labelText: FFLocalizations.of(context).getText(
+                              'yiv2vl4e' /*   */,
+                            ),
                             hintText: currentUserDisplayName,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -239,7 +247,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Issue',
+                            FFLocalizations.of(context).getText(
+                              'ugqlruzv' /* Issue */,
+                            ),
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Open Sans',
@@ -256,7 +266,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'Describe your Issue',
+                          hintText: FFLocalizations.of(context).getText(
+                            'z5y4ns8r' /* Describe your Issue */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00C5C5C5),
@@ -286,7 +298,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                         maxLines: 5,
                         validator: (val) {
                           if (val == null || val.isEmpty) {
-                            return 'Field is required';
+                            return FFLocalizations.of(context).getText(
+                              'yet5n963' /* Field is required */,
+                            );
                           }
 
                           if (val.length > 180) {
@@ -303,7 +317,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Place',
+                            FFLocalizations.of(context).getText(
+                              'lcbjrhc4' /* Place */,
+                            ),
                             style:
                                 FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Open Sans',
@@ -320,7 +336,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                         controller: placeController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Place',
+                          labelText: FFLocalizations.of(context).getText(
+                            'j24y4cmn' /* Place */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00C5C5C5),
@@ -355,7 +373,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                         keyboardType: TextInputType.name,
                         validator: (val) {
                           if (val == null || val.isEmpty) {
-                            return 'Field is required';
+                            return FFLocalizations.of(context).getText(
+                              'xzvk0uft' /* Field is required */,
+                            );
                           }
 
                           if (val.length > 90) {
@@ -415,7 +435,9 @@ class _CommunalWidgetState extends State<CommunalWidget> {
                             },
                           );
                         },
-                        text: 'Submit',
+                        text: FFLocalizations.of(context).getText(
+                          '9ve9st0h' /* Submit */,
+                        ),
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 55,

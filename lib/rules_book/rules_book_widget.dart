@@ -46,7 +46,9 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
           },
         ),
         title: Text(
-          'Campus Africa',
+          FFLocalizations.of(context).getText(
+            'oft7p3f9' /* Campus Africa */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,

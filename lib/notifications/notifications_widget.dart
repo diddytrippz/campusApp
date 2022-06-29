@@ -35,7 +35,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
         title: AutoSizeText(
-          'Notifications',
+          FFLocalizations.of(context).getText(
+            'haji3w3r' /* Notifications */,
+          ),
           style: FlutterFlowTheme.of(context).bodyText1.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -48,7 +50,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 18, 20, 0),
             child: Badge(
               badgeContent: Text(
-                '1',
+                FFLocalizations.of(context).getText(
+                  'tpem8gpk' /* 1 */,
+                ),
                 textAlign: TextAlign.start,
                 style: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: 'Open Sans',
@@ -117,13 +121,19 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                             FlutterFlowTheme.of(context).primaryText,
                         tabs: [
                           Tab(
-                            text: 'Latest',
+                            text: FFLocalizations.of(context).getText(
+                              'sqtwcc8d' /* Latest */,
+                            ),
                           ),
                           Tab(
-                            text: 'Following',
+                            text: FFLocalizations.of(context).getText(
+                              'mw2e1nsx' /* Following */,
+                            ),
                           ),
                           Tab(
-                            text: 'All',
+                            text: FFLocalizations.of(context).getText(
+                              'uaxcgmql' /* All */,
+                            ),
                           ),
                         ],
                       ),

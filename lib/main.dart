@@ -85,6 +85,9 @@ class _MyAppState extends State<MyApp> {
       locale: _locale,
       supportedLocales: const [
         Locale('en', ''),
+        Locale('af', ''),
+        Locale('zu', ''),
+        Locale('st', ''),
       ],
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
@@ -168,7 +171,9 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           GButton(
             icon: Icons.settings_outlined,
-            text: '',
+            text: FFLocalizations.of(context).getText(
+              'ugb9k6b5' /*  */,
+            ),
             iconSize: 26,
           )
         ],

@@ -63,7 +63,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                           child: Text(
-                            'Create New Account',
+                            FFLocalizations.of(context).getText(
+                              'frsyhmri' /* Create New Account */,
+                            ),
                             style: FlutterFlowTheme.of(context).title1.override(
                                   fontFamily: 'Open Sans',
                                   color:
@@ -90,7 +92,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             controller: emailAddressController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'Email Address',
+                              labelText: FFLocalizations.of(context).getText(
+                                'nj3rduhf' /* Email Address */,
+                              ),
                               labelStyle: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
@@ -99,7 +103,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
                                   ),
-                              hintText: 'Enter your email here...',
+                              hintText: FFLocalizations.of(context).getText(
+                                '3udea805' /* Enter your email here... */,
+                              ),
                               hintStyle: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
@@ -175,7 +181,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                     context: context,
                                   );
                                 },
-                                text: 'Create Account',
+                                text: FFLocalizations.of(context).getText(
+                                  'dcg5h4rw' /* Create Account */,
+                                ),
                                 options: FFButtonOptions(
                                   width: 200,
                                   height: 50,

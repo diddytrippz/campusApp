@@ -96,7 +96,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   },
                                                   child: Badge(
                                                     badgeContent: Text(
-                                                      '1',
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'ri3unxcp' /* 1 */,
+                                                      ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyText1
@@ -374,7 +378,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   .fromSTEB(0,
                                                                       4, 0, 4),
                                                           child: Text(
-                                                            'Appliances',
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'ihzp7w59' /* Appliances */,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText1
@@ -457,7 +465,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   .fromSTEB(0,
                                                                       4, 0, 4),
                                                           child: Text(
-                                                            'Plumbing',
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              's71iwvs7' /* Plumbing */,
+                                                            ),
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: FlutterFlowTheme
@@ -548,7 +560,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   .fromSTEB(0,
                                                                       4, 0, 4),
                                                           child: Text(
-                                                            'Furniture',
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              '5o364w1w' /* Furniture */,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText1
@@ -635,7 +651,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .fromSTEB(
                                                                     0, 4, 0, 4),
                                                         child: Text(
-                                                          'Electrical',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'mfcvyrpf' /* Electrical */,
+                                                          ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1
@@ -708,7 +728,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .fromSTEB(
                                                                     0, 4, 0, 4),
                                                         child: Text(
-                                                          'Locksmith',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'hnyo7o5l' /* Locksmith */,
+                                                          ),
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: FlutterFlowTheme
@@ -783,7 +807,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .fromSTEB(
                                                                     0, 4, 0, 4),
                                                         child: Text(
-                                                          'Painting',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'wizr7y4h' /* Painting */,
+                                                          ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1
@@ -871,7 +899,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .fromSTEB(
                                                                     0, 4, 0, 4),
                                                         child: AutoSizeText(
-                                                          'Pest control',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'lupj6l78' /* Pest control */,
+                                                          ),
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: FlutterFlowTheme
@@ -970,7 +1002,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .fromSTEB(
                                                                     0, 4, 0, 4),
                                                         child: Text(
-                                                          'Communal',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'rhqj312f' /* Communal */,
+                                                          ),
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: FlutterFlowTheme
@@ -1045,7 +1081,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .fromSTEB(
                                                                     0, 4, 0, 0),
                                                         child: Text(
-                                                          'Others',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'ht2a7sj7' /* Others */,
+                                                          ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1

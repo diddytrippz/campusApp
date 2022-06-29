@@ -172,7 +172,9 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                       },
                       child: Badge(
                         badgeContent: Text(
-                          '1',
+                          FFLocalizations.of(context).getText(
+                            '0h542f8d' /* 1 */,
+                          ),
                           style:
                               FlutterFlowTheme.of(context).bodyText1.override(
                                     fontFamily: 'Open Sans',
@@ -225,10 +227,14 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                         indicatorWeight: 3,
                         tabs: [
                           Tab(
-                            text: 'Details',
+                            text: FFLocalizations.of(context).getText(
+                              'yxfxboa1' /* Details */,
+                            ),
                           ),
                           Tab(
-                            text: 'Comments',
+                            text: FFLocalizations.of(context).getText(
+                              'ev6nki30' /* Comments */,
+                            ),
                           ),
                         ],
                       ),
@@ -497,7 +503,11 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Category',
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'gtrpavgl' /* Category */,
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -619,7 +629,11 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Status',
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'cgpixroe' /* Status */,
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -740,7 +754,11 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Assigned',
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'c406ieec' /* Assigned */,
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -877,7 +895,11 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                               .fromSTEB(
                                                                   12, 0, 0, 0),
                                                       child: Text(
-                                                        'View Ratings',
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          '8dzwam8y' /* View Ratings */,
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -951,7 +973,11 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                               .fromSTEB(
                                                                   12, 10, 0, 0),
                                                       child: Text(
-                                                        'Private Feedback',
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'h2qnzia6' /* Private Feedback */,
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1013,7 +1039,11 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                                       .max,
                                                               children: [
                                                                 Text(
-                                                                  'What was your most important concern with this  ticket?',
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    't9u0hkvb' /* What was your most important c... */,
+                                                                  ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyText1
@@ -1048,11 +1078,21 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                                                 ? choiceChipsValues
                                                                                 : [],
                                                                             options: [
-                                                                              ChipData('Time'),
-                                                                              ChipData('Convinience'),
-                                                                              ChipData('Cleanliness'),
-                                                                              ChipData('Communication'),
-                                                                              ChipData('Quality')
+                                                                              ChipData(FFLocalizations.of(context).getText(
+                                                                                '4cce03y8' /* Time */,
+                                                                              )),
+                                                                              ChipData(FFLocalizations.of(context).getText(
+                                                                                'jluzpfq0' /* Convinience */,
+                                                                              )),
+                                                                              ChipData(FFLocalizations.of(context).getText(
+                                                                                '5gyizihq' /* Cleanliness */,
+                                                                              )),
+                                                                              ChipData(FFLocalizations.of(context).getText(
+                                                                                'kmzqh6iw' /* Communication */,
+                                                                              )),
+                                                                              ChipData(FFLocalizations.of(context).getText(
+                                                                                '4t0sq6e2' /* Quality */,
+                                                                              ))
                                                                             ],
                                                                             onChanged: (val) =>
                                                                                 setState(() => choiceChipsValues = val),
@@ -1126,7 +1166,11 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                               .fromSTEB(18, 20,
                                                                   18, 30),
                                                       child: Text(
-                                                        'Your rating is really important for us as it helps us to improve our services for the future.',
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'mwhoav8a' /* Your rating is really importan... */,
+                                                        ),
                                                         textAlign:
                                                             TextAlign.start,
                                                         style:

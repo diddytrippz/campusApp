@@ -63,7 +63,9 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
           },
         ),
         title: Text(
-          'Review',
+          FFLocalizations.of(context).getText(
+            'o4ma2plr' /* Review */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -212,7 +214,9 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                               child: Text(
-                                'Private Feedback',
+                                FFLocalizations.of(context).getText(
+                                  'd385clrz' /* Private Feedback */,
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .title1
                                     .override(
@@ -248,7 +252,9 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          'What was your most important concern with this  ticket?',
+                                          FFLocalizations.of(context).getText(
+                                            '73kmddwp' /* What was your most important c... */,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
                                               .override(
@@ -275,11 +281,36 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                                             ? choiceChipsValues
                                                             : [],
                                                     options: [
-                                                      ChipData('Time'),
-                                                      ChipData('Convinience'),
-                                                      ChipData('Cleanliness'),
-                                                      ChipData('Communication'),
-                                                      ChipData('Quality')
+                                                      ChipData(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                        'ugvvl6sj' /* Time */,
+                                                      )),
+                                                      ChipData(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                        'hf7xrl78' /* Convinience */,
+                                                      )),
+                                                      ChipData(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                        '8qm66qau' /* Cleanliness */,
+                                                      )),
+                                                      ChipData(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                        '655gd3ni' /* Communication */,
+                                                      )),
+                                                      ChipData(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                        'oakcj4gl' /* Quality */,
+                                                      ))
                                                     ],
                                                     onChanged: (val) =>
                                                         setState(() =>
@@ -357,7 +388,10 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 hintText:
-                                                    'Anything you\'d like us to know?\n(optional)',
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                  'ylyfvpnm' /* Anything you'd like us to know... */,
+                                                ),
                                                 enabledBorder:
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
@@ -411,7 +445,9 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(18, 20, 18, 0),
                               child: Text(
-                                'Your rating is really important for us as it helps us to improve our services for the future.',
+                                FFLocalizations.of(context).getText(
+                                  '11421gx0' /* Your rating is really importan... */,
+                                ),
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -494,7 +530,9 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                     logFirebaseEvent('Button_Navigate-To');
                                     context.pushNamed('viewPage');
                                   },
-                                  text: 'Confirm',
+                                  text: FFLocalizations.of(context).getText(
+                                    'q7zf3n84' /* Confirm */,
+                                  ),
                                   options: FFButtonOptions(
                                     width: double.infinity,
                                     height: 55,

@@ -14,21 +14,15 @@ class FFAppState {
 
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
-    _profilePic = prefs.getString('ff_profilePic') ?? _profilePic;
     _darkMode = prefs.getBool('ff_darkMode') ?? _darkMode;
     _numberOfDocs = prefs.getInt('ff_numberOfDocs') ?? _numberOfDocs;
     _caLogo = prefs.getString('ff_caLogo') ?? _caLogo;
     _myBio = prefs.getString('ff_myBio') ?? _myBio;
+    _defaultLanguage =
+        prefs.getString('ff_defaultLanguage') ?? _defaultLanguage;
   }
 
   late SharedPreferences prefs;
-
-  String _profilePic = '';
-  String get profilePic => _profilePic;
-  set profilePic(String _value) {
-    _profilePic = _value;
-    prefs.setString('ff_profilePic', _value);
-  }
 
   bool isPressed = true;
 
@@ -60,6 +54,13 @@ class FFAppState {
   set myBio(String _value) {
     _myBio = _value;
     prefs.setString('ff_myBio', _value);
+  }
+
+  String _defaultLanguage = '';
+  String get defaultLanguage => _defaultLanguage;
+  set defaultLanguage(String _value) {
+    _defaultLanguage = _value;
+    prefs.setString('ff_defaultLanguage', _value);
   }
 }
 

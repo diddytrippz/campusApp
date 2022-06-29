@@ -60,7 +60,9 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
           },
         ),
         title: Text(
-          'Plumbing',
+          FFLocalizations.of(context).getText(
+            'j6exf7im' /* Plumbing */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -136,7 +138,9 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
                                     context,
-                                    'File Uploaded!',
+                                    FFLocalizations.of(context).getText(
+                                      'z40c2u6r' /* File Uploaded! */,
+                                    ),
                                   );
                                 } else {
                                   showUploadMessage(
@@ -179,7 +183,9 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Name',
+                            FFLocalizations.of(context).getText(
+                              'sjfameuq' /* Name */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -201,7 +207,9 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                           readOnly: true,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: ' ',
+                            labelText: FFLocalizations.of(context).getText(
+                              'hh3kxhi3' /*   */,
+                            ),
                             hintText: currentUserDisplayName,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -242,7 +250,9 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Issue',
+                            FFLocalizations.of(context).getText(
+                              '6ydhq6qy' /* Issue */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -260,17 +270,39 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: FlutterFlowDropDown(
                         options: [
-                          'Damaged toilet sit',
-                          'Damaged basin/sink',
-                          'Blocked urinal',
-                          'Blocked toilet',
-                          'Blocked shower drain',
-                          'Low water pressure',
-                          'No cold water',
-                          'No hot water',
-                          'Shower head needs to be replaced',
-                          'Leaking gyser',
-                          'Burst pipes'
+                          FFLocalizations.of(context).getText(
+                            'g1s4b5qt' /* Damaged toilet sit */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'f3r9wayy' /* Damaged basin/sink */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'uzsclpgj' /* Blocked urinal */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'bcc5cdzk' /* Blocked toilet */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'jvpf1jfb' /* Blocked shower drain */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            '4wyw28qg' /* Low water pressure */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'xglpnog5' /* No cold water */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            '4ybabfa3' /* No hot water */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'oe2iooc7' /* Shower head needs to be replac... */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            '1hx0jrbo' /* Leaking gyser */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            '0acr9e1x' /* Burst pipes */,
+                          )
                         ],
                         onChanged: (val) => setState(() => issueValue = val),
                         width: MediaQuery.of(context).size.width * 0.98,
@@ -283,7 +315,9 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
-                        hintText: 'Please select...',
+                        hintText: FFLocalizations.of(context).getText(
+                          'jecw64w4' /* Please select... */,
+                        ),
                         icon: Icon(
                           FFIcons.kedit,
                           color: FlutterFlowTheme.of(context).primaryText,
@@ -304,7 +338,9 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Description',
+                            FFLocalizations.of(context).getText(
+                              '221kv5j6' /* Description */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -324,7 +360,9 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'Describe your Issue',
+                          hintText: FFLocalizations.of(context).getText(
+                            'g4jhlicm' /* Describe your Issue */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00C5C5C5),
@@ -354,7 +392,9 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                         maxLines: 5,
                         validator: (val) {
                           if (val == null || val.isEmpty) {
-                            return 'Field is required';
+                            return FFLocalizations.of(context).getText(
+                              'h85e3ygq' /* Field is required */,
+                            );
                           }
 
                           if (val.length > 120) {
@@ -433,7 +473,9 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                             },
                           );
                         },
-                        text: 'Submit',
+                        text: FFLocalizations.of(context).getText(
+                          '9hwlv2m7' /* Submit */,
+                        ),
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 55,

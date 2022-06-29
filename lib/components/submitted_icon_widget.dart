@@ -70,7 +70,9 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 0, 15),
                             child: Text(
-                              'Success!',
+                              FFLocalizations.of(context).getText(
+                                'ua7ubrzs' /* Success! */,
+                              ),
                               style:
                                   FlutterFlowTheme.of(context).title1.override(
                                         fontFamily: 'Open Sans',
@@ -88,7 +90,9 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                             child: AutoSizeText(
-                              'Your request has been received\nby the Campus Africa maintenance\nteam.',
+                              FFLocalizations.of(context).getText(
+                                'eelep3l0' /* Your request has been received... */,
+                              ),
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -110,7 +114,9 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                             logFirebaseEvent('Button_Navigate-To');
                             context.goNamed('viewPage');
                           },
-                          text: 'Continue',
+                          text: FFLocalizations.of(context).getText(
+                            '6vhy0doc' /* Continue */,
+                          ),
                           options: FFButtonOptions(
                             width: 130,
                             height: 40,

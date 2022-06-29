@@ -122,10 +122,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 indicatorWeight: 3,
                                 tabs: [
                                   Tab(
-                                    text: 'Sign In',
+                                    text: FFLocalizations.of(context).getText(
+                                      '41bxdiwe' /* Sign In */,
+                                    ),
                                   ),
                                   Tab(
-                                    text: 'Sign Up',
+                                    text: FFLocalizations.of(context).getText(
+                                      '39d2vk8s' /* Sign Up */,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -179,9 +183,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText:
-                                                        'Enter Student Your Email',
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      'ed82ihgs' /* Enter Student Your Email */,
+                                                    ),
                                                     hintText:
-                                                        'Enter Student Your Email',
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      'r0zrl5vr' /* Enter Student Your Email */,
+                                                    ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -252,9 +264,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                       !textFieldPassVisibility,
                                                   decoration: InputDecoration(
                                                     labelText:
-                                                        'Enter Your Password',
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      '8jzdsi0i' /* Enter Your Password */,
+                                                    ),
                                                     hintText:
-                                                        'Enter Your Password',
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      '4cv0xtvu' /* Enter Your Password */,
+                                                    ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -355,11 +375,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                     context.goNamedAuth(
                                                         'homePage', mounted);
                                                   },
-                                                  text: 'Sign In',
+                                                  text: FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'g9fuyf01' /* Sign In */,
+                                                  ),
                                                   options: FFButtonOptions(
                                                     width: double.infinity,
                                                     height: 55,
-                                                    color: Color(0xFF181818),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryColor,
                                                     textStyle: FlutterFlowTheme
                                                             .of(context)
                                                         .subtitle2
@@ -407,7 +433,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                     );
                                                   },
                                                   child: Text(
-                                                    'Forgot Password?',
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      'lp9o8sui' /* Forgot Password? */,
+                                                    ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyText1
@@ -447,9 +476,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               labelText:
-                                                  'Enter Student Your Email',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                'h92rfs71' /* Enter Student Your Email */,
+                                              ),
                                               hintText:
-                                                  'Enter Student Your Email',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                't4khzpcp' /* Enter Student Your Email */,
+                                              ),
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
@@ -521,7 +556,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 context: context,
                                               );
                                             },
-                                            text: 'Create account',
+                                            text: FFLocalizations.of(context)
+                                                .getText(
+                                              'usj6cw5r' /* Create account */,
+                                            ),
                                             options: FFButtonOptions(
                                               width: double.infinity,
                                               height: 50,

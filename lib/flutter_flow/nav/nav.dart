@@ -105,7 +105,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'viewPage')
-                  : ViewPageWidget(),
+                  : ViewPageWidget(
+                      completeTemp:
+                          params.getParam('completeTemp', ParamType.double),
+                    ),
             ),
             FFRoute(
               name: 'rulesBook',

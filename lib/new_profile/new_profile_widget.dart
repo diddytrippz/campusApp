@@ -29,6 +29,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
   TextEditingController? textController4;
   TextEditingController? textController5;
   TextEditingController? textController6;
+  TextEditingController? textController7;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -44,6 +45,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
     textController5 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.room, ''));
     textController6 = TextEditingController(text: currentUserUid);
+    textController7 = TextEditingController(text: FFAppState().defaultLanguage);
   }
 
   @override
@@ -70,7 +72,9 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
           },
         ),
         title: Text(
-          'Profile',
+          FFLocalizations.of(context).getText(
+            '0wva1xyq' /* Profile */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -125,7 +129,9 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                 }
               },
               child: Text(
-                'Save',
+                FFLocalizations.of(context).getText(
+                  'uu3knjl3' /* Save */,
+                ),
                 style: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: 'Open Sans',
                       color: Color(0xFF1F78FF),
@@ -242,7 +248,9 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                           setState(() => uploadedFileUrl = downloadUrls.first);
                           showUploadMessage(
                             context,
-                            'File Uploaded!',
+                            FFLocalizations.of(context).getText(
+                              'z40c2u6r' /* File Uploaded! */,
+                            ),
                           );
                         } else {
                           showUploadMessage(
@@ -254,7 +262,9 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                       }
                     },
                     child: Text(
-                      'Change My Picture',
+                      FFLocalizations.of(context).getText(
+                        '4mbweto7' /* Change My Picture */,
+                      ),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Open Sans',
                             color: Color(0xFF1F78FF),
@@ -265,7 +275,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 20, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 50, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -275,7 +285,9 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                           child: Text(
-                            'Name',
+                            FFLocalizations.of(context).getText(
+                              'nktudvhd' /* Name */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -337,7 +349,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 20, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 50, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -347,7 +359,9 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                           child: Text(
-                            'Email',
+                            FFLocalizations.of(context).getText(
+                              'v9bhu3my' /* Email */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -406,7 +420,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 20, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 50, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -416,7 +430,9 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                           child: Text(
-                            'Bio    ',
+                            FFLocalizations.of(context).getText(
+                              '31viba32' /* Bio     */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -440,7 +456,9 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                           ),
                           obscureText: false,
                           decoration: InputDecoration(
-                            hintText: 'Write about yourself...',
+                            hintText: FFLocalizations.of(context).getText(
+                              'pcl4k8pk' /* Write about yourself... */,
+                            ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x2E464749),
@@ -476,7 +494,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 20, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 50, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -486,7 +504,9 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                           child: Text(
-                            'Building',
+                            FFLocalizations.of(context).getText(
+                              'm8wmwvns' /* Building */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -548,7 +568,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 20, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 50, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -558,7 +578,9 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                           child: Text(
-                            'Room',
+                            FFLocalizations.of(context).getText(
+                              'hrbosgqh' /* Room */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -620,7 +642,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 20, 20, 40),
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 50, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -630,7 +652,9 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                           child: Text(
-                            'UID',
+                            FFLocalizations.of(context).getText(
+                              '17zon0zi' /* UID */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -683,6 +707,79 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 14,
                               ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 30, 50, 40),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              'ie0kbdvu' /* Select
+Language */
+                              ,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: 'Open Sans',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(50, 0, 0, 0),
+                          child: TextFormField(
+                            controller: textController7,
+                            onChanged: (_) => EasyDebounce.debounce(
+                              'textController7',
+                              Duration(milliseconds: 2000),
+                              () => setState(() {}),
+                            ),
+                            autofocus: true,
+                            readOnly: true,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              hintText: '[Some hint text...]',
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                            ),
+                            style: FlutterFlowTheme.of(context).bodyText1,
+                            textAlign: TextAlign.end,
+                          ),
                         ),
                       ),
                     ],

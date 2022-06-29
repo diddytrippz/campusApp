@@ -60,7 +60,9 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
           },
         ),
         title: Text(
-          'Furniture',
+          FFLocalizations.of(context).getText(
+            'zsoxcckp' /* Furniture */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -136,7 +138,9 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
                                     context,
-                                    'File Uploaded!',
+                                    FFLocalizations.of(context).getText(
+                                      'z40c2u6r' /* File Uploaded! */,
+                                    ),
                                   );
                                 } else {
                                   showUploadMessage(
@@ -179,7 +183,9 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Name',
+                            FFLocalizations.of(context).getText(
+                              'rjplwfib' /* Name */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -201,7 +207,9 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                           readOnly: true,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: ' ',
+                            labelText: FFLocalizations.of(context).getText(
+                              'ev3xlq8h' /*   */,
+                            ),
                             hintText: currentUserDisplayName,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -242,7 +250,9 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Issue',
+                            FFLocalizations.of(context).getText(
+                              'ri3brf64' /* Issue */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -260,13 +270,27 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: FlutterFlowDropDown(
                         options: [
-                          'Damaged bed base',
-                          'Damaged mattress',
-                          'Curtain rail needs to be replaced',
-                          'Damaged study table',
-                          'Damaged chair',
-                          'Window cannot open',
-                          'Window cannot close'
+                          FFLocalizations.of(context).getText(
+                            '8qnmznb2' /* Damaged bed base */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'dcliexha' /* Damaged mattress */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'ctzwfb5g' /* Curtain rail needs to be repla... */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'eftivozm' /* Damaged study table */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            '6xd65swp' /* Damaged chair */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'fie5oy0p' /* Window cannot open */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'nzm86etj' /* Window cannot close */,
+                          )
                         ],
                         onChanged: (val) => setState(() => budgetValue = val),
                         width: MediaQuery.of(context).size.width * 0.98,
@@ -279,7 +303,9 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
-                        hintText: 'Please select...',
+                        hintText: FFLocalizations.of(context).getText(
+                          'enx6owqa' /* Please select... */,
+                        ),
                         icon: Icon(
                           FFIcons.kedit,
                           color: FlutterFlowTheme.of(context).primaryText,
@@ -300,7 +326,9 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Description',
+                            FFLocalizations.of(context).getText(
+                              'y0ee0fcm' /* Description */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -320,7 +348,9 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'Describe your Issue',
+                          hintText: FFLocalizations.of(context).getText(
+                            'smqtfo79' /* Describe your Issue */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00C5C5C5),
@@ -350,7 +380,9 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                         maxLines: 5,
                         validator: (val) {
                           if (val == null || val.isEmpty) {
-                            return 'Field is required';
+                            return FFLocalizations.of(context).getText(
+                              'fut8j40g' /* Field is required */,
+                            );
                           }
 
                           if (val.length > 120) {
@@ -428,7 +460,9 @@ class _FurnitureWidgetState extends State<FurnitureWidget> {
                             },
                           );
                         },
-                        text: 'Submit',
+                        text: FFLocalizations.of(context).getText(
+                          'ezxqytym' /* Submit */,
+                        ),
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 55,

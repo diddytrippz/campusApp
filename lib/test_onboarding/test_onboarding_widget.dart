@@ -71,7 +71,9 @@ class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
                                     ),
                                   ),
                                   Text(
-                                    'Campus Africa',
+                                    FFLocalizations.of(context).getText(
+                                      '7rm5hpzh' /* Campus Africa */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -107,7 +109,9 @@ class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
                                     ),
                                   ),
                                   Text(
-                                    'Campus Africa',
+                                    FFLocalizations.of(context).getText(
+                                      'til09yqe' /* Campus Africa */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -165,7 +169,9 @@ class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
                     logFirebaseEvent('Button_Navigate-To');
                     context.pushNamed('loginPage');
                   },
-                  text: 'Login',
+                  text: FFLocalizations.of(context).getText(
+                    '5fjqqbhk' /* Login */,
+                  ),
                   options: FFButtonOptions(
                     width: 600,
                     height: 50,
@@ -192,7 +198,9 @@ class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
                     logFirebaseEvent('Button_Navigate-To');
                     context.pushNamed('loginPage');
                   },
-                  text: 'Register',
+                  text: FFLocalizations.of(context).getText(
+                    'toce9ejh' /* Register */,
+                  ),
                   options: FFButtonOptions(
                     width: 600,
                     height: 50,

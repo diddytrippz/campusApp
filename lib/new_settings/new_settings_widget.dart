@@ -1,15 +1,16 @@
 import '../auth/auth_util.dart';
 import '../components/dark_mode_widget.dart';
+import '../components/language_widget.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:share_plus/share_plus.dart';
 
 class NewSettingsWidget extends StatefulWidget {
   const NewSettingsWidget({Key? key}) : super(key: key);
@@ -19,7 +20,6 @@ class NewSettingsWidget extends StatefulWidget {
 }
 
 class _NewSettingsWidgetState extends State<NewSettingsWidget> {
-  String _currentPageLink = '';
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -36,7 +36,9 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         title: Text(
-          'Settings',
+          FFLocalizations.of(context).getText(
+            'u72jdw6e' /* Settings */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -98,8 +100,9 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                               type: PageTransitionType.fade,
                                               child:
                                                   FlutterFlowExpandedImageView(
-                                                image: Image.network(
-                                                  valueOrDefault<String>(
+                                                image: CachedNetworkImage(
+                                                  imageUrl:
+                                                      valueOrDefault<String>(
                                                     currentUserPhoto,
                                                     'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                                   ),
@@ -128,8 +131,8 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
-                                            child: Image.network(
-                                              valueOrDefault<String>(
+                                            child: CachedNetworkImage(
+                                              imageUrl: valueOrDefault<String>(
                                                 currentUserPhoto,
                                                 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                               ),
@@ -217,7 +220,9 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 20,
                                 ),
                                 title: Text(
-                                  'Account',
+                                  FFLocalizations.of(context).getText(
+                                    'l75068ci' /* Account */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
@@ -278,7 +283,9 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 24,
                                 ),
                                 title: Text(
-                                  'Messages',
+                                  FFLocalizations.of(context).getText(
+                                    'nj9u6e42' /* Messages */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
@@ -340,53 +347,9 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 28,
                                 ),
                                 title: Text(
-                                  'Appearance',
-                                  style: FlutterFlowTheme.of(context)
-                                      .title3
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontSize: 18,
-                                      ),
-                                ),
-                                trailing: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 16,
-                                ),
-                                tileColor: Color(0x00F5F5F5),
-                                dense: true,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 5, 10, 10),
-                            child: InkWell(
-                              onTap: () async {
-                                logFirebaseEvent(
-                                    'NEW_SETTINGS_ListTile_ua95ob38_ON_TAP');
-                                logFirebaseEvent(
-                                    'ListTile_Generate-Current-Page-Link');
-                                _currentPageLink =
-                                    await generateCurrentPageLink(context);
-                                logFirebaseEvent('ListTile_Share');
-                                await Share.share(_currentPageLink);
-                              },
-                              child: ListTile(
-                                leading: Icon(
-                                  Icons.color_lens,
-                                  color:
-                                      FlutterFlowTheme.of(context).campusGrey,
-                                  size: 28,
-                                ),
-                                title: Text(
-                                  'DeepLinkState',
+                                  FFLocalizations.of(context).getText(
+                                    't9754pmw' /* Appearance */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
@@ -461,7 +424,9 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 24,
                                 ),
                                 title: Text(
-                                  'Checklist',
+                                  FFLocalizations.of(context).getText(
+                                    'k25fzrux' /* Checklist */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
@@ -514,7 +479,9 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 24,
                                 ),
                                 title: Text(
-                                  'Student handbook',
+                                  FFLocalizations.of(context).getText(
+                                    'mv65usit' /* Student handbook */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
@@ -567,7 +534,9 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 26,
                                 ),
                                 title: Text(
-                                  'Notifications',
+                                  FFLocalizations.of(context).getText(
+                                    'w3kgqtsc' /* Notifications */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
@@ -616,6 +585,72 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                             child: InkWell(
                               onTap: () async {
                                 logFirebaseEvent(
+                                    'NEW_SETTINGS_ListTile_rdqryog8_ON_TAP');
+                                logFirebaseEvent('ListTile_Bottom-Sheet');
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  context: context,
+                                  builder: (context) {
+                                    return Padding(
+                                      padding:
+                                          MediaQuery.of(context).viewInsets,
+                                      child: LanguageWidget(),
+                                    );
+                                  },
+                                );
+                              },
+                              child: ListTile(
+                                leading: FaIcon(
+                                  FontAwesomeIcons.language,
+                                  color:
+                                      FlutterFlowTheme.of(context).campusGrey,
+                                  size: 24,
+                                ),
+                                title: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'lfkifcv6' /* Language */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .title3
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: 18,
+                                      ),
+                                ),
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 16,
+                                ),
+                                tileColor: Color(0x00F5F5F5),
+                                dense: true,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(50, 0, 50, 0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 0.2,
+                              decoration: BoxDecoration(
+                                color: Color(0x81464749),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
+                            child: InkWell(
+                              onTap: () async {
+                                logFirebaseEvent(
                                     'NEW_SETTINGS_ListTile_nodnox8i_ON_TAP');
                                 logFirebaseEvent('ListTile_Launch-U-R-L');
                                 await launchURL(
@@ -629,7 +664,9 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 24,
                                 ),
                                 title: Text(
-                                  'About us',
+                                  FFLocalizations.of(context).getText(
+                                    '2u2thzj6' /* About us */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
@@ -684,7 +721,9 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 28,
                                 ),
                                 title: Text(
-                                  'Logout',
+                                  FFLocalizations.of(context).getText(
+                                    'ak9vojgx' /* Logout */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(

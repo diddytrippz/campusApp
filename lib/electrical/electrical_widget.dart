@@ -60,7 +60,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
           },
         ),
         title: Text(
-          'Electrical',
+          FFLocalizations.of(context).getText(
+            '5h10vla4' /* Electrical */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -136,7 +138,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
                                     context,
-                                    'File Uploaded!',
+                                    FFLocalizations.of(context).getText(
+                                      'z40c2u6r' /* File Uploaded! */,
+                                    ),
                                   );
                                 } else {
                                   showUploadMessage(
@@ -179,7 +183,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Name',
+                            FFLocalizations.of(context).getText(
+                              'pptn41hq' /* Name */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -201,7 +207,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                           readOnly: true,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: ' ',
+                            labelText: FFLocalizations.of(context).getText(
+                              'snmjv58b' /*   */,
+                            ),
                             hintText: currentUserDisplayName,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -242,7 +250,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Issue',
+                            FFLocalizations.of(context).getText(
+                              'o96uncwm' /* Issue */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -260,12 +270,24 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: FlutterFlowDropDown(
                         options: [
-                          'Emergency lights not working',
-                          'Loose cables',
-                          'No power/electricity',
-                          'Faulty prepaid meter',
-                          'Lights in my room are not working',
-                          'Lights in my unit are not working'
+                          FFLocalizations.of(context).getText(
+                            'ynegaw02' /* Emergency lights not working */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'nlauvg3m' /* Loose cables */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'exk8o1zs' /* No power/electricity */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            '3ellrjbp' /* Faulty prepaid meter */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            '8u8v7nrs' /* Lights in my room are not work... */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'u216hxi3' /* Lights in my unit are not work... */,
+                          )
                         ],
                         onChanged: (val) => setState(() => budgetValue = val),
                         width: MediaQuery.of(context).size.width * 0.98,
@@ -278,7 +300,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
-                        hintText: 'Please select...',
+                        hintText: FFLocalizations.of(context).getText(
+                          'ewgrtjnb' /* Please select... */,
+                        ),
                         icon: Icon(
                           FFIcons.kedit,
                           color: FlutterFlowTheme.of(context).primaryText,
@@ -299,7 +323,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Description',
+                            FFLocalizations.of(context).getText(
+                              'lvbcdupg' /* Description */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -319,7 +345,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'Describe your Issue',
+                          hintText: FFLocalizations.of(context).getText(
+                            'oqw7x9ak' /* Describe your Issue */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00C5C5C5),
@@ -349,7 +377,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                         maxLines: 5,
                         validator: (val) {
                           if (val == null || val.isEmpty) {
-                            return 'Field is required';
+                            return FFLocalizations.of(context).getText(
+                              'o3r0rwcy' /* Field is required */,
+                            );
                           }
 
                           if (val.length > 120) {
@@ -427,7 +457,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                             },
                           );
                         },
-                        text: 'Submit',
+                        text: FFLocalizations.of(context).getText(
+                          'cb9hr1xq' /* Submit */,
+                        ),
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 55,

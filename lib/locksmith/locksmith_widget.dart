@@ -60,7 +60,9 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
           },
         ),
         title: Text(
-          'Locksmith',
+          FFLocalizations.of(context).getText(
+            'zkpr0gnw' /* Locksmith */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -136,7 +138,9 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
                                     context,
-                                    'File Uploaded!',
+                                    FFLocalizations.of(context).getText(
+                                      'z40c2u6r' /* File Uploaded! */,
+                                    ),
                                   );
                                 } else {
                                   showUploadMessage(
@@ -179,7 +183,9 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Name',
+                            FFLocalizations.of(context).getText(
+                              's3eqlhy0' /* Name */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -201,7 +207,9 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                           readOnly: true,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: ' ',
+                            labelText: FFLocalizations.of(context).getText(
+                              'poroii6k' /*   */,
+                            ),
                             hintText: currentUserDisplayName,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -242,7 +250,9 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Issue',
+                            FFLocalizations.of(context).getText(
+                              '5mh6yhav' /* Issue */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -260,13 +270,27 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: FlutterFlowDropDown(
                         options: [
-                          'Broken door handle (unit)',
-                          'Broken door handle (Room)',
-                          'Room key not opening',
-                          'Unit key not opening',
-                          'Lost key',
-                          'Lost access card',
-                          'access card not working'
+                          FFLocalizations.of(context).getText(
+                            '2ovvpyjh' /* Broken door handle (unit) */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'aiwyw4j6' /* Broken door handle (Room) */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'lz8ylm9y' /* Room key not opening */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            '4k1n19qm' /* Unit key not opening */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'oqlc0lzx' /* Lost key */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'mw548crh' /* Lost access card */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'rdiv127k' /* access card not working */,
+                          )
                         ],
                         onChanged: (val) => setState(() => budgetValue = val),
                         width: MediaQuery.of(context).size.width * 0.98,
@@ -279,7 +303,9 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
-                        hintText: 'Please select...',
+                        hintText: FFLocalizations.of(context).getText(
+                          'a0pmib1g' /* Please select... */,
+                        ),
                         icon: Icon(
                           FFIcons.kedit,
                           color: FlutterFlowTheme.of(context).primaryText,
@@ -300,7 +326,9 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Description',
+                            FFLocalizations.of(context).getText(
+                              'pkd6jbzq' /* Description */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -320,7 +348,9 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'Describe your Issue',
+                          hintText: FFLocalizations.of(context).getText(
+                            'olb70f7m' /* Describe your Issue */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00C5C5C5),
@@ -350,7 +380,9 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                         maxLines: 5,
                         validator: (val) {
                           if (val == null || val.isEmpty) {
-                            return 'Field is required';
+                            return FFLocalizations.of(context).getText(
+                              '01ba5isz' /* Field is required */,
+                            );
                           }
 
                           if (val.length > 120) {
@@ -428,7 +460,9 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
                             },
                           );
                         },
-                        text: 'Submit',
+                        text: FFLocalizations.of(context).getText(
+                          'ekzi7ay8' /* Submit */,
+                        ),
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 55,

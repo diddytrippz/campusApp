@@ -51,7 +51,9 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
                     children: [
                       Expanded(
                         child: Text(
-                          'No results were found from your search.\nPlease try again.',
+                          FFLocalizations.of(context).getText(
+                            'cf85lsih' /* No results were found from you... */,
+                          ),
                           textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).bodyText1.override(

@@ -60,7 +60,9 @@ class _PaintingWidgetState extends State<PaintingWidget> {
           },
         ),
         title: Text(
-          'Painting',
+          FFLocalizations.of(context).getText(
+            'fpnywby9' /* Painting */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -136,7 +138,9 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
                                     context,
-                                    'File Uploaded!',
+                                    FFLocalizations.of(context).getText(
+                                      'z40c2u6r' /* File Uploaded! */,
+                                    ),
                                   );
                                 } else {
                                   showUploadMessage(
@@ -179,7 +183,9 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Name',
+                            FFLocalizations.of(context).getText(
+                              'y45hko9v' /* Name */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -201,7 +207,9 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                           readOnly: true,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: ' ',
+                            labelText: FFLocalizations.of(context).getText(
+                              'a4x8dzml' /*   */,
+                            ),
                             hintText: currentUserDisplayName,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -242,7 +250,9 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Issue',
+                            FFLocalizations.of(context).getText(
+                              'sxw0xvkr' /* Issue */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -260,11 +270,21 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: FlutterFlowDropDown(
                         options: [
-                          'Ceiling needs to be painted',
-                          'Door frame needs to be painted',
-                          'Skirting needs to be painted',
-                          'Walls needs to be painted',
-                          'Window frames needs to be painted'
+                          FFLocalizations.of(context).getText(
+                            'b49kwxxn' /* Ceiling needs to be painted */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'xcjd2ohv' /* Door frame needs to be painted */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            'hn0l9gtd' /* Skirting needs to be painted */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            '73kygpgt' /* Walls needs to be painted */,
+                          ),
+                          FFLocalizations.of(context).getText(
+                            '99fpkv1q' /* Window frames needs to be pain... */,
+                          )
                         ],
                         onChanged: (val) => setState(() => budgetValue = val),
                         width: MediaQuery.of(context).size.width * 0.98,
@@ -277,7 +297,9 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
-                        hintText: 'Please select...',
+                        hintText: FFLocalizations.of(context).getText(
+                          'r8v9zom9' /* Please select... */,
+                        ),
                         icon: Icon(
                           FFIcons.kedit,
                           color: FlutterFlowTheme.of(context).primaryText,
@@ -298,7 +320,9 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Description',
+                            FFLocalizations.of(context).getText(
+                              '9yycc0gq' /* Description */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -318,7 +342,9 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                         controller: reasonController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          hintText: 'Describe your Issue',
+                          hintText: FFLocalizations.of(context).getText(
+                            'i0vecmyv' /* Describe your Issue */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00C5C5C5),
@@ -348,7 +374,9 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                         maxLines: 5,
                         validator: (val) {
                           if (val == null || val.isEmpty) {
-                            return 'Field is required';
+                            return FFLocalizations.of(context).getText(
+                              'qow9mldr' /* Field is required */,
+                            );
                           }
 
                           if (val.length > 120) {
@@ -426,7 +454,9 @@ class _PaintingWidgetState extends State<PaintingWidget> {
                             },
                           );
                         },
-                        text: 'Submit',
+                        text: FFLocalizations.of(context).getText(
+                          'c9brkjw1' /* Submit */,
+                        ),
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 55,

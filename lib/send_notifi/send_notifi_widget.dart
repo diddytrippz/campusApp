@@ -43,7 +43,9 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         title: Text(
-          'Add Notes',
+          FFLocalizations.of(context).getText(
+            'ptxfts7r' /* Add Notes */,
+          ),
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Open Sans',
                 color: FlutterFlowTheme.of(context).primaryText,
@@ -98,7 +100,9 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                             controller: userNameController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: 'Notification title',
+                              hintText: FFLocalizations.of(context).getText(
+                                'de2wj84r' /* Notification title */,
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color:
@@ -131,7 +135,9 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                             maxLines: 1,
                             validator: (val) {
                               if (val == null || val.isEmpty) {
-                                return 'Field is required';
+                                return FFLocalizations.of(context).getText(
+                                  '9y9lg112' /* Field is required */,
+                                );
                               }
 
                               if (val.length > 80) {
@@ -149,7 +155,9 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                             controller: shortBioController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: 'Enter description here...',
+                              hintText: FFLocalizations.of(context).getText(
+                                '5kakixgn' /* Enter description here... */,
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color:
@@ -184,7 +192,9 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                             keyboardType: TextInputType.multiline,
                             validator: (val) {
                               if (val == null || val.isEmpty) {
-                                return 'Field is required';
+                                return FFLocalizations.of(context).getText(
+                                  'aw8n6o4a' /* Field is required */,
+                                );
                               }
 
                               if (val.length > 160) {
@@ -200,10 +210,18 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                               EdgeInsetsDirectional.fromSTEB(16, 22, 16, 0),
                           child: FlutterFlowDropDown(
                             options: [
-                              'Bookings',
-                              'Announcement',
-                              'Reminder',
-                              'Newsletter'
+                              FFLocalizations.of(context).getText(
+                                'rt4p4j5i' /* Bookings */,
+                              ),
+                              FFLocalizations.of(context).getText(
+                                'xis2q63f' /* Announcement */,
+                              ),
+                              FFLocalizations.of(context).getText(
+                                'eb8fsf8x' /* Reminder */,
+                              ),
+                              FFLocalizations.of(context).getText(
+                                '3ygaqska' /* Newsletter */,
+                              )
                             ],
                             onChanged: (val) =>
                                 setState(() => teamSelectValue = val),
@@ -216,7 +234,9 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
-                            hintText: 'Notification Type',
+                            hintText: FFLocalizations.of(context).getText(
+                              'r5jkai5h' /* Notification Type */,
+                            ),
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: FlutterFlowTheme.of(context).primaryText,
@@ -330,7 +350,9 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                               onChanged: (newValue) => setState(
                                   () => checkboxListTileValue = newValue!),
                               title: Text(
-                                'Select all users?',
+                                FFLocalizations.of(context).getText(
+                                  '48bf7x8r' /* Select all users? */,
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .title3
                                     .override(
@@ -412,7 +434,9 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                               logFirebaseEvent('Button_Navigate-To');
                               context.pushNamed('notifications');
                             },
-                            text: 'Send Notification',
+                            text: FFLocalizations.of(context).getText(
+                              '2mgjnl4w' /* Send Notification */,
+                            ),
                             options: FFButtonOptions(
                               width: 270,
                               height: 50,
