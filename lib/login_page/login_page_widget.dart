@@ -92,6 +92,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                   ),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
+                    height: 400,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).tertiaryColor,
                       borderRadius: BorderRadius.only(
@@ -102,7 +103,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       ),
                     ),
                     child: Container(
-                      height: 400,
                       decoration: BoxDecoration(),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),

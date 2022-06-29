@@ -44,213 +44,245 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.4,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).tertiaryColor,
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16, 15, 16, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(12, 0, 12, 0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    InkWell(
-                                                      onTap: () async {
-                                                        logFirebaseEvent(
-                                                            'HOME_PAGE_PAGE_Badge_p5sr70sy_ON_TAP');
-                                                        logFirebaseEvent(
-                                                            'Badge_Navigate-To');
-                                                        context.pushNamed(
-                                                            'MessagesPage');
-                                                      },
-                                                      child: Badge(
-                                                        badgeContent: Text(
-                                                          '1',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 12,
-                                                              ),
-                                                        ),
-                                                        showBadge: true,
-                                                        shape:
-                                                            BadgeShape.circle,
-                                                        badgeColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .campusRed,
-                                                        elevation: 4,
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    6, 6, 6, 6),
-                                                        position: BadgePosition
-                                                            .topEnd(),
-                                                        animationType:
-                                                            BadgeAnimationType
-                                                                .scale,
-                                                        toAnimate: true,
-                                                        child: Icon(
-                                                          FFIcons.kchatboxes,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).tertiaryColor,
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Stack(
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .tertiaryColor,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 15, 16, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12, 0, 12, 0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                InkWell(
+                                                  onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'HOME_PAGE_PAGE_Badge_p5sr70sy_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Badge_Navigate-To');
+                                                    context.pushNamed(
+                                                        'MessagesPage');
+                                                  },
+                                                  child: Badge(
+                                                    badgeContent: Text(
+                                                      '1',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyText1
+                                                          .override(
+                                                            fontFamily:
+                                                                'Open Sans',
+                                                            color: Colors.white,
+                                                            fontSize: 12,
+                                                          ),
+                                                    ),
+                                                    showBadge: true,
+                                                    shape: BadgeShape.circle,
+                                                    badgeColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .campusRed,
+                                                    elevation: 4,
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                6, 6, 6, 6),
+                                                    position:
+                                                        BadgePosition.topEnd(),
+                                                    animationType:
+                                                        BadgeAnimationType
+                                                            .scale,
+                                                    toAnimate: true,
+                                                    child: Icon(
+                                                      FFIcons.kchatboxes,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      size: 34,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12, 0, 0, 0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 4),
+                                                  child: Text(
+                                                    dateTimeFormat('MMMMEEEEd',
+                                                        getCurrentTimestamp),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .subtitle1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
-                                                          size: 34,
+                                                          fontSize: 14,
                                                         ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                                  ),
                                                 ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(12, 0, 0, 0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 4),
-                                                      child: Text(
-                                                        dateTimeFormat(
-                                                            'MMMMEEEEd',
-                                                            getCurrentTimestamp),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  fontSize: 14,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 4),
-                                                      child: Text(
-                                                        dateTimeFormat('jm',
-                                                            getCurrentTimestamp),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  fontSize: 14,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 4),
+                                                  child: Text(
+                                                    dateTimeFormat('jm',
+                                                        getCurrentTimestamp),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .subtitle1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 14,
+                                                        ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
-                                        ),
+                                        ],
                                       ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 60, 0, 0),
-                                        child: Material(
-                                          color: Colors.transparent,
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
+                                    ),
+                                  ),
+                                  if (responsiveVisibility(
+                                    context: context,
+                                    phone: false,
+                                  ))
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 60, 0, 0),
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.22,
+                                          decoration: BoxDecoration(
+                                            color: Color(0x00121212),
+                                            image: DecorationImage(
+                                              fit: BoxFit.contain,
+                                              image: Image.asset(
+                                                'assets/images/06_COMBINED_ELEMENT.png',
+                                              ).image,
+                                            ),
                                             borderRadius:
                                                 BorderRadius.circular(8),
-                                          ),
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.3,
-                                            decoration: BoxDecoration(
-                                              color: Color(0x00121212),
-                                              image: DecorationImage(
-                                                fit: BoxFit.contain,
-                                                image: Image.asset(
-                                                  'assets/images/06_COMBINED_ELEMENT.png',
-                                                ).image,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                                width: 0,
-                                              ),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              width: 0,
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                                    ),
+                                  if (responsiveVisibility(
+                                    context: context,
+                                    tablet: false,
+                                    desktop: false,
+                                  ))
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 60, 0, 0),
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.35,
+                                          decoration: BoxDecoration(
+                                            color: Color(0x00121212),
+                                            image: DecorationImage(
+                                              fit: BoxFit.contain,
+                                              image: Image.asset(
+                                                'assets/images/06_COMBINED_ELEMENT.png',
+                                              ).image,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              width: 0,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ],
                           ),
-                          Container(
+                        ),
+                        Expanded(
+                          child: Container(
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height * 0.43,
                             decoration: BoxDecoration(
@@ -1043,8 +1075,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ],
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

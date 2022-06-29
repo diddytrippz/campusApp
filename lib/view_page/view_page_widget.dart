@@ -101,187 +101,192 @@ class _ViewPageWidgetState extends State<ViewPageWidget>
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(18, 12, 18, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                        child: FlutterFlowCalendar(
-                          color: Color(0xFFFFBA00),
-                          iconColor: Color(0xE1F5F5F5),
-                          weekFormat: true,
-                          weekStartsMonday: false,
-                          rowHeight: 60,
-                          onChange: (DateTimeRange newSelectedDate) {
-                            setState(
-                                () => calendarSelectedDay = newSelectedDate);
-                          },
-                          titleStyle: TextStyle(
-                            color: Color(0xE1FFFFFF),
+                if (responsiveVisibility(
+                  context: context,
+                  desktop: false,
+                ))
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(18, 12, 18, 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                          child: FlutterFlowCalendar(
+                            color: Color(0xFFFFBA00),
+                            iconColor: Color(0xE1F5F5F5),
+                            weekFormat: true,
+                            weekStartsMonday: false,
+                            rowHeight: 60,
+                            onChange: (DateTimeRange newSelectedDate) {
+                              setState(
+                                  () => calendarSelectedDay = newSelectedDate);
+                            },
+                            titleStyle: TextStyle(
+                              color: Color(0xE1FFFFFF),
+                            ),
+                            dayOfWeekStyle: TextStyle(
+                              color: Color(0xE1FFFFFF),
+                            ),
+                            dateStyle: TextStyle(
+                              color: Colors.white,
+                            ),
+                            selectedDateStyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                            ),
+                            inactiveDateStyle: TextStyle(
+                              color:
+                                  FlutterFlowTheme.of(context).primaryBtnText,
+                            ),
+                            locale: FFLocalizations.of(context).languageCode,
                           ),
-                          dayOfWeekStyle: TextStyle(
-                            color: Color(0xE1FFFFFF),
-                          ),
-                          dateStyle: TextStyle(
-                            color: Colors.white,
-                          ),
-                          selectedDateStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
-                          inactiveDateStyle: TextStyle(
-                            color: FlutterFlowTheme.of(context).primaryBtnText,
-                          ),
-                          locale: FFLocalizations.of(context).languageCode,
                         ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        alignment: AlignmentDirectional(0, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Padding(
+                        Container(
+                          width: double.infinity,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          alignment: AlignmentDirectional(0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      4, 0, 4, 0),
+                                  child: TextFormField(
+                                    controller: textController,
+                                    onChanged: (_) => EasyDebounce.debounce(
+                                      'textController',
+                                      Duration(milliseconds: 400),
+                                      () => setState(() {}),
+                                    ),
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .campusGrey,
+                                          ),
+                                      hintText: 'Search here...',
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .campusGrey,
+                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 0,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 0,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      prefixIcon: Icon(
+                                        Icons.search,
+                                        color: Color(0xFF57636C),
+                                        size: 20,
+                                      ),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .campusGrey,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-                                child: TextFormField(
-                                  controller: textController,
-                                  onChanged: (_) => EasyDebounce.debounce(
-                                    'textController',
-                                    Duration(milliseconds: 400),
-                                    () => setState(() {}),
-                                  ),
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
-                                        ),
-                                    hintText: 'Search here...',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
-                                        ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    prefixIcon: Icon(
-                                      Icons.search,
-                                      color: Color(0xFF57636C),
-                                      size: 20,
-                                    ),
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .campusGrey,
-                                      ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  logFirebaseEvent(
-                                      'VIEW_PAGE_PAGE_SEARCH_BTN_ON_TAP');
-                                  logFirebaseEvent('Button_Simple-Search');
-                                  await queryMaintenanceRecordOnce()
-                                      .then(
-                                        (records) => simpleSearchResults =
-                                            TextSearch(
-                                          records
-                                              .map(
-                                                (record) => TextSearchItem(
-                                                    record, [record.issue]),
-                                              )
-                                              .toList(),
-                                        )
-                                                .search(textController.text)
-                                                .map((r) => r.object)
-                                                .take(5)
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    logFirebaseEvent(
+                                        'VIEW_PAGE_PAGE_SEARCH_BTN_ON_TAP');
+                                    logFirebaseEvent('Button_Simple-Search');
+                                    await queryMaintenanceRecordOnce()
+                                        .then(
+                                          (records) => simpleSearchResults =
+                                              TextSearch(
+                                            records
+                                                .map(
+                                                  (record) => TextSearchItem(
+                                                      record, [record.issue]),
+                                                )
                                                 .toList(),
-                                      )
-                                      .onError(
-                                          (_, __) => simpleSearchResults = [])
-                                      .whenComplete(() => setState(() {}));
-                                },
-                                text: 'Search',
-                                options: FFButtonOptions(
-                                  width: 100,
-                                  height: 40,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: Colors.white,
-                                      ),
-                                  elevation: 2,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1,
+                                          )
+                                                  .search(textController.text)
+                                                  .map((r) => r.object)
+                                                  .take(5)
+                                                  .toList(),
+                                        )
+                                        .onError(
+                                            (_, __) => simpleSearchResults = [])
+                                        .whenComplete(() => setState(() {}));
+                                  },
+                                  text: 'Search',
+                                  options: FFButtonOptions(
+                                    width: 100,
+                                    height: 40,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: Colors.white,
+                                        ),
+                                    elevation: 2,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: 50,
                                   ),
-                                  borderRadius: 50,
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
                 Expanded(
                   flex: 2,
                   child: Align(
                     alignment: AlignmentDirectional(1, 1),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: double.infinity,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
-                          ),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(0),
+                          bottomRight: Radius.circular(0),
+                          topLeft: Radius.circular(8),
+                          topRight: Radius.circular(8),
                         ),
-                        child: Align(
-                          alignment: AlignmentDirectional(1, 1),
+                      ),
+                      child: Align(
+                        alignment: AlignmentDirectional(1, 1),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,

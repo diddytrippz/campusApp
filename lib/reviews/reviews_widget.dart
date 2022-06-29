@@ -512,7 +512,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                       color: Colors.transparent,
                                       width: 1,
                                     ),
-                                    borderRadius: 22,
+                                    borderRadius: 16,
                                   ),
                                 ),
                               ),
