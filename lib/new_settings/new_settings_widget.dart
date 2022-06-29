@@ -385,7 +385,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   size: 28,
                                 ),
                                 title: Text(
-                                  'DeepLink',
+                                  'DeepLinks',
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
