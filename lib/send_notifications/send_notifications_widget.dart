@@ -420,6 +420,10 @@ class _SendNotificationsWidgetState extends State<SendNotificationsWidget> {
                                 return;
                               }
 
+                              if (datePicked == null) {
+                                return;
+                              }
+
                               if ((checkboxListTileValue) == true) {
                                 logFirebaseEvent('Button_Backend-Call');
 
