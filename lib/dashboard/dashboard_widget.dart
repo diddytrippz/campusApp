@@ -15,7 +15,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -28,10 +27,6 @@ class DashboardWidget extends StatefulWidget {
 
 class _DashboardWidgetState extends State<DashboardWidget> {
   DateTimeRange? calendarSelectedDay;
-  PagingController<DocumentSnapshot?, ChatsRecord>? _pagingController;
-  Query? _pagingQuery;
-  List<StreamSubscription?> _streamSubscriptions = [];
-
   String? dropDownValue1;
   String? dropDownValue2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -44,12 +39,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
       end: DateTime.now().endOfDay,
     );
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'dashboard'});
-  }
-
-  @override
-  void dispose() {
-    _streamSubscriptions.forEach((s) => s?.cancel());
-    super.dispose();
   }
 
   @override
@@ -1225,7 +1214,7 @@ Requests */
                                                                       width: MediaQuery.of(context)
                                                                               .size
                                                                               .width *
-                                                                          0.3,
+                                                                          0.25,
                                                                       lineHeight:
                                                                           8,
                                                                       animation:
@@ -1508,226 +1497,167 @@ Requests */
                                           .languageCode,
                                     ),
                                     Expanded(
-                                      child: PagedListView<
-                                          DocumentSnapshot<Object?>?,
-                                          ChatsRecord>(
-                                        pagingController: () {
-                                          final Query<Object?> Function(
-                                                  Query<Object?>) queryBuilder =
-                                              (chatsRecord) => chatsRecord
-                                                  .where('users',
+                                      child: StreamBuilder<List<ChatsRecord>>(
+                                        stream: queryChatsRecord(
+                                          queryBuilder: (chatsRecord) =>
+                                              chatsRecord
+                                                  .where(
+                                                      'users',
                                                       arrayContains:
                                                           currentUserReference)
                                                   .orderBy('last_message_time',
-                                                      descending: true);
-                                          if (_pagingController != null) {
-                                            final query = queryBuilder(
-                                                ChatsRecord.collection);
-                                            if (query != _pagingQuery) {
-                                              // The query has changed
-                                              _pagingQuery = query;
-                                              _streamSubscriptions
-                                                  .forEach((s) => s?.cancel());
-                                              _streamSubscriptions.clear();
-                                              _pagingController!.refresh();
-                                            }
-                                            return _pagingController!;
-                                          }
-
-                                          _pagingController = PagingController(
-                                              firstPageKey: null);
-                                          _pagingQuery = queryBuilder(
-                                              ChatsRecord.collection);
-                                          _pagingController!
-                                              .addPageRequestListener(
-                                                  (nextPageMarker) {
-                                            queryChatsRecordPage(
-                                              queryBuilder: (chatsRecord) =>
-                                                  chatsRecord
-                                                      .where(
-                                                          'users',
-                                                          arrayContains:
-                                                              currentUserReference)
-                                                      .orderBy(
-                                                          'last_message_time',
-                                                          descending: true),
-                                              nextPageMarker: nextPageMarker,
-                                              pageSize: 5,
-                                              isStream: true,
-                                            ).then((page) {
-                                              _pagingController!.appendPage(
-                                                page.data,
-                                                page.nextPageMarker,
-                                              );
-                                              final streamSubscription = page
-                                                  .dataStream
-                                                  ?.listen((data) {
-                                                final itemIndexes =
-                                                    _pagingController!.itemList!
-                                                        .asMap()
-                                                        .map((k, v) => MapEntry(
-                                                            v.reference.id, k));
-                                                data.forEach((item) {
-                                                  final index = itemIndexes[
-                                                      item.reference.id];
-                                                  final items =
-                                                      _pagingController!
-                                                          .itemList!;
-                                                  if (index != null) {
-                                                    items.replaceRange(index,
-                                                        index + 1, [item]);
-                                                    _pagingController!
-                                                        .itemList = {
-                                                      for (var item in items)
-                                                        item.reference: item
-                                                    }.values.toList();
-                                                  }
-                                                });
-                                                setState(() {});
-                                              });
-                                              _streamSubscriptions
-                                                  .add(streamSubscription);
-                                            });
-                                          });
-                                          return _pagingController!;
-                                        }(),
-                                        padding: EdgeInsets.zero,
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        builderDelegate:
-                                            PagedChildBuilderDelegate<
-                                                ChatsRecord>(
-                                          // Customize what your widget looks like when it's loading the first page.
-                                          firstPageProgressIndicatorBuilder:
-                                              (_) => Center(
-                                            child: SizedBox(
-                                              width: 60,
-                                              height: 60,
-                                              child: SpinKitPulse(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryColor,
-                                                size: 60,
-                                              ),
-                                            ),
-                                          ),
-                                          noItemsFoundIndicatorBuilder: (_) =>
-                                              Center(
-                                            child: EmptyListWidget(),
-                                          ),
-                                          itemBuilder:
-                                              (context, _, listViewIndex) {
-                                            final listViewChatsRecord =
-                                                _pagingController!
-                                                    .itemList![listViewIndex];
-                                            return Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(4, 0, 4, 0),
-                                              child: StreamBuilder<FFChatInfo>(
-                                                stream: FFChatManager.instance
-                                                    .getChatInfo(
-                                                        chatRecord:
-                                                            listViewChatsRecord),
-                                                builder: (context, snapshot) {
-                                                  final chatInfo = snapshot
-                                                          .data ??
-                                                      FFChatInfo(
-                                                          listViewChatsRecord);
-                                                  return FFChatPreview(
-                                                    onTap: () =>
-                                                        context.pushNamed(
-                                                      'ChatPage',
-                                                      queryParams: {
-                                                        'chatUser': serializeParam(
-                                                            chatInfo.otherUsers
-                                                                        .length ==
-                                                                    1
-                                                                ? chatInfo
-                                                                    .otherUsersList
-                                                                    .first
-                                                                : null,
-                                                            ParamType.Document),
-                                                        'chatRef': serializeParam(
-                                                            chatInfo.chatRecord
-                                                                .reference,
-                                                            ParamType
-                                                                .DocumentReference),
-                                                      }.withoutNulls,
-                                                      extra: <String, dynamic>{
-                                                        'chatUser': chatInfo
-                                                                    .otherUsers
-                                                                    .length ==
-                                                                1
-                                                            ? chatInfo
-                                                                .otherUsersList
-                                                                .first
-                                                            : null,
-                                                      },
-                                                    ),
-                                                    lastChatText: chatInfo
-                                                        .chatPreviewMessage(),
-                                                    lastChatTime:
-                                                        listViewChatsRecord
-                                                            .lastMessageTime,
-                                                    seen: listViewChatsRecord
-                                                        .lastMessageSeenBy!
-                                                        .contains(
-                                                            currentUserReference),
-                                                    title: chatInfo
-                                                        .chatPreviewTitle(),
-                                                    userProfilePic: chatInfo
-                                                        .chatPreviewPic(),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .tertiaryColor,
-                                                    unreadColor:
-                                                        Color(0xFF0078FF),
-                                                    titleTextStyle:
-                                                        GoogleFonts.getFont(
-                                                      'Open Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 14,
-                                                    ),
-                                                    dateTextStyle:
-                                                        GoogleFonts.getFont(
-                                                      'Open Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 10,
-                                                    ),
-                                                    previewTextStyle:
-                                                        GoogleFonts.getFont(
-                                                      'Open Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .campusGrey,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 13,
-                                                    ),
-                                                    contentPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                3, 3, 3, 3),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            0),
-                                                  );
-                                                },
+                                                      descending: true),
+                                          limit: 7,
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 60,
+                                                height: 60,
+                                                child: SpinKitPulse(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                  size: 60,
+                                                ),
                                               ),
                                             );
-                                          },
-                                        ),
+                                          }
+                                          List<ChatsRecord>
+                                              listViewChatsRecordList =
+                                              snapshot.data!;
+                                          if (listViewChatsRecordList.isEmpty) {
+                                            return Center(
+                                              child: EmptyListWidget(),
+                                            );
+                                          }
+                                          return ListView.builder(
+                                            padding: EdgeInsets.zero,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                listViewChatsRecordList.length,
+                                            itemBuilder:
+                                                (context, listViewIndex) {
+                                              final listViewChatsRecord =
+                                                  listViewChatsRecordList[
+                                                      listViewIndex];
+                                              return Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(4, 0, 4, 0),
+                                                child:
+                                                    StreamBuilder<FFChatInfo>(
+                                                  stream: FFChatManager.instance
+                                                      .getChatInfo(
+                                                          chatRecord:
+                                                              listViewChatsRecord),
+                                                  builder: (context, snapshot) {
+                                                    final chatInfo = snapshot
+                                                            .data ??
+                                                        FFChatInfo(
+                                                            listViewChatsRecord);
+                                                    return FFChatPreview(
+                                                      onTap: () =>
+                                                          context.pushNamed(
+                                                        'ChatPage',
+                                                        queryParams: {
+                                                          'chatUser': serializeParam(
+                                                              chatInfo.otherUsers
+                                                                          .length ==
+                                                                      1
+                                                                  ? chatInfo
+                                                                      .otherUsersList
+                                                                      .first
+                                                                  : null,
+                                                              ParamType
+                                                                  .Document),
+                                                          'chatRef': serializeParam(
+                                                              chatInfo
+                                                                  .chatRecord
+                                                                  .reference,
+                                                              ParamType
+                                                                  .DocumentReference),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          'chatUser': chatInfo
+                                                                      .otherUsers
+                                                                      .length ==
+                                                                  1
+                                                              ? chatInfo
+                                                                  .otherUsersList
+                                                                  .first
+                                                              : null,
+                                                        },
+                                                      ),
+                                                      lastChatText: chatInfo
+                                                          .chatPreviewMessage(),
+                                                      lastChatTime:
+                                                          listViewChatsRecord
+                                                              .lastMessageTime,
+                                                      seen: listViewChatsRecord
+                                                          .lastMessageSeenBy!
+                                                          .contains(
+                                                              currentUserReference),
+                                                      title: chatInfo
+                                                          .chatPreviewTitle(),
+                                                      userProfilePic: chatInfo
+                                                          .chatPreviewPic(),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .tertiaryColor,
+                                                      unreadColor:
+                                                          Color(0xFF0078FF),
+                                                      titleTextStyle:
+                                                          GoogleFonts.getFont(
+                                                        'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 14,
+                                                      ),
+                                                      dateTextStyle:
+                                                          GoogleFonts.getFont(
+                                                        'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        fontSize: 10,
+                                                      ),
+                                                      previewTextStyle:
+                                                          GoogleFonts.getFont(
+                                                        'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .campusGrey,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        fontSize: 13,
+                                                      ),
+                                                      contentPadding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  3, 3, 3, 3),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0),
+                                                    );
+                                                  },
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
                                       ),
                                     ),
                                   ],
