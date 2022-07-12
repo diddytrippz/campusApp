@@ -82,11 +82,19 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                               Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  FaIcon(
-                                    FontAwesomeIcons.home,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 20,
+                                  InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'NEW_SETTINGS_PAGE_Icon_s5kzlnl6_ON_TAP');
+                                      logFirebaseEvent('Icon_Navigate-To');
+                                      context.pushNamed('homePage');
+                                    },
+                                    child: FaIcon(
+                                      FontAwesomeIcons.home,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 20,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -96,77 +104,18 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    FaIcon(
-                                      FontAwesomeIcons.edit,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 20,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          12, 0, 12, 0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          InkWell(
-                                            onTap: () async {
-                                              logFirebaseEvent(
-                                                  'NEW_SETTINGS_PAGE_Badge_tno8zj97_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'Badge_Navigate-To');
-                                              context.pushNamed('MessagesPage');
-                                            },
-                                            child: Badge(
-                                              badgeContent: Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'jtd7quhq' /* 1 */,
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              'Open Sans',
-                                                          color: Colors.white,
-                                                          fontSize: 12,
-                                                        ),
-                                              ),
-                                              showBadge: true,
-                                              shape: BadgeShape.circle,
-                                              badgeColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .campusRed,
-                                              elevation: 4,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(6, 6, 6, 6),
-                                              position: BadgePosition.topEnd(),
-                                              animationType:
-                                                  BadgeAnimationType.scale,
-                                              toAnimate: true,
-                                              child: Icon(
-                                                FFIcons.kchatboxes,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                size: 24,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                    InkWell(
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'NEW_SETTINGS_PAGE_Icon_frd35lza_ON_TAP');
+                                        logFirebaseEvent('Icon_Navigate-To');
+                                        context.pushNamed('viewPage');
+                                      },
+                                      child: FaIcon(
+                                        FontAwesomeIcons.edit,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 20,
                                       ),
                                     ),
                                   ],
@@ -175,14 +124,98 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                child: InkWell(
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'NEW_SETTINGS_PAGE_Column_meu8py9k_ON_TAP');
+                                    logFirebaseEvent('Column_Navigate-To');
+                                    context.pushNamed('MessagesPage');
+                                  },
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            12, 0, 12, 0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            InkWell(
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'NEW_SETTINGS_PAGE_Badge_tno8zj97_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Badge_Navigate-To');
+                                                context
+                                                    .pushNamed('MessagesPage');
+                                              },
+                                              child: Badge(
+                                                badgeContent: Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'jtd7quhq' /* 1 */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color: Colors.white,
+                                                        fontSize: 12,
+                                                      ),
+                                                ),
+                                                showBadge: true,
+                                                shape: BadgeShape.circle,
+                                                badgeColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .campusRed,
+                                                elevation: 4,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(6, 6, 6, 6),
+                                                position:
+                                                    BadgePosition.topEnd(),
+                                                animationType:
+                                                    BadgeAnimationType.scale,
+                                                toAnimate: true,
+                                                child: Icon(
+                                                  FFIcons.kchatboxes,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 24,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Icon(
-                                      Icons.notifications_none,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 30,
+                                    InkWell(
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'NEW_SETTINGS_PAGE_Icon_idh0s7ps_ON_TAP');
+                                        logFirebaseEvent('Icon_Navigate-To');
+                                        context.pushNamed('notifications');
+                                      },
+                                      child: Icon(
+                                        Icons.notifications_none,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 30,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -214,12 +247,22 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Icon(
-                                  Icons.logout,
-                                  color: Colors.black,
-                                  size: 24,
+                                InkWell(
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'NEW_SETTINGS_PAGE_Icon_ubk27pew_ON_TAP');
+                                    logFirebaseEvent('Icon_Auth');
+                                    GoRouter.of(context).prepareAuthEvent();
+                                    await signOut();
+                                    context.goNamedAuth('loginPage', mounted);
+                                  },
+                                  child: Icon(
+                                    Icons.logout,
+                                    color: Colors.black,
+                                    size: 24,
+                                  ),
                                 ),
-                                Text(
+                                AutoSizeText(
                                   FFLocalizations.of(context).getText(
                                     'vo566ptj' /* Logout */,
                                   ),
