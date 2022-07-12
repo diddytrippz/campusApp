@@ -142,7 +142,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                       children: [
                                         Icon(
                                           FFIcons.kchatboxes,
-                                          color: Colors.black,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
                                           size: 26,
                                         ),
                                       ],

@@ -140,7 +140,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           children: [
                                             Icon(
                                               FFIcons.kchatboxes,
-                                              color: Colors.black,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                               size: 24,
                                             ),
                                           ],

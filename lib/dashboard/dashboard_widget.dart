@@ -236,7 +236,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                               children: [
                                                 Icon(
                                                   FFIcons.kchatboxes,
-                                                  color: Colors.black,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
                                                   size: 24,
                                                 ),
                                               ],

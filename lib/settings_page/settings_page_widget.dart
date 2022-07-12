@@ -136,7 +136,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     children: [
                                       Icon(
                                         FFIcons.kchatboxes,
-                                        color: Colors.black,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
                                         size: 24,
                                       ),
                                     ],
@@ -216,19 +217,24 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                InkWell(
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'SETTINGS_PAGE_PAGE_Icon_ubk27pew_ON_TAP');
-                                    logFirebaseEvent('Icon_Auth');
-                                    GoRouter.of(context).prepareAuthEvent();
-                                    await signOut();
-                                    context.goNamedAuth('loginPage', mounted);
-                                  },
-                                  child: Icon(
-                                    Icons.logout,
-                                    color: Colors.black,
-                                    size: 24,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'SETTINGS_PAGE_PAGE_Icon_ubk27pew_ON_TAP');
+                                      logFirebaseEvent('Icon_Auth');
+                                      GoRouter.of(context).prepareAuthEvent();
+                                      await signOut();
+                                      context.goNamedAuth('loginPage', mounted);
+                                    },
+                                    child: Icon(
+                                      Icons.logout,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 24,
+                                    ),
                                   ),
                                 ),
                                 AutoSizeText(
