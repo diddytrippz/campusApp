@@ -154,12 +154,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // homePage
   {
-    'ohgnlydh': {
-      'en': '1',
-      'af': '1',
-      'st': '1',
-      'zu': '1',
-    },
     '2glveoow': {
       'en': 'Logout',
       'af': '',
@@ -229,12 +223,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // viewPage
   {
-    '0ospid8b': {
-      'en': '1',
-      'af': '1',
-      'st': '1',
-      'zu': '1',
-    },
     'bbykkjfb': {
       'en': 'Logout',
       'af': '',
@@ -1653,12 +1641,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // settingsPage
   {
-    'jtd7quhq': {
-      'en': '1',
-      'af': '1',
-      'st': '1',
-      'zu': '1',
-    },
     'vo566ptj': {
       'en': 'Logout',
       'af': '',

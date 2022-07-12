@@ -6,7 +6,6 @@ import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -128,71 +127,17 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                 child: InkWell(
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'SETTINGS_Column_meu8py9k_ON_TAP');
+                                        'SETTINGS_Column_qwdwqp1w_ON_TAP');
                                     logFirebaseEvent('Column_Navigate-To');
                                     context.pushNamed('messagesPage');
                                   },
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 0, 12, 0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            InkWell(
-                                              onTap: () async {
-                                                logFirebaseEvent(
-                                                    'SETTINGS_PAGE_PAGE_Badge_tno8zj97_ON_TAP');
-                                                logFirebaseEvent(
-                                                    'Badge_Navigate-To');
-                                                context
-                                                    .pushNamed('messagesPage');
-                                              },
-                                              child: Badge(
-                                                badgeContent: Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'jtd7quhq' /* 1 */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Open Sans',
-                                                        color: Colors.white,
-                                                        fontSize: 12,
-                                                      ),
-                                                ),
-                                                showBadge: true,
-                                                shape: BadgeShape.circle,
-                                                badgeColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .campusRed,
-                                                elevation: 4,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(6, 6, 6, 6),
-                                                position:
-                                                    BadgePosition.topEnd(),
-                                                animationType:
-                                                    BadgeAnimationType.scale,
-                                                toAnimate: true,
-                                                child: Icon(
-                                                  FFIcons.kchatboxes,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  size: 24,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                      Icon(
+                                        FFIcons.kchatboxes,
+                                        color: Colors.black,
+                                        size: 24,
                                       ),
                                     ],
                                   ),
@@ -216,6 +161,29 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                         size: 30,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    InkWell(
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'SETTINGS_PAGE_PAGE_Icon_o1t9bdc6_ON_TAP');
+                                        logFirebaseEvent('Icon_Navigate-To');
+                                        context.pushNamed('profilePage');
+                                      },
+                                      child: FaIcon(
+                                        FontAwesomeIcons.user,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 22,
                                       ),
                                     ),
                                   ],

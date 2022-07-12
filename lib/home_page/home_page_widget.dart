@@ -138,72 +138,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(12, 0, 12, 0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () async {
-                                                      logFirebaseEvent(
-                                                          'HOME_PAGE_PAGE_Badge_ote2cnen_ON_TAP');
-                                                      logFirebaseEvent(
-                                                          'Badge_Navigate-To');
-                                                      context.pushNamed(
-                                                          'messagesPage');
-                                                    },
-                                                    child: Badge(
-                                                      badgeContent: Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          'ohgnlydh' /* 1 */,
-                                                        ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyText1
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Open Sans',
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 12,
-                                                            ),
-                                                      ),
-                                                      showBadge: true,
-                                                      shape: BadgeShape.circle,
-                                                      badgeColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .campusRed,
-                                                      elevation: 4,
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  6, 6, 6, 6),
-                                                      position: BadgePosition
-                                                          .topEnd(),
-                                                      animationType:
-                                                          BadgeAnimationType
-                                                              .scale,
-                                                      toAnimate: true,
-                                                      child: Icon(
-                                                        FFIcons.kchatboxes,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        size: 24,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
+                                            Icon(
+                                              FFIcons.kchatboxes,
+                                              color: Colors.black,
+                                              size: 24,
                                             ),
                                           ],
                                         ),
@@ -229,7 +167,32 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
-                                              size: 30,
+                                              size: 24,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 20, 0, 0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          InkWell(
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'HOME_PAGE_PAGE_Icon_9irgw6d6_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Icon_Navigate-To');
+                                              context.pushNamed('profilePage');
+                                            },
+                                            child: FaIcon(
+                                              FontAwesomeIcons.user,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 20,
                                             ),
                                           ),
                                         ],
@@ -250,7 +213,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               context.pushNamed('settingsPage');
                                             },
                                             child: Icon(
-                                              Icons.settings,
+                                              Icons.settings_outlined,
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,

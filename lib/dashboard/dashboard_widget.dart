@@ -223,6 +223,30 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 20, 0, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'DASHBOARD_PAGE_Column_f1zr8ob9_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Column_Navigate-To');
+                                              context.pushNamed('messagesPage');
+                                            },
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  FFIcons.kchatboxes,
+                                                  color: Colors.black,
+                                                  size: 24,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 20, 0, 0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
@@ -263,7 +287,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                       .pushNamed('profilePage');
                                                 },
                                                 child: FaIcon(
-                                                  FontAwesomeIcons.solidUser,
+                                                  FontAwesomeIcons.user,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryText,
@@ -290,7 +314,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                       .pushNamed('profilePage');
                                                 },
                                                 child: Icon(
-                                                  Icons.settings,
+                                                  Icons.settings_outlined,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryText,
