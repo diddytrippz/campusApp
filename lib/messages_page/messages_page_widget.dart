@@ -229,145 +229,155 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 80),
-                child: PagedListView<DocumentSnapshot<Object?>?, ChatsRecord>(
-                  pagingController: () {
-                    final Query<Object?> Function(Query<Object?>) queryBuilder =
-                        (chatsRecord) => chatsRecord
-                            .where('users', arrayContains: currentUserReference)
-                            .orderBy('last_message_time', descending: true);
-                    if (_pagingController != null) {
-                      final query = queryBuilder(ChatsRecord.collection);
-                      if (query != _pagingQuery) {
-                        // The query has changed
-                        _pagingQuery = query;
-                        _streamSubscriptions.forEach((s) => s?.cancel());
-                        _streamSubscriptions.clear();
-                        _pagingController!.refresh();
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 80),
+                  child: PagedListView<DocumentSnapshot<Object?>?, ChatsRecord>(
+                    pagingController: () {
+                      final Query<Object?> Function(Query<Object?>)
+                          queryBuilder = (chatsRecord) => chatsRecord
+                              .where('users',
+                                  arrayContains: currentUserReference)
+                              .orderBy('last_message_time', descending: true);
+                      if (_pagingController != null) {
+                        final query = queryBuilder(ChatsRecord.collection);
+                        if (query != _pagingQuery) {
+                          // The query has changed
+                          _pagingQuery = query;
+                          _streamSubscriptions.forEach((s) => s?.cancel());
+                          _streamSubscriptions.clear();
+                          _pagingController!.refresh();
+                        }
+                        return _pagingController!;
                       }
-                      return _pagingController!;
-                    }
 
-                    _pagingController = PagingController(firstPageKey: null);
-                    _pagingQuery = queryBuilder(ChatsRecord.collection);
-                    _pagingController!.addPageRequestListener((nextPageMarker) {
-                      queryChatsRecordPage(
-                        queryBuilder: (chatsRecord) => chatsRecord
-                            .where('users', arrayContains: currentUserReference)
-                            .orderBy('last_message_time', descending: true),
-                        nextPageMarker: nextPageMarker,
-                        pageSize: 10,
-                        isStream: true,
-                      ).then((page) {
-                        _pagingController!.appendPage(
-                          page.data,
-                          page.nextPageMarker,
-                        );
-                        final streamSubscription =
-                            page.dataStream?.listen((data) {
-                          final itemIndexes = _pagingController!.itemList!
-                              .asMap()
-                              .map((k, v) => MapEntry(v.reference.id, k));
-                          data.forEach((item) {
-                            final index = itemIndexes[item.reference.id];
-                            final items = _pagingController!.itemList!;
-                            if (index != null) {
-                              items.replaceRange(index, index + 1, [item]);
-                              _pagingController!.itemList = {
-                                for (var item in items) item.reference: item
-                              }.values.toList();
-                            }
+                      _pagingController = PagingController(firstPageKey: null);
+                      _pagingQuery = queryBuilder(ChatsRecord.collection);
+                      _pagingController!
+                          .addPageRequestListener((nextPageMarker) {
+                        queryChatsRecordPage(
+                          queryBuilder: (chatsRecord) => chatsRecord
+                              .where('users',
+                                  arrayContains: currentUserReference)
+                              .orderBy('last_message_time', descending: true),
+                          nextPageMarker: nextPageMarker,
+                          pageSize: 10,
+                          isStream: true,
+                        ).then((page) {
+                          _pagingController!.appendPage(
+                            page.data,
+                            page.nextPageMarker,
+                          );
+                          final streamSubscription =
+                              page.dataStream?.listen((data) {
+                            final itemIndexes = _pagingController!.itemList!
+                                .asMap()
+                                .map((k, v) => MapEntry(v.reference.id, k));
+                            data.forEach((item) {
+                              final index = itemIndexes[item.reference.id];
+                              final items = _pagingController!.itemList!;
+                              if (index != null) {
+                                items.replaceRange(index, index + 1, [item]);
+                                _pagingController!.itemList = {
+                                  for (var item in items) item.reference: item
+                                }.values.toList();
+                              }
+                            });
+                            setState(() {});
                           });
-                          setState(() {});
+                          _streamSubscriptions.add(streamSubscription);
                         });
-                        _streamSubscriptions.add(streamSubscription);
                       });
-                    });
-                    return _pagingController!;
-                  }(),
-                  padding: EdgeInsets.zero,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  builderDelegate: PagedChildBuilderDelegate<ChatsRecord>(
-                    // Customize what your widget looks like when it's loading the first page.
-                    firstPageProgressIndicatorBuilder: (_) => Center(
-                      child: SizedBox(
-                        width: 60,
-                        height: 60,
-                        child: SpinKitPulse(
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          size: 60,
+                      return _pagingController!;
+                    }(),
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    builderDelegate: PagedChildBuilderDelegate<ChatsRecord>(
+                      // Customize what your widget looks like when it's loading the first page.
+                      firstPageProgressIndicatorBuilder: (_) => Center(
+                        child: SizedBox(
+                          width: 60,
+                          height: 60,
+                          child: SpinKitPulse(
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            size: 60,
+                          ),
                         ),
                       ),
+                      noItemsFoundIndicatorBuilder: (_) => Center(
+                        child: EmptyListWidget(),
+                      ),
+                      itemBuilder: (context, _, listViewIndex) {
+                        final listViewChatsRecord =
+                            _pagingController!.itemList![listViewIndex];
+                        return Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+                          child: StreamBuilder<FFChatInfo>(
+                            stream: FFChatManager.instance
+                                .getChatInfo(chatRecord: listViewChatsRecord),
+                            builder: (context, snapshot) {
+                              final chatInfo = snapshot.data ??
+                                  FFChatInfo(listViewChatsRecord);
+                              return FFChatPreview(
+                                onTap: () => context.pushNamed(
+                                  'ChatPage',
+                                  queryParams: {
+                                    'chatUser': serializeParam(
+                                        chatInfo.otherUsers.length == 1
+                                            ? chatInfo.otherUsersList.first
+                                            : null,
+                                        ParamType.Document),
+                                    'chatRef': serializeParam(
+                                        chatInfo.chatRecord.reference,
+                                        ParamType.DocumentReference),
+                                  }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    'chatUser': chatInfo.otherUsers.length == 1
+                                        ? chatInfo.otherUsersList.first
+                                        : null,
+                                  },
+                                ),
+                                lastChatText: chatInfo.chatPreviewMessage(),
+                                lastChatTime:
+                                    listViewChatsRecord.lastMessageTime,
+                                seen: listViewChatsRecord.lastMessageSeenBy!
+                                    .contains(currentUserReference),
+                                title: chatInfo.chatPreviewTitle(),
+                                userProfilePic: chatInfo.chatPreviewPic(),
+                                color:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
+                                unreadColor: Color(0xFF0078FF),
+                                titleTextStyle: GoogleFonts.getFont(
+                                  'Open Sans',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
+                                dateTextStyle: GoogleFonts.getFont(
+                                  'Open Sans',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 10,
+                                ),
+                                previewTextStyle: GoogleFonts.getFont(
+                                  'Open Sans',
+                                  color:
+                                      FlutterFlowTheme.of(context).campusGrey,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 13,
+                                ),
+                                contentPadding:
+                                    EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
+                                borderRadius: BorderRadius.circular(0),
+                              );
+                            },
+                          ),
+                        );
+                      },
                     ),
-                    noItemsFoundIndicatorBuilder: (_) => Center(
-                      child: EmptyListWidget(),
-                    ),
-                    itemBuilder: (context, _, listViewIndex) {
-                      final listViewChatsRecord =
-                          _pagingController!.itemList![listViewIndex];
-                      return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-                        child: StreamBuilder<FFChatInfo>(
-                          stream: FFChatManager.instance
-                              .getChatInfo(chatRecord: listViewChatsRecord),
-                          builder: (context, snapshot) {
-                            final chatInfo = snapshot.data ??
-                                FFChatInfo(listViewChatsRecord);
-                            return FFChatPreview(
-                              onTap: () => context.pushNamed(
-                                'ChatPage',
-                                queryParams: {
-                                  'chatUser': serializeParam(
-                                      chatInfo.otherUsers.length == 1
-                                          ? chatInfo.otherUsersList.first
-                                          : null,
-                                      ParamType.Document),
-                                  'chatRef': serializeParam(
-                                      chatInfo.chatRecord.reference,
-                                      ParamType.DocumentReference),
-                                }.withoutNulls,
-                                extra: <String, dynamic>{
-                                  'chatUser': chatInfo.otherUsers.length == 1
-                                      ? chatInfo.otherUsersList.first
-                                      : null,
-                                },
-                              ),
-                              lastChatText: chatInfo.chatPreviewMessage(),
-                              lastChatTime: listViewChatsRecord.lastMessageTime,
-                              seen: listViewChatsRecord.lastMessageSeenBy!
-                                  .contains(currentUserReference),
-                              title: chatInfo.chatPreviewTitle(),
-                              userProfilePic: chatInfo.chatPreviewPic(),
-                              color: FlutterFlowTheme.of(context).tertiaryColor,
-                              unreadColor: Color(0xFF0078FF),
-                              titleTextStyle: GoogleFonts.getFont(
-                                'Open Sans',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                              dateTextStyle: GoogleFonts.getFont(
-                                'Open Sans',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 10,
-                              ),
-                              previewTextStyle: GoogleFonts.getFont(
-                                'Open Sans',
-                                color: FlutterFlowTheme.of(context).campusGrey,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 13,
-                              ),
-                              contentPadding:
-                                  EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
-                              borderRadius: BorderRadius.circular(0),
-                            );
-                          },
-                        ),
-                      );
-                    },
                   ),
                 ),
               ),

@@ -1,8 +1,5 @@
 import '../auth/auth_util.dart';
-import '../backend/backend.dart';
-import '../components/empty_list_widget.dart';
 import '../components/nav_bar_home_widget.dart';
-import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -293,150 +290,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                               ),
                             ],
-                          ),
-                        ),
-                      if (responsiveVisibility(
-                        context: context,
-                        phone: false,
-                      ))
-                        Material(
-                          color: Colors.transparent,
-                          elevation: 0,
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.25,
-                            height: MediaQuery.of(context).size.height * 1,
-                            decoration: BoxDecoration(
-                              color: Color(0x00FFFFFF),
-                            ),
-                            child: StreamBuilder<List<ChatsRecord>>(
-                              stream: queryChatsRecord(
-                                queryBuilder: (chatsRecord) => chatsRecord
-                                    .where('users',
-                                        arrayContains: currentUserReference)
-                                    .orderBy('last_message_time',
-                                        descending: true),
-                                limit: 10,
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 60,
-                                      height: 60,
-                                      child: SpinKitPulse(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        size: 60,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                List<ChatsRecord> listViewChatsRecordList =
-                                    snapshot.data!;
-                                if (listViewChatsRecordList.isEmpty) {
-                                  return Center(
-                                    child: EmptyListWidget(),
-                                  );
-                                }
-                                return ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: listViewChatsRecordList.length,
-                                  itemBuilder: (context, listViewIndex) {
-                                    final listViewChatsRecord =
-                                        listViewChatsRecordList[listViewIndex];
-                                    return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          4, 0, 4, 0),
-                                      child: StreamBuilder<FFChatInfo>(
-                                        stream: FFChatManager.instance
-                                            .getChatInfo(
-                                                chatRecord:
-                                                    listViewChatsRecord),
-                                        builder: (context, snapshot) {
-                                          final chatInfo = snapshot.data ??
-                                              FFChatInfo(listViewChatsRecord);
-                                          return FFChatPreview(
-                                            onTap: () => context.pushNamed(
-                                              'ChatPage',
-                                              queryParams: {
-                                                'chatUser': serializeParam(
-                                                    chatInfo.otherUsers
-                                                                .length ==
-                                                            1
-                                                        ? chatInfo
-                                                            .otherUsersList
-                                                            .first
-                                                        : null,
-                                                    ParamType.Document),
-                                                'chatRef': serializeParam(
-                                                    chatInfo
-                                                        .chatRecord.reference,
-                                                    ParamType
-                                                        .DocumentReference),
-                                              }.withoutNulls,
-                                              extra: <String, dynamic>{
-                                                'chatUser': chatInfo.otherUsers
-                                                            .length ==
-                                                        1
-                                                    ? chatInfo
-                                                        .otherUsersList.first
-                                                    : null,
-                                              },
-                                            ),
-                                            lastChatText:
-                                                chatInfo.chatPreviewMessage(),
-                                            lastChatTime: listViewChatsRecord
-                                                .lastMessageTime,
-                                            seen: listViewChatsRecord
-                                                .lastMessageSeenBy!
-                                                .contains(currentUserReference),
-                                            title: chatInfo.chatPreviewTitle(),
-                                            userProfilePic:
-                                                chatInfo.chatPreviewPic(),
-                                            color: FlutterFlowTheme.of(context)
-                                                .tertiaryColor,
-                                            unreadColor: Color(0xFF0078FF),
-                                            titleTextStyle: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14,
-                                            ),
-                                            dateTextStyle: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontWeight: FontWeight.normal,
-                                              fontSize: 10,
-                                            ),
-                                            previewTextStyle:
-                                                GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .campusGrey,
-                                              fontWeight: FontWeight.normal,
-                                              fontSize: 13,
-                                            ),
-                                            contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    3, 3, 3, 3),
-                                            borderRadius:
-                                                BorderRadius.circular(0),
-                                          );
-                                        },
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
                           ),
                         ),
                       Expanded(
@@ -1657,6 +1510,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           ),
                         ),
                       ),
+                      if (responsiveVisibility(
+                        context: context,
+                        phone: false,
+                      ))
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.25,
+                          height: MediaQuery.of(context).size.height * 1,
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                          ),
+                        ),
                     ],
                   ),
                 ),
