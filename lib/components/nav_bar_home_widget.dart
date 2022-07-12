@@ -99,11 +99,33 @@ class _NavBarHomeWidgetState extends State<NavBarHomeWidget>
         opacity: 1,
       ),
     ),
+    'containerOnPageLoadAnimation': AnimationInfo(
+      curve: Curves.bounceOut,
+      trigger: AnimationTrigger.onPageLoad,
+      duration: 600,
+      hideBeforeAnimating: false,
+      fadeIn: true,
+      initialState: AnimationState(
+        offset: Offset(0, 0),
+        scale: 1,
+        opacity: 0,
+      ),
+      finalState: AnimationState(
+        offset: Offset(0, 0),
+        scale: 1,
+        opacity: 1,
+      ),
+    ),
   };
 
   @override
   void initState() {
     super.initState();
+    startPageLoadAnimations(
+      animationsMap.values
+          .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
+      this,
+    );
     setupTriggerAnimations(
       animationsMap.values
           .where((anim) => anim.trigger == AnimationTrigger.onActionTrigger),
@@ -283,7 +305,7 @@ class _NavBarHomeWidgetState extends State<NavBarHomeWidget>
                   borderRadius: 55,
                   borderWidth: 4,
                   buttonSize: 55,
-                  fillColor: FlutterFlowTheme.of(context).campusRed,
+                  fillColor: Color(0xFFF4B303),
                   icon: Icon(
                     Icons.dashboard_rounded,
                     color: Color(0xFFFFFFF7),
@@ -323,7 +345,10 @@ class _NavBarHomeWidgetState extends State<NavBarHomeWidget>
                   },
                 ),
               ),
-            ).animated([animationsMap['containerOnActionTriggerAnimation']!]),
+            ).animated([
+              animationsMap['containerOnActionTriggerAnimation']!,
+              animationsMap['containerOnPageLoadAnimation']!
+            ]),
           ),
         ],
       ),

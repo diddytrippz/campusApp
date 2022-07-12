@@ -77,9 +77,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           onTap: () async {
                                             logFirebaseEvent(
                                                 'HOME_PAGE_PAGE_Icon_duiqncpa_ON_TAP');
-                                            logFirebaseEvent(
-                                                'Icon_Navigate-To');
-                                            context.pushNamed('homePage');
+                                            if ((valueOrDefault(
+                                                    currentUserDocument?.role,
+                                                    '')) ==
+                                                'Admin') {
+                                              logFirebaseEvent(
+                                                  'Icon_Navigate-To');
+                                              context.pushNamed('dashboard');
+                                            } else {
+                                              logFirebaseEvent(
+                                                  'Icon_Navigate-To');
+                                              context.pushNamed('homePage');
+                                            }
                                           },
                                           child: FaIcon(
                                             FontAwesomeIcons.home,

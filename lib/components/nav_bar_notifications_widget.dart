@@ -284,7 +284,7 @@ class _NavBarNotificationsWidgetState extends State<NavBarNotificationsWidget>
                   borderRadius: 55,
                   borderWidth: 4,
                   buttonSize: 55,
-                  fillColor: FlutterFlowTheme.of(context).campusRed,
+                  fillColor: Color(0xFFF4B303),
                   icon: Icon(
                     Icons.add,
                     color: Color(0xFFFFFFF7),

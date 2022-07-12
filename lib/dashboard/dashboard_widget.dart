@@ -172,17 +172,26 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       children: [
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            FaIcon(
-                                              FontAwesomeIcons.home,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 20,
-                                            ),
-                                          ],
+                                        InkWell(
+                                          onTap: () async {
+                                            logFirebaseEvent(
+                                                'DASHBOARD_PAGE_Column_kvnn0ejc_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Column_Navigate-To');
+                                            context.pushNamed('homePage');
+                                          },
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              FaIcon(
+                                                FontAwesomeIcons.home,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 20,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                         Padding(
                                           padding:

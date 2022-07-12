@@ -27,10 +27,28 @@ class _CheckUpWidgetState extends State<CheckUpWidget> {
       await Future.delayed(const Duration(milliseconds: 1000));
       if ((valueOrDefault(currentUserDocument?.role, '')) == 'Admin') {
         logFirebaseEvent('checkUp_Navigate-To');
-        context.pushNamed('dashboard');
+        context.pushNamed(
+          'dashboard',
+          extra: <String, dynamic>{
+            kTransitionInfoKey: TransitionInfo(
+              hasTransition: true,
+              transitionType: PageTransitionType.scale,
+              alignment: Alignment.bottomCenter,
+            ),
+          },
+        );
       } else {
         logFirebaseEvent('checkUp_Navigate-To');
-        context.pushNamed('homePage');
+        context.pushNamed(
+          'homePage',
+          extra: <String, dynamic>{
+            kTransitionInfoKey: TransitionInfo(
+              hasTransition: true,
+              transitionType: PageTransitionType.scale,
+              alignment: Alignment.bottomCenter,
+            ),
+          },
+        );
       }
     });
 
