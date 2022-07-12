@@ -73,11 +73,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        FaIcon(
-                                          FontAwesomeIcons.home,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 20,
+                                        InkWell(
+                                          onTap: () async {
+                                            logFirebaseEvent(
+                                                'HOME_PAGE_PAGE_Icon_duiqncpa_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Icon_Navigate-To');
+                                            context.pushNamed('homePage');
+                                          },
+                                          child: FaIcon(
+                                            FontAwesomeIcons.home,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 20,
+                                          ),
                                         ),
                                       ],
                                     ),
