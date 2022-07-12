@@ -6,22 +6,21 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class TestOnboardingWidget extends StatefulWidget {
-  const TestOnboardingWidget({Key? key}) : super(key: key);
+class OnboardingWidget extends StatefulWidget {
+  const OnboardingWidget({Key? key}) : super(key: key);
 
   @override
-  _TestOnboardingWidgetState createState() => _TestOnboardingWidgetState();
+  _OnboardingWidgetState createState() => _OnboardingWidgetState();
 }
 
-class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
+class _OnboardingWidgetState extends State<OnboardingWidget> {
   PageController? pageViewController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'testOnboarding'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'onboarding'});
   }
 
   @override
@@ -165,7 +164,7 @@ class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(60, 12, 60, 16),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    logFirebaseEvent('TEST_ONBOARDING_PAGE_LOGIN_BTN_ON_TAP');
+                    logFirebaseEvent('ONBOARDING_PAGE_LOGIN_BTN_ON_TAP');
                     logFirebaseEvent('Button_Navigate-To');
                     context.pushNamed('loginPage');
                   },
@@ -193,8 +192,7 @@ class _TestOnboardingWidgetState extends State<TestOnboardingWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(60, 0, 60, 60),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    logFirebaseEvent(
-                        'TEST_ONBOARDING_PAGE_REGISTER_BTN_ON_TAP');
+                    logFirebaseEvent('ONBOARDING_PAGE_REGISTER_BTN_ON_TAP');
                     logFirebaseEvent('Button_Navigate-To');
                     context.pushNamed('loginPage');
                   },

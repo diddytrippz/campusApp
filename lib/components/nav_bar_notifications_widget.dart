@@ -175,7 +175,7 @@ class _NavBarNotificationsWidgetState extends State<NavBarNotificationsWidget>
                                 HapticFeedback.selectionClick();
                                 logFirebaseEvent('IconInbox_Navigate-To');
                                 context.pushNamed(
-                                  'MessagesPage',
+                                  'messagesPage',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
@@ -239,7 +239,7 @@ class _NavBarNotificationsWidgetState extends State<NavBarNotificationsWidget>
                                 HapticFeedback.selectionClick();
                                 logFirebaseEvent('IconSettings_Navigate-To');
                                 context.pushNamed(
-                                  'newSettings',
+                                  'settingsPage',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
@@ -297,7 +297,7 @@ class _NavBarNotificationsWidgetState extends State<NavBarNotificationsWidget>
                     if ((valueOrDefault(currentUserDocument?.role, '')) ==
                         'Admin') {
                       logFirebaseEvent('IconButton_Navigate-To');
-                      context.pushNamed('sendNotifi');
+                      context.pushNamed('sendNotifications');
                       return;
                     } else {
                       logFirebaseEvent('IconButton_Navigate-To');

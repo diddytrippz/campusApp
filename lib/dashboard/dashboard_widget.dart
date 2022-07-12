@@ -72,7 +72,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
               onTap: () async {
                 logFirebaseEvent('DASHBOARD_PAGE_Icon_hqib89aw_ON_TAP');
                 logFirebaseEvent('Icon_Navigate-To');
-                context.pushNamed('MessagesPage');
+                context.pushNamed('messagesPage');
               },
               child: Icon(
                 FFIcons.kchatboxes,
@@ -251,7 +251,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                   logFirebaseEvent(
                                                       'Icon_Navigate-To');
                                                   context
-                                                      .pushNamed('newProfile');
+                                                      .pushNamed('profilePage');
                                                 },
                                                 child: FaIcon(
                                                   FontAwesomeIcons.solidUser,
@@ -278,7 +278,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                   logFirebaseEvent(
                                                       'Icon_Navigate-To');
                                                   context
-                                                      .pushNamed('newProfile');
+                                                      .pushNamed('profilePage');
                                                 },
                                                 child: Icon(
                                                   Icons.settings,

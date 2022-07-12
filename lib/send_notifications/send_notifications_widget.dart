@@ -11,14 +11,15 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SendNotifiWidget extends StatefulWidget {
-  const SendNotifiWidget({Key? key}) : super(key: key);
+class SendNotificationsWidget extends StatefulWidget {
+  const SendNotificationsWidget({Key? key}) : super(key: key);
 
   @override
-  _SendNotifiWidgetState createState() => _SendNotifiWidgetState();
+  _SendNotificationsWidgetState createState() =>
+      _SendNotificationsWidgetState();
 }
 
-class _SendNotifiWidgetState extends State<SendNotifiWidget> {
+class _SendNotificationsWidgetState extends State<SendNotificationsWidget> {
   DateTime? datePicked;
   bool? checkboxListTileValue;
   String? teamSelectValue;
@@ -30,7 +31,8 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'sendNotifi'});
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'sendNotifications'});
     shortBioController = TextEditingController();
     userNameController = TextEditingController();
   }
@@ -66,7 +68,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                logFirebaseEvent('SEND_NOTIFI_close_rounded_ICN_ON_TAP');
+                logFirebaseEvent('SEND_NOTIFICATIONS_close_rounded_ICN_ON_');
                 logFirebaseEvent('IconButton_Navigate-Back');
                 context.pop();
               },
@@ -268,7 +270,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                                   child: InkWell(
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'SEND_NOTIFI_Container_zy60xpys_ON_TAP');
+                                          'SEND_NOTIFICATIONS_Container_zy60xpys_ON');
                                       logFirebaseEvent(
                                           'Container_Date-Time-Picker');
                                       await DatePicker.showDatePicker(
@@ -411,7 +413,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               logFirebaseEvent(
-                                  'SEND_NOTIFI_SEND_NOTIFICATION_BTN_ON_TAP');
+                                  'SEND_NOTIFICATIONS_SEND_NOTIFICATION_BTN');
                               logFirebaseEvent('Button_Validate-Form');
                               if (formKey.currentState == null ||
                                   !formKey.currentState!.validate()) {

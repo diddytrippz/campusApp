@@ -124,7 +124,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               'HOME_PAGE_PAGE_Column_zofee5sq_ON_TAP');
                                           logFirebaseEvent(
                                               'Column_Navigate-To');
-                                          context.pushNamed('MessagesPage');
+                                          context.pushNamed('messagesPage');
                                         },
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -146,7 +146,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       logFirebaseEvent(
                                                           'Badge_Navigate-To');
                                                       context.pushNamed(
-                                                          'MessagesPage');
+                                                          'messagesPage');
                                                     },
                                                     child: Badge(
                                                       badgeContent: Text(
@@ -238,7 +238,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   'HOME_PAGE_PAGE_Icon_yrxprzdj_ON_TAP');
                                               logFirebaseEvent(
                                                   'Icon_Navigate-To');
-                                              context.pushNamed('newSettings');
+                                              context.pushNamed('settingsPage');
                                             },
                                             child: Icon(
                                               Icons.settings,
@@ -276,7 +276,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         },
                                         child: Icon(
                                           Icons.logout,
-                                          color: Colors.black,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
                                           size: 24,
                                         ),
                                       ),
@@ -365,7 +366,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             logFirebaseEvent(
                                                                 'Badge_Navigate-To');
                                                             context.pushNamed(
-                                                                'MessagesPage');
+                                                                'messagesPage');
                                                           },
                                                           child: Badge(
                                                             badgeContent: Text(

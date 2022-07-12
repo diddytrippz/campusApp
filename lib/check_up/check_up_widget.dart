@@ -51,8 +51,8 @@ class _CheckUpWidgetState extends State<CheckUpWidget> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
-                width: MediaQuery.of(context).size.width * 0.65,
-                height: MediaQuery.of(context).size.width * 0.65,
+                width: MediaQuery.of(context).size.width * 0.55,
+                height: MediaQuery.of(context).size.width * 0.55,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,

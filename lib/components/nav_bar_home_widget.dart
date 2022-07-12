@@ -174,7 +174,7 @@ class _NavBarHomeWidgetState extends State<NavBarHomeWidget>
                                 HapticFeedback.selectionClick();
                                 logFirebaseEvent('IconInbox_Navigate-To');
                                 context.pushNamed(
-                                  'MessagesPage',
+                                  'messagesPage',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
@@ -238,7 +238,7 @@ class _NavBarHomeWidgetState extends State<NavBarHomeWidget>
                                 HapticFeedback.selectionClick();
                                 logFirebaseEvent('IconSettings_Navigate-To');
                                 context.pushNamed(
-                                  'newSettings',
+                                  'settingsPage',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,

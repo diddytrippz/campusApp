@@ -83,13 +83,13 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 }
 
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
-  'testOnboarding': (data) async => TestOnboardingWidget(),
+  'onboarding': (data) async => OnboardingWidget(),
   'loginPage': (data) async => LoginPageWidget(),
   'homePage': (data) async => HomePageWidget(),
   'viewPage': (data) async => ViewPageWidget(
         completeTemp: getParameter(data, 'completeTemp'),
       ),
-  'rulesBook': (data) async => RulesBookWidget(),
+  'ruleBook': (data) async => RuleBookWidget(),
   'ChatPage': (data) async => ChatPageWidget(
         chatUser: await getDocumentParameter(
             data, 'chatUser', UsersRecord.serializer),
@@ -97,7 +97,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
       ),
   'notifications': (data) async => NotificationsWidget(),
   'usersSearch': (data) async => UsersSearchWidget(),
-  'MessagesPage': (data) async => MessagesPageWidget(),
+  'messagesPage': (data) async => MessagesPageWidget(),
   'Appliances': (data) async => AppliancesWidget(),
   'Plumbing': (data) async => PlumbingWidget(),
   'Furniture': (data) async => FurnitureWidget(),
@@ -111,13 +111,13 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         jobReviews: await getDocumentParameter(
             data, 'jobReviews', MaintenanceRecord.serializer),
       ),
-  'testMoreInfo': (data) async => TestMoreInfoWidget(
+  'moreInformation': (data) async => MoreInformationWidget(
         jobs: await getDocumentParameter(
             data, 'jobs', MaintenanceRecord.serializer),
       ),
-  'newProfile': (data) async => NewProfileWidget(),
-  'newSettings': (data) async => NewSettingsWidget(),
-  'sendNotifi': (data) async => SendNotifiWidget(),
+  'profilePage': (data) async => ProfilePageWidget(),
+  'settingsPage': (data) async => SettingsPageWidget(),
+  'sendNotifications': (data) async => SendNotificationsWidget(),
   'dashboard': (data) async => DashboardWidget(),
 };
 

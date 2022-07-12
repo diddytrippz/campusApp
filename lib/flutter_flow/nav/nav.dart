@@ -81,10 +81,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? CheckUpWidget() : LoginPageWidget(),
           routes: [
             FFRoute(
-              name: 'testOnboarding',
-              path: 'testOnboarding',
+              name: 'onboarding',
+              path: 'onboarding',
               requireAuth: true,
-              builder: (context, params) => TestOnboardingWidget(),
+              builder: (context, params) => OnboardingWidget(),
             ),
             FFRoute(
               name: 'loginPage',
@@ -106,10 +106,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'rulesBook',
-              path: 'rulesBook',
+              name: 'ruleBook',
+              path: 'ruleBook',
               requireAuth: true,
-              builder: (context, params) => RulesBookWidget(),
+              builder: (context, params) => RuleBookWidget(),
             ),
             FFRoute(
               name: 'ChatPage',
@@ -137,7 +137,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => UsersSearchWidget(),
             ),
             FFRoute(
-              name: 'MessagesPage',
+              name: 'messagesPage',
               path: 'messagesPage',
               requireAuth: true,
               builder: (context, params) => MessagesPageWidget(),
@@ -209,33 +209,33 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'testMoreInfo',
-              path: 'testMoreInfo',
+              name: 'moreInformation',
+              path: 'moreInformation',
               requireAuth: true,
               asyncParams: {
                 'jobs': getDoc('maintenance', MaintenanceRecord.serializer),
               },
-              builder: (context, params) => TestMoreInfoWidget(
+              builder: (context, params) => MoreInformationWidget(
                 jobs: params.getParam('jobs', ParamType.Document),
               ),
             ),
             FFRoute(
-              name: 'newProfile',
-              path: 'newProfile',
+              name: 'profilePage',
+              path: 'profilePage',
               requireAuth: true,
-              builder: (context, params) => NewProfileWidget(),
+              builder: (context, params) => ProfilePageWidget(),
             ),
             FFRoute(
-              name: 'newSettings',
-              path: 'newSettings',
+              name: 'settingsPage',
+              path: 'settingsPage',
               requireAuth: true,
-              builder: (context, params) => NewSettingsWidget(),
+              builder: (context, params) => SettingsPageWidget(),
             ),
             FFRoute(
-              name: 'sendNotifi',
-              path: 'sendNotifi',
+              name: 'sendNotifications',
+              path: 'sendNotifications',
               requireAuth: true,
-              builder: (context, params) => SendNotifiWidget(),
+              builder: (context, params) => SendNotificationsWidget(),
             ),
             FFRoute(
               name: 'dashboard',

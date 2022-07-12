@@ -44,7 +44,7 @@ class FFLocalizationsDelegate extends LocalizationsDelegate<FFLocalizations> {
 }
 
 final kTranslationsMap = <Map<String, Map<String, String>>>[
-  // testOnboarding
+  // onboarding
   {
     '7rm5hpzh': {
       'en': 'Campus Africa',
@@ -350,7 +350,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Imiphumela yosesho',
     },
   },
-  // rulesBook
+  // ruleBook
   {
     'oft7p3f9': {
       'en': 'Campus Africa',
@@ -434,7 +434,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Sesha Abangane ukuze uxoxe',
     },
   },
-  // MessagesPage
+  // messagesPage
   {
     'ziacko5o': {
       'en': 'Inbox',
@@ -1455,7 +1455,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Ikhaya',
     },
   },
-  // testMoreInfo
+  // moreInformation
   {
     'yxfxboa1': {
       'en': 'Details',
@@ -1564,7 +1564,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Ikhaya',
     },
   },
-  // newProfile
+  // profilePage
   {
     '4mbweto7': {
       'en': 'Change My Picture',
@@ -1651,7 +1651,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Ikhaya',
     },
   },
-  // newSettings
+  // settingsPage
   {
     'jtd7quhq': {
       'en': '1',
@@ -1732,7 +1732,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': '',
     },
   },
-  // sendNotifi
+  // sendNotifications
   {
     'ptxfts7r': {
       'en': 'Add Notes',

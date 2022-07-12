@@ -14,20 +14,21 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
-class NewSettingsWidget extends StatefulWidget {
-  const NewSettingsWidget({Key? key}) : super(key: key);
+class SettingsPageWidget extends StatefulWidget {
+  const SettingsPageWidget({Key? key}) : super(key: key);
 
   @override
-  _NewSettingsWidgetState createState() => _NewSettingsWidgetState();
+  _SettingsPageWidgetState createState() => _SettingsPageWidgetState();
 }
 
-class _NewSettingsWidgetState extends State<NewSettingsWidget> {
+class _SettingsPageWidgetState extends State<SettingsPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'newSettings'});
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'settingsPage'});
   }
 
   @override
@@ -85,7 +86,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                   InkWell(
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'NEW_SETTINGS_PAGE_Icon_s5kzlnl6_ON_TAP');
+                                          'SETTINGS_PAGE_PAGE_Icon_s5kzlnl6_ON_TAP');
                                       logFirebaseEvent('Icon_Navigate-To');
                                       context.pushNamed('homePage');
                                     },
@@ -107,7 +108,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                     InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'NEW_SETTINGS_PAGE_Icon_frd35lza_ON_TAP');
+                                            'SETTINGS_PAGE_PAGE_Icon_frd35lza_ON_TAP');
                                         logFirebaseEvent('Icon_Navigate-To');
                                         context.pushNamed('viewPage');
                                       },
@@ -127,9 +128,9 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                 child: InkWell(
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'NEW_SETTINGS_PAGE_Column_meu8py9k_ON_TAP');
+                                        'SETTINGS_Column_meu8py9k_ON_TAP');
                                     logFirebaseEvent('Column_Navigate-To');
-                                    context.pushNamed('MessagesPage');
+                                    context.pushNamed('messagesPage');
                                   },
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -147,11 +148,11 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                             InkWell(
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'NEW_SETTINGS_PAGE_Badge_tno8zj97_ON_TAP');
+                                                    'SETTINGS_PAGE_PAGE_Badge_tno8zj97_ON_TAP');
                                                 logFirebaseEvent(
                                                     'Badge_Navigate-To');
                                                 context
-                                                    .pushNamed('MessagesPage');
+                                                    .pushNamed('messagesPage');
                                               },
                                               child: Badge(
                                                 badgeContent: Text(
@@ -206,7 +207,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                     InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'NEW_SETTINGS_PAGE_Icon_idh0s7ps_ON_TAP');
+                                            'SETTINGS_PAGE_PAGE_Icon_idh0s7ps_ON_TAP');
                                         logFirebaseEvent('Icon_Navigate-To');
                                         context.pushNamed('notifications');
                                       },
@@ -250,7 +251,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                 InkWell(
                                   onTap: () async {
                                     logFirebaseEvent(
-                                        'NEW_SETTINGS_PAGE_Icon_ubk27pew_ON_TAP');
+                                        'SETTINGS_PAGE_PAGE_Icon_ubk27pew_ON_TAP');
                                     logFirebaseEvent('Icon_Auth');
                                     GoRouter.of(context).prepareAuthEvent();
                                     await signOut();
@@ -326,7 +327,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                               child: InkWell(
                                                 onTap: () async {
                                                   logFirebaseEvent(
-                                                      'NEW_SETTINGS_CircleImage_ett6gq2h_ON_TAP');
+                                                      'SETTINGS_CircleImage_ett6gq2h_ON_TAP');
                                                   logFirebaseEvent(
                                                       'CircleImage_Expand-Image');
                                                   await Navigator.push(
@@ -456,10 +457,10 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'NEW_SETTINGS_ListTile_7x0b896n_ON_TAP');
+                                            'SETTINGS_ListTile_7x0b896n_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Navigate-To');
-                                        context.pushNamed('newProfile');
+                                        context.pushNamed('profilePage');
                                       },
                                       child: ListTile(
                                         leading: FaIcon(
@@ -524,10 +525,10 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'NEW_SETTINGS_ListTile_ty8u4mc1_ON_TAP');
+                                            'SETTINGS_ListTile_ty8u4mc1_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Navigate-To');
-                                        context.pushNamed('MessagesPage');
+                                        context.pushNamed('messagesPage');
                                       },
                                       child: ListTile(
                                         leading: Icon(
@@ -578,7 +579,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'NEW_SETTINGS_ListTile_qpqshfu5_ON_TAP');
+                                            'SETTINGS_ListTile_qpqshfu5_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Bottom-Sheet');
                                         await showModalBottomSheet(
@@ -658,7 +659,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'NEW_SETTINGS_ListTile_dcv0ybyv_ON_TAP');
+                                            'SETTINGS_ListTile_dcv0ybyv_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Show-Snack-Bar');
                                         ScaffoldMessenger.of(context)
@@ -733,10 +734,10 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'NEW_SETTINGS_ListTile_anbw2i5r_ON_TAP');
+                                            'SETTINGS_ListTile_anbw2i5r_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Navigate-To');
-                                        context.pushNamed('rulesBook');
+                                        context.pushNamed('ruleBook');
                                       },
                                       child: ListTile(
                                         leading: FaIcon(
@@ -791,7 +792,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'NEW_SETTINGS_ListTile_upo1bc6t_ON_TAP');
+                                            'SETTINGS_ListTile_upo1bc6t_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Navigate-To');
                                         context.pushNamed('notifications');
@@ -859,7 +860,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'NEW_SETTINGS_ListTile_rdqryog8_ON_TAP');
+                                            'SETTINGS_ListTile_rdqryog8_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Bottom-Sheet');
                                         await showModalBottomSheet(
@@ -928,7 +929,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'NEW_SETTINGS_ListTile_nodnox8i_ON_TAP');
+                                            'SETTINGS_ListTile_nodnox8i_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Launch-U-R-L');
                                         await launchURL(
@@ -987,7 +988,7 @@ class _NewSettingsWidgetState extends State<NewSettingsWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'NEW_SETTINGS_ListTile_8xit2csm_ON_TAP');
+                                            'SETTINGS_ListTile_8xit2csm_ON_TAP');
                                         logFirebaseEvent('ListTile_Auth');
                                         GoRouter.of(context).prepareAuthEvent();
                                         await signOut();

@@ -14,14 +14,14 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
-class NewProfileWidget extends StatefulWidget {
-  const NewProfileWidget({Key? key}) : super(key: key);
+class ProfilePageWidget extends StatefulWidget {
+  const ProfilePageWidget({Key? key}) : super(key: key);
 
   @override
-  _NewProfileWidgetState createState() => _NewProfileWidgetState();
+  _ProfilePageWidgetState createState() => _ProfilePageWidgetState();
 }
 
-class _NewProfileWidgetState extends State<NewProfileWidget> {
+class _ProfilePageWidgetState extends State<ProfilePageWidget> {
   String uploadedFileUrl = '';
   TextEditingController? textController1;
   TextEditingController? textController2;
@@ -35,7 +35,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'newProfile'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'profilePage'});
     textController1 = TextEditingController(text: currentUserDisplayName);
     textController2 = TextEditingController(text: currentUserEmail);
     textFieldBioController = TextEditingController(text: FFAppState().myBio);
@@ -69,7 +69,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
             size: 24,
           ),
           onPressed: () async {
-            logFirebaseEvent('NEW_PROFILE_PAGE_arrow_back_ICN_ON_TAP');
+            logFirebaseEvent('PROFILE_PAGE_PAGE_arrow_back_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -89,7 +89,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 12, 18, 0),
             child: InkWell(
               onTap: () async {
-                logFirebaseEvent('NEW_PROFILE_PAGE_Text_xyr3lgop_ON_TAP');
+                logFirebaseEvent('PROFILE_PAGE_PAGE_Text_xyr3lgop_ON_TAP');
                 if ((uploadedFileUrl != null && uploadedFileUrl != '')) {
                   logFirebaseEvent('Text_Backend-Call');
 
@@ -111,7 +111,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                     ),
                   );
                   logFirebaseEvent('Text_Navigate-To');
-                  context.pushNamed('newProfile');
+                  context.pushNamed('profilePage');
                 } else {
                   logFirebaseEvent('Text_Update-Local-State');
                   setState(
@@ -168,7 +168,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                           child: InkWell(
                             onTap: () async {
                               logFirebaseEvent(
-                                  'NEW_PROFILE_CircleImage_zogl7ik1_ON_TAP');
+                                  'PROFILE_CircleImage_zogl7ik1_ON_TAP');
                               logFirebaseEvent('CircleImage_Expand-Image');
                               await Navigator.push(
                                 context,
@@ -224,7 +224,8 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
                   child: InkWell(
                     onTap: () async {
-                      logFirebaseEvent('NEW_PROFILE_PAGE_Text_u0f30xb9_ON_TAP');
+                      logFirebaseEvent(
+                          'PROFILE_PAGE_PAGE_Text_u0f30xb9_ON_TAP');
                       logFirebaseEvent('Text_Upload-Photo-Video');
                       final selectedMedia =
                           await selectMediaWithSourceBottomSheet(

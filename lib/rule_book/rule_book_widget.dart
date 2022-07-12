@@ -6,20 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RulesBookWidget extends StatefulWidget {
-  const RulesBookWidget({Key? key}) : super(key: key);
+class RuleBookWidget extends StatefulWidget {
+  const RuleBookWidget({Key? key}) : super(key: key);
 
   @override
-  _RulesBookWidgetState createState() => _RulesBookWidgetState();
+  _RuleBookWidgetState createState() => _RuleBookWidgetState();
 }
 
-class _RulesBookWidgetState extends State<RulesBookWidget> {
+class _RuleBookWidgetState extends State<RuleBookWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'rulesBook'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'ruleBook'});
   }
 
   @override
@@ -40,7 +40,7 @@ class _RulesBookWidgetState extends State<RulesBookWidget> {
             size: 24,
           ),
           onPressed: () async {
-            logFirebaseEvent('RULES_BOOK_PAGE_arrow_back_ICN_ON_TAP');
+            logFirebaseEvent('RULE_BOOK_PAGE_arrow_back_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },

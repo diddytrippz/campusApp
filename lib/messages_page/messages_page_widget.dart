@@ -30,7 +30,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
   void initState() {
     super.initState();
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'MessagesPage'});
+        parameters: {'screen_name': 'messagesPage'});
   }
 
   @override

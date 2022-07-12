@@ -15,8 +15,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
-class TestMoreInfoWidget extends StatefulWidget {
-  const TestMoreInfoWidget({
+class MoreInformationWidget extends StatefulWidget {
+  const MoreInformationWidget({
     Key? key,
     this.jobs,
   }) : super(key: key);
@@ -24,10 +24,10 @@ class TestMoreInfoWidget extends StatefulWidget {
   final MaintenanceRecord? jobs;
 
   @override
-  _TestMoreInfoWidgetState createState() => _TestMoreInfoWidgetState();
+  _MoreInformationWidgetState createState() => _MoreInformationWidgetState();
 }
 
-class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
+class _MoreInformationWidgetState extends State<MoreInformationWidget> {
   List<String>? choiceChipsValues;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -35,7 +35,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
   void initState() {
     super.initState();
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'testMoreInfo'});
+        parameters: {'screen_name': 'moreInformation'});
   }
 
   @override
@@ -56,7 +56,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
             size: 24,
           ),
           onPressed: () async {
-            logFirebaseEvent('TEST_MORE_INFO_arrow_back_rounded_ICN_ON');
+            logFirebaseEvent('MORE_INFORMATION_arrow_back_rounded_ICN_');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -109,7 +109,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                     child: InkWell(
                       onTap: () async {
                         logFirebaseEvent(
-                            'TEST_MORE_INFO_PAGE_Icon_l2th48my_ON_TAP');
+                            'MORE_INFORMATION_Icon_l2th48my_ON_TAP');
                         if ((widget.jobs!.status) == 'Completed') {
                           if ((widget.jobs!.email) == (currentUserEmail)) {
                             logFirebaseEvent('Icon_Navigate-To');
@@ -157,7 +157,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                     child: InkWell(
                       onTap: () async {
                         logFirebaseEvent(
-                            'TEST_MORE_INFO_Badge_acn4ybj3_ON_TAP');
+                            'MORE_INFORMATION_Badge_acn4ybj3_ON_TAP');
                         logFirebaseEvent('Badge_Navigate-To');
                         context.pushNamed(
                           'ChatPage',
@@ -250,7 +250,7 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                     InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'TEST_MORE_INFO_Image_t816w9ax_ON_TAP');
+                                            'MORE_INFORMATION_Image_t816w9ax_ON_TAP');
                                         logFirebaseEvent('Image_Expand-Image');
                                         await Navigator.push(
                                           context,

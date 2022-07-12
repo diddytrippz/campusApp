@@ -59,32 +59,60 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
               ),
         ),
         actions: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 18, 20, 0),
-            child: Badge(
-              badgeContent: Text(
-                FFLocalizations.of(context).getText(
-                  'tpem8gpk' /* 1 */,
+          Visibility(
+            visible: responsiveVisibility(
+              context: context,
+              tablet: false,
+              desktop: false,
+            ),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 18, 20, 0),
+              child: Badge(
+                badgeContent: Text(
+                  FFLocalizations.of(context).getText(
+                    'tpem8gpk' /* 1 */,
+                  ),
+                  textAlign: TextAlign.start,
+                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                        fontFamily: 'Open Sans',
+                        color: Colors.white,
+                        fontSize: 12,
+                      ),
                 ),
-                textAlign: TextAlign.start,
-                style: FlutterFlowTheme.of(context).bodyText1.override(
-                      fontFamily: 'Open Sans',
-                      color: Colors.white,
-                      fontSize: 12,
-                    ),
+                showBadge: true,
+                shape: BadgeShape.circle,
+                badgeColor: FlutterFlowTheme.of(context).campusRed,
+                elevation: 0,
+                padding: EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
+                position: BadgePosition.topEnd(),
+                animationType: BadgeAnimationType.scale,
+                toAnimate: true,
+                child: FaIcon(
+                  FontAwesomeIcons.solidBell,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 24,
+                ),
               ),
-              showBadge: true,
-              shape: BadgeShape.circle,
-              badgeColor: FlutterFlowTheme.of(context).campusRed,
-              elevation: 0,
-              padding: EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
-              position: BadgePosition.topEnd(),
-              animationType: BadgeAnimationType.scale,
-              toAnimate: true,
-              child: FaIcon(
-                FontAwesomeIcons.solidBell,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 24,
+            ),
+          ),
+          Visibility(
+            visible: responsiveVisibility(
+              context: context,
+              phone: false,
+            ),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 18, 0),
+              child: InkWell(
+                onTap: () async {
+                  logFirebaseEvent('NOTIFICATIONS_PAGE_Icon_phi25s5u_ON_TAP');
+                  logFirebaseEvent('Icon_Navigate-To');
+                  context.pushNamed('sendNotifications');
+                },
+                child: FaIcon(
+                  FontAwesomeIcons.edit,
+                  color: Colors.black,
+                  size: 24,
+                ),
               ),
             ),
           ),

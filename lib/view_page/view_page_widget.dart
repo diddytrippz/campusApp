@@ -121,7 +121,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                       logFirebaseEvent(
                                           'VIEW_PAGE_PAGE_Column_k8cwc577_ON_TAP');
                                       logFirebaseEvent('Column_Navigate-To');
-                                      context.pushNamed('MessagesPage');
+                                      context.pushNamed('messagesPage');
                                     },
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -144,7 +144,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                   logFirebaseEvent(
                                                       'Badge_Navigate-To');
                                                   context.pushNamed(
-                                                      'MessagesPage');
+                                                      'messagesPage');
                                                 },
                                                 child: Badge(
                                                   badgeContent: Text(
@@ -226,7 +226,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                           logFirebaseEvent(
                                               'VIEW_PAGE_PAGE_Icon_ua243yu7_ON_TAP');
                                           logFirebaseEvent('Icon_Navigate-To');
-                                          context.pushNamed('newProfile');
+                                          context.pushNamed('profilePage');
                                         },
                                         child: FaIcon(
                                           FontAwesomeIcons.solidUser,
@@ -249,7 +249,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                           logFirebaseEvent(
                                               'VIEW_PAGE_PAGE_Icon_xjaax0ce_ON_TAP');
                                           logFirebaseEvent('Icon_Navigate-To');
-                                          context.pushNamed('newSettings');
+                                          context.pushNamed('settingsPage');
                                         },
                                         child: Icon(
                                           Icons.settings,
@@ -723,7 +723,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                               logFirebaseEvent('VIEW_PAGE_PAGE_ListTile_eb8h3glo_ON_TAP');
                                                                               logFirebaseEvent('ListTile_Navigate-To');
                                                                               context.pushNamed(
-                                                                                'testMoreInfo',
+                                                                                'moreInformation',
                                                                                 queryParams: {
                                                                                   'jobs': serializeParam(listViewSubSTDMaintenanceRecord, ParamType.Document),
                                                                                 }.withoutNulls,
@@ -945,7 +945,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                 logFirebaseEvent('VIEW_PAGE_PAGE_ListTile_gznh7u5n_ON_TAP');
                                                                                 logFirebaseEvent('ListTile_Navigate-To');
                                                                                 context.pushNamed(
-                                                                                  'testMoreInfo',
+                                                                                  'moreInformation',
                                                                                   queryParams: {
                                                                                     'jobs': serializeParam(listViewPendSTDMaintenanceRecord, ParamType.Document),
                                                                                   }.withoutNulls,
@@ -1110,7 +1110,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                               logFirebaseEvent('VIEW_PAGE_PAGE_ListTile_asqyo1jd_ON_TAP');
                                                                               logFirebaseEvent('ListTile_Navigate-To');
                                                                               context.pushNamed(
-                                                                                'testMoreInfo',
+                                                                                'moreInformation',
                                                                                 queryParams: {
                                                                                   'jobs': serializeParam(listViewCompSTDMaintenanceRecord, ParamType.Document),
                                                                                 }.withoutNulls,
@@ -1337,7 +1337,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             logFirebaseEvent('VIEW_PAGE_PAGE_ListTile_cblb6ffj_ON_TAP');
                                                                             logFirebaseEvent('ListTile_Navigate-To');
                                                                             context.pushNamed(
-                                                                              'testMoreInfo',
+                                                                              'moreInformation',
                                                                               queryParams: {
                                                                                 'jobs': serializeParam(listViewSubmitMaintenanceRecord, ParamType.Document),
                                                                               }.withoutNulls,
@@ -1549,7 +1549,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             logFirebaseEvent('VIEW_PAGE_PAGE_ListTile_gfs86ivb_ON_TAP');
                                                                             logFirebaseEvent('ListTile_Navigate-To');
                                                                             context.pushNamed(
-                                                                              'testMoreInfo',
+                                                                              'moreInformation',
                                                                               queryParams: {
                                                                                 'jobs': serializeParam(listViewPendingMaintenanceRecord, ParamType.Document),
                                                                               }.withoutNulls,
@@ -1800,7 +1800,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                               logFirebaseEvent('VIEW_PAGE_PAGE_Card_ngil69ok_ON_TAP');
                                                                               logFirebaseEvent('Card_Navigate-To');
                                                                               context.pushNamed(
-                                                                                'testMoreInfo',
+                                                                                'moreInformation',
                                                                                 queryParams: {
                                                                                   'jobs': serializeParam(listViewCompletedMaintenanceRecord, ParamType.Document),
                                                                                 }.withoutNulls,
