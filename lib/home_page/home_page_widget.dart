@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/empty_list_widget.dart';
 import '../components/nav_bar_home_widget.dart';
-import '../components/nav_barz_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -1662,26 +1661,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                 ),
               ),
-              if (((valueOrDefault(currentUserDocument?.role, '')) ==
-                      'Tenant') ||
-                  responsiveVisibility(
-                    context: context,
-                    tablet: false,
-                    desktop: false,
-                  ))
-                AuthUserStreamWidget(
-                  child: NavBarzWidget(),
-                ),
-              if (((valueOrDefault(currentUserDocument?.role, '')) ==
-                      'Admin') ||
-                  responsiveVisibility(
-                    context: context,
-                    tablet: false,
-                    desktop: false,
-                  ))
-                AuthUserStreamWidget(
-                  child: NavBarHomeWidget(),
-                ),
+              if (responsiveVisibility(
+                context: context,
+                tablet: false,
+                desktop: false,
+              ))
+                NavBarHomeWidget(),
             ],
           ),
         ),
