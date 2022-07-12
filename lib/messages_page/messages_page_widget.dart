@@ -46,6 +46,18 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
+        leading: InkWell(
+          onTap: () async {
+            logFirebaseEvent('MESSAGES_PAGE_PAGE_Icon_p46f6mwh_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-Back');
+            context.pop();
+          },
+          child: Icon(
+            Icons.arrow_back_rounded,
+            color: FlutterFlowTheme.of(context).primaryText,
+            size: 24,
+          ),
+        ),
         title: AutoSizeText(
           FFLocalizations.of(context).getText(
             'ziacko5o' /* Inbox */,

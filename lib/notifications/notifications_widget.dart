@@ -35,6 +35,18 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
+        leading: InkWell(
+          onTap: () async {
+            logFirebaseEvent('NOTIFICATIONS_PAGE_Icon_s0z7dmh3_ON_TAP');
+            logFirebaseEvent('Icon_Navigate-Back');
+            context.pop();
+          },
+          child: Icon(
+            Icons.arrow_back_rounded,
+            color: FlutterFlowTheme.of(context).primaryText,
+            size: 24,
+          ),
+        ),
         title: AutoSizeText(
           FFLocalizations.of(context).getText(
             'haji3w3r' /* Notifications */,

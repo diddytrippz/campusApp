@@ -116,29 +116,6 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 20, 0, 0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      InkWell(
-                                        onTap: () async {
-                                          logFirebaseEvent(
-                                              'VIEW_PAGE_PAGE_Icon_isevush2_ON_TAP');
-                                          logFirebaseEvent('Icon_Navigate-To');
-                                          context.pushNamed('homePage');
-                                        },
-                                        child: Icon(
-                                          Icons.dashboard_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 24,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 20, 0, 0),
                                   child: InkWell(
                                     onTap: () async {
                                       logFirebaseEvent(
@@ -233,6 +210,29 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           size: 30,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 20, 0, 0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      InkWell(
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'VIEW_PAGE_PAGE_Icon_ua243yu7_ON_TAP');
+                                          logFirebaseEvent('Icon_Navigate-To');
+                                          context.pushNamed('newProfile');
+                                        },
+                                        child: FaIcon(
+                                          FontAwesomeIcons.solidUser,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 20,
                                         ),
                                       ),
                                     ],
