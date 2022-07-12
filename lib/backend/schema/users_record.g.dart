@@ -89,7 +89,7 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.ref;
+    value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
@@ -152,7 +152,7 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
               specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
-          result.ref = serializers.deserialize(value,
+          result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
                 const FullType.nullable(Object)
               ])) as DocumentReference<Object?>?;
@@ -186,7 +186,7 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? role;
   @override
-  final DocumentReference<Object?>? ref;
+  final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
       (new UsersRecordBuilder()..update(updates)).build();
@@ -202,7 +202,7 @@ class _$UsersRecord extends UsersRecord {
       this.room,
       this.building,
       this.role,
-      this.ref})
+      this.ffRef})
       : super._();
 
   @override
@@ -226,7 +226,7 @@ class _$UsersRecord extends UsersRecord {
         room == other.room &&
         building == other.building &&
         role == other.role &&
-        ref == other.ref;
+        ffRef == other.ffRef;
   }
 
   @override
@@ -250,7 +250,7 @@ class _$UsersRecord extends UsersRecord {
                     room.hashCode),
                 building.hashCode),
             role.hashCode),
-        ref.hashCode));
+        ffRef.hashCode));
   }
 
   @override
@@ -266,7 +266,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('room', room)
           ..add('building', building)
           ..add('role', role)
-          ..add('ref', ref))
+          ..add('ffRef', ffRef))
         .toString();
   }
 }
@@ -314,9 +314,9 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get role => _$this._role;
   set role(String? role) => _$this._role = role;
 
-  DocumentReference<Object?>? _ref;
-  DocumentReference<Object?>? get ref => _$this._ref;
-  set ref(DocumentReference<Object?>? ref) => _$this._ref = ref;
+  DocumentReference<Object?>? _ffRef;
+  DocumentReference<Object?>? get ffRef => _$this._ffRef;
+  set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
   UsersRecordBuilder() {
     UsersRecord._initializeBuilder(this);
@@ -335,7 +335,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _room = $v.room;
       _building = $v.building;
       _role = $v.role;
-      _ref = $v.ref;
+      _ffRef = $v.ffRef;
       _$v = null;
     }
     return this;
@@ -366,7 +366,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             room: room,
             building: building,
             role: role,
-            ref: ref);
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

@@ -22,8 +22,8 @@ abstract class ChatMessagesRecord
   DateTime? get timestamp;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ref;
-  DocumentReference get reference => ref!;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(ChatMessagesRecordBuilder builder) => builder
     ..text = ''

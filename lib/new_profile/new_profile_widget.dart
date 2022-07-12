@@ -45,7 +45,10 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
     textController5 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.room, ''));
     textController6 = TextEditingController(text: currentUserUid);
-    textController7 = TextEditingController(text: 'ZA');
+    textController7 = TextEditingController(
+        text: FFLocalizations.of(context).getText(
+      'gaduf3gk' /* ZA */,
+    ));
   }
 
   @override
@@ -87,7 +90,7 @@ class _NewProfileWidgetState extends State<NewProfileWidget> {
             child: InkWell(
               onTap: () async {
                 logFirebaseEvent('NEW_PROFILE_PAGE_Text_xyr3lgop_ON_TAP');
-                if ((uploadedFileUrl != null) && (uploadedFileUrl != '')) {
+                if ((uploadedFileUrl != null && uploadedFileUrl != '')) {
                   logFirebaseEvent('Text_Backend-Call');
 
                   final usersUpdateData = createUsersRecordData(
@@ -755,7 +758,9 @@ Language */
                             readOnly: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: 'ZA',
+                              hintText: FFLocalizations.of(context).getText(
+                                'n22ngvbt' /* ZA */,
+                              ),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x00000000),

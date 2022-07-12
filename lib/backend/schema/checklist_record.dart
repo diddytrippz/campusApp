@@ -16,8 +16,8 @@ abstract class ChecklistRecord
   BuiltList<String>? get options;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ref;
-  DocumentReference get reference => ref!;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(ChecklistRecordBuilder builder) => builder
     ..description = ''

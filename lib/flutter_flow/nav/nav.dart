@@ -72,13 +72,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+          appStateNotifier.loggedIn ? CheckUpWidget() : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+              appStateNotifier.loggedIn ? CheckUpWidget() : LoginPageWidget(),
           routes: [
             FFRoute(
               name: 'testOnboarding',
@@ -95,20 +95,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'homePage',
               path: 'homePage',
               requireAuth: true,
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'homePage')
-                  : HomePageWidget(),
+              builder: (context, params) => HomePageWidget(),
             ),
             FFRoute(
               name: 'viewPage',
               path: 'viewPage',
               requireAuth: true,
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'viewPage')
-                  : ViewPageWidget(
-                      completeTemp:
-                          params.getParam('completeTemp', ParamType.double),
-                    ),
+              builder: (context, params) => ViewPageWidget(
+                completeTemp: params.getParam('completeTemp', ParamType.double),
+              ),
             ),
             FFRoute(
               name: 'rulesBook',
@@ -133,9 +128,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'notifications',
               path: 'notifications',
               requireAuth: true,
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'notifications')
-                  : NotificationsWidget(),
+              builder: (context, params) => NotificationsWidget(),
             ),
             FFRoute(
               name: 'usersSearch',
@@ -147,9 +140,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'MessagesPage',
               path: 'messagesPage',
               requireAuth: true,
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'MessagesPage')
-                  : MessagesPageWidget(),
+              builder: (context, params) => MessagesPageWidget(),
             ),
             FFRoute(
               name: 'Appliances',
@@ -238,15 +229,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'newSettings',
               path: 'newSettings',
               requireAuth: true,
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'newSettings')
-                  : NewSettingsWidget(),
+              builder: (context, params) => NewSettingsWidget(),
             ),
             FFRoute(
               name: 'sendNotifi',
               path: 'sendNotifi',
               requireAuth: true,
               builder: (context, params) => SendNotifiWidget(),
+            ),
+            FFRoute(
+              name: 'dashboard',
+              path: 'dashboard',
+              requireAuth: true,
+              builder: (context, params) => DashboardWidget(),
+            ),
+            FFRoute(
+              name: 'checkUp',
+              path: 'checkUp',
+              requireAuth: true,
+              builder: (context, params) => CheckUpWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

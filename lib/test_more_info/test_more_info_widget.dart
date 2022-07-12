@@ -245,8 +245,8 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  if ((widget.jobs!.photoUrl != null) &&
-                                      (widget.jobs!.photoUrl != ''))
+                                  if ((widget.jobs!.photoUrl != null &&
+                                      widget.jobs!.photoUrl != ''))
                                     InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
@@ -347,8 +347,8 @@ class _TestMoreInfoWidgetState extends State<TestMoreInfoWidget> {
                                                                 ),
                                                       ),
                                                       if ((widget.jobs!.notes !=
-                                                              null) &&
-                                                          (widget.jobs!.notes !=
+                                                              null &&
+                                                          widget.jobs!.notes !=
                                                               ''))
                                                         Text(
                                                           widget.jobs!.notes!,

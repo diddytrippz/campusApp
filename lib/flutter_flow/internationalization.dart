@@ -154,6 +154,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // homePage
   {
+    'ohgnlydh': {
+      'en': '1',
+      'af': '1',
+      'st': '1',
+      'zu': '1',
+    },
+    '2glveoow': {
+      'en': 'Logout',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
     'ri3unxcp': {
       'en': '1',
       'af': '1',
@@ -217,6 +229,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // viewPage
   {
+    '0ospid8b': {
+      'en': '1',
+      'af': '1',
+      'st': '1',
+      'zu': '1',
+    },
+    'bbykkjfb': {
+      'en': 'Logout',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
     'g6o86hf9': {
       'en': 'Search here...',
       'af': 'Soek hier...',
@@ -1596,13 +1620,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'st': 'Kgetha Puo',
       'zu': 'Khetha Ulimi',
     },
-    'sqrg3zoi': {
+    'n22ngvbt': {
       'en': 'ZA',
       'af': '',
       'st': '',
       'zu': '',
     },
-    'un04v4sm': {
+    'gaduf3gk': {
       'en': 'ZA',
       'af': '',
       'st': '',
@@ -1629,6 +1653,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // newSettings
   {
+    'jtd7quhq': {
+      'en': '1',
+      'af': '1',
+      'st': '1',
+      'zu': '1',
+    },
+    'vo566ptj': {
+      'en': 'Logout',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
     'l75068ci': {
       'en': 'Account',
       'af': 'Rekening',
@@ -1759,7 +1795,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Uhlobo Lwezaziso',
     },
     '48bf7x8r': {
-      'en': 'Select all users?',
+      'en': 'Everyone',
       'af': 'Kies alle gebruikers?',
       'st': 'Khetha basebelisi bohle?',
       'zu': 'Khetha bonke abasebenzisi?',
@@ -1781,6 +1817,207 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': 'Veld word vereis',
       'st': 'Ho hlokahala sebaka',
       'zu': 'Inkambu iyadingeka',
+    },
+  },
+  // dashboard
+  {
+    'co88pkri': {
+      'en': 'Logout',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'yb9g4vxg': {
+      'en': 'Day',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '0es89g0c': {
+      'en': 'Week',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'o0jq1ha7': {
+      'en': 'Month',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'eufz40mq': {
+      'en': 'Year',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '7mh5a3rn': {
+      'en': 'Sort',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '8pyprt2l': {
+      'en': 'Appliances',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'zojo7mf1': {
+      'en': 'Plumbing',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'f3od9d4o': {
+      'en': 'Furniture',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'gnmfzdsa': {
+      'en': 'Electrical',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'rgw82ads': {
+      'en': 'Locksmith',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'snc3qwtq': {
+      'en': 'Painting',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '479xx236': {
+      'en': 'Categories',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '3vb31g3w': {
+      'en': '1049\nRequests',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'ekjo78y2': {
+      'en': 'Open',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '6ak7lufe': {
+      'en': '150',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'q6fh0x8f': {
+      'en': 'In Review',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '8t7d8hz4': {
+      'en': '150',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'ehv1h5rk': {
+      'en': 'Closed',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '5z9t2ehf': {
+      'en': '150',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'uvzmyd4q': {
+      'en': 'Day',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '4wims3xw': {
+      'en': 'Time Left',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'a78j4p5z': {
+      'en': 'Daily tracker',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'yutwbsv5': {
+      'en': 'Goals',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '307kc2t4': {
+      'en': 'Progress',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '26g5k1sf': {
+      'en': '4/10',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'zc5ie0gy': {
+      'en': 'Daily tracker',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'mg1rqlt6': {
+      'en': 'Goals',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'o186flit': {
+      'en': 'Progress',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'fpfvgzkn': {
+      'en': '4/10',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'vx00qdsz': {
+      'en': 'Your Week',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'hcrdaz7f': {
+      'en': 'April 1-7th',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '3amgasqh': {
+      'en': 'Home',
+      'af': '',
+      'st': '',
+      'zu': '',
     },
   },
   // submittedIcon

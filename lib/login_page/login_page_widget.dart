@@ -373,7 +373,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                     }
 
                                                     context.goNamedAuth(
-                                                        'homePage', mounted);
+                                                        'checkUp', mounted);
                                                   },
                                                   text: FFLocalizations.of(
                                                           context)
@@ -399,7 +399,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                       color: Colors.transparent,
                                                       width: 1,
                                                     ),
-                                                    borderRadius: 12,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12),
                                                   ),
                                                 ),
                                               ),
@@ -578,7 +580,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 color: Colors.transparent,
                                                 width: 1,
                                               ),
-                                              borderRadius: 12,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                             ),
                                           ),
                                         ),

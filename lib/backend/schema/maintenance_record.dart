@@ -50,8 +50,8 @@ abstract class MaintenanceRecord
   DocumentReference? get userRec;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ref;
-  DocumentReference get reference => ref!;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(MaintenanceRecordBuilder builder) => builder
     ..issue = ''

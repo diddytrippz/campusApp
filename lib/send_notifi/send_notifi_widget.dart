@@ -20,10 +20,10 @@ class SendNotifiWidget extends StatefulWidget {
 
 class _SendNotifiWidgetState extends State<SendNotifiWidget> {
   DateTime? datePicked;
+  bool? checkboxListTileValue;
   String? teamSelectValue;
   TextEditingController? shortBioController;
   TextEditingController? userNameController;
-  bool? checkboxListTileValue;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -109,7 +109,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                                       FlutterFlowTheme.of(context).campusGrey,
                                   width: 1,
                                 ),
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(6),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -117,7 +117,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                                       FlutterFlowTheme.of(context).campusGrey,
                                   width: 1,
                                 ),
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(6),
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
@@ -164,7 +164,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                                       FlutterFlowTheme.of(context).campusGrey,
                                   width: 1,
                                 ),
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(6),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -172,7 +172,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                                       FlutterFlowTheme.of(context).campusGrey,
                                   width: 1,
                                 ),
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(6),
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
@@ -248,7 +248,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                             borderColor:
                                 FlutterFlowTheme.of(context).campusGrey,
                             borderWidth: 1,
-                            borderRadius: 8,
+                            borderRadius: 6,
                             margin:
                                 EdgeInsetsDirectional.fromSTEB(24, 4, 12, 4),
                             hidesUnderline: true,
@@ -259,34 +259,90 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                               EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'SEND_NOTIFI_Container_zy60xpys_ON_TAP');
-                                    logFirebaseEvent(
-                                        'Container_Date-Time-Picker');
-                                    await DatePicker.showDatePicker(
-                                      context,
-                                      showTitleActions: true,
-                                      onConfirm: (date) {
-                                        setState(() => datePicked = date);
-                                      },
-                                      currentTime: getCurrentTimestamp,
-                                      minTime: getCurrentTimestamp,
-                                      locale: LocaleType.values.firstWhere(
-                                        (l) =>
-                                            l.name ==
-                                            FFLocalizations.of(context)
-                                                .languageCode,
-                                        orElse: null,
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 10, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'SEND_NOTIFI_Container_zy60xpys_ON_TAP');
+                                      logFirebaseEvent(
+                                          'Container_Date-Time-Picker');
+                                      await DatePicker.showDatePicker(
+                                        context,
+                                        showTitleActions: true,
+                                        onConfirm: (date) {
+                                          setState(() => datePicked = date);
+                                        },
+                                        currentTime: getCurrentTimestamp,
+                                        minTime: getCurrentTimestamp,
+                                        locale: LocaleType.values.firstWhere(
+                                          (l) =>
+                                              l.name ==
+                                              FFLocalizations.of(context)
+                                                  .languageCode,
+                                          orElse: null,
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius: BorderRadius.circular(6),
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context)
+                                              .campusGrey,
+                                          width: 1,
+                                        ),
                                       ),
-                                    );
-                                  },
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            18, 5, 18, 5),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              valueOrDefault<String>(
+                                                dateTimeFormat(
+                                                    'yMMMd', datePicked!),
+                                                'Select Date',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                            ),
+                                            Icon(
+                                              Icons.date_range_outlined,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 24,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10, 0, 0, 0),
                                   child: Container(
                                     width: MediaQuery.of(context).size.width *
                                         0.44,
@@ -294,44 +350,54 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(6),
                                       border: Border.all(
                                         color: FlutterFlowTheme.of(context)
                                             .campusGrey,
                                         width: 1,
                                       ),
                                     ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          12, 5, 12, 5),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            valueOrDefault<String>(
-                                              dateTimeFormat(
-                                                  'yMMMd', datePicked),
-                                              'Select Date',
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Theme(
+                                          data: ThemeData(
+                                            unselectedWidgetColor:
+                                                Color(0xFF95A1AC),
+                                          ),
+                                          child: CheckboxListTile(
+                                            value: checkboxListTileValue ??=
+                                                false,
+                                            onChanged: (newValue) => setState(
+                                                () => checkboxListTileValue =
+                                                    newValue!),
+                                            title: Text(
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                                '48bf7x8r' /* Everyone */,
+                                              ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .title3
+                                                  .override(
+                                                    fontFamily: 'Open Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText2
-                                                .override(
-                                                  fontFamily: 'Open Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
+                                            tileColor: Color(0x00F5F5F5),
+                                            activeColor: Color(0xFFCA350B),
+                                            dense: true,
+                                            controlAffinity:
+                                                ListTileControlAffinity.leading,
                                           ),
-                                          Icon(
-                                            Icons.date_range_outlined,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24,
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -340,38 +406,8 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                          child: Theme(
-                            data: ThemeData(
-                              unselectedWidgetColor: Color(0xFF95A1AC),
-                            ),
-                            child: CheckboxListTile(
-                              value: checkboxListTileValue ??= false,
-                              onChanged: (newValue) => setState(
-                                  () => checkboxListTileValue = newValue!),
-                              title: Text(
-                                FFLocalizations.of(context).getText(
-                                  '48bf7x8r' /* Select all users? */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .title3
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                              ),
-                              tileColor: Color(0x00F5F5F5),
-                              activeColor: Color(0xFFCA350B),
-                              dense: true,
-                              controlAffinity: ListTileControlAffinity.leading,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 30),
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(40, 24, 30, 30),
                           child: FFButtonWidget(
                             onPressed: () async {
                               logFirebaseEvent(
@@ -438,7 +474,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                               '2mgjnl4w' /* Send Notification */,
                             ),
                             options: FFButtonOptions(
-                              width: 270,
+                              width: double.infinity,
                               height: 50,
                               color: FlutterFlowTheme.of(context).primaryColor,
                               textStyle: FlutterFlowTheme.of(context)
@@ -452,7 +488,7 @@ class _SendNotifiWidgetState extends State<SendNotifiWidget> {
                                 color: Colors.transparent,
                                 width: 1,
                               ),
-                              borderRadius: 8,
+                              borderRadius: BorderRadius.circular(6),
                             ),
                           ),
                         ),

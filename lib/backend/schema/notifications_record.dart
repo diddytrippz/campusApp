@@ -25,8 +25,8 @@ abstract class NotificationsRecord
   bool? get sendToAll;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ref;
-  DocumentReference get reference => ref!;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(NotificationsRecordBuilder builder) => builder
     ..title = ''

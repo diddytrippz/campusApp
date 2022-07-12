@@ -22,3 +22,5 @@ export 'test_more_info/test_more_info_widget.dart' show TestMoreInfoWidget;
 export 'new_profile/new_profile_widget.dart' show NewProfileWidget;
 export 'new_settings/new_settings_widget.dart' show NewSettingsWidget;
 export 'send_notifi/send_notifi_widget.dart' show SendNotifiWidget;
+export 'dashboard/dashboard_widget.dart' show DashboardWidget;
+export 'check_up/check_up_widget.dart' show CheckUpWidget;

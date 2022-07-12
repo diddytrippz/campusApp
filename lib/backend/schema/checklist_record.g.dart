@@ -36,7 +36,7 @@ class _$ChecklistRecordSerializer
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
-    value = object.ref;
+    value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
@@ -70,7 +70,7 @@ class _$ChecklistRecordSerializer
               as BuiltList<Object?>);
           break;
         case 'Document__Reference__Field':
-          result.ref = serializers.deserialize(value,
+          result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
                 const FullType.nullable(Object)
               ])) as DocumentReference<Object?>?;
@@ -88,12 +88,12 @@ class _$ChecklistRecord extends ChecklistRecord {
   @override
   final BuiltList<String>? options;
   @override
-  final DocumentReference<Object?>? ref;
+  final DocumentReference<Object?>? ffRef;
 
   factory _$ChecklistRecord([void Function(ChecklistRecordBuilder)? updates]) =>
       (new ChecklistRecordBuilder()..update(updates)).build();
 
-  _$ChecklistRecord._({this.description, this.options, this.ref}) : super._();
+  _$ChecklistRecord._({this.description, this.options, this.ffRef}) : super._();
 
   @override
   ChecklistRecord rebuild(void Function(ChecklistRecordBuilder) updates) =>
@@ -109,13 +109,13 @@ class _$ChecklistRecord extends ChecklistRecord {
     return other is ChecklistRecord &&
         description == other.description &&
         options == other.options &&
-        ref == other.ref;
+        ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, description.hashCode), options.hashCode), ref.hashCode));
+    return $jf($jc(
+        $jc($jc(0, description.hashCode), options.hashCode), ffRef.hashCode));
   }
 
   @override
@@ -123,7 +123,7 @@ class _$ChecklistRecord extends ChecklistRecord {
     return (newBuiltValueToStringHelper('ChecklistRecord')
           ..add('description', description)
           ..add('options', options)
-          ..add('ref', ref))
+          ..add('ffRef', ffRef))
         .toString();
   }
 }
@@ -141,9 +141,9 @@ class ChecklistRecordBuilder
       _$this._options ??= new ListBuilder<String>();
   set options(ListBuilder<String>? options) => _$this._options = options;
 
-  DocumentReference<Object?>? _ref;
-  DocumentReference<Object?>? get ref => _$this._ref;
-  set ref(DocumentReference<Object?>? ref) => _$this._ref = ref;
+  DocumentReference<Object?>? _ffRef;
+  DocumentReference<Object?>? get ffRef => _$this._ffRef;
+  set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
   ChecklistRecordBuilder() {
     ChecklistRecord._initializeBuilder(this);
@@ -154,7 +154,7 @@ class ChecklistRecordBuilder
     if ($v != null) {
       _description = $v.description;
       _options = $v.options?.toBuilder();
-      _ref = $v.ref;
+      _ffRef = $v.ffRef;
       _$v = null;
     }
     return this;
@@ -177,7 +177,9 @@ class ChecklistRecordBuilder
     try {
       _$result = _$v ??
           new _$ChecklistRecord._(
-              description: description, options: _options?.build(), ref: ref);
+              description: description,
+              options: _options?.build(),
+              ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {

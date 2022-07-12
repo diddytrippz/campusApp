@@ -30,8 +30,8 @@ abstract class ChatsRecord implements Built<ChatsRecord, ChatsRecordBuilder> {
   BuiltList<DocumentReference>? get lastMessageSeenBy;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ref;
-  DocumentReference get reference => ref!;
+  DocumentReference? get ffRef;
+  DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(ChatsRecordBuilder builder) => builder
     ..users = ListBuilder()

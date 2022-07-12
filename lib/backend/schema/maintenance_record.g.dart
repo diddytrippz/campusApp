@@ -140,7 +140,7 @@ class _$MaintenanceRecordSerializer
             specifiedType: const FullType(
                 DocumentReference, const [const FullType.nullable(Object)])));
     }
-    value = object.ref;
+    value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
@@ -234,7 +234,7 @@ class _$MaintenanceRecordSerializer
               ])) as DocumentReference<Object?>?;
           break;
         case 'Document__Reference__Field':
-          result.ref = serializers.deserialize(value,
+          result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
                 const FullType.nullable(Object)
               ])) as DocumentReference<Object?>?;
@@ -282,7 +282,7 @@ class _$MaintenanceRecord extends MaintenanceRecord {
   @override
   final DocumentReference<Object?>? userRec;
   @override
-  final DocumentReference<Object?>? ref;
+  final DocumentReference<Object?>? ffRef;
 
   factory _$MaintenanceRecord(
           [void Function(MaintenanceRecordBuilder)? updates]) =>
@@ -306,7 +306,7 @@ class _$MaintenanceRecord extends MaintenanceRecord {
       this.assigned,
       this.updateTime,
       this.userRec,
-      this.ref})
+      this.ffRef})
       : super._();
 
   @override
@@ -338,7 +338,7 @@ class _$MaintenanceRecord extends MaintenanceRecord {
         assigned == other.assigned &&
         updateTime == other.updateTime &&
         userRec == other.userRec &&
-        ref == other.ref;
+        ffRef == other.ffRef;
   }
 
   @override
@@ -383,7 +383,7 @@ class _$MaintenanceRecord extends MaintenanceRecord {
                     assigned.hashCode),
                 updateTime.hashCode),
             userRec.hashCode),
-        ref.hashCode));
+        ffRef.hashCode));
   }
 
   @override
@@ -406,7 +406,7 @@ class _$MaintenanceRecord extends MaintenanceRecord {
           ..add('assigned', assigned)
           ..add('updateTime', updateTime)
           ..add('userRec', userRec)
-          ..add('ref', ref))
+          ..add('ffRef', ffRef))
         .toString();
   }
 }
@@ -483,9 +483,9 @@ class MaintenanceRecordBuilder
   DocumentReference<Object?>? get userRec => _$this._userRec;
   set userRec(DocumentReference<Object?>? userRec) => _$this._userRec = userRec;
 
-  DocumentReference<Object?>? _ref;
-  DocumentReference<Object?>? get ref => _$this._ref;
-  set ref(DocumentReference<Object?>? ref) => _$this._ref = ref;
+  DocumentReference<Object?>? _ffRef;
+  DocumentReference<Object?>? get ffRef => _$this._ffRef;
+  set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
   MaintenanceRecordBuilder() {
     MaintenanceRecord._initializeBuilder(this);
@@ -511,7 +511,7 @@ class MaintenanceRecordBuilder
       _assigned = $v.assigned;
       _updateTime = $v.updateTime;
       _userRec = $v.userRec;
-      _ref = $v.ref;
+      _ffRef = $v.ffRef;
       _$v = null;
     }
     return this;
@@ -549,7 +549,7 @@ class MaintenanceRecordBuilder
             assigned: assigned,
             updateTime: updateTime,
             userRec: userRec,
-            ref: ref);
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

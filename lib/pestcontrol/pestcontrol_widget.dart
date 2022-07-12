@@ -160,7 +160,7 @@ class _PestcontrolWidgetState extends State<PestcontrolWidget> {
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.network(
                                       valueOrDefault<String>(
-                                        uploadedFileUrl,
+                                        uploadedFileUrl!,
                                         'https://static.vecteezy.com/system/resources/previews/004/968/473/original/upload-or-add-a-picture-jpg-file-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-etc-vector.jpg',
                                       ),
                                       width: MediaQuery.of(context).size.width,
@@ -467,7 +467,7 @@ class _PestcontrolWidgetState extends State<PestcontrolWidget> {
                             color: Colors.transparent,
                             width: 1,
                           ),
-                          borderRadius: 7,
+                          borderRadius: BorderRadius.circular(7),
                         ),
                       ),
                     ),

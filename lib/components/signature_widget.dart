@@ -143,7 +143,7 @@ class _SignatureWidgetState extends State<SignatureWidget> {
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 4,
+                        borderRadius: BorderRadius.circular(4),
                       ),
                     ),
                     FFButtonWidget(
@@ -166,7 +166,7 @@ class _SignatureWidgetState extends State<SignatureWidget> {
                           color: Colors.transparent,
                           width: 1,
                         ),
-                        borderRadius: 4,
+                        borderRadius: BorderRadius.circular(4),
                       ),
                     ),
                   ],

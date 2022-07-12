@@ -9,9 +9,6 @@ import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
@@ -94,90 +91,6 @@ class _MyAppState extends State<MyApp> {
       themeMode: _themeMode,
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,
-    );
-  }
-}
-
-class NavBarPage extends StatefulWidget {
-  NavBarPage({Key? key, this.initialPage}) : super(key: key);
-
-  final String? initialPage;
-
-  @override
-  _NavBarPageState createState() => _NavBarPageState();
-}
-
-/// This is the private State class that goes with NavBarPage.
-class _NavBarPageState extends State<NavBarPage> {
-  String _currentPage = 'homePage';
-
-  @override
-  void initState() {
-    super.initState();
-    _currentPage = widget.initialPage ?? _currentPage;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final tabs = {
-      'homePage': HomePageWidget(),
-      'viewPage': ViewPageWidget(),
-      'MessagesPage': MessagesPageWidget(),
-      'notifications': NotificationsWidget(),
-      'newSettings': NewSettingsWidget(),
-    };
-    final currentIndex = tabs.keys.toList().indexOf(_currentPage);
-    return Scaffold(
-      body: tabs[_currentPage],
-      bottomNavigationBar: GNav(
-        selectedIndex: currentIndex,
-        onTabChange: (i) =>
-            setState(() => _currentPage = tabs.keys.toList()[i]),
-        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-        color: FlutterFlowTheme.of(context).campusGrey,
-        activeColor: FlutterFlowTheme.of(context).primaryText,
-        tabBackgroundColor: Color(0x00181818),
-        tabBorderRadius: 15,
-        tabMargin: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 16),
-        padding: EdgeInsetsDirectional.fromSTEB(14, 12, 4, 12),
-        gap: 4,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        duration: Duration(milliseconds: 1000),
-        haptic: true,
-        tabs: [
-          GButton(
-            icon: FontAwesomeIcons.home,
-            text: '',
-            iconSize: 22,
-          ),
-          GButton(
-            icon: currentIndex == 1
-                ? FontAwesomeIcons.solidEdit
-                : FontAwesomeIcons.edit,
-            text: '',
-            iconSize: 22,
-          ),
-          GButton(
-            icon: FFIcons.kchatboxes,
-            text: '',
-            iconSize: 26,
-          ),
-          GButton(
-            icon: currentIndex == 3
-                ? FontAwesomeIcons.solidBell
-                : FontAwesomeIcons.bell,
-            text: '',
-            iconSize: 22,
-          ),
-          GButton(
-            icon: Icons.settings_outlined,
-            text: FFLocalizations.of(context).getText(
-              'ugb9k6b5' /*  */,
-            ),
-            iconSize: 26,
-          )
-        ],
-      ),
     );
   }
 }

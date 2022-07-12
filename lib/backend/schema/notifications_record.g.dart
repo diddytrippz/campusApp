@@ -67,7 +67,7 @@ class _$NotificationsRecordSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
-    value = object.ref;
+    value = object.ffRef;
     if (value != null) {
       result
         ..add('Document__Reference__Field')
@@ -115,7 +115,7 @@ class _$NotificationsRecordSerializer
               specifiedType: const FullType(bool)) as bool?;
           break;
         case 'Document__Reference__Field':
-          result.ref = serializers.deserialize(value,
+          result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
                 const FullType.nullable(Object)
               ])) as DocumentReference<Object?>?;
@@ -141,7 +141,7 @@ class _$NotificationsRecord extends NotificationsRecord {
   @override
   final bool? sendToAll;
   @override
-  final DocumentReference<Object?>? ref;
+  final DocumentReference<Object?>? ffRef;
 
   factory _$NotificationsRecord(
           [void Function(NotificationsRecordBuilder)? updates]) =>
@@ -154,7 +154,7 @@ class _$NotificationsRecord extends NotificationsRecord {
       this.dateCreate,
       this.urgency,
       this.sendToAll,
-      this.ref})
+      this.ffRef})
       : super._();
 
   @override
@@ -176,7 +176,7 @@ class _$NotificationsRecord extends NotificationsRecord {
         dateCreate == other.dateCreate &&
         urgency == other.urgency &&
         sendToAll == other.sendToAll &&
-        ref == other.ref;
+        ffRef == other.ffRef;
   }
 
   @override
@@ -190,7 +190,7 @@ class _$NotificationsRecord extends NotificationsRecord {
                     dateCreate.hashCode),
                 urgency.hashCode),
             sendToAll.hashCode),
-        ref.hashCode));
+        ffRef.hashCode));
   }
 
   @override
@@ -202,7 +202,7 @@ class _$NotificationsRecord extends NotificationsRecord {
           ..add('dateCreate', dateCreate)
           ..add('urgency', urgency)
           ..add('sendToAll', sendToAll)
-          ..add('ref', ref))
+          ..add('ffRef', ffRef))
         .toString();
   }
 }
@@ -235,9 +235,9 @@ class NotificationsRecordBuilder
   bool? get sendToAll => _$this._sendToAll;
   set sendToAll(bool? sendToAll) => _$this._sendToAll = sendToAll;
 
-  DocumentReference<Object?>? _ref;
-  DocumentReference<Object?>? get ref => _$this._ref;
-  set ref(DocumentReference<Object?>? ref) => _$this._ref = ref;
+  DocumentReference<Object?>? _ffRef;
+  DocumentReference<Object?>? get ffRef => _$this._ffRef;
+  set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
   NotificationsRecordBuilder() {
     NotificationsRecord._initializeBuilder(this);
@@ -252,7 +252,7 @@ class NotificationsRecordBuilder
       _dateCreate = $v.dateCreate;
       _urgency = $v.urgency;
       _sendToAll = $v.sendToAll;
-      _ref = $v.ref;
+      _ffRef = $v.ffRef;
       _$v = null;
     }
     return this;
@@ -279,7 +279,7 @@ class NotificationsRecordBuilder
             dateCreate: dateCreate,
             urgency: urgency,
             sendToAll: sendToAll,
-            ref: ref);
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
