@@ -341,19 +341,24 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                               .primaryText,
                                           size: 24,
                                         ),
-                                        Text(
-                                          FFLocalizations.of(context).getText(
-                                            'co88pkri' /* Logout */,
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 5, 0, 0),
+                                          child: Text(
+                                            FFLocalizations.of(context).getText(
+                                              'co88pkri' /* Logout */,
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Open Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontWeight: FontWeight.bold,
-                                              ),
                                         ),
                                       ],
                                     ),
@@ -565,9 +570,9 @@ Requests */
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        fontSize: 12,
+                                                        fontSize: 14,
                                                         fontWeight:
-                                                            FontWeight.w600,
+                                                            FontWeight.bold,
                                                       ),
                                                 ),
                                               ),
@@ -992,7 +997,13 @@ Requests */
                                                                     ),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyText2,
+                                                                        .bodyText2
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Open Sans',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                        ),
                                                                   ),
                                                                 ),
                                                                 Expanded(
@@ -1019,8 +1030,12 @@ Requests */
                                                                               .getText(
                                                                             '307kc2t4' /* Progress */,
                                                                           ),
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).bodyText2,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyText2
+                                                                              .override(
+                                                                                fontFamily: 'Open Sans',
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                              ),
                                                                         ),
                                                                       ),
                                                                       Padding(
@@ -1035,8 +1050,12 @@ Requests */
                                                                               .getText(
                                                                             '26g5k1sf' /* 4/10 */,
                                                                           ),
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).bodyText2,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyText2
+                                                                              .override(
+                                                                                fontFamily: 'Open Sans',
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                              ),
                                                                         ),
                                                                       ),
                                                                     ],
@@ -1175,7 +1194,13 @@ Requests */
                                                                     ),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyText2,
+                                                                        .bodyText2
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Open Sans',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                        ),
                                                                   ),
                                                                 ),
                                                                 Expanded(
@@ -1354,7 +1379,13 @@ Requests */
                                                                     ),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyText2,
+                                                                        .bodyText2
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Open Sans',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                        ),
                                                                   ),
                                                                 ),
                                                                 Expanded(

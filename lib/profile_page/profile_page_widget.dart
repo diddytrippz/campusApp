@@ -29,7 +29,6 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
   TextEditingController? textController4;
   TextEditingController? textController5;
   TextEditingController? textController6;
-  TextEditingController? textController7;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -45,10 +44,6 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
     textController5 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.room, ''));
     textController6 = TextEditingController(text: currentUserUid);
-    textController7 = TextEditingController(
-        text: FFLocalizations.of(context).getText(
-      'gaduf3gk' /* ZA */,
-    ));
   }
 
   @override
@@ -711,89 +706,6 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 14,
                               ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 10, 50, 40),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                          child: Text(
-                            FFLocalizations.of(context).getText(
-                              'ie0kbdvu' /* Selected
-Language */
-                              ,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(50, 0, 0, 0),
-                          child: TextFormField(
-                            controller: textController7,
-                            onChanged: (_) => EasyDebounce.debounce(
-                              'textController7',
-                              Duration(milliseconds: 2000),
-                              () => setState(() {}),
-                            ),
-                            autofocus: true,
-                            readOnly: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              hintText: FFLocalizations.of(context).getText(
-                                'n22ngvbt' /* ZA */,
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1,
-                                ),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(4.0),
-                                  topRight: Radius.circular(4.0),
-                                ),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1,
-                                ),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(4.0),
-                                  topRight: Radius.circular(4.0),
-                                ),
-                              ),
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                            textAlign: TextAlign.end,
-                          ),
                         ),
                       ),
                     ],

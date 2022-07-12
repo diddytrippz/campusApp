@@ -110,7 +110,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                 },
                 child: FaIcon(
                   FontAwesomeIcons.edit,
-                  color: Colors.black,
+                  color: FlutterFlowTheme.of(context).primaryText,
                   size: 24,
                 ),
               ),

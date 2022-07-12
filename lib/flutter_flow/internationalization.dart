@@ -1602,24 +1602,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'st': 'UID',
       'zu': 'I-UID',
     },
-    'ie0kbdvu': {
-      'en': 'Selected\nLanguage',
-      'af': 'Kies taal',
-      'st': 'Kgetha Puo',
-      'zu': 'Khetha Ulimi',
-    },
-    'n22ngvbt': {
-      'en': 'ZA',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    'gaduf3gk': {
-      'en': 'ZA',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
     '0wva1xyq': {
       'en': 'Profile',
       'af': 'Profiel',
