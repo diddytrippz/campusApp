@@ -1802,6 +1802,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'st': '',
       'zu': '',
     },
+    '1ifk0xp2': {
+      'en': 'Users',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
     'ep2r2in9': {
       'en': 'ADVANCED SETTINGS',
       'af': '',

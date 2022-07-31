@@ -244,7 +244,8 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Open Sans',
-                                    color: widget.nav4Color,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                   ),
                             ),
                           ),
