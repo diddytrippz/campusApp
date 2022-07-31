@@ -1784,8 +1784,38 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'st': '',
       'zu': '',
     },
+    'kw4npc6y': {
+      'en': 'Home',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'qa3se4pd': {
+      'en': 'View Requests',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'j8681eie': {
+      'en': 'Messages',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
     'ep2r2in9': {
       'en': 'ADVANCED SETTINGS',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'vblitw5u': {
+      'en': 'Notifications',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'f638xly7': {
+      'en': 'Settings',
       'af': '',
       'st': '',
       'zu': '',
