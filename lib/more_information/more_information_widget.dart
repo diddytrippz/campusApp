@@ -1047,7 +1047,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                                           child: Material(
                                                             color: Colors
                                                                 .transparent,
-                                                            elevation: 20,
+                                                            elevation: 10,
                                                             shape:
                                                                 RoundedRectangleBorder(
                                                               borderRadius:
