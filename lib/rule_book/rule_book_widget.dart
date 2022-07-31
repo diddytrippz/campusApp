@@ -1,3 +1,4 @@
+import '../components/side_nav_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_pdf_viewer.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -27,7 +28,7 @@ class _RuleBookWidgetState extends State<RuleBookWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -35,12 +36,12 @@ class _RuleBookWidgetState extends State<RuleBookWidget> {
           borderWidth: 1,
           buttonSize: 54,
           icon: Icon(
-            Icons.arrow_back,
+            FFIcons.kic11,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 24,
+            size: 22,
           ),
           onPressed: () async {
-            logFirebaseEvent('RULE_BOOK_PAGE_arrow_back_ICN_ON_TAP');
+            logFirebaseEvent('RULE_BOOK_PAGE_ic11_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -57,25 +58,44 @@ class _RuleBookWidgetState extends State<RuleBookWidget> {
         ),
         actions: [],
         centerTitle: false,
-        elevation: 2,
+        elevation: 1,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Column(
+          child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
+              if (responsiveVisibility(
+                context: context,
+                phone: false,
+              ))
+                SideNavWidget(
+                  nav1Color: FlutterFlowTheme.of(context).primaryText,
+                  nav2Color: FlutterFlowTheme.of(context).primaryText,
+                  nav3Color: FlutterFlowTheme.of(context).primaryText,
+                  nav4Color: FlutterFlowTheme.of(context).primaryText,
+                  nav5Color: FlutterFlowTheme.of(context).primaryText,
+                  nav6Color: Color(0xFFBB3713),
+                ),
               Expanded(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                  child: FlutterFlowPdfViewer(
-                    assetPath:
-                        'assets/pdfs/CampusAfrica_StudentHandbook_2021_V2.pdf',
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 1,
-                    horizontalScroll: false,
-                  ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                        child: FlutterFlowPdfViewer(
+                          assetPath:
+                              'assets/pdfs/CampusAfrica_StudentHandbook_2021_V2.pdf',
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 1,
+                          horizontalScroll: false,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

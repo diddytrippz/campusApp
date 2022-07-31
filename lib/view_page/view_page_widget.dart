@@ -1,7 +1,8 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/push_notifications/push_notifications_util.dart';
-import '../components/nav_barz_widget.dart';
+import '../components/bottom_nav_bar_widget.dart';
+import '../components/side_nav_widget.dart';
 import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -66,211 +67,13 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                   context: context,
                   phone: false,
                 ))
-                  Material(
-                    color: Colors.transparent,
-                    elevation: 0,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.07,
-                      height: MediaQuery.of(context).size.height * 1,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        logFirebaseEvent(
-                                            'VIEW_PAGE_PAGE_Icon_p3jugl4g_ON_TAP');
-                                        if ((valueOrDefault(
-                                                currentUserDocument?.role,
-                                                '')) ==
-                                            'Admin') {
-                                          logFirebaseEvent('Icon_Navigate-To');
-                                          context.pushNamed('dashboard');
-                                        } else {
-                                          logFirebaseEvent('Icon_Navigate-To');
-                                          context.pushNamed('homePage');
-                                        }
-                                      },
-                                      child: FaIcon(
-                                        FontAwesomeIcons.home,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 20, 0, 0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      FaIcon(
-                                        FontAwesomeIcons.solidEdit,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 22,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 20, 0, 0),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'VIEW_PAGE_PAGE_Column_oc3utg2f_ON_TAP');
-                                      logFirebaseEvent('Column_Navigate-To');
-                                      context.pushNamed('messagesPage');
-                                    },
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Icon(
-                                          FFIcons.kchatboxes,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 26,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 20, 0, 0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      InkWell(
-                                        onTap: () async {
-                                          logFirebaseEvent(
-                                              'VIEW_PAGE_PAGE_Icon_57mrmzf3_ON_TAP');
-                                          logFirebaseEvent('Icon_Navigate-To');
-                                          context.pushNamed('notifications');
-                                        },
-                                        child: Icon(
-                                          Icons.notifications_none,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 30,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 20, 0, 0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      InkWell(
-                                        onTap: () async {
-                                          logFirebaseEvent(
-                                              'VIEW_PAGE_PAGE_Icon_ua243yu7_ON_TAP');
-                                          logFirebaseEvent('Icon_Navigate-To');
-                                          context.pushNamed('profilePage');
-                                        },
-                                        child: FaIcon(
-                                          FontAwesomeIcons.user,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 20,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 20, 0, 0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      InkWell(
-                                        onTap: () async {
-                                          logFirebaseEvent(
-                                              'VIEW_PAGE_PAGE_Icon_xjaax0ce_ON_TAP');
-                                          logFirebaseEvent('Icon_Navigate-To');
-                                          context.pushNamed('settingsPage');
-                                        },
-                                        child: Icon(
-                                          Icons.settings_outlined,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 24,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'VIEW_PAGE_PAGE_Icon_ku9witza_ON_TAP');
-                                      logFirebaseEvent('Icon_Auth');
-                                      GoRouter.of(context).prepareAuthEvent();
-                                      await signOut();
-                                      context.goNamedAuth('loginPage', mounted);
-                                    },
-                                    child: Icon(
-                                      Icons.logout,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 5, 0, 0),
-                                    child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        'bbykkjfb' /* Logout */,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Open Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  SideNavWidget(
+                    nav1Color: FlutterFlowTheme.of(context).primaryText,
+                    nav2Color: Color(0xFFC8360E),
+                    nav3Color: FlutterFlowTheme.of(context).primaryText,
+                    nav4Color: FlutterFlowTheme.of(context).primaryText,
+                    nav5Color: FlutterFlowTheme.of(context).primaryText,
+                    nav6Color: FlutterFlowTheme.of(context).primaryText,
                   ),
                 Expanded(
                   child: Align(
@@ -495,21 +298,21 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                               height: double.infinity,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
+                                    .secondaryBackground,
                                 borderRadius: BorderRadius.circular(0),
                               ),
                               child: Align(
                                 alignment: AlignmentDirectional(1, 1),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 20, 0, 0),
+                                      0, 10, 0, 0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       if ((valueOrDefault(
-                                              currentUserDocument?.role, '')) ==
-                                          'Tenant')
+                                              currentUserDocument?.role, '') ==
+                                          'Tenant'))
                                         Expanded(
                                           flex: 2,
                                           child: Padding(
@@ -728,7 +531,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                         false;
                                                                                     if (confirmDialogResponse) {
                                                                                       logFirebaseEvent('SlidableActionWidget_Backend-Call');
-                                                                                      await listViewSubSTDMaintenanceRecord!.reference.delete();
+                                                                                      await listViewSubSTDMaintenanceRecord.reference.delete();
                                                                                     } else {
                                                                                       return;
                                                                                     }
@@ -750,13 +553,13 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                 ),
                                                                               ],
                                                                               child: ListTile(
-                                                                                leading: Icon(
-                                                                                  Icons.account_circle,
+                                                                                leading: FaIcon(
+                                                                                  FontAwesomeIcons.folderMinus,
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  size: 35,
+                                                                                  size: 24,
                                                                                 ),
                                                                                 title: Text(
-                                                                                  listViewSubSTDMaintenanceRecord!.issue!,
+                                                                                  listViewSubSTDMaintenanceRecord.issue!,
                                                                                   style: FlutterFlowTheme.of(context).title2.override(
                                                                                         fontFamily: 'Open Sans',
                                                                                         color: FlutterFlowTheme.of(context).primaryText,
@@ -764,7 +567,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                       ),
                                                                                 ),
                                                                                 subtitle: Text(
-                                                                                  '${dateTimeFormat('MMMMEEEEd', listViewSubSTDMaintenanceRecord!.createdTime)} ${dateTimeFormat('jm', listViewSubSTDMaintenanceRecord!.createdTime)}',
+                                                                                  '${dateTimeFormat('MMMMEEEEd', listViewSubSTDMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewSubSTDMaintenanceRecord.createdTime)}',
                                                                                   style: FlutterFlowTheme.of(context).subtitle2.override(
                                                                                         fontFamily: 'Open Sans',
                                                                                         fontSize: 14,
@@ -800,7 +603,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             16,
                                                                             12,
                                                                             16,
-                                                                            0),
+                                                                            12),
                                                                 child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -917,13 +720,13 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                 );
                                                                               },
                                                                               child: ListTile(
-                                                                                leading: Icon(
-                                                                                  Icons.account_circle,
+                                                                                leading: FaIcon(
+                                                                                  FontAwesomeIcons.folderMinus,
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  size: 35,
+                                                                                  size: 24,
                                                                                 ),
                                                                                 title: Text(
-                                                                                  listViewPendSTDMaintenanceRecord!.issue!,
+                                                                                  listViewPendSTDMaintenanceRecord.issue!,
                                                                                   style: FlutterFlowTheme.of(context).title1.override(
                                                                                         fontFamily: 'Open Sans',
                                                                                         color: FlutterFlowTheme.of(context).primaryText,
@@ -932,7 +735,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                       ),
                                                                                 ),
                                                                                 subtitle: Text(
-                                                                                  '${dateTimeFormat('MMMMEEEEd', listViewPendSTDMaintenanceRecord!.createdTime)} ${dateTimeFormat('jm', listViewPendSTDMaintenanceRecord!.createdTime)}',
+                                                                                  '${dateTimeFormat('MMMMEEEEd', listViewPendSTDMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewPendSTDMaintenanceRecord.createdTime)}',
                                                                                   style: FlutterFlowTheme.of(context).subtitle2.override(
                                                                                         fontFamily: 'Open Sans',
                                                                                         fontSize: 14,
@@ -966,7 +769,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             16,
                                                                             12,
                                                                             16,
-                                                                            0),
+                                                                            12),
                                                                 child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -1083,13 +886,13 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             },
                                                                             child:
                                                                                 ListTile(
-                                                                              leading: Icon(
-                                                                                Icons.account_circle,
+                                                                              leading: FaIcon(
+                                                                                FontAwesomeIcons.folderMinus,
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
-                                                                                size: 35,
+                                                                                size: 24,
                                                                               ),
                                                                               title: Text(
-                                                                                listViewCompSTDMaintenanceRecord!.issue!,
+                                                                                listViewCompSTDMaintenanceRecord.issue!,
                                                                                 style: FlutterFlowTheme.of(context).title2.override(
                                                                                       fontFamily: 'Open Sans',
                                                                                       color: FlutterFlowTheme.of(context).primaryText,
@@ -1098,7 +901,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                     ),
                                                                               ),
                                                                               subtitle: Text(
-                                                                                '${dateTimeFormat('MMMMEEEEd', listViewCompSTDMaintenanceRecord!.createdTime)} ${dateTimeFormat('jm', listViewCompSTDMaintenanceRecord!.createdTime)}',
+                                                                                '${dateTimeFormat('MMMMEEEEd', listViewCompSTDMaintenanceRecord.createdTime)} ${dateTimeFormat('jm', listViewCompSTDMaintenanceRecord.createdTime)}',
                                                                                 style: FlutterFlowTheme.of(context).subtitle2.override(
                                                                                       fontFamily: 'Open Sans',
                                                                                       fontSize: 14,
@@ -1131,8 +934,8 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                           ),
                                         ),
                                       if ((valueOrDefault(
-                                              currentUserDocument?.role, '')) ==
-                                          'Admin')
+                                              currentUserDocument?.role, '') ==
+                                          'Admin'))
                                         Expanded(
                                           flex: 2,
                                           child: Padding(
@@ -1202,7 +1005,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             16,
                                                                             12,
                                                                             16,
-                                                                            0),
+                                                                            12),
                                                                 child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -1327,7 +1130,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                     status: 'Pending',
                                                                                     assigned: currentUserDisplayName,
                                                                                   );
-                                                                                  await listViewSubmitMaintenanceRecord!.reference.update(maintenanceUpdateData);
+                                                                                  await listViewSubmitMaintenanceRecord.reference.update(maintenanceUpdateData);
                                                                                   logFirebaseEvent('SlidableActionWidget_Refresh-Database-Re');
                                                                                   setState(() => _firestoreRequestCompleter1 = null);
                                                                                   await waitForFirestoreRequestCompleter1();
@@ -1349,13 +1152,13 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             ],
                                                                             child:
                                                                                 ListTile(
-                                                                              leading: Icon(
-                                                                                Icons.account_circle,
+                                                                              leading: FaIcon(
+                                                                                FontAwesomeIcons.folderMinus,
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
-                                                                                size: 35,
+                                                                                size: 24,
                                                                               ),
                                                                               title: Text(
-                                                                                listViewSubmitMaintenanceRecord!.issue!,
+                                                                                listViewSubmitMaintenanceRecord.issue!,
                                                                                 style: FlutterFlowTheme.of(context).title2.override(
                                                                                       fontFamily: 'Open Sans',
                                                                                       color: FlutterFlowTheme.of(context).primaryText,
@@ -1364,7 +1167,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                     ),
                                                                               ),
                                                                               subtitle: Text(
-                                                                                listViewSubmitMaintenanceRecord!.room!,
+                                                                                listViewSubmitMaintenanceRecord.room!,
                                                                                 style: FlutterFlowTheme.of(context).subtitle2.override(
                                                                                       fontFamily: 'Open Sans',
                                                                                       color: Color(0xFFB91D13),
@@ -1404,7 +1207,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             16,
                                                                             12,
                                                                             16,
-                                                                            0),
+                                                                            12),
                                                                 child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -1538,7 +1341,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                   final maintenanceUpdateData = createMaintenanceRecordData(
                                                                                     status: 'Submitted',
                                                                                   );
-                                                                                  await listViewPendingMaintenanceRecord!.reference.update(maintenanceUpdateData);
+                                                                                  await listViewPendingMaintenanceRecord.reference.update(maintenanceUpdateData);
                                                                                   logFirebaseEvent('SlidableActionWidget_Show-Snack-Bar');
                                                                                   ScaffoldMessenger.of(context).showSnackBar(
                                                                                     SnackBar(
@@ -1568,7 +1371,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                     status: 'Completed',
                                                                                     updateTime: getCurrentTimestamp,
                                                                                   );
-                                                                                  await listViewPendingMaintenanceRecord!.reference.update(maintenanceUpdateData);
+                                                                                  await listViewPendingMaintenanceRecord.reference.update(maintenanceUpdateData);
                                                                                   // pushNotifications
                                                                                   logFirebaseEvent('SlidableActionWidget_pushNotifications');
                                                                                   triggerPushNotification(
@@ -1577,7 +1380,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                     notificationImageUrl: FFAppState().caLogo,
                                                                                     notificationSound: 'default',
                                                                                     userRefs: [
-                                                                                      listViewPendingMaintenanceRecord!.userRec!
+                                                                                      listViewPendingMaintenanceRecord.userRec!
                                                                                     ],
                                                                                     initialPageName: 'viewPage',
                                                                                     parameterData: {},
@@ -1600,13 +1403,13 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             ],
                                                                             child:
                                                                                 ListTile(
-                                                                              leading: Icon(
-                                                                                Icons.account_circle,
+                                                                              leading: FaIcon(
+                                                                                FontAwesomeIcons.folderMinus,
                                                                                 color: FlutterFlowTheme.of(context).primaryText,
-                                                                                size: 35,
+                                                                                size: 24,
                                                                               ),
                                                                               title: Text(
-                                                                                listViewPendingMaintenanceRecord!.issue!,
+                                                                                listViewPendingMaintenanceRecord.issue!,
                                                                                 style: FlutterFlowTheme.of(context).title2.override(
                                                                                       fontFamily: 'Open Sans',
                                                                                       color: FlutterFlowTheme.of(context).primaryText,
@@ -1615,7 +1418,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                     ),
                                                                               ),
                                                                               subtitle: Text(
-                                                                                listViewPendingMaintenanceRecord!.room!,
+                                                                                listViewPendingMaintenanceRecord.room!,
                                                                                 style: FlutterFlowTheme.of(context).subtitle2.override(
                                                                                       fontFamily: 'Open Sans',
                                                                                       color: Color(0xFFEFB701),
@@ -1652,7 +1455,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             16,
                                                                             12,
                                                                             16,
-                                                                            0),
+                                                                            12),
                                                                 child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -1774,7 +1577,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                             child:
                                                                                 Card(
                                                                               clipBehavior: Clip.antiAliasWithSaveLayer,
-                                                                              color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                              color: Color(0x00FFFFFF),
                                                                               elevation: 0,
                                                                               shape: RoundedRectangleBorder(
                                                                                 borderRadius: BorderRadius.circular(2),
@@ -1785,10 +1588,10 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                                                   children: [
-                                                                                    Icon(
-                                                                                      Icons.account_circle,
+                                                                                    FaIcon(
+                                                                                      FontAwesomeIcons.folderMinus,
                                                                                       color: FlutterFlowTheme.of(context).primaryText,
-                                                                                      size: 35,
+                                                                                      size: 24,
                                                                                     ),
                                                                                     Expanded(
                                                                                       child: Padding(
@@ -1800,7 +1603,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                             Padding(
                                                                                               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 2),
                                                                                               child: Text(
-                                                                                                listViewCompletedMaintenanceRecord!.issue!,
+                                                                                                listViewCompletedMaintenanceRecord.issue!,
                                                                                                 style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                       fontFamily: 'Open Sans',
                                                                                                       color: FlutterFlowTheme.of(context).primaryText,
@@ -1810,7 +1613,7 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
                                                                                               ),
                                                                                             ),
                                                                                             Text(
-                                                                                              listViewCompletedMaintenanceRecord!.room!,
+                                                                                              listViewCompletedMaintenanceRecord.room!,
                                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                     fontFamily: 'Open Sans',
                                                                                                     color: Color(0xFF0C8450),
@@ -1859,9 +1662,15 @@ class _ViewPageWidgetState extends State<ViewPageWidget> {
             if (responsiveVisibility(
               context: context,
               tablet: false,
+              tabletLandscape: false,
               desktop: false,
             ))
-              NavBarzWidget(),
+              BottomNavBarWidget(
+                homeColor: Color(0xFFC8360E),
+                messageColor: FlutterFlowTheme.of(context).primaryText,
+                notificationColor: FlutterFlowTheme.of(context).primaryText,
+                settingsColor: FlutterFlowTheme.of(context).primaryText,
+              ),
           ],
         ),
       ),

@@ -62,6 +62,8 @@ class FFAppState {
     _defaultLanguage = _value;
     prefs.setString('ff_defaultLanguage', _value);
   }
+
+  bool btmNavVis = false;
 }
 
 LatLng? _latLngFromString(String? val) {

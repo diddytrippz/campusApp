@@ -1,8 +1,8 @@
 import '../auth/auth_util.dart';
+import '../components/bottom_nav_bar_widget.dart';
 import '../components/dark_mode_widget.dart';
 import '../components/language_widget.dart';
-import '../components/nav_barz_widget.dart';
-import '../flutter_flow/flutter_flow_expanded_image_view.dart';
+import '../components/side_nav_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 
 class SettingsPageWidget extends StatefulWidget {
   const SettingsPageWidget({Key? key}) : super(key: key);
@@ -34,24 +33,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        automaticallyImplyLeading: false,
-        title: Text(
-          FFLocalizations.of(context).getText(
-            'u72jdw6e' /* Settings */,
-          ),
-          style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Open Sans',
-                color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 18,
-              ),
-        ),
-        actions: [],
-        centerTitle: true,
-        elevation: 1,
-      ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Stack(
@@ -63,199 +45,13 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   context: context,
                   phone: false,
                 ))
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.07,
-                    height: MediaQuery.of(context).size.height * 1,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'SETTINGS_PAGE_PAGE_Icon_s5kzlnl6_ON_TAP');
-                                      logFirebaseEvent('Icon_Navigate-To');
-                                      context.pushNamed('homePage');
-                                    },
-                                    child: FaIcon(
-                                      FontAwesomeIcons.home,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 20,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        logFirebaseEvent(
-                                            'SETTINGS_PAGE_PAGE_Icon_frd35lza_ON_TAP');
-                                        logFirebaseEvent('Icon_Navigate-To');
-                                        context.pushNamed('viewPage');
-                                      },
-                                      child: FaIcon(
-                                        FontAwesomeIcons.edit,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'SETTINGS_Column_qwdwqp1w_ON_TAP');
-                                    logFirebaseEvent('Column_Navigate-To');
-                                    context.pushNamed('messagesPage');
-                                  },
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        FFIcons.kchatboxes,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 24,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        logFirebaseEvent(
-                                            'SETTINGS_PAGE_PAGE_Icon_idh0s7ps_ON_TAP');
-                                        logFirebaseEvent('Icon_Navigate-To');
-                                        context.pushNamed('notifications');
-                                      },
-                                      child: Icon(
-                                        Icons.notifications_none,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 30,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        logFirebaseEvent(
-                                            'SETTINGS_PAGE_PAGE_Icon_o1t9bdc6_ON_TAP');
-                                        logFirebaseEvent('Icon_Navigate-To');
-                                        context.pushNamed('profilePage');
-                                      },
-                                      child: FaIcon(
-                                        FontAwesomeIcons.user,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 22,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Icon(
-                                      Icons.settings,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 8),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'SETTINGS_PAGE_PAGE_Icon_ubk27pew_ON_TAP');
-                                      logFirebaseEvent('Icon_Auth');
-                                      GoRouter.of(context).prepareAuthEvent();
-                                      await signOut();
-                                      context.goNamedAuth('loginPage', mounted);
-                                    },
-                                    child: Icon(
-                                      Icons.logout,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24,
-                                    ),
-                                  ),
-                                ),
-                                AutoSizeText(
-                                  FFLocalizations.of(context).getText(
-                                    'vo566ptj' /* Logout */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  SideNavWidget(
+                    nav1Color: FlutterFlowTheme.of(context).primaryText,
+                    nav2Color: FlutterFlowTheme.of(context).primaryText,
+                    nav3Color: FlutterFlowTheme.of(context).primaryText,
+                    nav4Color: FlutterFlowTheme.of(context).primaryText,
+                    nav5Color: FlutterFlowTheme.of(context).primaryText,
+                    nav6Color: Color(0xFFC8360E),
                   ),
                 Expanded(
                   child: Padding(
@@ -266,12 +62,36 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         children: [
                           Padding(
                             padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 60, 0, 20),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    '6mg9ic5b' /* Settings */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .title2
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
                                 EdgeInsetsDirectional.fromSTEB(12, 12, 12, 10),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                    .primaryBackground,
                                 borderRadius: BorderRadius.circular(18),
                                 border: Border.all(
                                   color: Colors.transparent,
@@ -293,68 +113,30 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                       children: [
                                         Align(
                                           alignment: AlignmentDirectional(0, 0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 10, 0, 20),
-                                            child: AuthUserStreamWidget(
-                                              child: InkWell(
-                                                onTap: () async {
-                                                  logFirebaseEvent(
-                                                      'SETTINGS_CircleImage_ett6gq2h_ON_TAP');
-                                                  logFirebaseEvent(
-                                                      'CircleImage_Expand-Image');
-                                                  await Navigator.push(
-                                                    context,
-                                                    PageTransition(
-                                                      type: PageTransitionType
-                                                          .fade,
-                                                      child:
-                                                          FlutterFlowExpandedImageView(
-                                                        image:
-                                                            CachedNetworkImage(
-                                                          imageUrl:
-                                                              valueOrDefault<
-                                                                  String>(
-                                                            currentUserPhoto,
-                                                            'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                                          ),
-                                                          fit: BoxFit.contain,
-                                                        ),
-                                                        allowRotation: false,
-                                                        tag: valueOrDefault<
-                                                            String>(
-                                                          currentUserPhoto,
-                                                          'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                                        ),
-                                                        useHeroAnimation: true,
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                                child: Hero(
-                                                  tag: valueOrDefault<String>(
-                                                    currentUserPhoto,
-                                                    'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                                  ),
-                                                  transitionOnUserGestures:
-                                                      true,
-                                                  child: Container(
-                                                    width: 65,
-                                                    height: 65,
-                                                    clipBehavior:
-                                                        Clip.antiAlias,
-                                                    decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: CachedNetworkImage(
-                                                      imageUrl: valueOrDefault<
-                                                          String>(
+                                          child: AuthUserStreamWidget(
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              elevation: 1,
+                                              shape: const CircleBorder(),
+                                              child: Container(
+                                                width: 65,
+                                                height: 65,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFFEEEEEE),
+                                                  image: DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    image:
+                                                        CachedNetworkImageProvider(
+                                                      valueOrDefault<String>(
                                                         currentUserPhoto,
                                                         'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                                                       ),
-                                                      fit: BoxFit.cover,
                                                     ),
+                                                  ),
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                    color: Color(0xFF4E39F9),
+                                                    width: 3,
                                                   ),
                                                 ),
                                               ),
@@ -393,18 +175,48 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                         ),
                                                   ),
                                                 ),
-                                                AutoSizeText(
-                                                  currentUserEmail,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Open Sans',
-                                                        color:
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 15, 0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      AutoSizeText(
+                                                        currentUserEmail,
+                                                        style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primaryText,
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
                                                       ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5, 0, 0, 0),
+                                                        child: Icon(
+                                                          Icons.verified,
+                                                          color:
+                                                              Color(0xFF1079FF),
+                                                          size: 14,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -427,7 +239,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 8, 10, 10),
+                                        0, 10, 10, 10),
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
@@ -437,10 +249,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                         context.pushNamed('profilePage');
                                       },
                                       child: ListTile(
-                                        leading: FaIcon(
-                                          FontAwesomeIcons.userAlt,
+                                        leading: Icon(
+                                          FFIcons.kic25,
                                           color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
+                                              .primaryText,
                                           size: 20,
                                         ),
                                         title: Text(
@@ -483,7 +295,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                    .primaryBackground,
                                 borderRadius: BorderRadius.circular(18),
                                 border: Border.all(
                                   color: Colors.transparent,
@@ -506,10 +318,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                       },
                                       child: ListTile(
                                         leading: Icon(
-                                          FFIcons.ksend1,
+                                          FFIcons.kic27,
                                           color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
-                                          size: 24,
+                                              .primaryText,
+                                          size: 22,
                                         ),
                                         title: Text(
                                           FFLocalizations.of(context).getText(
@@ -574,7 +386,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                         leading: Icon(
                                           Icons.color_lens,
                                           color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
+                                              .primaryText,
                                           size: 28,
                                         ),
                                         title: Text(
@@ -617,7 +429,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                    .primaryBackground,
                                 borderRadius: BorderRadius.circular(18),
                                 border: Border.all(
                                   color: Colors.transparent,
@@ -659,7 +471,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                         leading: Icon(
                                           FFIcons.kchecklist,
                                           color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
+                                              .primaryText,
                                           size: 24,
                                         ),
                                         title: Text(
@@ -715,10 +527,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                       },
                                       child: ListTile(
                                         leading: FaIcon(
-                                          FontAwesomeIcons.stickyNote,
+                                          FontAwesomeIcons.fileContract,
                                           color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
-                                          size: 24,
+                                              .primaryText,
+                                          size: 22,
                                         ),
                                         title: Text(
                                           FFLocalizations.of(context).getText(
@@ -773,10 +585,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                       },
                                       child: ListTile(
                                         leading: Icon(
-                                          Icons.notifications_active,
+                                          FFIcons.kic15,
                                           color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
-                                          size: 26,
+                                              .primaryText,
+                                          size: 22,
                                         ),
                                         title: Text(
                                           FFLocalizations.of(context).getText(
@@ -818,7 +630,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                    .primaryBackground,
                                 borderRadius: BorderRadius.circular(18),
                                 border: Border.all(
                                   color: Colors.transparent,
@@ -854,7 +666,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                         leading: FaIcon(
                                           FontAwesomeIcons.language,
                                           color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
+                                              .primaryText,
                                           size: 24,
                                         ),
                                         title: Text(
@@ -910,10 +722,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                             'https://campusafrica.co.za/contact-us/');
                                       },
                                       child: ListTile(
-                                        leading: FaIcon(
-                                          FontAwesomeIcons.link,
+                                        leading: Icon(
+                                          FFIcons.kic7,
                                           color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
+                                              .primaryText,
                                           size: 24,
                                         ),
                                         title: Text(
@@ -970,11 +782,11 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                             'loginPage', mounted);
                                       },
                                       child: ListTile(
-                                        leading: Icon(
-                                          Icons.logout,
+                                        leading: FaIcon(
+                                          FontAwesomeIcons.expeditedssl,
                                           color: FlutterFlowTheme.of(context)
-                                              .campusGrey,
-                                          size: 28,
+                                              .primaryText,
+                                          size: 26,
                                         ),
                                         title: Text(
                                           FFLocalizations.of(context).getText(
@@ -1019,9 +831,15 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
             if (responsiveVisibility(
               context: context,
               tablet: false,
+              tabletLandscape: false,
               desktop: false,
             ))
-              NavBarzWidget(),
+              BottomNavBarWidget(
+                homeColor: FlutterFlowTheme.of(context).primaryText,
+                messageColor: FlutterFlowTheme.of(context).primaryText,
+                notificationColor: FlutterFlowTheme.of(context).primaryText,
+                settingsColor: Color(0xFFC8360E),
+              ),
           ],
         ),
       ),

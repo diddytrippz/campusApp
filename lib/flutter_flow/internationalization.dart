@@ -152,83 +152,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Ikhaya',
     },
   },
-  // homePage
-  {
-    '2glveoow': {
-      'en': 'Logout',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    'ri3unxcp': {
-      'en': '1',
-      'af': '1',
-      'st': '1',
-      'zu': '1',
-    },
-    'ihzp7w59': {
-      'en': 'Appliances',
-      'af': 'Toestelle',
-      'st': 'Lisebelisoa',
-      'zu': 'Izinto zikagesi',
-    },
-    's71iwvs7': {
-      'en': 'Plumbing',
-      'af': 'Loodgieterswerk',
-      'st': 'Liphaephe tsa metsi',
-      'zu': 'Amapayipi amanzi',
-    },
-    '5o364w1w': {
-      'en': 'Furniture',
-      'af': 'Meubels',
-      'st': 'Thepa ea ka tlung',
-      'zu': 'Ifenisha',
-    },
-    'mfcvyrpf': {
-      'en': 'Electrical',
-      'af': 'Elektries',
-      'st': 'Motlakase',
-      'zu': 'Ezogesi',
-    },
-    'hnyo7o5l': {
-      'en': 'Locksmith',
-      'af': 'Slotmaker',
-      'st': 'Moetsi oa liloko',
-      'zu': 'Umkhandi wezikhiye',
-    },
-    'wizr7y4h': {
-      'en': 'Painting',
-      'af': 'Skildery',
-      'st': 'Ho penta',
-      'zu': 'Ukudweba',
-    },
-    'lupj6l78': {
-      'en': 'Pest control',
-      'af': 'Plaagbeheer',
-      'st': 'Taolo ea likokoanyana',
-      'zu': 'Ukulawula izinambuzane',
-    },
-    'rhqj312f': {
-      'en': 'Communal',
-      'af': 'Gemeenskaplik',
-      'st': 'Sechaba',
-      'zu': 'Umphakathi',
-    },
-    'ht2a7sj7': {
-      'en': 'Others',
-      'af': 'Ander',
-      'st': 'Ba bang',
-      'zu': 'Abanye',
-    },
-  },
   // viewPage
   {
-    'bbykkjfb': {
-      'en': 'Logout',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
     'g6o86hf9': {
       'en': 'Search here...',
       'af': 'Soek hier...',
@@ -360,75 +285,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': 'Tuis',
       'st': 'Lehae',
       'zu': 'Ikhaya',
-    },
-  },
-  // notifications
-  {
-    'haji3w3r': {
-      'en': 'Notifications',
-      'af': 'Kennisgewings',
-      'st': 'Litsebiso',
-      'zu': 'Izaziso',
-    },
-    'tpem8gpk': {
-      'en': '1',
-      'af': '1',
-      'st': '1',
-      'zu': '1',
-    },
-    'sqtwcc8d': {
-      'en': 'Latest',
-      'af': 'Nuutste',
-      'st': 'Tsa moraorao',
-      'zu': 'Okwakamuva',
-    },
-    'mw2e1nsx': {
-      'en': 'Following',
-      'af': 'Volgende',
-      'st': 'Ho latela',
-      'zu': 'Ukulandela',
-    },
-    'uaxcgmql': {
-      'en': 'All',
-      'af': 'Almal',
-      'st': 'Tsohle',
-      'zu': 'Konke',
-    },
-  },
-  // usersSearch
-  {
-    'vwnld80s': {
-      'en': 'Search Contacts',
-      'af': 'Soek kontakte',
-      'st': 'Batla Mabitso',
-      'zu': 'Sesha Oxhumana Nabo',
-    },
-    'hulawll3': {
-      'en': 'Search',
-      'af': 'Soek',
-      'st': 'Batla',
-      'zu': 'Sesha',
-    },
-    'cym7ky30': {
-      'en': 'Search Contacts',
-      'af': 'Soek kontakte',
-      'st': 'Batla Mabitso',
-      'zu': 'Sesha Oxhumana Nabo',
-    },
-    '9r5p3whq': {
-      'en': 'Search Friends to chat',
-      'af': 'Soek vriende om te gesels',
-      'st': 'Batla Metsoalle ho qoqa',
-      'zu': 'Sesha Abangane ukuze uxoxe',
-    },
-  },
-  // messagesPage
-  {
-    'ziacko5o': {
-      'en': 'Inbox',
-      'af': 'Inkassie',
-      'st': 'Inbox',
-      'zu': 'Ibhokisi lokungenayo',
     },
   },
   // Appliances
@@ -1360,61 +1216,61 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'st': 'Hlahloba',
       'zu': 'Buyekeza',
     },
-    'd385clrz': {
+    'odl0y290': {
       'en': 'Private Feedback',
       'af': 'Privaat terugvoer',
       'st': 'Maikutlo a Poraefete',
       'zu': 'Impendulo Eyimfihlo',
     },
-    '73kmddwp': {
+    'u5xpksa7': {
       'en': 'What was your most important concern with this  ticket?',
       'af': 'Wat was jou belangrikste bekommernis met hierdie kaartjie?',
       'st': 'Matšoenyeho a hau a bohlokoa ke afe ka tekete ee?',
       'zu': 'Yini ebikukhathaza kakhulu ngaleli thikithi?',
     },
-    'ugvvl6sj': {
+    'dkv59qj7': {
       'en': 'Time',
       'af': 'Tyd',
       'st': 'Nako',
       'zu': 'Isikhathi',
     },
-    'hf7xrl78': {
+    'rw67mdq0': {
       'en': 'Convinience',
       'af': 'Gerieflikheid',
       'st': 'Kholiseho',
       'zu': 'Convinience',
     },
-    '8qm66qau': {
+    '6kk8i9xd': {
       'en': 'Cleanliness',
       'af': 'Netheid',
       'st': 'Bohloeki',
       'zu': 'Inhlanzeko',
     },
-    '655gd3ni': {
+    'expwwqvy': {
       'en': 'Communication',
       'af': 'Kommunikasie',
       'st': 'Puisano',
       'zu': 'Ukuxhumana',
     },
-    'oakcj4gl': {
+    'ug5u5r7x': {
       'en': 'Quality',
       'af': 'Kwaliteit',
       'st': 'Boleng',
       'zu': 'Ikhwalithi',
     },
-    'lw2fg6hp': {
+    'pg23r5pt': {
       'en': 'Option ',
       'af': 'Opsie',
       'st': 'Khetho',
       'zu': 'Inketho',
     },
-    'ylyfvpnm': {
+    'rnzrnped': {
       'en': 'Anything you\'d like us to know?\n(optional)',
       'af': 'Enigiets wat jy wil hê ons moet weet? (opsioneel)',
       'st': 'Na u batla hore re tsebe? (ka boikhethelo)',
       'zu': 'Kukhona ongathanda ukuthi sikwazi? (uyazikhethela)',
     },
-    '11421gx0': {
+    '82iy1uqp': {
       'en':
           'Your rating is really important for us as it helps us to improve our services for the future.',
       'af':
@@ -1424,17 +1280,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu':
           'Isilinganiso sakho sibaluleke ngempela kithi njengoba sisisiza ukuthuthukisa amasevisi ethu esikhathini esizayo.',
     },
-    'q7zf3n84': {
+    'm1rx4wqf': {
       'en': 'Confirm',
       'af': 'Bevestig',
       'st': 'Netefatsa',
       'zu': 'Qinisekisa',
-    },
-    'gao0k4d6': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'st': 'Ho hlokahala sebaka',
-      'zu': 'Inkambu iyadingeka',
     },
     'v4ofqfkx': {
       'en': 'Home',
@@ -1443,176 +1293,55 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Ikhaya',
     },
   },
-  // moreInformation
-  {
-    'yxfxboa1': {
-      'en': 'Details',
-      'af': 'Besonderhede',
-      'st': 'Lintlha',
-      'zu': 'Imininingwane',
-    },
-    'gtrpavgl': {
-      'en': 'Category',
-      'af': 'Kategorie',
-      'st': 'Sehlopha',
-      'zu': 'Isigaba',
-    },
-    'cgpixroe': {
-      'en': 'Status',
-      'af': 'Status',
-      'st': 'Boemo',
-      'zu': 'Isimo',
-    },
-    'c406ieec': {
-      'en': 'Assigned',
-      'af': 'Toegewys',
-      'st': 'E abetsoe',
-      'zu': 'Kwabelwe',
-    },
-    '8dzwam8y': {
-      'en': 'View Ratings',
-      'af': 'Bekyk graderings',
-      'st': 'Sheba Lintlha',
-      'zu': 'Buka Izilinganiso',
-    },
-    'h2qnzia6': {
-      'en': 'Private Feedback',
-      'af': 'Privaat terugvoer',
-      'st': 'Maikutlo a Poraefete',
-      'zu': 'Impendulo Eyimfihlo',
-    },
-    't9u0hkvb': {
-      'en': 'What was your most important concern with this  ticket?',
-      'af': 'Wat was jou belangrikste bekommernis met hierdie kaartjie?',
-      'st': 'Matšoenyeho a hau a bohlokoa ke afe ka tekete ee?',
-      'zu': 'Yini ebikukhathaza kakhulu ngaleli thikithi?',
-    },
-    '4cce03y8': {
-      'en': 'Time',
-      'af': 'Tyd',
-      'st': 'Nako',
-      'zu': 'Isikhathi',
-    },
-    'jluzpfq0': {
-      'en': 'Convinience',
-      'af': 'Gerieflikheid',
-      'st': 'Kholiseho',
-      'zu': 'Convinience',
-    },
-    '5gyizihq': {
-      'en': 'Cleanliness',
-      'af': 'Netheid',
-      'st': 'Bohloeki',
-      'zu': 'Inhlanzeko',
-    },
-    'kmzqh6iw': {
-      'en': 'Communication',
-      'af': 'Kommunikasie',
-      'st': 'Puisano',
-      'zu': 'Ukuxhumana',
-    },
-    '4t0sq6e2': {
-      'en': 'Quality',
-      'af': 'Kwaliteit',
-      'st': 'Boleng',
-      'zu': 'Ikhwalithi',
-    },
-    '5ns1rv2o': {
-      'en': 'Option ',
-      'af': 'Opsie',
-      'st': 'Khetho',
-      'zu': 'Inketho',
-    },
-    'mwhoav8a': {
-      'en':
-          'Your rating is really important for us as it helps us to improve our services for the future.',
-      'af':
-          'Jou gradering is baie belangrik vir ons aangesien dit ons help om ons dienste vir die toekoms te verbeter.',
-      'st':
-          'Lintlha tsa hau li bohlokoa ho rona kaha li re thusa ho ntlafatsa litšebeletso tsa rona bakeng sa bokamoso.',
-      'zu':
-          'Isilinganiso sakho sibaluleke ngempela kithi njengoba sisisiza ukuthuthukisa amasevisi ethu esikhathini esizayo.',
-    },
-    'ev6nki30': {
-      'en': 'Comments',
-      'af': 'Kommentaar',
-      'st': 'Maikutlo',
-      'zu': 'Amazwana',
-    },
-    '0h542f8d': {
-      'en': '1',
-      'af': '1',
-      'st': '1',
-      'zu': '1',
-    },
-    'nq5s5bc3': {
-      'en': 'Home',
-      'af': 'Tuis',
-      'st': 'Lehae',
-      'zu': 'Ikhaya',
-    },
-  },
   // profilePage
   {
-    '4mbweto7': {
-      'en': 'Change My Picture',
-      'af': 'Verander my prentjie',
-      'st': 'Fetola Setšoantšo sa Ka',
-      'zu': 'Shintsha Isithombe Sami',
-    },
-    'nktudvhd': {
-      'en': 'Name',
-      'af': 'Naam',
-      'st': 'Lebitso',
-      'zu': 'Igama',
-    },
-    'v9bhu3my': {
-      'en': 'Email',
-      'af': 'E-pos',
-      'st': 'Email',
-      'zu': 'I-imeyili',
-    },
-    '31viba32': {
-      'en': 'Bio    ',
-      'af': 'Bio',
-      'st': 'Bophelo',
-      'zu': 'I-Bio',
-    },
-    'pcl4k8pk': {
-      'en': 'Write about yourself...',
-      'af': 'Skryf oor jouself...',
-      'st': 'Ngola ka uena...',
-      'zu': 'Bhala ngawe...',
-    },
-    'm8wmwvns': {
-      'en': 'Building',
-      'af': 'Gebou',
-      'st': 'Moaho',
-      'zu': 'Isakhiwo',
-    },
-    'hrbosgqh': {
-      'en': 'Room',
-      'af': 'Kamer',
-      'st': 'Kamore',
-      'zu': 'Igumbi',
-    },
-    '17zon0zi': {
-      'en': 'UID',
-      'af': 'UID',
-      'st': 'UID',
-      'zu': 'I-UID',
-    },
-    '0wva1xyq': {
-      'en': 'Profile',
+    'jjbdok4w': {
+      'en': 'Edit Profile',
       'af': 'Profiel',
       'st': 'Profile',
       'zu': 'Iphrofayili',
     },
-    'uu3knjl3': {
+    '72fpsq8l': {
       'en': 'Save',
       'af': 'Stoor',
       'st': 'Boloka',
       'zu': 'Londoloza',
+    },
+    'pv1prhyw': {
+      'en': 'Full names',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'krf5zipu': {
+      'en': 'Email Address',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'ljtqvfca': {
+      'en': 'Password',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'elhlkvnh': {
+      'en': 'Password',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '5rcl1vbh': {
+      'en': 'Bio',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '2o453oug': {
+      'en': 'Write about yourself...',
+      'af': '',
+      'st': '',
+      'zu': '',
     },
     'rwaeignd': {
       'en': 'Home',
@@ -1623,11 +1352,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // settingsPage
   {
-    'vo566ptj': {
-      'en': 'Logout',
-      'af': '',
-      'st': '',
-      'zu': '',
+    '6mg9ic5b': {
+      'en': 'Settings',
+      'af': 'Instellings',
+      'st': 'Litlhophiso',
+      'zu': 'Izilungiselelo',
     },
     'l75068ci': {
       'en': 'Account',
@@ -1683,12 +1412,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'st': 'Tsoa',
       'zu': 'Phuma',
     },
-    'u72jdw6e': {
-      'en': 'Settings',
-      'af': 'Instellings',
-      'st': 'Litlhophiso',
-      'zu': 'Izilungiselelo',
-    },
     'ugb9k6b5': {
       'en': '',
       'af': '',
@@ -1696,292 +1419,257 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': '',
     },
   },
-  // sendNotifications
+  // homePage
   {
-    'ptxfts7r': {
-      'en': 'Add Notes',
-      'af': 'Voeg notas by',
-      'st': 'Kenya Lintlha',
-      'zu': 'Engeza Amanothi',
-    },
-    '0uuysv7o': {
-      'en': '',
+    '2koevdog': {
+      'en': 'Hello World',
       'af': '',
       'st': '',
       'zu': '',
     },
-    'de2wj84r': {
-      'en': 'Notification title',
-      'af': 'Kennisgewing titel',
-      'st': 'Sehlooho sa tsebiso',
-      'zu': 'Isihloko sesaziso',
-    },
-    '5n11c5f9': {
-      'en': '',
+    '0vs51h5t': {
+      'en': '1',
       'af': '',
       'st': '',
       'zu': '',
     },
-    '5kakixgn': {
-      'en': 'Enter description here...',
-      'af': 'Voer beskrywing hier in...',
-      'st': 'Kenya tlhaloso mona...',
-      'zu': 'Faka incazelo lapha...',
+    'pmvue1v1': {
+      'en': 'Hi,',
+      'af': '',
+      'st': '',
+      'zu': '',
     },
-    'rt4p4j5i': {
-      'en': 'Bookings',
-      'af': 'Besprekings',
-      'st': 'Bookings',
-      'zu': 'Ukubhuka',
+    '8ih9im8a': {
+      'en': ' ',
+      'af': '1',
+      'st': '1',
+      'zu': '1',
     },
-    'xis2q63f': {
-      'en': 'Announcement',
-      'af': 'Aankondiging',
-      'st': 'Phatlalatso',
-      'zu': 'Isimemezelo',
+    'kio6wtr0': {
+      'en': 'Appliances',
+      'af': 'Loodgieterswerk',
+      'st': 'Liphaephe tsa metsi',
+      'zu': 'Amapayipi amanzi',
     },
-    'eb8fsf8x': {
-      'en': 'Reminder',
-      'af': 'Herinnering',
-      'st': 'Khopotso',
-      'zu': 'Isikhumbuzi',
+    '1rfe0xpc': {
+      'en': 'Plumbing',
+      'af': 'Loodgieterswerk',
+      'st': 'Liphaephe tsa metsi',
+      'zu': 'Amapayipi amanzi',
     },
-    '3ygaqska': {
-      'en': 'Newsletter',
-      'af': 'Nuusbrief',
-      'st': 'Leselinyana',
-      'zu': 'Iphephandaba',
+    'wq0kyint': {
+      'en': 'Electrical',
+      'af': 'Loodgieterswerk',
+      'st': 'Liphaephe tsa metsi',
+      'zu': 'Amapayipi amanzi',
     },
-    'r5jkai5h': {
-      'en': 'Notification Type',
-      'af': 'Tipe kennisgewing',
-      'st': 'Mofuta oa Tsebiso',
-      'zu': 'Uhlobo Lwezaziso',
+    '4oirn1hi': {
+      'en': 'Painting',
+      'af': 'Loodgieterswerk',
+      'st': 'Liphaephe tsa metsi',
+      'zu': 'Amapayipi amanzi',
     },
-    '48bf7x8r': {
-      'en': 'Everyone',
-      'af': 'Kies alle gebruikers?',
-      'st': 'Khetha basebelisi bohle?',
-      'zu': 'Khetha bonke abasebenzisi?',
+    'gb7cjba5': {
+      'en': 'Locksmith',
+      'af': 'Loodgieterswerk',
+      'st': 'Liphaephe tsa metsi',
+      'zu': 'Amapayipi amanzi',
     },
-    '2mgjnl4w': {
-      'en': 'Send Notification',
-      'af': 'Stuur kennisgewing',
-      'st': 'Romela Tsebiso',
-      'zu': 'Thumela Isaziso',
+    '5apgpz66': {
+      'en': 'Furniture',
+      'af': 'Loodgieterswerk',
+      'st': 'Liphaephe tsa metsi',
+      'zu': 'Amapayipi amanzi',
     },
-    '9y9lg112': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'st': 'Ho hlokahala sebaka',
-      'zu': 'Inkambu iyadingeka',
+    '88a17nqi': {
+      'en': 'Communal',
+      'af': 'Loodgieterswerk',
+      'st': 'Liphaephe tsa metsi',
+      'zu': 'Amapayipi amanzi',
     },
-    'aw8n6o4a': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'st': 'Ho hlokahala sebaka',
-      'zu': 'Inkambu iyadingeka',
+    'lnhucv5s': {
+      'en': 'Others',
+      'af': 'Loodgieterswerk',
+      'st': 'Liphaephe tsa metsi',
+      'zu': 'Amapayipi amanzi',
     },
   },
-  // dashboard
+  // messagesPage
   {
-    'co88pkri': {
-      'en': 'Logout',
-      'af': '',
-      'st': '',
-      'zu': '',
+    'xx1vtfbc': {
+      'en': 'Inbox',
+      'af': 'Inkassie',
+      'st': 'Inbox',
+      'zu': 'Ibhokisi lokungenayo',
     },
-    'yb9g4vxg': {
-      'en': 'Day',
-      'af': '',
-      'st': '',
-      'zu': '',
+  },
+  // moreInformation
+  {
+    '2ryll3yt': {
+      'en': '1',
+      'af': '1',
+      'st': '1',
+      'zu': '1',
     },
-    '0es89g0c': {
-      'en': 'Week',
-      'af': '',
-      'st': '',
-      'zu': '',
+    '0t9srtqf': {
+      'en': 'Details',
+      'af': 'Besonderhede',
+      'st': 'Lintlha',
+      'zu': 'Imininingwane',
     },
-    'o0jq1ha7': {
-      'en': 'Month',
-      'af': '',
-      'st': '',
-      'zu': '',
+    '311u38tb': {
+      'en': 'Category',
+      'af': 'Kategorie',
+      'st': 'Sehlopha',
+      'zu': 'Isigaba',
     },
-    'eufz40mq': {
-      'en': 'Year',
-      'af': '',
-      'st': '',
-      'zu': '',
+    'nq1dzwbf': {
+      'en': 'Status',
+      'af': 'Status',
+      'st': 'Boemo',
+      'zu': 'Isimo',
     },
-    '7mh5a3rn': {
-      'en': 'Sort',
-      'af': '',
-      'st': '',
-      'zu': '',
+    '91tagy0g': {
+      'en': 'Assigned',
+      'af': 'Toegewys',
+      'st': 'E abetsoe',
+      'zu': 'Kwabelwe',
     },
-    '8pyprt2l': {
-      'en': 'Appliances',
-      'af': '',
-      'st': '',
-      'zu': '',
+    'a2kbfvsf': {
+      'en': 'View Ratings',
+      'af': 'Bekyk graderings',
+      'st': 'Sheba Lintlha',
+      'zu': 'Buka Izilinganiso',
     },
-    'zojo7mf1': {
-      'en': 'Plumbing',
-      'af': '',
-      'st': '',
-      'zu': '',
+    'tnem7t9x': {
+      'en': 'Private Feedback',
+      'af': 'Privaat terugvoer',
+      'st': 'Maikutlo a Poraefete',
+      'zu': 'Impendulo Eyimfihlo',
     },
-    'f3od9d4o': {
-      'en': 'Furniture',
-      'af': '',
-      'st': '',
-      'zu': '',
+    'wp483tcl': {
+      'en': 'What was your most important concern with this  ticket?',
+      'af': 'Wat was jou belangrikste bekommernis met hierdie kaartjie?',
+      'st': 'Matšoenyeho a hau a bohlokoa ke afe ka tekete ee?',
+      'zu': 'Yini ebikukhathaza kakhulu ngaleli thikithi?',
     },
-    'gnmfzdsa': {
-      'en': 'Electrical',
-      'af': '',
-      'st': '',
-      'zu': '',
+    '6t9x1nr0': {
+      'en': 'Time',
+      'af': 'Tyd',
+      'st': 'Nako',
+      'zu': 'Isikhathi',
     },
-    'rgw82ads': {
-      'en': 'Locksmith',
-      'af': '',
-      'st': '',
-      'zu': '',
+    'p2ltr3ev': {
+      'en': 'Convinience',
+      'af': 'Gerieflikheid',
+      'st': 'Kholiseho',
+      'zu': 'Convinience',
     },
-    'snc3qwtq': {
-      'en': 'Painting',
-      'af': '',
-      'st': '',
-      'zu': '',
+    'qjrzjzku': {
+      'en': 'Cleanliness',
+      'af': 'Netheid',
+      'st': 'Bohloeki',
+      'zu': 'Inhlanzeko',
     },
-    '479xx236': {
-      'en': 'Categories',
-      'af': '',
-      'st': '',
-      'zu': '',
+    'u4qlkc5g': {
+      'en': 'Communication',
+      'af': 'Kommunikasie',
+      'st': 'Puisano',
+      'zu': 'Ukuxhumana',
     },
-    '3vb31g3w': {
-      'en': '1049\nRequests',
-      'af': '',
-      'st': '',
-      'zu': '',
+    'ehmdycw0': {
+      'en': 'Quality',
+      'af': 'Kwaliteit',
+      'st': 'Boleng',
+      'zu': 'Ikhwalithi',
     },
-    'ekjo78y2': {
-      'en': 'Open',
-      'af': '',
-      'st': '',
-      'zu': '',
+    'i16cntc0': {
+      'en': 'Option ',
+      'af': 'Opsie',
+      'st': 'Khetho',
+      'zu': 'Inketho',
     },
-    '6ak7lufe': {
-      'en': '150',
-      'af': '',
-      'st': '',
-      'zu': '',
+    'ifecsh2u': {
+      'en':
+          'Your rating is really important for us as it helps us to improve our services for the future.',
+      'af':
+          'Jou gradering is baie belangrik vir ons aangesien dit ons help om ons dienste vir die toekoms te verbeter.',
+      'st':
+          'Lintlha tsa hau li bohlokoa ho rona kaha li re thusa ho ntlafatsa litšebeletso tsa rona bakeng sa bokamoso.',
+      'zu':
+          'Isilinganiso sakho sibaluleke ngempela kithi njengoba sisisiza ukuthuthukisa amasevisi ethu esikhathini esizayo.',
     },
-    'q6fh0x8f': {
-      'en': 'In Review',
-      'af': '',
-      'st': '',
-      'zu': '',
+    'epp10j9k': {
+      'en': 'Comments',
+      'af': 'Kommentaar',
+      'st': 'Maikutlo',
+      'zu': 'Amazwana',
     },
-    '8t7d8hz4': {
-      'en': '150',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    'ehv1h5rk': {
-      'en': 'Closed',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    '5z9t2ehf': {
-      'en': '150',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    'uvzmyd4q': {
-      'en': 'Day',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    '4wims3xw': {
-      'en': 'Time Left',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    'a78j4p5z': {
-      'en': 'Daily tracker',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    'yutwbsv5': {
-      'en': 'Goals',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    '307kc2t4': {
-      'en': 'Progress',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    '26g5k1sf': {
-      'en': '4/10',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    'zc5ie0gy': {
-      'en': 'Daily tracker',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    'mg1rqlt6': {
-      'en': 'Goals',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    'o186flit': {
-      'en': 'Progress',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    'fpfvgzkn': {
-      'en': '4/10',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    'vx00qdsz': {
-      'en': 'Your Week',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    'hcrdaz7f': {
-      'en': 'April 1-7th',
-      'af': '',
-      'st': '',
-      'zu': '',
-    },
-    '3amgasqh': {
+    '8z1kpy7m': {
       'en': 'Home',
-      'af': '',
-      'st': '',
-      'zu': '',
+      'af': 'Tuis',
+      'st': 'Lehae',
+      'zu': 'Ikhaya',
+    },
+  },
+  // notifications
+  {
+    '45q9r5x8': {
+      'en': 'Notifications',
+      'af': 'Kennisgewings',
+      'st': 'Litsebiso',
+      'zu': 'Izaziso',
+    },
+    '21r1cns5': {
+      'en': '1',
+      'af': '1',
+      'st': '1',
+      'zu': '1',
+    },
+    '7xadpfse': {
+      'en': 'Latest',
+      'af': 'Nuutste',
+      'st': 'Tsa moraorao',
+      'zu': 'Okwakamuva',
+    },
+    't43thx66': {
+      'en': 'Following',
+      'af': 'Volgende',
+      'st': 'Ho latela',
+      'zu': 'Ukulandela',
+    },
+    '9npa5ulh': {
+      'en': 'All',
+      'af': 'Almal',
+      'st': 'Tsohle',
+      'zu': 'Konke',
+    },
+  },
+  // usersSearch
+  {
+    '1ehqp1x6': {
+      'en': 'Search Friends to chat',
+      'af': 'Soek vriende om te gesels',
+      'st': 'Batla Metsoalle ho qoqa',
+      'zu': 'Sesha Abangane ukuze uxoxe',
+    },
+    'r4fzyodn': {
+      'en': 'Search Contacts',
+      'af': 'Soek kontakte',
+      'st': 'Batla Mabitso',
+      'zu': 'Sesha Oxhumana Nabo',
+    },
+    'n8jk3buj': {
+      'en': 'Search',
+      'af': 'Soek',
+      'st': 'Batla',
+      'zu': 'Sesha',
+    },
+    'qd4t4laz': {
+      'en': 'Search Contacts',
+      'af': 'Soek kontakte',
+      'st': 'Batla Mabitso',
+      'zu': 'Sesha Oxhumana Nabo',
     },
   },
   // submittedIcon
@@ -2040,60 +1728,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Kusuka kuzilungiselelo zedivayisi',
     },
   },
-  // signature
-  {
-    'm5h8e46u': {
-      'en': 'Signature',
-      'af': 'Handtekening',
-      'st': 'Tshaeno',
-      'zu': 'Isiginesha',
-    },
-    '2gbpplsv': {
-      'en': 'Clear',
-      'af': 'Duidelik',
-      'st': 'Hlakileng',
-      'zu': 'Kucace',
-    },
-    'lflh79c1': {
-      'en': 'Cancel',
-      'af': 'Kanselleer',
-      'st': 'Hlakola',
-      'zu': 'Khansela',
-    },
-    '1sijgjm7': {
-      'en': 'Confirm',
-      'af': 'Bevestig',
-      'st': 'Netefatsa',
-      'zu': 'Qinisekisa',
-    },
-  },
-  // signUp
-  {
-    'frsyhmri': {
-      'en': 'Create New Account',
-      'af': 'Skep nuwe rekening',
-      'st': 'Theha Account e Ncha',
-      'zu': 'Dala I-akhawunti Entsha',
-    },
-    'nj3rduhf': {
-      'en': 'Email Address',
-      'af': 'E-pos adres',
-      'st': 'Aterese ea imeile',
-      'zu': 'Ikheli le-imeyili',
-    },
-    '3udea805': {
-      'en': 'Enter your email here...',
-      'af': 'Voer jou e-pos hier in...',
-      'st': 'Kenya lengolo-tsoibila la hau mona...',
-      'zu': 'Faka i-imeyili yakho lapha...',
-    },
-    'dcg5h4rw': {
-      'en': 'Create Account',
-      'af': 'Skep rekening',
-      'st': 'Theha ak&#39;haonte',
-      'zu': 'Yenza i-akhawunti',
-    },
-  },
   // language
   {
     'oyqbh7ii': {
@@ -2113,6 +1747,81 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': 'Zoeloe',
       'st': 'Sezulu',
       'zu': 'Zulu',
+    },
+  },
+  // btmNv
+  {
+    '5ic4299a': {
+      'en': 'Inbox',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'yxwgnmwc': {
+      'en': 'Report',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'r0blr3r7': {
+      'en': 'Settings',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+  },
+  // sideNav
+  {
+    'x0l4kq51': {
+      'en': 'Campus Africa',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'mdh6tpe4': {
+      'en': 'MENU',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'ep2r2in9': {
+      'en': 'ADVANCED SETTINGS',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'hpde03g2': {
+      'en': 'Logout',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+  },
+  // bottomNavBar
+  {
+    'sol4e3xb': {
+      'en': 'Inbox',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '1vi6g268': {
+      'en': 'Report',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'y8l90vi9': {
+      'en': 'Settings',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    'dyx56i25': {
+      'en': '',
+      'af': '',
+      'st': '',
+      'zu': '',
     },
   },
   // Miscellaneous
@@ -2138,6 +1847,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Vumela i-Campus Africa ifinyelele umtapo wakho wolwazi ukuze ukwazi ukulayisha izithombe emibikweni yakho yokulungisa futhi ubuyekeze isithombe sakho sephrofayela',
     },
     'uo3dfuv5': {
+      'en': '',
+      'af': '',
+      'st': '',
+      'zu': '',
+    },
+    '78t61eci': {
       'en': '',
       'af': '',
       'st': '',

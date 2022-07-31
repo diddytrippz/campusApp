@@ -65,14 +65,20 @@ Map<String, dynamic> createChatsRecordData({
   String? lastMessage,
   DateTime? lastMessageTime,
   DocumentReference? lastMessageSentBy,
-}) =>
-    serializers.toFirestore(
-        ChatsRecord.serializer,
-        ChatsRecord((c) => c
-          ..users = null
-          ..userA = userA
-          ..userB = userB
-          ..lastMessage = lastMessage
-          ..lastMessageTime = lastMessageTime
-          ..lastMessageSentBy = lastMessageSentBy
-          ..lastMessageSeenBy = null));
+}) {
+  final firestoreData = serializers.toFirestore(
+    ChatsRecord.serializer,
+    ChatsRecord(
+      (c) => c
+        ..users = null
+        ..userA = userA
+        ..userB = userB
+        ..lastMessage = lastMessage
+        ..lastMessageTime = lastMessageTime
+        ..lastMessageSentBy = lastMessageSentBy
+        ..lastMessageSeenBy = null,
+    ),
+  );
+
+  return firestoreData;
+}

@@ -1,5 +1,4 @@
 import '../backend/backend.dart';
-import '../components/empty_inbox_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -8,6 +7,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -70,9 +70,9 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
             context.pop();
           },
           child: Icon(
-            Icons.arrow_back_rounded,
+            FFIcons.kic11,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 24,
+            size: 22,
           ),
         ),
         title: Row(
@@ -91,14 +91,14 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                       child: FlutterFlowExpandedImageView(
                         image: Image.network(
                           valueOrDefault<String>(
-                            widget.chatUser!.photoUrl!,
+                            widget.chatUser!.photoUrl,
                             'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                           ),
                           fit: BoxFit.contain,
                         ),
                         allowRotation: false,
                         tag: valueOrDefault<String>(
-                          widget.chatUser!.photoUrl!,
+                          widget.chatUser!.photoUrl,
                           'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                         ),
                         useHeroAnimation: true,
@@ -108,7 +108,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                 },
                 child: Hero(
                   tag: valueOrDefault<String>(
-                    widget.chatUser!.photoUrl!,
+                    widget.chatUser!.photoUrl,
                     'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                   ),
                   transitionOnUserGestures: true,
@@ -121,7 +121,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                     ),
                     child: Image.network(
                       valueOrDefault<String>(
-                        widget.chatUser!.photoUrl!,
+                        widget.chatUser!.photoUrl,
                         'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
                       ),
                       fit: BoxFit.cover,
@@ -159,16 +159,45 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
           ],
         ),
         actions: [
+          Align(
+            alignment: AlignmentDirectional(0, 0),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+              child: InkWell(
+                onTap: () async {
+                  logFirebaseEvent('CHAT_PAGE_PAGE_Icon_78qjwv36_ON_TAP');
+                  logFirebaseEvent('Icon_Show-Snack-Bar');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'Calls are not yet supported ',
+                        style: TextStyle(
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                        ),
+                      ),
+                      duration: Duration(milliseconds: 4000),
+                      backgroundColor: FlutterFlowTheme.of(context).primaryText,
+                    ),
+                  );
+                },
+                child: Icon(
+                  Icons.videocam_outlined,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 28,
+                ),
+              ),
+            ),
+          ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
             child: InkWell(
               onTap: () async {
-                logFirebaseEvent('CHAT_PAGE_PAGE_Icon_78qjwv36_ON_TAP');
+                logFirebaseEvent('CHAT_PAGE_PAGE_Icon_3w4unhx8_ON_TAP');
                 logFirebaseEvent('Icon_Show-Snack-Bar');
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
-                      'Video call not yet supported ',
+                      'Calls are not yet supported ',
                       style: TextStyle(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                       ),
@@ -179,9 +208,9 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                 );
               },
               child: Icon(
-                Icons.videocam_outlined,
+                Icons.call,
                 color: FlutterFlowTheme.of(context).primaryText,
-                size: 30,
+                size: 24,
               ),
             ),
           ),
@@ -245,7 +274,11 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                       fontSize: 14,
                     ),
                     emptyChatWidget: Center(
-                      child: EmptyInboxWidget(),
+                      child: SvgPicture.asset(
+                        'assets/images/undraw_no_data_re_kwbl.svg',
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        height: MediaQuery.of(context).size.height * 0.5,
+                      ),
                     ),
                   )
                 : Center(

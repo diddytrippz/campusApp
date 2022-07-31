@@ -64,13 +64,19 @@ Map<String, dynamic> createNotificationsRecordData({
   DateTime? dateCreate,
   String? urgency,
   bool? sendToAll,
-}) =>
-    serializers.toFirestore(
-        NotificationsRecord.serializer,
-        NotificationsRecord((n) => n
-          ..title = title
-          ..sentBy = sentBy
-          ..building = building
-          ..dateCreate = dateCreate
-          ..urgency = urgency
-          ..sendToAll = sendToAll));
+}) {
+  final firestoreData = serializers.toFirestore(
+    NotificationsRecord.serializer,
+    NotificationsRecord(
+      (n) => n
+        ..title = title
+        ..sentBy = sentBy
+        ..building = building
+        ..dateCreate = dateCreate
+        ..urgency = urgency
+        ..sendToAll = sendToAll,
+    ),
+  );
+
+  return firestoreData;
+}

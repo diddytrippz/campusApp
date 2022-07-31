@@ -1,14 +1,14 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/empty_list_widget.dart';
-import '../components/nav_barz_widget.dart';
+import '../components/bottom_nav_bar_widget.dart';
+import '../components/side_nav_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -43,354 +43,411 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
-        automaticallyImplyLeading: false,
-        leading: InkWell(
-          onTap: () async {
-            logFirebaseEvent('MESSAGES_PAGE_PAGE_Icon_p46f6mwh_ON_TAP');
-            logFirebaseEvent('Icon_Navigate-Back');
-            context.pop();
-          },
-          child: Icon(
-            Icons.arrow_back_rounded,
-            color: FlutterFlowTheme.of(context).primaryText,
-            size: 24,
-          ),
-        ),
-        title: AutoSizeText(
-          FFLocalizations.of(context).getText(
-            'ziacko5o' /* Inbox */,
-          ),
-          style: FlutterFlowTheme.of(context).bodyText1.override(
-                fontFamily: 'Open Sans',
-                color: FlutterFlowTheme.of(context).primaryText,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 12, 18, 0),
-            child: InkWell(
-              onTap: () async {
-                logFirebaseEvent('MESSAGES_PAGE_PAGE_Icon_4m94hgyk_ON_TAP');
-                logFirebaseEvent('Icon_Navigate-To');
-                context.pushNamed('usersSearch');
-              },
-              child: FaIcon(
-                FontAwesomeIcons.edit,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 22,
-              ),
-            ),
-          ),
-        ],
-        centerTitle: false,
-        elevation: 0,
-      ),
-      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       body: Stack(
         children: [
-          Column(
+          Row(
             mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 8),
-                child: AuthUserStreamWidget(
-                  child: FutureBuilder<List<UsersRecord>>(
-                    future: queryUsersRecordOnce(
-                      queryBuilder: (usersRecord) => usersRecord
-                          .where('building',
-                              isEqualTo: valueOrDefault(
-                                          currentUserDocument?.building, '') !=
-                                      ''
-                                  ? valueOrDefault(
-                                      currentUserDocument?.building, '')
-                                  : null)
-                          .where('role', isEqualTo: 'Admin'),
-                      limit: 10,
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 60,
-                            height: 60,
-                            child: SpinKitPulse(
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              size: 60,
+              if (responsiveVisibility(
+                context: context,
+                phone: false,
+              ))
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                  child: SideNavWidget(
+                    nav1Color: FlutterFlowTheme.of(context).primaryText,
+                    nav2Color: FlutterFlowTheme.of(context).primaryText,
+                    nav3Color: Color(0xFFC8360E),
+                    nav4Color: FlutterFlowTheme.of(context).primaryText,
+                    nav5Color: FlutterFlowTheme.of(context).primaryText,
+                    nav6Color: FlutterFlowTheme.of(context).primaryText,
+                  ),
+                ),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 60, 0, 20),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                                child: AutoSizeText(
+                                  FFLocalizations.of(context).getText(
+                                    'xx1vtfbc' /* Inbox */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 18, 0),
+                            child: InkWell(
+                              onTap: () async {
+                                logFirebaseEvent(
+                                    'MESSAGES_PAGE_PAGE_Icon_wc44fviu_ON_TAP');
+                                logFirebaseEvent('Icon_Navigate-To');
+                                context.pushNamed('usersSearch');
+                              },
+                              child: Icon(
+                                FFIcons.kic25,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 22,
+                              ),
                             ),
                           ),
-                        );
-                      }
-                      List<UsersRecord> rowUsersRecordList = snapshot.data!
-                          .where((u) => u.uid != currentUserUid)
-                          .toList();
-                      return SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: List.generate(rowUsersRecordList.length,
-                              (rowIndex) {
-                            final rowUsersRecord = rowUsersRecordList[rowIndex];
-                            return Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      12, 0, 8, 0),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'MESSAGES_Container_s1h71akl_ON_TAP');
-                                      if ((rowUsersRecord!.room) ==
-                                          'Management') {
-                                        logFirebaseEvent(
-                                            'Container_Show-Snack-Bar');
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Contact unavailable',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 8),
+                      child: AuthUserStreamWidget(
+                        child: FutureBuilder<List<UsersRecord>>(
+                          future: queryUsersRecordOnce(
+                            queryBuilder: (usersRecord) => usersRecord
+                                .where('building',
+                                    isEqualTo: valueOrDefault(
+                                                currentUserDocument?.building,
+                                                '') !=
+                                            ''
+                                        ? valueOrDefault(
+                                            currentUserDocument?.building, '')
+                                        : null)
+                                .where('role', isEqualTo: 'Admin'),
+                            limit: 10,
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 60,
+                                  height: 60,
+                                  child: SpinKitPulse(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    size: 60,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<UsersRecord> rowUsersRecordList = snapshot
+                                .data!
+                                .where((u) => u.uid != currentUserUid)
+                                .toList();
+                            return SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: List.generate(
+                                    rowUsersRecordList.length, (rowIndex) {
+                                  final rowUsersRecord =
+                                      rowUsersRecordList[rowIndex];
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            12, 0, 8, 0),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            logFirebaseEvent(
+                                                'MESSAGES_Container_ikxkobad_ON_TAP');
+                                            if (rowUsersRecord.room ==
+                                                'Management') {
+                                              logFirebaseEvent(
+                                                  'Container_Show-Snack-Bar');
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Contact unavailable',
+                                                    style: TextStyle(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                    ),
+                                                  ),
+                                                  duration: Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText,
+                                                ),
+                                              );
+                                              return;
+                                            } else {
+                                              logFirebaseEvent(
+                                                  'Container_Navigate-To');
+                                              context.pushNamed(
+                                                'ChatPage',
+                                                queryParams: {
+                                                  'chatUser': serializeParam(
+                                                      rowUsersRecord,
+                                                      ParamType.Document),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  'chatUser': rowUsersRecord,
+                                                },
+                                              );
+                                            }
+                                          },
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            elevation: 10,
+                                            shape: const CircleBorder(),
+                                            child: Container(
+                                              width: 70,
+                                              height: 70,
+                                              decoration: BoxDecoration(
+                                                color: Colors.transparent,
+                                                image: DecorationImage(
+                                                  fit: BoxFit.contain,
+                                                  image: Image.asset(
+                                                    'assets/images/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpeg',
+                                                  ).image,
+                                                ),
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                  color: Color(0xFF4E39F9),
+                                                  width: 3,
+                                                ),
                                               ),
                                             ),
-                                            duration:
-                                                Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                          ),
-                                        );
-                                        return;
-                                      } else {
-                                        logFirebaseEvent(
-                                            'Container_Navigate-To');
-                                        context.pushNamed(
-                                          'ChatPage',
-                                          queryParams: {
-                                            'chatUser': serializeParam(
-                                                rowUsersRecord,
-                                                ParamType.Document),
-                                          }.withoutNulls,
-                                          extra: <String, dynamic>{
-                                            'chatUser': rowUsersRecord,
-                                          },
-                                        );
-                                      }
-                                    },
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      elevation: 10,
-                                      shape: const CircleBorder(),
-                                      child: Container(
-                                        width: 70,
-                                        height: 70,
-                                        decoration: BoxDecoration(
-                                          color: Colors.transparent,
-                                          image: DecorationImage(
-                                            fit: BoxFit.contain,
-                                            image: Image.asset(
-                                              'assets/images/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpeg',
-                                            ).image,
-                                          ),
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                            color: Color(0xFF4E39F9),
-                                            width: 3,
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 6, 0, 0),
-                                  child: AutoSizeText(
-                                    rowUsersRecord!.displayName!
-                                        .maybeHandleOverflow(
-                                      maxChars: 8,
-                                      replacement: '…',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Open Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 6, 0, 0),
+                                        child: AutoSizeText(
+                                          rowUsersRecord.displayName!
+                                              .maybeHandleOverflow(
+                                            maxChars: 8,
+                                            replacement: '…',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                         ),
-                                  ),
-                                ),
-                              ],
+                                      ),
+                                    ],
+                                  );
+                                }),
+                              ),
                             );
-                          }),
+                          },
                         ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 80),
-                  child: PagedListView<DocumentSnapshot<Object?>?, ChatsRecord>(
-                    pagingController: () {
-                      final Query<Object?> Function(Query<Object?>)
-                          queryBuilder = (chatsRecord) => chatsRecord
-                              .where('users',
-                                  arrayContains: currentUserReference)
-                              .orderBy('last_message_time', descending: true);
-                      if (_pagingController != null) {
-                        final query = queryBuilder(ChatsRecord.collection);
-                        if (query != _pagingQuery) {
-                          // The query has changed
-                          _pagingQuery = query;
-                          _streamSubscriptions.forEach((s) => s?.cancel());
-                          _streamSubscriptions.clear();
-                          _pagingController!.refresh();
-                        }
-                        return _pagingController!;
-                      }
-
-                      _pagingController = PagingController(firstPageKey: null);
-                      _pagingQuery = queryBuilder(ChatsRecord.collection);
-                      _pagingController!
-                          .addPageRequestListener((nextPageMarker) {
-                        queryChatsRecordPage(
-                          queryBuilder: (chatsRecord) => chatsRecord
-                              .where('users',
-                                  arrayContains: currentUserReference)
-                              .orderBy('last_message_time', descending: true),
-                          nextPageMarker: nextPageMarker,
-                          pageSize: 10,
-                          isStream: true,
-                        ).then((page) {
-                          _pagingController!.appendPage(
-                            page.data,
-                            page.nextPageMarker,
-                          );
-                          final streamSubscription =
-                              page.dataStream?.listen((data) {
-                            final itemIndexes = _pagingController!.itemList!
-                                .asMap()
-                                .map((k, v) => MapEntry(v.reference.id, k));
-                            data.forEach((item) {
-                              final index = itemIndexes[item.reference.id];
-                              final items = _pagingController!.itemList!;
-                              if (index != null) {
-                                items.replaceRange(index, index + 1, [item]);
-                                _pagingController!.itemList = {
-                                  for (var item in items) item.reference: item
-                                }.values.toList();
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 80),
+                        child: PagedListView<DocumentSnapshot<Object?>?,
+                            ChatsRecord>(
+                          pagingController: () {
+                            final Query<Object?> Function(Query<Object?>)
+                                queryBuilder = (chatsRecord) => chatsRecord
+                                    .where('users',
+                                        arrayContains: currentUserReference)
+                                    .orderBy('last_message_time',
+                                        descending: true);
+                            if (_pagingController != null) {
+                              final query =
+                                  queryBuilder(ChatsRecord.collection);
+                              if (query != _pagingQuery) {
+                                // The query has changed
+                                _pagingQuery = query;
+                                _streamSubscriptions
+                                    .forEach((s) => s?.cancel());
+                                _streamSubscriptions.clear();
+                                _pagingController!.refresh();
                               }
+                              return _pagingController!;
+                            }
+
+                            _pagingController =
+                                PagingController(firstPageKey: null);
+                            _pagingQuery = queryBuilder(ChatsRecord.collection);
+                            _pagingController!
+                                .addPageRequestListener((nextPageMarker) {
+                              queryChatsRecordPage(
+                                queryBuilder: (chatsRecord) => chatsRecord
+                                    .where('users',
+                                        arrayContains: currentUserReference)
+                                    .orderBy('last_message_time',
+                                        descending: true),
+                                nextPageMarker: nextPageMarker,
+                                pageSize: 10,
+                                isStream: true,
+                              ).then((page) {
+                                _pagingController!.appendPage(
+                                  page.data,
+                                  page.nextPageMarker,
+                                );
+                                final streamSubscription =
+                                    page.dataStream?.listen((data) {
+                                  final itemIndexes = _pagingController!
+                                      .itemList!
+                                      .asMap()
+                                      .map((k, v) =>
+                                          MapEntry(v.reference.id, k));
+                                  data.forEach((item) {
+                                    final index =
+                                        itemIndexes[item.reference.id];
+                                    final items = _pagingController!.itemList!;
+                                    if (index != null) {
+                                      items.replaceRange(
+                                          index, index + 1, [item]);
+                                      _pagingController!.itemList = {
+                                        for (var item in items)
+                                          item.reference: item
+                                      }.values.toList();
+                                    }
+                                  });
+                                  setState(() {});
+                                });
+                                _streamSubscriptions.add(streamSubscription);
+                              });
                             });
-                            setState(() {});
-                          });
-                          _streamSubscriptions.add(streamSubscription);
-                        });
-                      });
-                      return _pagingController!;
-                    }(),
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    builderDelegate: PagedChildBuilderDelegate<ChatsRecord>(
-                      // Customize what your widget looks like when it's loading the first page.
-                      firstPageProgressIndicatorBuilder: (_) => Center(
-                        child: SizedBox(
-                          width: 60,
-                          height: 60,
-                          child: SpinKitPulse(
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                            size: 60,
-                          ),
-                        ),
-                      ),
-                      noItemsFoundIndicatorBuilder: (_) => Center(
-                        child: EmptyListWidget(),
-                      ),
-                      itemBuilder: (context, _, listViewIndex) {
-                        final listViewChatsRecord =
-                            _pagingController!.itemList![listViewIndex];
-                        return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-                          child: StreamBuilder<FFChatInfo>(
-                            stream: FFChatManager.instance
-                                .getChatInfo(chatRecord: listViewChatsRecord),
-                            builder: (context, snapshot) {
-                              final chatInfo = snapshot.data ??
-                                  FFChatInfo(listViewChatsRecord);
-                              return FFChatPreview(
-                                onTap: () => context.pushNamed(
-                                  'ChatPage',
-                                  queryParams: {
-                                    'chatUser': serializeParam(
-                                        chatInfo.otherUsers.length == 1
-                                            ? chatInfo.otherUsersList.first
-                                            : null,
-                                        ParamType.Document),
-                                    'chatRef': serializeParam(
-                                        chatInfo.chatRecord.reference,
-                                        ParamType.DocumentReference),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    'chatUser': chatInfo.otherUsers.length == 1
-                                        ? chatInfo.otherUsersList.first
-                                        : null,
+                            return _pagingController!;
+                          }(),
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          builderDelegate:
+                              PagedChildBuilderDelegate<ChatsRecord>(
+                            // Customize what your widget looks like when it's loading the first page.
+                            firstPageProgressIndicatorBuilder: (_) => Center(
+                              child: SizedBox(
+                                width: 60,
+                                height: 60,
+                                child: SpinKitPulse(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  size: 60,
+                                ),
+                              ),
+                            ),
+                            noItemsFoundIndicatorBuilder: (_) => Center(
+                              child: SvgPicture.asset(
+                                'assets/images/undraw_the_search_s0xf.svg',
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.5,
+                              ),
+                            ),
+                            itemBuilder: (context, _, listViewIndex) {
+                              final listViewChatsRecord =
+                                  _pagingController!.itemList![listViewIndex];
+                              return Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+                                child: StreamBuilder<FFChatInfo>(
+                                  stream: FFChatManager.instance.getChatInfo(
+                                      chatRecord: listViewChatsRecord),
+                                  builder: (context, snapshot) {
+                                    final chatInfo = snapshot.data ??
+                                        FFChatInfo(listViewChatsRecord);
+                                    return FFChatPreview(
+                                      onTap: () => context.pushNamed(
+                                        'ChatPage',
+                                        queryParams: {
+                                          'chatUser': serializeParam(
+                                              chatInfo.otherUsers.length == 1
+                                                  ? chatInfo
+                                                      .otherUsersList.first
+                                                  : null,
+                                              ParamType.Document),
+                                          'chatRef': serializeParam(
+                                              chatInfo.chatRecord.reference,
+                                              ParamType.DocumentReference),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          'chatUser':
+                                              chatInfo.otherUsers.length == 1
+                                                  ? chatInfo
+                                                      .otherUsersList.first
+                                                  : null,
+                                        },
+                                      ),
+                                      lastChatText:
+                                          chatInfo.chatPreviewMessage(),
+                                      lastChatTime:
+                                          listViewChatsRecord.lastMessageTime,
+                                      seen: listViewChatsRecord
+                                          .lastMessageSeenBy!
+                                          .contains(currentUserReference),
+                                      title: chatInfo.chatPreviewTitle(),
+                                      userProfilePic: chatInfo.chatPreviewPic(),
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      unreadColor: Color(0xFF0078FF),
+                                      titleTextStyle: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                      ),
+                                      dateTextStyle: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 10,
+                                      ),
+                                      previewTextStyle: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .campusGrey,
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 13,
+                                      ),
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              3, 3, 3, 3),
+                                      borderRadius: BorderRadius.circular(0),
+                                    );
                                   },
                                 ),
-                                lastChatText: chatInfo.chatPreviewMessage(),
-                                lastChatTime:
-                                    listViewChatsRecord.lastMessageTime,
-                                seen: listViewChatsRecord.lastMessageSeenBy!
-                                    .contains(currentUserReference),
-                                title: chatInfo.chatPreviewTitle(),
-                                userProfilePic: chatInfo.chatPreviewPic(),
-                                color:
-                                    FlutterFlowTheme.of(context).tertiaryColor,
-                                unreadColor: Color(0xFF0078FF),
-                                titleTextStyle: GoogleFonts.getFont(
-                                  'Open Sans',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ),
-                                dateTextStyle: GoogleFonts.getFont(
-                                  'Open Sans',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 10,
-                                ),
-                                previewTextStyle: GoogleFonts.getFont(
-                                  'Open Sans',
-                                  color:
-                                      FlutterFlowTheme.of(context).campusGrey,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 13,
-                                ),
-                                contentPadding:
-                                    EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
-                                borderRadius: BorderRadius.circular(0),
                               );
                             },
                           ),
-                        );
-                      },
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ],
@@ -398,9 +455,15 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
           if (responsiveVisibility(
             context: context,
             tablet: false,
+            tabletLandscape: false,
             desktop: false,
           ))
-            NavBarzWidget(),
+            BottomNavBarWidget(
+              homeColor: FlutterFlowTheme.of(context).primaryText,
+              messageColor: Color(0xFFC8360E),
+              notificationColor: FlutterFlowTheme.of(context).primaryText,
+              settingsColor: FlutterFlowTheme.of(context).primaryText,
+            ),
         ],
       ),
     );

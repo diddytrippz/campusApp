@@ -76,7 +76,7 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
       start: selectedDay.startOfDay,
       end: selectedDay.endOfDay,
     );
-    SchedulerBinding.instance!
+    SchedulerBinding.instance
         .addPostFrameCallback((_) => setSelectedDay(selectedRange.start));
   }
 
@@ -146,6 +146,8 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
             rowHeight:
                 widget.rowHeight ?? MediaQuery.of(context).size.width / 7,
             calendarStyle: CalendarStyle(
+              defaultTextStyle:
+                  widget.dateStyle ?? const TextStyle(color: Color(0xFF5A5A5A)),
               weekendTextStyle: widget.dateStyle ??
                   const TextStyle(color: const Color(0xFF5A5A5A)),
               holidayTextStyle: widget.dateStyle ??

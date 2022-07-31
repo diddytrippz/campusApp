@@ -111,17 +111,23 @@ Map<String, dynamic> createUsersRecordData({
   String? room,
   String? building,
   String? role,
-}) =>
-    serializers.toFirestore(
-        UsersRecord.serializer,
-        UsersRecord((u) => u
-          ..email = email
-          ..password = password
-          ..displayName = displayName
-          ..photoUrl = photoUrl
-          ..uid = uid
-          ..createdTime = createdTime
-          ..phoneNumber = phoneNumber
-          ..room = room
-          ..building = building
-          ..role = role));
+}) {
+  final firestoreData = serializers.toFirestore(
+    UsersRecord.serializer,
+    UsersRecord(
+      (u) => u
+        ..email = email
+        ..password = password
+        ..displayName = displayName
+        ..photoUrl = photoUrl
+        ..uid = uid
+        ..createdTime = createdTime
+        ..phoneNumber = phoneNumber
+        ..room = room
+        ..building = building
+        ..role = role,
+    ),
+  );
+
+  return firestoreData;
+}

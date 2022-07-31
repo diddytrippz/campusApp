@@ -46,9 +46,15 @@ abstract class ChecklistRecord
 
 Map<String, dynamic> createChecklistRecordData({
   String? description,
-}) =>
-    serializers.toFirestore(
-        ChecklistRecord.serializer,
-        ChecklistRecord((c) => c
-          ..description = description
-          ..options = null));
+}) {
+  final firestoreData = serializers.toFirestore(
+    ChecklistRecord.serializer,
+    ChecklistRecord(
+      (c) => c
+        ..description = description
+        ..options = null,
+    ),
+  );
+
+  return firestoreData;
+}

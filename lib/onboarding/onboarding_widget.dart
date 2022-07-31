@@ -32,7 +32,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Column(
-            mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Expanded(
                 child: Container(

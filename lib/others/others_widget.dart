@@ -47,12 +47,12 @@ class _OthersWidgetState extends State<OthersWidget> {
           borderWidth: 1,
           buttonSize: 54,
           icon: Icon(
-            Icons.arrow_back,
+            FFIcons.kic11,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 24,
+            size: 22,
           ),
           onPressed: () async {
-            logFirebaseEvent('OTHERS_PAGE_arrow_back_ICN_ON_TAP');
+            logFirebaseEvent('OTHERS_PAGE_ic11_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -129,9 +129,8 @@ class _OthersWidgetState extends State<OthersWidget> {
                                     .toList();
                                 ScaffoldMessenger.of(context)
                                     .hideCurrentSnackBar();
-                                if (downloadUrls != null &&
-                                    downloadUrls.length ==
-                                        selectedMedia.length) {
+                                if (downloadUrls.length ==
+                                    selectedMedia.length) {
                                   setState(() =>
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
@@ -158,7 +157,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.network(
                                       valueOrDefault<String>(
-                                        uploadedFileUrl!,
+                                        uploadedFileUrl,
                                         'https://static.vecteezy.com/system/resources/previews/004/968/473/original/upload-or-add-a-picture-jpg-file-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-etc-vector.jpg',
                                       ),
                                       width: MediaQuery.of(context).size.width,
@@ -226,7 +225,7 @@ class _OthersWidgetState extends State<OthersWidget> {
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context).alternate,
                             suffixIcon: Icon(
-                              FFIcons.kprofile,
+                              FFIcons.kic25,
                               color: FlutterFlowTheme.of(context).primaryText,
                               size: 25,
                             ),

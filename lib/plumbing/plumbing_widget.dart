@@ -49,12 +49,12 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
           borderWidth: 1,
           buttonSize: 54,
           icon: Icon(
-            Icons.arrow_back_rounded,
+            FFIcons.kic11,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 24,
+            size: 22,
           ),
           onPressed: () async {
-            logFirebaseEvent('PLUMBING_arrow_back_rounded_ICN_ON_TAP');
+            logFirebaseEvent('PLUMBING_PAGE_ic11_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -131,9 +131,8 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                     .toList();
                                 ScaffoldMessenger.of(context)
                                     .hideCurrentSnackBar();
-                                if (downloadUrls != null &&
-                                    downloadUrls.length ==
-                                        selectedMedia.length) {
+                                if (downloadUrls.length ==
+                                    selectedMedia.length) {
                                   setState(() =>
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
@@ -160,7 +159,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.network(
                                       valueOrDefault<String>(
-                                        uploadedFileUrl!,
+                                        uploadedFileUrl,
                                         'https://static.vecteezy.com/system/resources/previews/004/968/473/original/upload-or-add-a-picture-jpg-file-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-etc-vector.jpg',
                                       ),
                                       width: MediaQuery.of(context).size.width,
@@ -228,7 +227,7 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context).alternate,
                             suffixIcon: Icon(
-                              FFIcons.kprofile,
+                              FFIcons.kic25,
                               color: FlutterFlowTheme.of(context).primaryText,
                               size: 25,
                             ),
@@ -319,9 +318,9 @@ class _PlumbingWidgetState extends State<PlumbingWidget> {
                           'jecw64w4' /* Please select... */,
                         ),
                         icon: Icon(
-                          FFIcons.kedit,
+                          Icons.edit_outlined,
                           color: FlutterFlowTheme.of(context).primaryText,
-                          size: 30,
+                          size: 28,
                         ),
                         fillColor: FlutterFlowTheme.of(context).alternate,
                         elevation: 8,

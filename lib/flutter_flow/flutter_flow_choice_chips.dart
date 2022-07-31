@@ -63,7 +63,7 @@ class _FlutterFlowChoiceChipsState extends State<FlutterFlowChoiceChips> {
     super.initState();
     choiceChipValues = widget.initiallySelected ?? [];
     if (!widget.initialized && choiceChipValues.isNotEmpty) {
-      SchedulerBinding.instance!.addPostFrameCallback(
+      SchedulerBinding.instance.addPostFrameCallback(
         (_) => widget.onChanged(choiceChipValues),
       );
     }
