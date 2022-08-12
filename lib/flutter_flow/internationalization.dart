@@ -73,60 +73,60 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // login
   {
-    'sjs47kbo': {
+    'mf20xwxi': {
       'en': 'Sign In',
-      'af': 'Meld aan',
-      'zu': 'Ngena ngemvume',
+      'af': '',
+      'zu': '',
     },
-    'l1tt8u0l': {
+    '84l644do': {
       'en': '',
-      'af': 'Voer Student Jou E-pos in',
-      'zu': 'Faka I-imeyili Yakho Yomfundi',
+      'af': '',
+      'zu': '',
     },
-    '4g11k6sk': {
+    'ji7azmdm': {
       'en': 'Enter Student Your Email',
-      'af': 'Voer Student Jou E-pos in',
-      'zu': 'Faka I-imeyili Yakho Yomfundi',
+      'af': '',
+      'zu': '',
     },
-    '7dsoktyf': {
+    'cr5k7kor': {
       'en': '',
-      'af': 'Sleutel jou wagwoord in',
-      'zu': 'Faka Iphasiwedi Yakho',
+      'af': '',
+      'zu': '',
     },
-    'ueojr7gt': {
+    'wfbejy30': {
       'en': 'Enter Your Password',
-      'af': 'Sleutel jou wagwoord in',
-      'zu': 'Faka Iphasiwedi Yakho',
+      'af': '',
+      'zu': '',
     },
-    't54e5h3o': {
+    '50owsz8q': {
       'en': 'Sign In',
-      'af': 'Meld aan',
-      'zu': 'Ngena ngemvume',
+      'af': '',
+      'zu': '',
     },
-    '0pawhrjk': {
+    'tfxsf29d': {
       'en': 'Forgot Password?',
-      'af': 'Wagwoord vergeet?',
-      'zu': 'Ukhohlwe iphasiwedi?',
+      'af': '',
+      'zu': '',
     },
-    'llqbjhyl': {
+    'te262u9c': {
       'en': 'Sign Up',
-      'af': 'Teken aan',
-      'zu': 'Bhalisela',
+      'af': '',
+      'zu': '',
     },
-    'ucco9g9n': {
+    'zda7xy3l': {
+      'en': '',
+      'af': '',
+      'zu': '',
+    },
+    'yhv8kvwy': {
       'en': 'Enter Student Your Email',
-      'af': 'Voer Student Jou E-pos in',
-      'zu': 'Faka I-imeyili Yakho Yomfundi',
+      'af': '',
+      'zu': '',
     },
-    'qdz983e1': {
-      'en': 'Enter Student Your Email',
-      'af': 'Voer Student Jou E-pos in',
-      'zu': 'Faka I-imeyili Yakho Yomfundi',
-    },
-    'lxbutsey': {
+    'edobz1nu': {
       'en': 'Create account',
-      'af': 'Skep rekening',
-      'zu': 'Yenza i-akhawunti',
+      'af': '',
+      'zu': '',
     },
     'p8zu0wua': {
       'en': 'Home',

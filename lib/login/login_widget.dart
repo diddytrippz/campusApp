@@ -35,14 +35,14 @@ class _LoginWidgetState extends State<LoginWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: Colors.black,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 1,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).primaryBackground,
+            color: Colors.transparent,
             shape: BoxShape.rectangle,
           ),
           child: Align(
@@ -107,22 +107,18 @@ class _LoginWidgetState extends State<LoginWidget> {
                             child: Column(
                               children: [
                                 TabBar(
-                                  labelColor:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  labelColor: FlutterFlowTheme.of(context)
+                                      .primaryBtnText,
                                   labelStyle:
                                       FlutterFlowTheme.of(context).bodyText1,
                                   indicatorColor: Color(0xFFB0B0B0),
                                   indicatorWeight: 2,
                                   tabs: [
                                     Tab(
-                                      text: FFLocalizations.of(context).getText(
-                                        'sjs47kbo' /* Sign In */,
-                                      ),
+                                      text: 'Sign In',
                                     ),
                                     Tab(
-                                      text: FFLocalizations.of(context).getText(
-                                        'llqbjhyl' /* Sign Up */,
-                                      ),
+                                      text: 'Sign Up',
                                     ),
                                   ],
                                 ),
@@ -142,8 +138,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         ),
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
+                                            color: Color(0x00FFFFFF),
                                             borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(0),
                                               bottomRight: Radius.circular(0),
@@ -166,11 +161,16 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     hintText:
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                      '4g11k6sk' /* Enter Student Your Email */,
-                                                    ),
+                                                        'Enter Student Your Email',
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color:
+                                                              Color(0xFFFCF9F9),
+                                                        ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -206,7 +206,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primaryText,
+                                                              .primaryBtnText,
                                                       size: 20,
                                                     ),
                                                   ),
@@ -218,7 +218,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primaryText,
+                                                                .primaryBtnText,
                                                       ),
                                                   keyboardType: TextInputType
                                                       .emailAddress,
@@ -233,11 +233,17 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                         !textFieldPassVisibility,
                                                     decoration: InputDecoration(
                                                       hintText:
-                                                          FFLocalizations.of(
+                                                          'Enter Your Password',
+                                                      hintStyle:
+                                                          FlutterFlowTheme.of(
                                                                   context)
-                                                              .getText(
-                                                        'ueojr7gt' /* Enter Your Password */,
-                                                      ),
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: Color(
+                                                                    0xFFFCF9F9),
+                                                              ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
@@ -271,7 +277,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primaryText,
+                                                                .primaryBtnText,
                                                         size: 20,
                                                       ),
                                                       suffixIcon: InkWell(
@@ -290,7 +296,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                   .visibility_off_outlined,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primaryText,
+                                                              .primaryBtnText,
                                                           size: 18,
                                                         ),
                                                       ),
@@ -303,7 +309,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                               'Open Sans',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primaryText,
+                                                              .primaryBtnText,
                                                         ),
                                                     keyboardType: TextInputType
                                                         .emailAddress,
@@ -336,11 +342,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       context.goNamedAuth(
                                                           'home', mounted);
                                                     },
-                                                    text: FFLocalizations.of(
-                                                            context)
-                                                        .getText(
-                                                      't54e5h3o' /* Sign In */,
-                                                    ),
+                                                    text: 'Sign In',
                                                     options: FFButtonOptions(
                                                       width: double.infinity,
                                                       height: 55,
@@ -376,7 +378,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                   child: InkWell(
                                                     onTap: () async {
                                                       logFirebaseEvent(
-                                                          'LOGIN_PAGE_Text_7a45pa4j_ON_TAP');
+                                                          'LOGIN_PAGE_Text_83j675fl_ON_TAP');
                                                       logFirebaseEvent(
                                                           'Text_Auth');
                                                       if (textFieldEmailController!
@@ -400,11 +402,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       );
                                                     },
                                                     child: Text(
-                                                      FFLocalizations.of(
-                                                              context)
-                                                          .getText(
-                                                        '0pawhrjk' /* Forgot Password? */,
-                                                      ),
+                                                      'Forgot Password?',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -414,7 +412,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                     'Open Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primaryText,
+                                                                    .primaryBtnText,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w500,
@@ -445,16 +443,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               ),
                                               obscureText: false,
                                               decoration: InputDecoration(
-                                                labelText:
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                  'ucco9g9n' /* Enter Student Your Email */,
-                                                ),
                                                 hintText:
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                  'qdz983e1' /* Enter Student Your Email */,
-                                                ),
+                                                    'Enter Student Your Email',
+                                                hintStyle: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyText1
+                                                    .override(
+                                                      fontFamily: 'Open Sans',
+                                                      color: Color(0xFFFCF9F9),
+                                                    ),
                                                 enabledBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
@@ -485,7 +482,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                   Icons.alternate_email,
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryText,
+                                                      .primaryBtnText,
                                                   size: 20,
                                                 ),
                                               ),
@@ -497,7 +494,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primaryText,
+                                                                .primaryBtnText,
                                                       ),
                                               keyboardType:
                                                   TextInputType.emailAddress,
@@ -531,10 +528,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                   context: context,
                                                 );
                                               },
-                                              text: FFLocalizations.of(context)
-                                                  .getText(
-                                                'lxbutsey' /* Create account */,
-                                              ),
+                                              text: 'Create account',
                                               options: FFButtonOptions(
                                                 width: double.infinity,
                                                 height: 50,
