@@ -49,12 +49,12 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
           borderWidth: 1,
           buttonSize: 54,
           icon: Icon(
-            FFIcons.kic11,
+            Icons.arrow_back_ios,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 22,
+            size: 25,
           ),
           onPressed: () async {
-            logFirebaseEvent('LOCKSMITH_PAGE_ic11_ICN_ON_TAP');
+            logFirebaseEvent('LOCKSMITH_PAGE_arrow_back_ios_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -71,7 +71,7 @@ class _LocksmithWidgetState extends State<LocksmithWidget> {
         ),
         actions: [],
         centerTitle: true,
-        elevation: 2,
+        elevation: 1,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(

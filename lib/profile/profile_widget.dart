@@ -1,11 +1,10 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../backend/firebase_storage/storage.dart';
 import '../components/side_nav_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/upload_media.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,15 +12,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProfilePageWidget extends StatefulWidget {
-  const ProfilePageWidget({Key? key}) : super(key: key);
+class ProfileWidget extends StatefulWidget {
+  const ProfileWidget({Key? key}) : super(key: key);
 
   @override
-  _ProfilePageWidgetState createState() => _ProfilePageWidgetState();
+  _ProfileWidgetState createState() => _ProfileWidgetState();
 }
 
-class _ProfilePageWidgetState extends State<ProfilePageWidget> {
-  String uploadedFileUrl = '';
+class _ProfileWidgetState extends State<ProfileWidget> {
   TextEditingController? textController1;
   TextEditingController? textController2;
   TextEditingController? textController3;
@@ -32,7 +30,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'profilePage'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'profile'});
     textController1 = TextEditingController(text: currentUserDisplayName);
     textController2 = TextEditingController(text: currentUserEmail);
     textController3 = TextEditingController(
@@ -47,7 +45,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Row(
@@ -66,12 +64,12 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                 nav6Color: Color(0xFFBB3713),
               ),
             Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
-                    child: SingleChildScrollView(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -88,14 +86,14 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                   borderWidth: 1,
                                   buttonSize: 54,
                                   icon: Icon(
-                                    FFIcons.kic11,
+                                    Icons.arrow_back_ios,
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
-                                    size: 22,
+                                    size: 25,
                                   ),
                                   onPressed: () async {
                                     logFirebaseEvent(
-                                        'PROFILE_PAGE_PAGE_ic11_ICN_ON_TAP');
+                                        'PROFILE_PAGE_arrow_back_ios_ICN_ON_TAP');
                                     logFirebaseEvent(
                                         'IconButton_Navigate-Back');
                                     context.pop();
@@ -121,7 +119,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                   child: InkWell(
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'PROFILE_PAGE_PAGE_Text_wihuzt5g_ON_TAP');
+                                          'PROFILE_PAGE_Text_wihuzt5g_ON_TAP');
                                       logFirebaseEvent('Text_Backend-Call');
 
                                       final usersUpdateData =
@@ -150,7 +148,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                         ),
                                       );
                                       logFirebaseEvent('Text_Navigate-To');
-                                      context.pushNamed('profilePage');
+                                      context.pushNamed('profile');
                                     },
                                     child: Text(
                                       FFLocalizations.of(context).getText(
@@ -179,105 +177,38 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 10),
-                                  child: AuthUserStreamWidget(
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      elevation: 2,
-                                      shape: const CircleBorder(),
-                                      child: Container(
-                                        width: 150,
-                                        height: 150,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFEEEEEE),
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: CachedNetworkImageProvider(
-                                              valueOrDefault<String>(
-                                                currentUserPhoto,
-                                                'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                              ),
-                                            ),
-                                          ),
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                            color: Color(0xFF4E39F9),
-                                            width: 3,
-                                          ),
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    elevation: 2,
+                                    shape: const CircleBorder(),
+                                    child: Container(
+                                      width: 150,
+                                      height: 150,
+                                      decoration: BoxDecoration(
+                                        color: Color(0x00FFFFFF),
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color: Color(0xFF4E39F9),
+                                          width: 5,
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional(0, 0),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'PROFILE_Container_v8fqh0or_ON_TAP');
-                                      logFirebaseEvent(
-                                          'Container_Upload-Photo-Video');
-                                      final selectedMedia =
-                                          await selectMediaWithSourceBottomSheet(
-                                        context: context,
-                                        allowPhoto: true,
-                                      );
-                                      if (selectedMedia != null &&
-                                          selectedMedia.every((m) =>
-                                              validateFileFormat(
-                                                  m.storagePath, context))) {
-                                        showUploadMessage(
-                                          context,
-                                          'Uploading file...',
-                                          showLoading: true,
-                                        );
-                                        final downloadUrls = (await Future.wait(
-                                                selectedMedia.map((m) async =>
-                                                    await uploadData(
-                                                        m.storagePath,
-                                                        m.bytes))))
-                                            .where((u) => u != null)
-                                            .map((u) => u!)
-                                            .toList();
-                                        ScaffoldMessenger.of(context)
-                                            .hideCurrentSnackBar();
-                                        if (downloadUrls.length ==
-                                            selectedMedia.length) {
-                                          setState(() => uploadedFileUrl =
-                                              downloadUrls.first);
-                                          showUploadMessage(
-                                            context,
-                                            FFLocalizations.of(context).getText(
-                                              'z40c2u6r' /* File Uploaded! */,
-                                            ),
-                                          );
-                                        } else {
-                                          showUploadMessage(
-                                            context,
-                                            'Failed to upload media',
-                                          );
-                                          return;
-                                        }
-                                      }
-                                    },
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      elevation: 10,
-                                      shape: const CircleBorder(),
-                                      child: Container(
-                                        width: 45,
-                                        height: 45,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFF0066DC),
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                            color: Color(0xFFFFFDFD),
-                                            width: 2,
+                                      child: Align(
+                                        alignment: AlignmentDirectional(0, 0),
+                                        child: AuthUserStreamWidget(
+                                          child: Text(
+                                            functions.initials(
+                                                currentUserDisplayName)!,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontSize: 75,
+                                                  fontWeight: FontWeight.w800,
+                                                ),
                                           ),
-                                        ),
-                                        child: Icon(
-                                          Icons.edit_outlined,
-                                          color: Color(0xFFFFFDFD),
-                                          size: 30,
                                         ),
                                       ),
                                     ),
@@ -578,8 +509,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                         ],
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

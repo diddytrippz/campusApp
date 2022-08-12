@@ -2,17 +2,16 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/side_nav_widget.dart';
 import '../flutter_flow/flutter_flow_choice_chips.dart';
-import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 
 class ReviewsWidget extends StatefulWidget {
   const ReviewsWidget({
@@ -44,7 +43,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -52,12 +51,12 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
           borderWidth: 1,
           buttonSize: 54,
           icon: Icon(
-            FFIcons.kic11,
+            Icons.arrow_back_ios,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 22,
+            size: 26,
           ),
           onPressed: () async {
-            logFirebaseEvent('REVIEWS_PAGE_ic11_ICN_ON_TAP');
+            logFirebaseEvent('REVIEWS_PAGE_arrow_back_ios_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -84,7 +83,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Row(
@@ -114,8 +113,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 15),
@@ -125,52 +123,29 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                AuthUserStreamWidget(
-                                  child: InkWell(
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'REVIEWS_PAGE_Image_1hhokfu9_ON_TAP');
-                                      logFirebaseEvent('Image_Expand-Image');
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          child: FlutterFlowExpandedImageView(
-                                            image: Image.network(
-                                              valueOrDefault<String>(
-                                                currentUserPhoto,
-                                                'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                              ),
-                                              fit: BoxFit.contain,
-                                            ),
-                                            allowRotation: false,
-                                            tag: valueOrDefault<String>(
-                                              currentUserPhoto,
-                                              'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                            ),
-                                            useHeroAnimation: true,
+                                Container(
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: Color(0xFF4E3DCB),
+                                      width: 3,
+                                    ),
+                                  ),
+                                  child: Align(
+                                    alignment: AlignmentDirectional(0, 0),
+                                    child: Text(
+                                      functions.initials(
+                                          widget.jobReviews!.displayName)!,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            fontSize: 40,
+                                            fontWeight: FontWeight.w600,
                                           ),
-                                        ),
-                                      );
-                                    },
-                                    child: Hero(
-                                      tag: valueOrDefault<String>(
-                                        currentUserPhoto,
-                                        'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                      ),
-                                      transitionOnUserGestures: true,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(80),
-                                        child: Image.network(
-                                          valueOrDefault<String>(
-                                            currentUserPhoto,
-                                            'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                          ),
-                                          width: 100,
-                                          height: 100,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
                                     ),
                                   ),
                                 ),
@@ -257,10 +232,15 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                     ),
                                     child: Container(
                                       width: MediaQuery.of(context).size.width,
-                                      height: 370,
+                                      height: 380,
                                       decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
+                                        color: Color(0x00F2F2F2),
+                                        image: DecorationImage(
+                                          fit: BoxFit.fitWidth,
+                                          image: Image.asset(
+                                            'assets/images/Vector_(2).png',
+                                          ).image,
+                                        ),
                                         borderRadius: BorderRadius.circular(8),
                                       ),
                                       child: Padding(
@@ -282,7 +262,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primaryText,
+                                                                .textColor,
                                                       ),
                                             ),
                                             Row(
@@ -401,72 +381,62 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                               endIndent: 10,
                                               color: Color(0x62464749),
                                             ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 10, 0, 0),
-                                                child: TextFormField(
-                                                  controller: textController,
-                                                  autofocus: true,
-                                                  readOnly:
-                                                      ratingBarValue != null,
-                                                  obscureText: false,
-                                                  decoration: InputDecoration(
-                                                    hintText:
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                      'rnzrnped' /* Anything you'd like us to know... */,
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 50, 0, 0),
+                                              child: TextFormField(
+                                                controller: textController,
+                                                autofocus: true,
+                                                readOnly:
+                                                    ratingBarValue != null,
+                                                obscureText: false,
+                                                decoration: InputDecoration(
+                                                  hintText: FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'rnzrnped' /* Anything you'd like us to know... */,
+                                                  ),
+                                                  enabledBorder:
+                                                      UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x00000000),
+                                                      width: 1,
                                                     ),
-                                                    enabledBorder:
-                                                        UnderlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Color(0x00000000),
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                              .only(
-                                                        topLeft:
-                                                            Radius.circular(
-                                                                4.0),
-                                                        topRight:
-                                                            Radius.circular(
-                                                                4.0),
-                                                      ),
-                                                    ),
-                                                    focusedBorder:
-                                                        UnderlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Color(0x00000000),
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                              .only(
-                                                        topLeft:
-                                                            Radius.circular(
-                                                                4.0),
-                                                        topRight:
-                                                            Radius.circular(
-                                                                4.0),
-                                                      ),
+                                                    borderRadius:
+                                                        const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(4.0),
+                                                      topRight:
+                                                          Radius.circular(4.0),
                                                     ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Open Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                  maxLines: 4,
+                                                  focusedBorder:
+                                                      UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x00000000),
+                                                      width: 1,
+                                                    ),
+                                                    borderRadius:
+                                                        const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(4.0),
+                                                      topRight:
+                                                          Radius.circular(4.0),
+                                                    ),
+                                                  ),
                                                 ),
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyText1
+                                                    .override(
+                                                      fontFamily: 'Open Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .textColor,
+                                                    ),
+                                                textAlign: TextAlign.center,
+                                                maxLines: 4,
                                               ),
                                             ),
                                           ],
@@ -562,7 +532,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                           ),
                                         );
                                         logFirebaseEvent('Button_Navigate-To');
-                                        context.pushNamed('viewPage');
+                                        context.pushNamed('view');
                                       },
                                       text: FFLocalizations.of(context).getText(
                                         'm1rx4wqf' /* Confirm */,

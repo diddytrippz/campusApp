@@ -84,12 +84,12 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 
 final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'onboarding': (data) async => OnboardingWidget(),
-  'loginPage': (data) async => LoginPageWidget(),
-  'viewPage': (data) async => ViewPageWidget(
+  'login': (data) async => LoginWidget(),
+  'view': (data) async => ViewWidget(
         completeTemp: getParameter(data, 'completeTemp'),
       ),
-  'ruleBook': (data) async => RuleBookWidget(),
-  'ChatPage': (data) async => ChatPageWidget(
+  'rules': (data) async => RulesWidget(),
+  'chats': (data) async => ChatsWidget(
         chatUser: await getDocumentParameter(
             data, 'chatUser', UsersRecord.serializer),
         chatRef: getParameter(data, 'chatRef'),
@@ -107,15 +107,15 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         jobReviews: await getDocumentParameter(
             data, 'jobReviews', MaintenanceRecord.serializer),
       ),
-  'profilePage': (data) async => ProfilePageWidget(),
-  'settingsPage': (data) async => SettingsPageWidget(),
-  'messagesPage': (data) async => MessagesPageWidget(),
-  'moreInformation': (data) async => MoreInformationWidget(
+  'profile': (data) async => ProfileWidget(),
+  'settings': (data) async => SettingsWidget(),
+  'messages': (data) async => MessagesWidget(),
+  'information': (data) async => InformationWidget(
         jobs: await getDocumentParameter(
             data, 'jobs', MaintenanceRecord.serializer),
       ),
   'notifications': (data) async => NotificationsWidget(),
-  'usersSearch': (data) async => UsersSearchWidget(),
+  'search': (data) async => SearchWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

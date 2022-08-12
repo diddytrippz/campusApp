@@ -72,13 +72,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
+          appStateNotifier.loggedIn ? HomeWidget() : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
+              appStateNotifier.loggedIn ? HomeWidget() : LoginWidget(),
           routes: [
             FFRoute(
               name: 'onboarding',
@@ -87,32 +87,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => OnboardingWidget(),
             ),
             FFRoute(
-              name: 'loginPage',
-              path: 'loginPage',
-              builder: (context, params) => LoginPageWidget(),
+              name: 'login',
+              path: 'login',
+              builder: (context, params) => LoginWidget(),
             ),
             FFRoute(
-              name: 'viewPage',
-              path: 'viewPage',
+              name: 'view',
+              path: 'view',
               requireAuth: true,
-              builder: (context, params) => ViewPageWidget(
+              builder: (context, params) => ViewWidget(
                 completeTemp: params.getParam('completeTemp', ParamType.double),
               ),
             ),
             FFRoute(
-              name: 'ruleBook',
-              path: 'ruleBook',
+              name: 'rules',
+              path: 'rules',
               requireAuth: true,
-              builder: (context, params) => RuleBookWidget(),
+              builder: (context, params) => RulesWidget(),
             ),
             FFRoute(
-              name: 'ChatPage',
-              path: 'chatPage',
+              name: 'chats',
+              path: 'chats',
               requireAuth: true,
               asyncParams: {
                 'chatUser': getDoc('users', UsersRecord.serializer),
               },
-              builder: (context, params) => ChatPageWidget(
+              builder: (context, params) => ChatsWidget(
                 chatUser: params.getParam('chatUser', ParamType.Document),
                 chatRef: params.getParam(
                     'chatRef', ParamType.DocumentReference, 'chats'),
@@ -185,37 +185,37 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'profilePage',
-              path: 'profilePage',
+              name: 'profile',
+              path: 'profile',
               requireAuth: true,
-              builder: (context, params) => ProfilePageWidget(),
+              builder: (context, params) => ProfileWidget(),
             ),
             FFRoute(
-              name: 'settingsPage',
-              path: 'settingsPage',
+              name: 'settings',
+              path: 'settings',
               requireAuth: true,
-              builder: (context, params) => SettingsPageWidget(),
+              builder: (context, params) => SettingsWidget(),
             ),
             FFRoute(
-              name: 'homePage',
-              path: 'homePage',
+              name: 'home',
+              path: 'home',
               requireAuth: true,
-              builder: (context, params) => HomePageWidget(),
+              builder: (context, params) => HomeWidget(),
             ),
             FFRoute(
-              name: 'messagesPage',
-              path: 'messagesPage',
+              name: 'messages',
+              path: 'messages',
               requireAuth: true,
-              builder: (context, params) => MessagesPageWidget(),
+              builder: (context, params) => MessagesWidget(),
             ),
             FFRoute(
-              name: 'moreInformation',
-              path: 'moreInformation',
+              name: 'information',
+              path: 'information',
               requireAuth: true,
               asyncParams: {
                 'jobs': getDoc('maintenance', MaintenanceRecord.serializer),
               },
-              builder: (context, params) => MoreInformationWidget(
+              builder: (context, params) => InformationWidget(
                 jobs: params.getParam('jobs', ParamType.Document),
               ),
             ),
@@ -226,10 +226,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => NotificationsWidget(),
             ),
             FFRoute(
-              name: 'usersSearch',
-              path: 'usersSearch',
+              name: 'search',
+              path: 'search',
               requireAuth: true,
-              builder: (context, params) => UsersSearchWidget(),
+              builder: (context, params) => SearchWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -382,7 +382,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/loginPage';
+            return '/login';
           }
           return null;
         },

@@ -91,7 +91,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                   'BOTTOM_NAV_BAR_Column_p4nmh717_ON_TAP');
                               logFirebaseEvent('Column_Navigate-To');
                               context.pushNamed(
-                                'messagesPage',
+                                'messages',
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
@@ -160,7 +160,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                     'BOTTOM_NAV_BAR_Column_8qpxzasq_ON_TAP');
                                 logFirebaseEvent('Column_Navigate-To');
                                 context.pushNamed(
-                                  'homePage',
+                                  'home',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
@@ -227,7 +227,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                   'BOTTOM_NAV_BAR_Column_2d7e194y_ON_TAP');
                               logFirebaseEvent('Column_Navigate-To');
                               context.pushNamed(
-                                'settingsPage',
+                                'settings',
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
@@ -318,8 +318,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                             width: 100,
                             height: 80,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
+                              color: Color(0x00FFFFFF),
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(0),
@@ -344,7 +343,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                       HapticFeedback.selectionClick();
                                       logFirebaseEvent('Column_Navigate-To');
                                       context.pushNamed(
-                                        'viewPage',
+                                        'view',
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
@@ -377,7 +376,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                       HapticFeedback.selectionClick();
                                       logFirebaseEvent('Column_Navigate-To');
                                       context.pushNamed(
-                                        'messagesPage',
+                                        'messages',
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
@@ -457,8 +456,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                             width: 100,
                             height: 80,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
+                              color: Color(0x00FFFFFF),
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(0),
                                 bottomRight: Radius.circular(0),
@@ -519,7 +517,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                       HapticFeedback.selectionClick();
                                       logFirebaseEvent('Column_Navigate-To');
                                       context.pushNamed(
-                                        'settingsPage',
+                                        'settings',
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
@@ -561,7 +559,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                     width: 60,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: Color(0x00FFFFFF),
                       borderRadius: BorderRadius.circular(0),
                     ),
                   ),
@@ -582,9 +580,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                             color: FlutterFlowTheme.of(context).primaryText,
                             boxShadow: [
                               BoxShadow(
-                                blurRadius: 12,
+                                blurRadius: 4,
                                 color: Color(0x33000000),
-                                offset: Offset(0, 5),
+                                offset: Offset(0, 2),
                               )
                             ],
                             shape: BoxShape.circle,

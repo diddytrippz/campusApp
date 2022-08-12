@@ -3,6 +3,7 @@ import '../components/side_nav_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -11,14 +12,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:text_search/text_search.dart';
 
-class UsersSearchWidget extends StatefulWidget {
-  const UsersSearchWidget({Key? key}) : super(key: key);
+class SearchWidget extends StatefulWidget {
+  const SearchWidget({Key? key}) : super(key: key);
 
   @override
-  _UsersSearchWidgetState createState() => _UsersSearchWidgetState();
+  _SearchWidgetState createState() => _SearchWidgetState();
 }
 
-class _UsersSearchWidgetState extends State<UsersSearchWidget> {
+class _SearchWidgetState extends State<SearchWidget> {
   List<UsersRecord> simpleSearchResults = [];
   TextEditingController? textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -26,7 +27,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'usersSearch'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'search'});
     textController = TextEditingController();
   }
 
@@ -35,19 +36,19 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
           borderRadius: 30,
           buttonSize: 24,
           icon: Icon(
-            FFIcons.kic11,
+            Icons.arrow_back_ios,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 22,
+            size: 25,
           ),
           onPressed: () async {
-            logFirebaseEvent('USERS_SEARCH_PAGE_ic11_ICN_ON_TAP');
+            logFirebaseEvent('SEARCH_PAGE_arrow_back_ios_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -58,7 +59,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
           children: [
             Text(
               FFLocalizations.of(context).getText(
-                '1ehqp1x6' /* Search Friends to chat */,
+                '1ehqp1x6' /* Contacts */,
               ),
               style: FlutterFlowTheme.of(context).subtitle1.override(
                     fontFamily: 'Open Sans',
@@ -70,10 +71,10 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
           ],
         ),
         actions: [],
-        centerTitle: false,
+        centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Row(
@@ -110,7 +111,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                 height: 60,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
+                                      .secondaryBackground,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Padding(
@@ -158,7 +159,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                   ),
                                   onFieldSubmitted: (_) async {
                                     logFirebaseEvent(
-                                        'USERS_SEARCH_TextField_yw70xwop_ON_TEXTF');
+                                        'SEARCH_TextField_yw70xwop_ON_TEXTFIELD_S');
                                     logFirebaseEvent('TextField_Simple-Search');
                                     await queryUsersRecordOnce()
                                         .then(
@@ -205,7 +206,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                     ),
                                     filled: true,
                                     fillColor: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
+                                        .secondaryBackground,
                                     contentPadding:
                                         EdgeInsetsDirectional.fromSTEB(
                                             30, 25, 30, 25),
@@ -256,8 +257,8 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                             Container(
                               decoration: BoxDecoration(),
                               child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0, 20, 0, 20),
                                 child: Builder(
                                   builder: (context) {
                                     final listSearrch = simpleSearchResults
@@ -267,15 +268,15 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                     if (listSearrch.isEmpty) {
                                       return Center(
                                         child: SvgPicture.asset(
-                                          'assets/images/undraw_the_search_s0xf.svg',
+                                          'assets/images/Theme=Accent,_Content=Results.svg',
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              0.5,
+                                              0.35,
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              0.5,
+                                              0.35,
                                           fit: BoxFit.contain,
                                         ),
                                       );
@@ -291,7 +292,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                         return InkWell(
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'USERS_SEARCH_PAGE_userEntry_ON_TAP');
+                                                'SEARCH_PAGE_userEntry_ON_TAP');
                                             if (listSearrchItem.room ==
                                                 'Management') {
                                               logFirebaseEvent(
@@ -320,7 +321,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                               logFirebaseEvent(
                                                   'userEntry_Navigate-To');
                                               context.pushNamed(
-                                                'ChatPage',
+                                                'chats',
                                                 queryParams: {
                                                   'chatUser': serializeParam(
                                                       listSearrchItem,
@@ -334,7 +335,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                           },
                                           child: Material(
                                             color: Colors.transparent,
-                                            elevation: 2,
+                                            elevation: 0,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(0),
@@ -345,7 +346,7 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .primaryBackground,
                                                 borderRadius:
                                                     BorderRadius.circular(0),
                                                 border: Border.all(
@@ -379,25 +380,37 @@ class _UsersSearchWidgetState extends State<UsersSearchWidget> {
                                                               BoxDecoration(
                                                             color: Colors
                                                                 .transparent,
-                                                            image:
-                                                                DecorationImage(
-                                                              fit: BoxFit.cover,
-                                                              image:
-                                                                  CachedNetworkImageProvider(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  listSearrchItem
-                                                                      .photoUrl,
-                                                                  'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                                                ),
-                                                              ),
-                                                            ),
                                                             shape:
                                                                 BoxShape.circle,
                                                             border: Border.all(
                                                               color: Color(
                                                                   0xFF4E39F9),
                                                               width: 3,
+                                                            ),
+                                                          ),
+                                                          child: Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    0, 0),
+                                                            child: Text(
+                                                              functions.initials(
+                                                                  listSearrchItem
+                                                                      .displayName)!,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    fontSize:
+                                                                        24,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
                                                             ),
                                                           ),
                                                         ),

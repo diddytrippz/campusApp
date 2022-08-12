@@ -55,7 +55,9 @@ class _DynamicLinksHandlerState extends State<DynamicLinksHandler> {
   @override
   void initState() {
     super.initState();
-    handleOpenedPushNotification();
+    if (!isWeb) {
+      handleOpenedPushNotification();
+    }
   }
 
   @override

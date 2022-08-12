@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/empty_list_widget.dart';
 import '../components/side_nav_widget.dart';
 import '../flutter_flow/flutter_flow_choice_chips.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
@@ -13,12 +12,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
-class MoreInformationWidget extends StatefulWidget {
-  const MoreInformationWidget({
+class InformationWidget extends StatefulWidget {
+  const InformationWidget({
     Key? key,
     this.jobs,
   }) : super(key: key);
@@ -26,18 +26,17 @@ class MoreInformationWidget extends StatefulWidget {
   final MaintenanceRecord? jobs;
 
   @override
-  _MoreInformationWidgetState createState() => _MoreInformationWidgetState();
+  _InformationWidgetState createState() => _InformationWidgetState();
 }
 
-class _MoreInformationWidgetState extends State<MoreInformationWidget> {
+class _InformationWidgetState extends State<InformationWidget> {
   List<String>? choiceChipsValues;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'moreInformation'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'information'});
   }
 
   @override
@@ -45,7 +44,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -53,12 +52,12 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
           borderWidth: 1,
           buttonSize: 54,
           icon: Icon(
-            FFIcons.kic11,
+            Icons.arrow_back_ios,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 22,
+            size: 25,
           ),
           onPressed: () async {
-            logFirebaseEvent('MORE_INFORMATION_PAGE_ic11_ICN_ON_TAP');
+            logFirebaseEvent('INFORMATION_arrow_back_ios_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -111,7 +110,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                     child: InkWell(
                       onTap: () async {
                         logFirebaseEvent(
-                            'MORE_INFORMATION_Icon_ad5oq7xv_ON_TAP');
+                            'INFORMATION_PAGE_Icon_ad5oq7xv_ON_TAP');
                         if (widget.jobs!.status == 'Completed') {
                           if (widget.jobs!.email == currentUserEmail) {
                             logFirebaseEvent('Icon_Navigate-To');
@@ -159,10 +158,10 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                     child: InkWell(
                       onTap: () async {
                         logFirebaseEvent(
-                            'MORE_INFORMATION_Badge_6zmr0ir8_ON_TAP');
+                            'INFORMATION_PAGE_Badge_6zmr0ir8_ON_TAP');
                         logFirebaseEvent('Badge_Navigate-To');
                         context.pushNamed(
-                          'ChatPage',
+                          'chats',
                           queryParams: {
                             'chatUser': serializeParam(
                                 rowUsersRecord, ParamType.Document),
@@ -208,7 +207,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Row(
@@ -266,12 +265,12 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      if ((widget.jobs!.photoUrl != null &&
-                                          widget.jobs!.photoUrl != ''))
+                                      if (widget.jobs!.photoUrl != null &&
+                                          widget.jobs!.photoUrl != '')
                                         InkWell(
                                           onTap: () async {
                                             logFirebaseEvent(
-                                                'MORE_INFORMATION_Image_hzwexobm_ON_TAP');
+                                                'INFORMATION_PAGE_Image_hzwexobm_ON_TAP');
                                             logFirebaseEvent(
                                                 'Image_Expand-Image');
                                             await Navigator.push(
@@ -332,7 +331,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                           clipBehavior:
                                               Clip.antiAliasWithSaveLayer,
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                              .primaryBackground,
                                           elevation: 0,
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -373,12 +372,12 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                                                           .bold,
                                                                 ),
                                                           ),
-                                                          if ((widget.jobs!
+                                                          if (widget.jobs!
                                                                       .notes !=
                                                                   null &&
                                                               widget.jobs!
                                                                       .notes !=
-                                                                  ''))
+                                                                  '')
                                                             Text(
                                                               widget
                                                                   .jobs!.notes!,
@@ -420,7 +419,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                         clipBehavior:
                                             Clip.antiAliasWithSaveLayer,
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                            .primaryBackground,
                                         elevation: 0,
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -513,7 +512,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                         clipBehavior:
                                             Clip.antiAliasWithSaveLayer,
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                            .primaryBackground,
                                         elevation: 0,
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -641,7 +640,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                         clipBehavior:
                                             Clip.antiAliasWithSaveLayer,
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                            .primaryBackground,
                                         elevation: 0,
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -769,7 +768,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                         clipBehavior:
                                             Clip.antiAliasWithSaveLayer,
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                            .primaryBackground,
                                         elevation: 0,
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -912,7 +911,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .secondaryBackground,
+                                                      .primaryBackground,
                                                   borderRadius:
                                                       BorderRadius.circular(15),
                                                 ),
@@ -1043,7 +1042,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                                                       18,
                                                                       20,
                                                                       18,
-                                                                      0),
+                                                                      40),
                                                           child: Material(
                                                             color: Colors
                                                                 .transparent,
@@ -1063,16 +1062,15 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                                                       .width,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
+                                                                color: Color(
+                                                                    0x00FFFFFF),
                                                                 image:
                                                                     DecorationImage(
                                                                   fit: BoxFit
-                                                                      .none,
+                                                                      .cover,
                                                                   image: Image
-                                                                      .network(
-                                                                    '',
+                                                                      .asset(
+                                                                    'assets/images/Vector_(2).png',
                                                                   ).image,
                                                                 ),
                                                                 borderRadius:
@@ -1087,7 +1085,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                                                             12,
                                                                             30,
                                                                             12,
-                                                                            20),
+                                                                            40),
                                                                 child: Column(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -1106,7 +1104,7 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                                                             fontFamily:
                                                                                 'Open Sans',
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                                FlutterFlowTheme.of(context).textColor,
                                                                           ),
                                                                     ),
                                                                     Row(
@@ -1194,38 +1192,33 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                                                         ),
                                                                       ),
                                                                     ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              18,
+                                                                              20,
+                                                                              18,
+                                                                              30),
+                                                                      child:
+                                                                          Text(
+                                                                        FFLocalizations.of(context)
+                                                                            .getText(
+                                                                          'ifecsh2u' /* Your rating is really importan... */,
+                                                                        ),
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Open Sans',
+                                                                              color: FlutterFlowTheme.of(context).textColor,
+                                                                            ),
+                                                                      ),
+                                                                    ),
                                                                   ],
                                                                 ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      18,
-                                                                      20,
-                                                                      18,
-                                                                      30),
-                                                          child: Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                              'ifecsh2u' /* Your rating is really importan... */,
-                                                            ),
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                ),
                                                           ),
                                                         ),
                                                       ],
@@ -1240,7 +1233,14 @@ class _MoreInformationWidgetState extends State<MoreInformationWidget> {
                                     ],
                                   ),
                                 ),
-                                EmptyListWidget(),
+                                SvgPicture.asset(
+                                  'assets/images/Theme=Accent,_Content=Results.svg',
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.5,
+                                  fit: BoxFit.cover,
+                                ),
                               ],
                             ),
                           ),

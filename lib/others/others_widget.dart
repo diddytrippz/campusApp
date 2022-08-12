@@ -47,12 +47,12 @@ class _OthersWidgetState extends State<OthersWidget> {
           borderWidth: 1,
           buttonSize: 54,
           icon: Icon(
-            FFIcons.kic11,
+            Icons.arrow_back_ios,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 22,
+            size: 25,
           ),
           onPressed: () async {
-            logFirebaseEvent('OTHERS_PAGE_ic11_ICN_ON_TAP');
+            logFirebaseEvent('OTHERS_PAGE_arrow_back_ios_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -69,7 +69,7 @@ class _OthersWidgetState extends State<OthersWidget> {
         ),
         actions: [],
         centerTitle: true,
-        elevation: 2,
+        elevation: 1,
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(

@@ -80,7 +80,7 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                     logFirebaseEvent('BTM_NV_COMP_Column_196qr9mn_ON_TAP');
                     logFirebaseEvent('Column_Navigate-To');
                     context.pushNamed(
-                      'messagesPage',
+                      'messages',
                       extra: <String, dynamic>{
                         kTransitionInfoKey: TransitionInfo(
                           hasTransition: true,
@@ -145,7 +145,7 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                       logFirebaseEvent('BTM_NV_COMP_Column_10yz9v5g_ON_TAP');
                       logFirebaseEvent('Column_Navigate-To');
                       context.pushNamed(
-                        'homePage',
+                        'home',
                         extra: <String, dynamic>{
                           kTransitionInfoKey: TransitionInfo(
                             hasTransition: true,
@@ -209,7 +209,7 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                     logFirebaseEvent('BTM_NV_COMP_Column_r1wojaej_ON_TAP');
                     logFirebaseEvent('Column_Navigate-To');
                     context.pushNamed(
-                      'settingsPage',
+                      'settings',
                       extra: <String, dynamic>{
                         kTransitionInfoKey: TransitionInfo(
                           hasTransition: true,

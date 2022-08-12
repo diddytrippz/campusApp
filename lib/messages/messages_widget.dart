@@ -5,6 +5,7 @@ import '../components/side_nav_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -12,14 +13,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-class MessagesPageWidget extends StatefulWidget {
-  const MessagesPageWidget({Key? key}) : super(key: key);
+class MessagesWidget extends StatefulWidget {
+  const MessagesWidget({Key? key}) : super(key: key);
 
   @override
-  _MessagesPageWidgetState createState() => _MessagesPageWidgetState();
+  _MessagesWidgetState createState() => _MessagesWidgetState();
 }
 
-class _MessagesPageWidgetState extends State<MessagesPageWidget> {
+class _MessagesWidgetState extends State<MessagesWidget> {
   PagingController<DocumentSnapshot?, ChatsRecord>? _pagingController;
   Query? _pagingQuery;
   List<StreamSubscription?> _streamSubscriptions = [];
@@ -29,8 +30,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'messagesPage'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'messages'});
   }
 
   @override
@@ -43,7 +43,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: Stack(
         children: [
           Row(
@@ -104,9 +104,9 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                             child: InkWell(
                               onTap: () async {
                                 logFirebaseEvent(
-                                    'MESSAGES_PAGE_PAGE_Icon_wc44fviu_ON_TAP');
+                                    'MESSAGES_PAGE_Icon_wc44fviu_ON_TAP');
                                 logFirebaseEvent('Icon_Navigate-To');
-                                context.pushNamed('usersSearch');
+                                context.pushNamed('search');
                               },
                               child: Icon(
                                 FFIcons.kic25,
@@ -118,158 +118,180 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 8),
-                      child: AuthUserStreamWidget(
-                        child: FutureBuilder<List<UsersRecord>>(
-                          future: queryUsersRecordOnce(
-                            queryBuilder: (usersRecord) => usersRecord
-                                .where('building',
-                                    isEqualTo: valueOrDefault(
-                                                currentUserDocument?.building,
-                                                '') !=
-                                            ''
-                                        ? valueOrDefault(
-                                            currentUserDocument?.building, '')
-                                        : null)
-                                .where('role', isEqualTo: 'Admin'),
-                            limit: 10,
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 60,
-                                  height: 60,
-                                  child: SpinKitPulse(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 60,
+                    if (!isWeb)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 8),
+                        child: AuthUserStreamWidget(
+                          child: FutureBuilder<List<UsersRecord>>(
+                            future: queryUsersRecordOnce(
+                              queryBuilder: (usersRecord) => usersRecord
+                                  .where('building',
+                                      isEqualTo: valueOrDefault(
+                                                  currentUserDocument?.building,
+                                                  '') !=
+                                              ''
+                                          ? valueOrDefault(
+                                              currentUserDocument?.building, '')
+                                          : null)
+                                  .where('role', isEqualTo: 'Admin'),
+                              limit: 10,
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 60,
+                                    height: 60,
+                                    child: SpinKitPulse(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 60,
+                                    ),
                                   ),
-                                ),
-                              );
-                            }
-                            List<UsersRecord> rowUsersRecordList = snapshot
-                                .data!
-                                .where((u) => u.uid != currentUserUid)
-                                .toList();
-                            return SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: List.generate(
-                                    rowUsersRecordList.length, (rowIndex) {
-                                  final rowUsersRecord =
-                                      rowUsersRecordList[rowIndex];
-                                  return Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 0, 8, 0),
-                                        child: InkWell(
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'MESSAGES_Container_ikxkobad_ON_TAP');
-                                            if (rowUsersRecord.room ==
-                                                'Management') {
+                                );
+                              }
+                              List<UsersRecord> rowUsersRecordList = snapshot
+                                  .data!
+                                  .where((u) => u.uid != currentUserUid)
+                                  .toList();
+                              return SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: List.generate(
+                                      rowUsersRecordList.length, (rowIndex) {
+                                    final rowUsersRecord =
+                                        rowUsersRecordList[rowIndex];
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 0, 4, 0),
+                                          child: InkWell(
+                                            onTap: () async {
                                               logFirebaseEvent(
-                                                  'Container_Show-Snack-Bar');
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'Contact unavailable',
-                                                    style: TextStyle(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
+                                                  'MESSAGES_PAGE_Container_ikxkobad_ON_TAP');
+                                              if (rowUsersRecord.room ==
+                                                  'Management') {
+                                                logFirebaseEvent(
+                                                    'Container_Show-Snack-Bar');
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Contact unavailable',
+                                                      style: TextStyle(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                      ),
                                                     ),
+                                                    duration: Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryText,
                                                   ),
-                                                  duration: Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
+                                                );
+                                                return;
+                                              } else {
+                                                logFirebaseEvent(
+                                                    'Container_Navigate-To');
+                                                context.pushNamed(
+                                                  'chats',
+                                                  queryParams: {
+                                                    'chatUser': serializeParam(
+                                                        rowUsersRecord,
+                                                        ParamType.Document),
+                                                  }.withoutNulls,
+                                                  extra: <String, dynamic>{
+                                                    'chatUser': rowUsersRecord,
+                                                  },
+                                                );
+                                              }
+                                            },
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              elevation: 0,
+                                              shape: const CircleBorder(),
+                                              child: Container(
+                                                width: 70,
+                                                height: 70,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.transparent,
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                    color: Color(0xFF4E39F9),
+                                                    width: 3,
+                                                  ),
                                                 ),
-                                              );
-                                              return;
-                                            } else {
-                                              logFirebaseEvent(
-                                                  'Container_Navigate-To');
-                                              context.pushNamed(
-                                                'ChatPage',
-                                                queryParams: {
-                                                  'chatUser': serializeParam(
-                                                      rowUsersRecord,
-                                                      ParamType.Document),
-                                                }.withoutNulls,
-                                                extra: <String, dynamic>{
-                                                  'chatUser': rowUsersRecord,
-                                                },
-                                              );
-                                            }
-                                          },
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            elevation: 10,
-                                            shape: const CircleBorder(),
-                                            child: Container(
-                                              width: 70,
-                                              height: 70,
-                                              decoration: BoxDecoration(
-                                                color: Colors.transparent,
-                                                image: DecorationImage(
-                                                  fit: BoxFit.contain,
-                                                  image: Image.asset(
-                                                    'assets/images/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpeg',
-                                                  ).image,
-                                                ),
-                                                shape: BoxShape.circle,
-                                                border: Border.all(
-                                                  color: Color(0xFF4E39F9),
-                                                  width: 3,
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0, 0),
+                                                  child: Text(
+                                                    functions.initials(
+                                                        rowUsersRecord
+                                                            .displayName)!,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 28,
+                                                          fontWeight:
+                                                              FontWeight.w800,
+                                                        ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 6, 0, 0),
-                                        child: AutoSizeText(
-                                          rowUsersRecord.displayName!
-                                              .maybeHandleOverflow(
-                                            maxChars: 8,
-                                            replacement: '…',
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8, 6, 0, 0),
+                                          child: AutoSizeText(
+                                            rowUsersRecord.displayName!
+                                                .maybeHandleOverflow(
+                                              maxChars: 8,
+                                              replacement: '…',
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Open Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                              ),
                                         ),
-                                      ),
-                                    ],
-                                  );
-                                }),
-                              ),
-                            );
-                          },
+                                      ],
+                                    );
+                                  }),
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ),
-                    ),
                     Expanded(
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 80),
@@ -361,10 +383,10 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                             ),
                             noItemsFoundIndicatorBuilder: (_) => Center(
                               child: SvgPicture.asset(
-                                'assets/images/undraw_the_search_s0xf.svg',
-                                width: MediaQuery.of(context).size.width * 0.8,
+                                'assets/images/Theme=Accent,_Content=Empty_chat.svg',
+                                width: MediaQuery.of(context).size.width * 0.45,
                                 height:
-                                    MediaQuery.of(context).size.height * 0.5,
+                                    MediaQuery.of(context).size.height * 0.45,
                               ),
                             ),
                             itemBuilder: (context, _, listViewIndex) {
@@ -381,7 +403,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                                         FFChatInfo(listViewChatsRecord);
                                     return FFChatPreview(
                                       onTap: () => context.pushNamed(
-                                        'ChatPage',
+                                        'chats',
                                         queryParams: {
                                           'chatUser': serializeParam(
                                               chatInfo.otherUsers.length == 1
@@ -411,7 +433,7 @@ class _MessagesPageWidgetState extends State<MessagesPageWidget> {
                                       title: chatInfo.chatPreviewTitle(),
                                       userProfilePic: chatInfo.chatPreviewPic(),
                                       color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                          .primaryBackground,
                                       unreadColor: Color(0xFF0078FF),
                                       titleTextStyle: GoogleFonts.getFont(
                                         'Open Sans',

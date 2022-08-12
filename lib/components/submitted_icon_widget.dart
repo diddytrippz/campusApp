@@ -112,7 +112,7 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                             logFirebaseEvent(
                                 'SUBMITTED_ICON_COMP_CONTINUE_BTN_ON_TAP');
                             logFirebaseEvent('Button_Navigate-To');
-                            context.goNamed('viewPage');
+                            context.pushNamed('view');
                           },
                           text: FFLocalizations.of(context).getText(
                             '6vhy0doc' /* Continue */,

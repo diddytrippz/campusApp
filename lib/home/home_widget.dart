@@ -11,14 +11,14 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({Key? key}) : super(key: key);
+class HomeWidget extends StatefulWidget {
+  const HomeWidget({Key? key}) : super(key: key);
 
   @override
-  _HomePageWidgetState createState() => _HomePageWidgetState();
+  _HomeWidgetState createState() => _HomeWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget> {
+class _HomeWidgetState extends State<HomeWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -26,19 +26,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     super.initState();
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      logFirebaseEvent('HOME_PAGE_PAGE_homePage_ON_PAGE_LOAD');
-      logFirebaseEvent('homePage_Update-Local-State');
+      logFirebaseEvent('HOME_PAGE_home_ON_PAGE_LOAD');
+      logFirebaseEvent('home_Update-Local-State');
       setState(() => FFAppState().btmNavVis = false);
     });
 
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'homePage'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'home'});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Container(
@@ -137,7 +137,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             buttonSize: 50,
                                             fillColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
+                                                    .primaryBackground,
                                             icon: Icon(
                                               FFIcons.kic19,
                                               color:
@@ -147,10 +147,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             ),
                                             onPressed: () async {
                                               logFirebaseEvent(
-                                                  'HOME_PAGE_PAGE_ic19_ICN_ON_TAP');
+                                                  'HOME_PAGE_ic19_ICN_ON_TAP');
                                               logFirebaseEvent(
                                                   'IconButton_Navigate-To');
-                                              context.pushNamed('messagesPage');
+                                              context.pushNamed('messages');
                                             },
                                           ),
                                         ),
@@ -210,7 +210,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               buttonSize: 50,
                                               fillColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                      .primaryBackground,
                                               icon: Icon(
                                                 FFIcons.kic15,
                                                 color:
@@ -220,7 +220,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               ),
                                               onPressed: () async {
                                                 logFirebaseEvent(
-                                                    'HOME_PAGE_PAGE_ic15_ICN_ON_TAP');
+                                                    'HOME_PAGE_ic15_ICN_ON_TAP');
                                                 logFirebaseEvent(
                                                     'IconButton_Navigate-To');
                                                 context
@@ -242,83 +242,69 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                    .primaryBackground,
                               ),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Material(
-                                    color: Colors.transparent,
-                                    elevation: 0,
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.1,
-                                      decoration: BoxDecoration(
-                                        color: Color(0x00F2F2F2),
-                                      ),
-                                      child: Visibility(
-                                        visible: responsiveVisibility(
-                                          context: context,
-                                          tablet: false,
-                                          desktop: false,
+                                  if (!isWeb)
+                                    Material(
+                                      color: Colors.transparent,
+                                      elevation: 0,
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.1,
+                                        decoration: BoxDecoration(
+                                          color: Color(0x00F2F2F2),
                                         ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16, 15, 16, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                10, 0, 0, 0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'pmvue1v1' /* Hi, */,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .campusGrey,
-                                                                fontSize: 16,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
-                                                        AuthUserStreamWidget(
-                                                          child: Text(
-                                                            currentUserDisplayName,
+                                        child: Visibility(
+                                          visible: responsiveVisibility(
+                                            context: context,
+                                            tablet: false,
+                                            desktop: false,
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16, 15, 16, 0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10, 0, 0, 0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'pmvue1v1' /* Hi, */,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText1
@@ -327,94 +313,115 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       'Open Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primaryText,
+                                                                      .campusGrey,
                                                                   fontSize: 16,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w600,
+                                                                          .w500,
                                                                 ),
                                                           ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 12, 0),
-                                                    child: InkWell(
-                                                      onTap: () async {
-                                                        logFirebaseEvent(
-                                                            'HOME_PAGE_PAGE_Badge_m9cdh5tk_ON_TAP');
-                                                        logFirebaseEvent(
-                                                            'Badge_Navigate-To');
-                                                        context.pushNamed(
-                                                            'notifications');
-                                                      },
-                                                      child: Badge(
-                                                        badgeContent: Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            '8ih9im8a' /*   */,
+                                                          AuthUserStreamWidget(
+                                                            child: Text(
+                                                              currentUserDisplayName,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    fontSize:
+                                                                        16,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                            ),
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 12,
-                                                              ),
-                                                        ),
-                                                        showBadge: true,
-                                                        shape:
-                                                            BadgeShape.circle,
-                                                        badgeColor:
-                                                            FlutterFlowTheme.of(
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 12, 0),
+                                                      child: InkWell(
+                                                        onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'HOME_PAGE_Badge_m9cdh5tk_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Badge_Navigate-To');
+                                                          context.pushNamed(
+                                                              'notifications');
+                                                        },
+                                                        child: Badge(
+                                                          badgeContent: Text(
+                                                            FFLocalizations.of(
                                                                     context)
-                                                                .campusRed,
-                                                        elevation: 4,
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    6, 6, 6, 6),
-                                                        position: BadgePosition
-                                                            .topEnd(),
-                                                        animationType:
-                                                            BadgeAnimationType
-                                                                .scale,
-                                                        toAnimate: true,
-                                                        child: Icon(
-                                                          FFIcons.kic16,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 24,
+                                                                .getText(
+                                                              '8ih9im8a' /*   */,
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 12,
+                                                                ),
+                                                          ),
+                                                          showBadge: true,
+                                                          shape:
+                                                              BadgeShape.circle,
+                                                          badgeColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .campusRed,
+                                                          elevation: 4,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(6,
+                                                                      6, 6, 6),
+                                                          position:
+                                                              BadgePosition
+                                                                  .topEnd(),
+                                                          animationType:
+                                                              BadgeAnimationType
+                                                                  .scale,
+                                                          toAnimate: true,
+                                                          child: Icon(
+                                                            FFIcons.kic16,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            size: 24,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 25, 0, 0),
@@ -479,7 +486,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               child: InkWell(
                                                 onTap: () async {
                                                   logFirebaseEvent(
-                                                      'HOME_PAGE_PAGE_activityButton_ON_TAP');
+                                                      'HOME_PAGE_activityButton_ON_TAP');
                                                   logFirebaseEvent(
                                                       'activityButton_Navigate-To');
                                                   context
@@ -598,7 +605,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               child: InkWell(
                                                 onTap: () async {
                                                   logFirebaseEvent(
-                                                      'HOME_PAGE_PAGE_activityButton_ON_TAP');
+                                                      'HOME_PAGE_activityButton_ON_TAP');
                                                   logFirebaseEvent(
                                                       'activityButton_Navigate-To');
                                                   context.pushNamed('Plumbing');
@@ -726,7 +733,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   child: InkWell(
                                                     onTap: () async {
                                                       logFirebaseEvent(
-                                                          'HOME_PAGE_PAGE_activityButton_ON_TAP');
+                                                          'HOME_PAGE_activityButton_ON_TAP');
                                                       logFirebaseEvent(
                                                           'activityButton_Navigate-To');
                                                       context.pushNamed(
@@ -845,7 +852,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   child: InkWell(
                                                     onTap: () async {
                                                       logFirebaseEvent(
-                                                          'HOME_PAGE_PAGE_activityButton_ON_TAP');
+                                                          'HOME_PAGE_activityButton_ON_TAP');
                                                       logFirebaseEvent(
                                                           'activityButton_Navigate-To');
                                                       context.pushNamed(
@@ -974,7 +981,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     child: InkWell(
                                                       onTap: () async {
                                                         logFirebaseEvent(
-                                                            'HOME_PAGE_PAGE_activityButton_ON_TAP');
+                                                            'HOME_PAGE_activityButton_ON_TAP');
                                                         logFirebaseEvent(
                                                             'activityButton_Navigate-To');
                                                         context.pushNamed(
@@ -1099,7 +1106,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     child: InkWell(
                                                       onTap: () async {
                                                         logFirebaseEvent(
-                                                            'HOME_PAGE_PAGE_activityButton_ON_TAP');
+                                                            'HOME_PAGE_activityButton_ON_TAP');
                                                         logFirebaseEvent(
                                                             'activityButton_Navigate-To');
                                                         context.pushNamed(
@@ -1234,7 +1241,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     child: InkWell(
                                                       onTap: () async {
                                                         logFirebaseEvent(
-                                                            'HOME_PAGE_PAGE_activityButton_ON_TAP');
+                                                            'HOME_PAGE_activityButton_ON_TAP');
                                                         logFirebaseEvent(
                                                             'activityButton_Navigate-To');
                                                         context.pushNamed(
@@ -1359,7 +1366,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     child: InkWell(
                                                       onTap: () async {
                                                         logFirebaseEvent(
-                                                            'HOME_PAGE_PAGE_activityButton_ON_TAP');
+                                                            'HOME_PAGE_activityButton_ON_TAP');
                                                         logFirebaseEvent(
                                                             'activityButton_Navigate-To');
                                                         context.pushNamed(

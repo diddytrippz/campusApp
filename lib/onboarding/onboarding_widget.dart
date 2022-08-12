@@ -166,7 +166,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                   onPressed: () async {
                     logFirebaseEvent('ONBOARDING_PAGE_LOGIN_BTN_ON_TAP');
                     logFirebaseEvent('Button_Navigate-To');
-                    context.pushNamed('loginPage');
+                    context.pushNamed('login');
                   },
                   text: FFLocalizations.of(context).getText(
                     '5fjqqbhk' /* Login */,
@@ -194,7 +194,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                   onPressed: () async {
                     logFirebaseEvent('ONBOARDING_PAGE_REGISTER_BTN_ON_TAP');
                     logFirebaseEvent('Button_Navigate-To');
-                    context.pushNamed('loginPage');
+                    context.pushNamed('login');
                   },
                   text: FFLocalizations.of(context).getText(
                     'toce9ejh' /* Register */,

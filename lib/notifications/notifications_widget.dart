@@ -33,7 +33,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: Stack(
         children: [
           Row(
@@ -208,15 +208,16 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                 .isEmpty) {
                                               return Center(
                                                 child: SvgPicture.asset(
-                                                  'assets/images/undraw_the_search_s0xf.svg',
+                                                  'assets/images/Theme=Accent,_Content=Notifications.svg',
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width *
-                                                      0.5,
+                                                      0.45,
                                                   height: MediaQuery.of(context)
                                                           .size
                                                           .height *
                                                       0.5,
+                                                  fit: BoxFit.scaleDown,
                                                 ),
                                               );
                                             }
@@ -459,15 +460,16 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     30, 40, 30, 40),
                                             child: SvgPicture.asset(
-                                              'assets/images/undraw_the_search_s0xf.svg',
+                                              'assets/images/Theme=Accent,_Content=Notifications.svg',
                                               width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
+                                                      .size
+                                                      .width *
+                                                  0.45,
                                               height: MediaQuery.of(context)
                                                       .size
                                                       .height *
                                                   0.5,
-                                              fit: BoxFit.contain,
+                                              fit: BoxFit.scaleDown,
                                             ),
                                           ),
                                         ),
@@ -510,15 +512,16 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                               .isEmpty) {
                                             return Center(
                                               child: SvgPicture.asset(
-                                                'assets/images/undraw_the_search_s0xf.svg',
+                                                'assets/images/Theme=Accent,_Content=Notifications.svg',
                                                 width: MediaQuery.of(context)
                                                         .size
                                                         .width *
-                                                    0.5,
+                                                    0.45,
                                                 height: MediaQuery.of(context)
                                                         .size
                                                         .height *
                                                     0.5,
+                                                fit: BoxFit.scaleDown,
                                               ),
                                             );
                                           }

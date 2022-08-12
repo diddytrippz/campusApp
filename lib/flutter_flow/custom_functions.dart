@@ -17,3 +17,16 @@ String capitalia(String? inputtext) {
   } else
     return inputtext.toUpperCase();
 }
+
+String? initials(String? myNames) {
+  // return the first letter of the word
+  if (myNames == null) return null;
+  final List<String> letterBag = [];
+  List<String> splitNames = myNames.split(' ');
+  splitNames.forEach((element) {
+    letterBag.add(element[0]);
+  });
+  return letterBag.reduce((a, b) {
+    return a + b;
+  });
+}

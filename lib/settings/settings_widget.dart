@@ -5,6 +5,7 @@ import '../components/language_widget.dart';
 import '../components/side_nav_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -12,28 +13,27 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SettingsPageWidget extends StatefulWidget {
-  const SettingsPageWidget({Key? key}) : super(key: key);
+class SettingsWidget extends StatefulWidget {
+  const SettingsWidget({Key? key}) : super(key: key);
 
   @override
-  _SettingsPageWidgetState createState() => _SettingsPageWidgetState();
+  _SettingsWidgetState createState() => _SettingsWidgetState();
 }
 
-class _SettingsPageWidgetState extends State<SettingsPageWidget> {
+class _SettingsWidgetState extends State<SettingsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'settingsPage'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'settings'});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Stack(
@@ -60,38 +60,39 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 60, 0, 20),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  FFLocalizations.of(context).getText(
-                                    '6mg9ic5b' /* Settings */,
+                          if (!isWeb)
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 60, 0, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    FFLocalizations.of(context).getText(
+                                      '6mg9ic5b' /* Settings */,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .title2
+                                        .override(
+                                          fontFamily: 'Open Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .title2
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 12, 12, 10),
+                                EdgeInsetsDirectional.fromSTEB(12, 32, 12, 10),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
+                                    .secondaryBackground,
                                 borderRadius: BorderRadius.circular(18),
                                 border: Border.all(
                                   color: Colors.transparent,
@@ -113,30 +114,41 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                       children: [
                                         Align(
                                           alignment: AlignmentDirectional(0, 0),
-                                          child: AuthUserStreamWidget(
-                                            child: Material(
-                                              color: Colors.transparent,
-                                              elevation: 1,
-                                              shape: const CircleBorder(),
-                                              child: Container(
-                                                width: 65,
-                                                height: 65,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0xFFEEEEEE),
-                                                  image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image:
-                                                        CachedNetworkImageProvider(
-                                                      valueOrDefault<String>(
-                                                        currentUserPhoto,
-                                                        'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg',
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  shape: BoxShape.circle,
-                                                  border: Border.all(
-                                                    color: Color(0xFF4E39F9),
-                                                    width: 3,
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            elevation: 1,
+                                            shape: const CircleBorder(),
+                                            child: Container(
+                                              width: 70,
+                                              height: 70,
+                                              decoration: BoxDecoration(
+                                                color: Color(0x00FFFFFF),
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                  color: Color(0xFF4E39F9),
+                                                  width: 4,
+                                                ),
+                                              ),
+                                              child: Align(
+                                                alignment:
+                                                    AlignmentDirectional(0, 0),
+                                                child: AuthUserStreamWidget(
+                                                  child: Text(
+                                                    functions.initials(
+                                                        currentUserDisplayName)!,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 30,
+                                                          fontWeight:
+                                                              FontWeight.w800,
+                                                        ),
                                                   ),
                                                 ),
                                               ),
@@ -243,10 +255,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'SETTINGS_ListTile_7x0b896n_ON_TAP');
+                                            'SETTINGS_PAGE_ListTile_7x0b896n_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Navigate-To');
-                                        context.pushNamed('profilePage');
+                                        context.pushNamed('profile');
                                       },
                                       child: ListTile(
                                         leading: Icon(
@@ -267,6 +279,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 fontSize: 18,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                         ),
                                         trailing: Icon(
@@ -295,7 +308,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
+                                    .secondaryBackground,
                                 borderRadius: BorderRadius.circular(18),
                                 border: Border.all(
                                   color: Colors.transparent,
@@ -311,10 +324,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'SETTINGS_ListTile_ty8u4mc1_ON_TAP');
+                                            'SETTINGS_PAGE_ListTile_ty8u4mc1_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Navigate-To');
-                                        context.pushNamed('messagesPage');
+                                        context.pushNamed('messages');
                                       },
                                       child: ListTile(
                                         leading: Icon(
@@ -335,6 +348,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 fontSize: 18,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                         ),
                                         trailing: Icon(
@@ -365,7 +379,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'SETTINGS_ListTile_qpqshfu5_ON_TAP');
+                                            'SETTINGS_PAGE_ListTile_qpqshfu5_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Bottom-Sheet');
                                         await showModalBottomSheet(
@@ -401,6 +415,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 fontSize: 18,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                         ),
                                         trailing: Icon(
@@ -429,7 +444,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
+                                    .secondaryBackground,
                                 borderRadius: BorderRadius.circular(18),
                                 border: Border.all(
                                   color: Colors.transparent,
@@ -445,7 +460,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'SETTINGS_ListTile_dcv0ybyv_ON_TAP');
+                                            'SETTINGS_PAGE_ListTile_dcv0ybyv_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Show-Snack-Bar');
                                         ScaffoldMessenger.of(context)
@@ -486,6 +501,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 fontSize: 18,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                         ),
                                         trailing: Icon(
@@ -520,10 +536,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'SETTINGS_ListTile_anbw2i5r_ON_TAP');
+                                            'SETTINGS_PAGE_ListTile_anbw2i5r_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Navigate-To');
-                                        context.pushNamed('ruleBook');
+                                        context.pushNamed('rules');
                                       },
                                       child: ListTile(
                                         leading: FaIcon(
@@ -544,6 +560,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 fontSize: 18,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                         ),
                                         trailing: Icon(
@@ -578,7 +595,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'SETTINGS_ListTile_upo1bc6t_ON_TAP');
+                                            'SETTINGS_PAGE_ListTile_upo1bc6t_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Navigate-To');
                                         context.pushNamed('notifications');
@@ -602,6 +619,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 fontSize: 18,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                         ),
                                         trailing: Icon(
@@ -630,7 +648,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
+                                    .secondaryBackground,
                                 borderRadius: BorderRadius.circular(18),
                                 border: Border.all(
                                   color: Colors.transparent,
@@ -646,7 +664,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'SETTINGS_ListTile_rdqryog8_ON_TAP');
+                                            'SETTINGS_PAGE_ListTile_rdqryog8_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Bottom-Sheet');
                                         await showModalBottomSheet(
@@ -681,6 +699,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 fontSize: 18,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                         ),
                                         trailing: Icon(
@@ -715,7 +734,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'SETTINGS_ListTile_nodnox8i_ON_TAP');
+                                            'SETTINGS_PAGE_ListTile_nodnox8i_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Launch-U-R-L');
                                         await launchURL(
@@ -740,6 +759,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 fontSize: 18,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                         ),
                                         trailing: Icon(
@@ -774,12 +794,11 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                     child: InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
-                                            'SETTINGS_ListTile_8xit2csm_ON_TAP');
+                                            'SETTINGS_PAGE_ListTile_8xit2csm_ON_TAP');
                                         logFirebaseEvent('ListTile_Auth');
                                         GoRouter.of(context).prepareAuthEvent();
                                         await signOut();
-                                        context.goNamedAuth(
-                                            'loginPage', mounted);
+                                        context.goNamedAuth('login', mounted);
                                       },
                                       child: ListTile(
                                         leading: FaIcon(
@@ -800,6 +819,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 fontSize: 18,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                         ),
                                         trailing: Icon(

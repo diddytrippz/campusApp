@@ -7,20 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RuleBookWidget extends StatefulWidget {
-  const RuleBookWidget({Key? key}) : super(key: key);
+class RulesWidget extends StatefulWidget {
+  const RulesWidget({Key? key}) : super(key: key);
 
   @override
-  _RuleBookWidgetState createState() => _RuleBookWidgetState();
+  _RulesWidgetState createState() => _RulesWidgetState();
 }
 
-class _RuleBookWidgetState extends State<RuleBookWidget> {
+class _RulesWidgetState extends State<RulesWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'ruleBook'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'rules'});
   }
 
   @override
@@ -28,7 +28,7 @@ class _RuleBookWidgetState extends State<RuleBookWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -36,12 +36,12 @@ class _RuleBookWidgetState extends State<RuleBookWidget> {
           borderWidth: 1,
           buttonSize: 54,
           icon: Icon(
-            FFIcons.kic11,
+            Icons.arrow_back_ios,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 22,
+            size: 25,
           ),
           onPressed: () async {
-            logFirebaseEvent('RULE_BOOK_PAGE_ic11_ICN_ON_TAP');
+            logFirebaseEvent('RULES_PAGE_arrow_back_ios_ICN_ON_TAP');
             logFirebaseEvent('IconButton_Navigate-Back');
             context.pop();
           },
@@ -60,7 +60,7 @@ class _RuleBookWidgetState extends State<RuleBookWidget> {
         centerTitle: false,
         elevation: 1,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
