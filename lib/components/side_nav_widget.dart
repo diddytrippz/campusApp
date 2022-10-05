@@ -103,6 +103,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_rgq06ob3_ON_TAP');
                         logFirebaseEvent('Row_Navigate-To');
+
                         context.pushNamed('home');
                       },
                       child: Row(
@@ -142,6 +143,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_nk176y9v_ON_TAP');
                         logFirebaseEvent('Row_Navigate-To');
+
                         context.pushNamed('view');
                       },
                       child: Row(
@@ -181,6 +183,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_84dxzcmt_ON_TAP');
                         logFirebaseEvent('Row_Navigate-To');
+
                         context.pushNamed('messages');
                       },
                       child: Row(
@@ -220,6 +223,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_t1032x3x_ON_TAP');
                         logFirebaseEvent('Row_Navigate-To');
+
                         context.pushNamed('search');
                       },
                       child: Row(
@@ -271,6 +275,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_fhkcqd4v_ON_TAP');
                         logFirebaseEvent('Row_Navigate-To');
+
                         context.pushNamed('notifications');
                       },
                       child: Row(
@@ -310,6 +315,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_0ylqr4xj_ON_TAP');
                         logFirebaseEvent('Row_Navigate-To');
+
                         context.pushNamed('settings');
                       },
                       child: Row(
@@ -351,6 +357,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                         logFirebaseEvent('Row_Auth');
                         GoRouter.of(context).prepareAuthEvent();
                         await signOut();
+
                         context.goNamedAuth('login', mounted);
                       },
                       child: Row(

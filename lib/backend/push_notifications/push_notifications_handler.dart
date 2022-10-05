@@ -69,13 +69,11 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
       ? Container(
           color: FlutterFlowTheme.of(context).primaryColor,
           child: Center(
-            child: Builder(
-              builder: (context) => Image.asset(
-                'assets/images/campus_logo_1.png',
-                width: MediaQuery.of(context).size.width * 0.75,
-                height: MediaQuery.of(context).size.height * 0.75,
-                fit: BoxFit.scaleDown,
-              ),
+            child: Image.asset(
+              'assets/images/campus_logo_1.png',
+              width: MediaQuery.of(context).size.width * 0.75,
+              height: MediaQuery.of(context).size.height * 0.75,
+              fit: BoxFit.scaleDown,
             ),
           ),
         )
@@ -116,6 +114,9 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
       ),
   'notifications': (data) async => NotificationsWidget(),
   'search': (data) async => SearchWidget(),
+  'voucher': (data) async => VoucherWidget(),
+  'rewards': (data) async => RewardsWidget(),
+  'testRow': (data) async => TestRowWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

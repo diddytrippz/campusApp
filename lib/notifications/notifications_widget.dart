@@ -369,8 +369,11 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                                       children: [
                                                                         Text(
                                                                           dateTimeFormat(
-                                                                              'relative',
-                                                                              columnNotificationsRecord.dateCreate!),
+                                                                            'relative',
+                                                                            columnNotificationsRecord.dateCreate!,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ),
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyText1
                                                                               .override(
@@ -673,8 +676,12 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                                     children: [
                                                                       Text(
                                                                         dateTimeFormat(
-                                                                            'relative',
-                                                                            columnNotificationsRecord.dateCreate!),
+                                                                          'relative',
+                                                                          columnNotificationsRecord
+                                                                              .dateCreate!,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyText1
                                                                             .override(

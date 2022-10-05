@@ -32,9 +32,16 @@ class _SearchWidgetState extends State<SearchWidget> {
   }
 
   @override
+  void dispose() {
+    textController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
@@ -74,7 +81,6 @@ class _SearchWidgetState extends State<SearchWidget> {
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Row(
@@ -204,6 +210,20 @@ class _SearchWidgetState extends State<SearchWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(18),
                                     ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(18),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(18),
+                                    ),
                                     filled: true,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -320,12 +340,14 @@ class _SearchWidgetState extends State<SearchWidget> {
                                             } else {
                                               logFirebaseEvent(
                                                   'userEntry_Navigate-To');
+
                                               context.pushNamed(
                                                 'chats',
                                                 queryParams: {
                                                   'chatUser': serializeParam(
-                                                      listSearrchItem,
-                                                      ParamType.Document),
+                                                    listSearrchItem,
+                                                    ParamType.Document,
+                                                  ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   'chatUser': listSearrchItem,

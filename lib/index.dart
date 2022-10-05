@@ -21,3 +21,6 @@ export 'messages/messages_widget.dart' show MessagesWidget;
 export 'information/information_widget.dart' show InformationWidget;
 export 'notifications/notifications_widget.dart' show NotificationsWidget;
 export 'search/search_widget.dart' show SearchWidget;
+export 'voucher/voucher_widget.dart' show VoucherWidget;
+export 'rewards/rewards_widget.dart' show RewardsWidget;
+export 'test_row/test_row_widget.dart' show TestRowWidget;

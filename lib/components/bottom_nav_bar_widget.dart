@@ -3,7 +3,9 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,35 +29,6 @@ class BottomNavBarWidget extends StatefulWidget {
 
 class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
     with TickerProviderStateMixin {
-  final animationsMap = {
-    'columnOnActionTriggerAnimation': AnimationInfo(
-      curve: Curves.easeIn,
-      trigger: AnimationTrigger.onActionTrigger,
-      duration: 600,
-      hideBeforeAnimating: false,
-      initialState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
-    ),
-  };
-
-  @override
-  void initState() {
-    super.initState();
-    setupTriggerAnimations(
-      animationsMap.values
-          .where((anim) => anim.trigger == AnimationTrigger.onActionTrigger),
-      this,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -90,6 +63,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                               logFirebaseEvent(
                                   'BOTTOM_NAV_BAR_Column_p4nmh717_ON_TAP');
                               logFirebaseEvent('Column_Navigate-To');
+
                               context.pushNamed(
                                 'messages',
                                 extra: <String, dynamic>{
@@ -159,6 +133,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                 logFirebaseEvent(
                                     'BOTTOM_NAV_BAR_Column_8qpxzasq_ON_TAP');
                                 logFirebaseEvent('Column_Navigate-To');
+
                                 context.pushNamed(
                                   'home',
                                   extra: <String, dynamic>{
@@ -226,6 +201,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                               logFirebaseEvent(
                                   'BOTTOM_NAV_BAR_Column_2d7e194y_ON_TAP');
                               logFirebaseEvent('Column_Navigate-To');
+
                               context.pushNamed(
                                 'settings',
                                 extra: <String, dynamic>{
@@ -291,7 +267,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                     ),
                   ),
                 ],
-              ).animated([animationsMap['columnOnActionTriggerAnimation']!]),
+              ),
             Stack(
               alignment: AlignmentDirectional(0, 1),
               children: [
@@ -342,6 +318,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                           'Column_Haptic-Feedback');
                                       HapticFeedback.selectionClick();
                                       logFirebaseEvent('Column_Navigate-To');
+
                                       context.pushNamed(
                                         'view',
                                         extra: <String, dynamic>{
@@ -375,6 +352,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                           'Column_Haptic-Feedback');
                                       HapticFeedback.selectionClick();
                                       logFirebaseEvent('Column_Navigate-To');
+
                                       context.pushNamed(
                                         'messages',
                                         extra: <String, dynamic>{
@@ -480,6 +458,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                           'Column_Haptic-Feedback');
                                       HapticFeedback.selectionClick();
                                       logFirebaseEvent('Column_Navigate-To');
+
                                       context.pushNamed(
                                         'notifications',
                                         extra: <String, dynamic>{
@@ -516,6 +495,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                           'Column_Haptic-Feedback');
                                       HapticFeedback.selectionClick();
                                       logFirebaseEvent('Column_Navigate-To');
+
                                       context.pushNamed(
                                         'settings',
                                         extra: <String, dynamic>{
@@ -564,58 +544,6 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                     ),
                   ),
                 ),
-                if (!FFAppState().btmNavVis)
-                  Align(
-                    alignment: AlignmentDirectional(0, 0),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                      child: Material(
-                        color: Colors.transparent,
-                        elevation: 50,
-                        shape: const CircleBorder(),
-                        child: Container(
-                          width: 65,
-                          height: 65,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 4,
-                                color: Color(0x33000000),
-                                offset: Offset(0, 2),
-                              )
-                            ],
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                            ),
-                          ),
-                          child: InkWell(
-                            onTap: () async {
-                              logFirebaseEvent(
-                                  'BOTTOM_NAV_BAR_Column_188tnx3r_ON_TAP');
-                              logFirebaseEvent('Column_Haptic-Feedback');
-                              HapticFeedback.selectionClick();
-                              logFirebaseEvent('Column_Update-Local-State');
-                              setState(() => FFAppState().btmNavVis = true);
-                            },
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.add,
-                                  color: FlutterFlowTheme.of(context)
-                                      .tertiaryColor,
-                                  size: 30,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
                 if (FFAppState().btmNavVis)
                   Align(
                     alignment: AlignmentDirectional(0, 0),
@@ -650,6 +578,59 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                               children: [
                                 Icon(
                                   Icons.clear_outlined,
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
+                                  size: 30,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                if (!FFAppState().btmNavVis)
+                  Align(
+                    alignment: AlignmentDirectional(0, 0),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 50,
+                        shape: const CircleBorder(),
+                        child: Container(
+                          width: 65,
+                          height: 65,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4,
+                                color: Color(0x33000000),
+                                offset: Offset(0, 2),
+                              )
+                            ],
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Color(0x0057636C),
+                              width: 0,
+                            ),
+                          ),
+                          child: InkWell(
+                            onTap: () async {
+                              logFirebaseEvent(
+                                  'BOTTOM_NAV_BAR_Column_188tnx3r_ON_TAP');
+                              logFirebaseEvent('Column_Haptic-Feedback');
+                              HapticFeedback.selectionClick();
+                              logFirebaseEvent('Column_Update-Local-State');
+                              setState(() => FFAppState().btmNavVis = true);
+                            },
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.add,
                                   color: FlutterFlowTheme.of(context)
                                       .tertiaryColor,
                                   size: 30,

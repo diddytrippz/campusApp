@@ -95,7 +95,7 @@ class _$ChatsRecordSerializer implements StructuredSerializer<ChatsRecord> {
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -171,7 +171,7 @@ class _$ChatsRecord extends ChatsRecord {
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChatsRecord([void Function(ChatsRecordBuilder)? updates]) =>
-      (new ChatsRecordBuilder()..update(updates)).build();
+      (new ChatsRecordBuilder()..update(updates))._build();
 
   _$ChatsRecord._(
       {this.users,
@@ -223,7 +223,7 @@ class _$ChatsRecord extends ChatsRecord {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ChatsRecord')
+    return (newBuiltValueToStringHelper(r'ChatsRecord')
           ..add('users', users)
           ..add('userA', userA)
           ..add('userB', userB)
@@ -312,7 +312,9 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
   }
 
   @override
-  _$ChatsRecord build() {
+  ChatsRecord build() => _build();
+
+  _$ChatsRecord _build() {
     _$ChatsRecord _$result;
     try {
       _$result = _$v ??
@@ -335,7 +337,7 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
         _lastMessageSeenBy?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'ChatsRecord', _$failedField, e.toString());
+            r'ChatsRecord', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -344,4 +346,4 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

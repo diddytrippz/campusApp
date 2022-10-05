@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'auth_util.dart';
+
 class CampusAfricaFirebaseUser {
   CampusAfricaFirebaseUser(this.user);
   User? user;
@@ -16,4 +18,9 @@ Stream<CampusAfricaFirebaseUser> campusAfricaFirebaseUserStream() =>
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<CampusAfricaFirebaseUser>(
-            (user) => currentUser = CampusAfricaFirebaseUser(user));
+      (user) {
+        currentUser = CampusAfricaFirebaseUser(user);
+        updateUserJwtTimer(user);
+        return currentUser!;
+      },
+    );

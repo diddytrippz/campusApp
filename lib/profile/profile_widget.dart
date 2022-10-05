@@ -23,6 +23,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   TextEditingController? textController1;
   TextEditingController? textController2;
   TextEditingController? textController3;
+
   late bool passwordVisibility;
   TextEditingController? textController4;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -33,12 +34,23 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'profile'});
     textController1 = TextEditingController(text: currentUserDisplayName);
     textController2 = TextEditingController(text: currentUserEmail);
-    textController3 = TextEditingController(
-        text: FFLocalizations.of(context).getText(
-      'elhlkvnh' /* Password */,
-    ));
+    textController3 = TextEditingController();
     passwordVisibility = false;
     textController4 = TextEditingController(text: FFAppState().myBio);
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+          textController3?.text = FFLocalizations.of(context).getText(
+            'elhlkvnh' /* Password */,
+          );
+        }));
+  }
+
+  @override
+  void dispose() {
+    textController1?.dispose();
+    textController2?.dispose();
+    textController3?.dispose();
+    textController4?.dispose();
+    super.dispose();
   }
 
   @override
@@ -148,6 +160,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         ),
                                       );
                                       logFirebaseEvent('Text_Navigate-To');
+
                                       context.pushNamed('profile');
                                     },
                                     child: Text(
@@ -297,6 +310,26 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       topRight: Radius.circular(4.0),
                                     ),
                                   ),
+                                  errorBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                  focusedErrorBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 0.5,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
                                   contentPadding:
                                       EdgeInsetsDirectional.fromSTEB(
                                           0, 1, 0, 0),
@@ -361,6 +394,26 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     topRight: Radius.circular(4.0),
                                   ),
                                 ),
+                                errorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 0.5,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 0.5,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
                                 contentPadding:
                                     EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
                               ),
@@ -411,6 +464,26 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
+                                    width: 0.5,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                errorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 0.5,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
                                     width: 0.5,
                                   ),
                                   borderRadius: const BorderRadius.only(
@@ -484,6 +557,26 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
+                                    width: 0.5,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                errorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 0.5,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
                                     width: 0.5,
                                   ),
                                   borderRadius: const BorderRadius.only(

@@ -2,12 +2,14 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/bottom_nav_bar_widget.dart';
 import '../components/side_nav_widget.dart';
+import '../components/skeleton_messages_widget.dart';
 import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,6 +32,17 @@ class _MessagesWidgetState extends State<MessagesWidget> {
   @override
   void initState() {
     super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('MESSAGES_PAGE_messages_ON_PAGE_LOAD');
+      logFirebaseEvent('messages_Update-Local-State');
+      setState(() => FFAppState().skeleteMessages = true);
+      logFirebaseEvent('messages_Wait-Delay');
+      await Future.delayed(const Duration(milliseconds: 3500));
+      logFirebaseEvent('messages_Update-Local-State');
+      setState(() => FFAppState().skeleteMessages = false);
+    });
+
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'messages'});
   }
 
@@ -106,6 +119,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                 logFirebaseEvent(
                                     'MESSAGES_PAGE_Icon_wc44fviu_ON_TAP');
                                 logFirebaseEvent('Icon_Navigate-To');
+
                                 context.pushNamed('search');
                               },
                               child: Icon(
@@ -206,12 +220,14 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                               } else {
                                                 logFirebaseEvent(
                                                     'Container_Navigate-To');
+
                                                 context.pushNamed(
                                                   'chats',
                                                   queryParams: {
                                                     'chatUser': serializeParam(
-                                                        rowUsersRecord,
-                                                        ParamType.Document),
+                                                      rowUsersRecord,
+                                                      ParamType.Document,
+                                                    ),
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     'chatUser': rowUsersRecord,
@@ -406,14 +422,15 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                         'chats',
                                         queryParams: {
                                           'chatUser': serializeParam(
-                                              chatInfo.otherUsers.length == 1
-                                                  ? chatInfo
-                                                      .otherUsersList.first
-                                                  : null,
-                                              ParamType.Document),
+                                            chatInfo.otherUsers.length == 1
+                                                ? chatInfo.otherUsersList.first
+                                                : null,
+                                            ParamType.Document,
+                                          ),
                                           'chatRef': serializeParam(
-                                              chatInfo.chatRecord.reference,
-                                              ParamType.DocumentReference),
+                                            chatInfo.chatRecord.reference,
+                                            ParamType.DocumentReference,
+                                          ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
                                           'chatUser':
@@ -486,6 +503,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
               notificationColor: FlutterFlowTheme.of(context).primaryText,
               settingsColor: FlutterFlowTheme.of(context).primaryText,
             ),
+          if (FFAppState().skeleteMessages) SkeletonMessagesWidget(),
         ],
       ),
     );

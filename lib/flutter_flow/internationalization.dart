@@ -11,13 +11,13 @@ class FFLocalizations {
 
   static List<String> languages() => ['en', 'af', 'zu'];
 
-  String get languageCode => locale.languageCode;
+  String get languageCode => locale.toString();
   int get languageIndex => languages().contains(languageCode)
       ? languages().indexOf(languageCode)
       : 0;
 
   String getText(String key) =>
-      (kTranslationsMap[key] ?? {})[locale.languageCode] ?? '';
+      (kTranslationsMap[key] ?? {})[locale.toString()] ?? '';
 
   String getVariableText({
     String? enText = '',
@@ -32,7 +32,7 @@ class FFLocalizationsDelegate extends LocalizationsDelegate<FFLocalizations> {
 
   @override
   bool isSupported(Locale locale) =>
-      FFLocalizations.languages().contains(locale.languageCode);
+      FFLocalizations.languages().contains(locale.toString());
 
   @override
   Future<FFLocalizations> load(Locale locale) =>
@@ -41,6 +41,13 @@ class FFLocalizationsDelegate extends LocalizationsDelegate<FFLocalizations> {
   @override
   bool shouldReload(FFLocalizationsDelegate old) => false;
 }
+
+Locale createLocale(String language) => language.contains('_')
+    ? Locale.fromSubtags(
+        languageCode: language.split('_').first,
+        scriptCode: language.split('_').last,
+      )
+    : Locale(language);
 
 final kTranslationsMap = <Map<String, Map<String, String>>>[
   // onboarding
@@ -73,57 +80,57 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // login
   {
-    'mf20xwxi': {
+    'tgskapzx': {
       'en': 'Sign In',
       'af': '',
       'zu': '',
     },
-    '84l644do': {
+    '7vcpc0mi': {
       'en': '',
       'af': '',
       'zu': '',
     },
-    'ji7azmdm': {
+    'x0viklun': {
       'en': 'Enter Student Your Email',
       'af': '',
       'zu': '',
     },
-    'cr5k7kor': {
+    'ekehj1f9': {
       'en': '',
       'af': '',
       'zu': '',
     },
-    'wfbejy30': {
+    'a72qcfjf': {
       'en': 'Enter Your Password',
       'af': '',
       'zu': '',
     },
-    '50owsz8q': {
+    'd4an6irz': {
       'en': 'Sign In',
       'af': '',
       'zu': '',
     },
-    'tfxsf29d': {
+    'rppaluuv': {
       'en': 'Forgot Password?',
       'af': '',
       'zu': '',
     },
-    'te262u9c': {
+    'tgpjg0xr': {
       'en': 'Sign Up',
       'af': '',
       'zu': '',
     },
-    'zda7xy3l': {
+    'wm8a31zz': {
       'en': '',
       'af': '',
       'zu': '',
     },
-    'yhv8kvwy': {
+    'lf5g9whj': {
       'en': 'Enter Student Your Email',
       'af': '',
       'zu': '',
     },
-    'edobz1nu': {
+    'bh05eotq': {
       'en': 'Create account',
       'af': '',
       'zu': '',
@@ -136,6 +143,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // view
   {
+    'kbgrygyr': {
+      'en': 'Maintenance',
+      'af': '',
+      'zu': '',
+    },
     'fxusdesr': {
       'en': 'Submitted',
       'af': 'Ingedien',
@@ -1027,45 +1039,46 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': 'Privaat terugvoer',
       'zu': 'Impendulo Eyimfihlo',
     },
-    'u5xpksa7': {
+    'h6wfwt01': {
       'en': 'What was your most important concern with this  ticket?',
       'af': 'Wat was jou belangrikste bekommernis met hierdie kaartjie?',
       'zu': 'Yini ebikukhathaza kakhulu ngaleli thikithi?',
     },
-    'dkv59qj7': {
-      'en': 'Time',
+    'rwc60qez': {
+      'en': '    Time     ',
       'af': 'Tyd',
       'zu': 'Isikhathi',
     },
-    'rw67mdq0': {
+    'm5pnsb3h': {
       'en': 'Convinience',
       'af': 'Gerieflikheid',
       'zu': 'Convinience',
     },
-    '6kk8i9xd': {
+    '0ggkswrv': {
       'en': 'Cleanliness',
       'af': 'Netheid',
       'zu': 'Inhlanzeko',
     },
-    'expwwqvy': {
+    'su9q3z9r': {
       'en': 'Communication',
       'af': 'Kommunikasie',
       'zu': 'Ukuxhumana',
     },
-    'ug5u5r7x': {
+    'tqdmj591': {
       'en': 'Quality',
       'af': 'Kwaliteit',
       'zu': 'Ikhwalithi',
     },
-    'pg23r5pt': {
+    'gmravdzl': {
       'en': 'Option ',
       'af': 'Opsie',
       'zu': 'Inketho',
     },
-    'rnzrnped': {
-      'en': 'Anything you\'d like us to know?\n(optional)',
-      'af': 'Enigiets wat jy wil hê ons moet weet? (opsioneel)',
-      'zu': 'Kukhona ongathanda ukuthi sikwazi? (uyazikhethela)',
+    'sl49hlqg': {
+      'en':
+          'Your rating is really important for us as it helps us to improve our services for the future.',
+      'af': 'Wat was jou belangrikste bekommernis met hierdie kaartjie?',
+      'zu': 'Yini ebikukhathaza kakhulu ngaleli thikithi?',
     },
     '82iy1uqp': {
       'en':
@@ -1157,7 +1170,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Ukubukeka',
     },
     'k25fzrux': {
-      'en': 'Checklist',
+      'en': 'Discount Codes',
       'af': 'Kontrolelys',
       'zu': 'Uhlu lokuhlola',
     },
@@ -1265,7 +1278,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // information
   {
-    '2ryll3yt': {
+    '24i7qjqu': {
       'en': '1',
       'af': '1',
       'zu': '1',
@@ -1300,42 +1313,42 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': 'Privaat terugvoer',
       'zu': 'Impendulo Eyimfihlo',
     },
-    'wp483tcl': {
+    'syeofsym': {
       'en': 'What was your most important concern with this  ticket?',
       'af': 'Wat was jou belangrikste bekommernis met hierdie kaartjie?',
       'zu': 'Yini ebikukhathaza kakhulu ngaleli thikithi?',
     },
-    '6t9x1nr0': {
+    '8oumguvt': {
       'en': 'Time',
       'af': 'Tyd',
       'zu': 'Isikhathi',
     },
-    'p2ltr3ev': {
+    'tv6lydnw': {
       'en': 'Convinience',
       'af': 'Gerieflikheid',
       'zu': 'Convinience',
     },
-    'qjrzjzku': {
+    'ocqgtcv5': {
       'en': 'Cleanliness',
       'af': 'Netheid',
       'zu': 'Inhlanzeko',
     },
-    'u4qlkc5g': {
+    'yhga0jiz': {
       'en': 'Communication',
       'af': 'Kommunikasie',
       'zu': 'Ukuxhumana',
     },
-    'ehmdycw0': {
+    '6gje4u7i': {
       'en': 'Quality',
       'af': 'Kwaliteit',
       'zu': 'Ikhwalithi',
     },
-    'i16cntc0': {
+    'w7u0acsg': {
       'en': 'Option ',
       'af': 'Opsie',
       'zu': 'Inketho',
     },
-    'ifecsh2u': {
+    'pzbwczjq': {
       'en':
           'Your rating is really important for us as it helps us to improve our services for the future.',
       'af':
@@ -1403,6 +1416,145 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Search Contacts',
       'af': 'Soek kontakte',
       'zu': 'Sesha Oxhumana Nabo',
+    },
+  },
+  // voucher
+  {
+    'dwiccy81': {
+      'en': 'Campus Africa',
+      'af': '',
+      'zu': '',
+    },
+    'rec1ik1l': {
+      'en': 'Share Coupon Code...',
+      'af': '',
+      'zu': '',
+    },
+    'k24yibmu': {
+      'en': 'Dischem \nVoucher',
+      'af': '',
+      'zu': '',
+    },
+    'r629jxbk': {
+      'en': 'Get 20 % off on all purchases',
+      'af': '',
+      'zu': '',
+    },
+    '00af2hft': {
+      'en': '2X7HV4',
+      'af': '',
+      'zu': '',
+    },
+    'tiim9xec': {
+      'en': 'Valid until 03/09/2022',
+      'af': '',
+      'zu': '',
+    },
+    'w5tg410w': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // rewards
+  {
+    'q8y4chcc': {
+      'en': 'Search for a coupon or place...',
+      'af': '',
+      'zu': '',
+    },
+    'cdbfjw6o': {
+      'en': 'New Coupons',
+      'af': '',
+      'zu': '',
+    },
+    '7a0ohvqx': {
+      'en': 'Food Lover\'s Market',
+      'af': '',
+      'zu': '',
+    },
+    '7lzyvete': {
+      'en': 'Get 25% Off your first purchase',
+      'af': '',
+      'zu': '',
+    },
+    'k1cqng4o': {
+      'en': 'Redeem',
+      'af': '',
+      'zu': '',
+    },
+    '403an2m4': {
+      'en': 'Seattle Coffee',
+      'af': '',
+      'zu': '',
+    },
+    'qbt0yg42': {
+      'en': 'New discount available!',
+      'af': '',
+      'zu': '',
+    },
+    'kr9u6gqg': {
+      'en': 'Redeemed',
+      'af': '',
+      'zu': '',
+    },
+    'rv6dzgxh': {
+      'en': 'Dischem',
+      'af': '',
+      'zu': '',
+    },
+    'by0a7g4n': {
+      'en': 'New discount available!',
+      'af': '',
+      'zu': '',
+    },
+    '63rfn9dw': {
+      'en': 'Expired',
+      'af': '',
+      'zu': '',
+    },
+    '4co91k94': {
+      'en': 'Vodacom',
+      'af': '',
+      'zu': '',
+    },
+    'hbo9dq8q': {
+      'en': 'Get free data for the first 5 customers',
+      'af': '',
+      'zu': '',
+    },
+    'ou1x79ur': {
+      'en': 'Campus Africa',
+      'af': '',
+      'zu': '',
+    },
+    'ssc0gp0x': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // testRow
+  {
+    '08cnbqb5': {
+      'en': 'Submitted',
+      'af': '',
+      'zu': '',
+    },
+    'b0dn8gn0': {
+      'en': 'Pending',
+      'af': '',
+      'zu': '',
+    },
+    'lqpvpl2u': {
+      'en': 'Complete',
+      'af': '',
+      'zu': '',
+    },
+    'fym0slbs': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
     },
   },
   // submittedIcon
@@ -1562,6 +1714,83 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'af': '',
       'zu': '',
+    },
+  },
+  // ticket
+  {
+    '36k5t7bv': {
+      'en': 'Dischem \nVoucher',
+      'af': '',
+      'zu': '',
+    },
+    'jpd5zrn3': {
+      'en': 'Get 20 % off on all purchases',
+      'af': '',
+      'zu': '',
+    },
+    'jg01c455': {
+      'en': '2X7HV4',
+      'af': '',
+      'zu': '',
+    },
+    'hdynqqno': {
+      'en': 'Valid until 03/09/2022',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // skeleton_Home
+  {
+    '5r7i7loi': {
+      'en': 'Hello World',
+      'af': 'Hello Wêreld',
+      'zu': 'Sawubona Mhlaba',
+    },
+    '636ymdl3': {
+      'en': '1',
+      'af': '1',
+      'zu': '1',
+    },
+  },
+  // skeletonInfo
+  {
+    'h7mk5f53': {
+      'en': 'Time',
+      'af': 'Tyd',
+      'zu': 'Isikhathi',
+    },
+    'myqkd4g0': {
+      'en': 'Convinience',
+      'af': 'Gerieflikheid',
+      'zu': 'Convinience',
+    },
+    'ccr0js2s': {
+      'en': 'Cleanliness',
+      'af': 'Netheid',
+      'zu': 'Inhlanzeko',
+    },
+    'zgil29a2': {
+      'en': 'Communication',
+      'af': 'Kommunikasie',
+      'zu': 'Ukuxhumana',
+    },
+    '91adx62k': {
+      'en': 'Quality',
+      'af': 'Kwaliteit',
+      'zu': 'Ikhwalithi',
+    },
+    'odeegdal': {
+      'en': 'Option ',
+      'af': 'Opsie',
+      'zu': 'Inketho',
+    },
+    'oge88a04': {
+      'en':
+          'Your rating is really important for us as it helps us to improve our services for the future.',
+      'af':
+          'Jou gradering is baie belangrik vir ons aangesien dit ons help om ons dienste vir die toekoms te verbeter.',
+      'zu':
+          'Isilinganiso sakho sibaluleke ngempela kithi njengoba sisisiza ukuthuthukisa amasevisi ethu esikhathini esizayo.',
     },
   },
   // Miscellaneous

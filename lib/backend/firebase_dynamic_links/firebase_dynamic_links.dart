@@ -7,12 +7,22 @@ import 'package:flutter/material.dart';
 const _kDynamicLinksUrl = 'https://campusafricaapp.page.link';
 const _kAppId = 'com.campusafrica.app';
 
-Future<String> generateCurrentPageLink(BuildContext context) async {
+Future<String> generateCurrentPageLink(
+  BuildContext context, {
+  String? title,
+  String? description,
+  String? imageUrl,
+}) async {
   final dynamicLinkParams = DynamicLinkParameters(
     link: Uri.parse('$_kDynamicLinksUrl${GoRouter.of(context).location}'),
     uriPrefix: _kDynamicLinksUrl,
     androidParameters: const AndroidParameters(packageName: _kAppId),
     iosParameters: const IOSParameters(bundleId: _kAppId),
+    socialMetaTagParameters: SocialMetaTagParameters(
+      title: title,
+      description: description,
+      imageUrl: imageUrl != null ? Uri.tryParse(imageUrl) : null,
+    ),
   );
   return FirebaseDynamicLinks.instance
       .buildLink(dynamicLinkParams)

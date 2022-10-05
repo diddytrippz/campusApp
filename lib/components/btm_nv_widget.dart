@@ -2,7 +2,9 @@ import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,53 +17,6 @@ class BtmNvWidget extends StatefulWidget {
 
 class _BtmNvWidgetState extends State<BtmNvWidget>
     with TickerProviderStateMixin {
-  final animationsMap = {
-    'containerOnPageLoadAnimation1': AnimationInfo(
-      curve: Curves.easeIn,
-      trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      hideBeforeAnimating: true,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
-    ),
-    'containerOnPageLoadAnimation2': AnimationInfo(
-      curve: Curves.easeIn,
-      trigger: AnimationTrigger.onPageLoad,
-      duration: 600,
-      hideBeforeAnimating: true,
-      fadeIn: true,
-      initialState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 0,
-      ),
-      finalState: AnimationState(
-        offset: Offset(0, 0),
-        scale: 1,
-        opacity: 1,
-      ),
-    ),
-  };
-
-  @override
-  void initState() {
-    super.initState();
-    startPageLoadAnimations(
-      animationsMap.values
-          .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
-      this,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -79,6 +34,7 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                   onTap: () async {
                     logFirebaseEvent('BTM_NV_COMP_Column_196qr9mn_ON_TAP');
                     logFirebaseEvent('Column_Navigate-To');
+
                     context.pushNamed(
                       'messages',
                       extra: <String, dynamic>{
@@ -144,6 +100,7 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                     onTap: () async {
                       logFirebaseEvent('BTM_NV_COMP_Column_10yz9v5g_ON_TAP');
                       logFirebaseEvent('Column_Navigate-To');
+
                       context.pushNamed(
                         'home',
                         extra: <String, dynamic>{
@@ -208,6 +165,7 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                   onTap: () async {
                     logFirebaseEvent('BTM_NV_COMP_Column_r1wojaej_ON_TAP');
                     logFirebaseEvent('Column_Navigate-To');
+
                     context.pushNamed(
                       'settings',
                       extra: <String, dynamic>{
@@ -318,10 +276,7 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                                         decoration: BoxDecoration(
                                           color: Color(0x00FFFFFF),
                                         ),
-                                      ).animated([
-                                        animationsMap[
-                                            'containerOnPageLoadAnimation1']!
-                                      ]),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -383,10 +338,7 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                                         decoration: BoxDecoration(
                                           color: Color(0x00FFFFFF),
                                         ),
-                                      ).animated([
-                                        animationsMap[
-                                            'containerOnPageLoadAnimation2']!
-                                      ]),
+                                      ),
                                     ),
                                   ],
                                 ),

@@ -21,7 +21,9 @@ class AppliancesWidget extends StatefulWidget {
 }
 
 class _AppliancesWidgetState extends State<AppliancesWidget> {
+  bool isMediaUploading = false;
   String uploadedFileUrl = '';
+
   TextEditingController? textController1;
   String? issueValue;
   TextEditingController? reasonController;
@@ -37,9 +39,17 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
   }
 
   @override
+  void dispose() {
+    reasonController?.dispose();
+    textController1?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
@@ -73,7 +83,6 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
         centerTitle: true,
         elevation: 1,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -117,35 +126,41 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                               if (selectedMedia != null &&
                                   selectedMedia.every((m) => validateFileFormat(
                                       m.storagePath, context))) {
-                                showUploadMessage(
-                                  context,
-                                  'Uploading file...',
-                                  showLoading: true,
-                                );
-                                final downloadUrls = (await Future.wait(
-                                        selectedMedia.map((m) async =>
-                                            await uploadData(
-                                                m.storagePath, m.bytes))))
-                                    .where((u) => u != null)
-                                    .map((u) => u!)
-                                    .toList();
-                                ScaffoldMessenger.of(context)
-                                    .hideCurrentSnackBar();
+                                setState(() => isMediaUploading = true);
+                                var downloadUrls = <String>[];
+                                try {
+                                  showUploadMessage(
+                                    context,
+                                    'Uploading file...',
+                                    showLoading: true,
+                                  );
+                                  downloadUrls = (await Future.wait(
+                                    selectedMedia.map(
+                                      (m) async => await uploadData(
+                                          m.storagePath, m.bytes),
+                                    ),
+                                  ))
+                                      .where((u) => u != null)
+                                      .map((u) => u!)
+                                      .toList();
+                                } finally {
+                                  ScaffoldMessenger.of(context)
+                                      .hideCurrentSnackBar();
+                                  isMediaUploading = false;
+                                }
                                 if (downloadUrls.length ==
                                     selectedMedia.length) {
                                   setState(() =>
                                       uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
-                                    context,
-                                    FFLocalizations.of(context).getText(
-                                      'z40c2u6r' /* File Uploaded! */,
-                                    ),
-                                  );
+                                      context,
+                                      FFLocalizations.of(context).getText(
+                                        'z40c2u6r' /* File Uploaded! */,
+                                      ));
                                 } else {
+                                  setState(() {});
                                   showUploadMessage(
-                                    context,
-                                    'Failed to upload media',
-                                  );
+                                      context, 'Failed to upload media');
                                   return;
                                 }
                               }
@@ -218,6 +233,20 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                               borderRadius: BorderRadius.circular(8),
                             ),
                             focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0x00000000),
                                 width: 1,
@@ -355,6 +384,20 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                           filled: true,
                           fillColor: FlutterFlowTheme.of(context).alternate,
                           contentPadding:
@@ -449,7 +492,7 @@ class _AppliancesWidgetState extends State<AppliancesWidget> {
                                 child: SubmittedIconWidget(),
                               );
                             },
-                          );
+                          ).then((value) => setState(() {}));
                         },
                         text: FFLocalizations.of(context).getText(
                           'xmb7t2fh' /* Submit */,

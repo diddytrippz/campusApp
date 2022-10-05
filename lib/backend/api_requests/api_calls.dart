@@ -4,6 +4,8 @@ import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
 
+const _kPrivateApiFunctionName = 'ffPrivateApiCall';
+
 class AirtableCall {
   static Future<ApiCallResponse> call({
     String? user = '',
@@ -35,20 +37,26 @@ class AirtableCall {
       headers: {
         'Authorization': 'Bearer keySJ3Ga07JDprE4a',
       },
-      params: {
-        'User': user,
-        'Issue': issue,
-        'Room': room,
-        'Building': building,
-        'Status': status,
-        'Created': created,
-        'Updated': updated,
-        'Name': name,
-        'Links': links,
-      },
+      params: {},
       body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
     );
   }
+}
+
+class ApiPagingParams {
+  int nextPageNumber = 0;
+  int numItems = 0;
+  dynamic lastResponse;
+
+  ApiPagingParams({
+    required this.nextPageNumber,
+    required this.numItems,
+    required this.lastResponse,
+  });
+
+  @override
+  String toString() =>
+      'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
 }

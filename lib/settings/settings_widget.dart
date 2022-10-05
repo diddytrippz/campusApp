@@ -3,12 +3,14 @@ import '../components/bottom_nav_bar_widget.dart';
 import '../components/dark_mode_widget.dart';
 import '../components/language_widget.dart';
 import '../components/side_nav_widget.dart';
+import '../components/skeleton_settings_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,6 +28,17 @@ class _SettingsWidgetState extends State<SettingsWidget> {
   @override
   void initState() {
     super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('SETTINGS_PAGE_settings_ON_PAGE_LOAD');
+      logFirebaseEvent('settings_Update-Local-State');
+      setState(() => FFAppState().skeletonSettings = true);
+      logFirebaseEvent('settings_Wait-Delay');
+      await Future.delayed(const Duration(milliseconds: 2000));
+      logFirebaseEvent('settings_Update-Local-State');
+      setState(() => FFAppState().skeletonSettings = false);
+    });
+
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'settings'});
   }
 
@@ -258,6 +271,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             'SETTINGS_PAGE_ListTile_7x0b896n_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Navigate-To');
+
                                         context.pushNamed('profile');
                                       },
                                       child: ListTile(
@@ -327,6 +341,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             'SETTINGS_PAGE_ListTile_ty8u4mc1_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Navigate-To');
+
                                         context.pushNamed('messages');
                                       },
                                       child: ListTile(
@@ -394,7 +409,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                               child: DarkModeWidget(),
                                             );
                                           },
-                                        );
+                                        ).then((value) => setState(() {}));
                                       },
                                       child: ListTile(
                                         leading: Icon(
@@ -462,36 +477,20 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         logFirebaseEvent(
                                             'SETTINGS_PAGE_ListTile_dcv0ybyv_ON_TAP');
                                         logFirebaseEvent(
-                                            'ListTile_Show-Snack-Bar');
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Currently unavailable',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                              ),
-                                            ),
-                                            duration:
-                                                Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                          ),
-                                        );
+                                            'ListTile_Navigate-To');
+
+                                        context.pushNamed('testRow');
                                       },
                                       child: ListTile(
                                         leading: Icon(
-                                          FFIcons.kchecklist,
+                                          Icons.local_grocery_store,
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           size: 24,
                                         ),
                                         title: Text(
                                           FFLocalizations.of(context).getText(
-                                            'k25fzrux' /* Checklist */,
+                                            'k25fzrux' /* Discount Codes */,
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .title3
@@ -539,6 +538,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             'SETTINGS_PAGE_ListTile_anbw2i5r_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Navigate-To');
+
                                         context.pushNamed('rules');
                                       },
                                       child: ListTile(
@@ -598,6 +598,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             'SETTINGS_PAGE_ListTile_upo1bc6t_ON_TAP');
                                         logFirebaseEvent(
                                             'ListTile_Navigate-To');
+
                                         context.pushNamed('notifications');
                                       },
                                       child: ListTile(
@@ -678,7 +679,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                               child: LanguageWidget(),
                                             );
                                           },
-                                        );
+                                        ).then((value) => setState(() {}));
                                       },
                                       child: ListTile(
                                         leading: FaIcon(
@@ -798,6 +799,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         logFirebaseEvent('ListTile_Auth');
                                         GoRouter.of(context).prepareAuthEvent();
                                         await signOut();
+
                                         context.goNamedAuth('login', mounted);
                                       },
                                       child: ListTile(
@@ -860,6 +862,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 notificationColor: FlutterFlowTheme.of(context).primaryText,
                 settingsColor: Color(0xFFC8360E),
               ),
+            if (FFAppState().skeletonSettings) SkeletonSettingsWidget(),
           ],
         ),
       ),

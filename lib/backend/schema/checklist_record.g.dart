@@ -55,7 +55,7 @@ class _$ChecklistRecordSerializer
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -91,7 +91,7 @@ class _$ChecklistRecord extends ChecklistRecord {
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChecklistRecord([void Function(ChecklistRecordBuilder)? updates]) =>
-      (new ChecklistRecordBuilder()..update(updates)).build();
+      (new ChecklistRecordBuilder()..update(updates))._build();
 
   _$ChecklistRecord._({this.description, this.options, this.ffRef}) : super._();
 
@@ -120,7 +120,7 @@ class _$ChecklistRecord extends ChecklistRecord {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ChecklistRecord')
+    return (newBuiltValueToStringHelper(r'ChecklistRecord')
           ..add('description', description)
           ..add('options', options)
           ..add('ffRef', ffRef))
@@ -172,7 +172,9 @@ class ChecklistRecordBuilder
   }
 
   @override
-  _$ChecklistRecord build() {
+  ChecklistRecord build() => _build();
+
+  _$ChecklistRecord _build() {
     _$ChecklistRecord _$result;
     try {
       _$result = _$v ??
@@ -187,7 +189,7 @@ class ChecklistRecordBuilder
         _options?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'ChecklistRecord', _$failedField, e.toString());
+            r'ChecklistRecord', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -196,4 +198,4 @@ class ChecklistRecordBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

@@ -17,6 +17,7 @@ class LoginWidget extends StatefulWidget {
 class _LoginWidgetState extends State<LoginWidget> {
   TextEditingController? textFieldEmailController;
   TextEditingController? textFieldPassController;
+
   late bool textFieldPassVisibility;
   TextEditingController? textFieldEmailResetController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -29,6 +30,14 @@ class _LoginWidgetState extends State<LoginWidget> {
     textFieldPassController = TextEditingController();
     textFieldPassVisibility = false;
     textFieldEmailResetController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    textFieldEmailController?.dispose();
+    textFieldPassController?.dispose();
+    textFieldEmailResetController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -115,10 +124,14 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   indicatorWeight: 2,
                                   tabs: [
                                     Tab(
-                                      text: 'Sign In',
+                                      text: FFLocalizations.of(context).getText(
+                                        'tgskapzx' /* Sign In */,
+                                      ),
                                     ),
                                     Tab(
-                                      text: 'Sign Up',
+                                      text: FFLocalizations.of(context).getText(
+                                        'tgpjg0xr' /* Sign Up */,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -161,7 +174,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     hintText:
-                                                        'Enter Student Your Email',
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      'x0viklun' /* Enter Student Your Email */,
+                                                    ),
                                                     hintStyle: FlutterFlowTheme
                                                             .of(context)
                                                         .bodyText1
@@ -191,6 +208,28 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .campusGrey,
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0x00000000),
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Color(0x00000000),
                                                         width: 1,
                                                       ),
                                                       borderRadius:
@@ -233,7 +272,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                         !textFieldPassVisibility,
                                                     decoration: InputDecoration(
                                                       hintText:
-                                                          'Enter Your Password',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                        'a72qcfjf' /* Enter Your Password */,
+                                                      ),
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -262,6 +305,28 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .campusGrey,
+                                                          width: 1,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4),
+                                                      ),
+                                                      errorBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color:
+                                                              Color(0x00000000),
+                                                          width: 1,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4),
+                                                      ),
+                                                      focusedErrorBorder:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                          color:
+                                                              Color(0x00000000),
                                                           width: 1,
                                                         ),
                                                         borderRadius:
@@ -342,7 +407,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       context.goNamedAuth(
                                                           'home', mounted);
                                                     },
-                                                    text: 'Sign In',
+                                                    text: FFLocalizations.of(
+                                                            context)
+                                                        .getText(
+                                                      'd4an6irz' /* Sign In */,
+                                                    ),
                                                     options: FFButtonOptions(
                                                       width: double.infinity,
                                                       height: 55,
@@ -402,7 +471,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                       );
                                                     },
                                                     child: Text(
-                                                      'Forgot Password?',
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'rppaluuv' /* Forgot Password? */,
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -444,7 +517,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 hintText:
-                                                    'Enter Student Your Email',
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                  'lf5g9whj' /* Enter Student Your Email */,
+                                                ),
                                                 hintStyle: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyText1
@@ -469,6 +545,23 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .campusGrey,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                ),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x00000000),
                                                     width: 1,
                                                   ),
                                                   borderRadius:
@@ -528,7 +621,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                   context: context,
                                                 );
                                               },
-                                              text: 'Create account',
+                                              text: FFLocalizations.of(context)
+                                                  .getText(
+                                                'bh05eotq' /* Create account */,
+                                              ),
                                               options: FFButtonOptions(
                                                 width: double.infinity,
                                                 height: 50,

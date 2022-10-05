@@ -59,6 +59,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
@@ -142,7 +143,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                         ),
                   ),
                   Text(
-                    dateTimeFormat('jms', getCurrentTimestamp),
+                    dateTimeFormat(
+                      'jms',
+                      getCurrentTimestamp,
+                      locale: FFLocalizations.of(context).languageCode,
+                    ),
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Open Sans',
                           color: FlutterFlowTheme.of(context).primaryText,
@@ -215,7 +220,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
         centerTitle: false,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: StreamBuilder<FFChatInfo>(
