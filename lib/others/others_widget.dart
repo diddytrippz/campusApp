@@ -52,7 +52,7 @@ class _OthersWidgetState extends State<OthersWidget> {
       body: NestedScrollView(
         headerSliverBuilder: (context, _) => [
           SliverAppBar(
-            pinned: true,
+            pinned: false,
             floating: true,
             snap: true,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
