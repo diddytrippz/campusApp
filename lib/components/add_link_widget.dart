@@ -36,7 +36,12 @@ class _AddLinkWidgetState extends State<AddLinkWidget> {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).primaryBackground,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(0),
+              bottomRight: Radius.circular(0),
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
           ),
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),

@@ -266,6 +266,7 @@ class _SendNotificationsWidgetState extends State<SendNotificationsWidget> {
                           ),
                           style: FlutterFlowTheme.of(context).bodyText1,
                           maxLines: 2,
+                          keyboardType: TextInputType.name,
                           validator: (val) {
                             if (val == null || val.isEmpty) {
                               return FFLocalizations.of(context).getText(
@@ -330,6 +331,7 @@ class _SendNotificationsWidgetState extends State<SendNotificationsWidget> {
                           ),
                           style: FlutterFlowTheme.of(context).bodyText1,
                           maxLines: 6,
+                          keyboardType: TextInputType.name,
                           validator: (val) {
                             if (val == null || val.isEmpty) {
                               return FFLocalizations.of(context).getText(
