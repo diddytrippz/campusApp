@@ -107,7 +107,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     logFirebaseEvent(
                                         'PROFILE_PAGE_arrow_back_ios_ICN_ON_TAP');
                                     logFirebaseEvent(
-                                        'IconButton_Navigate-Back');
+                                        'IconButton_navigate_back');
                                     context.pop();
                                   },
                                 ),
@@ -132,7 +132,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     onTap: () async {
                                       logFirebaseEvent(
                                           'PROFILE_PAGE_Text_wihuzt5g_ON_TAP');
-                                      logFirebaseEvent('Text_Backend-Call');
+                                      logFirebaseEvent('Text_backend_call');
 
                                       final usersUpdateData =
                                           createUsersRecordData(
@@ -140,7 +140,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       );
                                       await currentUserReference!
                                           .update(usersUpdateData);
-                                      logFirebaseEvent('Text_Show-Snack-Bar');
+                                      logFirebaseEvent('Text_show_snack_bar');
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -159,7 +159,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   .primaryText,
                                         ),
                                       );
-                                      logFirebaseEvent('Text_Navigate-To');
+                                      logFirebaseEvent('Text_navigate_to');
 
                                       context.pushNamed('profile');
                                     },
@@ -198,7 +198,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       width: 150,
                                       height: 150,
                                       decoration: BoxDecoration(
-                                        color: Color(0x00FFFFFF),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: Color(0xFF4E39F9),

@@ -67,6 +67,20 @@ class _$NotificationsRecordSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.link;
+    if (value != null) {
+      result
+        ..add('link')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.content;
+    if (value != null) {
+      result
+        ..add('content')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -114,6 +128,14 @@ class _$NotificationsRecordSerializer
           result.sendToAll = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
           break;
+        case 'link':
+          result.link = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'content':
+          result.content = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -141,6 +163,10 @@ class _$NotificationsRecord extends NotificationsRecord {
   @override
   final bool? sendToAll;
   @override
+  final String? link;
+  @override
+  final String? content;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$NotificationsRecord(
@@ -154,6 +180,8 @@ class _$NotificationsRecord extends NotificationsRecord {
       this.dateCreate,
       this.urgency,
       this.sendToAll,
+      this.link,
+      this.content,
       this.ffRef})
       : super._();
 
@@ -176,6 +204,8 @@ class _$NotificationsRecord extends NotificationsRecord {
         dateCreate == other.dateCreate &&
         urgency == other.urgency &&
         sendToAll == other.sendToAll &&
+        link == other.link &&
+        content == other.content &&
         ffRef == other.ffRef;
   }
 
@@ -185,11 +215,15 @@ class _$NotificationsRecord extends NotificationsRecord {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, title.hashCode), sentBy.hashCode),
-                        building.hashCode),
-                    dateCreate.hashCode),
-                urgency.hashCode),
-            sendToAll.hashCode),
+                    $jc(
+                        $jc(
+                            $jc($jc($jc(0, title.hashCode), sentBy.hashCode),
+                                building.hashCode),
+                            dateCreate.hashCode),
+                        urgency.hashCode),
+                    sendToAll.hashCode),
+                link.hashCode),
+            content.hashCode),
         ffRef.hashCode));
   }
 
@@ -202,6 +236,8 @@ class _$NotificationsRecord extends NotificationsRecord {
           ..add('dateCreate', dateCreate)
           ..add('urgency', urgency)
           ..add('sendToAll', sendToAll)
+          ..add('link', link)
+          ..add('content', content)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -235,6 +271,14 @@ class NotificationsRecordBuilder
   bool? get sendToAll => _$this._sendToAll;
   set sendToAll(bool? sendToAll) => _$this._sendToAll = sendToAll;
 
+  String? _link;
+  String? get link => _$this._link;
+  set link(String? link) => _$this._link = link;
+
+  String? _content;
+  String? get content => _$this._content;
+  set content(String? content) => _$this._content = content;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -252,6 +296,8 @@ class NotificationsRecordBuilder
       _dateCreate = $v.dateCreate;
       _urgency = $v.urgency;
       _sendToAll = $v.sendToAll;
+      _link = $v.link;
+      _content = $v.content;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -281,6 +327,8 @@ class NotificationsRecordBuilder
             dateCreate: dateCreate,
             urgency: urgency,
             sendToAll: sendToAll,
+            link: link,
+            content: content,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

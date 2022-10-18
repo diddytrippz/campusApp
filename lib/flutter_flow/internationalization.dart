@@ -115,6 +115,26 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': '',
       'zu': '',
     },
+    '6iiwvi49': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'jhzzqlsx': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    '8o3gbjtj': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'iv7yv8qi': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
     'tgpjg0xr': {
       'en': 'Sign Up',
       'af': '',
@@ -135,6 +155,16 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': '',
       'zu': '',
     },
+    'eaeqw1o6': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'j8ro5rx8': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
     'p8zu0wua': {
       'en': 'Home',
       'af': 'Tuis',
@@ -143,7 +173,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // view
   {
-    'kbgrygyr': {
+    '7lefrg9p': {
       'en': 'Maintenance',
       'af': '',
       'zu': '',
@@ -1149,10 +1179,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // settings
   {
-    '6mg9ic5b': {
+    'n9zmnk1o': {
       'en': 'Settings',
-      'af': 'Instellings',
-      'zu': 'Izilungiselelo',
+      'af': '',
+      'zu': '',
     },
     'l75068ci': {
       'en': 'Account',
@@ -1168,11 +1198,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Appearance',
       'af': 'Voorkoms',
       'zu': 'Ukubukeka',
-    },
-    'k25fzrux': {
-      'en': 'Discount Codes',
-      'af': 'Kontrolelys',
-      'zu': 'Uhlu lokuhlola',
     },
     'mv65usit': {
       'en': 'Student handbook',
@@ -1270,15 +1295,83 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // messages
   {
-    'xx1vtfbc': {
+    'g2apk9v9': {
       'en': 'Inbox',
-      'af': 'Inkassie',
-      'zu': 'Ibhokisi lokungenayo',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // sendNotifications
+  {
+    'fc8z4311': {
+      'en': 'Subject',
+      'af': '',
+      'zu': '',
+    },
+    'ucbou6nm': {
+      'en': 'Body',
+      'af': '',
+      'zu': '',
+    },
+    'bsc4cpul': {
+      'en': 'General',
+      'af': '',
+      'zu': '',
+    },
+    'ouzqm2gc': {
+      'en': 'Bookings',
+      'af': '',
+      'zu': '',
+    },
+    'lde99z2p': {
+      'en': 'Announcement',
+      'af': '',
+      'zu': '',
+    },
+    'y4dnvzss': {
+      'en': 'Events',
+      'af': '',
+      'zu': '',
+    },
+    'maaax0p4': {
+      'en': 'Select Topic',
+      'af': '',
+      'zu': '',
+    },
+    '1orthxv6': {
+      'en': 'Send to everyone',
+      'af': '',
+      'zu': '',
+    },
+    '4kbcixms': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'ygjxkyww': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    '9nl0yfpd': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'lrktkns3': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'hzafsymq': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
     },
   },
   // information
   {
-    '24i7qjqu': {
+    'ouy56u3e': {
       'en': '1',
       'af': '1',
       'zu': '1',
@@ -1534,29 +1627,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': '',
     },
   },
-  // testRow
-  {
-    '08cnbqb5': {
-      'en': 'Submitted',
-      'af': '',
-      'zu': '',
-    },
-    'b0dn8gn0': {
-      'en': 'Pending',
-      'af': '',
-      'zu': '',
-    },
-    'lqpvpl2u': {
-      'en': 'Complete',
-      'af': '',
-      'zu': '',
-    },
-    'fym0slbs': {
-      'en': 'Home',
-      'af': '',
-      'zu': '',
-    },
-  },
   // submittedIcon
   {
     'ua7ubrzs': {
@@ -1791,6 +1861,110 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Jou gradering is baie belangrik vir ons aangesien dit ons help om ons dienste vir die toekoms te verbeter.',
       'zu':
           'Isilinganiso sakho sibaluleke ngempela kithi njengoba sisisiza ukuthuthukisa amasevisi ethu esikhathini esizayo.',
+    },
+  },
+  // resetPassword
+  {
+    'fpmtun0a': {
+      'en': 'Password Reset',
+      'af': 'Sukses!',
+      'zu': 'Impumelelo!',
+    },
+    '5xnejcaa': {
+      'en':
+          'If successful, a link to create a new password has been sent to your email. Please check your spam/junk folder if you can not find the email',
+      'af': 'Jou versoek is deur die Campus Africa-instandhoudingspan ontvang.',
+      'zu': 'Isicelo sakho sitholwe yithimba elinakekela i-Campus Africa.',
+    },
+    '7qg09j8y': {
+      'en': 'Continue',
+      'af': 'Aanhou',
+      'zu': 'Qhubeka',
+    },
+  },
+  // notificationsComponent
+  {
+    '5s8l0mfa': {
+      'en': 'Notifications',
+      'af': 'Kennisgewings',
+      'zu': 'Izaziso',
+    },
+    '4mc3crbq': {
+      'en': '1',
+      'af': '1',
+      'zu': '1',
+    },
+    'cx4ukq4k': {
+      'en': 'Latest',
+      'af': 'Nuutste',
+      'zu': 'Okwakamuva',
+    },
+    'w3bonag1': {
+      'en': 'Following',
+      'af': 'Volgende',
+      'zu': 'Ukulandela',
+    },
+    'h935li2l': {
+      'en': 'All',
+      'af': 'Almal',
+      'zu': 'Konke',
+    },
+  },
+  // notifBottomSheet
+  {
+    'dz1ghic9': {
+      'en': 'Schedule send',
+      'af': '',
+      'zu': '',
+    },
+    'uioanb3n': {
+      'en': 'Discard',
+      'af': '',
+      'zu': '',
+    },
+    '02x8d75o': {
+      'en': 'Cancel',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // addLink
+  {
+    'k2ycu2a4': {
+      'en': 'Add link for additional information',
+      'af': '',
+      'zu': '',
+    },
+    'ceg3wrbq': {
+      'en':
+          'This could include the link to the social networks containing more information about the relevant post.',
+      'af': '',
+      'zu': '',
+    },
+    'igppq1yv': {
+      'en': 'Paste link here',
+      'af': '',
+      'zu': '',
+    },
+    'ian8r4nd': {
+      'en': 'https://campusafrica.co.za/',
+      'af': '',
+      'zu': '',
+    },
+    'zpjjymsh': {
+      'en': 'https://apply.campusafrica.co.za/login',
+      'af': '',
+      'zu': '',
+    },
+    '3p6ry6ef': {
+      'en': 'https://www.instagram.com/campus.africa/?hl=en',
+      'af': '',
+      'zu': '',
+    },
+    '7o8joatx': {
+      'en': 'Done',
+      'af': '',
+      'zu': '',
     },
   },
   // Miscellaneous

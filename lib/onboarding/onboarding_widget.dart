@@ -22,6 +22,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
   void initState() {
     super.initState();
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'onboarding'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -166,7 +167,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent('ONBOARDING_PAGE_LOGIN_BTN_ON_TAP');
-                    logFirebaseEvent('Button_Navigate-To');
+                    logFirebaseEvent('Button_navigate_to');
 
                     context.pushNamed('login');
                   },
@@ -195,7 +196,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent('ONBOARDING_PAGE_REGISTER_BTN_ON_TAP');
-                    logFirebaseEvent('Button_Navigate-To');
+                    logFirebaseEvent('Button_navigate_to');
 
                     context.pushNamed('login');
                   },

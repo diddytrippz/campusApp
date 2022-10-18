@@ -15,6 +15,13 @@ class SkeletonHomeWidget extends StatefulWidget {
 
 class _SkeletonHomeWidgetState extends State<SkeletonHomeWidget> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -101,7 +108,7 @@ class _SkeletonHomeWidgetState extends State<SkeletonHomeWidget> {
                               onPressed: () async {
                                 logFirebaseEvent(
                                     'SKELETON_HOME_COMP_ic19_ICN_ON_TAP');
-                                logFirebaseEvent('IconButton_Navigate-To');
+                                logFirebaseEvent('IconButton_navigate_to');
 
                                 context.pushNamed('messages');
                               },
@@ -165,7 +172,7 @@ class _SkeletonHomeWidgetState extends State<SkeletonHomeWidget> {
                                 onPressed: () async {
                                   logFirebaseEvent(
                                       'SKELETON_HOME_COMP_ic15_ICN_ON_TAP');
-                                  logFirebaseEvent('IconButton_Navigate-To');
+                                  logFirebaseEvent('IconButton_navigate_to');
 
                                   context.pushNamed('notifications');
                                 },
@@ -402,7 +409,7 @@ class _SkeletonHomeWidgetState extends State<SkeletonHomeWidget> {
                                     logFirebaseEvent(
                                         'SKELETON_HOME_COMP_activityButton_ON_TAP');
                                     logFirebaseEvent(
-                                        'activityButton_Navigate-To');
+                                        'activityButton_navigate_to');
 
                                     context.pushNamed('Appliances');
                                   },
@@ -427,7 +434,7 @@ class _SkeletonHomeWidgetState extends State<SkeletonHomeWidget> {
                                     logFirebaseEvent(
                                         'SKELETON_HOME_COMP_activityButton_ON_TAP');
                                     logFirebaseEvent(
-                                        'activityButton_Navigate-To');
+                                        'activityButton_navigate_to');
 
                                     context.pushNamed('Plumbing');
                                   },
@@ -461,7 +468,7 @@ class _SkeletonHomeWidgetState extends State<SkeletonHomeWidget> {
                                         logFirebaseEvent(
                                             'SKELETON_HOME_COMP_activityButton_ON_TAP');
                                         logFirebaseEvent(
-                                            'activityButton_Navigate-To');
+                                            'activityButton_navigate_to');
 
                                         context.pushNamed('Electrical');
                                       },
@@ -489,7 +496,7 @@ class _SkeletonHomeWidgetState extends State<SkeletonHomeWidget> {
                                         logFirebaseEvent(
                                             'SKELETON_HOME_COMP_activityButton_ON_TAP');
                                         logFirebaseEvent(
-                                            'activityButton_Navigate-To');
+                                            'activityButton_navigate_to');
 
                                         context.pushNamed('painting');
                                       },
@@ -525,7 +532,7 @@ class _SkeletonHomeWidgetState extends State<SkeletonHomeWidget> {
                                           logFirebaseEvent(
                                               'SKELETON_HOME_COMP_activityButton_ON_TAP');
                                           logFirebaseEvent(
-                                              'activityButton_Navigate-To');
+                                              'activityButton_navigate_to');
 
                                           context.pushNamed('Locksmith');
                                         },
@@ -562,7 +569,7 @@ class _SkeletonHomeWidgetState extends State<SkeletonHomeWidget> {
                                           logFirebaseEvent(
                                               'SKELETON_HOME_COMP_activityButton_ON_TAP');
                                           logFirebaseEvent(
-                                              'activityButton_Navigate-To');
+                                              'activityButton_navigate_to');
 
                                           context.pushNamed('Furniture');
                                         },
@@ -601,7 +608,7 @@ class _SkeletonHomeWidgetState extends State<SkeletonHomeWidget> {
                                           logFirebaseEvent(
                                               'SKELETON_HOME_COMP_activityButton_ON_TAP');
                                           logFirebaseEvent(
-                                              'activityButton_Navigate-To');
+                                              'activityButton_navigate_to');
 
                                           context.pushNamed('Communal');
                                         },
@@ -631,7 +638,7 @@ class _SkeletonHomeWidgetState extends State<SkeletonHomeWidget> {
                                           logFirebaseEvent(
                                               'SKELETON_HOME_COMP_activityButton_ON_TAP');
                                           logFirebaseEvent(
-                                              'activityButton_Navigate-To');
+                                              'activityButton_navigate_to');
 
                                           context.pushNamed('Others');
                                         },

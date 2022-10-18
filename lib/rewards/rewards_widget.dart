@@ -22,6 +22,7 @@ class _RewardsWidgetState extends State<RewardsWidget> {
     super.initState();
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'rewards'});
     textController = TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -245,7 +246,7 @@ class _RewardsWidgetState extends State<RewardsWidget> {
                                                               logFirebaseEvent(
                                                                   'REWARDS_PAGE_Row_lsscuzuu_ON_TAP');
                                                               logFirebaseEvent(
-                                                                  'Row_Navigate-To');
+                                                                  'Row_navigate_to');
 
                                                               context.pushNamed(
                                                                 'voucher',
@@ -928,7 +929,7 @@ class _RewardsWidgetState extends State<RewardsWidget> {
                           onPressed: () async {
                             logFirebaseEvent(
                                 'REWARDS_PAGE_arrow_back_sharp_ICN_ON_TAP');
-                            logFirebaseEvent('IconButton_Navigate-Back');
+                            logFirebaseEvent('IconButton_navigate_back');
                             context.pop();
                           },
                         ),

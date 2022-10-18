@@ -1,11 +1,21 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TessstWidget extends StatefulWidget {
-  const TessstWidget({Key? key}) : super(key: key);
+  const TessstWidget({
+    Key? key,
+    this.heading,
+    this.content,
+    this.link,
+  }) : super(key: key);
+
+  final String? heading;
+  final String? content;
+  final String? link;
 
   @override
   _TessstWidgetState createState() => _TessstWidgetState();
@@ -13,10 +23,23 @@ class TessstWidget extends StatefulWidget {
 
 class _TessstWidgetState extends State<TessstWidget> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.75,
-      child: Stack(
+    return InkWell(
+      onTap: () async {
+        logFirebaseEvent('TESSST_COMP_Column_fv1ai15s_ON_TAP');
+        logFirebaseEvent('Column_bottom_sheet');
+        Navigator.pop(context);
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Align(
             alignment: AlignmentDirectional(0, 0),
@@ -24,164 +47,92 @@ class _TessstWidgetState extends State<TessstWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 50),
               child: Material(
                 color: Colors.transparent,
-                elevation: 10,
+                elevation: 20,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  height: MediaQuery.of(context).size.height * 0.75,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [],
-                          ),
-                        ),
-                      ),
-                      Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.85,
+                    height: MediaQuery.of(context).size.height * 0.75,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+                      child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.75,
-                              height: 25,
-                              decoration: BoxDecoration(
-                                color: Color(0x00F1F4F8),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  if (widget.link != null && widget.link != '')
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 10, 0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'TESSST_COMP_Icon_jxiq3516_ON_TAP');
+                                          logFirebaseEvent('Icon_launch_u_r_l');
+                                          await launchURL(widget.link!);
+                                        },
+                                        child: Icon(
+                                          Icons.launch,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 25,
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Material(
-                                      color: Colors.transparent,
-                                      elevation: 0,
-                                      shape: const CircleBorder(),
-                                      child: Container(
-                                        width: 40,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(20, 20, 20, 5),
+                              child: Text(
+                                widget.heading!,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    Material(
-                                      color: Colors.transparent,
-                                      elevation: 0,
-                                      shape: const CircleBorder(),
-                                      child: Container(
-                                        width: 40,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(15, 0, 15, 15),
+                              child: AutoSizeText(
+                                widget.content!,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 16,
                                     ),
-                                    Material(
-                                      color: Colors.transparent,
-                                      elevation: 0,
-                                      shape: const CircleBorder(),
-                                      child: Container(
-                                        width: 40,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
-                                    ),
-                                    Material(
-                                      color: Colors.transparent,
-                                      elevation: 0,
-                                      shape: const CircleBorder(),
-                                      child: Container(
-                                        width: 40,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
-                                    ),
-                                    Material(
-                                      color: Colors.transparent,
-                                      elevation: 0,
-                                      shape: const CircleBorder(),
-                                      child: Container(
-                                        width: 40,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiaryColor,
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
                               ),
                             ),
                           ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: AlignmentDirectional(-1, 0.35),
-            child: Material(
-              color: Colors.transparent,
-              elevation: 0,
-              shape: const CircleBorder(),
-              child: Container(
-                width: 65,
-                height: 65,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).tertiaryColor,
-                  shape: BoxShape.circle,
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: AlignmentDirectional(1, 0.4),
-            child: Material(
-              color: Colors.transparent,
-              elevation: 0,
-              shape: const CircleBorder(),
-              child: Container(
-                width: 65,
-                height: 65,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).tertiaryColor,
-                  shape: BoxShape.circle,
                 ),
               ),
             ),

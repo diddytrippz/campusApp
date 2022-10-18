@@ -2,6 +2,8 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/bottom_nav_bar_widget.dart';
 import '../components/side_nav_widget.dart';
+import '../components/skeleton_view_widget.dart';
+import '../components/tessst_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -27,6 +29,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
     super.initState();
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'notifications'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -84,46 +87,87 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                               ],
                             ),
                           ),
-                          if (responsiveVisibility(
-                            context: context,
-                            tablet: false,
-                            desktop: false,
-                          ))
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 18, 25, 0),
-                              child: Badge(
-                                badgeContent: Text(
-                                  FFLocalizations.of(context).getText(
-                                    '21r1cns5' /* 1 */,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: Colors.white,
-                                        fontSize: 12,
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              if (responsiveVisibility(
+                                context: context,
+                                tablet: false,
+                                desktop: false,
+                              ))
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 18, 20, 0),
+                                  child: Badge(
+                                    badgeContent: Text(
+                                      FFLocalizations.of(context).getText(
+                                        '21r1cns5' /* 1 */,
                                       ),
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                          ),
+                                    ),
+                                    showBadge: true,
+                                    shape: BadgeShape.circle,
+                                    badgeColor:
+                                        FlutterFlowTheme.of(context).campusRed,
+                                    elevation: 0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        6, 6, 6, 6),
+                                    position: BadgePosition.topEnd(),
+                                    animationType: BadgeAnimationType.scale,
+                                    toAnimate: true,
+                                    child: Icon(
+                                      FFIcons.kic16,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 24,
+                                    ),
+                                  ),
                                 ),
-                                showBadge: true,
-                                shape: BadgeShape.circle,
-                                badgeColor:
-                                    FlutterFlowTheme.of(context).campusRed,
-                                elevation: 0,
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
-                                position: BadgePosition.topEnd(),
-                                animationType: BadgeAnimationType.scale,
-                                toAnimate: true,
-                                child: Icon(
-                                  FFIcons.kic16,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24,
+                              if (valueOrDefault(
+                                      currentUserDocument?.role, '') ==
+                                  'Admin')
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 15, 0),
+                                  child: AuthUserStreamWidget(
+                                    child: InkWell(
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'NOTIFICATIONS_PAGE_Icon_qjtm8pn2_ON_TAP');
+                                        logFirebaseEvent('Icon_navigate_to');
+
+                                        context.pushNamed(
+                                          'sendNotifications',
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                            ),
+                                          },
+                                        );
+                                      },
+                                      child: FaIcon(
+                                        FontAwesomeIcons.edit,
+                                        color: Colors.black,
+                                        size: 26,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -189,15 +233,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
                                               return Center(
-                                                child: SizedBox(
-                                                  width: 60,
-                                                  height: 60,
-                                                  child: SpinKitPulse(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryColor,
-                                                    size: 60,
-                                                  ),
+                                                child: Center(
+                                                  child: SkeletonViewWidget(),
                                                 ),
                                               );
                                             }
@@ -236,6 +273,40 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                             .fromSTEB(
                                                                 10, 10, 18, 0),
                                                     child: InkWell(
+                                                      onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'NOTIFICATIONS_PAGE_Row_ynna2ft9_ON_TAP');
+                                                        logFirebaseEvent(
+                                                            'Row_bottom_sheet');
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                      .of(context)
+                                                                  .viewInsets,
+                                                              child:
+                                                                  TessstWidget(
+                                                                heading:
+                                                                    columnNotificationsRecord
+                                                                        .title,
+                                                                content:
+                                                                    columnNotificationsRecord
+                                                                        .content,
+                                                                link:
+                                                                    columnNotificationsRecord
+                                                                        .link,
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            setState(() {}));
+                                                      },
                                                       onLongPress: () async {
                                                         logFirebaseEvent(
                                                             'NOTIFICATIONS_Row_ynna2ft9_ON_LONG_PRESS');
@@ -245,7 +316,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                                 '') ==
                                                             'Admin') {
                                                           logFirebaseEvent(
-                                                              'Row_Alert-Dialog');
+                                                              'Row_alert_dialog');
                                                           var confirmDialogResponse =
                                                               await showDialog<
                                                                       bool>(
@@ -278,7 +349,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                                   false;
                                                           if (confirmDialogResponse) {
                                                             logFirebaseEvent(
-                                                                'Row_Backend-Call');
+                                                                'Row_backend_call');
                                                             await columnNotificationsRecord
                                                                 .reference
                                                                 .delete();
@@ -496,15 +567,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                           // Customize what your widget looks like when it's loading.
                                           if (!snapshot.hasData) {
                                             return Center(
-                                              child: SizedBox(
-                                                width: 60,
-                                                height: 60,
-                                                child: SpinKitPulse(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryColor,
-                                                  size: 60,
-                                                ),
+                                              child: Center(
+                                                child: SkeletonViewWidget(),
                                               ),
                                             );
                                           }
@@ -544,13 +608,46 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                     onTap: () async {
                                                       logFirebaseEvent(
                                                           'NOTIFICATIONS_PAGE_Row_egt7lw89_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'Row_bottom_sheet');
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return Padding(
+                                                            padding:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .viewInsets,
+                                                            child: TessstWidget(
+                                                              heading:
+                                                                  columnNotificationsRecord
+                                                                      .title,
+                                                              content:
+                                                                  columnNotificationsRecord
+                                                                      .content,
+                                                              link:
+                                                                  columnNotificationsRecord
+                                                                      .link,
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          setState(() {}));
+                                                    },
+                                                    onLongPress: () async {
+                                                      logFirebaseEvent(
+                                                          'NOTIFICATIONS_Row_egt7lw89_ON_LONG_PRESS');
                                                       if (valueOrDefault(
                                                               currentUserDocument
                                                                   ?.role,
                                                               '') ==
                                                           'Admin') {
                                                         logFirebaseEvent(
-                                                            'Row_Alert-Dialog');
+                                                            'Row_alert_dialog');
                                                         var confirmDialogResponse =
                                                             await showDialog<
                                                                     bool>(
@@ -585,7 +682,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                                 false;
                                                         if (confirmDialogResponse) {
                                                           logFirebaseEvent(
-                                                              'Row_Backend-Call');
+                                                              'Row_backend_call');
                                                           await columnNotificationsRecord
                                                               .reference
                                                               .delete();

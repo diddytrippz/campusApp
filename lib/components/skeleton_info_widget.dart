@@ -18,6 +18,13 @@ class _SkeletonInfoWidgetState extends State<SkeletonInfoWidget> {
   List<String>? choiceChipsValues;
 
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,

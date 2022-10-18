@@ -14,6 +14,13 @@ class SkeletonSettingsWidget extends StatefulWidget {
 
 class _SkeletonSettingsWidgetState extends State<SkeletonSettingsWidget> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,

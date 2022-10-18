@@ -17,6 +17,48 @@ class BtmNvWidget extends StatefulWidget {
 
 class _BtmNvWidgetState extends State<BtmNvWidget>
     with TickerProviderStateMixin {
+  final animationsMap = {
+    'containerOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeIn,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        FadeEffect(
+          curve: Curves.easeIn,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,7 +75,7 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                 child: InkWell(
                   onTap: () async {
                     logFirebaseEvent('BTM_NV_COMP_Column_196qr9mn_ON_TAP');
-                    logFirebaseEvent('Column_Navigate-To');
+                    logFirebaseEvent('Column_navigate_to');
 
                     context.pushNamed(
                       'messages',
@@ -99,7 +141,7 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                   child: InkWell(
                     onTap: () async {
                       logFirebaseEvent('BTM_NV_COMP_Column_10yz9v5g_ON_TAP');
-                      logFirebaseEvent('Column_Navigate-To');
+                      logFirebaseEvent('Column_navigate_to');
 
                       context.pushNamed(
                         'home',
@@ -164,7 +206,7 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                 child: InkWell(
                   onTap: () async {
                     logFirebaseEvent('BTM_NV_COMP_Column_r1wojaej_ON_TAP');
-                    logFirebaseEvent('Column_Navigate-To');
+                    logFirebaseEvent('Column_navigate_to');
 
                     context.pushNamed(
                       'settings',
@@ -276,7 +318,8 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                                         decoration: BoxDecoration(
                                           color: Color(0x00FFFFFF),
                                         ),
-                                      ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'containerOnPageLoadAnimation1']!),
                                     ),
                                   ],
                                 ),
@@ -338,7 +381,8 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                                         decoration: BoxDecoration(
                                           color: Color(0x00FFFFFF),
                                         ),
-                                      ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'containerOnPageLoadAnimation2']!),
                                     ),
                                   ],
                                 ),
@@ -398,9 +442,9 @@ class _BtmNvWidgetState extends State<BtmNvWidget>
                             onTap: () async {
                               logFirebaseEvent(
                                   'BTM_NV_COMP_Column_lhwqsucf_ON_TAP');
-                              logFirebaseEvent('Column_Haptic-Feedback');
+                              logFirebaseEvent('Column_haptic_feedback');
                               HapticFeedback.selectionClick();
-                              logFirebaseEvent('Column_Bottom-Sheet');
+                              logFirebaseEvent('Column_bottom_sheet');
                               Navigator.pop(context);
                             },
                             child: Column(

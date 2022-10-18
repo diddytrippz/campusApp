@@ -29,6 +29,98 @@ class BottomNavBarWidget extends StatefulWidget {
 
 class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
     with TickerProviderStateMixin {
+  var hasColumnTriggered = false;
+  final animationsMap = {
+    'containerOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(100, 100),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(100, 100),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(0, 100),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(0, 100),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'containerOnPageLoadAnimation3': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: Offset(-98, 100),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation3': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(-98, 100),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -62,7 +154,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                             onTap: () async {
                               logFirebaseEvent(
                                   'BOTTOM_NAV_BAR_Column_p4nmh717_ON_TAP');
-                              logFirebaseEvent('Column_Navigate-To');
+                              logFirebaseEvent('Column_navigate_to');
 
                               context.pushNamed(
                                 'messages',
@@ -102,7 +194,8 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                       ),
                                     ),
                                   ),
-                                ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'containerOnPageLoadAnimation1']!),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 5, 0, 0),
@@ -118,7 +211,8 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),
-                                  ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'textOnPageLoadAnimation1']!),
                                 ),
                               ],
                             ),
@@ -132,7 +226,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                               onTap: () async {
                                 logFirebaseEvent(
                                     'BOTTOM_NAV_BAR_Column_8qpxzasq_ON_TAP');
-                                logFirebaseEvent('Column_Navigate-To');
+                                logFirebaseEvent('Column_navigate_to');
 
                                 context.pushNamed(
                                   'home',
@@ -172,7 +266,8 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                         ),
                                       ),
                                     ),
-                                  ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'containerOnPageLoadAnimation2']!),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 5, 0, 0),
@@ -188,7 +283,8 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                             fontSize: 16,
                                             fontWeight: FontWeight.w500,
                                           ),
-                                    ),
+                                    ).animateOnPageLoad(animationsMap[
+                                        'textOnPageLoadAnimation2']!),
                                   ),
                                 ],
                               ),
@@ -200,7 +296,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                             onTap: () async {
                               logFirebaseEvent(
                                   'BOTTOM_NAV_BAR_Column_2d7e194y_ON_TAP');
-                              logFirebaseEvent('Column_Navigate-To');
+                              logFirebaseEvent('Column_navigate_to');
 
                               context.pushNamed(
                                 'settings',
@@ -241,7 +337,8 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                       ),
                                     ),
                                   ),
-                                ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'containerOnPageLoadAnimation3']!),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 5, 0, 0),
@@ -257,7 +354,8 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
                                         ),
-                                  ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'textOnPageLoadAnimation3']!),
                                 ),
                               ],
                             ),
@@ -315,9 +413,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                       logFirebaseEvent(
                                           'BOTTOM_NAV_BAR_Column_yq73ljy1_ON_TAP');
                                       logFirebaseEvent(
-                                          'Column_Haptic-Feedback');
+                                          'Column_haptic_feedback');
                                       HapticFeedback.selectionClick();
-                                      logFirebaseEvent('Column_Navigate-To');
+                                      logFirebaseEvent('Column_navigate_to');
 
                                       context.pushNamed(
                                         'view',
@@ -349,9 +447,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                       logFirebaseEvent(
                                           'BOTTOM_NAV_BAR_Column_snb0zv2r_ON_TAP');
                                       logFirebaseEvent(
-                                          'Column_Haptic-Feedback');
+                                          'Column_haptic_feedback');
                                       HapticFeedback.selectionClick();
-                                      logFirebaseEvent('Column_Navigate-To');
+                                      logFirebaseEvent('Column_navigate_to');
 
                                       context.pushNamed(
                                         'messages',
@@ -455,9 +553,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                       logFirebaseEvent(
                                           'BOTTOM_NAV_BAR_Column_s6l4ip5r_ON_TAP');
                                       logFirebaseEvent(
-                                          'Column_Haptic-Feedback');
+                                          'Column_haptic_feedback');
                                       HapticFeedback.selectionClick();
-                                      logFirebaseEvent('Column_Navigate-To');
+                                      logFirebaseEvent('Column_navigate_to');
 
                                       context.pushNamed(
                                         'notifications',
@@ -492,9 +590,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                                       logFirebaseEvent(
                                           'BOTTOM_NAV_BAR_Column_1wv0vx12_ON_TAP');
                                       logFirebaseEvent(
-                                          'Column_Haptic-Feedback');
+                                          'Column_haptic_feedback');
                                       HapticFeedback.selectionClick();
-                                      logFirebaseEvent('Column_Navigate-To');
+                                      logFirebaseEvent('Column_navigate_to');
 
                                       context.pushNamed(
                                         'settings',
@@ -567,9 +665,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                             onTap: () async {
                               logFirebaseEvent(
                                   'BOTTOM_NAV_BAR_Column_t880ep7z_ON_TAP');
-                              logFirebaseEvent('Column_Haptic-Feedback');
+                              logFirebaseEvent('Column_haptic_feedback');
                               HapticFeedback.selectionClick();
-                              logFirebaseEvent('Column_Update-Local-State');
+                              logFirebaseEvent('Column_update_local_state');
                               setState(() => FFAppState().btmNavVis = false);
                             },
                             child: Column(
@@ -620,9 +718,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget>
                             onTap: () async {
                               logFirebaseEvent(
                                   'BOTTOM_NAV_BAR_Column_188tnx3r_ON_TAP');
-                              logFirebaseEvent('Column_Haptic-Feedback');
+                              logFirebaseEvent('Column_haptic_feedback');
                               HapticFeedback.selectionClick();
-                              logFirebaseEvent('Column_Update-Local-State');
+                              logFirebaseEvent('Column_update_local_state');
                               setState(() => FFAppState().btmNavVis = true);
                             },
                             child: Column(

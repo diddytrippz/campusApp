@@ -18,9 +18,10 @@ export 'profile/profile_widget.dart' show ProfileWidget;
 export 'settings/settings_widget.dart' show SettingsWidget;
 export 'home/home_widget.dart' show HomeWidget;
 export 'messages/messages_widget.dart' show MessagesWidget;
+export 'send_notifications/send_notifications_widget.dart'
+    show SendNotificationsWidget;
 export 'information/information_widget.dart' show InformationWidget;
 export 'notifications/notifications_widget.dart' show NotificationsWidget;
 export 'search/search_widget.dart' show SearchWidget;
 export 'voucher/voucher_widget.dart' show VoucherWidget;
 export 'rewards/rewards_widget.dart' show RewardsWidget;
-export 'test_row/test_row_widget.dart' show TestRowWidget;

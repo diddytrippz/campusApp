@@ -24,6 +24,10 @@ abstract class NotificationsRecord
 
   bool? get sendToAll;
 
+  String? get link;
+
+  String? get content;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -33,7 +37,9 @@ abstract class NotificationsRecord
     ..sentBy = ''
     ..building = ''
     ..urgency = ''
-    ..sendToAll = false;
+    ..sendToAll = false
+    ..link = ''
+    ..content = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('notifications');
@@ -64,6 +70,8 @@ Map<String, dynamic> createNotificationsRecordData({
   DateTime? dateCreate,
   String? urgency,
   bool? sendToAll,
+  String? link,
+  String? content,
 }) {
   final firestoreData = serializers.toFirestore(
     NotificationsRecord.serializer,
@@ -74,7 +82,9 @@ Map<String, dynamic> createNotificationsRecordData({
         ..building = building
         ..dateCreate = dateCreate
         ..urgency = urgency
-        ..sendToAll = sendToAll,
+        ..sendToAll = sendToAll
+        ..link = link
+        ..content = content,
     ),
   );
 

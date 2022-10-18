@@ -1,7 +1,6 @@
 import '../auth/auth_util.dart';
 import '../components/bottom_nav_bar_widget.dart';
 import '../components/side_nav_widget.dart';
-import '../components/skeleton_home_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -28,17 +27,12 @@ class _HomeWidgetState extends State<HomeWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('HOME_PAGE_home_ON_PAGE_LOAD');
-      logFirebaseEvent('home_Update-Local-State');
-      setState(() => FFAppState().skeletonhome = true);
-      logFirebaseEvent('home_Update-Local-State');
+      logFirebaseEvent('home_update_local_state');
       setState(() => FFAppState().btmNavVis = false);
-      logFirebaseEvent('home_Wait-Delay');
-      await Future.delayed(const Duration(milliseconds: 2000));
-      logFirebaseEvent('home_Update-Local-State');
-      setState(() => FFAppState().skeletonhome = false);
     });
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'home'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -156,7 +150,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               logFirebaseEvent(
                                                   'HOME_PAGE_ic19_ICN_ON_TAP');
                                               logFirebaseEvent(
-                                                  'IconButton_Navigate-To');
+                                                  'IconButton_navigate_to');
 
                                               context.pushNamed('messages');
                                             },
@@ -230,10 +224,22 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 logFirebaseEvent(
                                                     'HOME_PAGE_ic15_ICN_ON_TAP');
                                                 logFirebaseEvent(
-                                                    'IconButton_Navigate-To');
+                                                    'IconButton_navigate_to');
 
-                                                context
-                                                    .pushNamed('notifications');
+                                                context.pushNamed(
+                                                  'notifications',
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .fade,
+                                                      duration: Duration(
+                                                          milliseconds: 0),
+                                                    ),
+                                                  },
+                                                );
                                               },
                                             ),
                                           ),
@@ -372,10 +378,25 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           logFirebaseEvent(
                                                               'HOME_PAGE_Badge_m9cdh5tk_ON_TAP');
                                                           logFirebaseEvent(
-                                                              'Badge_Navigate-To');
+                                                              'Badge_navigate_to');
 
                                                           context.pushNamed(
-                                                              'notifications');
+                                                            'notifications',
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                              ),
+                                                            },
+                                                          );
                                                         },
                                                         child: Badge(
                                                           badgeContent: Text(
@@ -498,7 +519,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   logFirebaseEvent(
                                                       'HOME_PAGE_activityButton_ON_TAP');
                                                   logFirebaseEvent(
-                                                      'activityButton_Navigate-To');
+                                                      'activityButton_navigate_to');
 
                                                   context
                                                       .pushNamed('Appliances');
@@ -618,7 +639,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   logFirebaseEvent(
                                                       'HOME_PAGE_activityButton_ON_TAP');
                                                   logFirebaseEvent(
-                                                      'activityButton_Navigate-To');
+                                                      'activityButton_navigate_to');
 
                                                   context.pushNamed('Plumbing');
                                                 },
@@ -747,7 +768,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       logFirebaseEvent(
                                                           'HOME_PAGE_activityButton_ON_TAP');
                                                       logFirebaseEvent(
-                                                          'activityButton_Navigate-To');
+                                                          'activityButton_navigate_to');
 
                                                       context.pushNamed(
                                                           'Electrical');
@@ -867,7 +888,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       logFirebaseEvent(
                                                           'HOME_PAGE_activityButton_ON_TAP');
                                                       logFirebaseEvent(
-                                                          'activityButton_Navigate-To');
+                                                          'activityButton_navigate_to');
 
                                                       context.pushNamed(
                                                           'painting');
@@ -997,7 +1018,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         logFirebaseEvent(
                                                             'HOME_PAGE_activityButton_ON_TAP');
                                                         logFirebaseEvent(
-                                                            'activityButton_Navigate-To');
+                                                            'activityButton_navigate_to');
 
                                                         context.pushNamed(
                                                             'Locksmith');
@@ -1123,7 +1144,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         logFirebaseEvent(
                                                             'HOME_PAGE_activityButton_ON_TAP');
                                                         logFirebaseEvent(
-                                                            'activityButton_Navigate-To');
+                                                            'activityButton_navigate_to');
 
                                                         context.pushNamed(
                                                             'Furniture');
@@ -1259,7 +1280,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         logFirebaseEvent(
                                                             'HOME_PAGE_activityButton_ON_TAP');
                                                         logFirebaseEvent(
-                                                            'activityButton_Navigate-To');
+                                                            'activityButton_navigate_to');
 
                                                         context.pushNamed(
                                                             'Communal');
@@ -1385,7 +1406,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         logFirebaseEvent(
                                                             'HOME_PAGE_activityButton_ON_TAP');
                                                         logFirebaseEvent(
-                                                            'activityButton_Navigate-To');
+                                                            'activityButton_navigate_to');
 
                                                         context.pushNamed(
                                                             'Others');
@@ -1532,7 +1553,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                   notificationColor: FlutterFlowTheme.of(context).primaryText,
                   settingsColor: FlutterFlowTheme.of(context).primaryText,
                 ),
-              if (FFAppState().skeletonhome) SkeletonHomeWidget(),
             ],
           ),
         ),

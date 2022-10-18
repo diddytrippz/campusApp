@@ -211,6 +211,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => MessagesWidget(),
             ),
             FFRoute(
+              name: 'sendNotifications',
+              path: 'sendNotifications',
+              requireAuth: true,
+              builder: (context, params) => SendNotificationsWidget(),
+            ),
+            FFRoute(
               name: 'information',
               path: 'information',
               requireAuth: true,
@@ -244,12 +250,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'rewards',
               requireAuth: true,
               builder: (context, params) => RewardsWidget(),
-            ),
-            FFRoute(
-              name: 'testRow',
-              path: 'testRow',
-              requireAuth: true,
-              builder: (context, params) => TestRowWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -471,7 +471,7 @@ class TransitionInfo {
 
   static TransitionInfo appDefault() => TransitionInfo(
         hasTransition: true,
-        transitionType: PageTransitionType.bottomToTop,
-        duration: Duration(milliseconds: 300),
+        transitionType: PageTransitionType.fade,
+        duration: Duration(milliseconds: 0),
       );
 }

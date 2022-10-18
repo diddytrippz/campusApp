@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ChatsWidget extends StatefulWidget {
   const ChatsWidget({
@@ -53,6 +54,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
     });
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'chats'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -68,7 +70,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
           child: InkWell(
             onTap: () async {
               logFirebaseEvent('CHATS_PAGE_Row_k2ezkl05_ON_TAP');
-              logFirebaseEvent('Row_Navigate-Back');
+              logFirebaseEvent('Row_navigate_back');
               context.pop();
             },
             child: Row(
@@ -104,7 +106,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: Color(0x00FFFFFF),
+                  color: FlutterFlowTheme.of(context).primaryBackground,
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: Color(0xFF4E3DCB),
@@ -168,7 +170,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
               child: InkWell(
                 onTap: () async {
                   logFirebaseEvent('CHATS_PAGE_Icon_78qjwv36_ON_TAP');
-                  logFirebaseEvent('Icon_Show-Snack-Bar');
+                  logFirebaseEvent('Icon_show_snack_bar');
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
@@ -190,29 +192,41 @@ class _ChatsWidgetState extends State<ChatsWidget> {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
-            child: InkWell(
-              onTap: () async {
-                logFirebaseEvent('CHATS_PAGE_Icon_3w4unhx8_ON_TAP');
-                logFirebaseEvent('Icon_Show-Snack-Bar');
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      'Calls are not yet supported ',
-                      style: TextStyle(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
+          Visibility(
+            visible: !isWeb,
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+              child: InkWell(
+                onTap: () async {
+                  logFirebaseEvent('CHATS_PAGE_Icon_3w4unhx8_ON_TAP');
+                  if (widget.chatUser!.role == 'Admin') {
+                    logFirebaseEvent('Icon_call_number');
+                    await launchUrl(Uri(
+                      scheme: 'tel',
+                      path: '',
+                    ));
+                  } else {
+                    logFirebaseEvent('Icon_show_snack_bar');
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Call are not yet supported for non-admin contacts',
+                          style: TextStyle(
+                            color: FlutterFlowTheme.of(context).tertiaryColor,
+                          ),
+                        ),
+                        duration: Duration(milliseconds: 4000),
+                        backgroundColor:
+                            FlutterFlowTheme.of(context).primaryText,
                       ),
-                    ),
-                    duration: Duration(milliseconds: 4000),
-                    backgroundColor: FlutterFlowTheme.of(context).primaryText,
-                  ),
-                );
-              },
-              child: Icon(
-                Icons.call,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 27,
+                    );
+                  }
+                },
+                child: Icon(
+                  Icons.call,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 27,
+                ),
               ),
             ),
           ),

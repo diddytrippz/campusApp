@@ -39,7 +39,9 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   }
 
   Future _handlePushNotification(RemoteMessage message) async {
-    setState(() => _loading = true);
+    if (mounted) {
+      setState(() => _loading = true);
+    }
     try {
       final initialPageName = message.data['initialPageName'] as String;
       final initialParameterData = getInitialParameterData(message.data);
@@ -54,7 +56,9 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
     } catch (e) {
       print('Error: $e');
     } finally {
-      setState(() => _loading = false);
+      if (mounted) {
+        setState(() => _loading = false);
+      }
     }
   }
 
@@ -108,6 +112,7 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'profile': (data) async => ProfileWidget(),
   'settings': (data) async => SettingsWidget(),
   'messages': (data) async => MessagesWidget(),
+  'sendNotifications': (data) async => SendNotificationsWidget(),
   'information': (data) async => InformationWidget(
         jobs: await getDocumentParameter(
             data, 'jobs', MaintenanceRecord.serializer),
@@ -116,7 +121,6 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'search': (data) async => SearchWidget(),
   'voucher': (data) async => VoucherWidget(),
   'rewards': (data) async => RewardsWidget(),
-  'testRow': (data) async => TestRowWidget(),
 };
 
 bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>

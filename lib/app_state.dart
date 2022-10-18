@@ -105,6 +105,8 @@ class FFAppState {
     _skeletonInfo = _value;
     prefs.setBool('ff_skeletonInfo', _value);
   }
+
+  String link = '';
 }
 
 LatLng? _latLngFromString(String? val) {

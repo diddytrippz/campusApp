@@ -71,7 +71,7 @@ class _VoucherWidgetState extends State<VoucherWidget> {
                         onPressed: () async {
                           logFirebaseEvent(
                               'VOUCHER_PAGE_arrow_back_sharp_ICN_ON_TAP');
-                          logFirebaseEvent('IconButton_Navigate-Back');
+                          logFirebaseEvent('IconButton_navigate_back');
                           context.pop();
                         },
                       ),

@@ -29,6 +29,13 @@ class SideNavWidget extends StatefulWidget {
 
 class _SideNavWidgetState extends State<SideNavWidget> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
@@ -52,20 +59,6 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                    child: Container(
-                      width: 75,
-                      height: 75,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: Image.asset(
-                        'assets/images/campus_logo_1.png',
-                      ),
-                    ),
-                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                     child: Row(
@@ -102,7 +95,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                     child: InkWell(
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_rgq06ob3_ON_TAP');
-                        logFirebaseEvent('Row_Navigate-To');
+                        logFirebaseEvent('Row_navigate_to');
 
                         context.pushNamed('home');
                       },
@@ -142,7 +135,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                     child: InkWell(
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_nk176y9v_ON_TAP');
-                        logFirebaseEvent('Row_Navigate-To');
+                        logFirebaseEvent('Row_navigate_to');
 
                         context.pushNamed('view');
                       },
@@ -182,7 +175,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                     child: InkWell(
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_84dxzcmt_ON_TAP');
-                        logFirebaseEvent('Row_Navigate-To');
+                        logFirebaseEvent('Row_navigate_to');
 
                         context.pushNamed('messages');
                       },
@@ -222,7 +215,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                     child: InkWell(
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_t1032x3x_ON_TAP');
-                        logFirebaseEvent('Row_Navigate-To');
+                        logFirebaseEvent('Row_navigate_to');
 
                         context.pushNamed('search');
                       },
@@ -274,7 +267,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                     child: InkWell(
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_fhkcqd4v_ON_TAP');
-                        logFirebaseEvent('Row_Navigate-To');
+                        logFirebaseEvent('Row_navigate_to');
 
                         context.pushNamed('notifications');
                       },
@@ -314,7 +307,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                     child: InkWell(
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_0ylqr4xj_ON_TAP');
-                        logFirebaseEvent('Row_Navigate-To');
+                        logFirebaseEvent('Row_navigate_to');
 
                         context.pushNamed('settings');
                       },
@@ -354,7 +347,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                     child: InkWell(
                       onTap: () async {
                         logFirebaseEvent('SIDE_NAV_COMP_Row_o5ezsg5w_ON_TAP');
-                        logFirebaseEvent('Row_Auth');
+                        logFirebaseEvent('Row_auth');
                         GoRouter.of(context).prepareAuthEvent();
                         await signOut();
 

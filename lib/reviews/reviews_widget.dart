@@ -35,6 +35,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
   void initState() {
     super.initState();
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'reviews'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -57,7 +58,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
           ),
           onPressed: () async {
             logFirebaseEvent('REVIEWS_PAGE_arrow_back_ios_ICN_ON_TAP');
-            logFirebaseEvent('IconButton_Navigate-Back');
+            logFirebaseEvent('IconButton_navigate_back');
             context.pop();
           },
         ),
@@ -662,7 +663,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                       onPressed: () async {
                                         logFirebaseEvent(
                                             'REVIEWS_PAGE_CONFIRM_BTN_ON_TAP');
-                                        logFirebaseEvent('Button_Alert-Dialog');
+                                        logFirebaseEvent('Button_alert_dialog');
                                         var confirmDialogResponse =
                                             await showDialog<bool>(
                                                   context: context,
@@ -694,7 +695,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                                   },
                                                 ) ??
                                                 false;
-                                        logFirebaseEvent('Button_Backend-Call');
+                                        logFirebaseEvent('Button_backend_call');
 
                                         final maintenanceUpdateData =
                                             createMaintenanceRecordData(
@@ -703,7 +704,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                         await widget.jobReviews!.reference
                                             .update(maintenanceUpdateData);
                                         logFirebaseEvent(
-                                            'Button_Show-Snack-Bar');
+                                            'Button_show_snack_bar');
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -722,7 +723,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                                     .primaryText,
                                           ),
                                         );
-                                        logFirebaseEvent('Button_Navigate-To');
+                                        logFirebaseEvent('Button_navigate_to');
 
                                         context.pushNamed('view');
                                       },
