@@ -598,6 +598,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     fontWeight: FontWeight.bold,
                                   ),
                               maxLines: 4,
+                              keyboardType: TextInputType.name,
                             ),
                           ),
                         ],

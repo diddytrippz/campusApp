@@ -54,8 +54,9 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
       body: NestedScrollView(
         headerSliverBuilder: (context, _) => [
           SliverAppBar(
-            pinned: false,
-            floating: false,
+            pinned: true,
+            floating: true,
+            snap: true,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             automaticallyImplyLeading: false,
             leading: FlutterFlowIconButton(
@@ -450,6 +451,7 @@ class _ElectricalWidgetState extends State<ElectricalWidget> {
                                   ),
                               textAlign: TextAlign.start,
                               maxLines: 5,
+                              keyboardType: TextInputType.name,
                               validator: (val) {
                                 if (val == null || val.isEmpty) {
                                   return FFLocalizations.of(context).getText(

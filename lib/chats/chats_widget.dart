@@ -122,7 +122,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Open Sans',
                             color: FlutterFlowTheme.of(context).primaryText,
-                            fontSize: 15,
+                            fontSize: 14,
                             fontWeight: FontWeight.w800,
                           ),
                     ),

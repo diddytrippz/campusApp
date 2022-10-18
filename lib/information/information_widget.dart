@@ -78,7 +78,8 @@ class _InformationWidgetState extends State<InformationWidget> {
             headerSliverBuilder: (context, _) => [
               SliverAppBar(
                 pinned: false,
-                floating: false,
+                floating: true,
+                snap: true,
                 backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
                 automaticallyImplyLeading: false,
                 leading: FlutterFlowIconButton(

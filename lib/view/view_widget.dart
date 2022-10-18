@@ -82,7 +82,7 @@ class _ViewWidgetState extends State<ViewWidget> {
                         if (!isWeb)
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 60, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -97,7 +97,7 @@ class _ViewWidgetState extends State<ViewWidget> {
                                         fontFamily: 'Open Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
-                                        fontSize: 22,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),

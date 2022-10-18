@@ -414,6 +414,8 @@ class _SendNotificationsWidgetState extends State<SendNotificationsWidget> {
                               style:
                                   FlutterFlowTheme.of(context).title3.override(
                                         fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
                                         fontSize: 16,
                                       ),
                             ),
