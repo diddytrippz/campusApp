@@ -63,31 +63,10 @@ class _$MaintenanceRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
-    value = object.phoneNumber;
-    if (value != null) {
-      result
-        ..add('phone_number')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.displayName;
     if (value != null) {
       result
         ..add('display_name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.room;
-    if (value != null) {
-      result
-        ..add('room')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.building;
-    if (value != null) {
-      result
-        ..add('building')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -103,13 +82,6 @@ class _$MaintenanceRecordSerializer
       result
         ..add('rating')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
-    value = object.isDone;
-    if (value != null) {
-      result
-        ..add('isDone')
-        ..add(
-            serializers.serialize(value, specifiedType: const FullType(bool)));
     }
     value = object.category;
     if (value != null) {
@@ -139,6 +111,48 @@ class _$MaintenanceRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
                 DocumentReference, const [const FullType.nullable(Object)])));
+    }
+    value = object.ticketRef;
+    if (value != null) {
+      result
+        ..add('ticketRef')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.firstName;
+    if (value != null) {
+      result
+        ..add('FIRST_NAME')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.lastName;
+    if (value != null) {
+      result
+        ..add('LAST_NAME')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.residence;
+    if (value != null) {
+      result
+        ..add('RESIDENCE')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.cellNumber;
+    if (value != null) {
+      result
+        ..add('CELL_NUMBER')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.bedCode;
+    if (value != null) {
+      result
+        ..add('BED_CODE')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
     value = object.ffRef;
     if (value != null) {
@@ -187,20 +201,8 @@ class _$MaintenanceRecordSerializer
           result.createdTime = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
-        case 'phone_number':
-          result.phoneNumber = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'display_name':
           result.displayName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'room':
-          result.room = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'building':
-          result.building = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'notes':
@@ -210,10 +212,6 @@ class _$MaintenanceRecordSerializer
         case 'rating':
           result.rating = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
-          break;
-        case 'isDone':
-          result.isDone = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'category':
           result.category = serializers.deserialize(value,
@@ -232,6 +230,30 @@ class _$MaintenanceRecordSerializer
               specifiedType: const FullType(DocumentReference, const [
                 const FullType.nullable(Object)
               ])) as DocumentReference<Object?>?;
+          break;
+        case 'ticketRef':
+          result.ticketRef = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'FIRST_NAME':
+          result.firstName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'LAST_NAME':
+          result.lastName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'RESIDENCE':
+          result.residence = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'CELL_NUMBER':
+          result.cellNumber = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'BED_CODE':
+          result.bedCode = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -260,19 +282,11 @@ class _$MaintenanceRecord extends MaintenanceRecord {
   @override
   final DateTime? createdTime;
   @override
-  final String? phoneNumber;
-  @override
   final String? displayName;
-  @override
-  final String? room;
-  @override
-  final String? building;
   @override
   final String? notes;
   @override
   final int? rating;
-  @override
-  final bool? isDone;
   @override
   final String? category;
   @override
@@ -281,6 +295,18 @@ class _$MaintenanceRecord extends MaintenanceRecord {
   final DateTime? updateTime;
   @override
   final DocumentReference<Object?>? userRec;
+  @override
+  final String? ticketRef;
+  @override
+  final String? firstName;
+  @override
+  final String? lastName;
+  @override
+  final String? residence;
+  @override
+  final String? cellNumber;
+  @override
+  final String? bedCode;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -295,17 +321,19 @@ class _$MaintenanceRecord extends MaintenanceRecord {
       this.photoUrl,
       this.uid,
       this.createdTime,
-      this.phoneNumber,
       this.displayName,
-      this.room,
-      this.building,
       this.notes,
       this.rating,
-      this.isDone,
       this.category,
       this.assigned,
       this.updateTime,
       this.userRec,
+      this.ticketRef,
+      this.firstName,
+      this.lastName,
+      this.residence,
+      this.cellNumber,
+      this.bedCode,
       this.ffRef})
       : super._();
 
@@ -327,17 +355,19 @@ class _$MaintenanceRecord extends MaintenanceRecord {
         photoUrl == other.photoUrl &&
         uid == other.uid &&
         createdTime == other.createdTime &&
-        phoneNumber == other.phoneNumber &&
         displayName == other.displayName &&
-        room == other.room &&
-        building == other.building &&
         notes == other.notes &&
         rating == other.rating &&
-        isDone == other.isDone &&
         category == other.category &&
         assigned == other.assigned &&
         updateTime == other.updateTime &&
         userRec == other.userRec &&
+        ticketRef == other.ticketRef &&
+        firstName == other.firstName &&
+        lastName == other.lastName &&
+        residence == other.residence &&
+        cellNumber == other.cellNumber &&
+        bedCode == other.bedCode &&
         ffRef == other.ffRef;
   }
 
@@ -361,28 +391,25 @@ class _$MaintenanceRecord extends MaintenanceRecord {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            0,
-                                                                            issue
-                                                                                .hashCode),
-                                                                        status
-                                                                            .hashCode),
-                                                                    email
-                                                                        .hashCode),
-                                                                photoUrl
-                                                                    .hashCode),
-                                                            uid.hashCode),
-                                                        createdTime.hashCode),
-                                                    phoneNumber.hashCode),
-                                                displayName.hashCode),
-                                            room.hashCode),
-                                        building.hashCode),
-                                    notes.hashCode),
-                                rating.hashCode),
-                            isDone.hashCode),
-                        category.hashCode),
-                    assigned.hashCode),
-                updateTime.hashCode),
-            userRec.hashCode),
+                                                                            $jc($jc(0, issue.hashCode),
+                                                                                status.hashCode),
+                                                                            email.hashCode),
+                                                                        photoUrl.hashCode),
+                                                                    uid.hashCode),
+                                                                createdTime.hashCode),
+                                                            displayName.hashCode),
+                                                        notes.hashCode),
+                                                    rating.hashCode),
+                                                category.hashCode),
+                                            assigned.hashCode),
+                                        updateTime.hashCode),
+                                    userRec.hashCode),
+                                ticketRef.hashCode),
+                            firstName.hashCode),
+                        lastName.hashCode),
+                    residence.hashCode),
+                cellNumber.hashCode),
+            bedCode.hashCode),
         ffRef.hashCode));
   }
 
@@ -395,17 +422,19 @@ class _$MaintenanceRecord extends MaintenanceRecord {
           ..add('photoUrl', photoUrl)
           ..add('uid', uid)
           ..add('createdTime', createdTime)
-          ..add('phoneNumber', phoneNumber)
           ..add('displayName', displayName)
-          ..add('room', room)
-          ..add('building', building)
           ..add('notes', notes)
           ..add('rating', rating)
-          ..add('isDone', isDone)
           ..add('category', category)
           ..add('assigned', assigned)
           ..add('updateTime', updateTime)
           ..add('userRec', userRec)
+          ..add('ticketRef', ticketRef)
+          ..add('firstName', firstName)
+          ..add('lastName', lastName)
+          ..add('residence', residence)
+          ..add('cellNumber', cellNumber)
+          ..add('bedCode', bedCode)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -439,21 +468,9 @@ class MaintenanceRecordBuilder
   DateTime? get createdTime => _$this._createdTime;
   set createdTime(DateTime? createdTime) => _$this._createdTime = createdTime;
 
-  String? _phoneNumber;
-  String? get phoneNumber => _$this._phoneNumber;
-  set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
-
   String? _displayName;
   String? get displayName => _$this._displayName;
   set displayName(String? displayName) => _$this._displayName = displayName;
-
-  String? _room;
-  String? get room => _$this._room;
-  set room(String? room) => _$this._room = room;
-
-  String? _building;
-  String? get building => _$this._building;
-  set building(String? building) => _$this._building = building;
 
   String? _notes;
   String? get notes => _$this._notes;
@@ -462,10 +479,6 @@ class MaintenanceRecordBuilder
   int? _rating;
   int? get rating => _$this._rating;
   set rating(int? rating) => _$this._rating = rating;
-
-  bool? _isDone;
-  bool? get isDone => _$this._isDone;
-  set isDone(bool? isDone) => _$this._isDone = isDone;
 
   String? _category;
   String? get category => _$this._category;
@@ -482,6 +495,30 @@ class MaintenanceRecordBuilder
   DocumentReference<Object?>? _userRec;
   DocumentReference<Object?>? get userRec => _$this._userRec;
   set userRec(DocumentReference<Object?>? userRec) => _$this._userRec = userRec;
+
+  String? _ticketRef;
+  String? get ticketRef => _$this._ticketRef;
+  set ticketRef(String? ticketRef) => _$this._ticketRef = ticketRef;
+
+  String? _firstName;
+  String? get firstName => _$this._firstName;
+  set firstName(String? firstName) => _$this._firstName = firstName;
+
+  String? _lastName;
+  String? get lastName => _$this._lastName;
+  set lastName(String? lastName) => _$this._lastName = lastName;
+
+  String? _residence;
+  String? get residence => _$this._residence;
+  set residence(String? residence) => _$this._residence = residence;
+
+  String? _cellNumber;
+  String? get cellNumber => _$this._cellNumber;
+  set cellNumber(String? cellNumber) => _$this._cellNumber = cellNumber;
+
+  String? _bedCode;
+  String? get bedCode => _$this._bedCode;
+  set bedCode(String? bedCode) => _$this._bedCode = bedCode;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -500,17 +537,19 @@ class MaintenanceRecordBuilder
       _photoUrl = $v.photoUrl;
       _uid = $v.uid;
       _createdTime = $v.createdTime;
-      _phoneNumber = $v.phoneNumber;
       _displayName = $v.displayName;
-      _room = $v.room;
-      _building = $v.building;
       _notes = $v.notes;
       _rating = $v.rating;
-      _isDone = $v.isDone;
       _category = $v.category;
       _assigned = $v.assigned;
       _updateTime = $v.updateTime;
       _userRec = $v.userRec;
+      _ticketRef = $v.ticketRef;
+      _firstName = $v.firstName;
+      _lastName = $v.lastName;
+      _residence = $v.residence;
+      _cellNumber = $v.cellNumber;
+      _bedCode = $v.bedCode;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -540,17 +579,19 @@ class MaintenanceRecordBuilder
             photoUrl: photoUrl,
             uid: uid,
             createdTime: createdTime,
-            phoneNumber: phoneNumber,
             displayName: displayName,
-            room: room,
-            building: building,
             notes: notes,
             rating: rating,
-            isDone: isDone,
             category: category,
             assigned: assigned,
             updateTime: updateTime,
             userRec: userRec,
+            ticketRef: ticketRef,
+            firstName: firstName,
+            lastName: lastName,
+            residence: residence,
+            cellNumber: cellNumber,
+            bedCode: bedCode,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

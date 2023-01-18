@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class SideNavWidget extends StatefulWidget {
   const SideNavWidget({
@@ -14,6 +15,7 @@ class SideNavWidget extends StatefulWidget {
     this.nav4Color,
     this.nav5Color,
     this.nav6Color,
+    this.nav7Color,
   }) : super(key: key);
 
   final Color? nav1Color;
@@ -22,12 +24,16 @@ class SideNavWidget extends StatefulWidget {
   final Color? nav4Color;
   final Color? nav5Color;
   final Color? nav6Color;
+  final Color? nav7Color;
 
   @override
   _SideNavWidgetState createState() => _SideNavWidgetState();
 }
 
 class _SideNavWidgetState extends State<SideNavWidget> {
+  bool mouseRegionHovered1 = false;
+  bool mouseRegionHovered2 = false;
+
   @override
   void initState() {
     super.initState();
@@ -37,6 +43,8 @@ class _SideNavWidgetState extends State<SideNavWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -90,14 +98,64 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                           ),
                     ),
                   ),
+                  MouseRegion(
+                    opaque: false,
+                    cursor: SystemMouseCursors.contextMenu ?? MouseCursor.defer,
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+                      child: InkWell(
+                        onTap: () async {
+                          logFirebaseEvent('SIDE_NAV_COMP_Row_rgq06ob3_ON_TAP');
+                          logFirebaseEvent('Row_navigate_to');
+
+                          context.pushNamed('home');
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                              child: Icon(
+                                FFIcons.kic29,
+                                color: widget.nav1Color,
+                                size: 22,
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'kw4npc6y' /* Home */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Open Sans',
+                                      color: widget.nav1Color,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    onEnter: ((event) async {
+                      setState(() => mouseRegionHovered1 = true);
+                    }),
+                    onExit: ((event) async {
+                      setState(() => mouseRegionHovered1 = false);
+                    }),
+                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('SIDE_NAV_COMP_Row_rgq06ob3_ON_TAP');
+                        logFirebaseEvent('SIDE_NAV_COMP_Row_nk176y9v_ON_TAP');
                         logFirebaseEvent('Row_navigate_to');
 
-                        context.pushNamed('home');
+                        context.pushNamed('dashboard');
                       },
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -105,9 +163,9 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                             child: Icon(
-                              FFIcons.kic29,
-                              color: widget.nav1Color,
-                              size: 22,
+                              Icons.data_usage,
+                              color: widget.nav7Color,
+                              size: 28,
                             ),
                           ),
                           Padding(
@@ -115,14 +173,13 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                             child: Text(
                               FFLocalizations.of(context).getText(
-                                'kw4npc6y' /* Home */,
+                                'qa3se4pd' /* Admin Dashboard */,
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Open Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color: widget.nav7Color,
                                   ),
                             ),
                           ),
@@ -134,7 +191,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
                     child: InkWell(
                       onTap: () async {
-                        logFirebaseEvent('SIDE_NAV_COMP_Row_nk176y9v_ON_TAP');
+                        logFirebaseEvent('SIDE_NAV_COMP_Row_flvf3mvb_ON_TAP');
                         logFirebaseEvent('Row_navigate_to');
 
                         context.pushNamed('view');
@@ -145,9 +202,9 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                             child: Icon(
-                              FFIcons.kic20,
+                              FFIcons.kclipboardTextCopy,
                               color: widget.nav2Color,
-                              size: 22,
+                              size: 28,
                             ),
                           ),
                           Padding(
@@ -155,14 +212,13 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                             child: Text(
                               FFLocalizations.of(context).getText(
-                                'qa3se4pd' /* View Requests */,
+                                't5vq29q1' /* View Tickets */,
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Open Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color: widget.nav2Color,
                                   ),
                             ),
                           ),
@@ -201,48 +257,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Open Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
-                    child: InkWell(
-                      onTap: () async {
-                        logFirebaseEvent('SIDE_NAV_COMP_Row_t1032x3x_ON_TAP');
-                        logFirebaseEvent('Row_navigate_to');
-
-                        context.pushNamed('search');
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
-                            child: Icon(
-                              FFIcons.kic25,
-                              color: widget.nav4Color,
-                              size: 22,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                '1ifk0xp2' /* Users */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color: widget.nav3Color,
                                   ),
                             ),
                           ),
@@ -277,9 +292,9 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                             child: Icon(
-                              FFIcons.kic15,
+                              FFIcons.knotification1Copy,
                               color: widget.nav5Color,
-                              size: 22,
+                              size: 26,
                             ),
                           ),
                           Padding(
@@ -293,8 +308,223 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Open Sans',
+                                    color: widget.nav5Color,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      MouseRegion(
+                        opaque: false,
+                        cursor:
+                            SystemMouseCursors.forbidden ?? MouseCursor.defer,
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                                child: Icon(
+                                  FFIcons.kuserTagCopy,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 26,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'bls7d7dx' /* Manage Visitors */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        onEnter: ((event) async {
+                          setState(() => mouseRegionHovered2 = true);
+                        }),
+                        onExit: ((event) async {
+                          setState(() => mouseRegionHovered2 = false);
+                        }),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(30, 12, 0, 12),
+                        child: InkWell(
+                          onTap: () async {
+                            logFirebaseEvent(
+                                'SIDE_NAV_COMP_Row_3v5es19c_ON_TAP');
+                            logFirebaseEvent('Row_navigate_to');
+
+                            context.pushNamed('visitorsManagement');
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                                child: Icon(
+                                  FFIcons.kuserCirlceAdd,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 26,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'eqk2sg1h' /* Add Visitors */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(30, 12, 0, 12),
+                        child: InkWell(
+                          onTap: () async {
+                            logFirebaseEvent(
+                                'SIDE_NAV_COMP_Row_szq630sq_ON_TAP');
+                            logFirebaseEvent('Row_navigate_to');
+
+                            context.pushNamed('myVisitors');
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                                child: Icon(
+                                  FFIcons.kuserTagCopy,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 26,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'kvxrkvlp' /* Manage Visitors */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+                    child: InkWell(
+                      onTap: () async {
+                        logFirebaseEvent('SIDE_NAV_COMP_Row_l99cvlw1_ON_TAP');
+                        logFirebaseEvent('Row_navigate_to');
+
+                        context.pushNamed('addInspection');
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                            child: Icon(
+                              FFIcons.kclipboardTickCopy,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 26,
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                            child: Text(
+                              FFLocalizations.of(context).getText(
+                                'hdqqhj1s' /* Inspections */,
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Open Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+                    child: InkWell(
+                      onTap: () async {
+                        logFirebaseEvent('SIDE_NAV_COMP_Row_t1032x3x_ON_TAP');
+                        logFirebaseEvent('Row_navigate_to');
+
+                        context.pushNamed('search');
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                            child: Icon(
+                              FFIcons.kuserCopy,
+                              color: widget.nav4Color,
+                              size: 27,
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                            child: Text(
+                              FFLocalizations.of(context).getText(
+                                '1ifk0xp2' /* Users */,
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Open Sans',
+                                    color: widget.nav4Color,
                                   ),
                             ),
                           ),
@@ -319,7 +549,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                             child: Icon(
                               FFIcons.ksettingsThree,
                               color: widget.nav6Color,
-                              size: 22,
+                              size: 27,
                             ),
                           ),
                           Padding(
@@ -333,8 +563,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Open Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color: widget.nav6Color,
                                   ),
                             ),
                           ),
@@ -359,7 +588,7 @@ class _SideNavWidgetState extends State<SideNavWidget> {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                             child: Icon(
-                              FFIcons.kic4,
+                              Icons.exit_to_app_sharp,
                               color: FlutterFlowTheme.of(context).primaryText,
                               size: 24,
                             ),

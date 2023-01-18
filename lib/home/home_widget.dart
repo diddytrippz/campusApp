@@ -10,6 +10,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -19,6 +21,7 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -28,7 +31,9 @@ class _HomeWidgetState extends State<HomeWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('HOME_PAGE_home_ON_PAGE_LOAD');
       logFirebaseEvent('home_update_local_state');
-      setState(() => FFAppState().btmNavVis = false);
+      FFAppState().update(() {
+        FFAppState().btmNavVis = false;
+      });
     });
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'home'});
@@ -36,12 +41,20 @@ class _HomeWidgetState extends State<HomeWidget> {
   }
 
   @override
+  void dispose() {
+    _unfocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Container(
           width: MediaQuery.of(context).size.width,
           child: Stack(
@@ -60,6 +73,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       nav4Color: FlutterFlowTheme.of(context).primaryText,
                       nav5Color: FlutterFlowTheme.of(context).primaryText,
                       nav6Color: FlutterFlowTheme.of(context).primaryText,
+                      nav7Color: FlutterFlowTheme.of(context).primaryText,
                     ),
                   Expanded(
                     child: Padding(
@@ -336,8 +350,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 ),
                                                           ),
                                                           AuthUserStreamWidget(
-                                                            child: Text(
-                                                              currentUserDisplayName,
+                                                            builder: (context) =>
+                                                                GradientText(
+                                                              valueOrDefault(
+                                                                  currentUserDocument
+                                                                      ?.firstName,
+                                                                  ''),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyText1
@@ -353,6 +371,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         FontWeight
                                                                             .w600,
                                                                   ),
+                                                              colors: [
+                                                                Color(
+                                                                    0xFF432DB2),
+                                                                Color(
+                                                                    0xFFB40002)
+                                                              ],
+                                                              gradientDirection:
+                                                                  GradientDirection
+                                                                      .ltr,
+                                                              gradientType:
+                                                                  GradientType
+                                                                      .linear,
                                                             ),
                                                           ),
                                                         ],
@@ -522,7 +552,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       'activityButton_navigate_to');
 
                                                   context
-                                                      .pushNamed('Appliances');
+                                                      .pushNamed('appliances');
                                                 },
                                                 child: Material(
                                                   color: Colors.transparent,
@@ -833,7 +863,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           0),
                                                                   child: Icon(
                                                                     FFIcons
-                                                                        .kbulbs,
+                                                                        .kelectricityCopy,
                                                                     color: Colors
                                                                         .white,
                                                                     size: 30,
@@ -891,7 +921,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           'activityButton_navigate_to');
 
                                                       context.pushNamed(
-                                                          'painting');
+                                                          'Painting');
                                                     },
                                                     child: Material(
                                                       color: Colors.transparent,
@@ -1086,7 +1116,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             0),
                                                                     child: Icon(
                                                                       FFIcons
-                                                                          .kroomkeys,
+                                                                          .kkeyCopy,
                                                                       color: Colors
                                                                           .white,
                                                                       size: 25,
@@ -1347,8 +1377,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             0,
                                                                             0),
                                                                     child: Icon(
-                                                                      Icons
-                                                                          .ballot_sharp,
+                                                                      FFIcons
+                                                                          .kbuildingsCopy,
                                                                       color: Colors
                                                                           .white,
                                                                       size: 25,
@@ -1472,10 +1502,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             10,
                                                                             0,
                                                                             0),
-                                                                    child:
-                                                                        FaIcon(
-                                                                      FontAwesomeIcons
-                                                                          .buffer,
+                                                                    child: Icon(
+                                                                      FFIcons
+                                                                          .kbroomCopy,
                                                                       color: Colors
                                                                           .white,
                                                                       size: 25,

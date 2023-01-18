@@ -5,6 +5,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class SubmittedIconWidget extends StatefulWidget {
   const SubmittedIconWidget({Key? key}) : super(key: key);
@@ -23,6 +24,8 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: AlignmentDirectional(0, 1),
       child: Column(
@@ -98,7 +101,9 @@ class _SubmittedIconWidgetState extends State<SubmittedIconWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                             child: AutoSizeText(
                               FFLocalizations.of(context).getText(
-                                'eelep3l0' /* Your request has been received... */,
+                                'eelep3l0' /* Your ticket has been received
+... */
+                                ,
                               ),
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.of(context)

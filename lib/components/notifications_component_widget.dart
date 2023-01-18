@@ -5,11 +5,11 @@ import '../components/tessst_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class NotificationsComponentWidget extends StatefulWidget {
   const NotificationsComponentWidget({Key? key}) : super(key: key);
@@ -30,6 +30,8 @@ class _NotificationsComponentWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(100, 100, 100, 100),
       child: Material(
@@ -76,41 +78,14 @@ class _NotificationsComponentWidgetState
                         ],
                       ),
                     ),
-                    if (responsiveVisibility(
-                      context: context,
-                      tablet: false,
-                      desktop: false,
-                    ))
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 18, 25, 0),
-                        child: Badge(
-                          badgeContent: Text(
-                            FFLocalizations.of(context).getText(
-                              '4mc3crbq' /* 1 */,
-                            ),
-                            textAlign: TextAlign.start,
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Open Sans',
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                    ),
-                          ),
-                          showBadge: true,
-                          shape: BadgeShape.circle,
-                          badgeColor: FlutterFlowTheme.of(context).campusRed,
-                          elevation: 0,
-                          padding: EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
-                          position: BadgePosition.topEnd(),
-                          animationType: BadgeAnimationType.scale,
-                          toAnimate: true,
-                          child: Icon(
-                            FFIcons.kic16,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24,
-                          ),
-                        ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 15, 0),
+                      child: Icon(
+                        FFIcons.knotification1Copy,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 26,
                       ),
+                    ),
                   ],
                 ),
               ),
@@ -154,7 +129,7 @@ class _NotificationsComponentWidgetState
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                                 child: AuthUserStreamWidget(
-                                  child:
+                                  builder: (context) =>
                                       StreamBuilder<List<NotificationsRecord>>(
                                     stream: queryNotificationsRecord(
                                       queryBuilder: (notificationsRecord) =>

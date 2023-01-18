@@ -26,27 +26,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.password;
-    if (value != null) {
-      result
-        ..add('password')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.displayName;
-    if (value != null) {
-      result
-        ..add('display_name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.photoUrl;
-    if (value != null) {
-      result
-        ..add('photo_url')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.uid;
     if (value != null) {
       result
@@ -89,6 +68,84 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.contactList;
+    if (value != null) {
+      result
+        ..add('contactList')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(ContactsStruct)])));
+    }
+    value = object.residence;
+    if (value != null) {
+      result
+        ..add('RESIDENCE')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.bedCode;
+    if (value != null) {
+      result
+        ..add('BED_CODE')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.roomType;
+    if (value != null) {
+      result
+        ..add('ROOM_TYPE')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.firstName;
+    if (value != null) {
+      result
+        ..add('FIRST_NAME')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.lastName;
+    if (value != null) {
+      result
+        ..add('LAST_NAME')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.cellNumber;
+    if (value != null) {
+      result
+        ..add('CELL_NUMBER')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.studentNumber;
+    if (value != null) {
+      result
+        ..add('STUDENT_NUMBER')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.bookingRef;
+    if (value != null) {
+      result
+        ..add('BOOKING_REF')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.displayName;
+    if (value != null) {
+      result
+        ..add('display_name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.photoUrl;
+    if (value != null) {
+      result
+        ..add('photo_url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -115,18 +172,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'password':
-          result.password = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'display_name':
-          result.displayName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'photo_url':
-          result.photoUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'uid':
           result.uid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -151,6 +196,52 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.role = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'contactList':
+          result.contactList.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(ContactsStruct)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'RESIDENCE':
+          result.residence = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'BED_CODE':
+          result.bedCode = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'ROOM_TYPE':
+          result.roomType = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'FIRST_NAME':
+          result.firstName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'LAST_NAME':
+          result.lastName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'CELL_NUMBER':
+          result.cellNumber = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'STUDENT_NUMBER':
+          result.studentNumber = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'BOOKING_REF':
+          result.bookingRef = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'display_name':
+          result.displayName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'photo_url':
+          result.photoUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -168,12 +259,6 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? email;
   @override
-  final String? password;
-  @override
-  final String? displayName;
-  @override
-  final String? photoUrl;
-  @override
   final String? uid;
   @override
   final DateTime? createdTime;
@@ -186,6 +271,28 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? role;
   @override
+  final BuiltList<ContactsStruct>? contactList;
+  @override
+  final String? residence;
+  @override
+  final String? bedCode;
+  @override
+  final String? roomType;
+  @override
+  final String? firstName;
+  @override
+  final String? lastName;
+  @override
+  final String? cellNumber;
+  @override
+  final String? studentNumber;
+  @override
+  final String? bookingRef;
+  @override
+  final String? displayName;
+  @override
+  final String? photoUrl;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -193,15 +300,23 @@ class _$UsersRecord extends UsersRecord {
 
   _$UsersRecord._(
       {this.email,
-      this.password,
-      this.displayName,
-      this.photoUrl,
       this.uid,
       this.createdTime,
       this.phoneNumber,
       this.room,
       this.building,
       this.role,
+      this.contactList,
+      this.residence,
+      this.bedCode,
+      this.roomType,
+      this.firstName,
+      this.lastName,
+      this.cellNumber,
+      this.studentNumber,
+      this.bookingRef,
+      this.displayName,
+      this.photoUrl,
       this.ffRef})
       : super._();
 
@@ -217,15 +332,23 @@ class _$UsersRecord extends UsersRecord {
     if (identical(other, this)) return true;
     return other is UsersRecord &&
         email == other.email &&
-        password == other.password &&
-        displayName == other.displayName &&
-        photoUrl == other.photoUrl &&
         uid == other.uid &&
         createdTime == other.createdTime &&
         phoneNumber == other.phoneNumber &&
         room == other.room &&
         building == other.building &&
         role == other.role &&
+        contactList == other.contactList &&
+        residence == other.residence &&
+        bedCode == other.bedCode &&
+        roomType == other.roomType &&
+        firstName == other.firstName &&
+        lastName == other.lastName &&
+        cellNumber == other.cellNumber &&
+        studentNumber == other.studentNumber &&
+        bookingRef == other.bookingRef &&
+        displayName == other.displayName &&
+        photoUrl == other.photoUrl &&
         ffRef == other.ffRef;
   }
 
@@ -240,16 +363,39 @@ class _$UsersRecord extends UsersRecord {
                             $jc(
                                 $jc(
                                     $jc(
-                                        $jc($jc(0, email.hashCode),
-                                            password.hashCode),
-                                        displayName.hashCode),
-                                    photoUrl.hashCode),
-                                uid.hashCode),
-                            createdTime.hashCode),
-                        phoneNumber.hashCode),
-                    room.hashCode),
-                building.hashCode),
-            role.hashCode),
+                                        $jc(
+                                            $jc(
+                                                $jc(
+                                                    $jc(
+                                                        $jc(
+                                                            $jc(
+                                                                $jc(
+                                                                    $jc(
+                                                                        $jc(
+                                                                            $jc(
+                                                                                0,
+                                                                                email
+                                                                                    .hashCode),
+                                                                            uid
+                                                                                .hashCode),
+                                                                        createdTime
+                                                                            .hashCode),
+                                                                    phoneNumber
+                                                                        .hashCode),
+                                                                room.hashCode),
+                                                            building.hashCode),
+                                                        role.hashCode),
+                                                    contactList.hashCode),
+                                                residence.hashCode),
+                                            bedCode.hashCode),
+                                        roomType.hashCode),
+                                    firstName.hashCode),
+                                lastName.hashCode),
+                            cellNumber.hashCode),
+                        studentNumber.hashCode),
+                    bookingRef.hashCode),
+                displayName.hashCode),
+            photoUrl.hashCode),
         ffRef.hashCode));
   }
 
@@ -257,15 +403,23 @@ class _$UsersRecord extends UsersRecord {
   String toString() {
     return (newBuiltValueToStringHelper(r'UsersRecord')
           ..add('email', email)
-          ..add('password', password)
-          ..add('displayName', displayName)
-          ..add('photoUrl', photoUrl)
           ..add('uid', uid)
           ..add('createdTime', createdTime)
           ..add('phoneNumber', phoneNumber)
           ..add('room', room)
           ..add('building', building)
           ..add('role', role)
+          ..add('contactList', contactList)
+          ..add('residence', residence)
+          ..add('bedCode', bedCode)
+          ..add('roomType', roomType)
+          ..add('firstName', firstName)
+          ..add('lastName', lastName)
+          ..add('cellNumber', cellNumber)
+          ..add('studentNumber', studentNumber)
+          ..add('bookingRef', bookingRef)
+          ..add('displayName', displayName)
+          ..add('photoUrl', photoUrl)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -277,18 +431,6 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? _email;
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
-
-  String? _password;
-  String? get password => _$this._password;
-  set password(String? password) => _$this._password = password;
-
-  String? _displayName;
-  String? get displayName => _$this._displayName;
-  set displayName(String? displayName) => _$this._displayName = displayName;
-
-  String? _photoUrl;
-  String? get photoUrl => _$this._photoUrl;
-  set photoUrl(String? photoUrl) => _$this._photoUrl = photoUrl;
 
   String? _uid;
   String? get uid => _$this._uid;
@@ -314,6 +456,53 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get role => _$this._role;
   set role(String? role) => _$this._role = role;
 
+  ListBuilder<ContactsStruct>? _contactList;
+  ListBuilder<ContactsStruct> get contactList =>
+      _$this._contactList ??= new ListBuilder<ContactsStruct>();
+  set contactList(ListBuilder<ContactsStruct>? contactList) =>
+      _$this._contactList = contactList;
+
+  String? _residence;
+  String? get residence => _$this._residence;
+  set residence(String? residence) => _$this._residence = residence;
+
+  String? _bedCode;
+  String? get bedCode => _$this._bedCode;
+  set bedCode(String? bedCode) => _$this._bedCode = bedCode;
+
+  String? _roomType;
+  String? get roomType => _$this._roomType;
+  set roomType(String? roomType) => _$this._roomType = roomType;
+
+  String? _firstName;
+  String? get firstName => _$this._firstName;
+  set firstName(String? firstName) => _$this._firstName = firstName;
+
+  String? _lastName;
+  String? get lastName => _$this._lastName;
+  set lastName(String? lastName) => _$this._lastName = lastName;
+
+  String? _cellNumber;
+  String? get cellNumber => _$this._cellNumber;
+  set cellNumber(String? cellNumber) => _$this._cellNumber = cellNumber;
+
+  String? _studentNumber;
+  String? get studentNumber => _$this._studentNumber;
+  set studentNumber(String? studentNumber) =>
+      _$this._studentNumber = studentNumber;
+
+  String? _bookingRef;
+  String? get bookingRef => _$this._bookingRef;
+  set bookingRef(String? bookingRef) => _$this._bookingRef = bookingRef;
+
+  String? _displayName;
+  String? get displayName => _$this._displayName;
+  set displayName(String? displayName) => _$this._displayName = displayName;
+
+  String? _photoUrl;
+  String? get photoUrl => _$this._photoUrl;
+  set photoUrl(String? photoUrl) => _$this._photoUrl = photoUrl;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -326,15 +515,23 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
     final $v = _$v;
     if ($v != null) {
       _email = $v.email;
-      _password = $v.password;
-      _displayName = $v.displayName;
-      _photoUrl = $v.photoUrl;
       _uid = $v.uid;
       _createdTime = $v.createdTime;
       _phoneNumber = $v.phoneNumber;
       _room = $v.room;
       _building = $v.building;
       _role = $v.role;
+      _contactList = $v.contactList?.toBuilder();
+      _residence = $v.residence;
+      _bedCode = $v.bedCode;
+      _roomType = $v.roomType;
+      _firstName = $v.firstName;
+      _lastName = $v.lastName;
+      _cellNumber = $v.cellNumber;
+      _studentNumber = $v.studentNumber;
+      _bookingRef = $v.bookingRef;
+      _displayName = $v.displayName;
+      _photoUrl = $v.photoUrl;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -356,19 +553,40 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   UsersRecord build() => _build();
 
   _$UsersRecord _build() {
-    final _$result = _$v ??
-        new _$UsersRecord._(
-            email: email,
-            password: password,
-            displayName: displayName,
-            photoUrl: photoUrl,
-            uid: uid,
-            createdTime: createdTime,
-            phoneNumber: phoneNumber,
-            room: room,
-            building: building,
-            role: role,
-            ffRef: ffRef);
+    _$UsersRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$UsersRecord._(
+              email: email,
+              uid: uid,
+              createdTime: createdTime,
+              phoneNumber: phoneNumber,
+              room: room,
+              building: building,
+              role: role,
+              contactList: _contactList?.build(),
+              residence: residence,
+              bedCode: bedCode,
+              roomType: roomType,
+              firstName: firstName,
+              lastName: lastName,
+              cellNumber: cellNumber,
+              studentNumber: studentNumber,
+              bookingRef: bookingRef,
+              displayName: displayName,
+              photoUrl: photoUrl,
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'contactList';
+        _contactList?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'UsersRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

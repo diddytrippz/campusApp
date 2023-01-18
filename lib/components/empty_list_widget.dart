@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class EmptyListWidget extends StatefulWidget {
   const EmptyListWidget({Key? key}) : super(key: key);
@@ -21,6 +22,8 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -31,25 +34,6 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        color: Color(0x00EEEEEE),
-                        image: DecorationImage(
-                          fit: BoxFit.scaleDown,
-                          image: Image.asset(
-                            'assets/images/undraw_no_data_re_kwbl.png',
-                          ).image,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(12, 60, 0, 0),
                   child: Row(
@@ -59,7 +43,9 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
                       Expanded(
                         child: Text(
                           FFLocalizations.of(context).getText(
-                            'cf85lsih' /* No results were found from you... */,
+                            'cf85lsih' /* No results were found.
+Please ... */
+                            ,
                           ),
                           textAlign: TextAlign.center,
                           style:

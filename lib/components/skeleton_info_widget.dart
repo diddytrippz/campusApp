@@ -6,6 +6,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class SkeletonInfoWidget extends StatefulWidget {
   const SkeletonInfoWidget({Key? key}) : super(key: key);
@@ -26,6 +27,8 @@ class _SkeletonInfoWidgetState extends State<SkeletonInfoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -42,6 +45,7 @@ class _SkeletonInfoWidgetState extends State<SkeletonInfoWidget> {
               nav4Color: FlutterFlowTheme.of(context).primaryText,
               nav5Color: FlutterFlowTheme.of(context).primaryText,
               nav6Color: FlutterFlowTheme.of(context).primaryText,
+              nav7Color: FlutterFlowTheme.of(context).primaryText,
             ),
           ),
         Expanded(

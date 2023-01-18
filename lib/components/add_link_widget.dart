@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class AddLinkWidget extends StatefulWidget {
   const AddLinkWidget({Key? key}) : super(key: key);
@@ -27,6 +28,8 @@ class _AddLinkWidgetState extends State<AddLinkWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.end,
@@ -125,13 +128,7 @@ class _AddLinkWidgetState extends State<AddLinkWidget> {
                               textController: textController!,
                               options: options.toList(),
                               onSelected: onSelected,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
+                              textStyle: FlutterFlowTheme.of(context).bodyText1,
                               textHighlightStyle: TextStyle(),
                               elevation: 4,
                               optionBackgroundColor:
@@ -217,8 +214,9 @@ class _AddLinkWidgetState extends State<AddLinkWidget> {
                             logFirebaseEvent('Container_bottom_sheet');
                             Navigator.pop(context, textController!.text);
                             logFirebaseEvent('Container_update_local_state');
-                            setState(
-                                () => FFAppState().link = textController!.text);
+                            FFAppState().update(() {
+                              FFAppState().link = textController!.text;
+                            });
                           },
                           child: Container(
                             width: 100,

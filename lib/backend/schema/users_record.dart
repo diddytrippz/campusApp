@@ -13,14 +13,6 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
   String? get email;
 
-  String? get password;
-
-  @BuiltValueField(wireName: 'display_name')
-  String? get displayName;
-
-  @BuiltValueField(wireName: 'photo_url')
-  String? get photoUrl;
-
   String? get uid;
 
   @BuiltValueField(wireName: 'created_time')
@@ -35,20 +27,60 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
   String? get role;
 
+  BuiltList<ContactsStruct>? get contactList;
+
+  @BuiltValueField(wireName: 'RESIDENCE')
+  String? get residence;
+
+  @BuiltValueField(wireName: 'BED_CODE')
+  String? get bedCode;
+
+  @BuiltValueField(wireName: 'ROOM_TYPE')
+  String? get roomType;
+
+  @BuiltValueField(wireName: 'FIRST_NAME')
+  String? get firstName;
+
+  @BuiltValueField(wireName: 'LAST_NAME')
+  String? get lastName;
+
+  @BuiltValueField(wireName: 'CELL_NUMBER')
+  String? get cellNumber;
+
+  @BuiltValueField(wireName: 'STUDENT_NUMBER')
+  String? get studentNumber;
+
+  @BuiltValueField(wireName: 'BOOKING_REF')
+  String? get bookingRef;
+
+  @BuiltValueField(wireName: 'display_name')
+  String? get displayName;
+
+  @BuiltValueField(wireName: 'photo_url')
+  String? get photoUrl;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(UsersRecordBuilder builder) => builder
     ..email = ''
-    ..password = ''
-    ..displayName = ''
-    ..photoUrl = ''
     ..uid = ''
     ..phoneNumber = ''
     ..room = ''
     ..building = ''
-    ..role = '';
+    ..role = ''
+    ..contactList = ListBuilder()
+    ..residence = ''
+    ..bedCode = ''
+    ..roomType = ''
+    ..firstName = ''
+    ..lastName = ''
+    ..cellNumber = ''
+    ..studentNumber = ''
+    ..bookingRef = ''
+    ..displayName = ''
+    ..photoUrl = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -64,9 +96,6 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   static UsersRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) => UsersRecord(
         (c) => c
           ..email = snapshot.data['email']
-          ..password = snapshot.data['password']
-          ..displayName = snapshot.data['display_name']
-          ..photoUrl = snapshot.data['photo_url']
           ..uid = snapshot.data['uid']
           ..createdTime = safeGet(() => DateTime.fromMillisecondsSinceEpoch(
               snapshot.data['created_time']))
@@ -74,6 +103,24 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
           ..room = snapshot.data['room']
           ..building = snapshot.data['building']
           ..role = snapshot.data['role']
+          ..contactList = safeGet(() => ListBuilder(
+              snapshot.data['contactList'].map((data) => createContactsStruct(
+                    name: (data as Map<String, dynamic>)['name'],
+                    surname: (data as Map<String, dynamic>)['surname'],
+                    contact: (data as Map<String, dynamic>)['contact'],
+                    create: true,
+                    clearUnsetFields: false,
+                  ).toBuilder())))
+          ..residence = snapshot.data['RESIDENCE']
+          ..bedCode = snapshot.data['BED_CODE']
+          ..roomType = snapshot.data['ROOM_TYPE']
+          ..firstName = snapshot.data['FIRST_NAME']
+          ..lastName = snapshot.data['LAST_NAME']
+          ..cellNumber = snapshot.data['CELL_NUMBER']
+          ..studentNumber = snapshot.data['STUDENT_NUMBER']
+          ..bookingRef = snapshot.data['BOOKING_REF']
+          ..displayName = snapshot.data['display_name']
+          ..photoUrl = snapshot.data['photo_url']
           ..ffRef = UsersRecord.collection.doc(snapshot.objectID),
       );
 
@@ -104,30 +151,45 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
 Map<String, dynamic> createUsersRecordData({
   String? email,
-  String? password,
-  String? displayName,
-  String? photoUrl,
   String? uid,
   DateTime? createdTime,
   String? phoneNumber,
   String? room,
   String? building,
   String? role,
+  String? residence,
+  String? bedCode,
+  String? roomType,
+  String? firstName,
+  String? lastName,
+  String? cellNumber,
+  String? studentNumber,
+  String? bookingRef,
+  String? displayName,
+  String? photoUrl,
 }) {
   final firestoreData = serializers.toFirestore(
     UsersRecord.serializer,
     UsersRecord(
       (u) => u
         ..email = email
-        ..password = password
-        ..displayName = displayName
-        ..photoUrl = photoUrl
         ..uid = uid
         ..createdTime = createdTime
         ..phoneNumber = phoneNumber
         ..room = room
         ..building = building
-        ..role = role,
+        ..role = role
+        ..contactList = null
+        ..residence = residence
+        ..bedCode = bedCode
+        ..roomType = roomType
+        ..firstName = firstName
+        ..lastName = lastName
+        ..cellNumber = cellNumber
+        ..studentNumber = studentNumber
+        ..bookingRef = bookingRef
+        ..displayName = displayName
+        ..photoUrl = photoUrl,
     ),
   );
 

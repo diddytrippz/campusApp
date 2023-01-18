@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class NotifBottomSheetWidget extends StatefulWidget {
   const NotifBottomSheetWidget({Key? key}) : super(key: key);
@@ -21,6 +22,8 @@ class _NotifBottomSheetWidgetState extends State<NotifBottomSheetWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return InkWell(
       onTap: () async {
         logFirebaseEvent('NOTIF_BOTTOM_SHEET_Column_e9i63axl_ON_TA');

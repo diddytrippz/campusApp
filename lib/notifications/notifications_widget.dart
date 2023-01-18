@@ -13,6 +13,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class NotificationsWidget extends StatefulWidget {
   const NotificationsWidget({Key? key}) : super(key: key);
@@ -34,6 +35,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -53,6 +56,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                   nav4Color: FlutterFlowTheme.of(context).primaryText,
                   nav5Color: Color(0xFFC8360E),
                   nav6Color: FlutterFlowTheme.of(context).primaryText,
+                  nav7Color: FlutterFlowTheme.of(context).primaryText,
                 ),
               Expanded(
                 child: Column(
@@ -139,7 +143,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 15, 0),
                                   child: AuthUserStreamWidget(
-                                    child: InkWell(
+                                    builder: (context) => InkWell(
                                       onTap: () async {
                                         logFirebaseEvent(
                                             'NOTIFICATIONS_PAGE_Icon_qjtm8pn2_ON_TAP');
@@ -214,7 +218,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 15, 0, 0),
                                       child: AuthUserStreamWidget(
-                                        child: StreamBuilder<
+                                        builder: (context) => StreamBuilder<
                                             List<NotificationsRecord>>(
                                           stream: queryNotificationsRecord(
                                             queryBuilder: (notificationsRecord) =>
@@ -308,9 +312,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                         ).then((value) =>
                                                             setState(() {}));
                                                       },
-                                                      onLongPress: () async {
+                                                      onDoubleTap: () async {
                                                         logFirebaseEvent(
-                                                            'NOTIFICATIONS_Row_ynna2ft9_ON_LONG_PRESS');
+                                                            'NOTIFICATIONS_Row_ynna2ft9_ON_DOUBLE_TAP');
                                                         if (valueOrDefault(
                                                                 currentUserDocument
                                                                     ?.role,
@@ -362,6 +366,40 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                         } else {
                                                           return;
                                                         }
+                                                      },
+                                                      onLongPress: () async {
+                                                        logFirebaseEvent(
+                                                            'NOTIFICATIONS_Row_ynna2ft9_ON_LONG_PRESS');
+                                                        logFirebaseEvent(
+                                                            'Row_bottom_sheet');
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                      .of(context)
+                                                                  .viewInsets,
+                                                              child:
+                                                                  TessstWidget(
+                                                                heading:
+                                                                    columnNotificationsRecord
+                                                                        .title,
+                                                                content:
+                                                                    columnNotificationsRecord
+                                                                        .content,
+                                                                link:
+                                                                    columnNotificationsRecord
+                                                                        .link,
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            setState(() {}));
                                                       },
                                                       child: Row(
                                                         mainAxisSize:
@@ -639,9 +677,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                       ).then((value) =>
                                                           setState(() {}));
                                                     },
-                                                    onLongPress: () async {
+                                                    onDoubleTap: () async {
                                                       logFirebaseEvent(
-                                                          'NOTIFICATIONS_Row_egt7lw89_ON_LONG_PRESS');
+                                                          'NOTIFICATIONS_Row_egt7lw89_ON_DOUBLE_TAP');
                                                       if (valueOrDefault(
                                                               currentUserDocument
                                                                   ?.role,
@@ -695,6 +733,39 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                       } else {
                                                         return;
                                                       }
+                                                    },
+                                                    onLongPress: () async {
+                                                      logFirebaseEvent(
+                                                          'NOTIFICATIONS_Row_egt7lw89_ON_LONG_PRESS');
+                                                      logFirebaseEvent(
+                                                          'Row_bottom_sheet');
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return Padding(
+                                                            padding:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .viewInsets,
+                                                            child: TessstWidget(
+                                                              heading:
+                                                                  columnNotificationsRecord
+                                                                      .title,
+                                                              content:
+                                                                  columnNotificationsRecord
+                                                                      .content,
+                                                              link:
+                                                                  columnNotificationsRecord
+                                                                      .link,
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          setState(() {}));
                                                     },
                                                     child: Row(
                                                       mainAxisSize:

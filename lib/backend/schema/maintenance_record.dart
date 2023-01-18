@@ -25,21 +25,12 @@ abstract class MaintenanceRecord
   @BuiltValueField(wireName: 'created_time')
   DateTime? get createdTime;
 
-  @BuiltValueField(wireName: 'phone_number')
-  String? get phoneNumber;
-
   @BuiltValueField(wireName: 'display_name')
   String? get displayName;
-
-  String? get room;
-
-  String? get building;
 
   String? get notes;
 
   int? get rating;
-
-  bool? get isDone;
 
   String? get category;
 
@@ -48,6 +39,23 @@ abstract class MaintenanceRecord
   DateTime? get updateTime;
 
   DocumentReference? get userRec;
+
+  String? get ticketRef;
+
+  @BuiltValueField(wireName: 'FIRST_NAME')
+  String? get firstName;
+
+  @BuiltValueField(wireName: 'LAST_NAME')
+  String? get lastName;
+
+  @BuiltValueField(wireName: 'RESIDENCE')
+  String? get residence;
+
+  @BuiltValueField(wireName: 'CELL_NUMBER')
+  String? get cellNumber;
+
+  @BuiltValueField(wireName: 'BED_CODE')
+  String? get bedCode;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -59,15 +67,17 @@ abstract class MaintenanceRecord
     ..email = ''
     ..photoUrl = ''
     ..uid = ''
-    ..phoneNumber = ''
     ..displayName = ''
-    ..room = ''
-    ..building = ''
     ..notes = ''
     ..rating = 0
-    ..isDone = false
     ..category = ''
-    ..assigned = '';
+    ..assigned = ''
+    ..ticketRef = ''
+    ..firstName = ''
+    ..lastName = ''
+    ..residence = ''
+    ..cellNumber = ''
+    ..bedCode = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('maintenance');
@@ -97,17 +107,19 @@ Map<String, dynamic> createMaintenanceRecordData({
   String? photoUrl,
   String? uid,
   DateTime? createdTime,
-  String? phoneNumber,
   String? displayName,
-  String? room,
-  String? building,
   String? notes,
   int? rating,
-  bool? isDone,
   String? category,
   String? assigned,
   DateTime? updateTime,
   DocumentReference? userRec,
+  String? ticketRef,
+  String? firstName,
+  String? lastName,
+  String? residence,
+  String? cellNumber,
+  String? bedCode,
 }) {
   final firestoreData = serializers.toFirestore(
     MaintenanceRecord.serializer,
@@ -119,17 +131,19 @@ Map<String, dynamic> createMaintenanceRecordData({
         ..photoUrl = photoUrl
         ..uid = uid
         ..createdTime = createdTime
-        ..phoneNumber = phoneNumber
         ..displayName = displayName
-        ..room = room
-        ..building = building
         ..notes = notes
         ..rating = rating
-        ..isDone = isDone
         ..category = category
         ..assigned = assigned
         ..updateTime = updateTime
-        ..userRec = userRec,
+        ..userRec = userRec
+        ..ticketRef = ticketRef
+        ..firstName = firstName
+        ..lastName = lastName
+        ..residence = residence
+        ..cellNumber = cellNumber
+        ..bedCode = bedCode,
     ),
   );
 

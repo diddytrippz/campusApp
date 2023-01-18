@@ -21,20 +21,12 @@ class _$ChecklistRecordSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.description;
+    value = object.gallery;
     if (value != null) {
       result
-        ..add('description')
+        ..add('gallery')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
-    }
-    value = object.options;
-    if (value != null) {
-      result
-        ..add('options')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
     }
     value = object.ffRef;
     if (value != null) {
@@ -59,15 +51,9 @@ class _$ChecklistRecordSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'description':
-          result.description = serializers.deserialize(value,
+        case 'gallery':
+          result.gallery = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
-          break;
-        case 'options':
-          result.options.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -84,16 +70,14 @@ class _$ChecklistRecordSerializer
 
 class _$ChecklistRecord extends ChecklistRecord {
   @override
-  final String? description;
-  @override
-  final BuiltList<String>? options;
+  final String? gallery;
   @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChecklistRecord([void Function(ChecklistRecordBuilder)? updates]) =>
       (new ChecklistRecordBuilder()..update(updates))._build();
 
-  _$ChecklistRecord._({this.description, this.options, this.ffRef}) : super._();
+  _$ChecklistRecord._({this.gallery, this.ffRef}) : super._();
 
   @override
   ChecklistRecord rebuild(void Function(ChecklistRecordBuilder) updates) =>
@@ -107,22 +91,19 @@ class _$ChecklistRecord extends ChecklistRecord {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is ChecklistRecord &&
-        description == other.description &&
-        options == other.options &&
+        gallery == other.gallery &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc(0, description.hashCode), options.hashCode), ffRef.hashCode));
+    return $jf($jc($jc(0, gallery.hashCode), ffRef.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'ChecklistRecord')
-          ..add('description', description)
-          ..add('options', options)
+          ..add('gallery', gallery)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -132,14 +113,9 @@ class ChecklistRecordBuilder
     implements Builder<ChecklistRecord, ChecklistRecordBuilder> {
   _$ChecklistRecord? _$v;
 
-  String? _description;
-  String? get description => _$this._description;
-  set description(String? description) => _$this._description = description;
-
-  ListBuilder<String>? _options;
-  ListBuilder<String> get options =>
-      _$this._options ??= new ListBuilder<String>();
-  set options(ListBuilder<String>? options) => _$this._options = options;
+  String? _gallery;
+  String? get gallery => _$this._gallery;
+  set gallery(String? gallery) => _$this._gallery = gallery;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -152,8 +128,7 @@ class ChecklistRecordBuilder
   ChecklistRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _description = $v.description;
-      _options = $v.options?.toBuilder();
+      _gallery = $v.gallery;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -175,24 +150,8 @@ class ChecklistRecordBuilder
   ChecklistRecord build() => _build();
 
   _$ChecklistRecord _build() {
-    _$ChecklistRecord _$result;
-    try {
-      _$result = _$v ??
-          new _$ChecklistRecord._(
-              description: description,
-              options: _options?.build(),
-              ffRef: ffRef);
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'options';
-        _options?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'ChecklistRecord', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result =
+        _$v ?? new _$ChecklistRecord._(gallery: gallery, ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

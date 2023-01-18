@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class DarkModeWidget extends StatefulWidget {
   const DarkModeWidget({Key? key}) : super(key: key);
@@ -22,6 +23,8 @@ class _DarkModeWidgetState extends State<DarkModeWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(20, 40, 20, 70),
       child: Column(

@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import '../../index.dart';
 import '../../main.dart';
 
+final _handledMessageIds = <String?>{};
+
 class PushNotificationsHandler extends StatefulWidget {
   const PushNotificationsHandler({Key? key, required this.child})
       : super(key: key);
@@ -39,18 +41,24 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   }
 
   Future _handlePushNotification(RemoteMessage message) async {
+    if (_handledMessageIds.contains(message.messageId)) {
+      return;
+    }
+    _handledMessageIds.add(message.messageId);
+
     if (mounted) {
       setState(() => _loading = true);
     }
     try {
       final initialPageName = message.data['initialPageName'] as String;
       final initialParameterData = getInitialParameterData(message.data);
-      final pageBuilder = pageBuilderMap[initialPageName];
-      if (pageBuilder != null) {
-        final page = await pageBuilder(initialParameterData);
-        await Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => page),
+      final parametersBuilder = parametersBuilderMap[initialPageName];
+      if (parametersBuilder != null) {
+        final parameterData = await parametersBuilder(initialParameterData);
+        context.pushNamed(
+          initialPageName,
+          params: parameterData.params,
+          extra: parameterData.extra,
         );
       }
     } catch (e) {
@@ -84,47 +92,76 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
       : widget.child;
 }
 
-final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
-  'onboarding': (data) async => OnboardingWidget(),
-  'login': (data) async => LoginWidget(),
-  'view': (data) async => ViewWidget(
-        completeTemp: getParameter(data, 'completeTemp'),
-      ),
-  'rules': (data) async => RulesWidget(),
-  'chats': (data) async => ChatsWidget(
-        chatUser: await getDocumentParameter(
-            data, 'chatUser', UsersRecord.serializer),
-        chatRef: getParameter(data, 'chatRef'),
-      ),
-  'Appliances': (data) async => AppliancesWidget(),
-  'Plumbing': (data) async => PlumbingWidget(),
-  'Furniture': (data) async => FurnitureWidget(),
-  'Electrical': (data) async => ElectricalWidget(),
-  'Locksmith': (data) async => LocksmithWidget(),
-  'Pestcontrol': (data) async => PestcontrolWidget(),
-  'painting': (data) async => PaintingWidget(),
-  'Others': (data) async => OthersWidget(),
-  'Communal': (data) async => CommunalWidget(),
-  'reviews': (data) async => ReviewsWidget(
-        jobReviews: await getDocumentParameter(
-            data, 'jobReviews', MaintenanceRecord.serializer),
-      ),
-  'profile': (data) async => ProfileWidget(),
-  'settings': (data) async => SettingsWidget(),
-  'messages': (data) async => MessagesWidget(),
-  'sendNotifications': (data) async => SendNotificationsWidget(),
-  'information': (data) async => InformationWidget(
-        jobs: await getDocumentParameter(
-            data, 'jobs', MaintenanceRecord.serializer),
-      ),
-  'notifications': (data) async => NotificationsWidget(),
-  'search': (data) async => SearchWidget(),
-  'voucher': (data) async => VoucherWidget(),
-  'rewards': (data) async => RewardsWidget(),
-};
+class ParameterData {
+  const ParameterData(
+      {this.requiredParams = const {}, this.allParams = const {}});
+  final Map<String, String?> requiredParams;
+  final Map<String, dynamic> allParams;
 
-bool hasMatchingParameters(Map<String, dynamic> data, Set<String> params) =>
-    params.any((param) => getParameter(data, param) != null);
+  Map<String, String> get params => Map.fromEntries(
+        requiredParams.entries
+            .where((e) => e.value != null)
+            .map((e) => MapEntry(e.key, e.value!)),
+      );
+  Map<String, dynamic> get extra => Map.fromEntries(
+        allParams.entries.where((e) => e.value != null),
+      );
+
+  static Future<ParameterData> Function(Map<String, dynamic>) none() =>
+      (data) async => ParameterData();
+}
+
+final parametersBuilderMap =
+    <String, Future<ParameterData> Function(Map<String, dynamic>)>{
+  'onboarding': ParameterData.none(),
+  'login': ParameterData.none(),
+  'view': (data) async => ParameterData(
+        allParams: {
+          'completeTemp': getParameter<double>(data, 'completeTemp'),
+        },
+      ),
+  'rules': ParameterData.none(),
+  'chats': (data) async => ParameterData(
+        allParams: {
+          'chatUser': await getDocumentParameter<UsersRecord>(
+              data, 'chatUser', UsersRecord.serializer),
+          'chatRef': getParameter<DocumentReference>(data, 'chatRef'),
+        },
+      ),
+  'appliances': ParameterData.none(),
+  'Plumbing': ParameterData.none(),
+  'Furniture': ParameterData.none(),
+  'Electrical': ParameterData.none(),
+  'Locksmith': ParameterData.none(),
+  'PestControl': ParameterData.none(),
+  'Painting': ParameterData.none(),
+  'Others': ParameterData.none(),
+  'reviews': (data) async => ParameterData(
+        allParams: {
+          'jobReviews': await getDocumentParameter<MaintenanceRecord>(
+              data, 'jobReviews', MaintenanceRecord.serializer),
+        },
+      ),
+  'settings': ParameterData.none(),
+  'home': ParameterData.none(),
+  'messages': ParameterData.none(),
+  'sendNotifications': ParameterData.none(),
+  'information': (data) async => ParameterData(
+        allParams: {
+          'jobs': await getDocumentParameter<MaintenanceRecord>(
+              data, 'jobs', MaintenanceRecord.serializer),
+        },
+      ),
+  'notifications': ParameterData.none(),
+  'addInspection': ParameterData.none(),
+  'search': ParameterData.none(),
+  'Communal': ParameterData.none(),
+  'visitorsManagement': ParameterData.none(),
+  'myVisitors': ParameterData.none(),
+  'dashboard': ParameterData.none(),
+  'loadshedding': ParameterData.none(),
+  'eskomArea': ParameterData.none(),
+};
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {
   try {

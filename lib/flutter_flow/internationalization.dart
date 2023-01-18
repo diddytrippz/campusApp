@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+const _kLocaleStorageKey = '__locale_key__';
 
 class FFLocalizations {
   FFLocalizations(this.locale);
@@ -10,6 +13,16 @@ class FFLocalizations {
       Localizations.of<FFLocalizations>(context, FFLocalizations)!;
 
   static List<String> languages() => ['en', 'af', 'zu'];
+
+  static late SharedPreferences _prefs;
+  static Future initialize() async =>
+      _prefs = await SharedPreferences.getInstance();
+  static Future storeLocale(String locale) =>
+      _prefs.setString(_kLocaleStorageKey, locale);
+  static Locale? getStoredLocale() {
+    final locale = _prefs.getString(_kLocaleStorageKey);
+    return locale != null && locale.isNotEmpty ? createLocale(locale) : null;
+  }
 
   String get languageCode => locale.toString();
   int get languageIndex => languages().contains(languageCode)
@@ -31,8 +44,14 @@ class FFLocalizationsDelegate extends LocalizationsDelegate<FFLocalizations> {
   const FFLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) =>
-      FFLocalizations.languages().contains(locale.toString());
+  bool isSupported(Locale locale) {
+    final language = locale.toString();
+    return FFLocalizations.languages().contains(
+      language.endsWith('_')
+          ? language.substring(0, language.length - 1)
+          : language,
+    );
+  }
 
   @override
   Future<FFLocalizations> load(Locale locale) =>
@@ -188,11 +207,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': 'Soek Resultate',
       'zu': 'Imiphumela yosesho',
     },
-    '47qcs9t7': {
-      'en': 'Delete',
-      'af': 'Vee uit',
-      'zu': 'Susa',
-    },
     'xliyc9jb': {
       'en': 'Pending',
       'af': 'Hangende',
@@ -274,787 +288,944 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // chats
   {
-    'f6dwmrme': {
-      'en': '0',
-      'af': '',
-      'zu': '',
-    },
     '25cdx1l2': {
       'en': 'Home',
       'af': 'Tuis',
       'zu': 'Ikhaya',
     },
   },
-  // Appliances
+  // appliances
   {
-    '379z4gvh': {
+    'ibkcr8sz': {
       'en': 'Appliances',
-      'af': 'Toestelle',
-      'zu': 'Izinto zikagesi',
-    },
-    'kk3edzbs': {
-      'en': 'Name',
-      'af': 'Naam',
-      'zu': 'Igama',
-    },
-    '4fsu6x0m': {
-      'en': ' ',
       'af': '',
       'zu': '',
     },
-    'nzk8ziaw': {
-      'en': 'Issue',
-      'af': 'Uitgawe',
-      'zu': 'Inkinga',
+    'j4i8c04h': {
+      'en': '1',
+      'af': '',
+      'zu': '',
     },
-    'b282kjk3': {
+    'yhlmssun': {
+      'en': 'Ticket',
+      'af': '',
+      'zu': '',
+    },
+    'toxrc5ck': {
       'en': 'Stove not working',
       'af': 'Stoof werk nie',
       'zu': 'Isitofu asisebenzi',
     },
-    'v7swjfni': {
+    'p1qh14ew': {
       'en': 'Oven not working',
       'af': 'Oond werk nie',
       'zu': 'Ihhavini ayisebenzi',
     },
-    'jdaewo5r': {
+    'h2rpqdvq': {
       'en': 'Microwave not working',
       'af': 'Mikrogolf werk nie',
       'zu': 'I-microwave ayisebenzi',
     },
-    'b8su8jqc': {
+    'c4lwl28m': {
       'en': 'Fridge not working',
       'af': 'Yskas werk nie',
       'zu': 'Isiqandisi asisebenzi',
     },
-    'jzxq70zt': {
+    '9nlfy50w': {
       'en': 'Please select...',
       'af': 'Kies asseblief...',
       'zu': 'Sicela ukhethe...',
     },
-    'ujr70769': {
-      'en': 'Description',
-      'af': 'Beskrywing',
-      'zu': 'Incazelo',
+    'oph1annr': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
     },
-    '5mhqusqz': {
+    'gkp8ykl4': {
+      'en': '2',
+      'af': '',
+      'zu': '',
+    },
+    '6l4g8dr5': {
+      'en': 'Description',
+      'af': '',
+      'zu': '',
+    },
+    'pyjp2ix4': {
       'en': 'Describe your Issue',
       'af': 'Beskryf jou probleem',
       'zu': 'Chaza udaba lwakho',
     },
-    'xmb7t2fh': {
-      'en': 'Submit',
-      'af': 'Indien',
-      'zu': 'Thumela',
+    '24yljy29': {
+      'en': 'NEXT',
+      'af': '',
+      'zu': '',
     },
-    'nyf0hs7p': {
+    'b52wt0z7': {
+      'en': 'BACK',
+      'af': '',
+      'zu': '',
+    },
+    '1fuuet1j': {
+      'en': '3',
+      'af': '',
+      'zu': '',
+    },
+    '5mgeoo3h': {
+      'en': 'Upload Image (Optional)',
+      'af': '',
+      'zu': '',
+    },
+    'f07habgj': {
+      'en': 'NEXT',
+      'af': '',
+      'zu': '',
+    },
+    'rbcxoxon': {
+      'en': 'BACK',
+      'af': '',
+      'zu': '',
+    },
+    '45sqfe6r': {
+      'en': 'SUBMIT',
+      'af': '',
+      'zu': '',
+    },
+    'urng33gu': {
       'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
+      'af': '',
+      'zu': '',
     },
-    'aw66xj2z': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
+    '0sz8jpa5': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
     },
-    'jbigh77n': {
+    '0g9f1v2a': {
       'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
+      'af': '',
+      'zu': '',
     },
   },
   // Plumbing
   {
-    'j6exf7im': {
+    'jc590b1w': {
       'en': 'Plumbing',
-      'af': 'Loodgieterswerk',
-      'zu': 'Amapayipi amanzi',
-    },
-    'sjfameuq': {
-      'en': 'Name',
-      'af': 'Naam',
-      'zu': 'Igama',
-    },
-    'hh3kxhi3': {
-      'en': ' ',
       'af': '',
       'zu': '',
     },
-    '6ydhq6qy': {
-      'en': 'Issue',
-      'af': 'Uitgawe',
-      'zu': 'Inkinga',
+    't10bkp7f': {
+      'en': '1',
+      'af': '',
+      'zu': '',
     },
-    'g1s4b5qt': {
+    'a6y9hrd1': {
+      'en': 'Ticket',
+      'af': '',
+      'zu': '',
+    },
+    '2vc9ngr1': {
       'en': 'Damaged toilet sit',
       'af': 'Beskadigde toilet sit',
       'zu': 'Indlu yangasese eyonakele',
     },
-    'f3r9wayy': {
+    'do6oxews': {
       'en': 'Damaged basin/sink',
       'af': 'Beskadigde wasbak/wasbak',
       'zu': 'Isitsha/usinki owonakele',
     },
-    'uzsclpgj': {
+    '8mr0zlbr': {
       'en': 'Blocked urinal',
       'af': 'Geblokkeerde urinaal',
       'zu': 'Umchamo ovinjiwe',
     },
-    'bcc5cdzk': {
+    '09gy5buh': {
       'en': 'Blocked toilet',
       'af': 'Geblokkeerde toilet',
       'zu': 'Indlu yangasese evinjiwe',
     },
-    'jvpf1jfb': {
+    'i79m2u0p': {
       'en': 'Blocked shower drain',
       'af': 'Geblokkeerde stortafvoer',
       'zu': 'I-drain yeshawa evinjiwe',
     },
-    '4wyw28qg': {
+    '8fa9zgzp': {
       'en': 'Low water pressure',
       'af': 'Lae waterdruk',
       'zu': 'Umfutho wamanzi ophansi',
     },
-    'xglpnog5': {
+    'umf56x2z': {
       'en': 'No cold water',
       'af': 'Geen koue water nie',
       'zu': 'Awekho amanzi abandayo',
     },
-    '4ybabfa3': {
+    'vyirhvv7': {
       'en': 'No hot water',
       'af': 'Geen warm water nie',
       'zu': 'Awekho amanzi ashisayo',
     },
-    'oe2iooc7': {
+    'm6jbubx3': {
       'en': 'Shower head needs to be replaced',
       'af': 'Stortkop moet vervang word',
       'zu': 'Ikhanda leshawa lidinga ukushintshwa',
     },
-    '1hx0jrbo': {
+    'umlmwydw': {
       'en': 'Leaking gyser',
       'af': 'Lekkende gyser',
       'zu': 'I-gyser evuzayo',
     },
-    '0acr9e1x': {
+    'k43129b3': {
       'en': 'Burst pipes',
       'af': 'Gebarste pype',
       'zu': 'Amapayipi okuqhuma',
     },
-    'jecw64w4': {
+    'ozwvoy59': {
       'en': 'Please select...',
       'af': 'Kies asseblief...',
       'zu': 'Sicela ukhethe...',
     },
-    '221kv5j6': {
-      'en': 'Description',
-      'af': 'Beskrywing',
-      'zu': 'Incazelo',
+    'ez4u6ntv': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
     },
-    'g4jhlicm': {
+    'fdyas7pw': {
+      'en': '2',
+      'af': '',
+      'zu': '',
+    },
+    'kfu13ryy': {
+      'en': 'Description',
+      'af': '',
+      'zu': '',
+    },
+    '5warzutq': {
       'en': 'Describe your Issue',
       'af': 'Beskryf jou probleem',
       'zu': 'Chaza udaba lwakho',
     },
-    '9hwlv2m7': {
-      'en': 'Submit',
-      'af': 'Indien',
-      'zu': 'Thumela',
+    'uie1r7ic': {
+      'en': 'NEXT',
+      'af': '',
+      'zu': '',
     },
-    'x51gr9yz': {
+    '6tfj8vrq': {
+      'en': 'BACK',
+      'af': '',
+      'zu': '',
+    },
+    'up841yek': {
+      'en': '3',
+      'af': '',
+      'zu': '',
+    },
+    '2cogiv1q': {
+      'en': 'Upload Image (Optional)',
+      'af': '',
+      'zu': '',
+    },
+    'zptzjea0': {
+      'en': 'NEXT',
+      'af': '',
+      'zu': '',
+    },
+    'n52gxogb': {
+      'en': 'BACK',
+      'af': '',
+      'zu': '',
+    },
+    'sgc93anu': {
+      'en': 'SUBMIT',
+      'af': '',
+      'zu': '',
+    },
+    'mpuocf3e': {
       'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
+      'af': '',
+      'zu': '',
     },
-    'h85e3ygq': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
+    'raezq3qc': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
     },
-    '856ubjjv': {
+    '815c6q5a': {
       'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
+      'af': '',
+      'zu': '',
     },
   },
   // Furniture
   {
-    'zsoxcckp': {
+    'cnzlsg7g': {
       'en': 'Furniture',
-      'af': 'Meubels',
-      'zu': 'Ifenisha',
-    },
-    'rjplwfib': {
-      'en': 'Name',
-      'af': 'Naam',
-      'zu': 'Igama',
-    },
-    'ev3xlq8h': {
-      'en': ' ',
       'af': '',
       'zu': '',
     },
-    'ri3brf64': {
-      'en': 'Issue',
-      'af': 'Uitgawe',
-      'zu': 'Inkinga',
+    'iag9bhkb': {
+      'en': '1',
+      'af': '',
+      'zu': '',
     },
-    '8qnmznb2': {
+    '1letphyb': {
+      'en': 'Ticket',
+      'af': '',
+      'zu': '',
+    },
+    'i24kdf9p': {
       'en': 'Damaged bed base',
       'af': 'Beskadigde bedbasis',
       'zu': 'Isisekelo sombhede sonakele',
     },
-    'dcliexha': {
+    'd7srlj4i': {
       'en': 'Damaged mattress',
       'af': 'Beskadigde matras',
       'zu': 'Umatilasi owonakele',
     },
-    'ctzwfb5g': {
+    '9573lmce': {
       'en': 'Curtain rail needs to be replaced',
       'af': 'Gordynreling moet vervang word',
       'zu': 'I-Curtain rail idinga ukushintshwa',
     },
-    'eftivozm': {
+    '6anac6hh': {
       'en': 'Damaged study table',
       'af': 'Beskadigde studietafel',
       'zu': 'Ithebula lokufunda elilimele',
     },
-    '6xd65swp': {
+    'kfdoltby': {
       'en': 'Damaged chair',
       'af': 'Beskadigde stoel',
       'zu': 'Isitulo esilimele',
     },
-    'fie5oy0p': {
+    '7m7gnye2': {
       'en': 'Window cannot open',
       'af': 'Venster kan nie oopmaak nie',
       'zu': 'Iwindi alikwazi ukuvuleka',
     },
-    'nzm86etj': {
+    'hayz5nqq': {
       'en': 'Window cannot close',
       'af': 'Venster kan nie toemaak nie',
       'zu': 'Iwindi alikwazi ukuvala',
     },
-    'enx6owqa': {
+    '2lo0v65o': {
       'en': 'Please select...',
       'af': 'Kies asseblief...',
       'zu': 'Sicela ukhethe...',
     },
-    'y0ee0fcm': {
-      'en': 'Description',
-      'af': 'Beskrywing',
-      'zu': 'Incazelo',
-    },
-    'hqui642d': {
-      'en': '',
+    'iczhjq0u': {
+      'en': 'CONTINUE',
       'af': '',
       'zu': '',
     },
-    'smqtfo79': {
+    'vqfn8dkd': {
+      'en': '2',
+      'af': '',
+      'zu': '',
+    },
+    'sj5p7mnl': {
+      'en': 'Description',
+      'af': '',
+      'zu': '',
+    },
+    'lg4nsj5r': {
       'en': 'Describe your Issue',
       'af': 'Beskryf jou probleem',
       'zu': 'Chaza udaba lwakho',
     },
-    'ezxqytym': {
-      'en': 'Submit',
-      'af': 'Indien',
-      'zu': 'Thumela',
+    'm09v6b2c': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
     },
-    'j5cpjyau': {
+    'p51osbig': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
+    },
+    '3nwb4z7w': {
+      'en': '3',
+      'af': '',
+      'zu': '',
+    },
+    'ecd1ezgg': {
+      'en': 'Upload Image (Optional)',
+      'af': '',
+      'zu': '',
+    },
+    'bdybwejx': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
+    },
+    'qrud0g8c': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
+    },
+    'ucmr3r2r': {
+      'en': 'SUBMIT',
+      'af': '',
+      'zu': '',
+    },
+    '63fsrdrp': {
       'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
+      'af': '',
+      'zu': '',
     },
-    'fut8j40g': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
+    '9tjiv091': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
     },
-    'txkmcvkb': {
+    'vlan7oko': {
       'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
+      'af': '',
+      'zu': '',
     },
   },
   // Electrical
   {
-    '5h10vla4': {
+    'xdsj9dhk': {
       'en': 'Electrical',
-      'af': 'Elektries',
-      'zu': 'Ezogesi',
-    },
-    'pptn41hq': {
-      'en': 'Name',
-      'af': 'Naam',
-      'zu': 'Igama',
-    },
-    'snmjv58b': {
-      'en': ' ',
       'af': '',
       'zu': '',
     },
-    'o96uncwm': {
-      'en': 'Issue',
-      'af': 'Uitgawe',
-      'zu': 'Inkinga',
+    '9lz31hm6': {
+      'en': '1',
+      'af': '',
+      'zu': '',
     },
-    'ynegaw02': {
+    'fb12aimr': {
+      'en': 'Ticket',
+      'af': '',
+      'zu': '',
+    },
+    'ak9hr78q': {
       'en': 'Emergency lights not working',
       'af': 'Noodligte werk nie',
       'zu': 'Izibani eziphuthumayo azisebenzi',
     },
-    'nlauvg3m': {
+    'fe30ff33': {
       'en': 'Loose cables',
       'af': 'Los kabels',
       'zu': 'Izintambo ezixegayo',
     },
-    'exk8o1zs': {
+    'mmdbsyc4': {
       'en': 'No power/electricity',
       'af': 'Geen krag/elektrisiteit',
       'zu': 'Awekho amandla/ugesi',
     },
-    '3ellrjbp': {
+    'a6dutujg': {
       'en': 'Faulty prepaid meter',
       'af': 'Foutiewe voorafbetaalde meter',
       'zu': 'Imitha ekhokhelwa ngaphambili enephutha',
     },
-    '8u8v7nrs': {
+    'ydxqf8op': {
       'en': 'Lights in my room are not working',
       'af': 'Ligte in my kamer werk nie',
       'zu': 'Izibani ekamelweni lami azisebenzi',
     },
-    'u216hxi3': {
+    'nfm4a6ps': {
       'en': 'Lights in my unit are not working',
       'af': 'Ligte in my eenheid werk nie',
       'zu': 'Izibani kuyunithi yami azisebenzi',
     },
-    'ewgrtjnb': {
+    '1ihahwu0': {
       'en': 'Please select...',
       'af': 'Kies asseblief...',
       'zu': 'Sicela ukhethe...',
     },
-    'lvbcdupg': {
-      'en': 'Description',
-      'af': 'Beskrywing',
-      'zu': 'Incazelo',
-    },
-    '41omkw7r': {
-      'en': '',
+    'bw7tu78u': {
+      'en': 'CONTINUE',
       'af': '',
       'zu': '',
     },
-    'oqw7x9ak': {
+    'k5f55ozg': {
+      'en': '2',
+      'af': '',
+      'zu': '',
+    },
+    'fvimu23p': {
+      'en': 'Description',
+      'af': '',
+      'zu': '',
+    },
+    'metbx39k': {
       'en': 'Describe your Issue',
       'af': 'Beskryf jou probleem',
       'zu': 'Chaza udaba lwakho',
     },
-    'cb9hr1xq': {
-      'en': 'Submit',
-      'af': 'Indien',
-      'zu': 'Thumela',
+    '0dnexzuv': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
     },
-    'u3d47e3d': {
+    'dpf96e62': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
+    },
+    'n3plhg6z': {
+      'en': '3',
+      'af': '',
+      'zu': '',
+    },
+    'bvmjpwed': {
+      'en': 'Upload Image (Optional)',
+      'af': '',
+      'zu': '',
+    },
+    'kgslha8a': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
+    },
+    'g4aienfa': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
+    },
+    'ksm2gueo': {
+      'en': 'SUBMIT',
+      'af': '',
+      'zu': '',
+    },
+    '8wz69gts': {
       'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
+      'af': '',
+      'zu': '',
     },
-    'o3r0rwcy': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
+    'k2zvcmm5': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
     },
-    'm8no2npe': {
+    'euo4611i': {
       'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
+      'af': '',
+      'zu': '',
     },
   },
   // Locksmith
   {
-    'zkpr0gnw': {
+    '1j75uhkf': {
       'en': 'Locksmith',
-      'af': 'Slotmaker',
-      'zu': 'Umkhandi wezikhiye',
-    },
-    's3eqlhy0': {
-      'en': 'Name',
-      'af': 'Naam',
-      'zu': 'Igama',
-    },
-    'poroii6k': {
-      'en': ' ',
       'af': '',
       'zu': '',
     },
-    '5mh6yhav': {
-      'en': 'Issue',
-      'af': 'Uitgawe',
-      'zu': 'Inkinga',
+    'lfavwnje': {
+      'en': '1',
+      'af': '',
+      'zu': '',
     },
-    '2ovvpyjh': {
+    'su82v2od': {
+      'en': 'Ticket',
+      'af': '',
+      'zu': '',
+    },
+    '6feqgn88': {
       'en': 'Broken door handle (unit)',
       'af': 'Gebreekte deurhandvatsel (eenheid)',
       'zu': 'Isibambo somnyango esiphukile (iyunithi)',
     },
-    'aiwyw4j6': {
+    'r9o29omx': {
       'en': 'Broken door handle (Room)',
       'af': 'Gebreekte deurhandvatsel (kamer)',
       'zu': 'Isibambo somnyango esiphukile (Igumbi)',
     },
-    'lz8ylm9y': {
+    'j3gxrvfc': {
       'en': 'Room key not opening',
       'af': 'Kamersleutel maak nie oop nie',
       'zu': 'Ukhiye wegumbi awuvuli',
     },
-    '4k1n19qm': {
+    'hlrzud1f': {
       'en': 'Unit key not opening',
       'af': 'Eenheidsleutel maak nie oop nie',
       'zu': 'Ukhiye weyunithi awuvuli',
     },
-    'oqlc0lzx': {
+    '3dhm2b07': {
       'en': 'Lost key',
       'af': 'Sleutel verloor',
       'zu': 'Ukhiye olahlekile',
     },
-    'mw548crh': {
+    'zgpjin84': {
       'en': 'Lost access card',
       'af': 'Toegangskaart verloor',
       'zu': 'Ikhadi lokufinyelela elilahlekile',
     },
-    'rdiv127k': {
+    'up7udj4q': {
       'en': 'access card not working',
       'af': 'toegangskaart werk nie',
       'zu': 'ikhadi lokufinyelela alisebenzi',
     },
-    'a0pmib1g': {
+    'ezmlduz1': {
       'en': 'Please select...',
       'af': 'Kies asseblief...',
       'zu': 'Sicela ukhethe...',
     },
-    'pkd6jbzq': {
-      'en': 'Description',
-      'af': 'Beskrywing',
-      'zu': 'Incazelo',
-    },
-    '90cp2ji5': {
-      'en': '',
+    'jko05s52': {
+      'en': 'CONTINUE',
       'af': '',
       'zu': '',
     },
-    'olb70f7m': {
+    'eelyazxx': {
+      'en': '2',
+      'af': '',
+      'zu': '',
+    },
+    '01i1849c': {
+      'en': 'Description',
+      'af': '',
+      'zu': '',
+    },
+    'x8x50fi5': {
       'en': 'Describe your Issue',
       'af': 'Beskryf jou probleem',
       'zu': 'Chaza udaba lwakho',
     },
-    'ekzi7ay8': {
-      'en': 'Submit',
-      'af': 'Indien',
-      'zu': 'Thumela',
-    },
-    '02ud1qup': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
-    },
-    '01ba5isz': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
-    },
-    '8ufczwdz': {
-      'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
-    },
-  },
-  // Pestcontrol
-  {
-    'b74aucol': {
-      'en': 'Pest control',
-      'af': 'Plaagbeheer',
-      'zu': 'Ukulawula izinambuzane',
-    },
-    'fbciwrr6': {
-      'en': 'Name',
-      'af': 'Naam',
-      'zu': 'Igama',
-    },
-    '0bgptks9': {
-      'en': ' ',
+    'qp22wf3d': {
+      'en': 'CONTINUE',
       'af': '',
       'zu': '',
     },
-    '0jz4q5zl': {
-      'en': 'Issue',
-      'af': 'Uitgawe',
-      'zu': 'Inkinga',
+    'kj79gvhf': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
     },
-    'f6kpyccf': {
+    'im5wapxi': {
+      'en': '3',
+      'af': '',
+      'zu': '',
+    },
+    'b3714jqz': {
+      'en': 'Upload Image (Optional)',
+      'af': '',
+      'zu': '',
+    },
+    'b1yvt1rw': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
+    },
+    '9x6845m4': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
+    },
+    'ksuamesd': {
+      'en': 'SUBMIT',
+      'af': '',
+      'zu': '',
+    },
+    'xayl2iiq': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'bp3e7ctv': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'th4f9hb5': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // PestControl
+  {
+    'ctsohp9i': {
+      'en': 'Pest Control',
+      'af': '',
+      'zu': '',
+    },
+    '4d9h6gdl': {
+      'en': '1',
+      'af': '',
+      'zu': '',
+    },
+    'cyzedgny': {
+      'en': 'Ticket',
+      'af': '',
+      'zu': '',
+    },
+    'mrji6w0d': {
       'en': 'Bed bugs',
       'af': 'Bed goggas',
       'zu': 'Izimbungulu zombhede',
     },
-    'dzczcupp': {
+    'y0mts8m5': {
       'en': 'Cockroaches in my room/unit',
       'af': 'Kakkerlakke in my kamer/eenheid',
       'zu': 'Amaphela egumbini/eyunithi yami',
     },
-    '1kiwva5p': {
+    'ummqz3se': {
       'en': 'Fumigation required',
       'af': 'Beroking vereis',
       'zu': 'Ukufuthwa kuyadingeka',
     },
-    'k0qus04q': {
+    'scmqufl9': {
       'en': 'Please select...',
       'af': 'Kies asseblief...',
       'zu': 'Sicela ukhethe...',
     },
-    '3spt7ujg': {
-      'en': 'Description',
-      'af': 'Beskrywing',
-      'zu': 'Incazelo',
-    },
-    'men9xdlg': {
-      'en': '',
+    'xb2dtomc': {
+      'en': 'CONTINUE',
       'af': '',
       'zu': '',
     },
-    'khtkq8d8': {
+    '7hix49jw': {
+      'en': '2',
+      'af': '',
+      'zu': '',
+    },
+    'iq4m7el3': {
+      'en': 'Description',
+      'af': '',
+      'zu': '',
+    },
+    'nnp8rcw2': {
       'en': 'Describe your Issue',
       'af': 'Beskryf jou probleem',
       'zu': 'Chaza udaba lwakho',
     },
-    'rb1krgbn': {
-      'en': 'Submit',
-      'af': 'Indien',
-      'zu': 'Thumela',
-    },
-    'oq45egd2': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
-    },
-    '1rvpi8sr': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
-    },
-    'xr7g3ufx': {
-      'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
-    },
-  },
-  // painting
-  {
-    'fpnywby9': {
-      'en': 'Painting',
-      'af': 'Skildery',
-      'zu': 'Ukudweba',
-    },
-    'y45hko9v': {
-      'en': 'Name',
-      'af': 'Naam',
-      'zu': 'Igama',
-    },
-    'a4x8dzml': {
-      'en': ' ',
+    'vyy868yq': {
+      'en': 'CONTINUE',
       'af': '',
       'zu': '',
     },
-    'sxw0xvkr': {
-      'en': 'Issue',
-      'af': 'Uitgawe',
-      'zu': 'Inkinga',
+    'pviiw42u': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
     },
-    'b49kwxxn': {
+    'ecv6832q': {
+      'en': '3',
+      'af': '',
+      'zu': '',
+    },
+    'zu5a0xl6': {
+      'en': 'Upload Image (Optional)',
+      'af': '',
+      'zu': '',
+    },
+    'xhvvti7y': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
+    },
+    '2d7b66qp': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
+    },
+    '0ab4f6ky': {
+      'en': 'SUBMIT',
+      'af': '',
+      'zu': '',
+    },
+    '77lx5s79': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'ys749s2v': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'n3qa8opo': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // Painting
+  {
+    'g0v9lpxx': {
+      'en': 'Painting',
+      'af': '',
+      'zu': '',
+    },
+    'n62nxh7s': {
+      'en': '1',
+      'af': '',
+      'zu': '',
+    },
+    'wtp2npbv': {
+      'en': 'Ticket',
+      'af': '',
+      'zu': '',
+    },
+    'pr4oiy9x': {
       'en': 'Ceiling needs to be painted',
       'af': 'Die plafon moet geverf word',
       'zu': 'Uphahla ludinga ukupendwa',
     },
-    'xcjd2ohv': {
+    '3y7iu9o0': {
       'en': 'Door frame needs to be painted',
       'af': 'Deurkosyn moet geverf word',
       'zu': 'Uhlaka lomnyango ludinga ukupendwa',
     },
-    'hn0l9gtd': {
+    'ue5525j0': {
       'en': 'Skirting needs to be painted',
       'af': 'Plint moet geverf word',
       'zu': 'I-Skirting idinga ukupendwa',
     },
-    '73kygpgt': {
+    'teczjl4u': {
       'en': 'Walls needs to be painted',
       'af': 'Mure moet geverf word',
       'zu': 'Izindonga zidinga ukupendwa',
     },
-    '99fpkv1q': {
+    'xfy2bhdn': {
       'en': 'Window frames needs to be painted',
       'af': 'Vensterrame moet geverf word',
       'zu': 'Amawindi ozimele adinga ukupendwa',
     },
-    'r8v9zom9': {
+    'mrf6ro5d': {
       'en': 'Please select...',
       'af': 'Kies asseblief...',
       'zu': 'Sicela ukhethe...',
     },
-    '9yycc0gq': {
-      'en': 'Description',
-      'af': 'Beskrywing',
-      'zu': 'Incazelo',
-    },
-    'al4s42e8': {
-      'en': '',
+    'c1ywlkfj': {
+      'en': 'CONTINUE',
       'af': '',
       'zu': '',
     },
-    'i0vecmyv': {
+    '2jv616qo': {
+      'en': '2',
+      'af': '',
+      'zu': '',
+    },
+    'nhoh7o4r': {
+      'en': 'Description',
+      'af': '',
+      'zu': '',
+    },
+    'x0bi4e7a': {
       'en': 'Describe your Issue',
       'af': 'Beskryf jou probleem',
       'zu': 'Chaza udaba lwakho',
     },
-    'c9brkjw1': {
-      'en': 'Submit',
-      'af': 'Indien',
-      'zu': 'Thumela',
+    '1roi7vl4': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
     },
-    '6w71dv82': {
+    'hi8usp36': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
+    },
+    'tz1lc9ci': {
+      'en': '3',
+      'af': '',
+      'zu': '',
+    },
+    'cf90wuho': {
+      'en': 'Upload Image (Optional)',
+      'af': '',
+      'zu': '',
+    },
+    '5f035azs': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
+    },
+    'chifyicf': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
+    },
+    '8riu3sxb': {
+      'en': 'SUBMIT',
+      'af': '',
+      'zu': '',
+    },
+    'pzx40sjr': {
       'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
+      'af': '',
+      'zu': '',
     },
-    'qow9mldr': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
+    'p9bnccwn': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
     },
-    '20b96ira': {
+    '9s7h1q1e': {
       'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
+      'af': '',
+      'zu': '',
     },
   },
   // Others
   {
-    '2ytiwh02': {
-      'en': 'Other',
-      'af': 'Ander',
-      'zu': 'Okunye',
-    },
-    'crrao6ih': {
-      'en': 'Name',
-      'af': 'Naam',
-      'zu': 'Igama',
-    },
-    'xi810ac6': {
-      'en': ' ',
+    '7b9xxwp2': {
+      'en': 'Others',
       'af': '',
       'zu': '',
     },
-    '8jet81fh': {
-      'en': 'Issue',
-      'af': 'Uitgawe',
-      'zu': 'Inkinga',
-    },
-    '6hpt9krn': {
-      'en': '',
+    '51vidsdu': {
+      'en': '1',
       'af': '',
       'zu': '',
     },
-    'gn9nsu4y': {
+    '8cj9etg9': {
+      'en': 'Description',
+      'af': '',
+      'zu': '',
+    },
+    'xrq9znk8': {
       'en': 'Describe your Issue',
       'af': 'Beskryf jou probleem',
       'zu': 'Chaza udaba lwakho',
     },
-    'joeg6jq5': {
-      'en': 'Submit',
-      'af': 'Indien',
-      'zu': 'Thumela',
+    '0g2k6aeu': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
     },
-    'ehaqct9t': {
+    'rfy73g3v': {
+      'en': '2',
+      'af': '',
+      'zu': '',
+    },
+    't7kyr3qr': {
+      'en': 'Upload Image (Optional)',
+      'af': '',
+      'zu': '',
+    },
+    '3sj3mqiw': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
+    },
+    '62ce3e0s': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
+    },
+    '6tkbw036': {
+      'en': 'SUBMIT',
+      'af': '',
+      'zu': '',
+    },
+    '3t91n54h': {
       'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
+      'af': '',
+      'zu': '',
     },
-    '6wg4lijw': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
+    'zu8ut6m1': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
     },
-    'ocnpeou8': {
+    'nsoj6kzm': {
       'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
-    },
-  },
-  // Communal
-  {
-    '98jt63cp': {
-      'en': 'Communal',
-      'af': 'Gemeenskaplik',
-      'zu': 'Umphakathi',
-    },
-    '7nmev92l': {
-      'en': 'Name',
-      'af': 'Naam',
-      'zu': 'Igama',
-    },
-    'yiv2vl4e': {
-      'en': ' ',
       'af': '',
       'zu': '',
-    },
-    'ugqlruzv': {
-      'en': 'Issue',
-      'af': 'Uitgawe',
-      'zu': 'Inkinga',
-    },
-    'cc9f1k6t': {
-      'en': '',
-      'af': '',
-      'zu': '',
-    },
-    'z5y4ns8r': {
-      'en': 'Describe your Issue',
-      'af': 'Beskryf jou probleem',
-      'zu': 'Chaza udaba lwakho',
-    },
-    'lcbjrhc4': {
-      'en': 'Place',
-      'af': 'Plek',
-      'zu': 'Indawo',
-    },
-    'j24y4cmn': {
-      'en': 'Place',
-      'af': 'Plek',
-      'zu': 'Indawo',
-    },
-    'i8tc74up': {
-      'en': '',
-      'af': '',
-      'zu': '',
-    },
-    '9ve9st0h': {
-      'en': 'Submit',
-      'af': 'Indien',
-      'zu': 'Thumela',
-    },
-    'u74d156v': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
-    },
-    'yet5n963': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
-    },
-    'xzvk0uft': {
-      'en': 'Field is required',
-      'af': 'Veld word vereis',
-      'zu': 'Inkambu iyadingeka',
-    },
-    '7pzgv1i8': {
-      'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
     },
   },
   // reviews
@@ -1129,54 +1300,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Ikhaya',
     },
   },
-  // profile
-  {
-    'jjbdok4w': {
-      'en': 'Edit Profile',
-      'af': 'Wysig profiel',
-      'zu': 'Hlela iphrofayela',
-    },
-    '72fpsq8l': {
-      'en': 'Save',
-      'af': 'Stoor',
-      'zu': 'Londoloza',
-    },
-    'pv1prhyw': {
-      'en': 'Full names',
-      'af': 'Volle name',
-      'zu': 'Amagama aphelele',
-    },
-    'krf5zipu': {
-      'en': 'Email Address',
-      'af': 'E-pos adres',
-      'zu': 'Ikheli le-imeyili',
-    },
-    'ljtqvfca': {
-      'en': 'Password',
-      'af': 'Wagwoord',
-      'zu': 'Iphasiwedi',
-    },
-    'elhlkvnh': {
-      'en': 'Password',
-      'af': 'Wagwoord',
-      'zu': 'Iphasiwedi',
-    },
-    '5rcl1vbh': {
-      'en': 'Bio',
-      'af': 'Bio',
-      'zu': 'I-Bio',
-    },
-    '2o453oug': {
-      'en': 'Write about yourself...',
-      'af': 'Skryf oor jouself...',
-      'zu': 'Bhala ngawe...',
-    },
-    'rwaeignd': {
-      'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
-    },
-  },
   // settings
   {
     'n9zmnk1o': {
@@ -1190,7 +1313,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'I-akhawunti',
     },
     'nj9u6e42': {
-      'en': 'Messages',
+      'en': 'Loadshedding',
+      'af': 'Boodskappe',
+      'zu': 'Imilayezo',
+    },
+    '7wn5mpz4': {
+      'en': 'Manage Visitors',
       'af': 'Boodskappe',
       'zu': 'Imilayezo',
     },
@@ -1209,8 +1337,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': 'Kennisgewings',
       'zu': 'Izaziso',
     },
+    '1acimcx6': {
+      'en': 'Add Inspections',
+      'af': 'Kennisgewings',
+      'zu': 'Izaziso',
+    },
     'lfkifcv6': {
-      'en': 'Language',
+      'en': 'Download CSV',
       'af': 'Taal',
       'zu': 'Ulimi',
     },
@@ -1488,6 +1621,184 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Konke',
     },
   },
+  // addInspection
+  {
+    'hc0sgg24': {
+      'en': 'PROPERTY INSPECTION',
+      'af': '',
+      'zu': '',
+    },
+    'u740c6t1': {
+      'en': '1',
+      'af': '',
+      'zu': '',
+    },
+    'wg5xzsdu': {
+      'en': 'BEDROOM',
+      'af': '',
+      'zu': '',
+    },
+    '22h154gr': {
+      'en': '2',
+      'af': '',
+      'zu': '',
+    },
+    'ph9fkpp0': {
+      'en': 'BATHROOM',
+      'af': '',
+      'zu': '',
+    },
+    'aadwvt1i': {
+      'en': '3',
+      'af': '',
+      'zu': '',
+    },
+    'kzdnbhgd': {
+      'en': 'KITCHEN',
+      'af': '',
+      'zu': '',
+    },
+    '16l0g8hp': {
+      'en': 'Issue',
+      'af': '',
+      'zu': '',
+    },
+    'k3vm8kee': {
+      'en': 'INSPECT PROPERTY',
+      'af': '',
+      'zu': '',
+    },
+    'x1gr0syr': {
+      'en': '1',
+      'af': '',
+      'zu': '',
+    },
+    'yclrg9p6': {
+      'en': 'WINDOWS (BEDROOM)',
+      'af': '',
+      'zu': '',
+    },
+    'nep1tnoe': {
+      'en': 'Better Condition',
+      'af': '',
+      'zu': '',
+    },
+    'pahxgznc': {
+      'en': 'Good Condition',
+      'af': '',
+      'zu': '',
+    },
+    'e8qhtvh9': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    '19hdumvr': {
+      'en': 'Gallery',
+      'af': '',
+      'zu': '',
+    },
+    '75g7llyt': {
+      'en': 'Comments',
+      'af': '',
+      'zu': '',
+    },
+    '94czi21b': {
+      'en': 'Comments',
+      'af': '',
+      'zu': '',
+    },
+    'bcy603ah': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    'q97u56wf': {
+      'en': 'NEXT',
+      'af': '',
+      'zu': '',
+    },
+    'qbew9eyl': {
+      'en': 'BACK',
+      'af': '',
+      'zu': '',
+    },
+    '1ja0gg0u': {
+      'en': '2',
+      'af': '',
+      'zu': '',
+    },
+    'dn3pcsgw': {
+      'en': 'DOORS (BEDROOM)',
+      'af': '',
+      'zu': '',
+    },
+    'di1d0jbi': {
+      'en': 'Better Condition',
+      'af': '',
+      'zu': '',
+    },
+    'jxnsc5zx': {
+      'en': 'Good Condition',
+      'af': '',
+      'zu': '',
+    },
+    '4scg0y76': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    'qpoiz94u': {
+      'en': 'Gallery',
+      'af': '',
+      'zu': '',
+    },
+    'wfaq1knf': {
+      'en': 'Comments',
+      'af': '',
+      'zu': '',
+    },
+    '6g1c4u5m': {
+      'en': 'Comments',
+      'af': '',
+      'zu': '',
+    },
+    'yu6hjikz': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    '7xxpadtl': {
+      'en': 'NEXT',
+      'af': '',
+      'zu': '',
+    },
+    'qs5m2p77': {
+      'en': 'BACK',
+      'af': '',
+      'zu': '',
+    },
+    'eg5n5rsa': {
+      'en': 'SUBMIT',
+      'af': '',
+      'zu': '',
+    },
+    'j3e4neph': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'pc652j6c': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'wcislfe0': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
   // search
   {
     '1ehqp1x6': {
@@ -1495,133 +1806,530 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': 'Soek vriende om te gesels',
       'zu': 'Sesha Abangane ukuze uxoxe',
     },
-    'r4fzyodn': {
-      'en': 'Search Contacts',
-      'af': 'Soek kontakte',
-      'zu': 'Sesha Oxhumana Nabo',
+    '593y5qak': {
+      'en': 'Icon',
+      'af': '',
+      'zu': '',
     },
-    'n8jk3buj': {
-      'en': 'Search',
-      'af': 'Soek',
-      'zu': 'Sesha',
+    'iubu6zvf': {
+      'en': 'Name',
+      'af': '',
+      'zu': '',
     },
-    'qd4t4laz': {
-      'en': 'Search Contacts',
-      'af': 'Soek kontakte',
-      'zu': 'Sesha Oxhumana Nabo',
+    'jhhj8vn4': {
+      'en': 'Building',
+      'af': '',
+      'zu': '',
     },
   },
-  // voucher
+  // Communal
   {
-    'dwiccy81': {
-      'en': 'Campus Africa',
+    'bwlhzqrz': {
+      'en': 'Communal',
       'af': '',
       'zu': '',
     },
-    'rec1ik1l': {
-      'en': 'Share Coupon Code...',
+    'whf6k7wr': {
+      'en': '1',
       'af': '',
       'zu': '',
     },
-    'k24yibmu': {
-      'en': 'Dischem \nVoucher',
+    'ad5xvh29': {
+      'en': 'Ticket',
       'af': '',
       'zu': '',
     },
-    'r629jxbk': {
-      'en': 'Get 20 % off on all purchases',
+    '7x9r696z': {
+      'en': 'Describe your Issue',
+      'af': 'Beskryf jou probleem',
+      'zu': 'Chaza udaba lwakho',
+    },
+    'cecu9o59': {
+      'en': 'CONTINUE',
       'af': '',
       'zu': '',
     },
-    '00af2hft': {
-      'en': '2X7HV4',
+    'ahjjbbua': {
+      'en': '2',
       'af': '',
       'zu': '',
     },
-    'tiim9xec': {
-      'en': 'Valid until 03/09/2022',
+    'mg6c7rhm': {
+      'en': 'Location',
       'af': '',
       'zu': '',
     },
-    'w5tg410w': {
+    'ykvekxmb': {
+      'en': 'Place',
+      'af': 'Plek',
+      'zu': 'Indawo',
+    },
+    '63ydfioy': {
+      'en': '',
+      'af': '',
+      'zu': '',
+    },
+    '9oq3bi3q': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
+    },
+    'x6nksghb': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
+    },
+    'xz1yi6d7': {
+      'en': '3',
+      'af': '',
+      'zu': '',
+    },
+    'fmurf3ax': {
+      'en': 'Upload Image (Optional)',
+      'af': '',
+      'zu': '',
+    },
+    'yp50ke9c': {
+      'en': 'CONTINUE',
+      'af': '',
+      'zu': '',
+    },
+    'vukc9a0s': {
+      'en': 'PREVIOUS',
+      'af': '',
+      'zu': '',
+    },
+    '2o1vcxx8': {
+      'en': 'SUBMIT',
+      'af': '',
+      'zu': '',
+    },
+    '5t3v8gun': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    '36wdv2i6': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    '5h1aegic': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'b9cesqbq': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'dngzqonl': {
       'en': 'Home',
       'af': '',
       'zu': '',
     },
   },
-  // rewards
+  // visitorsManagement
   {
-    'q8y4chcc': {
-      'en': 'Search for a coupon or place...',
+    '38imdsjz': {
+      'en': 'VISITORS MANAGEMENT',
       'af': '',
       'zu': '',
     },
-    'cdbfjw6o': {
-      'en': 'New Coupons',
+    '200ulvqn': {
+      'en': '1',
       'af': '',
       'zu': '',
     },
-    '7a0ohvqx': {
-      'en': 'Food Lover\'s Market',
+    'ed4ozvy3': {
+      'en': 'INFO',
       'af': '',
       'zu': '',
     },
-    '7lzyvete': {
-      'en': 'Get 25% Off your first purchase',
+    'dcs33zv1': {
+      'en': '2',
       'af': '',
       'zu': '',
     },
-    'k1cqng4o': {
-      'en': 'Redeem',
+    '8s1luxju': {
+      'en': 'CONFIRM',
       'af': '',
       'zu': '',
     },
-    '403an2m4': {
-      'en': 'Seattle Coffee',
+    'o43dfb2j': {
+      'en': 'Add Visitor',
       'af': '',
       'zu': '',
     },
-    'qbt0yg42': {
-      'en': 'New discount available!',
+    'qaucrpbi': {
+      'en': 'Add Visitor',
       'af': '',
       'zu': '',
     },
-    'kr9u6gqg': {
-      'en': 'Redeemed',
+    'soozfrtx': {
+      'en': 'My Visitors',
       'af': '',
       'zu': '',
     },
-    'rv6dzgxh': {
-      'en': 'Dischem',
+    'w1v13cgb': {
+      'en': 'My Visitors',
       'af': '',
       'zu': '',
     },
-    'by0a7g4n': {
-      'en': 'New discount available!',
+    '1v5yxi9e': {
+      'en': '1',
       'af': '',
       'zu': '',
     },
-    '63rfn9dw': {
-      'en': 'Expired',
+    '0xx0fuef': {
+      'en': 'Visitor\'s Information',
       'af': '',
       'zu': '',
     },
-    '4co91k94': {
-      'en': 'Vodacom',
+    'rwrg7zgk': {
+      'en': 'Name',
       'af': '',
       'zu': '',
     },
-    'hbo9dq8q': {
-      'en': 'Get free data for the first 5 customers',
+    'ftjw4j6b': {
+      'en': 'Surname',
       'af': '',
       'zu': '',
     },
-    'ou1x79ur': {
-      'en': 'Campus Africa',
+    '68h9a1nr': {
+      'en': 'Mobile Number',
       'af': '',
       'zu': '',
     },
-    'ssc0gp0x': {
+    'kem2ldzv': {
+      'en': 'Save Visitor',
+      'af': '',
+      'zu': '',
+    },
+    '7ohca520': {
+      'en': 'Save contact for future visits',
+      'af': '',
+      'zu': '',
+    },
+    '9109iscq': {
+      'en': 'Sign Below',
+      'af': '',
+      'zu': '',
+    },
+    'veqmfpf2': {
+      'en': 'CLEAR SIGNATURE',
+      'af': '',
+      'zu': '',
+    },
+    'e2hpdjqj': {
+      'en': 'INVITE',
+      'af': '',
+      'zu': '',
+    },
+    '3jjua61p': {
+      'en': 'Image',
+      'af': '',
+      'zu': '',
+    },
+    'u7aq6yf7': {
+      'en': 'Visitor',
+      'af': '',
+      'zu': '',
+    },
+    'slu3ils9': {
+      'en': 'Action',
+      'af': '',
+      'zu': '',
+    },
+    'hxa4nqpi': {
+      'en': 'INVITE',
+      'af': '',
+      'zu': '',
+    },
+    'wf6vx8w9': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'kdlz12o9': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    '4n4s2del': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'p2g146m6': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'jqs5jbff': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'c3er6fb2': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    '7wmydnot': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    '20qo61g6': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'gzdfb96v': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'ds1gxcl1': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    '2srtb8xv': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // myVisitors
+  {
+    'l07pfqe0': {
+      'en': 'Visitors',
+      'af': '',
+      'zu': '',
+    },
+    'cibgwe4j': {
+      'en': 'RECENT VISITORS',
+      'af': '',
+      'zu': '',
+    },
+    '7i2i58a7': {
+      'en': 'Image',
+      'af': '',
+      'zu': '',
+    },
+    'm7up3tfn': {
+      'en': 'Visitor',
+      'af': '',
+      'zu': '',
+    },
+    'qeoctn9d': {
+      'en': 'Action',
+      'af': '',
+      'zu': '',
+    },
+    'nrwwghrw': {
+      'en': 'INVITE',
+      'af': '',
+      'zu': '',
+    },
+    'l8amubu5': {
+      'en': 'UPCOMING VISITORS',
+      'af': '',
+      'zu': '',
+    },
+    'yipoxakw': {
+      'en': 'Image',
+      'af': '',
+      'zu': '',
+    },
+    'tlimulfa': {
+      'en': 'Visitor',
+      'af': '',
+      'zu': '',
+    },
+    'gq3kwenf': {
+      'en': 'Action',
+      'af': '',
+      'zu': '',
+    },
+    'tpxz7ti3': {
+      'en': 'CANCEL',
+      'af': '',
+      'zu': '',
+    },
+    '3lh76wqf': {
+      'en': 'CHECKED-IN VISITORS',
+      'af': '',
+      'zu': '',
+    },
+    'to34x0dh': {
+      'en': 'Image',
+      'af': '',
+      'zu': '',
+    },
+    'bs0pe6vv': {
+      'en': 'Visitor',
+      'af': '',
+      'zu': '',
+    },
+    'ccyol0pi': {
+      'en': 'Action',
+      'af': '',
+      'zu': '',
+    },
+    '7lrw2yvy': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // dashboard
+  {
+    'hzzki391': {
+      'en': 'Pending',
+      'af': '',
+      'zu': '',
+    },
+    'tyv96zi0': {
+      'en': 'Today',
+      'af': '',
+      'zu': '',
+    },
+    'nhzef5yo': {
+      'en': '0',
+      'af': '',
+      'zu': '',
+    },
+    'hzoyxswg': {
+      'en': '49 Jorissen',
+      'af': '',
+      'zu': '',
+    },
+    '5vh13noj': {
+      'en': '80 Jorissen',
+      'af': '',
+      'zu': '',
+    },
+    'uwkywxdr': {
+      'en': 'YMCA',
+      'af': '',
+      'zu': '',
+    },
+    'e5n5fz5l': {
+      'en': 'Rennie House',
+      'af': '',
+      'zu': '',
+    },
+    'd4p384vz': {
+      'en': ' ALL',
+      'af': '',
+      'zu': '',
+    },
+    'lb985odu': {
+      'en': 'Residence',
+      'af': '',
+      'zu': '',
+    },
+    'nk4zetrl': {
+      'en': 'Download CSV',
+      'af': '',
+      'zu': '',
+    },
+    'cm8gs4mk': {
+      'en': 'Open Tickets',
+      'af': '',
+      'zu': '',
+    },
+    'weggynv7': {
+      'en': 'In Review',
+      'af': '',
+      'zu': '',
+    },
+    'kqgsu3ac': {
+      'en': 'Closed Tickets',
+      'af': '',
+      'zu': '',
+    },
+    'j5gdkyr8': {
+      'en': 'Name',
+      'af': '',
+      'zu': '',
+    },
+    'a762gje1': {
+      'en': 'Ticket',
+      'af': '',
+      'zu': '',
+    },
+    'obsm1oly': {
+      'en': 'Description',
+      'af': '',
+      'zu': '',
+    },
+    'zm35kjqt': {
+      'en': 'Room',
+      'af': '',
+      'zu': '',
+    },
+    '6zino7yi': {
+      'en': 'Created_date',
+      'af': '',
+      'zu': '',
+    },
+    '4ws0f2ea': {
+      'en': 'Status',
+      'af': '',
+      'zu': '',
+    },
+    'tswk8th8': {
+      'en': 'Building',
+      'af': '',
+      'zu': '',
+    },
+    'fhh84s8c': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // loadshedding
+  {
+    'dek3wfym': {
+      'en': 'Options',
+      'af': '',
+      'zu': '',
+    },
+    'vhf9e770': {
+      'en': 'Date',
+      'af': '',
+      'zu': '',
+    },
+    'zk1r9vny': {
+      'en': 'Stage',
+      'af': '',
+      'zu': '',
+    },
+    'ikxnucie': {
+      'en': 'Edit Column 2',
+      'af': '',
+      'zu': '',
+    },
+    '7d2ojpet': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // eskomArea
+  {
+    '6hy3h1xk': {
+      'en': 'Search for area',
+      'af': '',
+      'zu': '',
+    },
+    '59hhwh5q': {
       'en': 'Home',
       'af': '',
       'zu': '',
@@ -1636,7 +2344,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'eelep3l0': {
       'en':
-          'Your request has been received\nby the Campus Africa maintenance\nteam.',
+          'Your ticket has been received\nby the Campus Africa maintenance\nteam.',
       'af': 'Jou versoek is deur die Campus Africa-instandhoudingspan ontvang.',
       'zu': 'Isicelo sakho sitholwe yithimba elinakekela i-Campus Africa.',
     },
@@ -1649,7 +2357,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // emptyList
   {
     'cf85lsih': {
-      'en': 'No results were found from your search.\nPlease try again.',
+      'en': 'No results were found.\nPlease try again :)',
       'af':
           'Geen resultate is van jou soektog gevind nie. Probeer asseblief weer.',
       'zu':
@@ -1674,42 +2382,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Kusuka kuzilungiselelo zedivayisi',
     },
   },
-  // language
-  {
-    'oyqbh7ii': {
-      'en': 'Afrikaans',
-      'af': 'Afrikaans',
-      'zu': 'IsiBhunu',
-    },
-    'i29v1v2d': {
-      'en': 'English',
-      'af': 'Engels',
-      'zu': 'IsiNgisi',
-    },
-    'anp7mqim': {
-      'en': 'Zulu',
-      'af': 'Zoeloe',
-      'zu': 'Zulu',
-    },
-  },
-  // btmNv
-  {
-    '5ic4299a': {
-      'en': 'Inbox',
-      'af': 'Inkassie',
-      'zu': 'Ibhokisi lokungenayo',
-    },
-    'yxwgnmwc': {
-      'en': 'Report',
-      'af': 'Rapporteer',
-      'zu': 'Bika',
-    },
-    'r0blr3r7': {
-      'en': 'Settings',
-      'af': 'Instellings',
-      'zu': 'Izilungiselelo',
-    },
-  },
   // sideNav
   {
     'x0l4kq51': {
@@ -1728,7 +2400,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Ikhaya',
     },
     'qa3se4pd': {
-      'en': 'View Requests',
+      'en': 'Admin Dashboard',
+      'af': 'Bekyk versoeke',
+      'zu': 'Buka Izicelo',
+    },
+    't5vq29q1': {
+      'en': 'View Tickets',
       'af': 'Bekyk versoeke',
       'zu': 'Buka Izicelo',
     },
@@ -1736,11 +2413,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Messages',
       'af': 'Boodskappe',
       'zu': 'Imilayezo',
-    },
-    '1ifk0xp2': {
-      'en': 'Users',
-      'af': 'Gebruikers',
-      'zu': 'Abasebenzisi',
     },
     'ep2r2in9': {
       'en': 'ADVANCED SETTINGS',
@@ -1752,6 +2424,31 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': 'Kennisgewings',
       'zu': 'Izaziso',
     },
+    'bls7d7dx': {
+      'en': 'Manage Visitors',
+      'af': 'Kennisgewings',
+      'zu': 'Izaziso',
+    },
+    'eqk2sg1h': {
+      'en': 'Add Visitors',
+      'af': 'Kennisgewings',
+      'zu': 'Izaziso',
+    },
+    'kvxrkvlp': {
+      'en': 'Manage Visitors',
+      'af': 'Kennisgewings',
+      'zu': 'Izaziso',
+    },
+    'hdqqhj1s': {
+      'en': 'Inspections',
+      'af': 'Kennisgewings',
+      'zu': 'Izaziso',
+    },
+    '1ifk0xp2': {
+      'en': 'Users',
+      'af': 'Gebruikers',
+      'zu': 'Abasebenzisi',
+    },
     'f638xly7': {
       'en': 'Settings',
       'af': 'Instellings',
@@ -1761,29 +2458,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Logout',
       'af': 'Teken uit',
       'zu': 'Phuma',
-    },
-  },
-  // bottomNavBar
-  {
-    'sol4e3xb': {
-      'en': 'Inbox',
-      'af': 'Inkassie',
-      'zu': 'Ibhokisi lokungenayo',
-    },
-    '1vi6g268': {
-      'en': 'Report',
-      'af': 'Rapporteer',
-      'zu': 'Bika',
-    },
-    'y8l90vi9': {
-      'en': 'Settings',
-      'af': 'Instellings',
-      'zu': 'Izilungiselelo',
-    },
-    'dyx56i25': {
-      'en': '',
-      'af': '',
-      'zu': '',
     },
   },
   // ticket
@@ -1807,19 +2481,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Valid until 03/09/2022',
       'af': '',
       'zu': '',
-    },
-  },
-  // skeleton_Home
-  {
-    '5r7i7loi': {
-      'en': 'Hello World',
-      'af': 'Hello Wêreld',
-      'zu': 'Sawubona Mhlaba',
-    },
-    '636ymdl3': {
-      'en': '1',
-      'af': '1',
-      'zu': '1',
     },
   },
   // skeletonInfo
@@ -1888,11 +2549,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Notifications',
       'af': 'Kennisgewings',
       'zu': 'Izaziso',
-    },
-    '4mc3crbq': {
-      'en': '1',
-      'af': '1',
-      'zu': '1',
     },
     'cx4ukq4k': {
       'en': 'Latest',
@@ -1965,6 +2621,82 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Done',
       'af': '',
       'zu': '',
+    },
+  },
+  // codeTicket
+  {
+    'm12rfg4j': {
+      'en': 'Valid for',
+      'af': '',
+      'zu': '',
+    },
+    'fmqifbmh': {
+      'en': 'Once Off',
+      'af': '',
+      'zu': '',
+    },
+    'nxp7icp9': {
+      'en': 'On 12/12/2022',
+      'af': '',
+      'zu': '',
+    },
+    'qyd2993a': {
+      'en': 'Access Code',
+      'af': '',
+      'zu': '',
+    },
+    'gzlnhpk0': {
+      'en': '49907',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // visitorConfirm
+  {
+    'h2l2va3v': {
+      'en': 'Visitor Confirmation',
+      'af': '',
+      'zu': '',
+    },
+    'wevm7gmi': {
+      'en': 'Visitor access pass for',
+      'af': '',
+      'zu': '',
+    },
+    'gz1ppdm5': {
+      'en': 'Invited by',
+      'af': '',
+      'zu': '',
+    },
+    'gevo4gai': {
+      'en': 'Valid for',
+      'af': '',
+      'zu': '',
+    },
+    'r65mpvl4': {
+      'en': 'ONCE',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // emptyTickets
+  {
+    'p84x7nn6': {
+      'en': 'No tickets were found.\nPlease try again :)',
+      'af':
+          'Geen resultate is van jou soektog gevind nie. Probeer asseblief weer.',
+      'zu':
+          'Ayikho imiphumela etholakele oseshweni lwakho. Ngicela uzame futhi.',
+    },
+  },
+  // emptyTicketsCopy
+  {
+    '7o3f73y6': {
+      'en': 'View not available on mobile. \nPlease use your desktop/tablet.',
+      'af':
+          'Geen resultate is van jou soektog gevind nie. Probeer asseblief weer.',
+      'zu':
+          'Ayikho imiphumela etholakele oseshweni lwakho. Ngicela uzame futhi.',
     },
   },
   // Miscellaneous

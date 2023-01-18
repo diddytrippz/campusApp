@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class TessstWidget extends StatefulWidget {
   const TessstWidget({
@@ -31,6 +32,8 @@ class _TessstWidgetState extends State<TessstWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return InkWell(
       onTap: () async {
         logFirebaseEvent('TESSST_COMP_Column_fv1ai15s_ON_TAP');
@@ -100,7 +103,8 @@ class _TessstWidgetState extends State<TessstWidget> {
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(20, 20, 20, 5),
-                              child: Text(
+                              child: SelectionArea(
+                                  child: Text(
                                 widget.heading!,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -111,12 +115,13 @@ class _TessstWidgetState extends State<TessstWidget> {
                                       fontSize: 22,
                                       fontWeight: FontWeight.bold,
                                     ),
-                              ),
+                              )),
                             ),
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(15, 0, 15, 15),
-                              child: AutoSizeText(
+                              child: SelectionArea(
+                                  child: AutoSizeText(
                                 widget.content!,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -126,7 +131,7 @@ class _TessstWidgetState extends State<TessstWidget> {
                                           .secondaryText,
                                       fontSize: 16,
                                     ),
-                              ),
+                              )),
                             ),
                           ],
                         ),

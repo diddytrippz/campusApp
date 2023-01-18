@@ -7,14 +7,13 @@ import '../flutter_flow/chat/index.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 
 class MessagesWidget extends StatefulWidget {
   const MessagesWidget({Key? key}) : super(key: key);
@@ -37,13 +36,16 @@ class _MessagesWidgetState extends State<MessagesWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('MESSAGES_PAGE_messages_ON_PAGE_LOAD');
       logFirebaseEvent('messages_update_local_state');
-      setState(() => FFAppState().skeleteMessages = true);
-      logFirebaseEvent('messages_update_local_state');
-      setState(() => FFAppState().btmNavVis = false);
+      FFAppState().update(() {
+        FFAppState().skeleteMessages = true;
+        FFAppState().btmNavVis = false;
+      });
       logFirebaseEvent('messages_wait__delay');
       await Future.delayed(const Duration(milliseconds: 3500));
       logFirebaseEvent('messages_update_local_state');
-      setState(() => FFAppState().skeleteMessages = false);
+      FFAppState().update(() {
+        FFAppState().skeleteMessages = false;
+      });
     });
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'messages'});
@@ -58,6 +60,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -79,6 +83,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                     nav4Color: FlutterFlowTheme.of(context).primaryText,
                     nav5Color: FlutterFlowTheme.of(context).primaryText,
                     nav6Color: FlutterFlowTheme.of(context).primaryText,
+                    nav7Color: FlutterFlowTheme.of(context).primaryText,
                   ),
                 ),
               Expanded(
@@ -130,190 +135,12 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                               ),
                             ],
                           ),
-                          if (!isWeb)
-                            AuthUserStreamWidget(
-                              child: FutureBuilder<List<UsersRecord>>(
-                                future: queryUsersRecordOnce(
-                                  queryBuilder: (usersRecord) => usersRecord
-                                      .where('building',
-                                          isEqualTo: valueOrDefault(
-                                                      currentUserDocument
-                                                          ?.building,
-                                                      '') !=
-                                                  ''
-                                              ? valueOrDefault(
-                                                  currentUserDocument?.building,
-                                                  '')
-                                              : null)
-                                      .where('role', isEqualTo: 'Admin'),
-                                  limit: 10,
-                                ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 60,
-                                        height: 60,
-                                        child: SpinKitPulse(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
-                                          size: 60,
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  List<UsersRecord> rowUsersRecordList =
-                                      snapshot.data!
-                                          .where((u) => u.uid != currentUserUid)
-                                          .toList();
-                                  return Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: List.generate(
-                                        rowUsersRecordList.length, (rowIndex) {
-                                      final rowUsersRecord =
-                                          rowUsersRecordList[rowIndex];
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12, 0, 4, 0),
-                                            child: InkWell(
-                                              onTap: () async {
-                                                logFirebaseEvent(
-                                                    'MESSAGES_PAGE_Container_qgi06hka_ON_TAP');
-                                                if (rowUsersRecord.room ==
-                                                    'Management') {
-                                                  logFirebaseEvent(
-                                                      'Container_show_snack_bar');
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        'Contact unavailable',
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
-                                                        ),
-                                                      ),
-                                                      duration: Duration(
-                                                          milliseconds: 4000),
-                                                      backgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                                  );
-                                                  return;
-                                                } else {
-                                                  logFirebaseEvent(
-                                                      'Container_navigate_to');
-
-                                                  context.pushNamed(
-                                                    'chats',
-                                                    queryParams: {
-                                                      'chatUser':
-                                                          serializeParam(
-                                                        rowUsersRecord,
-                                                        ParamType.Document,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    extra: <String, dynamic>{
-                                                      'chatUser':
-                                                          rowUsersRecord,
-                                                    },
-                                                  );
-                                                }
-                                              },
-                                              child: Material(
-                                                color: Colors.transparent,
-                                                elevation: 0,
-                                                shape: const CircleBorder(),
-                                                child: Container(
-                                                  width: 70,
-                                                  height: 70,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    shape: BoxShape.circle,
-                                                    border: Border.all(
-                                                      color: Color(0xFF4E39F9),
-                                                      width: 3,
-                                                    ),
-                                                  ),
-                                                  child: Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0, 0),
-                                                    child: Text(
-                                                      functions.initials(
-                                                          rowUsersRecord
-                                                              .displayName)!,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 28,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w800,
-                                                              ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    8, 6, 0, 0),
-                                            child: AutoSizeText(
-                                              rowUsersRecord.displayName!
-                                                  .maybeHandleOverflow(
-                                                maxChars: 8,
-                                                replacement: '…',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Open Sans',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    }),
-                                  );
-                                },
-                              ),
-                            ),
                         ],
                       ),
                     ),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 80),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 80),
                         child: PagedListView<DocumentSnapshot<Object?>?,
                             ChatsRecord>(
                           pagingController: () {
@@ -358,12 +185,12 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                 );
                                 final streamSubscription =
                                     page.dataStream?.listen((data) {
-                                  final itemIndexes = _pagingController!
-                                      .itemList!
-                                      .asMap()
-                                      .map((k, v) =>
-                                          MapEntry(v.reference.id, k));
                                   data.forEach((item) {
+                                    final itemIndexes = _pagingController!
+                                        .itemList!
+                                        .asMap()
+                                        .map((k, v) =>
+                                            MapEntry(v.reference.id, k));
                                     final index =
                                         itemIndexes[item.reference.id];
                                     final items = _pagingController!.itemList!;

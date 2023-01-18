@@ -60,9 +60,9 @@
 	<true/>
 
 	<key>NSCameraUsageDescription</key>
-      <string>Enable access so you can take photos of your maintenance reports and update your profile picture.</string>
+    <string>Enable access so you can take photos of your maintenance reports and update your profile picture.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-      <string>Let Campus Africa access your library so you can upload photos to your maintenance reports and update your profile picture</string>
+    <string>Let Campus Africa access your library so you can upload photos to your maintenance reports and update your profile picture</string>
 
     <key>UIBackgroundModes</key>
     <array>

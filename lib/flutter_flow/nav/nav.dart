@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import '../flutter_flow_theme.dart';
 import '../../backend/backend.dart';
+
 import '../../auth/firebase_user_provider.dart';
 import '../../backend/push_notifications/push_notifications_handler.dart'
     show PushNotificationsHandler;
@@ -75,6 +76,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
           appStateNotifier.loggedIn ? HomeWidget() : LoginWidget(),
+      navigatorBuilder: (_, __, child) => DynamicLinksHandler(child: child),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -112,16 +114,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'chats',
               requireAuth: true,
               asyncParams: {
-                'chatUser': getDoc('users', UsersRecord.serializer),
+                'chatUser': getDoc(['users'], UsersRecord.serializer),
               },
               builder: (context, params) => ChatsWidget(
                 chatUser: params.getParam('chatUser', ParamType.Document),
                 chatRef: params.getParam(
-                    'chatRef', ParamType.DocumentReference, false, 'chats'),
+                    'chatRef', ParamType.DocumentReference, false, ['chats']),
               ),
             ),
             FFRoute(
-              name: 'Appliances',
+              name: 'appliances',
               path: 'appliances',
               requireAuth: true,
               builder: (context, params) => AppliancesWidget(),
@@ -151,13 +153,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => LocksmithWidget(),
             ),
             FFRoute(
-              name: 'Pestcontrol',
-              path: 'pestcontrol',
+              name: 'PestControl',
+              path: 'pestControl',
               requireAuth: true,
-              builder: (context, params) => PestcontrolWidget(),
+              builder: (context, params) => PestControlWidget(),
             ),
             FFRoute(
-              name: 'painting',
+              name: 'Painting',
               path: 'painting',
               requireAuth: true,
               builder: (context, params) => PaintingWidget(),
@@ -169,28 +171,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => OthersWidget(),
             ),
             FFRoute(
-              name: 'Communal',
-              path: 'communal',
-              requireAuth: true,
-              builder: (context, params) => CommunalWidget(),
-            ),
-            FFRoute(
               name: 'reviews',
               path: 'reviews',
               requireAuth: true,
               asyncParams: {
                 'jobReviews':
-                    getDoc('maintenance', MaintenanceRecord.serializer),
+                    getDoc(['maintenance'], MaintenanceRecord.serializer),
               },
               builder: (context, params) => ReviewsWidget(
                 jobReviews: params.getParam('jobReviews', ParamType.Document),
               ),
-            ),
-            FFRoute(
-              name: 'profile',
-              path: 'profile',
-              requireAuth: true,
-              builder: (context, params) => ProfileWidget(),
             ),
             FFRoute(
               name: 'settings',
@@ -221,7 +211,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'information',
               requireAuth: true,
               asyncParams: {
-                'jobs': getDoc('maintenance', MaintenanceRecord.serializer),
+                'jobs': getDoc(['maintenance'], MaintenanceRecord.serializer),
               },
               builder: (context, params) => InformationWidget(
                 jobs: params.getParam('jobs', ParamType.Document),
@@ -234,22 +224,52 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => NotificationsWidget(),
             ),
             FFRoute(
+              name: 'addInspection',
+              path: 'addInspection',
+              requireAuth: true,
+              builder: (context, params) => AddInspectionWidget(),
+            ),
+            FFRoute(
               name: 'search',
               path: 'search',
               requireAuth: true,
               builder: (context, params) => SearchWidget(),
             ),
             FFRoute(
-              name: 'voucher',
-              path: 'voucher',
+              name: 'Communal',
+              path: 'communal',
               requireAuth: true,
-              builder: (context, params) => VoucherWidget(),
+              builder: (context, params) => CommunalWidget(),
             ),
             FFRoute(
-              name: 'rewards',
-              path: 'rewards',
+              name: 'visitorsManagement',
+              path: 'visitorsManagement',
               requireAuth: true,
-              builder: (context, params) => RewardsWidget(),
+              builder: (context, params) => VisitorsManagementWidget(),
+            ),
+            FFRoute(
+              name: 'myVisitors',
+              path: 'myVisitors',
+              requireAuth: true,
+              builder: (context, params) => MyVisitorsWidget(),
+            ),
+            FFRoute(
+              name: 'dashboard',
+              path: 'dashboard',
+              requireAuth: true,
+              builder: (context, params) => DashboardWidget(),
+            ),
+            FFRoute(
+              name: 'loadshedding',
+              path: 'loadshedding',
+              requireAuth: true,
+              builder: (context, params) => LoadsheddingWidget(),
+            ),
+            FFRoute(
+              name: 'eskomArea',
+              path: 'eskomArea',
+              requireAuth: true,
+              builder: (context, params) => EskomAreaWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -362,7 +382,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
-    String? collectionName,
+    List<String>? collectionNamePath,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -376,7 +396,7 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList, collectionName);
+    return deserializeParam<T>(param, type, isList, collectionNamePath);
   }
 }
 
@@ -433,8 +453,7 @@ class FFRoute {
                     ),
                   ),
                 )
-              : PushNotificationsHandler(
-                  child: DynamicLinksHandler(child: page));
+              : PushNotificationsHandler(child: page);
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition

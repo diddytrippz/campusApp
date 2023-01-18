@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class SendNotificationsWidget extends StatefulWidget {
   const SendNotificationsWidget({Key? key}) : super(key: key);
@@ -25,8 +26,9 @@ class _SendNotificationsWidgetState extends State<SendNotificationsWidget> {
   TextEditingController? textFieldBodyController;
   TextEditingController? textFieldSubjectController;
   bool? checkboxListTileValue;
-  final formKey = GlobalKey<FormState>();
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -40,6 +42,7 @@ class _SendNotificationsWidgetState extends State<SendNotificationsWidget> {
 
   @override
   void dispose() {
+    _unfocusNode.dispose();
     textFieldBodyController?.dispose();
     textFieldSubjectController?.dispose();
     super.dispose();
@@ -47,6 +50,8 @@ class _SendNotificationsWidgetState extends State<SendNotificationsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -205,7 +210,7 @@ class _SendNotificationsWidgetState extends State<SendNotificationsWidget> {
           builder: (context) {
             return SafeArea(
               child: GestureDetector(
-                onTap: () => FocusScope.of(context).unfocus(),
+                onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
                 child: Form(
                   key: formKey,
                   autovalidateMode: AutovalidateMode.disabled,
@@ -345,7 +350,7 @@ class _SendNotificationsWidgetState extends State<SendNotificationsWidget> {
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(15, 10, 10, 0),
-                        child: FlutterFlowDropDown(
+                        child: FlutterFlowDropDown<String>(
                           options: [
                             FFLocalizations.of(context).getText(
                               'bsc4cpul' /* General */,

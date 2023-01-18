@@ -2,18 +2,18 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/push_notifications/push_notifications_util.dart';
 import '../components/bottom_nav_bar_widget.dart';
+import '../components/empty_tickets_widget.dart';
 import '../components/side_nav_widget.dart';
 import '../components/skeleton_view_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ViewWidget extends StatefulWidget {
   const ViewWidget({
@@ -28,33 +28,31 @@ class ViewWidget extends StatefulWidget {
 }
 
 class _ViewWidgetState extends State<ViewWidget> {
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      logFirebaseEvent('VIEW_PAGE_view_ON_PAGE_LOAD');
-      logFirebaseEvent('view_update_local_state');
-      setState(() => FFAppState().skeletonView = true);
-      logFirebaseEvent('view_wait__delay');
-      await Future.delayed(const Duration(milliseconds: 3000));
-      logFirebaseEvent('view_update_local_state');
-      setState(() => FFAppState().skeletonView = false);
-    });
-
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'view'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
+  void dispose() {
+    _unfocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Stack(
           children: [
             Row(
@@ -71,6 +69,7 @@ class _ViewWidgetState extends State<ViewWidget> {
                     nav4Color: FlutterFlowTheme.of(context).primaryText,
                     nav5Color: FlutterFlowTheme.of(context).primaryText,
                     nav6Color: FlutterFlowTheme.of(context).primaryText,
+                    nav7Color: FlutterFlowTheme.of(context).primaryText,
                   ),
                 Expanded(
                   child: Align(
@@ -135,7 +134,8 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 0, 80),
                                             child: AuthUserStreamWidget(
-                                              child: DefaultTabController(
+                                              builder: (context) =>
+                                                  DefaultTabController(
                                                 length: 3,
                                                 initialIndex: 0,
                                                 child: Column(
@@ -182,275 +182,344 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                     Expanded(
                                                       child: TabBarView(
                                                         children: [
-                                                          Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            16,
-                                                                            12,
-                                                                            16,
-                                                                            12),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Text(
-                                                                      FFLocalizations.of(
-                                                                              context)
-                                                                          .getText(
-                                                                        'x8cw3w69' /* Search results */,
-                                                                      ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText2,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              Expanded(
-                                                                child: StreamBuilder<
-                                                                    List<
-                                                                        MaintenanceRecord>>(
-                                                                  stream:
-                                                                      queryMaintenanceRecord(
-                                                                    queryBuilder: (maintenanceRecord) => maintenanceRecord
-                                                                        .where(
-                                                                            'status',
-                                                                            isEqualTo:
-                                                                                'Submitted')
-                                                                        .where(
-                                                                            'email',
-                                                                            isEqualTo:
-                                                                                currentUserEmail)
-                                                                        .orderBy(
-                                                                            'created_time',
-                                                                            descending:
-                                                                                true),
-                                                                  ),
-                                                                  builder: (context,
-                                                                      snapshot) {
-                                                                    // Customize what your widget looks like when it's loading.
-                                                                    if (!snapshot
-                                                                        .hasData) {
-                                                                      return Center(
-                                                                        child:
-                                                                            Center(
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width,
-                                                                            height:
-                                                                                MediaQuery.of(context).size.height * 1,
-                                                                            child:
-                                                                                SkeletonViewWidget(),
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    }
-                                                                    List<MaintenanceRecord>
-                                                                        listViewSubSTDMaintenanceRecordList =
-                                                                        snapshot
-                                                                            .data!;
-                                                                    if (listViewSubSTDMaintenanceRecordList
-                                                                        .isEmpty) {
-                                                                      return Center(
-                                                                        child: SvgPicture
-                                                                            .asset(
-                                                                          'assets/images/Theme=Accent,_Content=Results.svg',
-                                                                          width:
-                                                                              MediaQuery.of(context).size.width * 0.5,
-                                                                          fit: BoxFit
-                                                                              .contain,
-                                                                        ),
-                                                                      );
-                                                                    }
-                                                                    return ListView
-                                                                        .builder(
-                                                                      padding:
-                                                                          EdgeInsets
-                                                                              .zero,
-                                                                      primary:
-                                                                          false,
-                                                                      scrollDirection:
-                                                                          Axis.vertical,
-                                                                      itemCount:
-                                                                          listViewSubSTDMaintenanceRecordList
-                                                                              .length,
-                                                                      itemBuilder:
-                                                                          (context,
-                                                                              listViewSubSTDIndex) {
-                                                                        final listViewSubSTDMaintenanceRecord =
-                                                                            listViewSubSTDMaintenanceRecordList[listViewSubSTDIndex];
-                                                                        return InkWell(
-                                                                          onTap:
-                                                                              () async {
-                                                                            logFirebaseEvent('VIEW_PAGE_ListTile_eb8h3glo_ON_TAP');
-                                                                            logFirebaseEvent('ListTile_navigate_to');
-
-                                                                            context.pushNamed(
-                                                                              'information',
-                                                                              queryParams: {
-                                                                                'jobs': serializeParam(
-                                                                                  listViewSubSTDMaintenanceRecord,
-                                                                                  ParamType.Document,
-                                                                                ),
-                                                                              }.withoutNulls,
-                                                                              extra: <String, dynamic>{
-                                                                                'jobs': listViewSubSTDMaintenanceRecord,
-                                                                              },
-                                                                            );
-                                                                          },
-                                                                          child:
-                                                                              Slidable(
-                                                                            actionPane:
-                                                                                const SlidableScrollActionPane(),
-                                                                            secondaryActions: [
-                                                                              IconSlideAction(
-                                                                                caption: FFLocalizations.of(context).getText(
-                                                                                  '47qcs9t7' /* Delete */,
-                                                                                ),
-                                                                                color: FlutterFlowTheme.of(context).campusRed,
-                                                                                icon: Icons.delete_outline,
-                                                                                onTap: () async {
-                                                                                  logFirebaseEvent('VIEW_SlidableActionWidget_aynk2i2a_ON_TA');
-                                                                                  logFirebaseEvent('SlidableActionWidget_alert_dialog');
-                                                                                  var confirmDialogResponse = await showDialog<bool>(
-                                                                                        context: context,
-                                                                                        builder: (alertDialogContext) {
-                                                                                          return AlertDialog(
-                                                                                            content: Text('You are about to delete all items. Do you wish to continue?'),
-                                                                                            actions: [
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                child: Text('Cancel'),
-                                                                                              ),
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                child: Text('OK'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          );
-                                                                                        },
-                                                                                      ) ??
-                                                                                      false;
-                                                                                  if (confirmDialogResponse) {
-                                                                                    logFirebaseEvent('SlidableActionWidget_backend_call');
-                                                                                    await listViewSubSTDMaintenanceRecord.reference.delete();
-                                                                                  } else {
-                                                                                    return;
-                                                                                  }
-
-                                                                                  logFirebaseEvent('SlidableActionWidget_show_snack_bar');
-                                                                                  ScaffoldMessenger.of(context).showSnackBar(
-                                                                                    SnackBar(
-                                                                                      content: Text(
-                                                                                        '1 item moved to bin',
-                                                                                        style: TextStyle(
-                                                                                          color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                        ),
-                                                                                      ),
-                                                                                      duration: Duration(milliseconds: 4000),
-                                                                                      backgroundColor: FlutterFlowTheme.of(context).primaryText,
-                                                                                    ),
-                                                                                  );
-                                                                                },
-                                                                              ),
-                                                                            ],
-                                                                            child:
-                                                                                ListTile(
-                                                                              leading: FaIcon(
-                                                                                FontAwesomeIcons.folderMinus,
-                                                                                color: FlutterFlowTheme.of(context).primaryText,
-                                                                                size: 24,
-                                                                              ),
-                                                                              title: Text(
-                                                                                listViewSubSTDMaintenanceRecord.issue!,
-                                                                                style: FlutterFlowTheme.of(context).title2.override(
-                                                                                      fontFamily: 'Open Sans',
-                                                                                      color: FlutterFlowTheme.of(context).primaryText,
-                                                                                      fontSize: 16,
-                                                                                    ),
-                                                                              ),
-                                                                              subtitle: Text(
-                                                                                '${dateTimeFormat(
-                                                                                  'MMMMEEEEd',
-                                                                                  listViewSubSTDMaintenanceRecord.createdTime,
-                                                                                  locale: FFLocalizations.of(context).languageCode,
-                                                                                )} ${dateTimeFormat(
-                                                                                  'jm',
-                                                                                  listViewSubSTDMaintenanceRecord.createdTime,
-                                                                                  locale: FFLocalizations.of(context).languageCode,
-                                                                                )}',
-                                                                                style: FlutterFlowTheme.of(context).subtitle2.override(
-                                                                                      fontFamily: 'Open Sans',
-                                                                                      fontSize: 14,
-                                                                                    ),
-                                                                              ),
-                                                                              trailing: Icon(
-                                                                                Icons.keyboard_arrow_right_sharp,
-                                                                                color: FlutterFlowTheme.of(context).primaryText,
-                                                                                size: 20,
-                                                                              ),
-                                                                              tileColor: Color(0x00FFFFFF),
-                                                                              dense: true,
-                                                                            ),
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    );
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            16,
-                                                                            12,
-                                                                            16,
-                                                                            12),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Text(
-                                                                      FFLocalizations.of(
-                                                                              context)
-                                                                          .getText(
-                                                                        '4e2bu1eh' /* Search results */,
-                                                                      ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText2,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              Expanded(
-                                                                child: Padding(
+                                                          KeepAliveWidgetWrapper(
+                                                            builder:
+                                                                (context) =>
+                                                                    Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0,
-                                                                          10,
-                                                                          0,
-                                                                          0),
+                                                                          16,
+                                                                          12,
+                                                                          16,
+                                                                          12),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Text(
+                                                                        FFLocalizations.of(context)
+                                                                            .getText(
+                                                                          'x8cw3w69' /* Search results */,
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText2,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Expanded(
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            10,
+                                                                            0,
+                                                                            0),
+                                                                    child: StreamBuilder<
+                                                                        List<
+                                                                            MaintenanceRecord>>(
+                                                                      stream:
+                                                                          queryMaintenanceRecord(
+                                                                        queryBuilder: (maintenanceRecord) => maintenanceRecord
+                                                                            .where('status',
+                                                                                isEqualTo: 'Submitted')
+                                                                            .where('email', isEqualTo: currentUserEmail)
+                                                                            .orderBy('created_time', descending: true),
+                                                                      ),
+                                                                      builder:
+                                                                          (context,
+                                                                              snapshot) {
+                                                                        // Customize what your widget looks like when it's loading.
+                                                                        if (!snapshot
+                                                                            .hasData) {
+                                                                          return Center(
+                                                                            child:
+                                                                                Center(
+                                                                              child: SkeletonViewWidget(),
+                                                                            ),
+                                                                          );
+                                                                        }
+                                                                        List<MaintenanceRecord>
+                                                                            listViewSUBSTDMaintenanceRecordList =
+                                                                            snapshot.data!;
+                                                                        if (listViewSUBSTDMaintenanceRecordList
+                                                                            .isEmpty) {
+                                                                          return Center(
+                                                                            child:
+                                                                                EmptyTicketsWidget(),
+                                                                          );
+                                                                        }
+                                                                        return ListView
+                                                                            .builder(
+                                                                          padding:
+                                                                              EdgeInsets.zero,
+                                                                          primary:
+                                                                              false,
+                                                                          shrinkWrap:
+                                                                              true,
+                                                                          scrollDirection:
+                                                                              Axis.vertical,
+                                                                          itemCount:
+                                                                              listViewSUBSTDMaintenanceRecordList.length,
+                                                                          itemBuilder:
+                                                                              (context, listViewSUBSTDIndex) {
+                                                                            final listViewSUBSTDMaintenanceRecord =
+                                                                                listViewSUBSTDMaintenanceRecordList[listViewSUBSTDIndex];
+                                                                            return InkWell(
+                                                                              onTap: () async {
+                                                                                logFirebaseEvent('VIEW_PAGE_ListTile_qnpnbn37_ON_TAP');
+                                                                                logFirebaseEvent('ListTile_navigate_to');
+
+                                                                                context.pushNamed(
+                                                                                  'information',
+                                                                                  queryParams: {
+                                                                                    'jobs': serializeParam(
+                                                                                      listViewSUBSTDMaintenanceRecord,
+                                                                                      ParamType.Document,
+                                                                                    ),
+                                                                                  }.withoutNulls,
+                                                                                  extra: <String, dynamic>{
+                                                                                    'jobs': listViewSUBSTDMaintenanceRecord,
+                                                                                  },
+                                                                                );
+                                                                              },
+                                                                              child: ListTile(
+                                                                                leading: FaIcon(
+                                                                                  FontAwesomeIcons.folderMinus,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  size: 24,
+                                                                                ),
+                                                                                title: Text(
+                                                                                  listViewSUBSTDMaintenanceRecord.issue!,
+                                                                                  style: FlutterFlowTheme.of(context).title1.override(
+                                                                                        fontFamily: 'Open Sans',
+                                                                                        color: FlutterFlowTheme.of(context).primaryText,
+                                                                                        fontSize: 16,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                      ),
+                                                                                ),
+                                                                                subtitle: Text(
+                                                                                  '${dateTimeFormat(
+                                                                                    'MMMMEEEEd',
+                                                                                    listViewSUBSTDMaintenanceRecord.createdTime,
+                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                  )} ${dateTimeFormat(
+                                                                                    'jm',
+                                                                                    listViewSUBSTDMaintenanceRecord.createdTime,
+                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                  )}',
+                                                                                  style: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                        fontFamily: 'Open Sans',
+                                                                                        fontSize: 14,
+                                                                                      ),
+                                                                                ),
+                                                                                tileColor: Color(0x00F5F5F5),
+                                                                                dense: true,
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          KeepAliveWidgetWrapper(
+                                                            builder:
+                                                                (context) =>
+                                                                    Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          16,
+                                                                          12,
+                                                                          16,
+                                                                          12),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Text(
+                                                                        FFLocalizations.of(context)
+                                                                            .getText(
+                                                                          '4e2bu1eh' /* Search results */,
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText2,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Expanded(
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            10,
+                                                                            0,
+                                                                            0),
+                                                                    child: StreamBuilder<
+                                                                        List<
+                                                                            MaintenanceRecord>>(
+                                                                      stream:
+                                                                          queryMaintenanceRecord(
+                                                                        queryBuilder: (maintenanceRecord) => maintenanceRecord
+                                                                            .where('status',
+                                                                                isEqualTo: 'Pending')
+                                                                            .where('email', isEqualTo: currentUserEmail)
+                                                                            .orderBy('created_time', descending: true),
+                                                                      ),
+                                                                      builder:
+                                                                          (context,
+                                                                              snapshot) {
+                                                                        // Customize what your widget looks like when it's loading.
+                                                                        if (!snapshot
+                                                                            .hasData) {
+                                                                          return Center(
+                                                                            child:
+                                                                                Center(
+                                                                              child: SkeletonViewWidget(),
+                                                                            ),
+                                                                          );
+                                                                        }
+                                                                        List<MaintenanceRecord>
+                                                                            listViewPendSTDMaintenanceRecordList =
+                                                                            snapshot.data!;
+                                                                        if (listViewPendSTDMaintenanceRecordList
+                                                                            .isEmpty) {
+                                                                          return Center(
+                                                                            child:
+                                                                                EmptyTicketsWidget(),
+                                                                          );
+                                                                        }
+                                                                        return ListView
+                                                                            .builder(
+                                                                          padding:
+                                                                              EdgeInsets.zero,
+                                                                          primary:
+                                                                              false,
+                                                                          scrollDirection:
+                                                                              Axis.vertical,
+                                                                          itemCount:
+                                                                              listViewPendSTDMaintenanceRecordList.length,
+                                                                          itemBuilder:
+                                                                              (context, listViewPendSTDIndex) {
+                                                                            final listViewPendSTDMaintenanceRecord =
+                                                                                listViewPendSTDMaintenanceRecordList[listViewPendSTDIndex];
+                                                                            return InkWell(
+                                                                              onTap: () async {
+                                                                                logFirebaseEvent('VIEW_PAGE_ListTile_gznh7u5n_ON_TAP');
+                                                                                logFirebaseEvent('ListTile_navigate_to');
+
+                                                                                context.pushNamed(
+                                                                                  'information',
+                                                                                  queryParams: {
+                                                                                    'jobs': serializeParam(
+                                                                                      listViewPendSTDMaintenanceRecord,
+                                                                                      ParamType.Document,
+                                                                                    ),
+                                                                                  }.withoutNulls,
+                                                                                  extra: <String, dynamic>{
+                                                                                    'jobs': listViewPendSTDMaintenanceRecord,
+                                                                                  },
+                                                                                );
+                                                                              },
+                                                                              child: ListTile(
+                                                                                leading: FaIcon(
+                                                                                  FontAwesomeIcons.folderMinus,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  size: 24,
+                                                                                ),
+                                                                                title: Text(
+                                                                                  listViewPendSTDMaintenanceRecord.issue!,
+                                                                                  style: FlutterFlowTheme.of(context).title1.override(
+                                                                                        fontFamily: 'Open Sans',
+                                                                                        color: FlutterFlowTheme.of(context).primaryText,
+                                                                                        fontSize: 16,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                      ),
+                                                                                ),
+                                                                                subtitle: Text(
+                                                                                  '${dateTimeFormat(
+                                                                                    'MMMMEEEEd',
+                                                                                    listViewPendSTDMaintenanceRecord.createdTime,
+                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                  )} ${dateTimeFormat(
+                                                                                    'jm',
+                                                                                    listViewPendSTDMaintenanceRecord.createdTime,
+                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                  )}',
+                                                                                  style: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                        fontFamily: 'Open Sans',
+                                                                                        fontSize: 14,
+                                                                                      ),
+                                                                                ),
+                                                                                tileColor: Color(0x00F5F5F5),
+                                                                                dense: true,
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          KeepAliveWidgetWrapper(
+                                                            builder:
+                                                                (context) =>
+                                                                    Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          16,
+                                                                          12,
+                                                                          16,
+                                                                          12),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Text(
+                                                                        FFLocalizations.of(context)
+                                                                            .getText(
+                                                                          '9zcs84ro' /* Search results */,
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText2,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Expanded(
                                                                   child: StreamBuilder<
                                                                       List<
                                                                           MaintenanceRecord>>(
@@ -460,7 +529,7 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                           .where(
                                                                               'status',
                                                                               isEqualTo:
-                                                                                  'Pending')
+                                                                                  'Completed')
                                                                           .where(
                                                                               'email',
                                                                               isEqualTo:
@@ -477,27 +546,18 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                           .hasData) {
                                                                         return Center(
                                                                           child:
-                                                                              Center(
-                                                                            child:
-                                                                                SkeletonViewWidget(),
-                                                                          ),
+                                                                              SkeletonViewWidget(),
                                                                         );
                                                                       }
                                                                       List<MaintenanceRecord>
-                                                                          listViewPendSTDMaintenanceRecordList =
+                                                                          listViewCompSTDMaintenanceRecordList =
                                                                           snapshot
                                                                               .data!;
-                                                                      if (listViewPendSTDMaintenanceRecordList
+                                                                      if (listViewCompSTDMaintenanceRecordList
                                                                           .isEmpty) {
                                                                         return Center(
                                                                           child:
-                                                                              SvgPicture.asset(
-                                                                            'assets/images/Theme=Accent,_Content=Results.svg',
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width * 0.5,
-                                                                            fit:
-                                                                                BoxFit.contain,
-                                                                          ),
+                                                                              EmptyTicketsWidget(),
                                                                         );
                                                                       }
                                                                       return ListView
@@ -509,28 +569,28 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                         scrollDirection:
                                                                             Axis.vertical,
                                                                         itemCount:
-                                                                            listViewPendSTDMaintenanceRecordList.length,
+                                                                            listViewCompSTDMaintenanceRecordList.length,
                                                                         itemBuilder:
                                                                             (context,
-                                                                                listViewPendSTDIndex) {
-                                                                          final listViewPendSTDMaintenanceRecord =
-                                                                              listViewPendSTDMaintenanceRecordList[listViewPendSTDIndex];
+                                                                                listViewCompSTDIndex) {
+                                                                          final listViewCompSTDMaintenanceRecord =
+                                                                              listViewCompSTDMaintenanceRecordList[listViewCompSTDIndex];
                                                                           return InkWell(
                                                                             onTap:
                                                                                 () async {
-                                                                              logFirebaseEvent('VIEW_PAGE_ListTile_gznh7u5n_ON_TAP');
+                                                                              logFirebaseEvent('VIEW_PAGE_ListTile_asqyo1jd_ON_TAP');
                                                                               logFirebaseEvent('ListTile_navigate_to');
 
                                                                               context.pushNamed(
                                                                                 'information',
                                                                                 queryParams: {
                                                                                   'jobs': serializeParam(
-                                                                                    listViewPendSTDMaintenanceRecord,
+                                                                                    listViewCompSTDMaintenanceRecord,
                                                                                     ParamType.Document,
                                                                                   ),
                                                                                 }.withoutNulls,
                                                                                 extra: <String, dynamic>{
-                                                                                  'jobs': listViewPendSTDMaintenanceRecord,
+                                                                                  'jobs': listViewCompSTDMaintenanceRecord,
                                                                                 },
                                                                               );
                                                                             },
@@ -542,22 +602,22 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                                 size: 24,
                                                                               ),
                                                                               title: Text(
-                                                                                listViewPendSTDMaintenanceRecord.issue!,
-                                                                                style: FlutterFlowTheme.of(context).title1.override(
+                                                                                listViewCompSTDMaintenanceRecord.issue!,
+                                                                                style: FlutterFlowTheme.of(context).title2.override(
                                                                                       fontFamily: 'Open Sans',
                                                                                       color: FlutterFlowTheme.of(context).primaryText,
                                                                                       fontSize: 16,
-                                                                                      fontWeight: FontWeight.w500,
+                                                                                      fontWeight: FontWeight.w600,
                                                                                     ),
                                                                               ),
                                                                               subtitle: Text(
                                                                                 '${dateTimeFormat(
                                                                                   'MMMMEEEEd',
-                                                                                  listViewPendSTDMaintenanceRecord.createdTime,
+                                                                                  listViewCompSTDMaintenanceRecord.createdTime,
                                                                                   locale: FFLocalizations.of(context).languageCode,
                                                                                 )} ${dateTimeFormat(
                                                                                   'jm',
-                                                                                  listViewPendSTDMaintenanceRecord.createdTime,
+                                                                                  listViewCompSTDMaintenanceRecord.createdTime,
                                                                                   locale: FFLocalizations.of(context).languageCode,
                                                                                 )}',
                                                                                 style: FlutterFlowTheme.of(context).subtitle2.override(
@@ -565,7 +625,12 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                                       fontSize: 14,
                                                                                     ),
                                                                               ),
-                                                                              tileColor: Color(0x00F5F5F5),
+                                                                              trailing: Icon(
+                                                                                Icons.keyboard_arrow_right_sharp,
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                                size: 20,
+                                                                              ),
+                                                                              tileColor: Color(0x00FFFFFF),
                                                                               dense: true,
                                                                             ),
                                                                           );
@@ -574,178 +639,8 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                     },
                                                                   ),
                                                                 ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            16,
-                                                                            12,
-                                                                            16,
-                                                                            12),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Text(
-                                                                      FFLocalizations.of(
-                                                                              context)
-                                                                          .getText(
-                                                                        '9zcs84ro' /* Search results */,
-                                                                      ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText2,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              Expanded(
-                                                                child: StreamBuilder<
-                                                                    List<
-                                                                        MaintenanceRecord>>(
-                                                                  stream:
-                                                                      queryMaintenanceRecord(
-                                                                    queryBuilder: (maintenanceRecord) => maintenanceRecord
-                                                                        .where(
-                                                                            'status',
-                                                                            isEqualTo:
-                                                                                'Completed')
-                                                                        .where(
-                                                                            'email',
-                                                                            isEqualTo:
-                                                                                currentUserEmail)
-                                                                        .orderBy(
-                                                                            'created_time',
-                                                                            descending:
-                                                                                true),
-                                                                  ),
-                                                                  builder: (context,
-                                                                      snapshot) {
-                                                                    // Customize what your widget looks like when it's loading.
-                                                                    if (!snapshot
-                                                                        .hasData) {
-                                                                      return Center(
-                                                                        child:
-                                                                            SkeletonViewWidget(),
-                                                                      );
-                                                                    }
-                                                                    List<MaintenanceRecord>
-                                                                        listViewCompSTDMaintenanceRecordList =
-                                                                        snapshot
-                                                                            .data!;
-                                                                    if (listViewCompSTDMaintenanceRecordList
-                                                                        .isEmpty) {
-                                                                      return Center(
-                                                                        child: SvgPicture
-                                                                            .asset(
-                                                                          'assets/images/Theme=Accent,_Content=Results.svg',
-                                                                          width:
-                                                                              MediaQuery.of(context).size.width * 0.5,
-                                                                          fit: BoxFit
-                                                                              .scaleDown,
-                                                                        ),
-                                                                      );
-                                                                    }
-                                                                    return ListView
-                                                                        .builder(
-                                                                      padding:
-                                                                          EdgeInsets
-                                                                              .zero,
-                                                                      primary:
-                                                                          false,
-                                                                      scrollDirection:
-                                                                          Axis.vertical,
-                                                                      itemCount:
-                                                                          listViewCompSTDMaintenanceRecordList
-                                                                              .length,
-                                                                      itemBuilder:
-                                                                          (context,
-                                                                              listViewCompSTDIndex) {
-                                                                        final listViewCompSTDMaintenanceRecord =
-                                                                            listViewCompSTDMaintenanceRecordList[listViewCompSTDIndex];
-                                                                        return InkWell(
-                                                                          onTap:
-                                                                              () async {
-                                                                            logFirebaseEvent('VIEW_PAGE_ListTile_asqyo1jd_ON_TAP');
-                                                                            logFirebaseEvent('ListTile_navigate_to');
-
-                                                                            context.pushNamed(
-                                                                              'information',
-                                                                              queryParams: {
-                                                                                'jobs': serializeParam(
-                                                                                  listViewCompSTDMaintenanceRecord,
-                                                                                  ParamType.Document,
-                                                                                ),
-                                                                              }.withoutNulls,
-                                                                              extra: <String, dynamic>{
-                                                                                'jobs': listViewCompSTDMaintenanceRecord,
-                                                                              },
-                                                                            );
-                                                                          },
-                                                                          child:
-                                                                              ListTile(
-                                                                            leading:
-                                                                                FaIcon(
-                                                                              FontAwesomeIcons.folderMinus,
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                              size: 24,
-                                                                            ),
-                                                                            title:
-                                                                                Text(
-                                                                              listViewCompSTDMaintenanceRecord.issue!,
-                                                                              style: FlutterFlowTheme.of(context).title2.override(
-                                                                                    fontFamily: 'Open Sans',
-                                                                                    color: FlutterFlowTheme.of(context).primaryText,
-                                                                                    fontSize: 16,
-                                                                                    fontWeight: FontWeight.w600,
-                                                                                  ),
-                                                                            ),
-                                                                            subtitle:
-                                                                                Text(
-                                                                              '${dateTimeFormat(
-                                                                                'MMMMEEEEd',
-                                                                                listViewCompSTDMaintenanceRecord.createdTime,
-                                                                                locale: FFLocalizations.of(context).languageCode,
-                                                                              )} ${dateTimeFormat(
-                                                                                'jm',
-                                                                                listViewCompSTDMaintenanceRecord.createdTime,
-                                                                                locale: FFLocalizations.of(context).languageCode,
-                                                                              )}',
-                                                                              style: FlutterFlowTheme.of(context).subtitle2.override(
-                                                                                    fontFamily: 'Open Sans',
-                                                                                    fontSize: 14,
-                                                                                  ),
-                                                                            ),
-                                                                            trailing:
-                                                                                Icon(
-                                                                              Icons.keyboard_arrow_right_sharp,
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                              size: 20,
-                                                                            ),
-                                                                            tileColor:
-                                                                                Color(0x00FFFFFF),
-                                                                            dense:
-                                                                                true,
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    );
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            ],
+                                                              ],
+                                                            ),
                                                           ),
                                                         ],
                                                       ),
@@ -766,7 +661,8 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 0, 80),
                                             child: AuthUserStreamWidget(
-                                              child: DefaultTabController(
+                                              builder: (context) =>
+                                                  DefaultTabController(
                                                 length: 3,
                                                 initialIndex: 0,
                                                 child: Column(
@@ -859,15 +755,11 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                             isEqualTo:
                                                                                 'Submitted')
                                                                         .where(
-                                                                            'building',
+                                                                            'RESIDENCE',
                                                                             isEqualTo: valueOrDefault(
                                                                                 currentUserDocument
-                                                                                    ?.building,
+                                                                                    ?.residence,
                                                                                 ''))
-                                                                        .where(
-                                                                            'isDone',
-                                                                            isEqualTo:
-                                                                                false)
                                                                         .orderBy(
                                                                             'created_time',
                                                                             descending:
@@ -893,14 +785,8 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                     if (listViewSubmitMaintenanceRecordList
                                                                         .isEmpty) {
                                                                       return Center(
-                                                                        child: SvgPicture
-                                                                            .asset(
-                                                                          'assets/images/Theme=Accent,_Content=Results.svg',
-                                                                          width:
-                                                                              MediaQuery.of(context).size.width * 0.5,
-                                                                          fit: BoxFit
-                                                                              .contain,
-                                                                        ),
+                                                                        child:
+                                                                            EmptyTicketsWidget(),
                                                                       );
                                                                     }
                                                                     return ListView
@@ -992,7 +878,7 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                                     ),
                                                                               ),
                                                                               subtitle: Text(
-                                                                                listViewSubmitMaintenanceRecord.room!,
+                                                                                listViewSubmitMaintenanceRecord.bedCode!,
                                                                                 style: FlutterFlowTheme.of(context).subtitle2.override(
                                                                                       fontFamily: 'Open Sans',
                                                                                       color: Color(0xFFB91D13),
@@ -1063,15 +949,11 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                             isEqualTo:
                                                                                 'Pending')
                                                                         .where(
-                                                                            'building',
+                                                                            'RESIDENCE',
                                                                             isEqualTo: valueOrDefault(
                                                                                 currentUserDocument
-                                                                                    ?.building,
+                                                                                    ?.residence,
                                                                                 ''))
-                                                                        .where(
-                                                                            'isDone',
-                                                                            isEqualTo:
-                                                                                false)
                                                                         .orderBy(
                                                                             'created_time',
                                                                             descending:
@@ -1097,14 +979,8 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                     if (listViewPendingMaintenanceRecordList
                                                                         .isEmpty) {
                                                                       return Center(
-                                                                        child: SvgPicture
-                                                                            .asset(
-                                                                          'assets/images/Theme=Accent,_Content=Results.svg',
-                                                                          width:
-                                                                              MediaQuery.of(context).size.width * 0.5,
-                                                                          fit: BoxFit
-                                                                              .contain,
-                                                                        ),
+                                                                        child:
+                                                                            EmptyTicketsWidget(),
                                                                       );
                                                                     }
                                                                     return ListView
@@ -1238,7 +1114,7 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                                     ),
                                                                               ),
                                                                               subtitle: Text(
-                                                                                listViewPendingMaintenanceRecord.room!,
+                                                                                listViewPendingMaintenanceRecord.bedCode!,
                                                                                 style: FlutterFlowTheme.of(context).subtitle2.override(
                                                                                       fontFamily: 'Open Sans',
                                                                                       color: Color(0xFFEFB701),
@@ -1302,10 +1178,10 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                       queryMaintenanceRecord(
                                                                     queryBuilder: (maintenanceRecord) => maintenanceRecord
                                                                         .where(
-                                                                            'building',
+                                                                            'RESIDENCE',
                                                                             isEqualTo: valueOrDefault(
                                                                                 currentUserDocument
-                                                                                    ?.building,
+                                                                                    ?.residence,
                                                                                 ''))
                                                                         .where(
                                                                             'status',
@@ -1336,14 +1212,8 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                     if (listViewCompletedMaintenanceRecordList
                                                                         .isEmpty) {
                                                                       return Center(
-                                                                        child: SvgPicture
-                                                                            .asset(
-                                                                          'assets/images/Theme=Accent,_Content=Results.svg',
-                                                                          width:
-                                                                              MediaQuery.of(context).size.width * 0.5,
-                                                                          fit: BoxFit
-                                                                              .contain,
-                                                                        ),
+                                                                        child:
+                                                                            EmptyTicketsWidget(),
                                                                       );
                                                                     }
                                                                     return ListView
@@ -1428,7 +1298,7 @@ class _ViewWidgetState extends State<ViewWidget> {
                                                                                               ),
                                                                                             ),
                                                                                             Text(
-                                                                                              listViewCompletedMaintenanceRecord.room!,
+                                                                                              listViewCompletedMaintenanceRecord.bedCode!,
                                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                     fontFamily: 'Open Sans',
                                                                                                     color: Color(0xFF0C8450),

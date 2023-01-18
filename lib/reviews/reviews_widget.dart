@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/side_nav_widget.dart';
+import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_choice_chips.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -10,9 +11,12 @@ import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ReviewsWidget extends StatefulWidget {
   const ReviewsWidget({
@@ -26,20 +30,52 @@ class ReviewsWidget extends StatefulWidget {
   _ReviewsWidgetState createState() => _ReviewsWidgetState();
 }
 
-class _ReviewsWidgetState extends State<ReviewsWidget> {
+class _ReviewsWidgetState extends State<ReviewsWidget>
+    with TickerProviderStateMixin {
+  final animationsMap = {
+    'containerOnActionTriggerAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onActionTrigger,
+      applyInitialState: true,
+      effects: [
+        TiltEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(0, 0),
+          end: Offset(0, 0.436),
+        ),
+      ],
+    ),
+  };
   List<String>? choiceChipsValues;
   double? ratingBarValue;
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
+
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'reviews'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
+  void dispose() {
+    _unfocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -85,7 +121,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
         elevation: 0,
       ),
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -100,6 +136,7 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                 nav4Color: FlutterFlowTheme.of(context).primaryText,
                 nav5Color: FlutterFlowTheme.of(context).primaryText,
                 nav6Color: FlutterFlowTheme.of(context).primaryText,
+                nav7Color: FlutterFlowTheme.of(context).primaryText,
               ),
             Expanded(
               child: SingleChildScrollView(
@@ -236,53 +273,367 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   25, 50, 25, 50),
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.9,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.stretch,
-                                              children: [
-                                                Expanded(
-                                                  flex: 2,
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                20, 10, 20, 10),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'REVIEWS_PAGE_Container_bf0zaxic_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Container_widget_animation');
+                                              if (animationsMap[
+                                                      'containerOnActionTriggerAnimation'] !=
+                                                  null) {
+                                                await animationsMap[
+                                                        'containerOnActionTriggerAnimation']!
+                                                    .controller
+                                                    .forward(from: 0.0);
+                                              }
+                                            },
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.9,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.stretch,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(20, 10,
+                                                                  20, 10),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        0,
+                                                                        0,
+                                                                        10),
+                                                            child: AutoSizeText(
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                                'h6wfwt01' /* What was your most important c... */,
+                                                              ),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    fontSize:
+                                                                        14,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          10,
+                                                                          0,
+                                                                          10),
+                                                                  child:
+                                                                      FlutterFlowChoiceChips(
+                                                                    options: [
+                                                                      ChipData(FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'rwc60qez' /*     Time      */,
+                                                                      )),
+                                                                      ChipData(FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'm5pnsb3h' /* Convinience */,
+                                                                      )),
+                                                                      ChipData(FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        '0ggkswrv' /* Cleanliness */,
+                                                                      )),
+                                                                      ChipData(FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'su9q3z9r' /* Communication */,
+                                                                      )),
+                                                                      ChipData(FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'tqdmj591' /* Quality */,
+                                                                      ))
+                                                                    ],
+                                                                    onChanged: (val) =>
+                                                                        setState(() =>
+                                                                            choiceChipsValues =
+                                                                                val),
+                                                                    selectedChipStyle:
+                                                                        ChipStyle(
+                                                                      backgroundColor:
+                                                                          Color(
+                                                                              0xFF141313),
+                                                                      textStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Open Sans',
+                                                                            color:
+                                                                                Color(0xFFF4F4F4),
+                                                                          ),
+                                                                      iconColor:
+                                                                          Colors
+                                                                              .white,
+                                                                      iconSize:
+                                                                          18,
+                                                                      labelPadding:
+                                                                          EdgeInsetsDirectional.fromSTEB(
+                                                                              3,
+                                                                              3,
+                                                                              3,
+                                                                              3),
+                                                                      elevation:
+                                                                          10,
+                                                                    ),
+                                                                    unselectedChipStyle:
+                                                                        ChipStyle(
+                                                                      backgroundColor:
+                                                                          Color(
+                                                                              0xFFFFFEFE),
+                                                                      textStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText2
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Open Sans',
+                                                                            color:
+                                                                                Color(0xFF0D0909),
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                          ),
+                                                                      iconColor:
+                                                                          Color(
+                                                                              0xFF323B45),
+                                                                      iconSize:
+                                                                          18,
+                                                                      labelPadding:
+                                                                          EdgeInsetsDirectional.fromSTEB(
+                                                                              3,
+                                                                              3,
+                                                                              3,
+                                                                              3),
+                                                                      elevation:
+                                                                          10,
+                                                                    ),
+                                                                    chipSpacing:
+                                                                        5,
+                                                                    rowSpacing:
+                                                                        5,
+                                                                    multiselect:
+                                                                        true,
+                                                                    initialized:
+                                                                        choiceChipsValues !=
+                                                                            null,
+                                                                    alignment:
+                                                                        WrapAlignment
+                                                                            .spaceEvenly,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                                              .spaceBetween,
                                                       children: [
+                                                        Container(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.75,
+                                                          height: 25,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Color(
+                                                                0x00F1F4F8),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20,
+                                                                        10,
+                                                                        20,
+                                                                        0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              children: [
+                                                                Material(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  elevation: 0,
+                                                                  shape:
+                                                                      const CircleBorder(),
+                                                                  child:
+                                                                      Container(
+                                                                    width: 40,
+                                                                    height: 40,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiaryColor,
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Material(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  elevation: 0,
+                                                                  shape:
+                                                                      const CircleBorder(),
+                                                                  child:
+                                                                      Container(
+                                                                    width: 40,
+                                                                    height: 40,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiaryColor,
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Material(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  elevation: 0,
+                                                                  shape:
+                                                                      const CircleBorder(),
+                                                                  child:
+                                                                      Container(
+                                                                    width: 40,
+                                                                    height: 40,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiaryColor,
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Material(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  elevation: 0,
+                                                                  shape:
+                                                                      const CircleBorder(),
+                                                                  child:
+                                                                      Container(
+                                                                    width: 40,
+                                                                    height: 40,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiaryColor,
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Material(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  elevation: 0,
+                                                                  shape:
+                                                                      const CircleBorder(),
+                                                                  child:
+                                                                      Container(
+                                                                    width: 40,
+                                                                    height: 40,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiaryColor,
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 0, 10),
+                                                                  .fromSTEB(
+                                                                      20,
+                                                                      10,
+                                                                      20,
+                                                                      10),
                                                           child: AutoSizeText(
                                                             FFLocalizations.of(
                                                                     context)
                                                                 .getText(
-                                                              'h6wfwt01' /* What was your most important c... */,
+                                                              'sl49hlqg' /* Your rating is really importan... */,
                                                             ),
                                                             textAlign: TextAlign
                                                                 .center,
@@ -299,301 +650,15 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
                                                                 ),
                                                           ),
                                                         ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Expanded(
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            10,
-                                                                            0,
-                                                                            10),
-                                                                child:
-                                                                    FlutterFlowChoiceChips(
-                                                                  options: [
-                                                                    ChipData(FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      'rwc60qez' /*     Time      */,
-                                                                    )),
-                                                                    ChipData(FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      'm5pnsb3h' /* Convinience */,
-                                                                    )),
-                                                                    ChipData(FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      '0ggkswrv' /* Cleanliness */,
-                                                                    )),
-                                                                    ChipData(FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      'su9q3z9r' /* Communication */,
-                                                                    )),
-                                                                    ChipData(FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      'tqdmj591' /* Quality */,
-                                                                    ))
-                                                                  ],
-                                                                  onChanged: (val) =>
-                                                                      setState(() =>
-                                                                          choiceChipsValues =
-                                                                              val),
-                                                                  selectedChipStyle:
-                                                                      ChipStyle(
-                                                                    backgroundColor:
-                                                                        Color(
-                                                                            0xFF141313),
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText1
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Open Sans',
-                                                                          color:
-                                                                              Color(0xFFF4F4F4),
-                                                                        ),
-                                                                    iconColor:
-                                                                        Colors
-                                                                            .white,
-                                                                    iconSize:
-                                                                        18,
-                                                                    labelPadding:
-                                                                        EdgeInsetsDirectional.fromSTEB(
-                                                                            3,
-                                                                            3,
-                                                                            3,
-                                                                            3),
-                                                                    elevation:
-                                                                        10,
-                                                                  ),
-                                                                  unselectedChipStyle:
-                                                                      ChipStyle(
-                                                                    backgroundColor:
-                                                                        Color(
-                                                                            0xFFFFFEFE),
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText2
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Open Sans',
-                                                                          color:
-                                                                              Color(0xFF0D0909),
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                        ),
-                                                                    iconColor:
-                                                                        Color(
-                                                                            0xFF323B45),
-                                                                    iconSize:
-                                                                        18,
-                                                                    labelPadding:
-                                                                        EdgeInsetsDirectional.fromSTEB(
-                                                                            3,
-                                                                            3,
-                                                                            3,
-                                                                            3),
-                                                                    elevation:
-                                                                        10,
-                                                                  ),
-                                                                  chipSpacing:
-                                                                      5,
-                                                                  rowSpacing: 5,
-                                                                  multiselect:
-                                                                      true,
-                                                                  initialized:
-                                                                      choiceChipsValues !=
-                                                                          null,
-                                                                  alignment:
-                                                                      WrapAlignment
-                                                                          .spaceEvenly,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
                                                       ],
                                                     ),
                                                   ),
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Container(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.75,
-                                                        height: 25,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color:
-                                                              Color(0x00F1F4F8),
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      20,
-                                                                      10,
-                                                                      20,
-                                                                      0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceEvenly,
-                                                            children: [
-                                                              Material(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                elevation: 0,
-                                                                shape:
-                                                                    const CircleBorder(),
-                                                                child:
-                                                                    Container(
-                                                                  width: 40,
-                                                                  height: 40,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiaryColor,
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Material(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                elevation: 0,
-                                                                shape:
-                                                                    const CircleBorder(),
-                                                                child:
-                                                                    Container(
-                                                                  width: 40,
-                                                                  height: 40,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiaryColor,
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Material(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                elevation: 0,
-                                                                shape:
-                                                                    const CircleBorder(),
-                                                                child:
-                                                                    Container(
-                                                                  width: 40,
-                                                                  height: 40,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiaryColor,
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Material(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                elevation: 0,
-                                                                shape:
-                                                                    const CircleBorder(),
-                                                                child:
-                                                                    Container(
-                                                                  width: 40,
-                                                                  height: 40,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiaryColor,
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Material(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                elevation: 0,
-                                                                shape:
-                                                                    const CircleBorder(),
-                                                                child:
-                                                                    Container(
-                                                                  width: 40,
-                                                                  height: 40,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiaryColor,
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(20,
-                                                                    10, 20, 10),
-                                                        child: AutoSizeText(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'sl49hlqg' /* Your rating is really importan... */,
-                                                          ),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Open Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 14,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
+                                          ).animateOnActionTrigger(
+                                            animationsMap[
+                                                'containerOnActionTriggerAnimation']!,
                                           ),
                                         ),
                                       ),

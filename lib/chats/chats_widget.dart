@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ChatsWidget extends StatefulWidget {
@@ -37,6 +38,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
     return _chatInfo?.isGroupChat ?? false;
   }
 
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -58,7 +60,15 @@ class _ChatsWidgetState extends State<ChatsWidget> {
   }
 
   @override
+  void dispose() {
+    _unfocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -81,17 +91,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   Icons.arrow_back_ios,
                   color: FlutterFlowTheme.of(context).primaryText,
                   size: 26,
-                ),
-                Text(
-                  FFLocalizations.of(context).getText(
-                    'f6dwmrme' /* 0 */,
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Open Sans',
-                        color: FlutterFlowTheme.of(context).campusRed,
-                        fontSize: 25,
-                        fontWeight: FontWeight.normal,
-                      ),
                 ),
               ],
             ),
@@ -118,7 +117,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(3, 3, 3, 3),
                     child: Text(
-                      functions.initials(widget.chatUser!.displayName)!,
+                      valueOrDefault<String>(
+                        functions.initials(widget.chatUser!.firstName),
+                        'USER',
+                      ),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Open Sans',
                             color: FlutterFlowTheme.of(context).primaryText,
@@ -136,7 +138,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AutoSizeText(
-                    widget.chatUser!.displayName!,
+                    widget.chatUser!.firstName!,
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Open Sans',
                           color: FlutterFlowTheme.of(context).primaryText,
@@ -185,9 +187,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   );
                 },
                 child: Icon(
-                  Icons.videocam,
+                  FFIcons.kcallCopy,
                   color: FlutterFlowTheme.of(context).primaryText,
-                  size: 32,
+                  size: 24,
                 ),
               ),
             ),
@@ -195,7 +197,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
           Visibility(
             visible: !isWeb,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(8, 0, 16, 0),
               child: InkWell(
                 onTap: () async {
                   logFirebaseEvent('CHATS_PAGE_Icon_3w4unhx8_ON_TAP');
@@ -203,7 +205,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                     logFirebaseEvent('Icon_call_number');
                     await launchUrl(Uri(
                       scheme: 'tel',
-                      path: '',
+                      path: widget.chatUser!.phoneNumber!,
                     ));
                   } else {
                     logFirebaseEvent('Icon_show_snack_bar');
@@ -223,9 +225,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   }
                 },
                 child: Icon(
-                  Icons.call,
+                  FFIcons.kinfoCircleCopy,
                   color: FlutterFlowTheme.of(context).primaryText,
-                  size: 27,
+                  size: 24,
                 ),
               ),
             ),
@@ -235,7 +237,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
         elevation: 0,
       ),
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: StreamBuilder<FFChatInfo>(
           stream: FFChatManager.instance.getChatInfo(
             otherUserRecord: widget.chatUser,
@@ -246,7 +248,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   chatInfo: snapshot.data!,
                   allowImages: true,
                   backgroundColor:
-                      FlutterFlowTheme.of(context).secondaryBackground,
+                      FlutterFlowTheme.of(context).primaryBackground,
                   timeDisplaySetting: TimeDisplaySetting.visibleOnTap,
                   currentUserBoxDecoration: BoxDecoration(
                     color: Color(0xFF0078FF),

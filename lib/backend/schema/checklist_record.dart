@@ -11,17 +11,14 @@ abstract class ChecklistRecord
   static Serializer<ChecklistRecord> get serializer =>
       _$checklistRecordSerializer;
 
-  String? get description;
-
-  BuiltList<String>? get options;
+  String? get gallery;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
-  static void _initializeBuilder(ChecklistRecordBuilder builder) => builder
-    ..description = ''
-    ..options = ListBuilder();
+  static void _initializeBuilder(ChecklistRecordBuilder builder) =>
+      builder..gallery = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('checklist');
@@ -45,14 +42,12 @@ abstract class ChecklistRecord
 }
 
 Map<String, dynamic> createChecklistRecordData({
-  String? description,
+  String? gallery,
 }) {
   final firestoreData = serializers.toFirestore(
     ChecklistRecord.serializer,
     ChecklistRecord(
-      (c) => c
-        ..description = description
-        ..options = null,
+      (c) => c..gallery = gallery,
     ),
   );
 
