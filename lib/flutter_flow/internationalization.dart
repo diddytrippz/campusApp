@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,6 +26,10 @@ class FFLocalizations {
   }
 
   String get languageCode => locale.toString();
+  String? get languageShortCode =>
+      _languagesWithShortCode.contains(locale.toString())
+          ? '${locale.toString()}_short'
+          : null;
   int get languageIndex => languages().contains(languageCode)
       ? languages().indexOf(languageCode)
       : 0;
@@ -38,20 +43,82 @@ class FFLocalizations {
     String? zuText = '',
   }) =>
       [enText, afText, zuText][languageIndex] ?? '';
+
+  static const Set<String> _languagesWithShortCode = {
+    'ar',
+    'az',
+    'ca',
+    'cs',
+    'da',
+    'de',
+    'dv',
+    'en',
+    'es',
+    'et',
+    'fi',
+    'fr',
+    'gr',
+    'he',
+    'hi',
+    'hu',
+    'it',
+    'km',
+    'ku',
+    'mn',
+    'ms',
+    'no',
+    'pt',
+    'ro',
+    'ru',
+    'rw',
+    'sv',
+    'th',
+    'uk',
+    'vi',
+  };
+}
+
+/// Used if the locale is not supported by GlobalMaterialLocalizations.
+class FallbackMaterialLocalizationDelegate
+    extends LocalizationsDelegate<MaterialLocalizations> {
+  const FallbackMaterialLocalizationDelegate();
+
+  @override
+  bool isSupported(Locale locale) => _isSupportedLocale(locale);
+
+  @override
+  Future<MaterialLocalizations> load(Locale locale) async =>
+      SynchronousFuture<MaterialLocalizations>(
+        const DefaultMaterialLocalizations(),
+      );
+
+  @override
+  bool shouldReload(FallbackMaterialLocalizationDelegate old) => false;
+}
+
+/// Used if the locale is not supported by GlobalCupertinoLocalizations.
+class FallbackCupertinoLocalizationDelegate
+    extends LocalizationsDelegate<CupertinoLocalizations> {
+  const FallbackCupertinoLocalizationDelegate();
+
+  @override
+  bool isSupported(Locale locale) => _isSupportedLocale(locale);
+
+  @override
+  Future<CupertinoLocalizations> load(Locale locale) =>
+      SynchronousFuture<CupertinoLocalizations>(
+        const DefaultCupertinoLocalizations(),
+      );
+
+  @override
+  bool shouldReload(FallbackCupertinoLocalizationDelegate old) => false;
 }
 
 class FFLocalizationsDelegate extends LocalizationsDelegate<FFLocalizations> {
   const FFLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) {
-    final language = locale.toString();
-    return FFLocalizations.languages().contains(
-      language.endsWith('_')
-          ? language.substring(0, language.length - 1)
-          : language,
-    );
-  }
+  bool isSupported(Locale locale) => _isSupportedLocale(locale);
 
   @override
   Future<FFLocalizations> load(Locale locale) =>
@@ -67,6 +134,15 @@ Locale createLocale(String language) => language.contains('_')
         scriptCode: language.split('_').last,
       )
     : Locale(language);
+
+bool _isSupportedLocale(Locale locale) {
+  final language = locale.toString();
+  return FFLocalizations.languages().contains(
+    language.endsWith('_')
+        ? language.substring(0, language.length - 1)
+        : language,
+  );
+}
 
 final kTranslationsMap = <Map<String, Map<String, String>>>[
   // onboarding
@@ -97,182 +173,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': 'Ikhaya',
     },
   },
-  // login
-  {
-    'tgskapzx': {
-      'en': 'Sign In',
-      'af': '',
-      'zu': '',
-    },
-    '7vcpc0mi': {
-      'en': '',
-      'af': '',
-      'zu': '',
-    },
-    'x0viklun': {
-      'en': 'Enter Student Your Email',
-      'af': '',
-      'zu': '',
-    },
-    'ekehj1f9': {
-      'en': '',
-      'af': '',
-      'zu': '',
-    },
-    'a72qcfjf': {
-      'en': 'Enter Your Password',
-      'af': '',
-      'zu': '',
-    },
-    'd4an6irz': {
-      'en': 'Sign In',
-      'af': '',
-      'zu': '',
-    },
-    'rppaluuv': {
-      'en': 'Forgot Password?',
-      'af': '',
-      'zu': '',
-    },
-    '6iiwvi49': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    'jhzzqlsx': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    '8o3gbjtj': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    'iv7yv8qi': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    'tgpjg0xr': {
-      'en': 'Sign Up',
-      'af': '',
-      'zu': '',
-    },
-    'wm8a31zz': {
-      'en': '',
-      'af': '',
-      'zu': '',
-    },
-    'lf5g9whj': {
-      'en': 'Enter Student Your Email',
-      'af': '',
-      'zu': '',
-    },
-    'bh05eotq': {
-      'en': 'Create account',
-      'af': '',
-      'zu': '',
-    },
-    'eaeqw1o6': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    'j8ro5rx8': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    'p8zu0wua': {
-      'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
-    },
-  },
-  // view
-  {
-    '7lefrg9p': {
-      'en': 'Maintenance',
-      'af': '',
-      'zu': '',
-    },
-    'fxusdesr': {
-      'en': 'Submitted',
-      'af': 'Ingedien',
-      'zu': 'Kuthunyelwe',
-    },
-    'x8cw3w69': {
-      'en': 'Search results',
-      'af': 'Soek Resultate',
-      'zu': 'Imiphumela yosesho',
-    },
-    'xliyc9jb': {
-      'en': 'Pending',
-      'af': 'Hangende',
-      'zu': 'Kusalindile',
-    },
-    '4e2bu1eh': {
-      'en': 'Search results',
-      'af': 'Soek Resultate',
-      'zu': 'Imiphumela yosesho',
-    },
-    'nj9umfeo': {
-      'en': 'Completed',
-      'af': 'Voltooi',
-      'zu': 'Kuqediwe',
-    },
-    '9zcs84ro': {
-      'en': 'Search results',
-      'af': 'Soek Resultate',
-      'zu': 'Imiphumela yosesho',
-    },
-    '4mu7n5uz': {
-      'en': 'Submitted',
-      'af': 'Ingedien',
-      'zu': 'Kuthunyelwe',
-    },
-    'epsh7pdm': {
-      'en': 'Search results',
-      'af': 'Soek Resultate',
-      'zu': 'Imiphumela yosesho',
-    },
-    'zset6avm': {
-      'en': 'Complete',
-      'af': 'Voltooi',
-      'zu': 'Qedela',
-    },
-    '6firyr35': {
-      'en': 'Pending',
-      'af': 'Hangende',
-      'zu': 'Kusalindile',
-    },
-    'xv02t8u2': {
-      'en': 'Search results',
-      'af': 'Soek Resultate',
-      'zu': 'Imiphumela yosesho',
-    },
-    'r52o7k9c': {
-      'en': 'Reject',
-      'af': 'Verwerp',
-      'zu': 'Yenqaba',
-    },
-    'ib1fouvv': {
-      'en': 'Complete',
-      'af': 'Voltooi',
-      'zu': 'Qedela',
-    },
-    'n3dnbo6v': {
-      'en': 'Completed',
-      'af': 'Voltooi',
-      'zu': 'Kuqediwe',
-    },
-    'afgqhb9l': {
-      'en': 'Search results',
-      'af': 'Soek Resultate',
-      'zu': 'Imiphumela yosesho',
-    },
-  },
   // rules
   {
     'oft7p3f9': {
@@ -280,15 +180,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': 'Kampus Afrika',
       'zu': 'Ikhampasi Afrika',
     },
-    'abzkc55j': {
-      'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
+    'mn4p3euq': {
+      'en': 'Done',
+      'af': '',
+      'zu': '',
     },
-  },
-  // chats
-  {
-    '25cdx1l2': {
+    'abzkc55j': {
       'en': 'Home',
       'af': 'Tuis',
       'zu': 'Ikhaya',
@@ -296,8 +193,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // appliances
   {
-    'ibkcr8sz': {
-      'en': 'Appliances',
+    'mcuj0h22': {
+      'en': '    ',
       'af': '',
       'zu': '',
     },
@@ -311,30 +208,90 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': '',
       'zu': '',
     },
-    'toxrc5ck': {
+    '0xxeg05f': {
+      'en': '',
+      'af': '',
+      'zu': '',
+    },
+    'rbbb12h0': {
+      'en': 'Select Category...',
+      'af': '',
+      'zu': '',
+    },
+    '1ymfn53x': {
+      'en': 'Search ',
+      'af': '',
+      'zu': '',
+    },
+    'bcykrgie': {
+      'en': 'Appliances',
+      'af': '',
+      'zu': '',
+    },
+    'evqktkcs': {
+      'en': 'Communal',
+      'af': '',
+      'zu': '',
+    },
+    'axgudevg': {
+      'en': 'Electrical',
+      'af': '',
+      'zu': '',
+    },
+    'izjk3avq': {
+      'en': 'Furniture',
+      'af': '',
+      'zu': '',
+    },
+    'l8mf71w8': {
+      'en': 'Locksmith',
+      'af': '',
+      'zu': '',
+    },
+    'hz720lzz': {
+      'en': 'Plumbing',
+      'af': '',
+      'zu': '',
+    },
+    '67uspftl': {
+      'en': 'Painting',
+      'af': '',
+      'zu': '',
+    },
+    'zm3yinsm': {
+      'en': 'Others',
+      'af': '',
+      'zu': '',
+    },
+    'fpqoe4gn': {
+      'en': 'Please select...',
+      'af': 'Kies asseblief...',
+      'zu': 'Sicela ukhethe...',
+    },
+    'ffay1pf7': {
+      'en': 'Search category',
+      'af': '',
+      'zu': '',
+    },
+    'xd8kg3r9': {
       'en': 'Stove not working',
       'af': 'Stoof werk nie',
       'zu': 'Isitofu asisebenzi',
     },
-    'p1qh14ew': {
+    'qvpsryf0': {
       'en': 'Oven not working',
       'af': 'Oond werk nie',
       'zu': 'Ihhavini ayisebenzi',
     },
-    'h2rpqdvq': {
+    '5b1oxqzd': {
       'en': 'Microwave not working',
       'af': 'Mikrogolf werk nie',
       'zu': 'I-microwave ayisebenzi',
     },
-    'c4lwl28m': {
+    '6t6m1zbb': {
       'en': 'Fridge not working',
       'af': 'Yskas werk nie',
       'zu': 'Isiqandisi asisebenzi',
-    },
-    '9nlfy50w': {
-      'en': 'Please select...',
-      'af': 'Kies asseblief...',
-      'zu': 'Sicela ukhethe...',
     },
     'oph1annr': {
       'en': 'CONTINUE',
@@ -356,6 +313,47 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': 'Beskryf jou probleem',
       'zu': 'Chaza udaba lwakho',
     },
+    'o36f8c85': {
+      'en': 'Low Priority',
+      'af': '',
+      'zu': '',
+    },
+    'cv0e4coy': {
+      'en': 'Select Priority...',
+      'af': '',
+      'zu': '',
+    },
+    'kei12ey5': {
+      'en': 'Search ',
+      'af': '',
+      'zu': '',
+    },
+    'le1frokg': {
+      'en': 'Urgent',
+      'af': '',
+      'zu': '',
+    },
+    '7kwh5u5d': {
+      'en': 'High Priority',
+      'af': '',
+      'zu': '',
+    },
+    '865356wg': {
+      'en': 'Medium Priority',
+      'af': '',
+      'zu': '',
+    },
+    'wv10jye7': {
+      'en': 'Low Priority',
+      'af': '',
+      'zu': '',
+    },
+    'mg3zonlo': {
+      'en':
+          'Please use the \'High Priority\' option for maintenance requests only if the situation requires immediate attention. Choosing this option unnecessarily may delay response times for users with genuine urgent issues. ',
+      'af': '',
+      'zu': '',
+    },
     '24yljy29': {
       'en': 'NEXT',
       'af': '',
@@ -376,8 +374,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': '',
       'zu': '',
     },
-    'f07habgj': {
-      'en': 'NEXT',
+    'xu7sgl64': {
+      'en': 'SUBMIT',
       'af': '',
       'zu': '',
     },
@@ -386,17 +384,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': '',
       'zu': '',
     },
-    '45sqfe6r': {
-      'en': 'SUBMIT',
-      'af': '',
-      'zu': '',
-    },
-    'urng33gu': {
+    '4h4ogrcw': {
       'en': 'Field is required',
       'af': '',
       'zu': '',
     },
-    '0sz8jpa5': {
+    '1751uhyb': {
       'en': 'Please choose an option from the dropdown',
       'af': '',
       'zu': '',
@@ -407,899 +400,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': '',
     },
   },
-  // Plumbing
-  {
-    'jc590b1w': {
-      'en': 'Plumbing',
-      'af': '',
-      'zu': '',
-    },
-    't10bkp7f': {
-      'en': '1',
-      'af': '',
-      'zu': '',
-    },
-    'a6y9hrd1': {
-      'en': 'Ticket',
-      'af': '',
-      'zu': '',
-    },
-    '2vc9ngr1': {
-      'en': 'Damaged toilet sit',
-      'af': 'Beskadigde toilet sit',
-      'zu': 'Indlu yangasese eyonakele',
-    },
-    'do6oxews': {
-      'en': 'Damaged basin/sink',
-      'af': 'Beskadigde wasbak/wasbak',
-      'zu': 'Isitsha/usinki owonakele',
-    },
-    '8mr0zlbr': {
-      'en': 'Blocked urinal',
-      'af': 'Geblokkeerde urinaal',
-      'zu': 'Umchamo ovinjiwe',
-    },
-    '09gy5buh': {
-      'en': 'Blocked toilet',
-      'af': 'Geblokkeerde toilet',
-      'zu': 'Indlu yangasese evinjiwe',
-    },
-    'i79m2u0p': {
-      'en': 'Blocked shower drain',
-      'af': 'Geblokkeerde stortafvoer',
-      'zu': 'I-drain yeshawa evinjiwe',
-    },
-    '8fa9zgzp': {
-      'en': 'Low water pressure',
-      'af': 'Lae waterdruk',
-      'zu': 'Umfutho wamanzi ophansi',
-    },
-    'umf56x2z': {
-      'en': 'No cold water',
-      'af': 'Geen koue water nie',
-      'zu': 'Awekho amanzi abandayo',
-    },
-    'vyirhvv7': {
-      'en': 'No hot water',
-      'af': 'Geen warm water nie',
-      'zu': 'Awekho amanzi ashisayo',
-    },
-    'm6jbubx3': {
-      'en': 'Shower head needs to be replaced',
-      'af': 'Stortkop moet vervang word',
-      'zu': 'Ikhanda leshawa lidinga ukushintshwa',
-    },
-    'umlmwydw': {
-      'en': 'Leaking gyser',
-      'af': 'Lekkende gyser',
-      'zu': 'I-gyser evuzayo',
-    },
-    'k43129b3': {
-      'en': 'Burst pipes',
-      'af': 'Gebarste pype',
-      'zu': 'Amapayipi okuqhuma',
-    },
-    'ozwvoy59': {
-      'en': 'Please select...',
-      'af': 'Kies asseblief...',
-      'zu': 'Sicela ukhethe...',
-    },
-    'ez4u6ntv': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'fdyas7pw': {
-      'en': '2',
-      'af': '',
-      'zu': '',
-    },
-    'kfu13ryy': {
-      'en': 'Description',
-      'af': '',
-      'zu': '',
-    },
-    '5warzutq': {
-      'en': 'Describe your Issue',
-      'af': 'Beskryf jou probleem',
-      'zu': 'Chaza udaba lwakho',
-    },
-    'uie1r7ic': {
-      'en': 'NEXT',
-      'af': '',
-      'zu': '',
-    },
-    '6tfj8vrq': {
-      'en': 'BACK',
-      'af': '',
-      'zu': '',
-    },
-    'up841yek': {
-      'en': '3',
-      'af': '',
-      'zu': '',
-    },
-    '2cogiv1q': {
-      'en': 'Upload Image (Optional)',
-      'af': '',
-      'zu': '',
-    },
-    'zptzjea0': {
-      'en': 'NEXT',
-      'af': '',
-      'zu': '',
-    },
-    'n52gxogb': {
-      'en': 'BACK',
-      'af': '',
-      'zu': '',
-    },
-    'sgc93anu': {
-      'en': 'SUBMIT',
-      'af': '',
-      'zu': '',
-    },
-    'mpuocf3e': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    'raezq3qc': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    '815c6q5a': {
-      'en': 'Home',
-      'af': '',
-      'zu': '',
-    },
-  },
-  // Furniture
-  {
-    'cnzlsg7g': {
-      'en': 'Furniture',
-      'af': '',
-      'zu': '',
-    },
-    'iag9bhkb': {
-      'en': '1',
-      'af': '',
-      'zu': '',
-    },
-    '1letphyb': {
-      'en': 'Ticket',
-      'af': '',
-      'zu': '',
-    },
-    'i24kdf9p': {
-      'en': 'Damaged bed base',
-      'af': 'Beskadigde bedbasis',
-      'zu': 'Isisekelo sombhede sonakele',
-    },
-    'd7srlj4i': {
-      'en': 'Damaged mattress',
-      'af': 'Beskadigde matras',
-      'zu': 'Umatilasi owonakele',
-    },
-    '9573lmce': {
-      'en': 'Curtain rail needs to be replaced',
-      'af': 'Gordynreling moet vervang word',
-      'zu': 'I-Curtain rail idinga ukushintshwa',
-    },
-    '6anac6hh': {
-      'en': 'Damaged study table',
-      'af': 'Beskadigde studietafel',
-      'zu': 'Ithebula lokufunda elilimele',
-    },
-    'kfdoltby': {
-      'en': 'Damaged chair',
-      'af': 'Beskadigde stoel',
-      'zu': 'Isitulo esilimele',
-    },
-    '7m7gnye2': {
-      'en': 'Window cannot open',
-      'af': 'Venster kan nie oopmaak nie',
-      'zu': 'Iwindi alikwazi ukuvuleka',
-    },
-    'hayz5nqq': {
-      'en': 'Window cannot close',
-      'af': 'Venster kan nie toemaak nie',
-      'zu': 'Iwindi alikwazi ukuvala',
-    },
-    '2lo0v65o': {
-      'en': 'Please select...',
-      'af': 'Kies asseblief...',
-      'zu': 'Sicela ukhethe...',
-    },
-    'iczhjq0u': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'vqfn8dkd': {
-      'en': '2',
-      'af': '',
-      'zu': '',
-    },
-    'sj5p7mnl': {
-      'en': 'Description',
-      'af': '',
-      'zu': '',
-    },
-    'lg4nsj5r': {
-      'en': 'Describe your Issue',
-      'af': 'Beskryf jou probleem',
-      'zu': 'Chaza udaba lwakho',
-    },
-    'm09v6b2c': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'p51osbig': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    '3nwb4z7w': {
-      'en': '3',
-      'af': '',
-      'zu': '',
-    },
-    'ecd1ezgg': {
-      'en': 'Upload Image (Optional)',
-      'af': '',
-      'zu': '',
-    },
-    'bdybwejx': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'qrud0g8c': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    'ucmr3r2r': {
-      'en': 'SUBMIT',
-      'af': '',
-      'zu': '',
-    },
-    '63fsrdrp': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    '9tjiv091': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    'vlan7oko': {
-      'en': 'Home',
-      'af': '',
-      'zu': '',
-    },
-  },
-  // Electrical
-  {
-    'xdsj9dhk': {
-      'en': 'Electrical',
-      'af': '',
-      'zu': '',
-    },
-    '9lz31hm6': {
-      'en': '1',
-      'af': '',
-      'zu': '',
-    },
-    'fb12aimr': {
-      'en': 'Ticket',
-      'af': '',
-      'zu': '',
-    },
-    'ak9hr78q': {
-      'en': 'Emergency lights not working',
-      'af': 'Noodligte werk nie',
-      'zu': 'Izibani eziphuthumayo azisebenzi',
-    },
-    'fe30ff33': {
-      'en': 'Loose cables',
-      'af': 'Los kabels',
-      'zu': 'Izintambo ezixegayo',
-    },
-    'mmdbsyc4': {
-      'en': 'No power/electricity',
-      'af': 'Geen krag/elektrisiteit',
-      'zu': 'Awekho amandla/ugesi',
-    },
-    'a6dutujg': {
-      'en': 'Faulty prepaid meter',
-      'af': 'Foutiewe voorafbetaalde meter',
-      'zu': 'Imitha ekhokhelwa ngaphambili enephutha',
-    },
-    'ydxqf8op': {
-      'en': 'Lights in my room are not working',
-      'af': 'Ligte in my kamer werk nie',
-      'zu': 'Izibani ekamelweni lami azisebenzi',
-    },
-    'nfm4a6ps': {
-      'en': 'Lights in my unit are not working',
-      'af': 'Ligte in my eenheid werk nie',
-      'zu': 'Izibani kuyunithi yami azisebenzi',
-    },
-    '1ihahwu0': {
-      'en': 'Please select...',
-      'af': 'Kies asseblief...',
-      'zu': 'Sicela ukhethe...',
-    },
-    'bw7tu78u': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'k5f55ozg': {
-      'en': '2',
-      'af': '',
-      'zu': '',
-    },
-    'fvimu23p': {
-      'en': 'Description',
-      'af': '',
-      'zu': '',
-    },
-    'metbx39k': {
-      'en': 'Describe your Issue',
-      'af': 'Beskryf jou probleem',
-      'zu': 'Chaza udaba lwakho',
-    },
-    '0dnexzuv': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'dpf96e62': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    'n3plhg6z': {
-      'en': '3',
-      'af': '',
-      'zu': '',
-    },
-    'bvmjpwed': {
-      'en': 'Upload Image (Optional)',
-      'af': '',
-      'zu': '',
-    },
-    'kgslha8a': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'g4aienfa': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    'ksm2gueo': {
-      'en': 'SUBMIT',
-      'af': '',
-      'zu': '',
-    },
-    '8wz69gts': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    'k2zvcmm5': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    'euo4611i': {
-      'en': 'Home',
-      'af': '',
-      'zu': '',
-    },
-  },
-  // Locksmith
-  {
-    '1j75uhkf': {
-      'en': 'Locksmith',
-      'af': '',
-      'zu': '',
-    },
-    'lfavwnje': {
-      'en': '1',
-      'af': '',
-      'zu': '',
-    },
-    'su82v2od': {
-      'en': 'Ticket',
-      'af': '',
-      'zu': '',
-    },
-    '6feqgn88': {
-      'en': 'Broken door handle (unit)',
-      'af': 'Gebreekte deurhandvatsel (eenheid)',
-      'zu': 'Isibambo somnyango esiphukile (iyunithi)',
-    },
-    'r9o29omx': {
-      'en': 'Broken door handle (Room)',
-      'af': 'Gebreekte deurhandvatsel (kamer)',
-      'zu': 'Isibambo somnyango esiphukile (Igumbi)',
-    },
-    'j3gxrvfc': {
-      'en': 'Room key not opening',
-      'af': 'Kamersleutel maak nie oop nie',
-      'zu': 'Ukhiye wegumbi awuvuli',
-    },
-    'hlrzud1f': {
-      'en': 'Unit key not opening',
-      'af': 'Eenheidsleutel maak nie oop nie',
-      'zu': 'Ukhiye weyunithi awuvuli',
-    },
-    '3dhm2b07': {
-      'en': 'Lost key',
-      'af': 'Sleutel verloor',
-      'zu': 'Ukhiye olahlekile',
-    },
-    'zgpjin84': {
-      'en': 'Lost access card',
-      'af': 'Toegangskaart verloor',
-      'zu': 'Ikhadi lokufinyelela elilahlekile',
-    },
-    'up7udj4q': {
-      'en': 'access card not working',
-      'af': 'toegangskaart werk nie',
-      'zu': 'ikhadi lokufinyelela alisebenzi',
-    },
-    'ezmlduz1': {
-      'en': 'Please select...',
-      'af': 'Kies asseblief...',
-      'zu': 'Sicela ukhethe...',
-    },
-    'jko05s52': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'eelyazxx': {
-      'en': '2',
-      'af': '',
-      'zu': '',
-    },
-    '01i1849c': {
-      'en': 'Description',
-      'af': '',
-      'zu': '',
-    },
-    'x8x50fi5': {
-      'en': 'Describe your Issue',
-      'af': 'Beskryf jou probleem',
-      'zu': 'Chaza udaba lwakho',
-    },
-    'qp22wf3d': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'kj79gvhf': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    'im5wapxi': {
-      'en': '3',
-      'af': '',
-      'zu': '',
-    },
-    'b3714jqz': {
-      'en': 'Upload Image (Optional)',
-      'af': '',
-      'zu': '',
-    },
-    'b1yvt1rw': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    '9x6845m4': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    'ksuamesd': {
-      'en': 'SUBMIT',
-      'af': '',
-      'zu': '',
-    },
-    'xayl2iiq': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    'bp3e7ctv': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    'th4f9hb5': {
-      'en': 'Home',
-      'af': '',
-      'zu': '',
-    },
-  },
-  // PestControl
-  {
-    'ctsohp9i': {
-      'en': 'Pest Control',
-      'af': '',
-      'zu': '',
-    },
-    '4d9h6gdl': {
-      'en': '1',
-      'af': '',
-      'zu': '',
-    },
-    'cyzedgny': {
-      'en': 'Ticket',
-      'af': '',
-      'zu': '',
-    },
-    'mrji6w0d': {
-      'en': 'Bed bugs',
-      'af': 'Bed goggas',
-      'zu': 'Izimbungulu zombhede',
-    },
-    'y0mts8m5': {
-      'en': 'Cockroaches in my room/unit',
-      'af': 'Kakkerlakke in my kamer/eenheid',
-      'zu': 'Amaphela egumbini/eyunithi yami',
-    },
-    'ummqz3se': {
-      'en': 'Fumigation required',
-      'af': 'Beroking vereis',
-      'zu': 'Ukufuthwa kuyadingeka',
-    },
-    'scmqufl9': {
-      'en': 'Please select...',
-      'af': 'Kies asseblief...',
-      'zu': 'Sicela ukhethe...',
-    },
-    'xb2dtomc': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    '7hix49jw': {
-      'en': '2',
-      'af': '',
-      'zu': '',
-    },
-    'iq4m7el3': {
-      'en': 'Description',
-      'af': '',
-      'zu': '',
-    },
-    'nnp8rcw2': {
-      'en': 'Describe your Issue',
-      'af': 'Beskryf jou probleem',
-      'zu': 'Chaza udaba lwakho',
-    },
-    'vyy868yq': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'pviiw42u': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    'ecv6832q': {
-      'en': '3',
-      'af': '',
-      'zu': '',
-    },
-    'zu5a0xl6': {
-      'en': 'Upload Image (Optional)',
-      'af': '',
-      'zu': '',
-    },
-    'xhvvti7y': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    '2d7b66qp': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    '0ab4f6ky': {
-      'en': 'SUBMIT',
-      'af': '',
-      'zu': '',
-    },
-    '77lx5s79': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    'ys749s2v': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    'n3qa8opo': {
-      'en': 'Home',
-      'af': '',
-      'zu': '',
-    },
-  },
-  // Painting
-  {
-    'g0v9lpxx': {
-      'en': 'Painting',
-      'af': '',
-      'zu': '',
-    },
-    'n62nxh7s': {
-      'en': '1',
-      'af': '',
-      'zu': '',
-    },
-    'wtp2npbv': {
-      'en': 'Ticket',
-      'af': '',
-      'zu': '',
-    },
-    'pr4oiy9x': {
-      'en': 'Ceiling needs to be painted',
-      'af': 'Die plafon moet geverf word',
-      'zu': 'Uphahla ludinga ukupendwa',
-    },
-    '3y7iu9o0': {
-      'en': 'Door frame needs to be painted',
-      'af': 'Deurkosyn moet geverf word',
-      'zu': 'Uhlaka lomnyango ludinga ukupendwa',
-    },
-    'ue5525j0': {
-      'en': 'Skirting needs to be painted',
-      'af': 'Plint moet geverf word',
-      'zu': 'I-Skirting idinga ukupendwa',
-    },
-    'teczjl4u': {
-      'en': 'Walls needs to be painted',
-      'af': 'Mure moet geverf word',
-      'zu': 'Izindonga zidinga ukupendwa',
-    },
-    'xfy2bhdn': {
-      'en': 'Window frames needs to be painted',
-      'af': 'Vensterrame moet geverf word',
-      'zu': 'Amawindi ozimele adinga ukupendwa',
-    },
-    'mrf6ro5d': {
-      'en': 'Please select...',
-      'af': 'Kies asseblief...',
-      'zu': 'Sicela ukhethe...',
-    },
-    'c1ywlkfj': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    '2jv616qo': {
-      'en': '2',
-      'af': '',
-      'zu': '',
-    },
-    'nhoh7o4r': {
-      'en': 'Description',
-      'af': '',
-      'zu': '',
-    },
-    'x0bi4e7a': {
-      'en': 'Describe your Issue',
-      'af': 'Beskryf jou probleem',
-      'zu': 'Chaza udaba lwakho',
-    },
-    '1roi7vl4': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'hi8usp36': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    'tz1lc9ci': {
-      'en': '3',
-      'af': '',
-      'zu': '',
-    },
-    'cf90wuho': {
-      'en': 'Upload Image (Optional)',
-      'af': '',
-      'zu': '',
-    },
-    '5f035azs': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'chifyicf': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    '8riu3sxb': {
-      'en': 'SUBMIT',
-      'af': '',
-      'zu': '',
-    },
-    'pzx40sjr': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    'p9bnccwn': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    '9s7h1q1e': {
-      'en': 'Home',
-      'af': '',
-      'zu': '',
-    },
-  },
-  // Others
-  {
-    '7b9xxwp2': {
-      'en': 'Others',
-      'af': '',
-      'zu': '',
-    },
-    '51vidsdu': {
-      'en': '1',
-      'af': '',
-      'zu': '',
-    },
-    '8cj9etg9': {
-      'en': 'Description',
-      'af': '',
-      'zu': '',
-    },
-    'xrq9znk8': {
-      'en': 'Describe your Issue',
-      'af': 'Beskryf jou probleem',
-      'zu': 'Chaza udaba lwakho',
-    },
-    '0g2k6aeu': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'rfy73g3v': {
-      'en': '2',
-      'af': '',
-      'zu': '',
-    },
-    't7kyr3qr': {
-      'en': 'Upload Image (Optional)',
-      'af': '',
-      'zu': '',
-    },
-    '3sj3mqiw': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    '62ce3e0s': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    '6tkbw036': {
-      'en': 'SUBMIT',
-      'af': '',
-      'zu': '',
-    },
-    '3t91n54h': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    'zu8ut6m1': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    'nsoj6kzm': {
-      'en': 'Home',
-      'af': '',
-      'zu': '',
-    },
-  },
-  // reviews
-  {
-    'o4ma2plr': {
-      'en': 'Review',
-      'af': 'Resensie',
-      'zu': 'Buyekeza',
-    },
-    'odl0y290': {
-      'en': 'Private Feedback',
-      'af': 'Privaat terugvoer',
-      'zu': 'Impendulo Eyimfihlo',
-    },
-    'h6wfwt01': {
-      'en': 'What was your most important concern with this  ticket?',
-      'af': 'Wat was jou belangrikste bekommernis met hierdie kaartjie?',
-      'zu': 'Yini ebikukhathaza kakhulu ngaleli thikithi?',
-    },
-    'rwc60qez': {
-      'en': '    Time     ',
-      'af': 'Tyd',
-      'zu': 'Isikhathi',
-    },
-    'm5pnsb3h': {
-      'en': 'Convinience',
-      'af': 'Gerieflikheid',
-      'zu': 'Convinience',
-    },
-    '0ggkswrv': {
-      'en': 'Cleanliness',
-      'af': 'Netheid',
-      'zu': 'Inhlanzeko',
-    },
-    'su9q3z9r': {
-      'en': 'Communication',
-      'af': 'Kommunikasie',
-      'zu': 'Ukuxhumana',
-    },
-    'tqdmj591': {
-      'en': 'Quality',
-      'af': 'Kwaliteit',
-      'zu': 'Ikhwalithi',
-    },
-    'gmravdzl': {
-      'en': 'Option ',
-      'af': 'Opsie',
-      'zu': 'Inketho',
-    },
-    'sl49hlqg': {
-      'en':
-          'Your rating is really important for us as it helps us to improve our services for the future.',
-      'af': 'Wat was jou belangrikste bekommernis met hierdie kaartjie?',
-      'zu': 'Yini ebikukhathaza kakhulu ngaleli thikithi?',
-    },
-    '82iy1uqp': {
-      'en':
-          'Your rating is really important for us as it helps us to improve our services for the future.',
-      'af':
-          'Jou gradering is baie belangrik vir ons aangesien dit ons help om ons dienste vir die toekoms te verbeter.',
-      'zu':
-          'Isilinganiso sakho sibaluleke ngempela kithi njengoba sisisiza ukuthuthukisa amasevisi ethu esikhathini esizayo.',
-    },
-    'm1rx4wqf': {
-      'en': 'Confirm',
-      'af': 'Bevestig',
-      'zu': 'Qinisekisa',
-    },
-    'v4ofqfkx': {
-      'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
-    },
-  },
   // settings
   {
     'n9zmnk1o': {
@@ -1307,13 +407,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': '',
       'zu': '',
     },
-    'l75068ci': {
-      'en': 'Account',
-      'af': 'Rekening',
-      'zu': 'I-akhawunti',
-    },
     'nj9u6e42': {
-      'en': 'Loadshedding',
+      'en': 'Contatcs',
       'af': 'Boodskappe',
       'zu': 'Imilayezo',
     },
@@ -1363,116 +458,188 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': '',
     },
   },
-  // home
-  {
-    '2koevdog': {
-      'en': 'Hello World',
-      'af': 'Hello Wêreld',
-      'zu': 'Sawubona Mhlaba',
-    },
-    '0vs51h5t': {
-      'en': '1',
-      'af': '1',
-      'zu': '1',
-    },
-    'pmvue1v1': {
-      'en': 'Hi,',
-      'af': 'Hi,',
-      'zu': 'Sawubona,',
-    },
-    '8ih9im8a': {
-      'en': ' ',
-      'af': '1',
-      'zu': '1',
-    },
-    'kio6wtr0': {
-      'en': 'Appliances',
-      'af': 'Toestelle',
-      'zu': 'Izinto zikagesi',
-    },
-    '1rfe0xpc': {
-      'en': 'Plumbing',
-      'af': 'Loodgieterswerk',
-      'zu': 'Amapayipi amanzi',
-    },
-    'wq0kyint': {
-      'en': 'Electrical',
-      'af': 'Elektries',
-      'zu': 'Ezogesi',
-    },
-    '4oirn1hi': {
-      'en': 'Painting',
-      'af': 'Skildery',
-      'zu': 'Ukudweba',
-    },
-    'gb7cjba5': {
-      'en': 'Locksmith',
-      'af': 'Slotmaker',
-      'zu': 'Umkhandi wezikhiye',
-    },
-    '5apgpz66': {
-      'en': 'Furniture',
-      'af': 'Meubels',
-      'zu': 'Ifenisha',
-    },
-    '88a17nqi': {
-      'en': 'Communal',
-      'af': 'Gemeenskaplik',
-      'zu': 'Umphakathi',
-    },
-    'lnhucv5s': {
-      'en': 'Others',
-      'af': 'Ander',
-      'zu': 'Abanye',
-    },
-  },
   // messages
   {
-    'g2apk9v9': {
+    'ltqvlm0z': {
+      'en': 'Messages',
+      'af': 'Kennisgewings',
+      'zu': 'Izaziso',
+    },
+    'sujt0c2e': {
+      'en': 'All Messages',
+      'af': '',
+      'zu': '',
+    },
+    '5f28es5t': {
+      'en': 'Read',
+      'af': '',
+      'zu': '',
+    },
+    'wqis7mxt': {
+      'en': 'Search',
+      'af': '',
+      'zu': '',
+    },
+    'c2ekpuc8': {
       'en': 'Inbox',
+      'af': '',
+      'zu': '',
+    },
+    'tpbhhuou': {
+      'en': 'Settings',
+      'af': '',
+      'zu': '',
+    },
+    '057la5a5': {
+      'en': 'Notifications',
       'af': '',
       'zu': '',
     },
   },
   // sendNotifications
   {
-    'fc8z4311': {
+    'ltqt3ksk': {
+      'en': 'Back',
+      'af': '',
+      'zu': '',
+    },
+    '03oqvhbx': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    '5dl7h4zz': {
+      'en': 'Building',
+      'af': '',
+      'zu': '',
+    },
+    'jtsn6tg0': {
+      'en': 'Buildings',
+      'af': '',
+      'zu': '',
+    },
+    '30caj4ko': {
+      'en': 'Search',
+      'af': '',
+      'zu': '',
+    },
+    'g7ddbuwo': {
+      'en': 'Amani',
+      'af': '',
+      'zu': '',
+    },
+    'el6h8p3a': {
+      'en': '80 Jorissen',
+      'af': '',
+      'zu': '',
+    },
+    'rzgeg9gi': {
+      'en': '126 Siemert ',
+      'af': '',
+      'zu': '',
+    },
+    'z19gh0ri': {
+      'en': '277 Bree',
+      'af': '',
+      'zu': '',
+    },
+    'a7qforvs': {
+      'en': 'Braamlofts',
+      'af': '',
+      'zu': '',
+    },
+    'l779bgqm': {
+      'en': 'Dunvista ',
+      'af': '',
+      'zu': '',
+    },
+    'ye82nk6p': {
+      'en': 'Rennie House Apartments',
+      'af': '',
+      'zu': '',
+    },
+    '06hsq1gw': {
+      'en': 'YMCA',
+      'af': '',
+      'zu': '',
+    },
+    '37h6k4vu': {
+      'en': 'Title',
+      'af': '',
+      'zu': '',
+    },
+    'ribk891o': {
       'en': 'Subject',
       'af': '',
       'zu': '',
     },
-    'ucbou6nm': {
-      'en': 'Body',
+    'za5svuwv': {
+      'en': 'Message',
       'af': '',
       'zu': '',
     },
-    'bsc4cpul': {
+    'zuj4d9ow': {
+      'en': 'Enter a link url source ',
+      'af': '',
+      'zu': '',
+    },
+    'hg90g3li': {
+      'en': 'Copy',
+      'af': '',
+      'zu': '',
+    },
+    '2r8jabey': {
+      'en': 'RSVP Required?',
+      'af': '',
+      'zu': '',
+    },
+    '2mig9zgq': {
+      'en': 'Tags',
+      'af': '',
+      'zu': '',
+    },
+    'lwuooudm': {
       'en': 'General',
       'af': '',
       'zu': '',
     },
-    'ouzqm2gc': {
-      'en': 'Bookings',
-      'af': '',
-      'zu': '',
-    },
-    'lde99z2p': {
-      'en': 'Announcement',
-      'af': '',
-      'zu': '',
-    },
-    'y4dnvzss': {
-      'en': 'Events',
-      'af': '',
-      'zu': '',
-    },
-    'maaax0p4': {
+    'egbq54hd': {
       'en': 'Select Topic',
       'af': '',
       'zu': '',
     },
-    '1orthxv6': {
-      'en': 'Send to everyone',
+    'pn907v44': {
+      'en': 'Search',
+      'af': '',
+      'zu': '',
+    },
+    'dtw40tvi': {
+      'en': 'General',
+      'af': '',
+      'zu': '',
+    },
+    'cyqvzm8y': {
+      'en': 'Bookings',
+      'af': '',
+      'zu': '',
+    },
+    'eyy94w2e': {
+      'en': 'Announcement',
+      'af': '',
+      'zu': '',
+    },
+    'vfh6f4y5': {
+      'en': 'Events',
+      'af': '',
+      'zu': '',
+    },
+    'qbmy4qza': {
+      'en': 'Cancel',
+      'af': '',
+      'zu': '',
+    },
+    't741xcxe': {
+      'en': 'Publish',
       'af': '',
       'zu': '',
     },
@@ -1504,88 +671,55 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // information
   {
-    'ouy56u3e': {
-      'en': '1',
-      'af': '1',
-      'zu': '1',
+    'p51mj787': {
+      'en': 'Description',
+      'af': '',
+      'zu': '',
     },
-    '0t9srtqf': {
-      'en': 'Details',
-      'af': 'Besonderhede',
-      'zu': 'Imininingwane',
-    },
-    '311u38tb': {
-      'en': 'Category',
-      'af': 'Kategorie',
-      'zu': 'Isigaba',
-    },
-    'nq1dzwbf': {
+    'fbswq68v': {
       'en': 'Status',
-      'af': 'Status',
-      'zu': 'Isimo',
+      'af': '',
+      'zu': '',
     },
-    '91tagy0g': {
+    'vo3etien': {
+      'en': 'Bed Code',
+      'af': '',
+      'zu': '',
+    },
+    'jxcjiula': {
+      'en': 'Priority',
+      'af': '',
+      'zu': '',
+    },
+    'ji50b00j': {
       'en': 'Assigned',
-      'af': 'Toegewys',
-      'zu': 'Kwabelwe',
+      'af': '',
+      'zu': '',
     },
-    'a2kbfvsf': {
-      'en': 'View Ratings',
-      'af': 'Bekyk graderings',
-      'zu': 'Buka Izilinganiso',
+    'jjtcfobi': {
+      'en': 'Duration',
+      'af': '',
+      'zu': '',
     },
-    'tnem7t9x': {
-      'en': 'Private Feedback',
-      'af': 'Privaat terugvoer',
-      'zu': 'Impendulo Eyimfihlo',
+    '6mtzkbvc': {
+      'en': 'Dates',
+      'af': '',
+      'zu': '',
     },
-    'syeofsym': {
-      'en': 'What was your most important concern with this  ticket?',
-      'af': 'Wat was jou belangrikste bekommernis met hierdie kaartjie?',
-      'zu': 'Yini ebikukhathaza kakhulu ngaleli thikithi?',
+    'ukws265c': {
+      'en': 'Add a comment',
+      'af': '',
+      'zu': '',
     },
-    '8oumguvt': {
-      'en': 'Time',
-      'af': 'Tyd',
-      'zu': 'Isikhathi',
+    'vqkt8pjv': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
     },
-    'tv6lydnw': {
-      'en': 'Convinience',
-      'af': 'Gerieflikheid',
-      'zu': 'Convinience',
-    },
-    'ocqgtcv5': {
-      'en': 'Cleanliness',
-      'af': 'Netheid',
-      'zu': 'Inhlanzeko',
-    },
-    'yhga0jiz': {
-      'en': 'Communication',
-      'af': 'Kommunikasie',
-      'zu': 'Ukuxhumana',
-    },
-    '6gje4u7i': {
-      'en': 'Quality',
-      'af': 'Kwaliteit',
-      'zu': 'Ikhwalithi',
-    },
-    'w7u0acsg': {
-      'en': 'Option ',
-      'af': 'Opsie',
-      'zu': 'Inketho',
-    },
-    'pzbwczjq': {
-      'en':
-          'Your rating is really important for us as it helps us to improve our services for the future.',
-      'af':
-          'Jou gradering is baie belangrik vir ons aangesien dit ons help om ons dienste vir die toekoms te verbeter.',
-      'zu':
-          'Isilinganiso sakho sibaluleke ngempela kithi njengoba sisisiza ukuthuthukisa amasevisi ethu esikhathini esizayo.',
-    },
-    'epp10j9k': {
-      'en': 'Comments',
-      'af': 'Kommentaar',
-      'zu': 'Amazwana',
+    'serijtnq': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
     },
     '8z1kpy7m': {
       'en': 'Home',
@@ -1595,18 +729,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // notifications
   {
-    '45q9r5x8': {
+    'h39o2eq7': {
       'en': 'Notifications',
       'af': 'Kennisgewings',
       'zu': 'Izaziso',
     },
-    '21r1cns5': {
-      'en': '1',
-      'af': '1',
-      'zu': '1',
-    },
     '7xadpfse': {
-      'en': 'Latest',
+      'en': 'For me',
       'af': 'Nuutste',
       'zu': 'Okwakamuva',
     },
@@ -1615,317 +744,23 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': 'Volgende',
       'zu': 'Ukulandela',
     },
-    '9npa5ulh': {
-      'en': 'All',
-      'af': 'Almal',
-      'zu': 'Konke',
-    },
-  },
-  // addInspection
-  {
-    'hc0sgg24': {
-      'en': 'PROPERTY INSPECTION',
+    'izarklkn': {
+      'en': 'Search',
       'af': '',
       'zu': '',
     },
-    'u740c6t1': {
-      'en': '1',
+    'g3h9qkzx': {
+      'en': 'Inbox',
       'af': '',
       'zu': '',
     },
-    'wg5xzsdu': {
-      'en': 'BEDROOM',
+    'vhu3mjx5': {
+      'en': 'Settings',
       'af': '',
       'zu': '',
     },
-    '22h154gr': {
-      'en': '2',
-      'af': '',
-      'zu': '',
-    },
-    'ph9fkpp0': {
-      'en': 'BATHROOM',
-      'af': '',
-      'zu': '',
-    },
-    'aadwvt1i': {
-      'en': '3',
-      'af': '',
-      'zu': '',
-    },
-    'kzdnbhgd': {
-      'en': 'KITCHEN',
-      'af': '',
-      'zu': '',
-    },
-    '16l0g8hp': {
-      'en': 'Issue',
-      'af': '',
-      'zu': '',
-    },
-    'k3vm8kee': {
-      'en': 'INSPECT PROPERTY',
-      'af': '',
-      'zu': '',
-    },
-    'x1gr0syr': {
-      'en': '1',
-      'af': '',
-      'zu': '',
-    },
-    'yclrg9p6': {
-      'en': 'WINDOWS (BEDROOM)',
-      'af': '',
-      'zu': '',
-    },
-    'nep1tnoe': {
-      'en': 'Better Condition',
-      'af': '',
-      'zu': '',
-    },
-    'pahxgznc': {
-      'en': 'Good Condition',
-      'af': '',
-      'zu': '',
-    },
-    'e8qhtvh9': {
-      'en': 'Bad Condition',
-      'af': '',
-      'zu': '',
-    },
-    '19hdumvr': {
-      'en': 'Gallery',
-      'af': '',
-      'zu': '',
-    },
-    '75g7llyt': {
-      'en': 'Comments',
-      'af': '',
-      'zu': '',
-    },
-    '94czi21b': {
-      'en': 'Comments',
-      'af': '',
-      'zu': '',
-    },
-    'bcy603ah': {
-      'en': ' ',
-      'af': '',
-      'zu': '',
-    },
-    'q97u56wf': {
-      'en': 'NEXT',
-      'af': '',
-      'zu': '',
-    },
-    'qbew9eyl': {
-      'en': 'BACK',
-      'af': '',
-      'zu': '',
-    },
-    '1ja0gg0u': {
-      'en': '2',
-      'af': '',
-      'zu': '',
-    },
-    'dn3pcsgw': {
-      'en': 'DOORS (BEDROOM)',
-      'af': '',
-      'zu': '',
-    },
-    'di1d0jbi': {
-      'en': 'Better Condition',
-      'af': '',
-      'zu': '',
-    },
-    'jxnsc5zx': {
-      'en': 'Good Condition',
-      'af': '',
-      'zu': '',
-    },
-    '4scg0y76': {
-      'en': 'Bad Condition',
-      'af': '',
-      'zu': '',
-    },
-    'qpoiz94u': {
-      'en': 'Gallery',
-      'af': '',
-      'zu': '',
-    },
-    'wfaq1knf': {
-      'en': 'Comments',
-      'af': '',
-      'zu': '',
-    },
-    '6g1c4u5m': {
-      'en': 'Comments',
-      'af': '',
-      'zu': '',
-    },
-    'yu6hjikz': {
-      'en': ' ',
-      'af': '',
-      'zu': '',
-    },
-    '7xxpadtl': {
-      'en': 'NEXT',
-      'af': '',
-      'zu': '',
-    },
-    'qs5m2p77': {
-      'en': 'BACK',
-      'af': '',
-      'zu': '',
-    },
-    'eg5n5rsa': {
-      'en': 'SUBMIT',
-      'af': '',
-      'zu': '',
-    },
-    'j3e4neph': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    'pc652j6c': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    'wcislfe0': {
-      'en': 'Home',
-      'af': '',
-      'zu': '',
-    },
-  },
-  // search
-  {
-    '1ehqp1x6': {
-      'en': 'Contacts',
-      'af': 'Soek vriende om te gesels',
-      'zu': 'Sesha Abangane ukuze uxoxe',
-    },
-    '593y5qak': {
-      'en': 'Icon',
-      'af': '',
-      'zu': '',
-    },
-    'iubu6zvf': {
-      'en': 'Name',
-      'af': '',
-      'zu': '',
-    },
-    'jhhj8vn4': {
-      'en': 'Building',
-      'af': '',
-      'zu': '',
-    },
-  },
-  // Communal
-  {
-    'bwlhzqrz': {
-      'en': 'Communal',
-      'af': '',
-      'zu': '',
-    },
-    'whf6k7wr': {
-      'en': '1',
-      'af': '',
-      'zu': '',
-    },
-    'ad5xvh29': {
-      'en': 'Ticket',
-      'af': '',
-      'zu': '',
-    },
-    '7x9r696z': {
-      'en': 'Describe your Issue',
-      'af': 'Beskryf jou probleem',
-      'zu': 'Chaza udaba lwakho',
-    },
-    'cecu9o59': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'ahjjbbua': {
-      'en': '2',
-      'af': '',
-      'zu': '',
-    },
-    'mg6c7rhm': {
-      'en': 'Location',
-      'af': '',
-      'zu': '',
-    },
-    'ykvekxmb': {
-      'en': 'Place',
-      'af': 'Plek',
-      'zu': 'Indawo',
-    },
-    '63ydfioy': {
-      'en': '',
-      'af': '',
-      'zu': '',
-    },
-    '9oq3bi3q': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'x6nksghb': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    'xz1yi6d7': {
-      'en': '3',
-      'af': '',
-      'zu': '',
-    },
-    'fmurf3ax': {
-      'en': 'Upload Image (Optional)',
-      'af': '',
-      'zu': '',
-    },
-    'yp50ke9c': {
-      'en': 'CONTINUE',
-      'af': '',
-      'zu': '',
-    },
-    'vukc9a0s': {
-      'en': 'PREVIOUS',
-      'af': '',
-      'zu': '',
-    },
-    '2o1vcxx8': {
-      'en': 'SUBMIT',
-      'af': '',
-      'zu': '',
-    },
-    '5t3v8gun': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    '36wdv2i6': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    '5h1aegic': {
-      'en': 'Field is required',
-      'af': '',
-      'zu': '',
-    },
-    'b9cesqbq': {
-      'en': 'Please choose an option from the dropdown',
-      'af': '',
-      'zu': '',
-    },
-    'dngzqonl': {
-      'en': 'Home',
+    'mlb2zxgo': {
+      'en': 'Notifications',
       'af': '',
       'zu': '',
     },
@@ -1937,162 +772,182 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'af': '',
       'zu': '',
     },
-    '200ulvqn': {
-      'en': '1',
+    'mexfsl4w': {
+      'en': ' Visitors',
       'af': '',
       'zu': '',
     },
-    'ed4ozvy3': {
-      'en': 'INFO',
+    'raz3azaw': {
+      'en': 'RECENT VISITORS',
       'af': '',
       'zu': '',
     },
-    'dcs33zv1': {
-      'en': '2',
+    'brdo65wq': {
+      'en': 'Visitor Information',
       'af': '',
       'zu': '',
     },
-    '8s1luxju': {
-      'en': 'CONFIRM',
+    'baaf0aeu': {
+      'en': 'Check in ',
       'af': '',
       'zu': '',
     },
-    'o43dfb2j': {
+    '8cd7d43h': {
+      'en': 'Access Code',
+      'af': '',
+      'zu': '',
+    },
+    'kg3ljj12': {
+      'en': 'Check Out',
+      'af': '',
+      'zu': '',
+    },
+    'fp8daous': {
+      'en': 'Actions',
+      'af': '',
+      'zu': '',
+    },
+    '15js75uu': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    'mx91ja07': {
+      'en': 'UPCOMING VISITORS',
+      'af': '',
+      'zu': '',
+    },
+    '3yh45aj2': {
+      'en': 'Visitor Information',
+      'af': '',
+      'zu': '',
+    },
+    '8ek4jbg0': {
+      'en': 'Check in ',
+      'af': '',
+      'zu': '',
+    },
+    'pp6fxgr8': {
+      'en': 'Access Code',
+      'af': '',
+      'zu': '',
+    },
+    'o71v1eqb': {
+      'en': 'Check Out',
+      'af': '',
+      'zu': '',
+    },
+    'mwr46182': {
+      'en': 'Actions',
+      'af': '',
+      'zu': '',
+    },
+    '3m4702uq': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    'gfdyck6u': {
+      'en': 'CHECKED-IN VISITORS',
+      'af': '',
+      'zu': '',
+    },
+    'gv2sgpws': {
+      'en': 'Visitor Information',
+      'af': '',
+      'zu': '',
+    },
+    '0z91b624': {
+      'en': 'Check in ',
+      'af': '',
+      'zu': '',
+    },
+    'dcnsgy12': {
+      'en': 'Access Code',
+      'af': '',
+      'zu': '',
+    },
+    '6mxfaab2': {
+      'en': 'Check Out',
+      'af': '',
+      'zu': '',
+    },
+    '6zjnj2f7': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    '47o5ry8x': {
       'en': 'Add Visitor',
       'af': '',
       'zu': '',
     },
-    'qaucrpbi': {
-      'en': 'Add Visitor',
-      'af': '',
-      'zu': '',
-    },
-    'soozfrtx': {
-      'en': 'My Visitors',
-      'af': '',
-      'zu': '',
-    },
-    'w1v13cgb': {
-      'en': 'My Visitors',
-      'af': '',
-      'zu': '',
-    },
-    '1v5yxi9e': {
-      'en': '1',
-      'af': '',
-      'zu': '',
-    },
-    '0xx0fuef': {
-      'en': 'Visitor\'s Information',
-      'af': '',
-      'zu': '',
-    },
-    'rwrg7zgk': {
+    '5lzwejky': {
       'en': 'Name',
       'af': '',
       'zu': '',
     },
-    'ftjw4j6b': {
+    'bm10tdy0': {
       'en': 'Surname',
       'af': '',
       'zu': '',
     },
-    '68h9a1nr': {
+    'hojpaqai': {
       'en': 'Mobile Number',
       'af': '',
       'zu': '',
     },
-    'kem2ldzv': {
-      'en': 'Save Visitor',
+    'h3j0ndf7': {
+      'en': 'Submit',
       'af': '',
       'zu': '',
     },
-    '7ohca520': {
-      'en': 'Save contact for future visits',
-      'af': '',
-      'zu': '',
-    },
-    '9109iscq': {
-      'en': 'Sign Below',
-      'af': '',
-      'zu': '',
-    },
-    'veqmfpf2': {
-      'en': 'CLEAR SIGNATURE',
-      'af': '',
-      'zu': '',
-    },
-    'e2hpdjqj': {
-      'en': 'INVITE',
-      'af': '',
-      'zu': '',
-    },
-    '3jjua61p': {
-      'en': 'Image',
-      'af': '',
-      'zu': '',
-    },
-    'u7aq6yf7': {
-      'en': 'Visitor',
-      'af': '',
-      'zu': '',
-    },
-    'slu3ils9': {
-      'en': 'Action',
-      'af': '',
-      'zu': '',
-    },
-    'hxa4nqpi': {
-      'en': 'INVITE',
-      'af': '',
-      'zu': '',
-    },
-    'wf6vx8w9': {
+    'nops8w8y': {
       'en': 'Field is required',
       'af': '',
       'zu': '',
     },
-    'kdlz12o9': {
+    '4g4dyq62': {
       'en': 'Please choose an option from the dropdown',
       'af': '',
       'zu': '',
     },
-    '4n4s2del': {
+    '732rqido': {
       'en': 'Field is required',
       'af': '',
       'zu': '',
     },
-    'p2g146m6': {
+    'xlkb5iwz': {
       'en': 'Please choose an option from the dropdown',
       'af': '',
       'zu': '',
     },
-    'jqs5jbff': {
+    'x128jbj0': {
       'en': 'Field is required',
       'af': '',
       'zu': '',
     },
-    'c3er6fb2': {
+    '7jehq8km': {
       'en': 'Please choose an option from the dropdown',
       'af': '',
       'zu': '',
     },
-    '7wmydnot': {
+    '595ap7n9': {
       'en': 'Field is required',
       'af': '',
       'zu': '',
     },
-    '20qo61g6': {
+    'bicmv44j': {
       'en': 'Please choose an option from the dropdown',
       'af': '',
       'zu': '',
     },
-    'gzdfb96v': {
+    'qyfs1apw': {
       'en': 'Field is required',
       'af': '',
       'zu': '',
     },
-    'ds1gxcl1': {
+    '2qao2ed3': {
       'en': 'Please choose an option from the dropdown',
       'af': '',
       'zu': '',
@@ -2103,188 +958,520 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': '',
     },
   },
-  // myVisitors
-  {
-    'l07pfqe0': {
-      'en': 'Visitors',
-      'af': '',
-      'zu': '',
-    },
-    'cibgwe4j': {
-      'en': 'RECENT VISITORS',
-      'af': '',
-      'zu': '',
-    },
-    '7i2i58a7': {
-      'en': 'Image',
-      'af': '',
-      'zu': '',
-    },
-    'm7up3tfn': {
-      'en': 'Visitor',
-      'af': '',
-      'zu': '',
-    },
-    'qeoctn9d': {
-      'en': 'Action',
-      'af': '',
-      'zu': '',
-    },
-    'nrwwghrw': {
-      'en': 'INVITE',
-      'af': '',
-      'zu': '',
-    },
-    'l8amubu5': {
-      'en': 'UPCOMING VISITORS',
-      'af': '',
-      'zu': '',
-    },
-    'yipoxakw': {
-      'en': 'Image',
-      'af': '',
-      'zu': '',
-    },
-    'tlimulfa': {
-      'en': 'Visitor',
-      'af': '',
-      'zu': '',
-    },
-    'gq3kwenf': {
-      'en': 'Action',
-      'af': '',
-      'zu': '',
-    },
-    'tpxz7ti3': {
-      'en': 'CANCEL',
-      'af': '',
-      'zu': '',
-    },
-    '3lh76wqf': {
-      'en': 'CHECKED-IN VISITORS',
-      'af': '',
-      'zu': '',
-    },
-    'to34x0dh': {
-      'en': 'Image',
-      'af': '',
-      'zu': '',
-    },
-    'bs0pe6vv': {
-      'en': 'Visitor',
-      'af': '',
-      'zu': '',
-    },
-    'ccyol0pi': {
-      'en': 'Action',
-      'af': '',
-      'zu': '',
-    },
-    '7lrw2yvy': {
-      'en': 'Home',
-      'af': '',
-      'zu': '',
-    },
-  },
   // dashboard
   {
-    'hzzki391': {
-      'en': 'Pending',
+    '0qtv0ylh': {
+      'en': 'Buildings...',
       'af': '',
       'zu': '',
     },
-    'tyv96zi0': {
-      'en': 'Today',
+    '8h3j8byn': {
+      'en': 'Search for an item...',
       'af': '',
       'zu': '',
     },
-    'nhzef5yo': {
-      'en': '0',
+    'efi3qam4': {
+      'en': 'Amani',
       'af': '',
       'zu': '',
     },
-    'hzoyxswg': {
-      'en': '49 Jorissen',
-      'af': '',
-      'zu': '',
-    },
-    '5vh13noj': {
+    'ikg2x1oe': {
       'en': '80 Jorissen',
       'af': '',
       'zu': '',
     },
-    'uwkywxdr': {
+    'drtcf1wb': {
+      'en': '126 Siemert',
+      'af': '',
+      'zu': '',
+    },
+    'w4zelvdp': {
+      'en': '277 Bree',
+      'af': '',
+      'zu': '',
+    },
+    '6w6crqcz': {
+      'en': 'Braamlofts',
+      'af': '',
+      'zu': '',
+    },
+    'kaejz9ki': {
+      'en': 'Dunvista',
+      'af': '',
+      'zu': '',
+    },
+    '2kxkb4wz': {
+      'en': 'Rennie House Apartments',
+      'af': '',
+      'zu': '',
+    },
+    'ead5vtf4': {
       'en': 'YMCA',
       'af': '',
       'zu': '',
     },
-    'e5n5fz5l': {
-      'en': 'Rennie House',
+    'zv2w4py1': {
+      'en': 'Bed Code',
       'af': '',
       'zu': '',
     },
-    'd4p384vz': {
-      'en': ' ALL',
+    '9pjkh50z': {
+      'en': 'Search for an item...',
       'af': '',
       'zu': '',
     },
-    'lb985odu': {
-      'en': 'Residence',
+    '5jfl025h': {
+      'en': 'Option 1',
       'af': '',
       'zu': '',
     },
-    'nk4zetrl': {
-      'en': 'Download CSV',
-      'af': '',
-      'zu': '',
-    },
-    'cm8gs4mk': {
-      'en': 'Open Tickets',
-      'af': '',
-      'zu': '',
-    },
-    'weggynv7': {
-      'en': 'In Review',
-      'af': '',
-      'zu': '',
-    },
-    'kqgsu3ac': {
-      'en': 'Closed Tickets',
-      'af': '',
-      'zu': '',
-    },
-    'j5gdkyr8': {
-      'en': 'Name',
-      'af': '',
-      'zu': '',
-    },
-    'a762gje1': {
-      'en': 'Ticket',
-      'af': '',
-      'zu': '',
-    },
-    'obsm1oly': {
-      'en': 'Description',
-      'af': '',
-      'zu': '',
-    },
-    'zm35kjqt': {
-      'en': 'Room',
-      'af': '',
-      'zu': '',
-    },
-    '6zino7yi': {
-      'en': 'Created_date',
-      'af': '',
-      'zu': '',
-    },
-    '4ws0f2ea': {
+    '48c43zxa': {
       'en': 'Status',
       'af': '',
       'zu': '',
     },
-    'tswk8th8': {
+    '293vm1bw': {
+      'en': 'Search for an item...',
+      'af': '',
+      'zu': '',
+    },
+    'rdlec4pr': {
+      'en': 'Open',
+      'af': '',
+      'zu': '',
+    },
+    'w0w3svvl': {
+      'en': 'In Progress',
+      'af': '',
+      'zu': '',
+    },
+    'bhn4w6le': {
+      'en': 'Closed',
+      'af': '',
+      'zu': '',
+    },
+    'a9jzgocz': {
+      'en': 'All',
+      'af': '',
+      'zu': '',
+    },
+    'gchav805': {
+      'en': 'Category',
+      'af': '',
+      'zu': '',
+    },
+    '9zas42t6': {
+      'en': 'Search for an item...',
+      'af': '',
+      'zu': '',
+    },
+    'u1jhumu8': {
+      'en': 'Plumbing',
+      'af': '',
+      'zu': '',
+    },
+    'p3n3dyc7': {
+      'en': 'Appliances',
+      'af': '',
+      'zu': '',
+    },
+    '8v6dm8j7': {
+      'en': 'Locksmith',
+      'af': '',
+      'zu': '',
+    },
+    'hk8cgcmx': {
+      'en': 'Furniture',
+      'af': '',
+      'zu': '',
+    },
+    '5wqf0evn': {
+      'en': 'Electrical',
+      'af': '',
+      'zu': '',
+    },
+    'mcf6d7r6': {
+      'en': 'Others',
+      'af': '',
+      'zu': '',
+    },
+    '8n8yv9j3': {
+      'en': 'Days',
+      'af': '',
+      'zu': '',
+    },
+    'pq2dl7kd': {
+      'en': 'Search for an item...',
+      'af': '',
+      'zu': '',
+    },
+    '4oyd5g7e': {
+      'en': '0 - 7 Days',
+      'af': '',
+      'zu': '',
+    },
+    't21kdw3n': {
+      'en': '7 - 14 Days',
+      'af': '',
+      'zu': '',
+    },
+    'sek7c45b': {
+      'en': '14 - 30 Days',
+      'af': '',
+      'zu': '',
+    },
+    '7uiv6ngv': {
+      'en': 'Older than 30 days',
+      'af': '',
+      'zu': '',
+    },
+    '6lxw3lvm': {
+      'en': 'Overview',
+      'af': '',
+      'zu': '',
+    },
+    'ij748wj8': {
+      'en': 'Overview',
+      'af': '',
+      'zu': '',
+    },
+    'rxfqqrzt': {
+      'en': 'Open',
+      'af': '',
+      'zu': '',
+    },
+    'v5d1vu0j': {
+      'en': 'In Progress',
+      'af': '',
+      'zu': '',
+    },
+    'dgandi6f': {
+      'en': 'Closed',
+      'af': '',
+      'zu': '',
+    },
+    '2zkl5ybh': {
+      'en': 'Tasks List',
+      'af': '',
+      'zu': '',
+    },
+    'qpurk7bz': {
+      'en': 'TASKS',
+      'af': '',
+      'zu': '',
+    },
+    '425nt8o7': {
+      'en': 'ASSIGNEE',
+      'af': '',
+      'zu': '',
+    },
+    'paar5min': {
+      'en': 'Categories',
+      'af': '',
+      'zu': '',
+    },
+    'n4uegmy6': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    '2p02pmta': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    'fuwu13x1': {
+      'en': 'Team',
+      'af': '',
+      'zu': '',
+    },
+    'k3vx8m34': {
+      'en': 'Team',
+      'af': '',
+      'zu': '',
+    },
+    's2j07eh1': {
+      'en': 'Sello',
+      'af': '',
+      'zu': '',
+    },
+    'xawlc7xl': {
+      'en': 'Rapudi',
+      'af': '',
+      'zu': '',
+    },
+    'qvgj73ke': {
+      'en': 'Frank',
+      'af': '',
+      'zu': '',
+    },
+    'lj13a75c': {
+      'en': 'Thabo',
+      'af': '',
+      'zu': '',
+    },
+    'ax9m7xgd': {
+      'en': 'Chats',
+      'af': '',
+      'zu': '',
+    },
+    'ph52sovw': {
+      'en': ' commented',
+      'af': '',
+      'zu': '',
+    },
+    'h0bmaa0x': {
+      'en': 'Maintenance',
+      'af': '',
+      'zu': '',
+    },
+    '82ymy3mu': {
+      'en': 'DATE',
+      'af': '',
+      'zu': '',
+    },
+    'wqk7bcbs': {
+      'en': 'STATUS',
+      'af': '',
+      'zu': '',
+    },
+    'qo35awg2': {
+      'en': 'TICKET',
+      'af': '',
+      'zu': '',
+    },
+    'y0y0e251': {
+      'en': 'RESIDENCE',
+      'af': '',
+      'zu': '',
+    },
+    'wnhhf5pe': {
+      'en': 'BED CODE',
+      'af': '',
+      'zu': '',
+    },
+    'xo7wiavv': {
+      'en': 'PRIORITY',
+      'af': '',
+      'zu': '',
+    },
+    'ektga1r0': {
+      'en': 'ASSIGNEE',
+      'af': '',
+      'zu': '',
+    },
+    'nj4jmwz7': {
+      'en': 'Occupants',
+      'af': '',
+      'zu': '',
+    },
+    '7k65gj47': {
+      'en': 'Full Names',
+      'af': '',
+      'zu': '',
+    },
+    '7xycbo2z': {
+      'en': 'Email',
+      'af': '',
+      'zu': '',
+    },
+    '2tb167wu': {
       'en': 'Building',
+      'af': '',
+      'zu': '',
+    },
+    '4f7pmw6r': {
+      'en': 'Bed Code',
+      'af': '',
+      'zu': '',
+    },
+    'xxo630s9': {
+      'en': 'Residency',
+      'af': '',
+      'zu': '',
+    },
+    'fs2kx27i': {
+      'en': 'Document',
+      'af': '',
+      'zu': '',
+    },
+    'p8y0tj4u': {
+      'en': 'Lease',
+      'af': '',
+      'zu': '',
+    },
+    '6zxrydhb': {
+      'en': 'Active',
+      'af': '',
+      'zu': '',
+    },
+    '81umdlso': {
+      'en': 'Access Control',
+      'af': '',
+      'zu': '',
+    },
+    '8ukwsqhu': {
+      'en': 'Visitors',
+      'af': '',
+      'zu': '',
+    },
+    'o5clhjb3': {
+      'en': 'ID No',
+      'af': '',
+      'zu': '',
+    },
+    'fi5q7bp6': {
+      'en': 'Residence',
+      'af': '',
+      'zu': '',
+    },
+    'r9yocpyc': {
+      'en': 'Bed',
+      'af': '',
+      'zu': '',
+    },
+    't1f47ob3': {
+      'en': 'Date',
+      'af': '',
+      'zu': '',
+    },
+    'fbqs2pyo': {
+      'en': 'Tenant',
+      'af': '',
+      'zu': '',
+    },
+    'etehqe62': {
+      'en': 'Code',
+      'af': '',
+      'zu': '',
+    },
+    'c77qo87x': {
+      'en': 'Documents',
+      'af': '',
+      'zu': '',
+    },
+    '6ob3txhp': {
+      'en': 'Example 6',
+      'af': '',
+      'zu': '',
+    },
+    '8a3occw3': {
+      'en': 'Tenant',
+      'af': '',
+      'zu': '',
+    },
+    'jqy1p5k6': {
+      'en': 'Building',
+      'af': '',
+      'zu': '',
+    },
+    'fb0dkz6c': {
+      'en': 'Date',
+      'af': '',
+      'zu': '',
+    },
+    'rbshe81f': {
+      'en': 'Ticket',
+      'af': '',
+      'zu': '',
+    },
+    '69l9z224': {
+      'en': 'Status',
+      'af': '',
+      'zu': '',
+    },
+    'bfidpmzn': {
+      'en': 'Actions',
+      'af': '',
+      'zu': '',
+    },
+    'updt3ql6': {
+      'en': 'Overview',
+      'af': '',
+      'zu': '',
+    },
+    'yxbroam0': {
+      'en': 'Open',
+      'af': '',
+      'zu': '',
+    },
+    'cx7hata7': {
+      'en': 'In Progress',
+      'af': '',
+      'zu': '',
+    },
+    '1y2hb6do': {
+      'en': 'Closed',
+      'af': '',
+      'zu': '',
+    },
+    '4f51omjy': {
+      'en': 'Tasks List',
+      'af': '',
+      'zu': '',
+    },
+    'rk9wi21c': {
+      'en': 'TASKS',
+      'af': '',
+      'zu': '',
+    },
+    'ce8zc8u9': {
+      'en': 'ASSIGNEE',
+      'af': '',
+      'zu': '',
+    },
+    'k9qtamzd': {
+      'en': 'Categories',
+      'af': '',
+      'zu': '',
+    },
+    'xn6kkqv0': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    'azh8ld22': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    'wl6uxhsb': {
+      'en': 'Team',
+      'af': '',
+      'zu': '',
+    },
+    'hw9qewxe': {
+      'en': 'Team',
+      'af': '',
+      'zu': '',
+    },
+    'mtotzmk6': {
+      'en': 'Sello',
+      'af': '',
+      'zu': '',
+    },
+    '9oat4mil': {
+      'en': 'Rapudi',
+      'af': '',
+      'zu': '',
+    },
+    'jh89geko': {
+      'en': 'Frank',
+      'af': '',
+      'zu': '',
+    },
+    'ed9xgtr9': {
+      'en': 'Thabo',
+      'af': '',
+      'zu': '',
+    },
+    '9qz876jt': {
+      'en': 'Chats',
+      'af': '',
+      'zu': '',
+    },
+    'l273sli1': {
+      'en': ' commented',
       'af': '',
       'zu': '',
     },
@@ -2294,402 +1481,1879 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': '',
     },
   },
-  // loadshedding
+  // addInspection
   {
-    'dek3wfym': {
-      'en': 'Options',
+    'cz7s1ddv': {
+      'en': 'Inspection',
       'af': '',
       'zu': '',
     },
-    'vhf9e770': {
-      'en': 'Date',
+    'dulbzqja': {
+      'en': ' [FirstName]',
       'af': '',
       'zu': '',
     },
-    'zk1r9vny': {
-      'en': 'Stage',
+    '3t5wtfw0': {
+      'en': '[lastName]',
       'af': '',
       'zu': '',
     },
-    'ikxnucie': {
-      'en': 'Edit Column 2',
+    'jn977kyg': {
+      'en': ' [email]',
       'af': '',
       'zu': '',
     },
-    '7d2ojpet': {
+    'w8o2lz88': {
+      'en': ' [studentNumber]',
+      'af': '',
+      'zu': '',
+    },
+    '2lfmh6dl': {
+      'en': 'Inspection Type',
+      'af': '',
+      'zu': '',
+    },
+    'dn715sr5': {
+      'en': 'Search',
+      'af': '',
+      'zu': '',
+    },
+    'met76ug2': {
+      'en': 'Entry',
+      'af': '',
+      'zu': '',
+    },
+    'tmvkkx8y': {
+      'en': 'Exit',
+      'af': '',
+      'zu': '',
+    },
+    'flzhxivr': {
+      'en': ' [Date]',
+      'af': '',
+      'zu': '',
+    },
+    'm5mbvrrw': {
+      'en': '[Time]',
+      'af': '',
+      'zu': '',
+    },
+    '85yqd7tt': {
+      'en': 'Acceptance',
+      'af': '',
+      'zu': '',
+    },
+    'e37mo1gz': {
+      'en': 'I Agree & Understand',
+      'af': '',
+      'zu': '',
+    },
+    'p29u89ba': {
+      'en': '*  ',
+      'af': '',
+      'zu': '',
+    },
+    'ksc7kp7v': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'pb6t04qk': {
+      'en':
+          'I confirm that I have read, understood, and will adhere to the House Rules, and agree to abide by the amendments thereof if such become applicable from time-to-time by Management or Government specific requirements. I understand the importance of the Entry Inspection: To ensure that I am not held liable or charged for damages that were present when I entered the room.',
+      'af': '',
+      'zu': '',
+    },
+    'pk9frm1j': {
+      'en': 'Bedroom Check',
+      'af': '',
+      'zu': '',
+    },
+    'utlwawpd': {
+      'en': 'Bedroom Windows',
+      'af': '',
+      'zu': '',
+    },
+    'sz27lhzt': {
+      'en': 'Good Condition',
+      'af': '',
+      'zu': '',
+    },
+    'jajr0ce6': {
+      'en': 'Moderate',
+      'af': '',
+      'zu': '',
+    },
+    'tu2t9tmg': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    'ahv8phol': {
+      'en': 'Bedroom Doors',
+      'af': '',
+      'zu': '',
+    },
+    '10sc443e': {
+      'en': 'Good Condition',
+      'af': '',
+      'zu': '',
+    },
+    'm501rftq': {
+      'en': 'Moderate',
+      'af': '',
+      'zu': '',
+    },
+    '8u7kzkfd': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    'q3ik4r3o': {
+      'en': 'Bedroom Doors Locks',
+      'af': '',
+      'zu': '',
+    },
+    '508mbowq': {
+      'en': 'Good Condition',
+      'af': '',
+      'zu': '',
+    },
+    'o3jq0z26': {
+      'en': 'Moderate',
+      'af': '',
+      'zu': '',
+    },
+    'gjmtc4hd': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    '4833y0e1': {
+      'en': 'Bedroom Light Switches',
+      'af': '',
+      'zu': '',
+    },
+    '3no620np': {
+      'en': 'In Order',
+      'af': '',
+      'zu': '',
+    },
+    'si2zl3fv': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    'e0bc1zji': {
+      'en': 'Bedroom Plugs',
+      'af': '',
+      'zu': '',
+    },
+    '59yt99zi': {
+      'en': 'In Order',
+      'af': '',
+      'zu': '',
+    },
+    'psfhey8o': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    '8b7jc8ys': {
+      'en': 'Bedroom Carpet',
+      'af': '',
+      'zu': '',
+    },
+    'i6ry739z': {
+      'en': 'In Order',
+      'af': '',
+      'zu': '',
+    },
+    'lct0lyr4': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    'qoyy8gs2': {
+      'en': 'No Carpet',
+      'af': '',
+      'zu': '',
+    },
+    'sbajaapl': {
+      'en': 'Bookshelves',
+      'af': '',
+      'zu': '',
+    },
+    'kw9moq5y': {
+      'en': 'In Order',
+      'af': '',
+      'zu': '',
+    },
+    'iau8x0vw': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    'nv1zavbm': {
+      'en': 'Cupboard Shelves',
+      'af': '',
+      'zu': '',
+    },
+    'vki8nly9': {
+      'en': 'In Order',
+      'af': '',
+      'zu': '',
+    },
+    'lkhci452': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    'rbyfz0jn': {
+      'en': 'Cupboard Drawers',
+      'af': '',
+      'zu': '',
+    },
+    '7tzbch20': {
+      'en': 'In Order',
+      'af': '',
+      'zu': '',
+    },
+    'aax849w0': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    'mo5zukgo': {
+      'en': 'Bed',
+      'af': '',
+      'zu': '',
+    },
+    'duqnw2if': {
+      'en': 'In The Room',
+      'af': '',
+      'zu': '',
+    },
+    'yte9nvq9': {
+      'en': 'Not In The Room',
+      'af': '',
+      'zu': '',
+    },
+    '0zsdznpx': {
+      'en': 'Curtains',
+      'af': '',
+      'zu': '',
+    },
+    'ttquqjnf': {
+      'en': 'In The Room',
+      'af': '',
+      'zu': '',
+    },
+    'jlz6z39k': {
+      'en': 'Not In The Room',
+      'af': '',
+      'zu': '',
+    },
+    'ffx1gx0i': {
+      'en': 'Paint/Walls/Ceiling',
+      'af': '',
+      'zu': '',
+    },
+    '0gkusmxv': {
+      'en': 'Good Condition',
+      'af': '',
+      'zu': '',
+    },
+    'rxeobdkx': {
+      'en': 'Moderate',
+      'af': '',
+      'zu': '',
+    },
+    'w5shel3p': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    '3fxhigie': {
+      'en': 'Study Table',
+      'af': '',
+      'zu': '',
+    },
+    'm9w38hk1': {
+      'en': 'Good Condition',
+      'af': '',
+      'zu': '',
+    },
+    '41p3wza2': {
+      'en': 'Moderate',
+      'af': '',
+      'zu': '',
+    },
+    'orly3zv6': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    'p5saba4v': {
+      'en': 'Bedroom General Comments',
+      'af': '',
+      'zu': '',
+    },
+    'suohfvzh': {
+      'en': 'Explain the general condition that you found the bedroom in.',
+      'af': '',
+      'zu': '',
+    },
+    'pd4myzo7': {
+      'en': 'Upload Bedroom Pictures',
+      'af': '',
+      'zu': '',
+    },
+    'iczr60f2': {
+      'en': 'Click or drag files to this area to upload.',
+      'af': '',
+      'zu': '',
+    },
+    '7b7yeg86': {
+      'en': 'You can upload only one file.',
+      'af': '',
+      'zu': '',
+    },
+    '850mjuzk': {
+      'en': 'image.jpg',
+      'af': '',
+      'zu': '',
+    },
+    'brro38kn': {
+      'en': ' x ',
+      'af': '',
+      'zu': '',
+    },
+    'xqmypmlw': {
+      'en': 'Bathroom Check',
+      'af': '',
+      'zu': '',
+    },
+    'hcupvxrg': {
+      'en': 'Bathroom Shower',
+      'af': '',
+      'zu': '',
+    },
+    'u97jwvb3': {
+      'en': 'Good Condition',
+      'af': '',
+      'zu': '',
+    },
+    'ycffhye1': {
+      'en': 'Moderate',
+      'af': '',
+      'zu': '',
+    },
+    '2d0ybyoc': {
+      'en': 'Bad Condition',
+      'af': '',
+      'zu': '',
+    },
+    'hy3fjnie': {
+      'en': 'Hot water working',
+      'af': '',
+      'zu': '',
+    },
+    'egnst1b3': {
+      'en': 'Yes',
+      'af': '',
+      'zu': '',
+    },
+    '2dsl9vgq': {
+      'en': 'No',
+      'af': '',
+      'zu': '',
+    },
+    'hbbtcpbk': {
+      'en': 'Mildew build up',
+      'af': '',
+      'zu': '',
+    },
+    'det84xiz': {
+      'en': 'Yes',
+      'af': '',
+      'zu': '',
+    },
+    'jqmcqbod': {
+      'en': 'No',
+      'af': '',
+      'zu': '',
+    },
+    'mi0dkylr': {
+      'en': 'Any major leaks',
+      'af': '',
+      'zu': '',
+    },
+    'j8t0vj7y': {
+      'en': 'Yes',
+      'af': '',
+      'zu': '',
+    },
+    'zhwbrf30': {
+      'en': 'No',
+      'af': '',
+      'zu': '',
+    },
+    '2mwagrs1': {
+      'en': 'Soap dish',
+      'af': '',
+      'zu': '',
+    },
+    'n8py1zwc': {
+      'en': 'In the unit',
+      'af': '',
+      'zu': '',
+    },
+    '3vibx656': {
+      'en': 'Not in the unit',
+      'af': '',
+      'zu': '',
+    },
+    '41g369d4': {
+      'en': 'Taps',
+      'af': '',
+      'zu': '',
+    },
+    '6pab08b9': {
+      'en': 'Working',
+      'af': '',
+      'zu': '',
+    },
+    'oqah7q5f': {
+      'en': 'Not working',
+      'af': '',
+      'zu': '',
+    },
+    'cz9haj5q': {
+      'en': 'Tiling needed',
+      'af': '',
+      'zu': '',
+    },
+    'l16rb60z': {
+      'en': 'Yes',
+      'af': '',
+      'zu': '',
+    },
+    'bsz6zk4p': {
+      'en': 'No',
+      'af': '',
+      'zu': '',
+    },
+    '8eqks1wm': {
+      'en': 'Bathroom General Comments',
+      'af': '',
+      'zu': '',
+    },
+    '0oecqfe0': {
+      'en': 'Explain the general condition that you found the bathroom in.',
+      'af': '',
+      'zu': '',
+    },
+    'jjbejs47': {
+      'en': 'Upload Bathroom Pictures',
+      'af': '',
+      'zu': '',
+    },
+    '25y7kbvf': {
+      'en': 'Click or drag files to this area to upload.',
+      'af': '',
+      'zu': '',
+    },
+    '824m2izp': {
+      'en': 'You can upload up to 3 files.',
+      'af': '',
+      'zu': '',
+    },
+    'obnwre8b': {
+      'en': 'image.jpg',
+      'af': '',
+      'zu': '',
+    },
+    'elppg3yb': {
+      'en': ' x ',
+      'af': '',
+      'zu': '',
+    },
+    'x15qady6': {
+      'en': 'Kitchen Check',
+      'af': '',
+      'zu': '',
+    },
+    'pamtclc1': {
+      'en': 'Stove working',
+      'af': '',
+      'zu': '',
+    },
+    'ifygqa84': {
+      'en': 'Yes',
+      'af': '',
+      'zu': '',
+    },
+    'sr6l8urg': {
+      'en': 'No',
+      'af': '',
+      'zu': '',
+    },
+    'k0l58kn4': {
+      'en': 'Fridge',
+      'af': '',
+      'zu': '',
+    },
+    'kii3qize': {
+      'en': 'In the unit',
+      'af': '',
+      'zu': '',
+    },
+    'slyhmq8o': {
+      'en': 'Not in the unit',
+      'af': '',
+      'zu': '',
+    },
+    'j814pzrr': {
+      'en': 'Kitchen General Comments',
+      'af': '',
+      'zu': '',
+    },
+    'dm20oshn': {
+      'en': 'Explain the general condition that you found the kitchen in.',
+      'af': '',
+      'zu': '',
+    },
+    'l8ad3c6e': {
+      'en': 'Upload Kitchen Pictures',
+      'af': '',
+      'zu': '',
+    },
+    'ifizpjaw': {
+      'en': 'Click or drag files to this area to upload.',
+      'af': '',
+      'zu': '',
+    },
+    '0xg54lrq': {
+      'en': 'You can upload up to 3 files.',
+      'af': '',
+      'zu': '',
+    },
+    '0g2kqvpu': {
+      'en': 'image3.jpg',
+      'af': '',
+      'zu': '',
+    },
+    'v5ng5tgh': {
+      'en': ' x ',
+      'af': '',
+      'zu': '',
+    },
+    'xlh94m9t': {
+      'en': 'General Check',
+      'af': '',
+      'zu': '',
+    },
+    'idybr36t': {
+      'en': 'Keys',
+      'af': '',
+      'zu': '',
+    },
+    'vbfda02q': {
+      'en': 'In order',
+      'af': '',
+      'zu': '',
+    },
+    'iett6hra': {
+      'en': 'Not in order',
+      'af': '',
+      'zu': '',
+    },
+    'mumno3v2': {
+      'en': 'Study table',
+      'af': '',
+      'zu': '',
+    },
+    'gakiwv4b': {
+      'en': 'In the unit',
+      'af': '',
+      'zu': '',
+    },
+    '4cj0d3p4': {
+      'en': 'Not in the unit',
+      'af': '',
+      'zu': '',
+    },
+    'x8px6kou': {
+      'en': 'Study chair',
+      'af': '',
+      'zu': '',
+    },
+    'wxqn2iin': {
+      'en': 'In the unit',
+      'af': '',
+      'zu': '',
+    },
+    'lsr0iao8': {
+      'en': 'Not in the unit',
+      'af': '',
+      'zu': '',
+    },
+    'b22fmz5e': {
+      'en': 'General Area Comments',
+      'af': '',
+      'zu': '',
+    },
+    '10fyc9ap': {
+      'en': 'Explain the general condition that you found the bathroom in.',
+      'af': '',
+      'zu': '',
+    },
+    'xzm45pkt': {
+      'en': 'Upload General Area Pictures',
+      'af': '',
+      'zu': '',
+    },
+    '3q6i94aa': {
+      'en': 'Click or drag files to this area to upload.',
+      'af': '',
+      'zu': '',
+    },
+    'id2h2oma': {
+      'en': 'You can upload up to 3 files.',
+      'af': '',
+      'zu': '',
+    },
+    'egs87r27': {
+      'en': 'image.jpg',
+      'af': '',
+      'zu': '',
+    },
+    'u39tvro4': {
+      'en': ' x ',
+      'af': '',
+      'zu': '',
+    },
+    'zpaee8u5': {
+      'en': 'Confirmation of Inspection',
+      'af': '',
+      'zu': '',
+    },
+    '7f4rl9f0': {
+      'en': 'I Agree',
+      'af': '',
+      'zu': '',
+    },
+    'hkzg6cp6': {
+      'en':
+          'I can confirm that all information added to the inspection form is correct.',
+      'af': '',
+      'zu': '',
+    },
+    'kojozupo': {
+      'en': 'Submit',
+      'af': '',
+      'zu': '',
+    },
+    'zpa9g5r4': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    '6rsjpybr': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'm3uo6le4': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'ved5lu7t': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'mh2coi6u': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'dwvyrkms': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'sfbv8t9w': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    '9dbmn46i': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'cz03aejy': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    '5r48szm7': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    '9m88hvmb': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'm7m0xixn': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'hftsp1wm': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'w66ub2u8': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'ex5x73dd': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'dhi5ybeo': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'ixtxtvgk': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'ueyvy9zs': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'cu4tavv9': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'rb651yuk': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'ph0kuuiz': {
       'en': 'Home',
       'af': '',
       'zu': '',
     },
   },
-  // eskomArea
+  // inspectionConfirm
   {
-    '6hy3h1xk': {
-      'en': 'Search for area',
+    'p79mh9ri': {
+      'en': 'Thank you for\nsubmitting',
       'af': '',
       'zu': '',
     },
-    '59hhwh5q': {
+    'j5df3frn': {
+      'en':
+          'Thank you for submitting your room inspection form. Your input is important to us and we appreciate your efforts in helping us maintain a safe and comfortable living environment. ',
+      'af': '',
+      'zu': '',
+    },
+    'ujs6ha1x': {
+      'en': 'Exit',
+      'af': '',
+      'zu': '',
+    },
+    '8ku78kza': {
       'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // login
+  {
+    'c0uz3sd0': {
+      'en': 'Login',
+      'af': '',
+      'zu': '',
+    },
+    '86rr2w85': {
+      'en': 'Please sign in to continue',
+      'af': '',
+      'zu': '',
+    },
+    'hcd0xsbj': {
+      'en': 'Email',
+      'af': '',
+      'zu': '',
+    },
+    'xl9q50wr': {
+      'en': '',
+      'af': '',
+      'zu': '',
+    },
+    '2dm0ra52': {
+      'en': 'Password',
+      'af': '',
+      'zu': '',
+    },
+    't1uwz00m': {
+      'en': '••••••',
+      'af': '',
+      'zu': '',
+    },
+    'pzc6sd4e': {
+      'en': 'LOGIN',
+      'af': '',
+      'zu': '',
+    },
+    '79gv1sgj': {
+      'en': 'Forgot password?',
+      'af': '',
+      'zu': '',
+    },
+    'axkjgdku': {
+      'en': ' Click here',
+      'af': '',
+      'zu': '',
+    },
+    'ezwehfil': {
+      'en': 'Attention!',
+      'af': '',
+      'zu': '',
+    },
+    'qbqi1vl7': {
+      'en': 'To log in, please follow these steps:',
+      'af': '',
+      'zu': '',
+    },
+    'hm5xop3n': {
+      'en': '1. Enter your ',
+      'af': '',
+      'zu': '',
+    },
+    'snxmm87l': {
+      'en': 'student email',
+      'af': '',
+      'zu': '',
+    },
+    '6bsd2hx7': {
+      'en': ' in the input field.',
+      'af': '',
+      'zu': '',
+    },
+    '522gzu2i': {
+      'en': '2. Click on \'Create New Password\'.',
+      'af': '',
+      'zu': '',
+    },
+    '8h9rlrb6': {
+      'en': '3. Check your student email ',
+      'af': '',
+      'zu': '',
+    },
+    'i1ezxph2': {
+      'en': '(including your junk/spam folder)',
+      'af': '',
+      'zu': '',
+    },
+    'l3rlmfw2': {
+      'en': ' for an email from us with a link to set up your new password.',
+      'af': '',
+      'zu': '',
+    },
+    '59ls5auv': {
+      'en': '4. Click on the link in the email to set up your new password.',
+      'af': '',
+      'zu': '',
+    },
+    'wmosae42': {
+      'en':
+          '5. Once you have set up your new password, return to the app and enter your email and new password to log in.',
+      'af': '',
+      'zu': '',
+    },
+    'fgaldz78': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // testMessage
+  {
+    'ebjmk519': {
+      'en': 'Message...',
+      'af': '',
+      'zu': '',
+    },
+    '0vevtql5': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // search
+  {
+    'c0jqp3n7': {
+      'en': 'Contacts',
+      'af': '',
+      'zu': '',
+    },
+    'gp55q4ft': {
+      'en': 'Search',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // emergency
+  {
+    'uzj1n6vt': {
+      'en': 'Are you in an emergency?',
+      'af': '',
+      'zu': '',
+    },
+    'fwusd467': {
+      'en': 'Emergency Contacts',
+      'af': '',
+      'zu': '',
+    },
+    '1prlu8on': {
+      'en': 'Ambulance',
+      'af': '',
+      'zu': '',
+    },
+    'yrmal24v': {
+      'en': '(011 375 5911)',
+      'af': '',
+      'zu': '',
+    },
+    'pwglhhwo': {
+      'en': 'SAPS',
+      'af': '',
+      'zu': '',
+    },
+    '3jj8pmam': {
+      'en': '(011 497 7000)',
+      'af': '',
+      'zu': '',
+    },
+    'z9umnbor': {
+      'en': 'Suicide Hotline',
+      'af': '',
+      'zu': '',
+    },
+    '2n95vjje': {
+      'en': '(0800 567 567)',
+      'af': '',
+      'zu': '',
+    },
+    '9plrhagg': {
+      'en': 'Fire Dept',
+      'af': '',
+      'zu': '',
+    },
+    'kbu0jjta': {
+      'en': '(011 248 550)',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // viewNotifications
+  {
+    'q0g77akf': {
+      'en': 'Notifications',
+      'af': 'Kennisgewings',
+      'zu': 'Izaziso',
+    },
+    '92kftkq5': {
+      'en': 'A',
+      'af': '',
+      'zu': '',
+    },
+    '5k6v6j4y': {
+      'en': 'Admin',
+      'af': '',
+      'zu': '',
+    },
+    'b0zjw1n3': {
+      'en': 'Rennie House',
+      'af': '',
+      'zu': '',
+    },
+    'iej5nw34': {
+      'en': 'YMCA',
+      'af': '',
+      'zu': '',
+    },
+    'npl3m49t': {
+      'en': 'Amani',
+      'af': '',
+      'zu': '',
+    },
+    '6veyljh1': {
+      'en': 'Campus Africa',
+      'af': '',
+      'zu': '',
+    },
+    'o1qf9cav': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    '5eq8eclt': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    'ch6qki9e': {
+      'en': 'Field is required',
+      'af': '',
+      'zu': '',
+    },
+    'fxnnl5yr': {
+      'en': 'Please choose an option from the dropdown',
+      'af': '',
+      'zu': '',
+    },
+    '4vkqp847': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // lease
+  {
+    'xlp0zdu1': {
+      'en': 'Lease Agreement',
+      'af': '',
+      'zu': '',
+    },
+    '534zaz9h': {
+      'en': 'Done',
+      'af': '',
+      'zu': '',
+    },
+    '5g7mz4vm': {
+      'en': 'Upload Action',
+      'af': '',
+      'zu': '',
+    },
+    'rm5u5hw9': {
+      'en': 'Upload Action',
+      'af': '',
+      'zu': '',
+    },
+    '7jbr9leg': {
+      'en': 'Search',
+      'af': '',
+      'zu': '',
+    },
+    'tutbypcp': {
+      'en': 'New Upload',
+      'af': '',
+      'zu': '',
+    },
+    'adfer8np': {
+      'en': 'Existing Upload',
+      'af': '',
+      'zu': '',
+    },
+    'hus72wrt': {
+      'en': 'View All Uploads',
+      'af': '',
+      'zu': '',
+    },
+    'csstlw7b': {
+      'en':
+          ' Upload New Document:\nTo upload a new document, follow these steps:\n\n• Step 1: Click the \"Upload New Document\" button.\n\n• Step 2: Select the document you want to upload from your device.\n\n•Step 3:  Add a relevant title or description to make it easy to find later on our cloud.',
+      'af': '',
+      'zu': '',
+    },
+    'o8emqrod': {
+      'en': 'Upload Lease Agreement',
+      'af': '',
+      'zu': '',
+    },
+    'ke1zpa5h': {
+      'en': 'Upload a file (5MB max)',
+      'af': '',
+      'zu': '',
+    },
+    'ipy2ctkf': {
+      'en': 'Drop files here\n',
+      'af': '',
+      'zu': '',
+    },
+    '7rex618b': {
+      'en': 'or ',
+      'af': '',
+      'zu': '',
+    },
+    '27y3hp4w': {
+      'en': 'select files',
+      'af': '',
+      'zu': '',
+    },
+    'wm81ypum': {
+      'en': 'Successfully Uploaded!',
+      'af': '',
+      'zu': '',
+    },
+    'a7sw7tjt': {
+      'en': 'No Files Uploaded',
+      'af': '',
+      'zu': '',
+    },
+    '3ns4bi44': {
+      'en': 'Successfully Uploaded!',
+      'af': '',
+      'zu': '',
+    },
+    'kq3fisqk': {
+      'en': 'No Files Uploaded',
+      'af': '',
+      'zu': '',
+    },
+    'q1fqiyk0': {
+      'en': 'Successfully Uploaded!',
+      'af': '',
+      'zu': '',
+    },
+    'r7uaj818': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // viewlease
+  {
+    '7t8gg04d': {
+      'en': 'Done',
+      'af': '',
+      'zu': '',
+    },
+    '3gxyhlvo': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // personal
+  {
+    'dm3v4mui': {
+      'en': 'Personal Information',
+      'af': '',
+      'zu': '',
+    },
+    'c2x56evy': {
+      'en': 'Done',
+      'af': '',
+      'zu': '',
+    },
+    'pfi4skl7': {
+      'en': 'Update Contact Information',
+      'af': '',
+      'zu': '',
+    },
+    'lhfll531': {
+      'en': 'Email',
+      'af': '',
+      'zu': '',
+    },
+    'hcjl679l': {
+      'en': 'Legal Name',
+      'af': '',
+      'zu': '',
+    },
+    '0nnl4wws': {
+      'en': 'First Name (s)',
+      'af': '',
+      'zu': '',
+    },
+    'tbaebejw': {
+      'en': 'Last Name',
+      'af': '',
+      'zu': '',
+    },
+    'brtmsmz4': {
+      'en': 'Student Number',
+      'af': '',
+      'zu': '',
+    },
+    '3lo1lz51': {
+      'en': 'Cancel',
+      'af': '',
+      'zu': '',
+    },
+    'r9kirjvg': {
+      'en': 'Save',
+      'af': '',
+      'zu': '',
+    },
+    '0rwgqtgg': {
+      'en': 'Address',
+      'af': '',
+      'zu': '',
+    },
+    'qq86u3sz': {
+      'en': 'Building',
+      'af': '',
+      'zu': '',
+    },
+    '6t8f775x': {
+      'en': 'Unit',
+      'af': '',
+      'zu': '',
+    },
+    'si1xld2f': {
+      'en': 'Documents',
+      'af': '',
+      'zu': '',
+    },
+    'x3pj0xev': {
+      'en': 'Successfully Uploaded!',
+      'af': '',
+      'zu': '',
+    },
+    '9ffhnyjt': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // other_Profile
+  {
+    '98wzv0xe': {
+      'en': 'Personal Information',
+      'af': '',
+      'zu': '',
+    },
+    'kxe0u5p1': {
+      'en': 'Done',
+      'af': '',
+      'zu': '',
+    },
+    'vqaqkrcp': {
+      'en': 'Update Contact Information',
+      'af': '',
+      'zu': '',
+    },
+    '0a1tg2tq': {
+      'en': 'Email',
+      'af': '',
+      'zu': '',
+    },
+    'w5efrl3q': {
+      'en': 'Legal Name',
+      'af': '',
+      'zu': '',
+    },
+    'i95zb966': {
+      'en': 'First Name (s)',
+      'af': '',
+      'zu': '',
+    },
+    '3cy8jnwa': {
+      'en': 'Last Name',
+      'af': '',
+      'zu': '',
+    },
+    '1ehrvz7v': {
+      'en': 'Student Number',
+      'af': '',
+      'zu': '',
+    },
+    'mqtd0wer': {
+      'en': 'Address',
+      'af': '',
+      'zu': '',
+    },
+    'w9sigzdr': {
+      'en': 'Building',
+      'af': '',
+      'zu': '',
+    },
+    'se4z2cwn': {
+      'en': 'Unit',
+      'af': '',
+      'zu': '',
+    },
+    'bgm75t6e': {
+      'en': 'Documents',
+      'af': '',
+      'zu': '',
+    },
+    '6b9obtnv': {
+      'en': 'Successfully Uploaded!',
+      'af': '',
+      'zu': '',
+    },
+    'mcpd7trv': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // registration
+  {
+    '83jg9muy': {
+      'en': 'Registration',
+      'af': '',
+      'zu': '',
+    },
+    'fbfhvumv': {
+      'en': 'Create Profile',
+      'af': '',
+      'zu': '',
+    },
+    'jirxceda': {
+      'en': 'Student Number',
+      'af': '',
+      'zu': '',
+    },
+    'dtmsa6d0': {
+      'en': 'Option 1',
+      'af': '',
+      'zu': '',
+    },
+    'z9jprs01': {
+      'en': 'Name',
+      'af': '',
+      'zu': '',
+    },
+    '155x41il': {
+      'en': 'Option 1',
+      'af': '',
+      'zu': '',
+    },
+    'xuze5ffm': {
+      'en': 'Surname',
+      'af': '',
+      'zu': '',
+    },
+    'bsgmgqf9': {
+      'en': 'Email',
+      'af': '',
+      'zu': '',
+    },
+    '1m2hbn3p': {
+      'en': '+27',
+      'af': '',
+      'zu': '',
+    },
+    'ujga5z7g': {
+      'en': 'Phone',
+      'af': '',
+      'zu': '',
+    },
+    'iy64w4xh': {
+      'en': 'Select your Apartment or Residence',
+      'af': '',
+      'zu': '',
+    },
+    'km9j0wzk': {
+      'en': 'Search for an item...',
+      'af': '',
+      'zu': '',
+    },
+    'v4jk7gm8': {
+      'en': 'Option 1',
+      'af': '',
+      'zu': '',
+    },
+    'd0yauq83': {
+      'en': 'Room Number',
+      'af': '',
+      'zu': '',
+    },
+    'r6zc5zpw': {
+      'en': 'Create Password',
+      'af': '',
+      'zu': '',
+    },
+    'hrwwjsqq': {
+      'en': 'Password',
+      'af': '',
+      'zu': '',
+    },
+    '9x3j1f12': {
+      'en': 'Confirm Password',
+      'af': '',
+      'zu': '',
+    },
+    '6k7q167e': {
+      'en': 'Terms & Conditions',
+      'af': '',
+      'zu': '',
+    },
+    '9d6wbd0b': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // view
+  {
+    'l93u0skm': {
+      'en': 'Campus Africa',
+      'af': '',
+      'zu': '',
+    },
+    'eoiistge': {
+      'en': 'Submitted',
+      'af': '',
+      'zu': '',
+    },
+    'xjhygysu': {
+      'en': 'Tap here to view ALL tasks',
+      'af': '',
+      'zu': '',
+    },
+    'bmafe6dg': {
+      'en': 'Complete',
+      'af': '',
+      'zu': '',
+    },
+    'xc8d1801': {
+      'en': 'Pending',
+      'af': '',
+      'zu': '',
+    },
+    '7bmrgc01': {
+      'en': 'Tap here to view ALL tasks',
+      'af': '',
+      'zu': '',
+    },
+    'm7v64mic': {
+      'en': 'Complete',
+      'af': '',
+      'zu': '',
+    },
+    '4sexau43': {
+      'en': 'Completed',
+      'af': '',
+      'zu': '',
+    },
+    '0019a2aj': {
+      'en': 'Tap here to view ALL tasks',
+      'af': '',
+      'zu': '',
+    },
+    'k5oijbsp': {
+      'en': 'Submitted',
+      'af': '',
+      'zu': '',
+    },
+    'vx2j2hju': {
+      'en': 'Tap here to view ALL tasks',
+      'af': '',
+      'zu': '',
+    },
+    'l6ipyjih': {
+      'en': 'Pending',
+      'af': '',
+      'zu': '',
+    },
+    'smgg9g31': {
+      'en': 'Tap here to view ALL tasks',
+      'af': '',
+      'zu': '',
+    },
+    '0wfwrsgr': {
+      'en': 'Completed',
+      'af': '',
+      'zu': '',
+    },
+    'vy9oywqu': {
+      'en': 'Tap here to view ALL tasks',
+      'af': '',
+      'zu': '',
+    },
+    '7wtwwcdo': {
+      'en': 'Ticket',
+      'af': '',
+      'zu': '',
+    },
+    'qbz4vedv': {
+      'en': 'Search',
+      'af': '',
+      'zu': '',
+    },
+    'm1s3pp1p': {
+      'en': 'Inbox',
+      'af': '',
+      'zu': '',
+    },
+    'bg62n1xb': {
+      'en': 'Settings',
+      'af': '',
+      'zu': '',
+    },
+    '1qb5t95q': {
+      'en': 'Notifications',
+      'af': '',
+      'zu': '',
+    },
+    'hlvsqotk': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // settingsCopy
+  {
+    'hry3a3dn': {
+      'en': 'Settings',
+      'af': '',
+      'zu': '',
+    },
+    'zzt7ocqb': {
+      'en': 'General',
+      'af': '',
+      'zu': '',
+    },
+    'plthauye': {
+      'en': 'Student handbook',
+      'af': '',
+      'zu': '',
+    },
+    'db66zc8l': {
+      'en': 'Manage Visitors',
+      'af': '',
+      'zu': '',
+    },
+    'bo2axg6q': {
+      'en': 'Contacts',
+      'af': '',
+      'zu': '',
+    },
+    'y6y4rp1k': {
+      'en': 'Download CSV',
+      'af': '',
+      'zu': '',
+    },
+    '34mkf28y': {
+      'en': 'Theme',
+      'af': '',
+      'zu': '',
+    },
+    'pfy2mgip': {
+      'en': 'Dark',
+      'af': '',
+      'zu': '',
+    },
+    'f4x6wgl0': {
+      'en': 'Light',
+      'af': '',
+      'zu': '',
+    },
+    'wifqkc10': {
+      'en': 'System',
+      'af': '',
+      'zu': '',
+    },
+    '3jz52a4x': {
+      'en': 'Support',
+      'af': '',
+      'zu': '',
+    },
+    'jawkbr7f': {
+      'en': 'Help center',
+      'af': '',
+      'zu': '',
+    },
+    '6dcerd43': {
+      'en': 'Report a bug',
+      'af': '',
+      'zu': '',
+    },
+    'ymo0mz0a': {
+      'en': 'About',
+      'af': '',
+      'zu': '',
+    },
+    'k6ujhdb2': {
+      'en': 'Terms of service',
+      'af': '',
+      'zu': '',
+    },
+    '4hg8949x': {
+      'en': 'Privacy Policy',
+      'af': '',
+      'zu': '',
+    },
+    'ehi3wj29': {
+      'en': 'App version',
+      'af': '',
+      'zu': '',
+    },
+    'uqtb52ro': {
+      'en': 'V2.0.0.0 (13898)',
+      'af': '',
+      'zu': '',
+    },
+    '9jj0k7tb': {
+      'en': 'More',
+      'af': '',
+      'zu': '',
+    },
+    'ly1e84c8': {
+      'en': 'Rate this app',
+      'af': '',
+      'zu': '',
+    },
+    'wj3rh1yx': {
+      'en': 'Reset Password',
+      'af': '',
+      'zu': '',
+    },
+    'fpmy5gjw': {
+      'en': 'Log out',
+      'af': '',
+      'zu': '',
+    },
+    'ysi3sfvr': {
+      'en': 'Search',
+      'af': '',
+      'zu': '',
+    },
+    'uiqhdyvg': {
+      'en': 'Inbox',
+      'af': '',
+      'zu': '',
+    },
+    'el2l9460': {
+      'en': 'Settings',
+      'af': '',
+      'zu': '',
+    },
+    'h78vx67a': {
+      'en': 'Notifications',
+      'af': '',
+      'zu': '',
+    },
+    'a1s4dyqt': {
+      'en': '',
       'af': '',
       'zu': '',
     },
   },
   // submittedIcon
   {
-    'ua7ubrzs': {
-      'en': 'Success!',
-      'af': 'Sukses!',
-      'zu': 'Impumelelo!',
+    '02drb4ho': {
+      'en': 'FPG Property Fund',
+      'af': '',
+      'zu': '',
     },
-    'eelep3l0': {
+    '1iu4w8c1': {
+      'en': 'Success!',
+      'af': '',
+      'zu': '',
+    },
+    'nyzsxlkf': {
       'en':
           'Your ticket has been received\nby the Campus Africa maintenance\nteam.',
-      'af': 'Jou versoek is deur die Campus Africa-instandhoudingspan ontvang.',
-      'zu': 'Isicelo sakho sitholwe yithimba elinakekela i-Campus Africa.',
+      'af': '',
+      'zu': '',
     },
-    '6vhy0doc': {
+    'va601mml': {
       'en': 'Continue',
-      'af': 'Aanhou',
-      'zu': 'Qhubeka',
-    },
-  },
-  // emptyList
-  {
-    'cf85lsih': {
-      'en': 'No results were found.\nPlease try again :)',
-      'af':
-          'Geen resultate is van jou soektog gevind nie. Probeer asseblief weer.',
-      'zu':
-          'Ayikho imiphumela etholakele oseshweni lwakho. Ngicela uzame futhi.',
+      'af': '',
+      'zu': '',
     },
   },
   // darkMode
   {
-    '1ni48z6d': {
-      'en': 'Light theme',
-      'af': 'Ligte tema',
-      'zu': 'Itimu ekhanyayo',
+    'fokdmcpy': {
+      'en': 'Light Theme',
+      'af': '',
+      'zu': '',
     },
-    'lhga9n6k': {
-      'en': 'Dark theme',
-      'af': 'Donker tema',
-      'zu': 'Itimu emnyama',
+    'dz9vonjh': {
+      'en': 'Dark Theme',
+      'af': '',
+      'zu': '',
     },
-    'cgkby2zl': {
-      'en': 'From device settings',
-      'af': 'Van toestelinstellings',
-      'zu': 'Kusuka kuzilungiselelo zedivayisi',
+    'td20jus6': {
+      'en': 'System Settings',
+      'af': '',
+      'zu': '',
+    },
+    'lp2avool': {
+      'en': 'Close',
+      'af': '',
+      'zu': '',
     },
   },
   // sideNav
   {
-    'x0l4kq51': {
-      'en': 'Campus Africa',
-      'af': 'Kampus Afrika',
-      'zu': 'Ikhampasi Afrika',
+    'a5z6pvay': {
+      'en': 'Menu',
+      'af': '',
+      'zu': '',
     },
-    'mdh6tpe4': {
-      'en': 'MENU',
-      'af': 'SPYSKAART',
-      'zu': 'IMENU',
-    },
-    'kw4npc6y': {
+    'teclu4th': {
       'en': 'Home',
-      'af': 'Tuis',
-      'zu': 'Ikhaya',
+      'af': '',
+      'zu': '',
     },
-    'qa3se4pd': {
-      'en': 'Admin Dashboard',
-      'af': 'Bekyk versoeke',
-      'zu': 'Buka Izicelo',
+    'husv3bm9': {
+      'en': 'Dashboard',
+      'af': '',
+      'zu': '',
     },
-    't5vq29q1': {
-      'en': 'View Tickets',
-      'af': 'Bekyk versoeke',
-      'zu': 'Buka Izicelo',
+    'n08xop2m': {
+      'en': 'Tickets',
+      'af': '',
+      'zu': '',
     },
-    'j8681eie': {
-      'en': 'Messages',
-      'af': 'Boodskappe',
-      'zu': 'Imilayezo',
+    'z7ejebqi': {
+      'en': 'Message',
+      'af': '',
+      'zu': '',
     },
-    'ep2r2in9': {
-      'en': 'ADVANCED SETTINGS',
-      'af': 'GEVORDERDE INSTELLINGS',
-      'zu': 'IZILUNGISELELO EZITHUTHUKILE',
+    'tgbtfu8s': {
+      'en': 'Users...',
+      'af': '',
+      'zu': '',
     },
-    'vblitw5u': {
+    'pfxaeomv': {
+      'en': 'Settings...',
+      'af': '',
+      'zu': '',
+    },
+    '8bz1e13i': {
       'en': 'Notifications',
-      'af': 'Kennisgewings',
-      'zu': 'Izaziso',
+      'af': '',
+      'zu': '',
     },
-    'bls7d7dx': {
-      'en': 'Manage Visitors',
-      'af': 'Kennisgewings',
-      'zu': 'Izaziso',
+    '7uv5pczt': {
+      'en': 'Campus \nAfrica',
+      'af': '',
+      'zu': '',
     },
-    'eqk2sg1h': {
-      'en': 'Add Visitors',
-      'af': 'Kennisgewings',
-      'zu': 'Izaziso',
+    'sd35ivuc': {
+      'en': 'Dashboard',
+      'af': '',
+      'zu': '',
     },
-    'kvxrkvlp': {
-      'en': 'Manage Visitors',
-      'af': 'Kennisgewings',
-      'zu': 'Izaziso',
+    'fkgpvev9': {
+      'en': 'Home',
+      'af': '',
+      'zu': '',
     },
-    'hdqqhj1s': {
-      'en': 'Inspections',
-      'af': 'Kennisgewings',
-      'zu': 'Izaziso',
+    'u6t1u6c4': {
+      'en': 'Admin',
+      'af': '',
+      'zu': '',
     },
-    '1ifk0xp2': {
+    '6hypbbx3': {
+      'en': 'Inbox',
+      'af': '',
+      'zu': '',
+    },
+    '50xme04h': {
+      'en': 'Others',
+      'af': '',
+      'zu': '',
+    },
+    'fknxlrrz': {
+      'en': 'Notifications',
+      'af': '',
+      'zu': '',
+    },
+    '0abiumlx': {
       'en': 'Users',
-      'af': 'Gebruikers',
-      'zu': 'Abasebenzisi',
+      'af': '',
+      'zu': '',
     },
-    'f638xly7': {
+    'wv558bxv': {
       'en': 'Settings',
-      'af': 'Instellings',
-      'zu': 'Izilungiselelo',
-    },
-    'hpde03g2': {
-      'en': 'Logout',
-      'af': 'Teken uit',
-      'zu': 'Phuma',
-    },
-  },
-  // ticket
-  {
-    '36k5t7bv': {
-      'en': 'Dischem \nVoucher',
       'af': '',
       'zu': '',
     },
-    'jpd5zrn3': {
-      'en': 'Get 20 % off on all purchases',
-      'af': '',
-      'zu': '',
-    },
-    'jg01c455': {
-      'en': '2X7HV4',
-      'af': '',
-      'zu': '',
-    },
-    'hdynqqno': {
-      'en': 'Valid until 03/09/2022',
+    '1uofyoiq': {
+      'en': 'Close',
       'af': '',
       'zu': '',
     },
   },
-  // skeletonInfo
+  // passwordReset
   {
-    'h7mk5f53': {
-      'en': 'Time',
-      'af': 'Tyd',
-      'zu': 'Isikhathi',
-    },
-    'myqkd4g0': {
-      'en': 'Convinience',
-      'af': 'Gerieflikheid',
-      'zu': 'Convinience',
-    },
-    'ccr0js2s': {
-      'en': 'Cleanliness',
-      'af': 'Netheid',
-      'zu': 'Inhlanzeko',
-    },
-    'zgil29a2': {
-      'en': 'Communication',
-      'af': 'Kommunikasie',
-      'zu': 'Ukuxhumana',
-    },
-    '91adx62k': {
-      'en': 'Quality',
-      'af': 'Kwaliteit',
-      'zu': 'Ikhwalithi',
-    },
-    'odeegdal': {
-      'en': 'Option ',
-      'af': 'Opsie',
-      'zu': 'Inketho',
-    },
-    'oge88a04': {
-      'en':
-          'Your rating is really important for us as it helps us to improve our services for the future.',
-      'af':
-          'Jou gradering is baie belangrik vir ons aangesien dit ons help om ons dienste vir die toekoms te verbeter.',
-      'zu':
-          'Isilinganiso sakho sibaluleke ngempela kithi njengoba sisisiza ukuthuthukisa amasevisi ethu esikhathini esizayo.',
-    },
-  },
-  // resetPassword
-  {
-    'fpmtun0a': {
+    'y1hn9pdi': {
       'en': 'Password Reset',
-      'af': 'Sukses!',
-      'zu': 'Impumelelo!',
+      'af': '',
+      'zu': '',
     },
-    '5xnejcaa': {
+    'f2a6bau6': {
       'en':
           'If successful, a link to create a new password has been sent to your email. Please check your spam/junk folder if you can not find the email',
-      'af': 'Jou versoek is deur die Campus Africa-instandhoudingspan ontvang.',
-      'zu': 'Isicelo sakho sitholwe yithimba elinakekela i-Campus Africa.',
+      'af': '',
+      'zu': '',
     },
-    '7qg09j8y': {
+    '883c28pi': {
       'en': 'Continue',
-      'af': 'Aanhou',
-      'zu': 'Qhubeka',
-    },
-  },
-  // notificationsComponent
-  {
-    '5s8l0mfa': {
-      'en': 'Notifications',
-      'af': 'Kennisgewings',
-      'zu': 'Izaziso',
-    },
-    'cx4ukq4k': {
-      'en': 'Latest',
-      'af': 'Nuutste',
-      'zu': 'Okwakamuva',
-    },
-    'w3bonag1': {
-      'en': 'Following',
-      'af': 'Volgende',
-      'zu': 'Ukulandela',
-    },
-    'h935li2l': {
-      'en': 'All',
-      'af': 'Almal',
-      'zu': 'Konke',
-    },
-  },
-  // notifBottomSheet
-  {
-    'dz1ghic9': {
-      'en': 'Schedule send',
       'af': '',
       'zu': '',
     },
-    'uioanb3n': {
-      'en': 'Discard',
+  },
+  // cuppertinoNewLink
+  {
+    'q87219u2': {
+      'en': 'Add Link',
       'af': '',
       'zu': '',
     },
-    '02x8d75o': {
+    'sk68b1sn': {
+      'en': 'https://www.example.co.za',
+      'af': '',
+      'zu': '',
+    },
+    'oakboe48': {
+      'en': 'Add',
+      'af': '',
+      'zu': '',
+    },
+    'bmgjqqec': {
       'en': 'Cancel',
-      'af': '',
-      'zu': '',
-    },
-  },
-  // addLink
-  {
-    'k2ycu2a4': {
-      'en': 'Add link for additional information',
-      'af': '',
-      'zu': '',
-    },
-    'ceg3wrbq': {
-      'en':
-          'This could include the link to the social networks containing more information about the relevant post.',
-      'af': '',
-      'zu': '',
-    },
-    'igppq1yv': {
-      'en': 'Paste link here',
-      'af': '',
-      'zu': '',
-    },
-    'ian8r4nd': {
-      'en': 'https://campusafrica.co.za/',
-      'af': '',
-      'zu': '',
-    },
-    'zpjjymsh': {
-      'en': 'https://apply.campusafrica.co.za/login',
-      'af': '',
-      'zu': '',
-    },
-    '3p6ry6ef': {
-      'en': 'https://www.instagram.com/campus.africa/?hl=en',
-      'af': '',
-      'zu': '',
-    },
-    '7o8joatx': {
-      'en': 'Done',
-      'af': '',
-      'zu': '',
-    },
-  },
-  // codeTicket
-  {
-    'm12rfg4j': {
-      'en': 'Valid for',
-      'af': '',
-      'zu': '',
-    },
-    'fmqifbmh': {
-      'en': 'Once Off',
-      'af': '',
-      'zu': '',
-    },
-    'nxp7icp9': {
-      'en': 'On 12/12/2022',
-      'af': '',
-      'zu': '',
-    },
-    'qyd2993a': {
-      'en': 'Access Code',
-      'af': '',
-      'zu': '',
-    },
-    'gzlnhpk0': {
-      'en': '49907',
       'af': '',
       'zu': '',
     },
   },
   // visitorConfirm
   {
-    'h2l2va3v': {
-      'en': 'Visitor Confirmation',
+    'ldow1jak': {
+      'en': 'Access Pass for:',
       'af': '',
       'zu': '',
     },
-    'wevm7gmi': {
-      'en': 'Visitor access pass for',
-      'af': '',
-      'zu': '',
-    },
-    'gz1ppdm5': {
+    'qizjwmcb': {
       'en': 'Invited by',
       'af': '',
       'zu': '',
     },
-    'gevo4gai': {
-      'en': 'Valid for',
-      'af': '',
-      'zu': '',
-    },
-    'r65mpvl4': {
-      'en': 'ONCE',
+    'yfd5j3k9': {
+      'en': 'Dismiss',
       'af': '',
       'zu': '',
     },
   },
-  // emptyTickets
-  {
-    'p84x7nn6': {
-      'en': 'No tickets were found.\nPlease try again :)',
-      'af':
-          'Geen resultate is van jou soektog gevind nie. Probeer asseblief weer.',
-      'zu':
-          'Ayikho imiphumela etholakele oseshweni lwakho. Ngicela uzame futhi.',
-    },
-  },
-  // emptyTicketsCopy
+  // nullView
   {
     '7o3f73y6': {
       'en': 'View not available on mobile. \nPlease use your desktop/tablet.',
@@ -2699,8 +3363,649 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Ayikho imiphumela etholakele oseshweni lwakho. Ngicela uzame futhi.',
     },
   },
+  // optionMenu
+  {
+    'ce7n0qsj': {
+      'en': 'Pin Visitor',
+      'af': '',
+      'zu': '',
+    },
+    '5jau58hq': {
+      'en': 'Resend Invite',
+      'af': '',
+      'zu': '',
+    },
+    'njs7586o': {
+      'en': 'Close',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // noNetwork
+  {
+    'hqus7opr': {
+      'en': 'No network\nconnection',
+      'af': '',
+      'zu': '',
+    },
+    'eenc4t50': {
+      'en': 'No network Connection. Try\nagain later',
+      'af': '',
+      'zu': '',
+    },
+    'svrjury2': {
+      'en': 'Ok',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // rateTicket
+  {
+    'q3o19w0e': {
+      'en': 'Rate',
+      'af': '',
+      'zu': '',
+    },
+    '014l59jt': {
+      'en': 'Add Review',
+      'af': '',
+      'zu': '',
+    },
+    '5a7tzow9': {
+      'en': 'Rate Ticket',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // messagePreview
+  {
+    'fdvq9jx9': {
+      'en': 'Copy',
+      'af': '',
+      'zu': '',
+    },
+    'xomp38t5': {
+      'en': 'Close',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // cuppertinoDeleteMaintenance
+  {
+    '4nr030s2': {
+      'en': 'Please Confirm',
+      'af': '',
+      'zu': '',
+    },
+    'e1d21xjh': {
+      'en': 'Are you sure you want to permanently remove this item?',
+      'af': '',
+      'zu': '',
+    },
+    'qxnpfg66': {
+      'en': 'Yes',
+      'af': '',
+      'zu': '',
+    },
+    'lpeqd3vb': {
+      'en': 'No',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // cuppertinoDeleteVisitor
+  {
+    '6bb3ab1p': {
+      'en': 'Please Confirm',
+      'af': '',
+      'zu': '',
+    },
+    'l3fs39ae': {
+      'en': 'Are you sure you want to permanently remove this item?',
+      'af': '',
+      'zu': '',
+    },
+    'b1j0rhxz': {
+      'en': 'Yes',
+      'af': '',
+      'zu': '',
+    },
+    't7q0mb77': {
+      'en': 'No',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // uploadingImages
+  {
+    'yf18l76u': {
+      'en': 'Uploading Images',
+      'af': '',
+      'zu': '',
+    },
+    'wcx9k66x': {
+      'en': 'Uploading 1 of 1',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // cuppertinoAlert
+  {
+    'pppymaa3': {
+      'en': 'Alert',
+      'af': '',
+      'zu': '',
+    },
+    'qoddwrxq': {
+      'en': 'Dismiss',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // cuppertinoDeleteNotifications
+  {
+    '9egzr7w3': {
+      'en': 'Please Confirm',
+      'af': '',
+      'zu': '',
+    },
+    '8wa6v6ld': {
+      'en': 'Are you sure you want to permanently remove this item?',
+      'af': '',
+      'zu': '',
+    },
+    'wrswo2qr': {
+      'en': 'Yes',
+      'af': '',
+      'zu': '',
+    },
+    'bzz79a3d': {
+      'en': 'No',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // passwordResetCopy
+  {
+    '319gxguy': {
+      'en': 'Attention!',
+      'af': '',
+      'zu': '',
+    },
+    'cmg7nj10': {
+      'en': 'Welcome to ',
+      'af': '',
+      'zu': '',
+    },
+    'qxfhgvk3': {
+      'en': 'Campus Africa ',
+      'af': '',
+      'zu': '',
+    },
+    'j4bclbrq': {
+      'en': 'App',
+      'af': '',
+      'zu': '',
+    },
+    'ugfria37': {
+      'en': 'To log in, please follow these steps:',
+      'af': '',
+      'zu': '',
+    },
+    'xuhdk1e0': {
+      'en': '1. Enter your ',
+      'af': '',
+      'zu': '',
+    },
+    'j5k9wmpo': {
+      'en': 'student email',
+      'af': '',
+      'zu': '',
+    },
+    's61em5s8': {
+      'en': ' in the input field.',
+      'af': '',
+      'zu': '',
+    },
+    'srmgeu88': {
+      'en': '2. Click on \'Create New Password\'.',
+      'af': '',
+      'zu': '',
+    },
+    'xki6bntz': {
+      'en': '3. Check your student email ',
+      'af': '',
+      'zu': '',
+    },
+    'azvd9zc2': {
+      'en': '(including your junk/spam folder)',
+      'af': '',
+      'zu': '',
+    },
+    '6ixti1wn': {
+      'en': ' for an email from us with a link to set up your new password.',
+      'af': '',
+      'zu': '',
+    },
+    '4omh5wyl': {
+      'en': '4. Click on the link in the email to set up your new password.',
+      'af': '',
+      'zu': '',
+    },
+    'nlt5nps1': {
+      'en':
+          '5. Once you have set up your new password, return to the app and enter your email and new password to log in.',
+      'af': '',
+      'zu': '',
+    },
+    'tgv3rh11': {
+      'en': 'Continue',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // errorSnack
+  {
+    'mwz8o1e4': {
+      'en': 'Dismiss',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // successSnack
+  {
+    'uqxfed1e': {
+      'en': 'Dismiss',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // infoSnack
+  {
+    'rkdao32k': {
+      'en': 'Dismiss',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // topNav
+  {
+    'pz3wfgla': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    'qqo7e29q': {
+      'en': 'Notifications',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // record
+  {
+    'nxtiw8aq': {
+      'en': 'Start Recording',
+      'af': '',
+      'zu': '',
+    },
+    'nstzpulz': {
+      'en': 'Stop Recording',
+      'af': '',
+      'zu': '',
+    },
+    '0zay41zg': {
+      'en': 'Dismiss',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // topSlice
+  {
+    'p16snx1h': {
+      'en': 'New Ticket',
+      'af': '',
+      'zu': '',
+    },
+    '388w2leh': {
+      'en': 'Visitors',
+      'af': '',
+      'zu': '',
+    },
+    'qwwy2fct': {
+      'en': 'New Inspections',
+      'af': '',
+      'zu': '',
+    },
+    'jkmzox3h': {
+      'en': 'Messages',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // network
+  {
+    'x376wlh8': {
+      'en': 'No Internet Connection',
+      'af': '',
+      'zu': '',
+    },
+    'g3dsoyku': {
+      'en': 'Save',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // notification_menus
+  {
+    'gusa8p3p': {
+      'en': 'Edit Post',
+      'af': '',
+      'zu': '',
+    },
+    'yugdjmrz': {
+      'en': 'Add information to the post',
+      'af': '',
+      'zu': '',
+    },
+    'sqm2dt1t': {
+      'en': 'Delete',
+      'af': '',
+      'zu': '',
+    },
+    'l8bvadbe': {
+      'en': 'Remove current post',
+      'af': '',
+      'zu': '',
+    },
+    'tczeboxc': {
+      'en': 'Follow Post',
+      'af': '',
+      'zu': '',
+    },
+    'jrjppu89': {
+      'en': 'Follow this post',
+      'af': '',
+      'zu': '',
+    },
+    'o5yubxmv': {
+      'en': 'Unfollow Post',
+      'af': '',
+      'zu': '',
+    },
+    'ctz2nwrk': {
+      'en': 'Unfollow this post',
+      'af': '',
+      'zu': '',
+    },
+    'jgefdl3c': {
+      'en': 'RSVP',
+      'af': '',
+      'zu': '',
+    },
+    'a8nwh6hk': {
+      'en': 'RSVP to this event',
+      'af': '',
+      'zu': '',
+    },
+    'dp2129n1': {
+      'en': 'Dismiss',
+      'af': '',
+      'zu': '',
+    },
+    'y7r24fy9': {
+      'en': 'Close this dialogue',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // pdf_menu
+  {
+    'ydhed888': {
+      'en': 'PDF Document • 176 KB',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // ticket_Info
+  {
+    'tifu7na1': {
+      'en': 'Mark as high priority ',
+      'af': '',
+      'zu': '',
+    },
+    '6jiwvcfa': {
+      'en': 'Message User',
+      'af': '',
+      'zu': '',
+    },
+    '6q7wuy73': {
+      'en': 'Rate this ticket',
+      'af': '',
+      'zu': '',
+    },
+    'ufobh2fh': {
+      'en': 'Delete',
+      'af': '',
+      'zu': '',
+    },
+    'gdpd5j03': {
+      'en': 'Close  ',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // admin_menu
+  {
+    'fwxrwhbd': {
+      'en': 'Refresh',
+      'af': '',
+      'zu': '',
+    },
+    'fofd7wo8': {
+      'en': 'Export CSV',
+      'af': '',
+      'zu': '',
+    },
+    '38t31t6j': {
+      'en': 'Close',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // admin_menuCopy
+  {
+    'h77e4adn': {
+      'en': 'View',
+      'af': '',
+      'zu': '',
+    },
+    '9w0f1x2r': {
+      'en': 'Download',
+      'af': '',
+      'zu': '',
+    },
+    '7wpoqvmv': {
+      'en': 'Close',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // rsvp
+  {
+    'ttggmgf0': {
+      'en': ' ',
+      'af': '',
+      'zu': '',
+    },
+    'irnhtufc': {
+      'en': 'List of all contacts who will attend the event',
+      'af': '',
+      'zu': '',
+    },
+    'myz6qbeq': {
+      'en': 'Attending',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // notifications_popUP
+  {
+    '7xkt82f7': {
+      'en': 'Settings',
+      'af': '',
+      'zu': '',
+    },
+    'j5fe0lo3': {
+      'en': 'LM',
+      'af': '',
+      'zu': '',
+    },
+    'ydw6x92n': {
+      'en': 'Lincoln Mudau',
+      'af': '',
+      'zu': '',
+    },
+    'lihhh97i': {
+      'en': 'LincolnMudau1@gmail.com',
+      'af': '',
+      'zu': '',
+    },
+    'yl1o6hkh': {
+      'en': 'General',
+      'af': '',
+      'zu': '',
+    },
+    'd5e4aov5': {
+      'en': 'Sound Effects',
+      'af': '',
+      'zu': '',
+    },
+    '1aj21fnu': {
+      'en': 'Contacts',
+      'af': '',
+      'zu': '',
+    },
+    'szmvs1gv': {
+      'en': 'Sound Effects',
+      'af': '',
+      'zu': '',
+    },
+    'pxj6ui4f': {
+      'en': 'Theme',
+      'af': '',
+      'zu': '',
+    },
+    '2nezwin3': {
+      'en': 'Dark',
+      'af': '',
+      'zu': '',
+    },
+    'vvdfv2pk': {
+      'en': 'Light',
+      'af': '',
+      'zu': '',
+    },
+    'i9hwfygn': {
+      'en': 'System',
+      'af': '',
+      'zu': '',
+    },
+    'uy462dpg': {
+      'en': 'Support',
+      'af': '',
+      'zu': '',
+    },
+    'rbuhpf48': {
+      'en': 'Help center',
+      'af': '',
+      'zu': '',
+    },
+    'b92y0h8m': {
+      'en': 'Report a bug',
+      'af': '',
+      'zu': '',
+    },
+    'qhpbi0uz': {
+      'en': 'About',
+      'af': '',
+      'zu': '',
+    },
+    'jif5t3m9': {
+      'en': 'Terms of service',
+      'af': '',
+      'zu': '',
+    },
+    '5euzdubc': {
+      'en': 'Privacy Policy',
+      'af': '',
+      'zu': '',
+    },
+    '9bc2tbbn': {
+      'en': 'App version',
+      'af': '',
+      'zu': '',
+    },
+    '5a4chqmz': {
+      'en': 'V2.0.0.0 (13898)',
+      'af': '',
+      'zu': '',
+    },
+    'd32b9s8h': {
+      'en': 'More',
+      'af': '',
+      'zu': '',
+    },
+    'dwbzamcw': {
+      'en': 'Rate this app',
+      'af': '',
+      'zu': '',
+    },
+    '6azfccth': {
+      'en': 'Reset Password',
+      'af': '',
+      'zu': '',
+    },
+  },
+  // thing
+  {
+    'n8d92m1j': {
+      'en': 'Tickets',
+      'af': '',
+      'zu': '',
+    },
+    'df2kpt1i': {
+      'en': 'Add Ticket',
+      'af': '',
+      'zu': '',
+    },
+    'c3oyb9a6': {
+      'en': 'View Ticket',
+      'af': '',
+      'zu': '',
+    },
+  },
   // Miscellaneous
   {
+    'tyqdleqy': {
+      'en': '[Some hint text...]',
+      'af': '',
+      'zu': '',
+    },
+    'v0qzd8i3': {
+      'en': 'Option 1',
+      'af': '',
+      'zu': '',
+    },
+    'gh66cq6k': {
+      'en': 'Please select...',
+      'af': '',
+      'zu': '',
+    },
+    '1ujpu9zn': {
+      'en': 'Search for an item...',
+      'af': '',
+      'zu': '',
+    },
     'lvpj234m': {
       'en':
           'Enable access so you can take photos of your maintenance reports and update your profile picture.',
@@ -2718,7 +4023,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Vumela i-Campus Africa ifinyelele umtapo wakho wolwazi ukuze ukwazi ukulayisha izithombe emibikweni yakho yokulungisa futhi ubuyekeze isithombe sakho sephrofayela',
     },
     'uo3dfuv5': {
-      'en': '',
+      'en':
+          'Allow Campus Africa to access your microphone so you can report maintenance using audio recordings',
       'af': '',
       'zu': '',
     },
@@ -2753,6 +4059,26 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': '',
     },
     'zd5kzz0m': {
+      'en': '',
+      'af': '',
+      'zu': '',
+    },
+    '23zbtirm': {
+      'en': '',
+      'af': '',
+      'zu': '',
+    },
+    'i1ah4uwk': {
+      'en': '',
+      'af': '',
+      'zu': '',
+    },
+    'r627evom': {
+      'en': '',
+      'af': '',
+      'zu': '',
+    },
+    'dg3dveyp': {
       'en': '',
       'af': '',
       'zu': '',
@@ -2803,6 +4129,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zu': '',
     },
     '82ragmeh': {
+      'en': '',
+      'af': '',
+      'zu': '',
+    },
+    'qvd9w3uo': {
       'en': '',
       'af': '',
       'zu': '',

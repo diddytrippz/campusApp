@@ -1,134 +1,180 @@
 import 'dart:async';
 
 import 'package:from_css_color/from_css_color.dart';
+import '/backend/algolia/serialization_util.dart';
+import '/backend/algolia/algolia_manager.dart';
+import 'package:collection/collection.dart';
+
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'users_record.g.dart';
+class UsersRecord extends FirestoreRecord {
+  UsersRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
-  static Serializer<UsersRecord> get serializer => _$usersRecordSerializer;
+  // "email" field.
+  String? _email;
+  String get email => _email ?? '';
+  bool hasEmail() => _email != null;
 
-  String? get email;
+  // "role" field.
+  String? _role;
+  String get role => _role ?? '';
+  bool hasRole() => _role != null;
 
-  String? get uid;
+  // "RESIDENCE" field.
+  String? _residence;
+  String get residence => _residence ?? '';
+  bool hasResidence() => _residence != null;
 
-  @BuiltValueField(wireName: 'created_time')
-  DateTime? get createdTime;
+  // "BED_CODE" field.
+  String? _bedCode;
+  String get bedCode => _bedCode ?? '';
+  bool hasBedCode() => _bedCode != null;
 
-  @BuiltValueField(wireName: 'phone_number')
-  String? get phoneNumber;
+  // "ROOM_TYPE" field.
+  String? _roomType;
+  String get roomType => _roomType ?? '';
+  bool hasRoomType() => _roomType != null;
 
-  String? get room;
+  // "FIRST_NAME" field.
+  String? _firstName;
+  String get firstName => _firstName ?? '';
+  bool hasFirstName() => _firstName != null;
 
-  String? get building;
+  // "LAST_NAME" field.
+  String? _lastName;
+  String get lastName => _lastName ?? '';
+  bool hasLastName() => _lastName != null;
 
-  String? get role;
+  // "CELL_NUMBER" field.
+  String? _cellNumber;
+  String get cellNumber => _cellNumber ?? '';
+  bool hasCellNumber() => _cellNumber != null;
 
-  BuiltList<ContactsStruct>? get contactList;
+  // "STUDENT_NUMBER" field.
+  String? _studentNumber;
+  String get studentNumber => _studentNumber ?? '';
+  bool hasStudentNumber() => _studentNumber != null;
 
-  @BuiltValueField(wireName: 'RESIDENCE')
-  String? get residence;
+  // "photo_url" field.
+  String? _photoUrl;
+  String get photoUrl => _photoUrl ?? '';
+  bool hasPhotoUrl() => _photoUrl != null;
 
-  @BuiltValueField(wireName: 'BED_CODE')
-  String? get bedCode;
+  // "inspectionDone" field.
+  bool? _inspectionDone;
+  bool get inspectionDone => _inspectionDone ?? false;
+  bool hasInspectionDone() => _inspectionDone != null;
 
-  @BuiltValueField(wireName: 'ROOM_TYPE')
-  String? get roomType;
+  // "lease" field.
+  LeaseStruct? _lease;
+  LeaseStruct get lease => _lease ?? LeaseStruct();
+  bool hasLease() => _lease != null;
 
-  @BuiltValueField(wireName: 'FIRST_NAME')
-  String? get firstName;
+  // "uid" field.
+  String? _uid;
+  String get uid => _uid ?? '';
+  bool hasUid() => _uid != null;
 
-  @BuiltValueField(wireName: 'LAST_NAME')
-  String? get lastName;
+  // "phone_number" field.
+  String? _phoneNumber;
+  String get phoneNumber => _phoneNumber ?? '';
+  bool hasPhoneNumber() => _phoneNumber != null;
 
-  @BuiltValueField(wireName: 'CELL_NUMBER')
-  String? get cellNumber;
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
 
-  @BuiltValueField(wireName: 'STUDENT_NUMBER')
-  String? get studentNumber;
+  // "display_name" field.
+  String? _displayName;
+  String get displayName => _displayName ?? '';
+  bool hasDisplayName() => _displayName != null;
 
-  @BuiltValueField(wireName: 'BOOKING_REF')
-  String? get bookingRef;
-
-  @BuiltValueField(wireName: 'display_name')
-  String? get displayName;
-
-  @BuiltValueField(wireName: 'photo_url')
-  String? get photoUrl;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
-
-  static void _initializeBuilder(UsersRecordBuilder builder) => builder
-    ..email = ''
-    ..uid = ''
-    ..phoneNumber = ''
-    ..room = ''
-    ..building = ''
-    ..role = ''
-    ..contactList = ListBuilder()
-    ..residence = ''
-    ..bedCode = ''
-    ..roomType = ''
-    ..firstName = ''
-    ..lastName = ''
-    ..cellNumber = ''
-    ..studentNumber = ''
-    ..bookingRef = ''
-    ..displayName = ''
-    ..photoUrl = '';
+  void _initializeFields() {
+    _email = snapshotData['email'] as String?;
+    _role = snapshotData['role'] as String?;
+    _residence = snapshotData['RESIDENCE'] as String?;
+    _bedCode = snapshotData['BED_CODE'] as String?;
+    _roomType = snapshotData['ROOM_TYPE'] as String?;
+    _firstName = snapshotData['FIRST_NAME'] as String?;
+    _lastName = snapshotData['LAST_NAME'] as String?;
+    _cellNumber = snapshotData['CELL_NUMBER'] as String?;
+    _studentNumber = snapshotData['STUDENT_NUMBER'] as String?;
+    _photoUrl = snapshotData['photo_url'] as String?;
+    _inspectionDone = snapshotData['inspectionDone'] as bool?;
+    _lease = snapshotData['lease'] is LeaseStruct
+        ? snapshotData['lease']
+        : LeaseStruct.maybeFromMap(snapshotData['lease']);
+    _uid = snapshotData['uid'] as String?;
+    _phoneNumber = snapshotData['phone_number'] as String?;
+    _createdTime = snapshotData['created_time'] as DateTime?;
+    _displayName = snapshotData['display_name'] as String?;
+  }
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
 
-  static Stream<UsersRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<UsersRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => UsersRecord.fromSnapshot(s));
 
-  static Future<UsersRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<UsersRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => UsersRecord.fromSnapshot(s));
 
-  static UsersRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) => UsersRecord(
-        (c) => c
-          ..email = snapshot.data['email']
-          ..uid = snapshot.data['uid']
-          ..createdTime = safeGet(() => DateTime.fromMillisecondsSinceEpoch(
-              snapshot.data['created_time']))
-          ..phoneNumber = snapshot.data['phone_number']
-          ..room = snapshot.data['room']
-          ..building = snapshot.data['building']
-          ..role = snapshot.data['role']
-          ..contactList = safeGet(() => ListBuilder(
-              snapshot.data['contactList'].map((data) => createContactsStruct(
-                    name: (data as Map<String, dynamic>)['name'],
-                    surname: (data as Map<String, dynamic>)['surname'],
-                    contact: (data as Map<String, dynamic>)['contact'],
-                    create: true,
-                    clearUnsetFields: false,
-                  ).toBuilder())))
-          ..residence = snapshot.data['RESIDENCE']
-          ..bedCode = snapshot.data['BED_CODE']
-          ..roomType = snapshot.data['ROOM_TYPE']
-          ..firstName = snapshot.data['FIRST_NAME']
-          ..lastName = snapshot.data['LAST_NAME']
-          ..cellNumber = snapshot.data['CELL_NUMBER']
-          ..studentNumber = snapshot.data['STUDENT_NUMBER']
-          ..bookingRef = snapshot.data['BOOKING_REF']
-          ..displayName = snapshot.data['display_name']
-          ..photoUrl = snapshot.data['photo_url']
-          ..ffRef = UsersRecord.collection.doc(snapshot.objectID),
+  static UsersRecord fromSnapshot(DocumentSnapshot snapshot) => UsersRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
       );
 
-  static Future<List<UsersRecord>> search(
-          {String? term,
-          FutureOr<LatLng>? location,
-          int? maxResults,
-          double? searchRadiusMeters}) =>
+  static UsersRecord getDocumentFromData(
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      UsersRecord._(reference, mapFromFirestore(data));
+
+  static UsersRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) =>
+      UsersRecord.getDocumentFromData(
+        {
+          'email': snapshot.data['email'],
+          'role': snapshot.data['role'],
+          'RESIDENCE': snapshot.data['RESIDENCE'],
+          'BED_CODE': snapshot.data['BED_CODE'],
+          'ROOM_TYPE': snapshot.data['ROOM_TYPE'],
+          'FIRST_NAME': snapshot.data['FIRST_NAME'],
+          'LAST_NAME': snapshot.data['LAST_NAME'],
+          'CELL_NUMBER': snapshot.data['CELL_NUMBER'],
+          'STUDENT_NUMBER': snapshot.data['STUDENT_NUMBER'],
+          'photo_url': snapshot.data['photo_url'],
+          'inspectionDone': snapshot.data['inspectionDone'],
+          'lease':
+              LeaseStruct.fromAlgoliaData(snapshot.data['lease'] ?? {}).toMap(),
+          'uid': snapshot.data['uid'],
+          'phone_number': snapshot.data['phone_number'],
+          'created_time': convertAlgoliaParam(
+            snapshot.data['created_time'],
+            ParamType.DateTime,
+            false,
+          ),
+          'display_name': snapshot.data['display_name'],
+        },
+        UsersRecord.collection.doc(snapshot.objectID),
+      );
+
+  static Future<List<UsersRecord>> search({
+    String? term,
+    FutureOr<LatLng>? location,
+    int? maxResults,
+    double? searchRadiusMeters,
+    bool useCache = false,
+  }) =>
       FFAlgoliaManager.instance
           .algoliaQuery(
             index: 'users',
@@ -136,26 +182,25 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
             maxResults: maxResults,
             location: location,
             searchRadiusMeters: searchRadiusMeters,
+            useCache: useCache,
           )
           .then((r) => r.map(fromAlgolia).toList());
 
-  UsersRecord._();
-  factory UsersRecord([void Function(UsersRecordBuilder) updates]) =
-      _$UsersRecord;
+  @override
+  String toString() =>
+      'UsersRecord(reference: ${reference.path}, data: $snapshotData)';
 
-  static UsersRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+  @override
+  int get hashCode => reference.path.hashCode;
+
+  @override
+  bool operator ==(other) =>
+      other is UsersRecord &&
+      reference.path.hashCode == other.reference.path.hashCode;
 }
 
 Map<String, dynamic> createUsersRecordData({
   String? email,
-  String? uid,
-  DateTime? createdTime,
-  String? phoneNumber,
-  String? room,
-  String? building,
   String? role,
   String? residence,
   String? bedCode,
@@ -164,34 +209,84 @@ Map<String, dynamic> createUsersRecordData({
   String? lastName,
   String? cellNumber,
   String? studentNumber,
-  String? bookingRef,
-  String? displayName,
   String? photoUrl,
+  bool? inspectionDone,
+  LeaseStruct? lease,
+  String? uid,
+  String? phoneNumber,
+  DateTime? createdTime,
+  String? displayName,
 }) {
-  final firestoreData = serializers.toFirestore(
-    UsersRecord.serializer,
-    UsersRecord(
-      (u) => u
-        ..email = email
-        ..uid = uid
-        ..createdTime = createdTime
-        ..phoneNumber = phoneNumber
-        ..room = room
-        ..building = building
-        ..role = role
-        ..contactList = null
-        ..residence = residence
-        ..bedCode = bedCode
-        ..roomType = roomType
-        ..firstName = firstName
-        ..lastName = lastName
-        ..cellNumber = cellNumber
-        ..studentNumber = studentNumber
-        ..bookingRef = bookingRef
-        ..displayName = displayName
-        ..photoUrl = photoUrl,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'email': email,
+      'role': role,
+      'RESIDENCE': residence,
+      'BED_CODE': bedCode,
+      'ROOM_TYPE': roomType,
+      'FIRST_NAME': firstName,
+      'LAST_NAME': lastName,
+      'CELL_NUMBER': cellNumber,
+      'STUDENT_NUMBER': studentNumber,
+      'photo_url': photoUrl,
+      'inspectionDone': inspectionDone,
+      'lease': LeaseStruct().toMap(),
+      'uid': uid,
+      'phone_number': phoneNumber,
+      'created_time': createdTime,
+      'display_name': displayName,
+    }.withoutNulls,
   );
 
+  // Handle nested data for "lease" field.
+  addLeaseStructData(firestoreData, lease, 'lease');
+
   return firestoreData;
+}
+
+class UsersRecordDocumentEquality implements Equality<UsersRecord> {
+  const UsersRecordDocumentEquality();
+
+  @override
+  bool equals(UsersRecord? e1, UsersRecord? e2) {
+    return e1?.email == e2?.email &&
+        e1?.role == e2?.role &&
+        e1?.residence == e2?.residence &&
+        e1?.bedCode == e2?.bedCode &&
+        e1?.roomType == e2?.roomType &&
+        e1?.firstName == e2?.firstName &&
+        e1?.lastName == e2?.lastName &&
+        e1?.cellNumber == e2?.cellNumber &&
+        e1?.studentNumber == e2?.studentNumber &&
+        e1?.photoUrl == e2?.photoUrl &&
+        e1?.inspectionDone == e2?.inspectionDone &&
+        e1?.lease == e2?.lease &&
+        e1?.uid == e2?.uid &&
+        e1?.phoneNumber == e2?.phoneNumber &&
+        e1?.createdTime == e2?.createdTime &&
+        e1?.displayName == e2?.displayName;
+  }
+
+  @override
+  int hash(UsersRecord? e) => const ListEquality().hash([
+        e?.email,
+        e?.role,
+        e?.residence,
+        e?.bedCode,
+        e?.roomType,
+        e?.firstName,
+        e?.lastName,
+        e?.cellNumber,
+        e?.studentNumber,
+        e?.photoUrl,
+        e?.inspectionDone,
+        e?.lease,
+        e?.uid,
+        e?.phoneNumber,
+        e?.createdTime,
+        e?.displayName
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is UsersRecord;
 }

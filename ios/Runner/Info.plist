@@ -34,7 +34,7 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>com.googleusercontent.apps.73650904699-em8js1f48sii02q6b7aaj7lvsvmafbdt</string>
+                <!--FF_REVERSED_CLIENT_ID-->
                 
             </array>
         </dict>
@@ -46,12 +46,12 @@
         <string>campus_africa</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>com.campusafrica.app</string>
+        <string>com.campusafricamaintanance.app</string>
         </array>
         </dict>
     </array>
     <key>FlutterDeepLinkingEnabled</key>
-    <true/>
+    <false/>
 
 
 	<key>CFBundleVersion</key>
@@ -61,6 +61,8 @@
 
 	<key>NSCameraUsageDescription</key>
     <string>Enable access so you can take photos of your maintenance reports and update your profile picture.</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>Allow Campus Africa to access your microphone so you can report maintenance using audio recordings</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>Let Campus Africa access your library so you can upload photos to your maintenance reports and update your profile picture</string>
 

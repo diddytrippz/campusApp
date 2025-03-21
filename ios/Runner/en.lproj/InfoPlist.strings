@@ -1,2 +1,3 @@
 NSCameraUsageDescription = "Enable access so you can take photos of your maintenance reports and update your profile picture.";
 NSPhotoLibraryUsageDescription = "Let Campus Africa access your library so you can upload photos to your maintenance reports and update your profile picture";
+NSMicrophoneUsageDescription = "Allow Campus Africa to access your microphone so you can report maintenance using audio recordings";

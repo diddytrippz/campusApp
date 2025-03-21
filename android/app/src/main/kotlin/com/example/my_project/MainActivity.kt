@@ -1,4 +1,4 @@
-package com.campusafrica.app
+package com.campusafricamaintanance.app
 
 import io.flutter.embedding.android.FlutterActivity
 

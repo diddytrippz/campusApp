@@ -1,92 +1,183 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'notifications_record.g.dart';
+class NotificationsRecord extends FirestoreRecord {
+  NotificationsRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class NotificationsRecord
-    implements Built<NotificationsRecord, NotificationsRecordBuilder> {
-  static Serializer<NotificationsRecord> get serializer =>
-      _$notificationsRecordSerializer;
+  // "title" field.
+  String? _title;
+  String get title => _title ?? '';
+  bool hasTitle() => _title != null;
 
-  String? get title;
+  // "sentBy" field.
+  String? _sentBy;
+  String get sentBy => _sentBy ?? '';
+  bool hasSentBy() => _sentBy != null;
 
-  String? get sentBy;
+  // "dateCreate" field.
+  DateTime? _dateCreate;
+  DateTime? get dateCreate => _dateCreate;
+  bool hasDateCreate() => _dateCreate != null;
 
-  String? get building;
+  // "Urgency" field.
+  String? _urgency;
+  String get urgency => _urgency ?? '';
+  bool hasUrgency() => _urgency != null;
 
-  DateTime? get dateCreate;
+  // "link" field.
+  String? _link;
+  String get link => _link ?? '';
+  bool hasLink() => _link != null;
 
-  @BuiltValueField(wireName: 'Urgency')
-  String? get urgency;
+  // "content" field.
+  String? _content;
+  String get content => _content ?? '';
+  bool hasContent() => _content != null;
 
-  bool? get sendToAll;
+  // "targets" field.
+  List<String>? _targets;
+  List<String> get targets => _targets ?? const [];
+  bool hasTargets() => _targets != null;
 
-  String? get link;
+  // "rsvp" field.
+  List<DocumentReference>? _rsvp;
+  List<DocumentReference> get rsvp => _rsvp ?? const [];
+  bool hasRsvp() => _rsvp != null;
 
-  String? get content;
+  // "following" field.
+  List<DocumentReference>? _following;
+  List<DocumentReference> get following => _following ?? const [];
+  bool hasFollowing() => _following != null;
 
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "confirm" field.
+  bool? _confirm;
+  bool get confirm => _confirm ?? false;
+  bool hasConfirm() => _confirm != null;
 
-  static void _initializeBuilder(NotificationsRecordBuilder builder) => builder
-    ..title = ''
-    ..sentBy = ''
-    ..building = ''
-    ..urgency = ''
-    ..sendToAll = false
-    ..link = ''
-    ..content = '';
+  // "attachment" field.
+  List<String>? _attachment;
+  List<String> get attachment => _attachment ?? const [];
+  bool hasAttachment() => _attachment != null;
+
+  void _initializeFields() {
+    _title = snapshotData['title'] as String?;
+    _sentBy = snapshotData['sentBy'] as String?;
+    _dateCreate = snapshotData['dateCreate'] as DateTime?;
+    _urgency = snapshotData['Urgency'] as String?;
+    _link = snapshotData['link'] as String?;
+    _content = snapshotData['content'] as String?;
+    _targets = getDataList(snapshotData['targets']);
+    _rsvp = getDataList(snapshotData['rsvp']);
+    _following = getDataList(snapshotData['following']);
+    _confirm = snapshotData['confirm'] as bool?;
+    _attachment = getDataList(snapshotData['attachment']);
+  }
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('notifications');
 
-  static Stream<NotificationsRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<NotificationsRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => NotificationsRecord.fromSnapshot(s));
 
   static Future<NotificationsRecord> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
+      ref.get().then((s) => NotificationsRecord.fromSnapshot(s));
 
-  NotificationsRecord._();
-  factory NotificationsRecord(
-          [void Function(NotificationsRecordBuilder) updates]) =
-      _$NotificationsRecord;
+  static NotificationsRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      NotificationsRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static NotificationsRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      NotificationsRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'NotificationsRecord(reference: ${reference.path}, data: $snapshotData)';
+
+  @override
+  int get hashCode => reference.path.hashCode;
+
+  @override
+  bool operator ==(other) =>
+      other is NotificationsRecord &&
+      reference.path.hashCode == other.reference.path.hashCode;
 }
 
 Map<String, dynamic> createNotificationsRecordData({
   String? title,
   String? sentBy,
-  String? building,
   DateTime? dateCreate,
   String? urgency,
-  bool? sendToAll,
   String? link,
   String? content,
+  bool? confirm,
 }) {
-  final firestoreData = serializers.toFirestore(
-    NotificationsRecord.serializer,
-    NotificationsRecord(
-      (n) => n
-        ..title = title
-        ..sentBy = sentBy
-        ..building = building
-        ..dateCreate = dateCreate
-        ..urgency = urgency
-        ..sendToAll = sendToAll
-        ..link = link
-        ..content = content,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'title': title,
+      'sentBy': sentBy,
+      'dateCreate': dateCreate,
+      'Urgency': urgency,
+      'link': link,
+      'content': content,
+      'confirm': confirm,
+    }.withoutNulls,
   );
 
   return firestoreData;
+}
+
+class NotificationsRecordDocumentEquality
+    implements Equality<NotificationsRecord> {
+  const NotificationsRecordDocumentEquality();
+
+  @override
+  bool equals(NotificationsRecord? e1, NotificationsRecord? e2) {
+    const listEquality = ListEquality();
+    return e1?.title == e2?.title &&
+        e1?.sentBy == e2?.sentBy &&
+        e1?.dateCreate == e2?.dateCreate &&
+        e1?.urgency == e2?.urgency &&
+        e1?.link == e2?.link &&
+        e1?.content == e2?.content &&
+        listEquality.equals(e1?.targets, e2?.targets) &&
+        listEquality.equals(e1?.rsvp, e2?.rsvp) &&
+        listEquality.equals(e1?.following, e2?.following) &&
+        e1?.confirm == e2?.confirm &&
+        listEquality.equals(e1?.attachment, e2?.attachment);
+  }
+
+  @override
+  int hash(NotificationsRecord? e) => const ListEquality().hash([
+        e?.title,
+        e?.sentBy,
+        e?.dateCreate,
+        e?.urgency,
+        e?.link,
+        e?.content,
+        e?.targets,
+        e?.rsvp,
+        e?.following,
+        e?.confirm,
+        e?.attachment
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is NotificationsRecord;
 }

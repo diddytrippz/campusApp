@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 export 'package:fl_chart/fl_chart.dart'
-    show BarAreaData, FlDotData, LineChartBarData;
-
-final _format = (NumberFormat()..significantDigits = 2);
+    show BarAreaData, FlDotData, LineChartBarData, BarChartAlignment;
 
 class FlutterFlowLineChart extends StatelessWidget {
   const FlutterFlowLineChart({
@@ -34,7 +32,8 @@ class FlutterFlowLineChart extends StatelessWidget {
           lineTouchData: LineTouchData(
             handleBuiltInTouches: chartStylingInfo.enableTooltip,
             touchTooltipData: LineTouchTooltipData(
-              tooltipBgColor: chartStylingInfo.tooltipBackgroundColor,
+              getTooltipColor: (group) =>
+                  chartStylingInfo.tooltipBackgroundColor ?? Colors.black,
             ),
           ),
           gridData: FlGridData(show: chartStylingInfo.showGrid),
@@ -48,10 +47,6 @@ class FlutterFlowLineChart extends StatelessWidget {
           titlesData: getTitlesData(
             xAxisLabelInfo,
             yAxisLabelInfo,
-            (val, _) => Text(
-              _format.format(val),
-              style: xAxisLabelInfo.labelTextStyle,
-            ),
           ),
           lineBarsData: dataWithSpots,
           minX: axisBounds.minX,
@@ -159,7 +154,8 @@ class FlutterFlowBarChart extends StatelessWidget {
         barTouchData: BarTouchData(
           handleBuiltInTouches: chartStylingInfo.enableTooltip,
           touchTooltipData: BarTouchTooltipData(
-            tooltipBgColor: chartStylingInfo.tooltipBackgroundColor,
+            getTooltipColor: (group) =>
+                chartStylingInfo.tooltipBackgroundColor ?? Colors.black,
           ),
         ),
         alignment: alignment,
@@ -174,7 +170,7 @@ class FlutterFlowBarChart extends StatelessWidget {
         titlesData: getTitlesData(
           xAxisLabelInfo,
           yAxisLabelInfo,
-          (val, _) => Text(
+          getXTitlesWidget: (val, _) => Text(
             xLabels[val.toInt()],
             style: xAxisLabelInfo.labelTextStyle,
           ),
@@ -203,6 +199,7 @@ class FlutterFlowPieChart extends StatelessWidget {
     this.donutHoleColor = Colors.transparent,
     this.sectionLabelType = PieChartSectionLabelType.none,
     this.sectionLabelStyle,
+    this.labelFormatter = const LabelFormatter(),
   }) : super(key: key);
 
   final FFPieChartData data;
@@ -210,6 +207,7 @@ class FlutterFlowPieChart extends StatelessWidget {
   final Color donutHoleColor;
   final PieChartSectionLabelType sectionLabelType;
   final TextStyle? sectionLabelStyle;
+  final LabelFormatter labelFormatter;
 
   double get sumOfValues => data.data.reduce((a, b) => a + b);
 
@@ -228,10 +226,11 @@ class FlutterFlowPieChart extends StatelessWidget {
               final otherPropsLength = data.radius.length;
               switch (sectionLabelType) {
                 case PieChartSectionLabelType.value:
-                  title = _format.format(sectionData);
+                  title = formatLabel(labelFormatter, sectionData);
                   break;
                 case PieChartSectionLabelType.percent:
-                  title = '${_format.format(sectionData / sumOfValues * 100)}%';
+                  title =
+                      '${formatLabel(labelFormatter, sectionData / sumOfValues * 100)}%';
                   break;
                 default:
                   break;
@@ -367,6 +366,8 @@ class AxisLabelInfo {
     this.showLabels = false,
     this.labelTextStyle,
     this.labelInterval,
+    this.labelFormatter = const LabelFormatter(),
+    this.reservedSize,
   });
 
   final String title;
@@ -374,6 +375,17 @@ class AxisLabelInfo {
   final bool showLabels;
   final TextStyle? labelTextStyle;
   final double? labelInterval;
+  final LabelFormatter labelFormatter;
+  final double? reservedSize;
+}
+
+class LabelFormatter {
+  const LabelFormatter({
+    this.numberFormat,
+  });
+
+  final String Function(double)? numberFormat;
+  NumberFormat get defaultFormat => NumberFormat()..significantDigits = 2;
 }
 
 class AxisBounds {
@@ -477,9 +489,9 @@ List<double?> _dataToDouble(List<dynamic> data) {
 
 FlTitlesData getTitlesData(
   AxisLabelInfo xAxisLabelInfo,
-  AxisLabelInfo yAxisLabelInfo,
+  AxisLabelInfo yAxisLabelInfo, {
   Widget Function(double, TitleMeta)? getXTitlesWidget,
-) =>
+}) =>
     FlTitlesData(
       bottomTitles: AxisTitles(
         axisNameWidget: xAxisLabelInfo.title.isEmpty
@@ -490,11 +502,17 @@ FlTitlesData getTitlesData(
               ),
         axisNameSize: xAxisLabelInfo.titleTextStyle?.fontSize != null
             ? xAxisLabelInfo.titleTextStyle!.fontSize! + 12
-            : null,
+            : 16,
         sideTitles: SideTitles(
+          getTitlesWidget: (val, _) => getXTitlesWidget != null
+              ? getXTitlesWidget(val, _)
+              : Text(
+                  formatLabel(xAxisLabelInfo.labelFormatter, val),
+                  style: xAxisLabelInfo.labelTextStyle,
+                ),
           showTitles: xAxisLabelInfo.showLabels,
-          getTitlesWidget: getXTitlesWidget,
           interval: xAxisLabelInfo.labelInterval,
+          reservedSize: xAxisLabelInfo.reservedSize ?? 22,
         ),
       ),
       rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -508,14 +526,22 @@ FlTitlesData getTitlesData(
               ),
         axisNameSize: yAxisLabelInfo.titleTextStyle?.fontSize != null
             ? yAxisLabelInfo.titleTextStyle!.fontSize! + 12
-            : null,
+            : 16,
         sideTitles: SideTitles(
           getTitlesWidget: (val, _) => Text(
-            _format.format(val),
+            formatLabel(yAxisLabelInfo.labelFormatter, val),
             style: yAxisLabelInfo.labelTextStyle,
           ),
           showTitles: yAxisLabelInfo.showLabels,
           interval: yAxisLabelInfo.labelInterval,
+          reservedSize: yAxisLabelInfo.reservedSize ?? 22,
         ),
       ),
     );
+
+String formatLabel(LabelFormatter formatter, double value) {
+  if (formatter.numberFormat != null) {
+    return formatter.numberFormat!(value);
+  }
+  return formatter.defaultFormat.format(value);
+}

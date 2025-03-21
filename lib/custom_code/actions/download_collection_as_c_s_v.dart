@@ -1,9 +1,11 @@
 // Automatic FlutterFlow imports
-import '../../backend/backend.dart';
-import '../../flutter_flow/flutter_flow_theme.dart';
-import '../../flutter_flow/flutter_flow_util.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
+import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom actions
-import '../../flutter_flow/custom_functions.dart'; // Imports custom functions
+import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
@@ -15,7 +17,7 @@ Future downloadCollectionAsCSV(List<MaintenanceRecord>? docs) async {
   docs = docs ?? [];
 
   String fileContent =
-      "email, issue, notes, residence, bedCode, category, status";
+      "email, issue, notes, residence, bedCode, category, status, createdTime";
 
   docs.asMap().forEach((index, record) => fileContent = fileContent +
       "\n" +
@@ -31,10 +33,12 @@ Future downloadCollectionAsCSV(List<MaintenanceRecord>? docs) async {
       "," +
       record.category.toString() +
       "," +
+      record.createdTime.toString() +
+      "," +
       record.status.toString());
 
   final fileName =
-      "CampusAfricaMaintenance" + DateTime.now().toString() + ".csv";
+      "CampusAfrica_Maintenance" + DateTime.now().toString() + ".csv";
 
   // Encode the string as a List<int> of UTF-8 bytes
   var bytes = utf8.encode(fileContent);

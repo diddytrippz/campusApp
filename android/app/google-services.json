@@ -1,95 +1,45 @@
 {
   "project_info": {
-    "project_number": "73650904699",
-    "project_id": "campus-africa-bda4b",
-    "storage_bucket": "campus-africa-bda4b.appspot.com"
+    "project_number": "38114027904",
+    "project_id": "campus-africa-5p16dz",
+    "storage_bucket": "campus-africa-5p16dz.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:73650904699:android:6130624c7ddaa12aff4cde",
+        "mobilesdk_app_id": "1:38114027904:android:b353aac521033d9f557965",
         "android_client_info": {
-          "package_name": "com.campusafrica.app"
+          "package_name": "com.campusafricamaintanance.app"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "73650904699-td4jq6o9kkds1b16tnt2nqj9anhlkks2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.campusafrica.app",
-            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
-          }
-        },
-        {
-          "client_id": "73650904699-l3e3edcl42vht8oc486jnshmp166fvgh.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCYYUGKvKW3O4C7La535TNQZdj6Bl5WHzA"
+          "current_key": "AIzaSyDQAr7h9iijVHUECX_7ZLl3oURI-5dQah0"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "73650904699-l3e3edcl42vht8oc486jnshmp166fvgh.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "73650904699-0dpj7a3eku4mdachir4beu0sb5kah0ik.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.newcampusafrica.app"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:73650904699:android:b80a6f37fbd02501ff4cde",
+        "mobilesdk_app_id": "1:38114027904:android:f11adf6d1571faa1557965",
         "android_client_info": {
-          "package_name": "com.campusafricaapp.campusafrica"
+          "package_name": "com.campusafricas.app"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "73650904699-3eqa4q4lj3p6c6u94e49devl3bki316u.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.campusafricaapp.campusafrica",
-            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
-          }
-        },
-        {
-          "client_id": "73650904699-l3e3edcl42vht8oc486jnshmp166fvgh.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCYYUGKvKW3O4C7La535TNQZdj6Bl5WHzA"
+          "current_key": "AIzaSyDQAr7h9iijVHUECX_7ZLl3oURI-5dQah0"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "73650904699-l3e3edcl42vht8oc486jnshmp166fvgh.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "73650904699-0dpj7a3eku4mdachir4beu0sb5kah0ik.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.newcampusafrica.app"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

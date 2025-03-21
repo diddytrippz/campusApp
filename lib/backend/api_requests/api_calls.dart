@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import '../schema/structs/index.dart';
 
-import '../../flutter_flow/flutter_flow_util.dart';
+import 'package:flutter/foundation.dart';
 
+import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
@@ -12,9 +14,9 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start loadshedding Group Code
 
 class LoadsheddingGroup {
-  static String baseUrl = 'https://developer.sepush.co.za/business/2.0/';
+  static String getBaseUrl() => 'https://developer.sepush.co.za/business/2.0/';
   static Map<String, String> headers = {
-    'Token': 'EF39C229-A0A34AE7-8372F901-49D6483F',
+    'Token': '7A550360-45E24264-87145FB1-F7242A64',
   };
   static GetLoadsheddingCall getLoadsheddingCall = GetLoadsheddingCall();
   static GetAreaCall getAreaCall = GetAreaCall();
@@ -24,13 +26,15 @@ class LoadsheddingGroup {
 class GetLoadsheddingCall {
   Future<ApiCallResponse> call({
     String? id = 'Fourways',
-  }) {
+  }) async {
+    final baseUrl = LoadsheddingGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'getLoadshedding',
-      apiUrl: '${LoadsheddingGroup.baseUrl}/area',
+      apiUrl: '${baseUrl}/area',
       callType: ApiCallType.GET,
       headers: {
-        ...LoadsheddingGroup.headers,
+        'Token': '7A550360-45E24264-87145FB1-F7242A64',
       },
       params: {
         'id': id,
@@ -40,14 +44,16 @@ class GetLoadsheddingCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
     );
   }
 
-  dynamic events(dynamic response) => getJsonField(
+  List? events(dynamic response) => getJsonField(
         response,
         r'''$.events''',
         true,
-      );
+      ) as List?;
   dynamic endDate(dynamic response) => getJsonField(
         response,
         r'''$.events[:].end''',
@@ -76,26 +82,26 @@ class GetLoadsheddingCall {
         response,
         r'''$.schedule''',
       );
-  dynamic days(dynamic response) => getJsonField(
+  List? days(dynamic response) => getJsonField(
         response,
         r'''$.schedule.days''',
         true,
-      );
-  dynamic daysDate(dynamic response) => getJsonField(
+      ) as List?;
+  List? daysDate(dynamic response) => getJsonField(
         response,
         r'''$.schedule.days[:].date''',
         true,
-      );
-  dynamic daysName(dynamic response) => getJsonField(
+      ) as List?;
+  List? daysName(dynamic response) => getJsonField(
         response,
         r'''$.schedule.days[:].name''',
         true,
-      );
-  dynamic daysStages(dynamic response) => getJsonField(
+      ) as List?;
+  List? daysStages(dynamic response) => getJsonField(
         response,
         r'''$.schedule.days[:].stages''',
         true,
-      );
+      ) as List?;
   dynamic source(dynamic response) => getJsonField(
         response,
         r'''$.schedule.source''',
@@ -104,15 +110,17 @@ class GetLoadsheddingCall {
 
 class GetAreaCall {
   Future<ApiCallResponse> call({
-    String? text = 'Fourways',
+    String? text = 'fourways',
     String? test = '',
-  }) {
+  }) async {
+    final baseUrl = LoadsheddingGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'getArea',
-      apiUrl: '${LoadsheddingGroup.baseUrl}/areas_search',
+      apiUrl: '${baseUrl}/areas_search',
       callType: ApiCallType.GET,
       headers: {
-        ...LoadsheddingGroup.headers,
+        'Token': '7A550360-45E24264-87145FB1-F7242A64',
       },
       params: {
         'text': text,
@@ -121,45 +129,51 @@ class GetAreaCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
     );
   }
 
-  dynamic idAreas(dynamic response) => getJsonField(
+  List? idAreas(dynamic response) => getJsonField(
         response,
         r'''$.areas''',
         true,
-      );
-  dynamic idName(dynamic response) => getJsonField(
+      ) as List?;
+  List? idName(dynamic response) => getJsonField(
         response,
         r'''$.areas[:].id''',
         true,
-      );
-  dynamic region(dynamic response) => getJsonField(
+      ) as List?;
+  List? region(dynamic response) => getJsonField(
         response,
         r'''$.areas[:].name''',
         true,
-      );
-  dynamic areaRegion(dynamic response) => getJsonField(
+      ) as List?;
+  List? areaRegion(dynamic response) => getJsonField(
         response,
         r'''$.areas[:].region''',
         true,
-      );
+      ) as List?;
 }
 
 class AllowCall {
-  Future<ApiCallResponse> call() {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = LoadsheddingGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'allow',
-      apiUrl: '${LoadsheddingGroup.baseUrl}/api_allowance',
+      apiUrl: '${baseUrl}/api_allowance',
       callType: ApiCallType.GET,
       headers: {
-        ...LoadsheddingGroup.headers,
+        'Token': '7A550360-45E24264-87145FB1-F7242A64',
       },
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
     );
   }
 }
@@ -177,8 +191,8 @@ class AirtableCall {
     String? updated = '',
     String? name = '',
     String? links = '',
-  }) {
-    final body = '''
+  }) async {
+    final ffApiRequestBody = '''
 {
   "fields": {
     "User": "${user}",
@@ -198,12 +212,14 @@ class AirtableCall {
         'Authorization': 'Bearer keySJ3Ga07JDprE4a',
       },
       params: {},
-      body: body,
+      body: ffApiRequestBody,
       bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
     );
   }
 }
@@ -224,20 +240,33 @@ class ApiPagingParams {
       'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
 }
 
+String _toEncodable(dynamic item) {
+  if (item is DocumentReference) {
+    return item.path;
+  }
+  return item;
+}
+
 String _serializeList(List? list) {
   list ??= <String>[];
   try {
-    return json.encode(list);
+    return json.encode(list, toEncodable: _toEncodable);
   } catch (_) {
+    if (kDebugMode) {
+      print("List serialization failed. Returning empty list.");
+    }
     return '[]';
   }
 }
 
-String _serializeJson(dynamic jsonVar) {
-  jsonVar ??= {};
+String _serializeJson(dynamic jsonVar, [bool isList = false]) {
+  jsonVar ??= (isList ? [] : {});
   try {
-    return json.encode(jsonVar);
+    return json.encode(jsonVar, toEncodable: _toEncodable);
   } catch (_) {
-    return '{}';
+    if (kDebugMode) {
+      print("Json serialization failed. Returning empty json.");
+    }
+    return isList ? '[]' : '{}';
   }
 }

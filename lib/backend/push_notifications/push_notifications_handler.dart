@@ -2,12 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'serialization_util.dart';
-import '../backend.dart';
-import '../../flutter_flow/flutter_flow_theme.dart';
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../../index.dart';
 import '../../main.dart';
@@ -46,49 +47,57 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
     }
     _handledMessageIds.add(message.messageId);
 
-    if (mounted) {
-      setState(() => _loading = true);
-    }
+    safeSetState(() => _loading = true);
     try {
       final initialPageName = message.data['initialPageName'] as String;
       final initialParameterData = getInitialParameterData(message.data);
       final parametersBuilder = parametersBuilderMap[initialPageName];
       if (parametersBuilder != null) {
         final parameterData = await parametersBuilder(initialParameterData);
-        context.pushNamed(
-          initialPageName,
-          params: parameterData.params,
-          extra: parameterData.extra,
-        );
+        if (mounted) {
+          context.pushNamed(
+            initialPageName,
+            pathParameters: parameterData.pathParameters,
+            extra: parameterData.extra,
+          );
+        } else {
+          appNavigatorKey.currentContext?.pushNamed(
+            initialPageName,
+            pathParameters: parameterData.pathParameters,
+            extra: parameterData.extra,
+          );
+        }
       }
     } catch (e) {
       print('Error: $e');
     } finally {
-      if (mounted) {
-        setState(() => _loading = false);
-      }
+      safeSetState(() => _loading = false);
     }
   }
 
   @override
   void initState() {
     super.initState();
-    handleOpenedPushNotification();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      handleOpenedPushNotification();
+    });
   }
 
   @override
   Widget build(BuildContext context) => _loading
-      ? Container(
-          color: FlutterFlowTheme.of(context).primaryColor,
-          child: Center(
-            child: Image.asset(
-              'assets/images/campus_logo_1.png',
-              width: MediaQuery.of(context).size.width * 0.75,
-              height: MediaQuery.of(context).size.height * 0.75,
-              fit: BoxFit.scaleDown,
-            ),
-          ),
-        )
+      ? isWeb
+          ? Container()
+          : Container(
+              color: FlutterFlowTheme.of(context).primaryBackground,
+              child: Center(
+                child: Image.asset(
+                  'assets/images/campus_logo_1.png',
+                  width: MediaQuery.sizeOf(context).width * 0.75,
+                  height: MediaQuery.sizeOf(context).height * 0.75,
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+            )
       : widget.child;
 }
 
@@ -98,7 +107,7 @@ class ParameterData {
   final Map<String, String?> requiredParams;
   final Map<String, dynamic> allParams;
 
-  Map<String, String> get params => Map.fromEntries(
+  Map<String, String> get pathParameters => Map.fromEntries(
         requiredParams.entries
             .where((e) => e.value != null)
             .map((e) => MapEntry(e.key, e.value!)),
@@ -114,53 +123,60 @@ class ParameterData {
 final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
   'onboarding': ParameterData.none(),
-  'login': ParameterData.none(),
-  'view': (data) async => ParameterData(
-        allParams: {
-          'completeTemp': getParameter<double>(data, 'completeTemp'),
-        },
-      ),
   'rules': ParameterData.none(),
-  'chats': (data) async => ParameterData(
-        allParams: {
-          'chatUser': await getDocumentParameter<UsersRecord>(
-              data, 'chatUser', UsersRecord.serializer),
-          'chatRef': getParameter<DocumentReference>(data, 'chatRef'),
-        },
-      ),
   'appliances': ParameterData.none(),
-  'Plumbing': ParameterData.none(),
-  'Furniture': ParameterData.none(),
-  'Electrical': ParameterData.none(),
-  'Locksmith': ParameterData.none(),
-  'PestControl': ParameterData.none(),
-  'Painting': ParameterData.none(),
-  'Others': ParameterData.none(),
-  'reviews': (data) async => ParameterData(
-        allParams: {
-          'jobReviews': await getDocumentParameter<MaintenanceRecord>(
-              data, 'jobReviews', MaintenanceRecord.serializer),
-        },
-      ),
   'settings': ParameterData.none(),
-  'home': ParameterData.none(),
   'messages': ParameterData.none(),
   'sendNotifications': ParameterData.none(),
   'information': (data) async => ParameterData(
         allParams: {
           'jobs': await getDocumentParameter<MaintenanceRecord>(
-              data, 'jobs', MaintenanceRecord.serializer),
+              data, 'jobs', MaintenanceRecord.fromSnapshot),
         },
       ),
   'notifications': ParameterData.none(),
-  'addInspection': ParameterData.none(),
-  'search': ParameterData.none(),
-  'Communal': ParameterData.none(),
   'visitorsManagement': ParameterData.none(),
-  'myVisitors': ParameterData.none(),
   'dashboard': ParameterData.none(),
-  'loadshedding': ParameterData.none(),
-  'eskomArea': ParameterData.none(),
+  'addInspection': ParameterData.none(),
+  'inspectionConfirm': ParameterData.none(),
+  'login': ParameterData.none(),
+  'testMessage': (data) async => ParameterData(
+        allParams: {
+          'chat': getParameter<DocumentReference>(data, 'chat'),
+          'users': await getDocumentParameter<UsersRecord>(
+              data, 'users', UsersRecord.fromSnapshot),
+          'issue': getParameter<String>(data, 'issue'),
+        },
+      ),
+  'search': ParameterData.none(),
+  'emergency': ParameterData.none(),
+  'viewNotifications': (data) async => ParameterData(
+        allParams: {
+          'notifications': await getDocumentParameter<NotificationsRecord>(
+              data, 'notifications', NotificationsRecord.fromSnapshot),
+        },
+      ),
+  'lease': ParameterData.none(),
+  'viewlease': (data) async => ParameterData(
+        allParams: {
+          'url': getParameter<String>(data, 'url'),
+          'name': getParameter<String>(data, 'name'),
+        },
+      ),
+  'personal': ParameterData.none(),
+  'other_Profile': (data) async => ParameterData(
+        allParams: {
+          'user': await getDocumentParameter<UsersRecord>(
+              data, 'user', UsersRecord.fromSnapshot),
+        },
+      ),
+  'registration': ParameterData.none(),
+  'view': (data) async => ParameterData(
+        allParams: {
+          'completeTemp': getParameter<double>(data, 'completeTemp'),
+        },
+      ),
+  'settingsCopy': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

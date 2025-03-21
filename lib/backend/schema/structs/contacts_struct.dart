@@ -1,34 +1,131 @@
-import 'dart:async';
+// ignore_for_file: unnecessary_getters_setters
+import '/backend/algolia/serialization_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../index.dart';
-import '../serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
-part 'contacts_struct.g.dart';
+import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-abstract class ContactsStruct
-    implements Built<ContactsStruct, ContactsStructBuilder> {
-  static Serializer<ContactsStruct> get serializer =>
-      _$contactsStructSerializer;
+class ContactsStruct extends FFFirebaseStruct {
+  ContactsStruct({
+    String? name,
+    String? surname,
+    String? contact,
+    FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
+  })  : _name = name,
+        _surname = surname,
+        _contact = contact,
+        super(firestoreUtilData);
 
-  String? get name;
+  // "name" field.
+  String? _name;
+  String get name => _name ?? '';
+  set name(String? val) => _name = val;
 
-  String? get surname;
+  bool hasName() => _name != null;
 
-  String? get contact;
+  // "surname" field.
+  String? _surname;
+  String get surname => _surname ?? '';
+  set surname(String? val) => _surname = val;
 
-  /// Utility class for Firestore updates
-  FirestoreUtilData get firestoreUtilData;
+  bool hasSurname() => _surname != null;
 
-  static void _initializeBuilder(ContactsStructBuilder builder) => builder
-    ..name = ''
-    ..surname = ''
-    ..contact = ''
-    ..firestoreUtilData = FirestoreUtilData();
+  // "contact" field.
+  String? _contact;
+  String get contact => _contact ?? '';
+  set contact(String? val) => _contact = val;
 
-  ContactsStruct._();
-  factory ContactsStruct([void Function(ContactsStructBuilder) updates]) =
-      _$ContactsStruct;
+  bool hasContact() => _contact != null;
+
+  static ContactsStruct fromMap(Map<String, dynamic> data) => ContactsStruct(
+        name: data['name'] as String?,
+        surname: data['surname'] as String?,
+        contact: data['contact'] as String?,
+      );
+
+  static ContactsStruct? maybeFromMap(dynamic data) =>
+      data is Map ? ContactsStruct.fromMap(data.cast<String, dynamic>()) : null;
+
+  Map<String, dynamic> toMap() => {
+        'name': _name,
+        'surname': _surname,
+        'contact': _contact,
+      }.withoutNulls;
+
+  @override
+  Map<String, dynamic> toSerializableMap() => {
+        'name': serializeParam(
+          _name,
+          ParamType.String,
+        ),
+        'surname': serializeParam(
+          _surname,
+          ParamType.String,
+        ),
+        'contact': serializeParam(
+          _contact,
+          ParamType.String,
+        ),
+      }.withoutNulls;
+
+  static ContactsStruct fromSerializableMap(Map<String, dynamic> data) =>
+      ContactsStruct(
+        name: deserializeParam(
+          data['name'],
+          ParamType.String,
+          false,
+        ),
+        surname: deserializeParam(
+          data['surname'],
+          ParamType.String,
+          false,
+        ),
+        contact: deserializeParam(
+          data['contact'],
+          ParamType.String,
+          false,
+        ),
+      );
+
+  static ContactsStruct fromAlgoliaData(Map<String, dynamic> data) =>
+      ContactsStruct(
+        name: convertAlgoliaParam(
+          data['name'],
+          ParamType.String,
+          false,
+        ),
+        surname: convertAlgoliaParam(
+          data['surname'],
+          ParamType.String,
+          false,
+        ),
+        contact: convertAlgoliaParam(
+          data['contact'],
+          ParamType.String,
+          false,
+        ),
+        firestoreUtilData: FirestoreUtilData(
+          clearUnsetFields: false,
+          create: true,
+        ),
+      );
+
+  @override
+  String toString() => 'ContactsStruct(${toMap()})';
+
+  @override
+  bool operator ==(Object other) {
+    return other is ContactsStruct &&
+        name == other.name &&
+        surname == other.surname &&
+        contact == other.contact;
+  }
+
+  @override
+  int get hashCode => const ListEquality().hash([name, surname, contact]);
 }
 
 ContactsStruct createContactsStruct({
@@ -41,28 +138,27 @@ ContactsStruct createContactsStruct({
   bool delete = false,
 }) =>
     ContactsStruct(
-      (c) => c
-        ..name = name
-        ..surname = surname
-        ..contact = contact
-        ..firestoreUtilData = FirestoreUtilData(
-          clearUnsetFields: clearUnsetFields,
-          create: create,
-          delete: delete,
-          fieldValues: fieldValues,
-        ),
+      name: name,
+      surname: surname,
+      contact: contact,
+      firestoreUtilData: FirestoreUtilData(
+        clearUnsetFields: clearUnsetFields,
+        create: create,
+        delete: delete,
+        fieldValues: fieldValues,
+      ),
     );
 
 ContactsStruct? updateContactsStruct(
   ContactsStruct? contacts, {
   bool clearUnsetFields = true,
+  bool create = false,
 }) =>
-    contacts != null
-        ? (contacts.toBuilder()
-              ..firestoreUtilData =
-                  FirestoreUtilData(clearUnsetFields: clearUnsetFields))
-            .build()
-        : null;
+    contacts
+      ?..firestoreUtilData = FirestoreUtilData(
+        clearUnsetFields: clearUnsetFields,
+        create: create,
+      );
 
 void addContactsStructData(
   Map<String, dynamic> firestoreData,
@@ -78,16 +174,17 @@ void addContactsStructData(
     firestoreData[fieldName] = FieldValue.delete();
     return;
   }
-  if (!forFieldValue && contacts.firestoreUtilData.clearUnsetFields) {
+  final clearFields =
+      !forFieldValue && contacts.firestoreUtilData.clearUnsetFields;
+  if (clearFields) {
     firestoreData[fieldName] = <String, dynamic>{};
   }
   final contactsData = getContactsFirestoreData(contacts, forFieldValue);
   final nestedData = contactsData.map((k, v) => MapEntry('$fieldName.$k', v));
 
-  final create = contacts.firestoreUtilData.create;
-  firestoreData.addAll(create ? mergeNestedFields(nestedData) : nestedData);
-
-  return;
+  final mergeFields = contacts.firestoreUtilData.create || clearFields;
+  firestoreData
+      .addAll(mergeFields ? mergeNestedFields(nestedData) : nestedData);
 }
 
 Map<String, dynamic> getContactsFirestoreData(
@@ -97,8 +194,7 @@ Map<String, dynamic> getContactsFirestoreData(
   if (contacts == null) {
     return {};
   }
-  final firestoreData =
-      serializers.toFirestore(ContactsStruct.serializer, contacts);
+  final firestoreData = mapToFirestore(contacts.toMap());
 
   // Add any Firestore field values
   contacts.firestoreUtilData.fieldValues
@@ -110,4 +206,4 @@ Map<String, dynamic> getContactsFirestoreData(
 List<Map<String, dynamic>> getContactsListFirestoreData(
   List<ContactsStruct>? contactss,
 ) =>
-    contactss?.map((c) => getContactsFirestoreData(c, true)).toList() ?? [];
+    contactss?.map((e) => getContactsFirestoreData(e, true)).toList() ?? [];

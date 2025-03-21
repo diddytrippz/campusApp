@@ -5,7 +5,8 @@ import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 
 const _kDynamicLinksUrl = 'https://campusafricaapp.page.link';
-const _kAppId = 'com.campusafrica.app';
+const _kAppBundleId = 'com.campusafricamaintanance.app';
+const _kIosAppId = '1607476667';
 
 Future<String> generateCurrentPageLink(
   BuildContext context, {
@@ -13,17 +14,25 @@ Future<String> generateCurrentPageLink(
   String? description,
   String? imageUrl,
   bool isShortLink = true,
+  bool forceRedirect = false,
 }) async {
   final dynamicLinkParams = DynamicLinkParameters(
-    link: Uri.parse('$_kDynamicLinksUrl${GoRouter.of(context).location}'),
+    link: Uri.parse(
+        '$_kDynamicLinksUrl${GoRouterState.of(context).uri.toString()}'),
     uriPrefix: _kDynamicLinksUrl,
-    androidParameters: const AndroidParameters(packageName: _kAppId),
-    iosParameters: const IOSParameters(bundleId: _kAppId),
+    androidParameters: const AndroidParameters(packageName: _kAppBundleId),
+    iosParameters: const IOSParameters(
+      bundleId: _kAppBundleId,
+      appStoreId: _kIosAppId,
+    ),
     socialMetaTagParameters: SocialMetaTagParameters(
       title: title,
       description: description,
       imageUrl: imageUrl != null ? Uri.tryParse(imageUrl) : null,
     ),
+    navigationInfoParameters: forceRedirect
+        ? NavigationInfoParameters(forcedRedirectEnabled: true)
+        : null,
   );
   return isShortLink
       ? FirebaseDynamicLinks.instance
@@ -35,8 +44,13 @@ Future<String> generateCurrentPageLink(
 }
 
 class DynamicLinksHandler extends StatefulWidget {
-  const DynamicLinksHandler({Key? key, required this.child}) : super(key: key);
+  const DynamicLinksHandler({
+    Key? key,
+    required this.router,
+    required this.child,
+  }) : super(key: key);
 
+  final GoRouter router;
   final Widget child;
 
   @override
@@ -64,7 +78,9 @@ class _DynamicLinksHandlerState extends State<DynamicLinksHandler> {
     final link = linkData.link.toString();
     final host = linkData.link.host;
     final location = link.split(host).last;
-    context.push(location);
+    if (widget.router.getCurrentLocation() != location) {
+      widget.router.push(location);
+    }
   }
 
   @override

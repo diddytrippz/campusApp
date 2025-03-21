@@ -3,11 +3,19 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:collection/collection.dart';
 import 'package:from_css_color/from_css_color.dart';
+import 'dart:math' show pow, pi, sin;
 import 'package:intl/intl.dart';
 import 'package:json_path/json_path.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cross_file/cross_file.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:record/record.dart';
+import 'uploaded_file.dart';
+import 'platform_utils/platform_util.dart';
 
 import '../main.dart';
 
@@ -16,8 +24,9 @@ import 'lat_lng.dart';
 export 'keep_alive_wrapper.dart';
 export 'lat_lng.dart';
 export 'place.dart';
-export 'local_file.dart';
+export 'uploaded_file.dart';
 export '../app_state.dart';
+export 'flutter_flow_model.dart';
 export 'dart:math' show min, max;
 export 'dart:typed_data' show Uint8List;
 export 'dart:convert' show jsonEncode, jsonDecode;
@@ -27,14 +36,18 @@ export 'package:cloud_firestore/cloud_firestore.dart'
 export 'package:page_transition/page_transition.dart';
 export 'custom_icons.dart' show FFIcons;
 export 'internationalization.dart' show FFLocalizations;
-export '../backend/firebase_analytics/analytics.dart';
+export '/backend/firebase_analytics/analytics.dart';
 export 'nav/nav.dart';
+export 'firebase_remote_config_util.dart';
+
+final RouteObserver<ModalRoute> routeObserver = RouteObserver<ModalRoute>();
 
 T valueOrDefault<T>(T? value, T defaultValue) =>
     (value is String && value.isEmpty) || value == null ? defaultValue : value;
 
 void _setTimeagoLocales() {
   timeago.setLocaleMessages('en', timeago.EnMessages());
+  timeago.setLocaleMessages('en_short', timeago.EnShortMessages());
 }
 
 String dateTimeFormat(String format, DateTime? dateTime, {String? locale}) {
@@ -43,15 +56,160 @@ String dateTimeFormat(String format, DateTime? dateTime, {String? locale}) {
   }
   if (format == 'relative') {
     _setTimeagoLocales();
-    return timeago.format(dateTime, locale: locale);
+    return timeago.format(dateTime, locale: locale, allowFromNow: true);
   }
-  return DateFormat(format).format(dateTime);
+  return DateFormat(format, locale).format(dateTime);
+}
+
+Theme wrapInMaterialDatePickerTheme(
+  BuildContext context,
+  Widget child, {
+  required Color headerBackgroundColor,
+  required Color headerForegroundColor,
+  required TextStyle headerTextStyle,
+  required Color pickerBackgroundColor,
+  required Color pickerForegroundColor,
+  required Color selectedDateTimeBackgroundColor,
+  required Color selectedDateTimeForegroundColor,
+  required Color actionButtonForegroundColor,
+  required double iconSize,
+}) {
+  final baseTheme = Theme.of(context);
+  final dateTimeMaterialStateForegroundColor =
+      WidgetStateProperty.resolveWith((states) {
+    if (states.contains(WidgetState.disabled)) {
+      return pickerForegroundColor.applyAlpha(0.60);
+    }
+    if (states.contains(WidgetState.selected)) {
+      return selectedDateTimeForegroundColor;
+    }
+    if (states.isEmpty) {
+      return pickerForegroundColor;
+    }
+    return null;
+  });
+
+  final dateTimeMaterialStateBackgroundColor =
+      WidgetStateProperty.resolveWith((states) {
+    if (states.contains(WidgetState.selected)) {
+      return selectedDateTimeBackgroundColor;
+    }
+    return null;
+  });
+
+  return Theme(
+    data: baseTheme.copyWith(
+      colorScheme: baseTheme.colorScheme.copyWith(
+        onSurface: pickerForegroundColor,
+      ),
+      disabledColor: pickerForegroundColor.applyAlpha(0.3),
+      textTheme: baseTheme.textTheme.copyWith(
+        headlineSmall: headerTextStyle,
+        headlineMedium: headerTextStyle,
+      ),
+      iconTheme: baseTheme.iconTheme.copyWith(
+        size: iconSize,
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+            foregroundColor: WidgetStatePropertyAll(
+              actionButtonForegroundColor,
+            ),
+            overlayColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.hovered)) {
+                return actionButtonForegroundColor.applyAlpha(0.04);
+              }
+              if (states.contains(WidgetState.focused) ||
+                  states.contains(WidgetState.pressed)) {
+                return actionButtonForegroundColor.applyAlpha(0.12);
+              }
+              return null;
+            })),
+      ),
+      datePickerTheme: DatePickerThemeData(
+        backgroundColor: pickerBackgroundColor,
+        headerBackgroundColor: headerBackgroundColor,
+        headerForegroundColor: headerForegroundColor,
+        weekdayStyle: baseTheme.textTheme.labelMedium!.copyWith(
+          color: pickerForegroundColor,
+        ),
+        dayBackgroundColor: dateTimeMaterialStateBackgroundColor,
+        todayBackgroundColor: dateTimeMaterialStateBackgroundColor,
+        yearBackgroundColor: dateTimeMaterialStateBackgroundColor,
+        dayForegroundColor: dateTimeMaterialStateForegroundColor,
+        todayForegroundColor: dateTimeMaterialStateForegroundColor,
+        yearForegroundColor: dateTimeMaterialStateForegroundColor,
+      ),
+    ),
+    child: child,
+  );
+}
+
+Theme wrapInMaterialTimePickerTheme(
+  BuildContext context,
+  Widget child, {
+  required Color headerBackgroundColor,
+  required Color headerForegroundColor,
+  required TextStyle headerTextStyle,
+  required Color pickerBackgroundColor,
+  required Color pickerForegroundColor,
+  required Color selectedDateTimeBackgroundColor,
+  required Color selectedDateTimeForegroundColor,
+  required Color actionButtonForegroundColor,
+  required double iconSize,
+}) {
+  final baseTheme = Theme.of(context);
+  return Theme(
+    data: baseTheme.copyWith(
+      iconTheme: baseTheme.iconTheme.copyWith(
+        size: iconSize,
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+            foregroundColor: WidgetStatePropertyAll(
+              actionButtonForegroundColor,
+            ),
+            overlayColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.hovered)) {
+                return actionButtonForegroundColor.applyAlpha(0.04);
+              }
+              if (states.contains(WidgetState.focused) ||
+                  states.contains(WidgetState.pressed)) {
+                return actionButtonForegroundColor.applyAlpha(0.12);
+              }
+              return null;
+            })),
+      ),
+      timePickerTheme: baseTheme.timePickerTheme.copyWith(
+        backgroundColor: pickerBackgroundColor,
+        hourMinuteTextColor: pickerForegroundColor,
+        dialHandColor: selectedDateTimeBackgroundColor,
+        dialTextColor: WidgetStateColor.resolveWith((states) =>
+            states.contains(WidgetState.selected)
+                ? selectedDateTimeForegroundColor
+                : pickerForegroundColor),
+        dayPeriodBorderSide: BorderSide(
+          color: pickerForegroundColor,
+        ),
+        dayPeriodTextColor: WidgetStateColor.resolveWith((states) =>
+            states.contains(WidgetState.selected)
+                ? selectedDateTimeForegroundColor
+                : pickerForegroundColor),
+        dayPeriodColor: WidgetStateColor.resolveWith((states) =>
+            states.contains(WidgetState.selected)
+                ? selectedDateTimeBackgroundColor
+                : Colors.transparent),
+        entryModeIconColor: pickerForegroundColor,
+      ),
+    ),
+    child: child,
+  );
 }
 
 Future launchURL(String url) async {
-  var uri = Uri.parse(url).toString();
+  var uri = Uri.parse(url);
   try {
-    await launch(uri);
+    await launchUrl(uri);
   } catch (e) {
     throw 'Could not launch $uri: $e';
   }
@@ -99,10 +257,18 @@ String formatNumber(
           formattedValue = NumberFormat.decimalPattern().format(value);
           break;
         case DecimalType.periodDecimal:
-          formattedValue = NumberFormat.decimalPattern('en_US').format(value);
+          if (currency != null) {
+            formattedValue = NumberFormat('#,##0.00', 'en_US').format(value);
+          } else {
+            formattedValue = NumberFormat.decimalPattern('en_US').format(value);
+          }
           break;
         case DecimalType.commaDecimal:
-          formattedValue = NumberFormat.decimalPattern('es_PA').format(value);
+          if (currency != null) {
+            formattedValue = NumberFormat('#,##0.00', 'es_PA').format(value);
+          } else {
+            formattedValue = NumberFormat.decimalPattern('es_PA').format(value);
+          }
           break;
       }
       break;
@@ -142,12 +308,40 @@ String formatNumber(
 }
 
 DateTime get getCurrentTimestamp => DateTime.now();
+DateTime dateTimeFromSecondsSinceEpoch(int seconds) {
+  return DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
+}
+
+extension DateTimeConversionExtension on DateTime {
+  int get secondsSinceEpoch => (millisecondsSinceEpoch / 1000).round();
+}
 
 extension DateTimeComparisonOperators on DateTime {
   bool operator <(DateTime other) => isBefore(other);
   bool operator >(DateTime other) => isAfter(other);
   bool operator <=(DateTime other) => this < other || isAtSameMomentAs(other);
   bool operator >=(DateTime other) => this > other || isAtSameMomentAs(other);
+}
+
+T? castToType<T>(dynamic value) {
+  if (value == null) {
+    return null;
+  }
+  switch (T) {
+    case double:
+      // Doubles may be stored as ints in some cases.
+      return value.toDouble() as T;
+    case int:
+      // Likewise, ints may be stored as doubles. If this is the case
+      // (i.e. no decimal value), return the value as an int.
+      if (value is num && value.toInt() == value) {
+        return value.toInt() as T;
+      }
+      break;
+    default:
+      break;
+  }
+  return value as T;
 }
 
 dynamic getJsonField(
@@ -163,7 +357,12 @@ dynamic getJsonField(
     return field.map((f) => f.value).toList();
   }
   final value = field.first.value;
-  return isForList && value is! Iterable ? [value] : value;
+  if (isForList) {
+    return value is! Iterable
+        ? [value]
+        : (value is List ? value : value.toList());
+  }
+  return value;
 }
 
 Rect? getWidgetBoundingBox(BuildContext context) {
@@ -179,9 +378,11 @@ bool get isAndroid => !kIsWeb && Platform.isAndroid;
 bool get isiOS => !kIsWeb && Platform.isIOS;
 bool get isWeb => kIsWeb;
 
-const kMobileWidthCutoff = 479.0;
+const kBreakpointSmall = 479.0;
+const kBreakpointMedium = 767.0;
+const kBreakpointLarge = 991.0;
 bool isMobileWidth(BuildContext context) =>
-    MediaQuery.of(context).size.width < kMobileWidthCutoff;
+    MediaQuery.sizeOf(context).width < kBreakpointSmall;
 bool responsiveVisibility({
   required BuildContext context,
   bool phone = true,
@@ -189,12 +390,12 @@ bool responsiveVisibility({
   bool tabletLandscape = true,
   bool desktop = true,
 }) {
-  final width = MediaQuery.of(context).size.width;
-  if (width < kMobileWidthCutoff) {
+  final width = MediaQuery.sizeOf(context).width;
+  if (width < kBreakpointSmall) {
     return phone;
-  } else if (width < 767) {
+  } else if (width < kBreakpointMedium) {
     return tablet;
-  } else if (width < 991) {
+  } else if (width < kBreakpointLarge) {
     return tabletLandscape;
   } else {
     return desktop;
@@ -202,21 +403,37 @@ bool responsiveVisibility({
 }
 
 const kTextValidatorUsernameRegex = r'^[a-zA-Z][a-zA-Z0-9_-]{2,16}$';
+// https://stackoverflow.com/a/201378
 const kTextValidatorEmailRegex =
-    r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$";
+    "^(?:[a-zA-Z0-9!#\$%&\'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#\$%&\'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-zA-Z0-9-]*[a-zA-Z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])\$";
 const kTextValidatorWebsiteRegex =
     r'(https?:\/\/)?(www\.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,10}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|(https?:\/\/)?(www\.)?(?!ww)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,10}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)';
 
-extension StringDocRef on String {
-  DocumentReference get ref => FirebaseFirestore.instance.doc(this);
+extension FFTextEditingControllerExt on TextEditingController? {
+  String get text => this == null ? '' : this!.text;
+  set text(String newText) => this?.text = newText;
 }
 
 extension IterableExt<T> on Iterable<T> {
+  List<T> sortedList<S extends Comparable>(
+      {S Function(T)? keyOf, bool desc = false}) {
+    final sortedAscending = toList()
+      ..sort(keyOf == null ? null : ((a, b) => keyOf(a).compareTo(keyOf(b))));
+    if (desc) {
+      return sortedAscending.reversed.toList();
+    }
+    return sortedAscending;
+  }
+
   List<S> mapIndexed<S>(S Function(int, T) func) => toList()
       .asMap()
       .map((index, value) => MapEntry(index, func(index, value)))
       .values
       .toList();
+}
+
+extension StringDocRef on String {
+  DocumentReference get ref => FirebaseFirestore.instance.doc(this);
 }
 
 void setAppLanguage(BuildContext context, String language) =>
@@ -265,3 +482,192 @@ extension FFStringExt on String {
 extension ListFilterExt<T> on Iterable<T?> {
   List<T> get withoutNulls => where((s) => s != null).map((e) => e!).toList();
 }
+
+extension MapFilterExtensions<T> on Map<String, T?> {
+  Map<String, T> get withoutNulls => Map.fromEntries(
+        entries
+            .where((e) => e.value != null)
+            .map((e) => MapEntry(e.key, e.value as T)),
+      );
+}
+
+extension MapListContainsExt on List<dynamic> {
+  bool containsMap(dynamic map) => map is Map
+      ? any((e) => e is Map && const DeepCollectionEquality().equals(e, map))
+      : contains(map);
+}
+
+extension ListDivideExt<T extends Widget> on Iterable<T> {
+  Iterable<MapEntry<int, Widget>> get enumerate => toList().asMap().entries;
+
+  List<Widget> divide(Widget t, {bool Function(int)? filterFn}) => isEmpty
+      ? []
+      : (enumerate
+          .map((e) => [e.value, if (filterFn == null || filterFn(e.key)) t])
+          .expand((i) => i)
+          .toList()
+        ..removeLast());
+
+  List<Widget> around(Widget t) => addToStart(t).addToEnd(t);
+
+  List<Widget> addToStart(Widget t) =>
+      enumerate.map((e) => e.value).toList()..insert(0, t);
+
+  List<Widget> addToEnd(Widget t) =>
+      enumerate.map((e) => e.value).toList()..add(t);
+
+  List<Padding> paddingTopEach(double val) =>
+      map((w) => Padding(padding: EdgeInsets.only(top: val), child: w))
+          .toList();
+}
+
+extension StatefulWidgetExtensions on State<StatefulWidget> {
+  /// Check if the widget exist before safely setting state.
+  void safeSetState(VoidCallback fn) {
+    if (mounted) {
+      // ignore: invalid_use_of_protected_member
+      setState(fn);
+    }
+  }
+}
+
+Future<void> startAudioRecording(
+  BuildContext context, {
+  required AudioRecorder audioRecorder,
+}) async {
+  if (await audioRecorder.hasPermission()) {
+    final String path;
+    final AudioEncoder encoder;
+    if (kIsWeb) {
+      path = '';
+      final userAgent = getUserAgent();
+      // Safari browsers don't support opus encoding, so we fall back to wav.
+      // All other browsers use opus for smaller file sizes.
+      if (userAgent.contains('safari') && !userAgent.contains('chrome')) {
+        encoder = AudioEncoder.wav;
+      } else {
+        encoder = AudioEncoder.opus;
+      }
+    } else {
+      final dir = await getApplicationDocumentsDirectory();
+      path = '${dir.path}/audio_${DateTime.now().millisecondsSinceEpoch}.m4a';
+      encoder = AudioEncoder.aacLc;
+    }
+    await audioRecorder.start(
+      RecordConfig(encoder: encoder),
+      path: path,
+    );
+  } else {
+    if (!context.mounted) {
+      return;
+    }
+    showSnackbar(
+      context,
+      'You have not provided permission to record audio.',
+    );
+  }
+}
+
+Future<void> stopAudioRecording({
+  required AudioRecorder? audioRecorder,
+  required String audioName,
+  required Function(String?, FFUploadedFile) onRecordingComplete,
+}) async {
+  if (audioRecorder == null) {
+    return;
+  }
+  final recordedPath = await audioRecorder.stop();
+  final recordedFilePath = !kIsWeb && (Platform.isIOS || Platform.isMacOS)
+      ? 'file://$recordedPath'
+      : recordedPath;
+  if (recordedFilePath == null) {
+    return;
+  }
+
+  final recordedFileBytes = FFUploadedFile(
+    name: '$audioName.m4a',
+    bytes: await XFile(recordedPath!).readAsBytes(),
+  );
+  onRecordingComplete(
+    recordedFilePath,
+    recordedFileBytes,
+  );
+}
+
+// For iOS 16 and below, set the status bar color to match the app's theme.
+// https://github.com/flutter/flutter/issues/41067
+Brightness? _lastBrightness;
+void fixStatusBarOniOS16AndBelow(BuildContext context) {
+  if (!isiOS) {
+    return;
+  }
+  final brightness = Theme.of(context).brightness;
+  if (_lastBrightness != brightness) {
+    _lastBrightness = brightness;
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarBrightness: brightness,
+        systemStatusBarContrastEnforced: true,
+      ),
+    );
+  }
+}
+
+extension ColorOpacityExt on Color {
+  Color applyAlpha(double val) => withValues(alpha: val);
+}
+
+String roundTo(double value, int decimalPoints) {
+  final power = pow(10, decimalPoints);
+  return ((value * power).round() / power).toString();
+}
+
+double computeGradientAlignmentX(double evaluatedAngle) {
+  evaluatedAngle %= 360;
+  final rads = evaluatedAngle * pi / 180;
+  double x;
+  if (evaluatedAngle < 45 || evaluatedAngle > 315) {
+    x = sin(2 * rads);
+  } else if (45 <= evaluatedAngle && evaluatedAngle <= 135) {
+    x = 1;
+  } else if (135 <= evaluatedAngle && evaluatedAngle <= 225) {
+    x = sin(-2 * rads);
+  } else {
+    x = -1;
+  }
+  return double.parse(roundTo(x, 2));
+}
+
+double computeGradientAlignmentY(double evaluatedAngle) {
+  evaluatedAngle %= 360;
+  final rads = evaluatedAngle * pi / 180;
+  double y;
+  if (evaluatedAngle < 45 || evaluatedAngle > 315) {
+    y = -1;
+  } else if (45 <= evaluatedAngle && evaluatedAngle <= 135) {
+    y = sin(-2 * rads);
+  } else if (135 <= evaluatedAngle && evaluatedAngle <= 225) {
+    y = 1;
+  } else {
+    y = sin(2 * rads);
+  }
+  return double.parse(roundTo(y, 2));
+}
+
+extension ListUniqueExt<T> on Iterable<T> {
+  List<T> unique(dynamic Function(T) getKey) {
+    var distinctSet = <dynamic>{};
+    var distinctList = <T>[];
+    for (var item in this) {
+      if (distinctSet.add(getKey(item))) {
+        distinctList.add(item);
+      }
+    }
+    return distinctList;
+  }
+}
+
+String getCurrentRoute(BuildContext context) =>
+    context.mounted ? MyApp.of(context).getRoute() : '';
+List<String> getCurrentRouteStack(BuildContext context) =>
+    context.mounted ? MyApp.of(context).getRouteStack() : [];

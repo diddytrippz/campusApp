@@ -3,7 +3,7 @@ import 'dart:io' show Platform;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'serialization_util.dart';
-import '../../auth/auth_util.dart';
+import '../../auth/firebase_auth/auth_util.dart';
 import '../cloud_functions/cloud_functions.dart';
 
 import 'package:flutter/foundation.dart';
@@ -35,6 +35,7 @@ Stream<UserTokenInfo> getFcmTokenStream(String userPath) =>
             .merge(FirebaseMessaging.instance.onTokenRefresh))
         .where((fcmToken) => fcmToken != null && fcmToken.isNotEmpty)
         .map((token) => UserTokenInfo(userPath, token!));
+
 final fcmTokenUserStream = authenticatedUserStream
     .where((user) => user != null)
     .map((user) => user!.reference.path)

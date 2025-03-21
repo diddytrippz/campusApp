@@ -5,13 +5,12 @@ Future initFirebase() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
         options: FirebaseOptions(
-            apiKey: "AIzaSyBx4kPnRuoIkof4JYLSdcrokDkp7AJUN_0",
-            authDomain: "campus-africa-bda4b.firebaseapp.com",
-            projectId: "campus-africa-bda4b",
-            storageBucket: "campus-africa-bda4b.appspot.com",
-            messagingSenderId: "73650904699",
-            appId: "1:73650904699:web:37916ded453a7fd3ff4cde",
-            measurementId: "G-PEZETS2RJ4"));
+            apiKey: "AIzaSyCMJdWk3jhTbk4mNCv6lxH0CkaaEoVp9H4",
+            authDomain: "campus-africa-5p16dz.firebaseapp.com",
+            projectId: "campus-africa-5p16dz",
+            storageBucket: "campus-africa-5p16dz.firebasestorage.app",
+            messagingSenderId: "38114027904",
+            appId: "1:38114027904:web:e4e044aed9d573e2557965"));
   } else {
     await Firebase.initializeApp();
   }
